@@ -1,0 +1,29 @@
+{
+  "name": "create-hanui-app",
+  "version": "0.0.0",
+  "description": "CLI for creating HANUI projects",
+  "bin": {
+    "create-hanui-app": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "@types/node": "^22.10.2"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "prompts": "^2.4.2",
+    "chalk": "^5.4.1",
+    "ora": "^8.1.1"
+  }
+}

@@ -64,6 +64,9 @@ build/
 .next/
 out/
 
+# Turborepo
+.turbo/
+
 # Temporary files
 *.tmp
 *.temp

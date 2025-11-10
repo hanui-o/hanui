@@ -65,10 +65,75 @@ Phase 2 (3-4개월): 접근성 도구
 Phase 3 (5-8개월): Marketplace
 └─ 플랫폼 개발 + 커뮤니티 활성화
 
-Phase 4 (9-12개월): AI Generator
-└─ GPT-4 연동 + 베타 런칭
+Phase 4 (9-12개월): AI 협업 & 공식화 추진 ⭐ (변경)
+└─ 검증 도구 강화 + 정부 인증 추진
 
 👉 "언제 뭘 만들지" 구체적 계획
+```
+
+#### [GOVERNMENT_CERTIFICATION.md](./planning/GOVERNMENT_CERTIFICATION.md) - 정부 공식 인증 전략 ⭐ (신규)
+```
+3단계 공식 인증 로드맵
+
+Level 1: 준공식 지위 (1년 목표)
+├─ 행안부 담당 부서 접촉
+├─ 파일럿 프로젝트 진행
+└─ SI 업체 파트너십
+
+Level 2: 준공식 인정 (1-2년)
+├─ 공공데이터 포털 등록
+├─ NIA 협력
+└─ TTA 표준 등록
+
+Level 3: 완전 공식화 (2-3년)
+├─ 오픈소스 기부
+└─ 정부 발주 사업 수주
+
+핵심 메시지:
+"공식 인증은 결과이지 목표가 아니다"
+실제 가치를 만들면 인정은 따라온다
+
+👉 "어떻게 정부 인정을 받을 것인가"
+```
+
+#### [ISSUE_PLANNING.md](./planning/ISSUE_PLANNING.md) - 이슈 전체 정리 ⭐ (신규)
+```
+GitHub Issue 생성 전 전체 로드맵
+
+포함 내용:
+├─ 전략적 결정사항 (Starter Kit vs Docs, React vs Vue)
+├─ 프로젝트 구조 (Monorepo)
+├─ Phase 1 이슈 19개 (상세)
+│  ├─ Epic 1: 프로젝트 기반 설정
+│  ├─ Epic 2: 디자인 시스템
+│  ├─ Epic 3: 컴포넌트 9개
+│  ├─ Epic 4: CLI + 템플릿 2개 (Portal + Admin)
+│  ├─ Epic 5: Docs 사이트
+│  └─ Epic 6: NPM 배포
+├─ 우선순위 (P0, P1, P2)
+├─ 예상 타임라인 (5주)
+└─ 전략적 권고사항
+
+👉 "무엇을, 언제, 어떻게 만들 것인가"
+```
+
+#### [DECISION_SUMMARY.md](./planning/DECISION_SUMMARY.md) - 전략 결정 요약 ⭐ (신규)
+```
+프로젝트 시작 전 핵심 결정사항
+
+최종 결정:
+✅ Starter Kit 우선 (문서는 점진적)
+✅ React 먼저 (Vue는 Phase 1.5)
+✅ Portal + Admin 템플릿 (핵심 차별화)
+✅ 컴포넌트 9개 (공공 필수)
+✅ 5주 타임라인 (풀타임 기준)
+
+핵심 차별화:
+"경쟁사는 컴포넌트만, HANUI는 템플릿까지"
+→ Portal (Next.js) + Admin (React + Vite)
+→ 개발 시간 2주 → 2일
+
+👉 "왜 이렇게 결정했는가"
 ```
 
 ---
@@ -98,7 +163,47 @@ Phase 4 (9-12개월): AI Generator
 
 ---
 
-### 3. 경쟁 분석 ([competition/](./competition))
+### 3. 디자인 문서 ([design/](./design))
+
+#### [DESIGN_REFERENCE.md](./design/DESIGN_REFERENCE.md) - 디자인 레퍼런스 ⭐ (신규)
+```
+KRDS + Vercel 기반 디자인 시스템
+
+디자인 우선순위:
+1순위: KRDS 공식 규격 (https://www.krds.go.kr/)
+   └─ 컬러, 타이포그래피, 컴포넌트 규격 (절대 준수)
+2순위: Vercel 스타일 (https://vercel.com/)
+   └─ 레이아웃, 애니메이션 표현 방식
+
+포함 내용:
+├─ KRDS 공식 규격 분석
+│  ├─ 컬러 팔레트 (#0066CC, #00A896)
+│  ├─ 타이포그래피 (Noto Sans KR)
+│  ├─ 컴포넌트 규격 (버튼 40px 등)
+│  └─ 접근성 기준 (4.5:1, 44x44px)
+│
+├─ Vercel 스타일 참고
+│  ├─ 레퍼런스 이미지 4개 (main, menu, sub, sub2)
+│  ├─ 레이아웃 패턴
+│  ├─ 애니메이션 스타일
+│  └─ UI 인터랙션
+│
+└─ HANUI 디자인 시스템
+   ├─ 컬러 시스템 (KRDS 기준)
+   ├─ 타이포그래피 (KRDS 기준)
+   ├─ 여백 시스템 (KRDS 8px 기준)
+   └─ 반응형 디자인 (3 Breakpoints)
+
+핵심 메시지:
+"KRDS 규격을 준수하되, Vercel처럼 세련되게"
+공공 표준을 지키면서도 개발자 친화적인 디자인
+
+👉 "어떻게 디자인할 것인가"
+```
+
+---
+
+### 4. 경쟁 분석 ([competition/](./competition))
 
 #### [ANALYSIS.md](./competition/ANALYSIS.md) - 경쟁사 분석
 ```
@@ -162,6 +267,21 @@ SWOT 분석:
 
 4. DIFFERENTIATION.md
    → 차별화 기능 (접근성 도구, AI 등)
+```
+
+#### 🎨 디자이너
+```
+1. DESIGN_REFERENCE.md (디자인 시스템)
+   → Vercel 레퍼런스, 컬러/타이포그래피
+
+2. PRD.md - "핵심 기능" 섹션
+   → 어떤 페이지/컴포넌트가 필요한지
+
+3. ROADMAP.md - Phase 1 Week 3
+   → 문서 사이트 디자인 일정
+
+4. ARCHITECTURE.md - "테마 시스템" 섹션
+   → 다크모드, 접근성 요구사항
 ```
 
 #### 💼 투자자 / 파트너
@@ -265,10 +385,11 @@ Marketplace (수수료 30%):
 #### Step 1: 문서 정독
 ```bash
 # 순서대로 읽기
-1. docs-kit/planning/PRD.md
-2. docs-kit/planning/DIFFERENTIATION.md
-3. docs-kit/technical/ARCHITECTURE.md
-4. docs-kit/planning/ROADMAP.md
+1. docs/planning/PRD.md
+2. docs/planning/DIFFERENTIATION.md
+3. docs/technical/ARCHITECTURE.md
+4. docs/design/DESIGN_REFERENCE.md
+5. docs/planning/ROADMAP.md
 ```
 
 #### Step 2: 프로젝트 세팅
