@@ -53,5 +53,8 @@ export type {
   BreadcrumbItemProps,
 } from './components/Breadcrumb';
 
+export { FileUpload } from './components/FileUpload';
+export type { FileUploadProps, UploadedFile } from './components/FileUpload';
+
 // Utils
 export { cn } from './lib/utils';
