@@ -2,7 +2,9 @@
 // Korean Government Design System (KRDS) based components
 
 // Import styles
-import './styles.css';
+// NOTE: CSS import is commented out to prevent Tailwind v4/v3 conflicts in docs app
+// Users should import styles manually: import '@hanui/react/styles.css'
+// import './styles.css';
 
 export const version = '0.0.0';
 

@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  transpilePackages: ['@hanui/react'],
 };
 
 export default nextConfig;
