@@ -1,13 +1,40 @@
 {
   "name": "create-hanui-app",
-  "version": "0.1.0",
-  "description": "CLI for creating HANUI projects",
+  "version": "0.1.0-alpha.1",
+  "description": "KRDS 기반 공공 웹 프로젝트 생성 CLI - Scaffolding tool for HANUI projects with KRDS design system",
+  "keywords": [
+    "cli",
+    "create-app",
+    "scaffold",
+    "hanui",
+    "krds",
+    "react",
+    "government",
+    "public",
+    "template"
+  ],
+  "homepage": "https://hanui.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odada-o/hanui.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/odada-o/hanui/issues"
+  },
+  "author": "odada-o",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "create-hanui-app": "./dist/index.mjs"
   },
   "files": [
     "dist",
-    "templates"
+    "templates",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "tsup --watch",

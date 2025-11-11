@@ -61,4 +61,4 @@ pnpm create hanui-app my-portal-app
 
 ## 라이선스
 
-MIT
+MIT © [odada-o](https://github.com/odada-o)
