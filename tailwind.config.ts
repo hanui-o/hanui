@@ -106,13 +106,37 @@ const config: Config = {
         },
       },
       fontFamily: {
+        // KRDS Typography - Pretendard GOV (official)
+        // Source: https://github.com/KRDS-uiux/krds-uiux/blob/main/tokens/figma_token.json
         sans: [
+          'Pretendard GOV',
+          'Pretendard',
+          'Pretendard Variable',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'system-ui',
+          'Roboto',
+          'Helvetica Neue',
+          'Segoe UI',
+          'Apple SD Gothic Neo',
           'Noto Sans KR',
           'Malgun Gothic',
-          'Apple SD Gothic Neo',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
           'sans-serif',
         ],
-        mono: ['Fira Code', 'D2Coding', 'Consolas', 'monospace'],
+        mono: [
+          'Fira Code',
+          'D2Coding',
+          'SFMono-Regular',
+          'Menlo',
+          'Monaco',
+          'Consolas',
+          'Liberation Mono',
+          'Courier New',
+          'monospace',
+        ],
       },
       spacing: {
         // KRDS 8px grid system
@@ -144,16 +168,68 @@ const config: Config = {
         none: '0 0 #0000',
       },
       fontSize: {
-        // KRDS Typography Scale
-        xs: ['0.75rem', { lineHeight: '1rem' }], // 12px
-        sm: ['0.875rem', { lineHeight: '1.25rem' }], // 14px
-        base: ['1rem', { lineHeight: '1.5rem' }], // 16px
-        lg: ['1.125rem', { lineHeight: '1.75rem' }], // 18px
-        xl: ['1.25rem', { lineHeight: '1.75rem' }], // 20px
-        '2xl': ['1.5rem', { lineHeight: '2rem' }], // 24px
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }], // 30px
-        '4xl': ['2.25rem', { lineHeight: '2.5rem' }], // 36px
-        '5xl': ['3rem', { lineHeight: '1' }], // 48px
+        // KRDS Typography Scale - Desktop
+        // Source: https://github.com/KRDS-uiux/krds-uiux/blob/main/tokens/figma_token.json
+
+        // Display sizes
+        'display-lg': [
+          '6rem',
+          { lineHeight: '1.25', letterSpacing: '-0.025em', fontWeight: '700' },
+        ], // 96px
+        'display-md': [
+          '4.4rem',
+          { lineHeight: '1.25', letterSpacing: '-0.025em', fontWeight: '700' },
+        ], // 70.4px
+        'display-sm': [
+          '3.6rem',
+          { lineHeight: '1.375', letterSpacing: '-0.025em', fontWeight: '700' },
+        ], // 57.6px
+
+        // Heading sizes
+        'heading-xl': ['4rem', { lineHeight: '1.375', fontWeight: '700' }], // 64px
+        'heading-lg': ['3.2rem', { lineHeight: '1.375', fontWeight: '700' }], // 51.2px
+        'heading-md': ['2.4rem', { lineHeight: '1.5', fontWeight: '700' }], // 38.4px
+        'heading-sm': ['1.9rem', { lineHeight: '1.5', fontWeight: '600' }], // 30.4px
+        'heading-xs': ['1.7rem', { lineHeight: '1.5', fontWeight: '600' }], // 27.2px
+        'heading-2xs': ['1.5rem', { lineHeight: '1.5', fontWeight: '600' }], // 24px
+
+        // Body & Label sizes
+        'body-lg': ['1.9rem', { lineHeight: '1.625', fontWeight: '400' }], // 30.4px
+        'body-md': ['1.7rem', { lineHeight: '1.625', fontWeight: '400' }], // 27.2px
+        'body-sm': ['1.5rem', { lineHeight: '1.625', fontWeight: '400' }], // 24px
+        'body-xs': ['1.3rem', { lineHeight: '1.5', fontWeight: '400' }], // 20.8px
+
+        // Navigation sizes
+        'nav-title-md': ['2.4rem', { lineHeight: '1.5', fontWeight: '600' }], // 38.4px
+        'nav-title-sm': ['1.9rem', { lineHeight: '1.5', fontWeight: '500' }], // 30.4px
+        'nav-depth-md': ['1.7rem', { lineHeight: '1.5', fontWeight: '500' }], // 27.2px
+        'nav-depth-sm': ['1.5rem', { lineHeight: '1.5', fontWeight: '400' }], // 24px
+      },
+      fontWeight: {
+        // KRDS Font Weights
+        regular: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+      },
+      lineHeight: {
+        // KRDS Line Heights
+        none: '1',
+        tight: '1.25',
+        snug: '1.375',
+        normal: '1.5',
+        relaxed: '1.625',
+        loose: '1.75',
+        looser: '2',
+      },
+      letterSpacing: {
+        // KRDS Letter Spacing
+        tighter: '-0.05em',
+        tight: '-0.025em',
+        normal: '0em',
+        wide: '0.025em',
+        wider: '0.05em',
+        widest: '0.1em',
       },
     },
   },
