@@ -1,9 +1,9 @@
 {
   "name": "create-hanui-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "CLI for creating HANUI projects",
   "bin": {
-    "create-hanui-app": "./dist/index.js"
+    "create-hanui-app": "./dist/index.mjs"
   },
   "files": [
     "dist",
