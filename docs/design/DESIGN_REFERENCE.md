@@ -74,7 +74,9 @@ shadcn/ui의 Button은 이렇게 생김:
 
 ### 3. KRDS - 표준/규격 레퍼런스 ⭐⭐⭐⭐⭐ (최우선)
 
-**URL**: https://www.krds.go.kr/
+**공식 웹사이트**: https://www.krds.go.kr/
+
+**GitHub 저장소**: https://github.com/KRDS-uiux/krds-uiux ⭐ **실제 작업 시 참고**
 
 **역할**: "무엇을 **준수**해야 하는가" (Standards)
 
@@ -82,11 +84,61 @@ shadcn/ui의 Button은 이렇게 생김:
 
 **필수 준수 사항**:
 
-- 컬러 팔레트 (Primary #0066CC 등)
+- 컬러 팔레트 (Figma 토큰 기반)
 - 버튼 높이 (40px 권장)
 - 폰트 (Noto Sans KR, Malgun Gothic)
 - 8px Grid 시스템
 - 접근성 (WCAG 2.1 AA)
+
+**KRDS GitHub 저장소 구조**:
+
+```
+KRDS-uiux/
+├── tokens/
+│   ├── figma_token.json        ⭐ 디자인 토큰 (컬러, 타이포 등)
+│   └── transformed_tokens.json
+├── html/code/                  HTML 컴포넌트 구현
+└── resources/                  리소스 파일
+```
+
+**주요 참고 파일**:
+
+1. **컬러 토큰**: `tokens/figma_token.json`
+   - Primary, Secondary, Gray, Success, Warning, Danger, Info
+   - 5-10-20-30-40-50-60-70-80-90-95 스케일
+   - 공식 HEX 코드 값
+
+2. **HTML 컴포넌트**: `html/code/`
+   - 실제 구현 예제
+   - KRDS 준수 마크업
+
+**디자인 토큰 추출 예시**:
+
+```json
+// tokens/figma_token.json에서
+{
+  "color": {
+    "primary": {
+      "50": { "value": "#256ef4" },
+      "60": { "value": "#0b50d0" }
+      // ...
+    }
+  }
+}
+```
+
+**작업 시 활용법**:
+
+```bash
+# 1. KRDS 저장소 클론
+git clone https://github.com/KRDS-uiux/krds-uiux.git
+
+# 2. Figma 토큰 확인
+cat tokens/figma_token.json
+
+# 3. HTML 구현 참고
+cd html/code
+```
 
 ---
 
