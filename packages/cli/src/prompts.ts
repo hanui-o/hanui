@@ -51,17 +51,19 @@ export async function promptForConfig(
       {
         title: 'Portal (민원 포털)',
         value: 'portal',
-        description: '시민 대상 민원 포털 템플릿',
+        description: '시민 대상 민원 포털 템플릿 - React + Vite',
       },
       {
-        title: 'Admin (관리자)',
+        title: 'Admin (관리자) - Coming soon',
         value: 'admin',
         description: '관리자용 백오피스 템플릿',
+        disabled: true,
       },
       {
-        title: 'Both (Portal + Admin)',
+        title: 'Both (Portal + Admin) - Coming soon',
         value: 'both',
-        description: '포털 + 관리자 멀티 앱',
+        description: '포털 + 관리자 멀티 앱 (Monorepo)',
+        disabled: true,
       },
     ],
     initial: 0,
