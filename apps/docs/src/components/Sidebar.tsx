@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import * as React from 'react';
+import { useRef, useState } from 'react';
 
 const navigation = [
   {
@@ -10,6 +12,13 @@ const navigation = [
       { title: 'Introduction', href: '/docs/introduction' },
       { title: 'Installation', href: '/docs/installation' },
       { title: 'Quick Start', href: '/docs/quick-start' },
+    ],
+  },
+  {
+    title: 'Design System',
+    items: [
+      { title: 'Design Tokens', href: '/design-tokens' },
+      { title: 'Spacing', href: '/design-system/spacing' },
     ],
   },
   {
@@ -32,41 +41,88 @@ const navigation = [
   },
 ];
 
-export function Sidebar() {
+function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
   const pathname = usePathname();
+  const listRef = useRef<HTMLUListElement>(null);
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    top: 0,
+    height: 0,
+    opacity: 0,
+  });
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const target = e.currentTarget;
+    const list = listRef.current;
+    if (list) {
+      const listRect = list.getBoundingClientRect();
+      const targetRect = target.getBoundingClientRect();
+      setIndicatorStyle({
+        top: targetRect.top - listRect.top,
+        height: targetRect.height,
+        opacity: 1,
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
+  };
 
   return (
-    <aside className="hidden md:block w-64 flex-shrink-0 border-r border-gray-20 dark:border-gray-80">
-      <nav className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto p-6">
+    <div>
+      <h3 className="px-2 text-xs text-gray-500 dark:text-gray-100 mb-3">
+        {section.title}
+      </h3>
+      <ul
+        ref={listRef}
+        className="space-y-1 relative"
+        onMouseLeave={handleMouseLeave}
+      >
+        {/* Sliding background indicator */}
+        <span
+          className="absolute left-0 w-full bg-gray-100 dark:bg-gray-900 rounded-md transition-all duration-300 ease-out pointer-events-none"
+          style={{
+            top: `${indicatorStyle.top}px`,
+            height: `${indicatorStyle.height}px`,
+            opacity: indicatorStyle.opacity,
+          }}
+        />
+        {section.items.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={`relative block text-sm py-1 px-2 rounded-md transition-colors ${
+                  isActive
+                    ? 'bg-blue-600 text-white font-medium'
+                    : 'text-gray-900 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+                }`}
+                onMouseEnter={handleMouseEnter}
+              >
+                {item.title}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+export function Sidebar() {
+  return (
+    <aside className="hidden md:block w-64 flex-shrink-0 relative">
+      <nav className="sticky top-20 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 scrollbar-hide">
         <div className="space-y-8">
           {navigation.map((section) => (
-            <div key={section.title}>
-              <h3 className="text-sm font-semibold text-gray-90 dark:text-gray-10 mb-3">
-                {section.title}
-              </h3>
-              <ul className="space-y-2">
-                {section.items.map((item) => {
-                  const isActive = pathname === item.href;
-                  return (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={`block text-sm px-3 py-1.5 rounded-md transition-colors ${
-                          isActive
-                            ? 'bg-primary-60 text-white font-medium'
-                            : 'text-gray-60 dark:text-gray-40 hover:text-gray-90 dark:hover:text-gray-10 hover:bg-gray-10 dark:hover:bg-gray-90'
-                        }`}
-                      >
-                        {item.title}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            <SidebarSection key={section.title} section={section} />
           ))}
         </div>
       </nav>
+
+      {/* Bottom gradient */}
+      {/* <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white dark:from-gray-950 to-transparent pointer-events-none z-10" /> */}
     </aside>
   );
 }
