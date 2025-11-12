@@ -126,7 +126,7 @@ function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
 export function Sidebar() {
   return (
     <aside className="hidden md:block w-64 flex-shrink-0 relative">
-      <nav className="sticky top-16 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide">
+      <nav className="sticky top-20 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide">
         <div className="space-y-8">
           {navigation.map((section) => (
             <SidebarSection key={section.title} section={section} />
