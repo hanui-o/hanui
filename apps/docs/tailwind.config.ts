@@ -10,6 +10,9 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        krona: ['var(--font-krona-one)'],
+      },
       colors: {
         // KRDS Primary Colors
         primary: {
