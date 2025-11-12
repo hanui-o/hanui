@@ -107,9 +107,13 @@ const buttonVariants = cva(
        * - Recommended button height: 40px (md)
        */
       size: {
-        sm: ['h-8', 'px-3', 'text-sm', 'gap-1.5'].join(' '), // 32px - compact forms
-        md: ['h-10', 'px-4', 'text-base', 'gap-2'].join(' '), // 40px - default
-        lg: ['h-12', 'px-6', 'text-lg', 'gap-2'].join(' '), // 48px - emphasis
+        sm: ['h-8', 'px-4', 'text-[15px]', 'leading-[150%]', 'gap-2'].join(' '), // 32px - KRDS body-sm
+        md: ['h-10', 'px-4', 'text-[17px]', 'leading-[150%]', 'gap-2'].join(
+          ' '
+        ), // 40px - KRDS body-md (기본)
+        lg: ['h-12', 'px-6', 'text-[19px]', 'leading-[150%]', 'gap-2'].join(
+          ' '
+        ), // 48px - KRDS body-lg
       },
     },
     defaultVariants: {

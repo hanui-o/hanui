@@ -1,14 +1,8 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_KR, Krona_One } from 'next/font/google';
+import { Krona_One } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import './globals.css';
-
-const notoSansKR = Noto_Sans_KR({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-noto-sans-kr',
-});
 
 const kronaOne = Krona_One({
   subsets: ['latin'],
@@ -33,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body
-        className={`${notoSansKR.variable} ${kronaOne.variable} antialiased`}
-      >
+      <body className={`${kronaOne.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

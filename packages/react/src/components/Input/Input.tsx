@@ -44,9 +44,9 @@ const inputVariants = cva(
        * Size - Height and padding
        */
       size: {
-        sm: ['h-8', 'px-3', 'text-sm'].join(' '), // 32px
-        md: ['h-10', 'px-4', 'text-base'].join(' '), // 40px - default
-        lg: ['h-12', 'px-4', 'text-lg'].join(' '), // 48px
+        sm: ['h-8', 'px-4', 'text-[15px]', 'leading-[150%]'].join(' '), // 32px - KRDS body-sm
+        md: ['h-10', 'px-4', 'text-[17px]', 'leading-[150%]'].join(' '), // 40px - KRDS body-md (기본)
+        lg: ['h-12', 'px-4', 'text-[19px]', 'leading-[150%]'].join(' '), // 48px - KRDS body-lg
       },
     },
     defaultVariants: {

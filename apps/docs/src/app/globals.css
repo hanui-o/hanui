@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'pretendard/dist/web/static/pretendard.css';
+
 :root {
-  --font-noto-sans-kr:
-    'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-pretendard:
+    'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 body {
-  font-family: var(--font-noto-sans-kr);
+  font-family: var(--font-pretendard);
 }
 
 @layer base {
@@ -16,7 +18,14 @@ body {
     @apply border-gray-20 dark:border-gray-80;
   }
 
+  html {
+    /* KRDS 기본 폰트 크기: 17px (Pretendard GOV 최적화) */
+    font-size: 15px;
+    line-height: 1.5; /* 150% */
+  }
+
   body {
     @apply bg-white dark:bg-gray-95 text-gray-90 dark:text-gray-10;
+    font-size: 1rem; /* 17px */
   }
 }

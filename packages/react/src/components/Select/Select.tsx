@@ -163,7 +163,7 @@ function BasicSelect<T = string>({
       {({ open }) => (
         <div className={cn('relative', className)}>
           {label && (
-            <Listbox.Label className="block text-sm font-medium text-gray-700 mb-1">
+            <Listbox.Label className="block text-[15px] leading-[150%] font-medium text-gray-700 mb-1">
               {label}
             </Listbox.Label>
           )}
@@ -235,7 +235,7 @@ function BasicSelect<T = string>({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-[17px] leading-[150%] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               {/* Ungrouped options */}
               {groupedOptions.ungrouped.map((option) => (
                 <Listbox.Option
@@ -391,7 +391,7 @@ function SearchableSelect<T = string>({
       {({ open }) => (
         <div className={cn('relative', className)}>
           {label && (
-            <Combobox.Label className="block text-sm font-medium text-gray-700 mb-1">
+            <Combobox.Label className="block text-[15px] leading-[150%] font-medium text-gray-700 mb-1">
               {label}
             </Combobox.Label>
           )}
@@ -434,7 +434,7 @@ function SearchableSelect<T = string>({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-[17px] leading-[150%] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               {filteredOptions.length === 0 && query !== '' ? (
                 <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
                   검색 결과가 없습니다.
