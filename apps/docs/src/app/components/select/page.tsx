@@ -137,17 +137,19 @@ export default function SelectPage() {
               </p>
               <ComponentPreview>
                 <div className="max-w-md space-y-2">
-                  <label className="block text-sm font-medium">배송 국가</label>
-                  <Select
-                    options={[
-                      { value: 'kr', label: '대한민국' },
-                      { value: 'us', label: '미국' },
-                      { value: 'jp', label: '일본' },
-                    ]}
-                    value=""
-                    onChange={() => {}}
-                    placeholder="국가를 선택하세요"
-                  />
+                  <label className="block space-y-2">
+                    <span className="text-sm font-medium">배송 국가</span>
+                    <Select
+                      options={[
+                        { value: 'kr', label: '대한민국' },
+                        { value: 'us', label: '미국' },
+                        { value: 'jp', label: '일본' },
+                      ]}
+                      value=""
+                      onChange={() => {}}
+                      placeholder="국가를 선택하세요"
+                    />
+                  </label>
                 </div>
               </ComponentPreview>
             </GuidelineSection>
@@ -233,27 +235,29 @@ const options = [
             </p>
           </div>
           <ComponentPreview>
-            <div className="max-w-md space-y-2">
-              <label className="block text-sm font-medium">좋아하는 과일</label>
-              <Select
-                options={options}
-                value=""
-                onChange={() => {}}
-                placeholder="과일을 선택하세요"
-              />
+            <div className="max-w-md">
+              <label className="block space-y-2">
+                <span className="text-sm font-medium">좋아하는 과일</span>
+                <Select
+                  options={options}
+                  value=""
+                  onChange={() => {}}
+                  placeholder="과일을 선택하세요"
+                />
+              </label>
             </div>
           </ComponentPreview>
           <div className="mt-4">
             <CodeBlock
-              code={`<label className="block text-sm font-medium">
-  좋아하는 과일
-</label>
-<Select
-  options={options}
-  value={value}
-  onChange={setValue}
-  placeholder="과일을 선택하세요"
-/>`}
+              code={`<label className="block space-y-2">
+  <span className="text-sm font-medium">좋아하는 과일</span>
+  <Select
+    options={options}
+    value={value}
+    onChange={setValue}
+    placeholder="과일을 선택하세요"
+  />
+</label>`}
               language="tsx"
               showLineNumbers={false}
             />
