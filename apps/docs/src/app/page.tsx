@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { Button } from '@hanui/react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ExampleShowcase } from '@/components/ExampleShowcase';
@@ -78,14 +79,14 @@ export default function Home() {
               {/* CTA Buttons */}
               <div className="flex items-center gap-3 flex-wrap justify-center pt-2">
                 <Link href="/components">
-                  <button className="inline-flex items-center justify-center h-9 px-4 text-sm font-medium bg-gray-900 dark:bg-gray-50 text-white dark:text-gray-900 rounded-md hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
+                  <Button variant="black" size="md">
                     Get Started
-                  </button>
+                  </Button>
                 </Link>
                 <Link href="/components">
-                  <button className="inline-flex items-center justify-center h-9 px-4 text-sm font-medium border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
+                  <Button variant="ghost" size="md">
                     View Components
-                  </button>
+                  </Button>
                 </Link>
               </div>
 

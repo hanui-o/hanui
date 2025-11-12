@@ -244,7 +244,7 @@ export function ExampleShowcase() {
                   이메일 또는 전화번호로 인증하세요.
                 </p>
               </div>
-              <Button variant="primary" size="small">
+              <Button variant="primary" size="sm">
                 활성화
               </Button>
             </div>

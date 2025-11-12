@@ -63,6 +63,16 @@ const buttonVariants = cva(
         ].join(' '),
         ghost: [
           'bg-transparent',
+          'text-gray-900',
+          'hover:bg-gray-100',
+          'active:bg-gray-200',
+          'focus-visible:ring-gray-900',
+          'dark:text-gray-100',
+          'dark:hover:bg-gray-900',
+          'dark:active:bg-gray-800',
+        ].join(' '),
+        'ghost-primary': [
+          'bg-transparent',
           'text-[#256ef4]',
           'hover:bg-[#ecf2fe]',
           'active:bg-[#d8e5fd]',
@@ -77,23 +87,34 @@ const buttonVariants = cva(
           'active:bg-[#d8e5fd]',
           'focus-visible:ring-[#256ef4]',
         ].join(' '),
+        black: [
+          'bg-gray-900',
+          'text-white',
+          'hover:bg-gray-800',
+          'active:bg-gray-700',
+          'focus-visible:ring-gray-900',
+          'dark:bg-gray-50',
+          'dark:text-gray-900',
+          'dark:hover:bg-gray-200',
+          'dark:active:bg-gray-300',
+        ].join(' '),
       },
       /**
        * Size - Height and padding
        *
        * KRDS Standards:
        * - Minimum touch target: 44x44px (WCAG 2.5.5)
-       * - Recommended button height: 40px (medium)
+       * - Recommended button height: 40px (md)
        */
       size: {
-        small: ['h-8', 'px-3', 'text-sm', 'gap-1.5'].join(' '), // 32px - compact forms
-        medium: ['h-10', 'px-4', 'text-base', 'gap-2'].join(' '), // 40px - default
-        large: ['h-12', 'px-6', 'text-lg', 'gap-2'].join(' '), // 48px - emphasis
+        sm: ['h-8', 'px-3', 'text-sm', 'gap-1.5'].join(' '), // 32px - compact forms
+        md: ['h-10', 'px-4', 'text-base', 'gap-2'].join(' '), // 40px - default
+        lg: ['h-12', 'px-6', 'text-lg', 'gap-2'].join(' '), // 48px - emphasis
       },
     },
     defaultVariants: {
       variant: 'primary',
-      size: 'medium',
+      size: 'md',
     },
   }
 );
@@ -108,9 +129,9 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   /**
    * Button size
-   * @default "medium"
+   * @default "md"
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'sm' | 'md' | 'lg';
 
   /**
    * Button variant (visual style)
@@ -197,8 +218,8 @@ const LoadingSpinner = () => (
  * <Button variant="secondary">부차 버튼</Button>
  *
  * // With sizes
- * <Button size="small">작은 버튼</Button>
- * <Button size="large">큰 버튼</Button>
+ * <Button size="sm">작은 버튼</Button>
+ * <Button size="lg">큰 버튼</Button>
  *
  * // With loading
  * <Button loading>로딩 중...</Button>
