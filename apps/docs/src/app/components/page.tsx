@@ -58,18 +58,18 @@ const layoutComponents = [
 
 export default function ComponentsPage() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Components</h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400">
-          Here you can find all the components available in the library. We are
-          working on adding more components.
+    <div className="max-w-6xl mx-auto px-4 py-12 pb-32 relative">
+      <div className="mb-20">
+        <h1 className="text-4xl font-bold mb-4">Components (컴포넌트)</h1>
+        <p className="text-base text-gray-600 dark:text-gray-400">
+          HANUI 라이브러리에서 제공하는 모든 컴포넌트를 확인할 수 있습니다. 더
+          많은 컴포넌트를 추가하고 있습니다.
         </p>
       </div>
 
       {/* Layout Section */}
       <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-6">Layout</h2>
+        <h2 className="text-2xl font-semibold mb-6">레이아웃</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {layoutComponents.map((component) => (
             <Link

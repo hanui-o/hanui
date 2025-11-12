@@ -97,10 +97,11 @@ export default function ContainerPage() {
                   <strong>md (768px)</strong>: 블로그 포스트, 기사
                 </li>
                 <li>
-                  <strong>lg (1024px)</strong>: 일반적인 페이지 (기본값, 권장)
+                  <strong>lg (1024px)</strong>: 일반적인 페이지
                 </li>
                 <li>
-                  <strong>xl (1280px)</strong>: 대시보드, 넓은 콘텐츠
+                  <strong>xl (1280px)</strong>: 대시보드, 넓은 콘텐츠 (기본값,
+                  권장)
                 </li>
                 <li>
                   <strong>2xl (1440px)</strong>: 매우 넓은 레이아웃
@@ -246,12 +247,12 @@ export default function ContainerPage() {
         {/* Default */}
         <div className="mb-10">
           <h3 id="default" className="text-xl font-semibold mb-4">
-            Default (lg)
+            Default (xl)
           </h3>
           <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
             <p className="text-sm text-blue-900 dark:text-blue-100">
               <strong>언제 사용하나요?</strong> 일반적인 페이지 콘텐츠에
-              사용합니다. 최대 너비 1024px로 제한되어 넓은 화면에서도 가독성이
+              사용합니다. 최대 너비 1280px로 제한되어 넓은 화면에서도 가독성이
               유지됩니다.
             </p>
           </div>
@@ -259,7 +260,7 @@ export default function ContainerPage() {
             <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
               <Container className="bg-green-50 dark:bg-green-950/30 py-8">
                 <p className="text-center text-gray-700 dark:text-gray-300">
-                  Default Container (max-width: 1024px)
+                  Default Container (max-width: 1280px)
                 </p>
               </Container>
             </div>

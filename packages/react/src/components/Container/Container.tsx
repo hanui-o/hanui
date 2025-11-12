@@ -7,8 +7,8 @@ import { cn } from '../../lib/utils';
  * Based on KRDS Breakpoints:
  * - sm: 640px (small breakpoint)
  * - md: 768px (medium breakpoint)
- * - lg: 1024px (large breakpoint - default)
- * - xl: 1280px (xlarge breakpoint)
+ * - lg: 1024px (large breakpoint)
+ * - xl: 1280px (xlarge breakpoint - default)
  * - 2xl: 1440px (xxlarge breakpoint)
  * - full: 100% (no max-width constraint)
  */
@@ -30,13 +30,13 @@ export interface ContainerProps {
   /**
    * Maximum width of the container
    *
-   * @default 'lg'
+   * @default 'xl'
    *
    * Size mapping:
    * - sm: 640px - Compact content
    * - md: 768px - Medium content
-   * - lg: 1024px - Default content (recommended)
-   * - xl: 1280px - Wide content
+   * - lg: 1024px - Large content
+   * - xl: 1280px - Default content (recommended)
    * - 2xl: 1440px - Extra wide content
    * - full: 100% - Full width with padding
    * - false: No max-width (padding only)
@@ -138,7 +138,7 @@ export const Container = React.forwardRef<
 >(
   (
     {
-      maxWidth = 'lg',
+      maxWidth = 'xl',
       disableGutters = false,
       as: Component = 'div',
       children,

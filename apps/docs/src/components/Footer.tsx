@@ -1,25 +1,38 @@
 import { Container } from '@hanui/react';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-white dark:bg-gray-950">
-      {/* Bottom */}
-      <Container className="mt-12 py-8 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-gray-600 dark:text-gray-400">
-          © {currentYear} HANUI. MIT License.
-        </p>
-        <p className="text-sm text-gray-600 dark:text-gray-400">
-          Built with ❤️ by{' '}
+    <footer className="py-6 md:py-0">
+      <Container className="flex flex-col items-center justify-center gap-4 md:h-24 md:flex-row">
+        <p className="text-center text-sm leading-loose text-gray-500 dark:text-gray-400 md:text-left">
+          Built by{' '}
           <a
-            href="https://github.com/odada-o"
+            href="https://www.linkedin.com/in/hanui/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors font-medium"
+            className="font-medium underline underline-offset-4 hover:text-gray-900 dark:hover:text-gray-100"
           >
-            @odada-o
+            HANUI
+          </a>{' '}
+          at{' '}
+          <a
+            href="https://oddodd.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium underline underline-offset-4 hover:text-gray-900 dark:hover:text-gray-100"
+          >
+            odd:odd
           </a>
+          . The source code is available on{' '}
+          <a
+            href="https://github.com/odada-o/hanui"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium underline underline-offset-4 hover:text-gray-900 dark:hover:text-gray-100"
+          >
+            GitHub
+          </a>
+          .
         </p>
       </Container>
     </footer>

@@ -8,6 +8,7 @@ import {
   CardBody,
   CardFooter,
   Button,
+  Container,
 } from '@hanui/react';
 import Link from 'next/link';
 
@@ -16,16 +17,16 @@ export default function CardPage() {
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="border-b border-gray-20 dark:border-gray-80">
-        <div className="container mx-auto px-4 py-4">
+        <Container>
           <Link href="/">
             <h1 className="text-2xl font-bold text-primary-60">HANUI</h1>
           </Link>
-        </div>
+        </Container>
       </header>
 
       {/* Main */}
       <main className="flex-1">
-        <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <Container>
           <div className="text-sm text-gray-60 dark:text-gray-40 mb-4">
             <Link href="/" className="hover:text-primary-60">
               홈
@@ -179,13 +180,13 @@ export default function CardPage() {
               </table>
             </div>
           </section>
-        </div>
+        </Container>
       </main>
 
       <footer className="border-t border-gray-20 dark:border-gray-80 py-8">
-        <div className="container mx-auto px-4 text-center text-gray-60 dark:text-gray-40">
+        <Container className="ext-center text-gray-60 dark:text-gray-40">
           <p>MIT License · KRDS 기반 공공 웹 UI 컴포넌트 라이브러리</p>
-        </div>
+        </Container>
       </footer>
     </div>
   );

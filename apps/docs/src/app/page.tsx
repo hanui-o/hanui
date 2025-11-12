@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Button } from '@hanui/react';
+import { Button, Container } from '@hanui/react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ExampleShowcase } from '@/components/ExampleShowcase';
@@ -13,9 +13,9 @@ export default function Home() {
       <Header />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="container mx-auto px-4 pt-16 pb-12">
-          <div className="max-w-5xl mx-auto">
+        <Container>
+          {/* Hero Section */}
+          <section className="pt-16 pb-12">
             <div className="flex flex-col items-center text-center space-y-6">
               {/* Badge */}
               <div className="inline-flex items-center rounded-full border border-gray-200 dark:border-gray-800 px-3 py-1 text-xs font-medium">
@@ -63,19 +63,15 @@ export default function Home() {
                 </div>
               </div> */}
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Example Showcase Section */}
-        <section className="container mx-auto px-4 py-12 md:py-16">
-          <div className="max-w-7xl mx-auto">
+          {/* Example Showcase Section */}
+          <section className="py-12 md:py-16">
             <ExampleShowcase />
-          </div>
-        </section>
+          </section>
 
-        {/* Code Example Section */}
-        <section className="container mx-auto px-4 py-12 md:py-16">
-          <div className="max-w-4xl mx-auto">
+          {/* Code Example Section */}
+          <section className="py-12 md:py-16">
             <div className="text-center mb-8">
               <h2 className="text-2xl sm:text-3xl font-bold mb-3">
                 30초 만에 시작하기
@@ -136,8 +132,8 @@ export default function Home() {
                 </pre>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </Container>
       </main>
 
       <Footer />
