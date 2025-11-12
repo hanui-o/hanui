@@ -111,15 +111,15 @@ export default () => <Input placeholder="내용을 입력하세요" />;`}</code>
                 </p>
                 <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
                   <div className="space-y-4 max-w-md">
-                    <Input size="small" placeholder="Small (32px)" />
-                    <Input size="medium" placeholder="Medium (40px)" />
-                    <Input size="large" placeholder="Large (48px)" />
+                    <Input size="sm" placeholder="Small (32px)" />
+                    <Input size="md" placeholder="Medium (40px)" />
+                    <Input size="lg" placeholder="Large (48px)" />
                   </div>
                 </div>
                 <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-                  <code>{`<Input size="small" placeholder="Small (32px)" />
-<Input size="medium" placeholder="Medium (40px)" />
-<Input size="large" placeholder="Large (48px)" />`}</code>
+                  <code>{`<Input size="sm" placeholder="Small (32px)" />
+<Input size="md" placeholder="Medium (40px)" />
+<Input size="lg" placeholder="Large (48px)" />`}</code>
                 </pre>
               </div>
 

@@ -44,14 +44,14 @@ const inputVariants = cva(
        * Size - Height and padding
        */
       size: {
-        small: ['h-8', 'px-3', 'text-sm'].join(' '), // 32px
-        medium: ['h-10', 'px-4', 'text-base'].join(' '), // 40px - default
-        large: ['h-12', 'px-4', 'text-lg'].join(' '), // 48px
+        sm: ['h-8', 'px-3', 'text-sm'].join(' '), // 32px
+        md: ['h-10', 'px-4', 'text-base'].join(' '), // 40px - default
+        lg: ['h-12', 'px-4', 'text-lg'].join(' '), // 48px
       },
     },
     defaultVariants: {
       variant: 'default',
-      size: 'medium',
+      size: 'md',
     },
   }
 );
@@ -64,9 +64,9 @@ export interface InputProps
     VariantProps<typeof inputVariants> {
   /**
    * Input size
-   * @default "medium"
+   * @default "md"
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'sm' | 'md' | 'lg';
 
   /**
    * Input variant (visual style)

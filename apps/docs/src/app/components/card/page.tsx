@@ -53,7 +53,7 @@ export default function CardPage() {
                 </CardHeader>
                 <CardBody>카드 본문 내용</CardBody>
                 <CardFooter>
-                  <Button size="small">확인</Button>
+                  <Button size="sm">확인</Button>
                 </CardFooter>
               </Card>
             </div>

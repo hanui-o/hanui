@@ -138,13 +138,11 @@ export default function ButtonPage() {
           <ComponentPreview>
             <div className="flex items-center gap-3">
               <Button variant="ghost">Ghost</Button>
-              <Button variant="ghost-primary">Ghost Primary</Button>
             </div>
           </ComponentPreview>
           <div className="mt-4">
             <CodeBlock
-              code={`<Button variant="ghost">Ghost</Button>
-<Button variant="ghost-primary">Ghost Primary</Button>`}
+              code={`<Button variant="ghost">Ghost</Button>`}
               language="tsx"
               showLineNumbers={false}
             />
@@ -153,15 +151,15 @@ export default function ButtonPage() {
 
         {/* Black */}
         <div className="mb-10">
-          <h3 id="black" className="text-xl font-semibold mb-4">
-            Black
+          <h3 id="ghost-primary" className="text-xl font-semibold mb-4">
+            Ghost Primary
           </h3>
           <ComponentPreview>
-            <Button variant="black">Black</Button>
+            <Button variant="ghost-primary">Ghost Primary</Button>
           </ComponentPreview>
           <div className="mt-4">
             <CodeBlock
-              code={`<Button variant="black">Black</Button>`}
+              code={`<Button variant="ghost-primary">Ghost Primary</Button>`}
               language="tsx"
               showLineNumbers={false}
             />

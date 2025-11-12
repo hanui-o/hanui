@@ -143,7 +143,9 @@ export interface ButtonProps
     | 'success'
     | 'danger'
     | 'ghost'
-    | 'outline';
+    | 'ghost-primary'
+    | 'outline'
+    | 'black';
 
   /**
    * Loading state

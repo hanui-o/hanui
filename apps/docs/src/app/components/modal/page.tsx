@@ -129,16 +129,16 @@ export default () => {
                 </p>
                 <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
                   <div className="flex flex-wrap gap-4">
-                    <Button onClick={() => setIsSmallOpen(true)} size="small">
+                    <Button onClick={() => setIsSmallOpen(true)} size="sm">
                       Small
                     </Button>
                     <Button onClick={() => setIsMediumOpen(true)}>
                       Medium (기본)
                     </Button>
-                    <Button onClick={() => setIsLargeOpen(true)} size="large">
+                    <Button onClick={() => setIsLargeOpen(true)} size="lg">
                       Large
                     </Button>
-                    <Button onClick={() => setIsXlOpen(true)} size="large">
+                    <Button onClick={() => setIsXlOpen(true)} size="lg">
                       Extra Large
                     </Button>
                     <Button
