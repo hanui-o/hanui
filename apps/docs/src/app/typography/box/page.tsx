@@ -16,7 +16,7 @@ export default function BoxPage() {
 
       <div className="mb-12">
         <ComponentPreview>
-          <Box display="flex" direction="row" gap="md" align="center">
+          <Box display="flex" direction="row" gap={4} align="center">
             <div className="w-20 h-20 bg-primary-60 rounded" />
             <div className="w-20 h-20 bg-primary-50 rounded" />
             <div className="w-20 h-20 bg-primary-40 rounded" />
@@ -50,7 +50,7 @@ export default function BoxPage() {
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
             <h3 className="text-lg font-semibold mb-4">Flex</h3>
             <ComponentPreview>
-              <Box display="flex" direction="row" gap="md">
+              <Box display="flex" direction="row" gap={4}>
                 <div className="w-20 h-20 bg-blue-500 rounded flex items-center justify-center text-white">
                   1
                 </div>
@@ -64,7 +64,7 @@ export default function BoxPage() {
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<Box display="flex" direction="row" gap="md">
+                code={`<Box display="flex" direction="row" gap={4}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -78,7 +78,7 @@ export default function BoxPage() {
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
             <h3 className="text-lg font-semibold mb-4">Grid</h3>
             <ComponentPreview>
-              <Box display="grid" gap="md" className="grid-cols-3">
+              <Box display="grid" gap={4} className="grid-cols-3">
                 <div className="h-20 bg-green-500 rounded flex items-center justify-center text-white">
                   1
                 </div>
@@ -92,7 +92,7 @@ export default function BoxPage() {
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<Box display="grid" gap="md" className="grid-cols-3">
+                code={`<Box display="grid" gap={4} className="grid-cols-3">
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -139,7 +139,7 @@ export default function BoxPage() {
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
             <h3 className="text-lg font-semibold mb-4">Row (가로)</h3>
             <ComponentPreview>
-              <Box display="flex" direction="row" gap="sm">
+              <Box display="flex" direction="row" gap={3}>
                 <div className="w-16 h-16 bg-orange-500 rounded flex items-center justify-center text-white text-sm">
                   1
                 </div>
@@ -153,7 +153,7 @@ export default function BoxPage() {
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<Box display="flex" direction="row" gap="sm">
+                code={`<Box display="flex" direction="row" gap={3}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -167,7 +167,7 @@ export default function BoxPage() {
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
             <h3 className="text-lg font-semibold mb-4">Column (세로)</h3>
             <ComponentPreview>
-              <Box display="flex" direction="col" gap="sm">
+              <Box display="flex" direction="column" gap={3}>
                 <div className="w-full h-16 bg-pink-500 rounded flex items-center justify-center text-white">
                   1
                 </div>
@@ -181,7 +181,7 @@ export default function BoxPage() {
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<Box display="flex" direction="col" gap="sm">
+                code={`<Box display="flex" direction="column" gap={3}>
   <div>1</div>
   <div>2</div>
   <div>3</div>
@@ -215,7 +215,7 @@ export default function BoxPage() {
                   <Box
                     display="flex"
                     direction="row"
-                    gap="sm"
+                    gap={3}
                     align="start"
                     className="h-32 bg-gray-100 dark:bg-gray-900"
                   >
@@ -237,7 +237,7 @@ export default function BoxPage() {
                   <Box
                     display="flex"
                     direction="row"
-                    gap="sm"
+                    gap={3}
                     align="center"
                     className="h-32 bg-gray-100 dark:bg-gray-900"
                   >
@@ -259,7 +259,7 @@ export default function BoxPage() {
                   <Box
                     display="flex"
                     direction="row"
-                    gap="sm"
+                    gap={3}
                     align="end"
                     className="h-32 bg-gray-100 dark:bg-gray-900"
                   >
@@ -283,7 +283,7 @@ export default function BoxPage() {
                   justify=&quot;start&quot;
                 </Body>
                 <ComponentPreview>
-                  <Box display="flex" direction="row" gap="sm" justify="start">
+                  <Box display="flex" direction="row" gap={3} justify="start">
                     <div className="w-16 h-16 bg-indigo-500 rounded" />
                     <div className="w-16 h-16 bg-indigo-500 rounded" />
                   </Box>
@@ -298,7 +298,7 @@ export default function BoxPage() {
                   justify=&quot;center&quot;
                 </Body>
                 <ComponentPreview>
-                  <Box display="flex" direction="row" gap="sm" justify="center">
+                  <Box display="flex" direction="row" gap={3} justify="center">
                     <div className="w-16 h-16 bg-indigo-500 rounded" />
                     <div className="w-16 h-16 bg-indigo-500 rounded" />
                   </Box>
@@ -313,12 +313,7 @@ export default function BoxPage() {
                   justify=&quot;between&quot;
                 </Body>
                 <ComponentPreview>
-                  <Box
-                    display="flex"
-                    direction="row"
-                    gap="sm"
-                    justify="between"
-                  >
+                  <Box display="flex" direction="row" gap={3} justify="between">
                     <div className="w-16 h-16 bg-indigo-500 rounded" />
                     <div className="w-16 h-16 bg-indigo-500 rounded" />
                   </Box>
@@ -378,11 +373,11 @@ export default function BoxPage() {
           <div>
             <h3 className="text-xl font-semibold mb-4">카드 레이아웃</h3>
             <ComponentPreview>
-              <Box display="flex" direction="row" gap="md" align="stretch">
+              <Box display="flex" direction="row" gap={4} align="stretch">
                 <Box
                   display="flex"
-                  direction="col"
-                  gap="sm"
+                  direction="column"
+                  gap={3}
                   className="flex-1 p-4 border border-gray-200 dark:border-gray-800 rounded"
                 >
                   <Body size="medium" weight="bold">
@@ -392,8 +387,8 @@ export default function BoxPage() {
                 </Box>
                 <Box
                   display="flex"
-                  direction="col"
-                  gap="sm"
+                  direction="column"
+                  gap={3}
                   className="flex-1 p-4 border border-gray-200 dark:border-gray-800 rounded"
                 >
                   <Body size="medium" weight="bold">
@@ -405,12 +400,12 @@ export default function BoxPage() {
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<Box display="flex" direction="row" gap="md">
-  <Box display="flex" direction="col" gap="sm" className="flex-1 p-4 border rounded">
+                code={`<Box display="flex" direction="row" gap={4}>
+  <Box display="flex" direction="column" gap={3} className="flex-1 p-4 border rounded">
     <Body size="medium" weight="bold">카드 제목</Body>
     <Body size="small">카드 내용입니다.</Body>
   </Box>
-  <Box display="flex" direction="col" gap="sm" className="flex-1 p-4 border rounded">
+  <Box display="flex" direction="column" gap={3} className="flex-1 p-4 border rounded">
     <Body size="medium" weight="bold">카드 제목</Body>
     <Body size="small">카드 내용입니다.</Body>
   </Box>
@@ -426,7 +421,7 @@ export default function BoxPage() {
             <ComponentPreview>
               <Box
                 display="flex"
-                direction="col"
+                direction="column"
                 align="center"
                 justify="center"
                 className="h-48 border border-gray-200 dark:border-gray-800 rounded"
@@ -441,7 +436,7 @@ export default function BoxPage() {
               <CodeBlock
                 code={`<Box
   display="flex"
-  direction="col"
+  direction="column"
   align="center"
   justify="center"
   className="h-48"
@@ -459,20 +454,20 @@ export default function BoxPage() {
             <h3 className="text-xl font-semibold mb-4">다양한 HTML 태그</h3>
             <ComponentPreview>
               <div className="space-y-4">
-                <Box as="section" display="flex" direction="col" gap="sm">
+                <Box as="section" display="flex" direction="column" gap={3}>
                   <Body size="small">section 태그로 렌더링</Body>
                 </Box>
-                <Box as="article" display="flex" direction="col" gap="sm">
+                <Box as="article" display="flex" direction="column" gap={3}>
                   <Body size="small">article 태그로 렌더링</Body>
                 </Box>
               </div>
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<Box as="section" display="flex" direction="col" gap="sm">
+                code={`<Box as="section" display="flex" direction="column" gap={3}>
   <Body>section 태그로 렌더링</Body>
 </Box>
-<Box as="article" display="flex" direction="col" gap="sm">
+<Box as="article" display="flex" direction="column" gap={3}>
   <Body>article 태그로 렌더링</Body>
 </Box>`}
                 language="tsx"

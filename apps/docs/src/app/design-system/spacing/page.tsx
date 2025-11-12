@@ -1384,7 +1384,7 @@ export default function SpacingPage() {
                   padding="card-xsmall"
                   background="white"
                   className="rounded-full border inline-flex"
-                  as="span"
+                  as="div"
                 >
                   <span className="text-body-xs font-medium text-primary-70">
                     React
@@ -1394,7 +1394,7 @@ export default function SpacingPage() {
                   padding="card-xsmall"
                   background="white"
                   className="rounded-full border inline-flex"
-                  as="span"
+                  as="div"
                 >
                   <span className="text-body-xs font-medium text-primary-70">
                     TypeScript
@@ -1404,7 +1404,7 @@ export default function SpacingPage() {
                   padding="card-xsmall"
                   background="white"
                   className="rounded-full border inline-flex"
-                  as="span"
+                  as="div"
                 >
                   <span className="text-body-xs font-medium text-primary-70">
                     Tailwind CSS
@@ -1414,7 +1414,7 @@ export default function SpacingPage() {
                   padding="card-xsmall"
                   background="white"
                   className="rounded-full border inline-flex"
-                  as="span"
+                  as="div"
                 >
                   <span className="text-body-xs font-medium text-primary-70">
                     KRDS
@@ -1428,14 +1428,14 @@ export default function SpacingPage() {
     padding="card-xsmall"
     background="white"
     className="rounded-full border"
-    as="span"
+    as="div"
   >
     <span className="text-body-xs font-medium">React</span>
   </Section>
-  <Section padding="card-xsmall" background="white" as="span">
+  <Section padding="card-xsmall" background="white" as="div">
     <span className="text-body-xs font-medium">TypeScript</span>
   </Section>
-  <Section padding="card-xsmall" background="white" as="span">
+  <Section padding="card-xsmall" background="white" as="div">
     <span className="text-body-xs font-medium">Tailwind CSS</span>
   </Section>
 </div>`}
@@ -1524,7 +1524,7 @@ export default function SpacingPage() {
                         padding="card-xsmall"
                         background="gray"
                         className="rounded"
-                        as="span"
+                        as="div"
                       >
                         <span className="text-body-xs">알림 3</span>
                       </Section>
@@ -1609,7 +1609,7 @@ export default function SpacingPage() {
   {/* Header */}
   <Section padding="header" background="white" as="header">
     <h2>대시보드</h2>
-    <Section padding="card-xsmall" background="gray" as="span">
+    <Section padding="card-xsmall" background="gray" as="div">
       알림 3
     </Section>
   </Section>

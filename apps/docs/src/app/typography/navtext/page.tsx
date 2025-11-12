@@ -17,18 +17,10 @@ export default function NavTextPage() {
       <div className="mb-12">
         <ComponentPreview>
           <div className="flex flex-col gap-4 bg-gray-50 dark:bg-gray-900 p-6 rounded">
-            <NavText variant="title" size="large">
-              Title Large
-            </NavText>
-            <NavText variant="title" size="small">
-              Title Small
-            </NavText>
-            <NavText variant="depth" size="medium">
-              Depth Medium
-            </NavText>
-            <NavText variant="depth" size="small">
-              Depth Small
-            </NavText>
+            <NavText variant="title-large">Title Large</NavText>
+            <NavText variant="title-small">Title Small</NavText>
+            <NavText variant="depth-medium">Depth Medium</NavText>
+            <NavText variant="depth-small">Depth Small</NavText>
           </div>
         </ComponentPreview>
       </div>
@@ -61,16 +53,14 @@ export default function NavTextPage() {
             <div className="space-y-6">
               <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                 <div className="mb-4">
-                  <NavText variant="title" size="large">
-                    Title Large
-                  </NavText>
+                  <NavText variant="title-large">Title Large</NavText>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   24px (PC) / 22px (Mobile) · 700 (Bold) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
                   <CodeBlock
-                    code={`<NavText variant="title" size="large">메인 메뉴</NavText>`}
+                    code={`<NavText variant="title-large">메인 메뉴</NavText>`}
                     language="tsx"
                     showLineNumbers={false}
                   />
@@ -79,16 +69,14 @@ export default function NavTextPage() {
 
               <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                 <div className="mb-4">
-                  <NavText variant="title" size="small">
-                    Title Small
-                  </NavText>
+                  <NavText variant="title-small">Title Small</NavText>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   19px (PC) / 17px (Mobile) · 700 (Bold) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
                   <CodeBlock
-                    code={`<NavText variant="title" size="small">서브 메뉴</NavText>`}
+                    code={`<NavText variant="title-small">서브 메뉴</NavText>`}
                     language="tsx"
                     showLineNumbers={false}
                   />
@@ -103,16 +91,14 @@ export default function NavTextPage() {
             <div className="space-y-6">
               <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                 <div className="mb-4">
-                  <NavText variant="depth" size="medium">
-                    Depth Medium
-                  </NavText>
+                  <NavText variant="depth-medium">Depth Medium</NavText>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   17px · 400 (Regular) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
                   <CodeBlock
-                    code={`<NavText variant="depth" size="medium">메뉴 항목</NavText>`}
+                    code={`<NavText variant="depth-medium">메뉴 항목</NavText>`}
                     language="tsx"
                     showLineNumbers={false}
                   />
@@ -121,16 +107,14 @@ export default function NavTextPage() {
 
               <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                 <div className="mb-4">
-                  <NavText variant="depth" size="small">
-                    Depth Small
-                  </NavText>
+                  <NavText variant="depth-small">Depth Small</NavText>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   15px · 400 (Regular) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
                   <CodeBlock
-                    code={`<NavText variant="depth" size="small">하위 항목</NavText>`}
+                    code={`<NavText variant="depth-small">하위 항목</NavText>`}
                     language="tsx"
                     showLineNumbers={false}
                   />
@@ -155,19 +139,13 @@ export default function NavTextPage() {
               <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
                 <ul className="space-y-4">
                   <li>
-                    <NavText variant="title" size="large">
-                      서비스 소개
-                    </NavText>
+                    <NavText variant="title-large">서비스 소개</NavText>
                   </li>
                   <li>
-                    <NavText variant="title" size="large">
-                      이용 안내
-                    </NavText>
+                    <NavText variant="title-large">이용 안내</NavText>
                   </li>
                   <li>
-                    <NavText variant="title" size="large">
-                      고객 지원
-                    </NavText>
+                    <NavText variant="title-large">고객 지원</NavText>
                   </li>
                 </ul>
               </nav>
@@ -176,9 +154,9 @@ export default function NavTextPage() {
               <CodeBlock
                 code={`<nav>
   <ul>
-    <li><NavText variant="title" size="large">서비스 소개</NavText></li>
-    <li><NavText variant="title" size="large">이용 안내</NavText></li>
-    <li><NavText variant="title" size="large">고객 지원</NavText></li>
+    <li><NavText variant="title-large">서비스 소개</NavText></li>
+    <li><NavText variant="title-large">이용 안내</NavText></li>
+    <li><NavText variant="title-large">고객 지원</NavText></li>
   </ul>
 </nav>`}
                 language="tsx"
@@ -193,24 +171,16 @@ export default function NavTextPage() {
               <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
                 <div className="space-y-4">
                   <div>
-                    <NavText variant="title" size="small">
-                      공지사항
-                    </NavText>
+                    <NavText variant="title-small">공지사항</NavText>
                     <ul className="mt-2 ml-4 space-y-2">
                       <li>
-                        <NavText variant="depth" size="medium">
-                          시스템 공지
-                        </NavText>
+                        <NavText variant="depth-medium">시스템 공지</NavText>
                       </li>
                       <li>
-                        <NavText variant="depth" size="medium">
-                          이벤트 소식
-                        </NavText>
+                        <NavText variant="depth-medium">이벤트 소식</NavText>
                       </li>
                       <li>
-                        <NavText variant="depth" size="medium">
-                          업데이트 내역
-                        </NavText>
+                        <NavText variant="depth-medium">업데이트 내역</NavText>
                       </li>
                     </ul>
                   </div>
@@ -220,11 +190,11 @@ export default function NavTextPage() {
             <div className="mt-4">
               <CodeBlock
                 code={`<nav>
-  <NavText variant="title" size="small">공지사항</NavText>
+  <NavText variant="title-small">공지사항</NavText>
   <ul>
-    <li><NavText variant="depth" size="medium">시스템 공지</NavText></li>
-    <li><NavText variant="depth" size="medium">이벤트 소식</NavText></li>
-    <li><NavText variant="depth" size="medium">업데이트 내역</NavText></li>
+    <li><NavText variant="depth-medium">시스템 공지</NavText></li>
+    <li><NavText variant="depth-medium">이벤트 소식</NavText></li>
+    <li><NavText variant="depth-medium">업데이트 내역</NavText></li>
   </ul>
 </nav>`}
                 language="tsx"
@@ -237,23 +207,23 @@ export default function NavTextPage() {
             <h3 className="text-xl font-semibold mb-4">다양한 HTML 태그</h3>
             <ComponentPreview>
               <div className="space-y-2">
-                <NavText as="a" variant="title" size="large" href="#">
+                <NavText as="a" variant="title-large">
                   링크로 렌더링
                 </NavText>
-                <NavText as="button" variant="depth" size="medium">
+                <NavText as="button" variant="depth-medium">
                   버튼으로 렌더링
                 </NavText>
-                <NavText as="span" variant="depth" size="small">
+                <NavText as="span" variant="depth-small">
                   span으로 렌더링
                 </NavText>
               </div>
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<NavText as="a" variant="title" size="large" href="#">
+                code={`<NavText as="a" variant="title-large">
   링크로 렌더링
 </NavText>
-<NavText as="button" variant="depth" size="medium">
+<NavText as="button" variant="depth-medium">
   버튼으로 렌더링
 </NavText>`}
                 language="tsx"
@@ -268,18 +238,12 @@ export default function NavTextPage() {
               <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
                 <ul className="space-y-2">
                   <li>
-                    <NavText
-                      variant="depth"
-                      size="medium"
-                      className="text-primary-60"
-                    >
+                    <NavText variant="depth-medium" className="text-primary-60">
                       현재 페이지
                     </NavText>
                   </li>
                   <li>
-                    <NavText variant="depth" size="medium">
-                      다른 페이지
-                    </NavText>
+                    <NavText variant="depth-medium">다른 페이지</NavText>
                   </li>
                 </ul>
               </nav>
@@ -287,8 +251,7 @@ export default function NavTextPage() {
             <div className="mt-4">
               <CodeBlock
                 code={`<NavText
-  variant="depth"
-  size="medium"
+  variant="depth-medium"
   className="text-primary-60"
 >
   현재 페이지
