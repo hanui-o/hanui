@@ -75,8 +75,8 @@ export default function ContainerPage() {
               >
                 <ul className="list-disc list-inside space-y-2">
                   <li>
-                    전체 화면을 사용해야 하는 히어로 이미지 → maxWidth="full"
-                    사용
+                    전체 화면을 사용해야 하는 히어로 이미지 →
+                    maxWidth=&quot;full&quot; 사용
                   </li>
                   <li>Container 안에 Container 중첩 → 하나만 사용</li>
                   <li>이미 크기가 제한된 컴포넌트 내부 (Card, Modal 등)</li>
@@ -123,19 +123,19 @@ export default function ContainerPage() {
               <ul className="list-disc list-inside space-y-2">
                 <li>
                   <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-                    as="main"
+                    as=&quot;main&quot;
                   </code>
                   : 페이지의 주요 콘텐츠
                 </li>
                 <li>
                   <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-                    as="section"
+                    as=&quot;section&quot;
                   </code>
                   : 섹션 그룹
                 </li>
                 <li>
                   <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-                    as="article"
+                    as=&quot;article&quot;
                   </code>
                   : 독립적인 콘텐츠
                 </li>
@@ -532,10 +532,11 @@ export default function ContainerPage() {
                   maxWidth
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
-                  'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | false
+                  &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos; |
+                  &apos;xl&apos; | &apos;2xl&apos; | &apos;full&apos; | false
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
-                  'lg'
+                  &apos;lg&apos;
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
                   최대 너비 설정
@@ -560,10 +561,11 @@ export default function ContainerPage() {
                   as
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
-                  'div' | 'section' | 'article' | 'main' | ...
+                  &apos;div&apos; | &apos;section&apos; | &apos;article&apos; |
+                  &apos;main&apos; | ...
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
-                  'div'
+                  &apos;div&apos;
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
                   렌더링할 HTML 요소
