@@ -1,7 +1,10 @@
 'use client';
 
 import { Input } from '@hanui/react';
-import Link from 'next/link';
+import { ComponentPreview } from '@/components/docs/ComponentPreview';
+import { CodeBlock } from '@/components/docs/CodeBlock';
+import { Installation } from '@/components/docs/Installation';
+import { GuidelineSection } from '@/components/docs/GuidelineSection';
 
 // Example icons using SVG
 const SearchIcon = () => (
@@ -51,121 +54,283 @@ const CheckIcon = () => (
 
 export default function InputPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="border-b border-gray-20 dark:border-gray-80">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <h1 className="text-2xl font-bold text-primary-60">HANUI</h1>
-          </Link>
-        </div>
-      </header>
+    <div className="max-w-4xl mx-auto px-4 py-12">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold mb-4">Input</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          다양한 스타일과 크기를 지원하는 입력 필드 컴포넌트
+        </p>
+      </div>
 
-      {/* Main Content */}
-      <main className="flex-1">
-        <div className="container mx-auto px-4 py-12 max-w-4xl">
-          {/* Breadcrumb */}
-          <div className="text-sm text-gray-60 dark:text-gray-40 mb-4">
-            <Link href="/" className="hover:text-primary-60">
-              홈
-            </Link>
-            {' / '}
-            <Link href="/components" className="hover:text-primary-60">
-              컴포넌트
-            </Link>
-            {' / '}
-            <span>Input</span>
+      <div className="mb-12">
+        <ComponentPreview>
+          <div className="flex flex-col gap-4 max-w-md">
+            <Input placeholder="기본 입력 필드" />
+            <Input leftAddon={<SearchIcon />} placeholder="검색어 입력" />
+          </div>
+        </ComponentPreview>
+      </div>
+
+      {/* Overview */}
+      <div className="mb-12">
+        <h2 id="overview" className="text-2xl font-bold mb-4">
+          개요
+        </h2>
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          입력 필드는 사용자로부터 정보를 받는 가장 기본적인 인터랙션
+          요소입니다. HANUI Input은{' '}
+          <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여 레이블
+          연결, 에러 처리, 키보드 네비게이션 등 웹 접근성을 보장합니다.
+        </p>
+      </div>
+
+      {/* Usage Guidelines */}
+      <div className="mb-12">
+        <h2 id="guidelines" className="text-2xl font-bold mb-6">
+          사용 가이드라인
+        </h2>
+
+        <div className="space-y-8">
+          {/* When to use */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4">
+              언제 사용해야 하나요?
+            </h3>
+            <div className="grid grid-cols-1 gap-4">
+              <GuidelineSection
+                type="do"
+                title="입력 필드를 사용하기 적합한 경우"
+              >
+                <ul className="list-disc list-inside space-y-2">
+                  <li>이름, 주소, 이메일 등 자유 형식의 텍스트 수집</li>
+                  <li>검색어를 입력받을 때</li>
+                  <li>비밀번호, 전화번호 등 특수 형식의 데이터</li>
+                  <li>숫자나 날짜 등 구조화된 데이터 입력</li>
+                </ul>
+              </GuidelineSection>
+
+              <GuidelineSection
+                type="dont"
+                title="입력 필드를 사용하지 말아야 하는 경우"
+              >
+                <ul className="list-disc list-inside space-y-2">
+                  <li>선택지가 5개 이하로 제한적인 경우 → Radio 사용</li>
+                  <li>
+                    여러 옵션 중 선택하는 경우 → Select 또는 Checkbox 사용
+                  </li>
+                  <li>Yes/No 이진 선택인 경우 → Checkbox 또는 Toggle 사용</li>
+                </ul>
+              </GuidelineSection>
+            </div>
           </div>
 
-          <h1 className="text-4xl font-bold mb-4">Input</h1>
-          <p className="text-xl text-gray-60 dark:text-gray-40 mb-8">
-            다양한 스타일과 크기를 지원하는 KRDS 기반 입력 필드 컴포넌트
-          </p>
+          {/* Label Guidelines */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4">레이블 가이드</h3>
+            <GuidelineSection type="do" title="레이블은 항상 제공">
+              <p className="mb-3">
+                모든 입력 필드에는 명확한 레이블이 필요합니다. 시각적으로 숨겨진
+                경우에도 스크린 리더를 위한 레이블은 반드시 제공해야 합니다.
+              </p>
+              <ComponentPreview>
+                <div className="max-w-md space-y-2">
+                  <label
+                    htmlFor="username"
+                    className="block text-sm font-medium"
+                  >
+                    사용자명
+                  </label>
+                  <Input id="username" placeholder="홍길동" />
+                </div>
+              </ComponentPreview>
+            </GuidelineSection>
 
-          {/* Quick Start */}
-          <section className="mb-12">
-            <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
+            <div className="mt-4">
+              <GuidelineSection
+                type="dont"
+                title="플레이스홀더만 사용하지 마세요"
+              >
+                <p>
+                  플레이스홀더는 입력 예시를 보여주는 보조 수단일 뿐, 레이블을
+                  대체할 수 없습니다. 입력을 시작하면 플레이스홀더가 사라지므로
+                  별도 레이블이 필요합니다.
+                </p>
+              </GuidelineSection>
+            </div>
+          </div>
+
+          {/* Input Type */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4">
+              적절한 Input Type 사용
+            </h3>
+            <GuidelineSection type="do" title="HTML5 input type 활용">
+              <p className="mb-3">
+                email, tel, url, number, date 등을 사용하여 모바일 환경에서
+                최적화된 키보드를 제공하고 브라우저 자동 검증을 활용하세요.
+              </p>
+              <ComponentPreview>
+                <div className="max-w-md space-y-3">
+                  <Input type="email" placeholder="example@email.com" />
+                  <Input type="tel" placeholder="010-1234-5678" />
+                  <Input type="number" placeholder="100" />
+                </div>
+              </ComponentPreview>
+            </GuidelineSection>
+          </div>
+
+          {/* Error Messages */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4">에러 메시지</h3>
+            <GuidelineSection type="do" title="명확하고 구체적인 에러 메시지">
+              <p className="mb-3">
+                &quot;잘못된 입력&quot;이 아닌 &quot;이메일 형식이 올바르지
+                않습니다. &apos;@&apos;를 포함해주세요&quot;와 같이 해결 방법을
+                제시합니다.
+              </p>
+              <ComponentPreview>
+                <div className="max-w-md space-y-2">
+                  <Input error type="email" defaultValue="invalid" />
+                  <p className="text-sm text-red-600">
+                    이메일 형식이 올바르지 않습니다. &apos;@&apos;를
+                    포함해주세요.
+                  </p>
+                </div>
+              </ComponentPreview>
+            </GuidelineSection>
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-12">
+        <Installation componentName="input" />
+      </div>
+
+      {/* Usage */}
+      <div className="mb-12">
+        <h2 id="usage" className="text-2xl font-bold mb-4">
+          Usage
+        </h2>
+        <CodeBlock
+          code={`import { Input } from '@hanui/react'
+
+<Input placeholder="내용을 입력하세요" />`}
+          language="tsx"
+          showLineNumbers={false}
+        />
+      </div>
+
+      {/* Examples */}
+      <div className="mb-12">
+        <h2 id="examples" className="text-2xl font-bold mb-6">
+          Examples
+        </h2>
+
+        {/* Default */}
+        <div className="mb-10">
+          <h3 id="default" className="text-xl font-semibold mb-4">
+            Default
+          </h3>
+          <ComponentPreview>
+            <div className="max-w-md">
               <Input placeholder="내용을 입력하세요" />
             </div>
-            <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-              <code>{`import { Input } from '@hanui/react';
+          </ComponentPreview>
+          <div className="mt-4">
+            <CodeBlock
+              code={`<Input placeholder="내용을 입력하세요" />`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+          </div>
+        </div>
 
-export default () => <Input placeholder="내용을 입력하세요" />;`}</code>
-            </pre>
-          </section>
-
-          {/* Examples */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-8">Examples</h2>
-
-            <div className="space-y-12">
-              {/* Size */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Size</h3>
-                <p className="text-gray-60 dark:text-gray-40 mb-4">
-                  세 가지 크기를 지원합니다. 기본값은{' '}
-                  <code className="text-sm bg-gray-10 dark:bg-gray-90 px-1.5 py-0.5 rounded">
-                    medium
-                  </code>
-                  입니다.
-                </p>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="space-y-4 max-w-md">
-                    <Input size="sm" placeholder="Small (32px)" />
-                    <Input size="md" placeholder="Medium (40px)" />
-                    <Input size="lg" placeholder="Large (48px)" />
-                  </div>
-                </div>
-                <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-                  <code>{`<Input size="sm" placeholder="Small (32px)" />
+        {/* Sizes */}
+        <div className="mb-10">
+          <h3 id="sizes" className="text-xl font-semibold mb-4">
+            Sizes
+          </h3>
+          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+            <p className="text-sm text-blue-900 dark:text-blue-100">
+              <strong>언제 사용하나요?</strong> 입력 필드 크기는 예상 입력
+              길이와 일치시킵니다. Small은 우편번호 등 짧은 입력, Large는
+              제목이나 주소 등 긴 입력에 적합합니다.
+            </p>
+          </div>
+          <ComponentPreview>
+            <div className="max-w-md space-y-4">
+              <Input size="sm" placeholder="Small (32px)" />
+              <Input size="md" placeholder="Medium (40px)" />
+              <Input size="lg" placeholder="Large (48px)" />
+            </div>
+          </ComponentPreview>
+          <div className="mt-4">
+            <CodeBlock
+              code={`<Input size="sm" placeholder="Small (32px)" />
 <Input size="md" placeholder="Medium (40px)" />
-<Input size="lg" placeholder="Large (48px)" />`}</code>
-                </pre>
-              </div>
+<Input size="lg" placeholder="Large (48px)" />`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+          </div>
+        </div>
 
-              {/* Variant */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Variant</h3>
-                <p className="text-gray-60 dark:text-gray-40 mb-4">
-                  두 가지 시각적 스타일을 지원합니다.
-                </p>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="space-y-4 max-w-md">
-                    <Input variant="default" placeholder="Default (테두리)" />
-                    <Input variant="filled" placeholder="Filled (배경)" />
-                  </div>
-                </div>
-                <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-                  <code>{`<Input variant="default" placeholder="Default (테두리)" />
-<Input variant="filled" placeholder="Filled (배경)" />`}</code>
-                </pre>
-              </div>
+        {/* Variant */}
+        <div className="mb-10">
+          <h3 id="variant" className="text-xl font-semibold mb-4">
+            Variant
+          </h3>
+          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+            <p className="text-sm text-blue-900 dark:text-blue-100">
+              <strong>언제 사용하나요?</strong> Default는 일반적인 경우,
+              Filled는 배경이 있는 디자인에 적합합니다.
+            </p>
+          </div>
+          <ComponentPreview>
+            <div className="max-w-md space-y-4">
+              <Input variant="default" placeholder="Default (테두리)" />
+              <Input variant="filled" placeholder="Filled (배경)" />
+            </div>
+          </ComponentPreview>
+          <div className="mt-4">
+            <CodeBlock
+              code={`<Input variant="default" placeholder="Default (테두리)" />
+<Input variant="filled" placeholder="Filled (배경)" />`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+          </div>
+        </div>
 
-              {/* With Icons */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">With Icons</h3>
-                <p className="text-gray-60 dark:text-gray-40 mb-4">
-                  왼쪽과 오른쪽에 아이콘을 배치할 수 있습니다.
-                </p>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="space-y-4 max-w-md">
-                    <Input
-                      leftAddon={<SearchIcon />}
-                      placeholder="검색어를 입력하세요"
-                    />
-                    <Input
-                      leftAddon={<EmailIcon />}
-                      type="email"
-                      placeholder="example@email.com"
-                    />
-                    <Input
-                      rightAddon={<CheckIcon />}
-                      placeholder="확인 아이콘"
-                    />
-                  </div>
-                </div>
-                <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-                  <code>{`<Input
+        {/* With Icons */}
+        <div className="mb-10">
+          <h3 id="with-icons" className="text-xl font-semibold mb-4">
+            With Icons
+          </h3>
+          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+            <p className="text-sm text-blue-900 dark:text-blue-100">
+              <strong>언제 사용하나요?</strong> 입력 필드의 용도를 시각적으로
+              명확히 하고 싶을 때 사용합니다. 예: 검색(돋보기), 이메일(편지),
+              비밀번호(자물쇠)
+            </p>
+          </div>
+          <ComponentPreview>
+            <div className="max-w-md space-y-4">
+              <Input
+                leftAddon={<SearchIcon />}
+                placeholder="검색어를 입력하세요"
+              />
+              <Input
+                leftAddon={<EmailIcon />}
+                type="email"
+                placeholder="example@email.com"
+              />
+              <Input rightAddon={<CheckIcon />} placeholder="확인 완료" />
+            </div>
+          </ComponentPreview>
+          <div className="mt-4">
+            <CodeBlock
+              code={`<Input
   leftAddon={<SearchIcon />}
   placeholder="검색어를 입력하세요"
 />
@@ -176,303 +341,131 @@ export default () => <Input placeholder="내용을 입력하세요" />;`}</code>
 />
 <Input
   rightAddon={<CheckIcon />}
-  placeholder="확인 아이콘"
-/>`}</code>
-                </pre>
-              </div>
+  placeholder="확인 완료"
+/>`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+          </div>
+        </div>
 
-              {/* Error State */}
+        {/* Error State */}
+        <div className="mb-10">
+          <h3 id="error" className="text-xl font-semibold mb-4">
+            Error State
+          </h3>
+          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+            <p className="text-sm text-blue-900 dark:text-blue-100">
+              <strong>언제 사용하나요?</strong> 입력값이 유효하지 않을 때
+              사용자에게 즉각적인 피드백을 제공합니다. 에러 메시지는 구체적인
+              해결 방법을 포함해야 합니다.
+            </p>
+          </div>
+          <ComponentPreview>
+            <div className="max-w-md space-y-4">
               <div>
-                <h3 className="text-xl font-semibold mb-4">Error State</h3>
-                <p className="text-gray-60 dark:text-gray-40 mb-4">
-                  에러 상태를 표시하여 사용자에게 피드백을 제공합니다.
+                <Input
+                  error
+                  placeholder="잘못된 입력"
+                  defaultValue="invalid@"
+                />
+                <p className="mt-1 text-sm text-red-600">
+                  이메일 형식이 올바르지 않습니다. &apos;@&apos;를 포함해주세요.
                 </p>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="space-y-4 max-w-md">
-                    <div>
-                      <Input
-                        error
-                        placeholder="잘못된 입력"
-                        defaultValue="invalid@"
-                      />
-                      <p className="mt-1 text-sm text-[#DC3545]">
-                        올바른 이메일 형식이 아닙니다
-                      </p>
-                    </div>
-                    <div>
-                      <Input
-                        error
-                        leftAddon={<EmailIcon />}
-                        placeholder="example@email.com"
-                      />
-                      <p className="mt-1 text-sm text-[#DC3545]">
-                        필수 입력 항목입니다
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-                  <code>{`<Input
-  error
-  placeholder="잘못된 입력"
-  defaultValue="invalid@"
-/>
+              </div>
+              <div>
+                <Input
+                  error
+                  leftAddon={<EmailIcon />}
+                  placeholder="example@email.com"
+                />
+                <p className="mt-1 text-sm text-red-600">
+                  필수 입력 항목입니다.
+                </p>
+              </div>
+            </div>
+          </ComponentPreview>
+          <div className="mt-4">
+            <CodeBlock
+              code={`<Input error placeholder="잘못된 입력" defaultValue="invalid@" />
 <p className="mt-1 text-sm text-red-600">
-  올바른 이메일 형식이 아닙니다
-</p>`}</code>
-                </pre>
-              </div>
+  이메일 형식이 올바르지 않습니다. '@'를 포함해주세요.
+</p>`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+          </div>
+        </div>
 
-              {/* Disabled */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Disabled</h3>
-                <p className="text-gray-60 dark:text-gray-40 mb-4">
-                  비활성화된 입력 필드는 사용자가 입력할 수 없습니다.
-                </p>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="space-y-4 max-w-md">
-                    <Input disabled placeholder="비활성화된 입력 필드" />
-                    <Input
-                      disabled
-                      variant="filled"
-                      placeholder="비활성화된 Filled"
-                    />
-                  </div>
-                </div>
-                <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-                  <code>{`<Input disabled placeholder="비활성화된 입력 필드" />
-<Input disabled variant="filled" placeholder="비활성화된 Filled" />`}</code>
-                </pre>
-              </div>
+        {/* Disabled */}
+        <div className="mb-10">
+          <h3 id="disabled" className="text-xl font-semibold mb-4">
+            Disabled
+          </h3>
+          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+            <p className="text-sm text-blue-900 dark:text-blue-100">
+              <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아 입력을
+              받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한 없음
+            </p>
+          </div>
+          <ComponentPreview>
+            <div className="max-w-md space-y-4">
+              <Input disabled placeholder="비활성화된 입력 필드" />
+              <Input
+                disabled
+                variant="filled"
+                placeholder="비활성화된 Filled"
+              />
+            </div>
+          </ComponentPreview>
+          <div className="mt-4">
+            <CodeBlock
+              code={`<Input disabled placeholder="비활성화된 입력 필드" />
+<Input disabled variant="filled" placeholder="비활성화된 Filled" />`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+          </div>
+        </div>
 
-              {/* Types */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Input Types</h3>
-                <p className="text-gray-60 dark:text-gray-40 mb-4">
-                  다양한 HTML5 input type을 지원합니다.
-                </p>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="space-y-4 max-w-md">
-                    <Input type="text" placeholder="텍스트" />
-                    <Input type="email" placeholder="이메일" />
-                    <Input type="password" placeholder="비밀번호" />
-                    <Input type="number" placeholder="숫자" />
-                    <Input type="tel" placeholder="전화번호" />
-                    <Input type="url" placeholder="URL" />
-                    <Input type="date" />
-                  </div>
-                </div>
-                <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-                  <code>{`<Input type="text" placeholder="텍스트" />
+        {/* Types */}
+        <div className="mb-10">
+          <h3 id="types" className="text-xl font-semibold mb-4">
+            Input Types
+          </h3>
+          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+            <p className="text-sm text-blue-900 dark:text-blue-100">
+              <strong>언제 사용하나요?</strong> 각 데이터 타입에 맞는 type을
+              사용하면 모바일에서 적절한 키보드가 표시되고, 브라우저의 자동 검증
+              기능을 활용할 수 있습니다.
+            </p>
+          </div>
+          <ComponentPreview>
+            <div className="max-w-md space-y-4">
+              <Input type="text" placeholder="텍스트" />
+              <Input type="email" placeholder="이메일" />
+              <Input type="password" placeholder="비밀번호" />
+              <Input type="number" placeholder="숫자" />
+              <Input type="tel" placeholder="전화번호" />
+              <Input type="url" placeholder="URL" />
+              <Input type="date" />
+            </div>
+          </ComponentPreview>
+          <div className="mt-4">
+            <CodeBlock
+              code={`<Input type="text" placeholder="텍스트" />
 <Input type="email" placeholder="이메일" />
 <Input type="password" placeholder="비밀번호" />
 <Input type="number" placeholder="숫자" />
 <Input type="tel" placeholder="전화번호" />
 <Input type="url" placeholder="URL" />
-<Input type="date" />`}</code>
-                </pre>
-              </div>
-
-              {/* Full Width */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Full Width</h3>
-                <p className="text-gray-60 dark:text-gray-40 mb-4">
-                  기본적으로 전체 너비를 사용하며, className으로 조정할 수
-                  있습니다.
-                </p>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="space-y-4">
-                    <Input placeholder="전체 너비 (기본)" />
-                    <Input
-                      className="max-w-md"
-                      placeholder="최대 너비 제한 (max-w-md)"
-                    />
-                    <Input
-                      className="max-w-xs"
-                      placeholder="작은 너비 (max-w-xs)"
-                    />
-                  </div>
-                </div>
-                <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-                  <code>{`<Input placeholder="전체 너비 (기본)" />
-<Input className="max-w-md" placeholder="최대 너비 제한" />
-<Input className="max-w-xs" placeholder="작은 너비" />`}</code>
-                </pre>
-              </div>
-            </div>
-          </section>
-
-          {/* API Reference */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-8">API Reference</h2>
-
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <th className="text-left py-3 px-4 font-semibold w-1/5">
-                      Prop
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-2/5">
-                      Type
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-1/6">
-                      Default
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-1/4">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">variant</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      &quot;default&quot; | &quot;filled&quot;
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;default&quot;
-                    </td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      입력 필드의 시각적 스타일
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">size</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      &quot;small&quot; | &quot;medium&quot; | &quot;large&quot;
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;medium&quot;
-                    </td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      입력 필드 크기 (32px / 40px / 48px)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">type</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      string
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;text&quot;
-                    </td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      HTML input type (text, email, password 등)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">error</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      boolean
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">false</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      에러 상태 표시
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">disabled</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      boolean
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">false</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      비활성화 상태
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">leftAddon</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      React.ReactNode
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      왼쪽에 표시할 요소 (아이콘 등)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">rightAddon</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      React.ReactNode
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      오른쪽에 표시할 요소 (아이콘 등)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">placeholder</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      string
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      입력 힌트 텍스트
-                    </td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">className</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      string
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      추가 CSS 클래스 (레이아웃용)
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* Accessibility */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">Accessibility</h2>
-            <div className="space-y-4 text-gray-70 dark:text-gray-30">
-              <p>이 컴포넌트는 WCAG 2.1 AA 기준을 준수합니다:</p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>
-                  <strong>최소 터치 영역:</strong> 모든 입력 필드는 최소 32px
-                  이상의 높이를 가집니다
-                </li>
-                <li>
-                  <strong>키보드 네비게이션:</strong> Tab 키로 포커스 이동
-                </li>
-                <li>
-                  <strong>포커스 표시:</strong> 포커스 시 명확한 링 표시
-                </li>
-                <li>
-                  <strong>ARIA 속성:</strong> error 상태 시{' '}
-                  <code className="text-sm bg-gray-10 dark:bg-gray-90 px-1.5 py-0.5 rounded">
-                    aria-invalid
-                  </code>{' '}
-                  자동 설정
-                </li>
-                <li>
-                  <strong>레이블 연결:</strong> label의 htmlFor와 input의 id를
-                  연결하여 스크린 리더 지원
-                </li>
-                <li>
-                  <strong>에러 메시지:</strong> aria-describedby로 에러 메시지
-                  연결 권장
-                </li>
-                <li>
-                  <strong>색상 대비:</strong> KRDS 색상 팔레트로 충분한 대비
-                  보장
-                </li>
-              </ul>
-            </div>
-          </section>
+<Input type="date" />`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+          </div>
         </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-20 dark:border-gray-80 py-8">
-        <div className="container mx-auto px-4 text-center text-gray-60 dark:text-gray-40">
-          <p>MIT License · KRDS 기반 공공 웹 UI 컴포넌트 라이브러리</p>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 }
