@@ -63,10 +63,21 @@ pnpm dev
 #### 2. 기존 프로젝트에 설치
 
 ```bash
-# 패키지 설치
+# pnpm
 pnpm add @hanui/react
 
-# 컴포넌트 사용
+# npm
+npm install @hanui/react
+
+# yarn
+yarn add @hanui/react
+
+# bun
+bun add @hanui/react
+```
+
+```tsx
+// 컴포넌트 사용
 import { Button } from '@hanui/react';
 
 function App() {
@@ -182,7 +193,17 @@ pnpm dev
 Or install in existing project:
 
 ```bash
+# pnpm
 pnpm add @hanui/react
+
+# npm
+npm install @hanui/react
+
+# yarn
+yarn add @hanui/react
+
+# bun
+bun add @hanui/react
 ```
 
 ### Documentation

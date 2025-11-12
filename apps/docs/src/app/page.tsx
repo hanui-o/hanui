@@ -5,46 +5,7 @@ import { Button } from '@hanui/react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ExampleShowcase } from '@/components/ExampleShowcase';
-
-const components = [
-  {
-    name: 'Button',
-    description: '다양한 스타일과 크기를 지원하는 버튼',
-    icon: '🔘',
-  },
-  {
-    name: 'Input',
-    description: '폼 입력 필드와 유효성 검사',
-    icon: '📝',
-  },
-  { name: 'Card', description: '콘텐츠 카드 컨테이너', icon: '🗂️' },
-  {
-    name: 'Table',
-    description: '정렬과 페이징을 지원하는 데이터 테이블',
-    icon: '📊',
-  },
-  {
-    name: 'Pagination',
-    description: '페이지 네비게이션 컴포넌트',
-    icon: '📄',
-  },
-  {
-    name: 'Breadcrumb',
-    description: '네비게이션 경로 표시',
-    icon: '🔗',
-  },
-  { name: 'Modal', description: '모달 다이얼로그', icon: '🪟' },
-  {
-    name: 'Select',
-    description: '드롭다운 선택 컴포넌트',
-    icon: '▼',
-  },
-  {
-    name: 'FileUpload',
-    description: '드래그 앤 드롭 파일 업로드',
-    icon: '📎',
-  },
-];
+import { PackageManagerTabs } from '@/components/PackageManagerTabs';
 
 export default function Home() {
   return (
@@ -105,6 +66,19 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Installation Section */}
+        <section className="container mx-auto px-4 py-12 md:py-16 bg-gray-50 dark:bg-gray-900/50">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">설치</h2>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                원하는 패키지 매니저로 HANUI를 설치하세요
+              </p>
+            </div>
+            <PackageManagerTabs />
+          </div>
+        </section>
+
         {/* Example Showcase Section */}
         <section className="container mx-auto px-4 py-12 md:py-16">
           <div className="max-w-7xl mx-auto">
@@ -159,8 +133,10 @@ export default function Home() {
                     <span className="text-purple-400">import</span> {'{ '}
                     <span className="text-yellow-300">Button</span>
                     {' }'} <span className="text-purple-400">from</span>{' '}
-                    <span className="text-green-300">'@hanui/react'</span>;
-                    {'\n\n'}
+                    <span className="text-green-300">
+                      &apos;@hanui/react&apos;
+                    </span>
+                    ;{'\n\n'}
                     <span className="text-purple-400">function</span>{' '}
                     <span className="text-yellow-300">App</span>() {'{'}
                     {'\n  '}

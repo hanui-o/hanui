@@ -35,6 +35,9 @@ npm install @hanui/react
 
 # yarn
 yarn add @hanui/react
+
+# bun
+bun add @hanui/react
 ```
 
 ### 빠른 시작
@@ -115,6 +118,9 @@ npm install @hanui/react
 
 # yarn
 yarn add @hanui/react
+
+# bun
+bun add @hanui/react
 ```
 
 ### Quick Start
