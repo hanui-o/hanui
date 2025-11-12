@@ -20,6 +20,10 @@
 
 HANUI는 [KRDS(Korea Republic Design System)](https://github.com/korea-design-system/krds)를 완벽히 준수하는 React 컴포넌트 라이브러리입니다. 공공기관 웹사이트 개발을 위한 접근성(WCAG 2.1 AA)과 사용성을 갖춘 컴포넌트를 제공합니다.
 
+> **🎉 v0.1.0 First Stable Release (2025-11-12)**
+>
+> HANUI의 첫 번째 안정 버전이 출시되었습니다! 9개의 핵심 컴포넌트, 완전한 KRDS 준수, 그리고 즉시 사용 가능한 템플릿을 제공합니다.
+
 ### 특징
 
 - 🎨 **KRDS 100% 준수**: 공공 웹 디자인 시스템 완벽 준수
@@ -29,10 +33,26 @@ HANUI는 [KRDS(Korea Republic Design System)](https://github.com/korea-design-sy
 - 📦 **TypeScript**: 완전한 타입 지원
 - 🎯 **Tree-shaking**: ESM 지원으로 최적화된 번들 크기
 
+### 컴포넌트
+
+현재 제공되는 9개 핵심 컴포넌트:
+
+- **Button** - 다양한 variant와 size 지원
+- **Input** - 폼 입력 필드
+- **Card** - 콘텐츠 카드
+- **Table** - 데이터 테이블
+- **Pagination** - 페이지네이션
+- **Breadcrumb** - 네비게이션 경로
+- **Modal** - 모달 다이얼로그
+- **Select** - 드롭다운 선택
+- **FileUpload** - 파일 업로드
+
 ### 빠른 시작
 
+#### 1. CLI로 새 프로젝트 생성
+
 ```bash
-# 프로젝트 생성
+# Portal, Admin, 또는 Both 템플릿 중 선택
 pnpm create hanui-app my-project
 
 # 개발 서버 실행
@@ -40,10 +60,18 @@ cd my-project
 pnpm dev
 ```
 
-또는 기존 프로젝트에 설치:
+#### 2. 기존 프로젝트에 설치
 
 ```bash
+# 패키지 설치
 pnpm add @hanui/react
+
+# 컴포넌트 사용
+import { Button } from '@hanui/react';
+
+function App() {
+  return <Button>클릭하세요</Button>;
+}
 ```
 
 ### 📦 패키지

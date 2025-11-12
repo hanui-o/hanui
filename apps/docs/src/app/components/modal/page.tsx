@@ -1,6 +1,13 @@
 'use client';
 
-import { Modal, Button } from '@hanui/react';
+import {
+  Modal,
+  ModalTitle,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+  Button,
+} from '@hanui/react';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -65,11 +72,11 @@ export default function ModalPage() {
               <Button onClick={() => setIsBasicOpen(true)}>모달 열기</Button>
 
               <Modal open={isBasicOpen} onClose={() => setIsBasicOpen(false)}>
-                <Modal.Title>기본 모달</Modal.Title>
-                <Modal.Body>
+                <ModalTitle>기본 모달</ModalTitle>
+                <ModalBody>
                   <p>모달 컨텐츠가 여기에 표시됩니다.</p>
-                </Modal.Body>
-                <Modal.Footer>
+                </ModalBody>
+                <ModalFooter>
                   <Button
                     variant="outline"
                     onClick={() => setIsBasicOpen(false)}
@@ -77,7 +84,7 @@ export default function ModalPage() {
                     취소
                   </Button>
                   <Button onClick={() => setIsBasicOpen(false)}>확인</Button>
-                </Modal.Footer>
+                </ModalFooter>
               </Modal>
             </div>
             <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
@@ -92,16 +99,16 @@ export default () => {
       <Button onClick={() => setIsOpen(true)}>모달 열기</Button>
 
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        <Modal.Title>기본 모달</Modal.Title>
-        <Modal.Body>
+        <ModalTitle>기본 모달</ModalTitle>
+        <ModalBody>
           <p>모달 컨텐츠가 여기에 표시됩니다.</p>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <Button variant="outline" onClick={() => setIsOpen(false)}>
             취소
           </Button>
           <Button onClick={() => setIsOpen(false)}>확인</Button>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     </>
   );
@@ -148,15 +155,15 @@ export default () => {
                     onClose={() => setIsSmallOpen(false)}
                     size="sm"
                   >
-                    <Modal.Title>Small 모달</Modal.Title>
-                    <Modal.Body>
+                    <ModalTitle>Small 모달</ModalTitle>
+                    <ModalBody>
                       <p>작은 크기의 모달입니다.</p>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button onClick={() => setIsSmallOpen(false)}>
                         닫기
                       </Button>
-                    </Modal.Footer>
+                    </ModalFooter>
                   </Modal>
 
                   {/* Medium Modal */}
@@ -165,15 +172,15 @@ export default () => {
                     onClose={() => setIsMediumOpen(false)}
                     size="md"
                   >
-                    <Modal.Title>Medium 모달</Modal.Title>
-                    <Modal.Body>
+                    <ModalTitle>Medium 모달</ModalTitle>
+                    <ModalBody>
                       <p>중간 크기의 모달입니다. 기본값입니다.</p>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button onClick={() => setIsMediumOpen(false)}>
                         닫기
                       </Button>
-                    </Modal.Footer>
+                    </ModalFooter>
                   </Modal>
 
                   {/* Large Modal */}
@@ -182,16 +189,16 @@ export default () => {
                     onClose={() => setIsLargeOpen(false)}
                     size="lg"
                   >
-                    <Modal.Title>Large 모달</Modal.Title>
-                    <Modal.Body>
+                    <ModalTitle>Large 모달</ModalTitle>
+                    <ModalBody>
                       <p>큰 크기의 모달입니다.</p>
                       <p className="mt-2">더 많은 컨텐츠를 담을 수 있습니다.</p>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button onClick={() => setIsLargeOpen(false)}>
                         닫기
                       </Button>
-                    </Modal.Footer>
+                    </ModalFooter>
                   </Modal>
 
                   {/* XL Modal */}
@@ -200,16 +207,16 @@ export default () => {
                     onClose={() => setIsXlOpen(false)}
                     size="xl"
                   >
-                    <Modal.Title>Extra Large 모달</Modal.Title>
-                    <Modal.Body>
+                    <ModalTitle>Extra Large 모달</ModalTitle>
+                    <ModalBody>
                       <p>매우 큰 크기의 모달입니다.</p>
                       <p className="mt-2">
                         복잡한 컨텐츠나 폼을 담을 때 유용합니다.
                       </p>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button onClick={() => setIsXlOpen(false)}>닫기</Button>
-                    </Modal.Footer>
+                    </ModalFooter>
                   </Modal>
 
                   {/* Full Modal */}
@@ -218,34 +225,34 @@ export default () => {
                     onClose={() => setIsFullOpen(false)}
                     size="full"
                   >
-                    <Modal.Title>Full Screen 모달</Modal.Title>
-                    <Modal.Body>
+                    <ModalTitle>Full Screen 모달</ModalTitle>
+                    <ModalBody>
                       <p>전체 화면을 차지하는 모달입니다.</p>
                       <p className="mt-2">
                         대량의 데이터나 복잡한 인터페이스를 표시할 때
                         사용합니다.
                       </p>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button onClick={() => setIsFullOpen(false)}>닫기</Button>
-                    </Modal.Footer>
+                    </ModalFooter>
                   </Modal>
                 </div>
                 <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
                   <code>{`<Modal open={isOpen} onClose={onClose} size="sm">
-  <Modal.Title>Small 모달</Modal.Title>
-  <Modal.Body>작은 크기의 모달입니다.</Modal.Body>
-  <Modal.Footer>
+  <ModalTitle>Small 모달</ModalTitle>
+  <ModalBody>작은 크기의 모달입니다.</ModalBody>
+  <ModalFooter>
     <Button onClick={onClose}>닫기</Button>
-  </Modal.Footer>
+  </ModalFooter>
 </Modal>
 
 <Modal open={isOpen} onClose={onClose} size="full">
-  <Modal.Title>Full Screen 모달</Modal.Title>
-  <Modal.Body>전체 화면을 차지하는 모달입니다.</Modal.Body>
-  <Modal.Footer>
+  <ModalTitle>Full Screen 모달</ModalTitle>
+  <ModalBody>전체 화면을 차지하는 모달입니다.</ModalBody>
+  <ModalFooter>
     <Button onClick={onClose}>닫기</Button>
-  </Modal.Footer>
+  </ModalFooter>
 </Modal>`}</code>
                 </pre>
               </div>
@@ -267,31 +274,31 @@ export default () => {
                     open={isBasicOpen}
                     onClose={() => setIsBasicOpen(false)}
                   >
-                    <Modal.CloseButton />
-                    <Modal.Title>닫기 버튼이 있는 모달</Modal.Title>
-                    <Modal.Body>
+                    <ModalCloseButton />
+                    <ModalTitle>닫기 버튼이 있는 모달</ModalTitle>
+                    <ModalBody>
                       <p>
                         오른쪽 상단의 X 버튼이나 Footer의 버튼으로 닫을 수
                         있습니다.
                       </p>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button onClick={() => setIsBasicOpen(false)}>
                         확인
                       </Button>
-                    </Modal.Footer>
+                    </ModalFooter>
                   </Modal>
                 </div>
                 <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
                   <code>{`<Modal open={isOpen} onClose={onClose}>
-  <Modal.CloseButton />
-  <Modal.Title>닫기 버튼이 있는 모달</Modal.Title>
-  <Modal.Body>
+  <ModalCloseButton />
+  <ModalTitle>닫기 버튼이 있는 모달</ModalTitle>
+  <ModalBody>
     <p>오른쪽 상단의 X 버튼으로 닫을 수 있습니다.</p>
-  </Modal.Body>
-  <Modal.Footer>
+  </ModalBody>
+  <ModalFooter>
     <Button onClick={onClose}>확인</Button>
-  </Modal.Footer>
+  </ModalFooter>
 </Modal>`}</code>
                 </pre>
               </div>
@@ -314,14 +321,14 @@ export default () => {
                     onClose={() => setIsBasicOpen(false)}
                     size="sm"
                   >
-                    <Modal.Title>계정을 삭제하시겠습니까?</Modal.Title>
-                    <Modal.Body>
+                    <ModalTitle>계정을 삭제하시겠습니까?</ModalTitle>
+                    <ModalBody>
                       <p className="text-gray-70 dark:text-gray-30">
                         이 작업은 되돌릴 수 없습니다. 계정과 모든 데이터가
                         영구적으로 삭제됩니다.
                       </p>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button
                         variant="outline"
                         onClick={() => setIsBasicOpen(false)}
@@ -337,23 +344,23 @@ export default () => {
                       >
                         삭제
                       </Button>
-                    </Modal.Footer>
+                    </ModalFooter>
                   </Modal>
                 </div>
                 <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
                   <code>{`<Modal open={isOpen} onClose={onClose} size="sm">
-  <Modal.Title>계정을 삭제하시겠습니까?</Modal.Title>
-  <Modal.Body>
+  <ModalTitle>계정을 삭제하시겠습니까?</ModalTitle>
+  <ModalBody>
     <p>이 작업은 되돌릴 수 없습니다.</p>
-  </Modal.Body>
-  <Modal.Footer>
+  </ModalBody>
+  <ModalFooter>
     <Button variant="outline" onClick={onClose}>
       취소
     </Button>
     <Button variant="danger" onClick={handleDelete}>
       삭제
     </Button>
-  </Modal.Footer>
+  </ModalFooter>
 </Modal>`}</code>
                 </pre>
               </div>
@@ -373,32 +380,40 @@ export default () => {
                     open={isBasicOpen}
                     onClose={() => setIsBasicOpen(false)}
                   >
-                    <Modal.Title>새 프로젝트 만들기</Modal.Title>
-                    <Modal.Body>
+                    <ModalTitle>새 프로젝트 만들기</ModalTitle>
+                    <ModalBody>
                       <form className="space-y-4">
                         <div>
-                          <label className="block text-sm font-medium mb-1">
+                          <label
+                            htmlFor="project-name"
+                            className="block text-sm font-medium mb-1"
+                          >
                             프로젝트 이름
                           </label>
                           <input
+                            id="project-name"
                             type="text"
                             className="w-full px-3 py-2 border border-gray-30 dark:border-gray-70 rounded focus:outline-none focus:ring-2 focus:ring-primary-60"
                             placeholder="프로젝트 이름을 입력하세요"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-1">
+                          <label
+                            htmlFor="project-description"
+                            className="block text-sm font-medium mb-1"
+                          >
                             설명
                           </label>
                           <textarea
+                            id="project-description"
                             rows={3}
                             className="w-full px-3 py-2 border border-gray-30 dark:border-gray-70 rounded focus:outline-none focus:ring-2 focus:ring-primary-60"
                             placeholder="프로젝트 설명을 입력하세요"
                           />
                         </div>
                       </form>
-                    </Modal.Body>
-                    <Modal.Footer>
+                    </ModalBody>
+                    <ModalFooter>
                       <Button
                         variant="outline"
                         onClick={() => setIsBasicOpen(false)}
@@ -408,13 +423,13 @@ export default () => {
                       <Button onClick={() => setIsBasicOpen(false)}>
                         만들기
                       </Button>
-                    </Modal.Footer>
+                    </ModalFooter>
                   </Modal>
                 </div>
                 <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
                   <code>{`<Modal open={isOpen} onClose={onClose}>
-  <Modal.Title>새 프로젝트 만들기</Modal.Title>
-  <Modal.Body>
+  <ModalTitle>새 프로젝트 만들기</ModalTitle>
+  <ModalBody>
     <form className="space-y-4">
       <div>
         <label>프로젝트 이름</label>
@@ -425,11 +440,11 @@ export default () => {
         <textarea placeholder="설명을 입력하세요" />
       </div>
     </form>
-  </Modal.Body>
-  <Modal.Footer>
+  </ModalBody>
+  <ModalFooter>
     <Button variant="outline" onClick={onClose}>취소</Button>
     <Button onClick={handleSubmit}>만들기</Button>
-  </Modal.Footer>
+  </ModalFooter>
 </Modal>`}</code>
                 </pre>
               </div>
@@ -518,25 +533,25 @@ export default () => {
                 <h3 className="text-xl font-semibold mb-4">Sub-components</h3>
                 <div className="space-y-4">
                   <div>
-                    <p className="font-mono text-sm mb-2">Modal.Title</p>
+                    <p className="font-mono text-sm mb-2">ModalTitle</p>
                     <p className="text-gray-60 dark:text-gray-40 text-sm">
                       모달의 제목을 표시합니다. children을 받습니다.
                     </p>
                   </div>
                   <div>
-                    <p className="font-mono text-sm mb-2">Modal.Body</p>
+                    <p className="font-mono text-sm mb-2">ModalBody</p>
                     <p className="text-gray-60 dark:text-gray-40 text-sm">
                       모달의 본문 내용을 표시합니다. children을 받습니다.
                     </p>
                   </div>
                   <div>
-                    <p className="font-mono text-sm mb-2">Modal.Footer</p>
+                    <p className="font-mono text-sm mb-2">ModalFooter</p>
                     <p className="text-gray-60 dark:text-gray-40 text-sm">
                       모달의 하단 액션 버튼 영역입니다. children을 받습니다.
                     </p>
                   </div>
                   <div>
-                    <p className="font-mono text-sm mb-2">Modal.CloseButton</p>
+                    <p className="font-mono text-sm mb-2">ModalCloseButton</p>
                     <p className="text-gray-60 dark:text-gray-40 text-sm">
                       오른쪽 상단에 표시되는 닫기 버튼입니다. props를 받지
                       않습니다.

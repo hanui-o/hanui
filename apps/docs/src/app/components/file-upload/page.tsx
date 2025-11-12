@@ -1,18 +1,19 @@
 'use client';
 
-import { FileUpload, Button } from '@hanui/react';
+import { FileUpload, type UploadedFile } from '@hanui/react';
 import Link from 'next/link';
 import { useState } from 'react';
 
 export default function FileUploadPage() {
-  const [files, setFiles] = useState<File[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [files, setFiles] = useState<UploadedFile[]>([]);
 
   const handleUpload = (files: File[]) => {
     console.log('Uploading files:', files);
     // 실제 업로드 로직
   };
 
-  const handleChange = (files: File[]) => {
+  const handleChange = (files: UploadedFile[]) => {
     setFiles(files);
     console.log('Files changed:', files);
   };

@@ -78,7 +78,9 @@ export default function SelectPage() {
                 <Select
                   options={options}
                   value={selectedValue}
-                  onChange={setSelectedValue}
+                  onChange={(value) =>
+                    setSelectedValue(Array.isArray(value) ? value[0] : value)
+                  }
                   placeholder="과일을 선택하세요"
                 />
               </div>
@@ -123,7 +125,11 @@ export default () => {
                     <Select
                       options={categoryOptions}
                       value={selectedValue}
-                      onChange={setSelectedValue}
+                      onChange={(value) =>
+                        setSelectedValue(
+                          Array.isArray(value) ? value[0] : value
+                        )
+                      }
                       placeholder="카테고리를 선택하세요"
                     />
                   </div>
@@ -150,7 +156,11 @@ export default () => {
                       label="좋아하는 과일"
                       options={options}
                       value={selectedValue}
-                      onChange={setSelectedValue}
+                      onChange={(value) =>
+                        setSelectedValue(
+                          Array.isArray(value) ? value[0] : value
+                        )
+                      }
                       placeholder="선택하세요"
                     />
                   </div>
@@ -178,7 +188,11 @@ export default () => {
                       label="검색 가능한 셀렉트"
                       options={options}
                       value={selectedValue}
-                      onChange={setSelectedValue}
+                      onChange={(value) =>
+                        setSelectedValue(
+                          Array.isArray(value) ? value[0] : value
+                        )
+                      }
                       searchable
                       placeholder="검색하거나 선택하세요"
                     />
@@ -210,7 +224,11 @@ export default () => {
                       label="좋아하는 과일들"
                       options={options}
                       value={multipleValues}
-                      onChange={setMultipleValues}
+                      onChange={(value) =>
+                        setMultipleValues(
+                          Array.isArray(value) ? value : [value]
+                        )
+                      }
                       multiple
                       placeholder="여러 개를 선택하세요"
                     />
@@ -221,7 +239,7 @@ export default () => {
   label="좋아하는 과일들"
   options={options}
   value={multipleValues}
-  onChange={setMultipleValues}
+  onChange={(value) => setMultipleValues(Array.isArray(value) ? value : [value])}
   multiple
   placeholder="여러 개를 선택하세요"
 />`}</code>
@@ -311,7 +329,11 @@ export default () => {
                       label="커스텀 옵션"
                       options={options}
                       value={selectedValue}
-                      onChange={setSelectedValue}
+                      onChange={(value) =>
+                        setSelectedValue(
+                          Array.isArray(value) ? value[0] : value
+                        )
+                      }
                       placeholder="선택하세요"
                       renderOption={(option) => (
                         <div className="flex items-center justify-between">
