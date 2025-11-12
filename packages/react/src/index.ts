@@ -70,5 +70,24 @@ export type { StackProps } from './components/Stack';
 export { Section, sectionVariants } from './components/Section';
 export type { SectionProps } from './components/Section';
 
+// Typography Components
+export { Display } from './components/Display';
+export type { DisplayProps } from './components/Display';
+
+export { Heading } from './components/Heading';
+export type { HeadingProps } from './components/Heading';
+
+export { Body } from './components/Body';
+export type { BodyProps } from './components/Body';
+
+export { Label } from './components/Label';
+export type { LabelProps } from './components/Label';
+
+export { NavText } from './components/NavText';
+export type { NavTextProps } from './components/NavText';
+
+export { Box } from './components/Box';
+export type { BoxProps } from './components/Box';
+
 // Utils
 export { cn } from './lib/utils';
