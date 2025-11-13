@@ -31,6 +31,19 @@ export function CodeBlock({
     highlightCode();
   }, [code, language]);
 
+  if (!html) {
+    return (
+      <div className="relative group">
+        <div className="overflow-x-auto rounded-lg bg-gray-800 dark:bg-gray-900 p-5">
+          <div className="animate-pulse">
+            <div className="h-4 bg-gray-700 rounded w-3/4 mb-2"></div>
+            <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative group">
       {fileName && (

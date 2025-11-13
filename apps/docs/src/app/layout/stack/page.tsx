@@ -19,17 +19,19 @@ export default function StackPage() {
 
       <PageSection>
         <ComponentPreview>
-          <Stack spacing="md">
-            <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
-              첫 번째 아이템
-            </div>
-            <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
-              두 번째 아이템
-            </div>
-            <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
-              세 번째 아이템
-            </div>
-          </Stack>
+          <div className="w-full">
+            <Stack spacing="md">
+              <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
+                첫 번째 아이템
+              </div>
+              <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
+                두 번째 아이템
+              </div>
+              <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
+                세 번째 아이템
+              </div>
+            </Stack>
+          </div>
         </ComponentPreview>
       </PageSection>
 
@@ -173,24 +175,50 @@ export default function StackPage() {
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Stack spacing="heading-tight">
-            <Heading level="h3">Section Level - 큰 블록 구분</Heading>
-            <Body>주요 섹션을 구분할 때 사용합니다.</Body>
-            <ComponentPreview>
-              <Stack spacing="section" className="w-full">
-                <div className="bg-blue-100 dark:bg-blue-900/30 p-6 rounded">
-                  <h2 className="font-bold text-lg mb-2">첫 번째 섹션</h2>
-                  <p>주요 내용...</p>
+            <Heading level="h3">
+              1. Section Level - 큰 블록 구분 (40px/80px, 32px/64px)
+            </Heading>
+            <Body>
+              주요 섹션을 구분할 때 사용합니다. KRDS의 h2-h2, h3-h3 간격에
+              해당합니다.
+            </Body>
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+              <Stack spacing="compact">
+                <div>
+                  <code className="text-sm font-mono">spacing="section"</code> →{' '}
+                  <strong>40px (Mobile) / 80px (PC)</strong> - KRDS h2-h2 간격
                 </div>
-                <div className="bg-blue-100 dark:bg-blue-900/30 p-6 rounded">
-                  <h2 className="font-bold text-lg mb-2">두 번째 섹션</h2>
-                  <p>주요 내용...</p>
+                <div>
+                  <code className="text-sm font-mono">
+                    spacing="section-tight"
+                  </code>{' '}
+                  → <strong>32px (Mobile) / 64px (PC)</strong> - KRDS h3-h3 간격
                 </div>
               </Stack>
+            </div>
+            <ComponentPreview>
+              <div className="w-full">
+                <Stack spacing="section" className="w-full">
+                  <div className="bg-blue-100 dark:bg-blue-900/30 p-6 rounded">
+                    <h2 className="font-bold text-lg mb-2">첫 번째 섹션</h2>
+                    <p>주요 내용...</p>
+                  </div>
+                  <div className="bg-blue-100 dark:bg-blue-900/30 p-6 rounded">
+                    <h2 className="font-bold text-lg mb-2">두 번째 섹션</h2>
+                    <p>주요 내용...</p>
+                  </div>
+                </Stack>
+              </div>
             </ComponentPreview>
             <CodeBlock
-              code={`<Stack spacing="section">  {/* 40px/80px */}
+              code={`<Stack spacing="section">  {/* 40px/80px - h2-h2 간격 */}
   <Section1 />
   <Section2 />
+</Stack>
+
+<Stack spacing="section-tight">  {/* 32px/64px - h3-h3 간격 */}
+  <SubSection1 />
+  <SubSection2 />
 </Stack>`}
               language="tsx"
               showLineNumbers={false}
@@ -198,20 +226,62 @@ export default function StackPage() {
           </Stack>
 
           <Stack spacing="heading-tight">
-            <Heading level="h3">Heading-Content - 제목과 설명</Heading>
-            <Body>제목과 바로 아래 설명/내용이 긴밀할 때 사용합니다.</Body>
-            <ComponentPreview>
-              <Stack spacing="heading-content">
-                <h3 className="font-bold text-lg">제품 소개</h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  이 제품은 KRDS 기반으로 설계된 디자인 시스템입니다.
-                </p>
+            <Heading level="h3">
+              2. Heading-Content - 제목과 설명 (8px/16px ~ 20px/24px)
+            </Heading>
+            <Body>
+              제목과 바로 아래 설명/내용이 긴밀할 때 사용합니다. KRDS의
+              title-body-* 간격에 해당합니다.
+            </Body>
+            <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+              <Stack spacing="compact">
+                <div>
+                  <code className="text-sm font-mono">
+                    spacing="heading-tight"
+                  </code>{' '}
+                  → <strong>8px (Mobile) / 16px (PC)</strong> - KRDS h2-h3,
+                  title-body-small
+                </div>
+                <div>
+                  <code className="text-sm font-mono">
+                    spacing="heading-content"
+                  </code>{' '}
+                  → <strong>12px (Mobile) / 20px (PC)</strong> - KRDS
+                  title-body-medium
+                </div>
+                <div>
+                  <code className="text-sm font-mono">
+                    spacing="heading-loose"
+                  </code>{' '}
+                  → <strong>20px (Mobile) / 24px (PC)</strong> - KRDS h1-h2,
+                  title-body-large
+                </div>
               </Stack>
+            </div>
+            <ComponentPreview>
+              <div className="w-full">
+                <Stack spacing="heading-content">
+                  <h3 className="font-bold text-lg">제품 소개</h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    이 제품은 KRDS 기반으로 설계된 디자인 시스템입니다.
+                  </p>
+                </Stack>
+              </div>
             </ComponentPreview>
             <CodeBlock
-              code={`<Stack spacing="heading-content">  {/* 12px/20px */}
+              code={`<Stack spacing="heading-tight">  {/* 8px/16px - 제목→매우 가까운 내용 */}
+  <Heading>제목</Heading>
+  <Body>바로 붙는 설명...</Body>
+</Stack>
+
+<Stack spacing="heading-content">  {/* 12px/20px - 제목→설명 (기본) */}
   <Heading>제목</Heading>
   <Body>설명...</Body>
+</Stack>
+
+<Stack spacing="heading-loose">  {/* 20px/24px - 제목→여유있는 내용 */}
+  <Heading level="h1">메인 제목</Heading>
+  <Heading level="h2">서브 제목</Heading>
 </Stack>`}
               language="tsx"
               showLineNumbers={false}
@@ -219,28 +289,66 @@ export default function StackPage() {
           </Stack>
 
           <Stack spacing="heading-tight">
-            <Heading level="h3">Content - 같은 레벨 요소</Heading>
+            <Heading level="h3">
+              3. Content Level - 같은 레벨 요소 (12px/16px ~ 24px/40px)
+            </Heading>
             <Body>
               문단, 카드, 리스트 아이템 등 동등한 요소들 사이에 사용합니다.
+              KRDS의 h3-h4, h3-content 간격에 해당합니다.
             </Body>
-            <ComponentPreview>
-              <Stack spacing="content">
-                <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded">
-                  카드 1
+            <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+              <Stack spacing="compact">
+                <div>
+                  <code className="text-sm font-mono">
+                    spacing="content-tight"
+                  </code>{' '}
+                  → <strong>12px (Mobile) / 16px (PC)</strong> - 가까운 콘텐츠
+                  블록
                 </div>
-                <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded">
-                  카드 2
+                <div>
+                  <code className="text-sm font-mono">spacing="content"</code> →{' '}
+                  <strong>16px (Mobile) / 24px (PC)</strong> - KRDS h3-h4, 카드
+                  리스트
                 </div>
-                <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded">
-                  카드 3
+                <div>
+                  <code className="text-sm font-mono">
+                    spacing="content-loose"
+                  </code>{' '}
+                  → <strong>24px (Mobile) / 40px (PC)</strong> - KRDS
+                  h3-content, 여유있는 콘텐츠
                 </div>
               </Stack>
+            </div>
+            <ComponentPreview>
+              <div className="w-full">
+                <Stack spacing="content">
+                  <div className="bg-purple-100 dark:bg-purple-900/30 p-4 rounded">
+                    카드 1
+                  </div>
+                  <div className="bg-purple-100 dark:bg-purple-900/30 p-4 rounded">
+                    카드 2
+                  </div>
+                  <div className="bg-purple-100 dark:bg-purple-900/30 p-4 rounded">
+                    카드 3
+                  </div>
+                </Stack>
+              </div>
             </ComponentPreview>
             <CodeBlock
-              code={`<Stack spacing="content">  {/* 16px/24px */}
+              code={`<Stack spacing="content-tight">  {/* 12px/16px - 가까운 블록 */}
+  <Paragraph>...</Paragraph>
+  <Paragraph>...</Paragraph>
+</Stack>
+
+<Stack spacing="content">  {/* 16px/24px - 카드, 리스트 (기본) */}
   <Card>...</Card>
   <Card>...</Card>
   <Card>...</Card>
+</Stack>
+
+<Stack spacing="content-loose">  {/* 24px/40px - 여유있는 콘텐츠 */}
+  <Article>...</Article>
+  <Article>...</Article>
 </Stack>`}
               language="tsx"
               showLineNumbers={false}
@@ -248,23 +356,48 @@ export default function StackPage() {
           </Stack>
 
           <Stack spacing="heading-tight">
-            <Heading level="h3">Inline - 작은 요소</Heading>
-            <Body>태그, 칩, 배지 같은 작은 요소들을 나열할 때 사용합니다.</Body>
+            <Heading level="h3">
+              4. Inline/Compact - 작은 요소 (4px/8px, 8px/12px)
+            </Heading>
+            <Body>
+              태그, 칩, 배지 같은 작은 요소들을 나열할 때 사용합니다. KRDS의
+              input-group 등 조밀한 레이아웃에 해당합니다.
+            </Body>
+            <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
+              <Stack spacing="compact">
+                <div>
+                  <code className="text-sm font-mono">spacing="compact"</code> →{' '}
+                  <strong>4px (Mobile) / 8px (PC)</strong> - KRDS input-group,
+                  매우 조밀한 요소
+                </div>
+                <div>
+                  <code className="text-sm font-mono">spacing="inline"</code> →{' '}
+                  <strong>8px (Mobile) / 12px (PC)</strong> - 태그, 칩, 배지
+                </div>
+              </Stack>
+            </div>
             <ComponentPreview>
-              <HStack spacing="inline" className="flex-wrap">
-                <span className="bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full text-sm">
-                  React
-                </span>
-                <span className="bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full text-sm">
-                  TypeScript
-                </span>
-                <span className="bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full text-sm">
-                  Tailwind
-                </span>
-              </HStack>
+              <div className="w-full">
+                <HStack spacing="inline" className="flex-wrap">
+                  <span className="bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full text-sm">
+                    React
+                  </span>
+                  <span className="bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full text-sm">
+                    TypeScript
+                  </span>
+                  <span className="bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full text-sm">
+                    Tailwind
+                  </span>
+                </HStack>
+              </div>
             </ComponentPreview>
             <CodeBlock
-              code={`<HStack spacing="inline">  {/* 8px/12px */}
+              code={`<HStack spacing="compact">  {/* 4px/8px - 폼 필드 그룹 */}
+  <Input />
+  <Button>확인</Button>
+</HStack>
+
+<HStack spacing="inline">  {/* 8px/12px - 태그, 칩, 배지 */}
   <Tag>React</Tag>
   <Tag>TypeScript</Tag>
   <Tag>Tailwind</Tag>
@@ -338,17 +471,19 @@ export default function StackPage() {
             <Heading level="h3">VStack - 수직 스택</Heading>
             <div>
               <ComponentPreview>
-                <VStack spacing="md">
-                  <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
-                    첫 번째 아이템
-                  </div>
-                  <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
-                    두 번째 아이템
-                  </div>
-                  <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
-                    세 번째 아이템
-                  </div>
-                </VStack>
+                <div className="w-full">
+                  <VStack spacing="md">
+                    <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
+                      첫 번째 아이템
+                    </div>
+                    <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
+                      두 번째 아이템
+                    </div>
+                    <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
+                      세 번째 아이템
+                    </div>
+                  </VStack>
+                </div>
               </ComponentPreview>
               <div className="mt-4">
                 <CodeBlock
@@ -369,17 +504,19 @@ export default function StackPage() {
             <Heading level="h3">HStack - 수평 스택</Heading>
             <div>
               <ComponentPreview>
-                <HStack spacing="md">
-                  <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
-                    왼쪽
-                  </div>
-                  <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
-                    중앙
-                  </div>
-                  <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
-                    오른쪽
-                  </div>
-                </HStack>
+                <div className="w-full">
+                  <HStack spacing="md">
+                    <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
+                      왼쪽
+                    </div>
+                    <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
+                      중앙
+                    </div>
+                    <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
+                      오른쪽
+                    </div>
+                  </HStack>
+                </div>
               </ComponentPreview>
               <div className="mt-4">
                 <CodeBlock
@@ -400,12 +537,14 @@ export default function StackPage() {
             <Heading level="h3">Heading Spacing (heading-loose)</Heading>
             <div>
               <ComponentPreview>
-                <Stack spacing="heading-loose">
-                  <h1 className="text-3xl font-bold">메인 제목</h1>
-                  <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-400">
-                    부제목
-                  </h2>
-                </Stack>
+                <div className="w-full">
+                  <Stack spacing="heading-loose">
+                    <h1 className="text-3xl font-bold">메인 제목</h1>
+                    <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-400">
+                      부제목
+                    </h2>
+                  </Stack>
+                </div>
               </ComponentPreview>
               <div className="mt-4">
                 <CodeBlock
@@ -425,24 +564,26 @@ export default function StackPage() {
             <Heading level="h3">Form</Heading>
             <div>
               <ComponentPreview>
-                <Stack spacing="form">
-                  <HStack>
-                    <label className="block text-sm font-medium mb-1">
-                      이름
-                    </label>
-                    <div className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2">
-                      Input
-                    </div>
-                  </HStack>
-                  <HStack>
-                    <label className="block text-sm font-medium mb-1">
-                      이메일
-                    </label>
-                    <div className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2">
-                      Input
-                    </div>
-                  </HStack>
-                </Stack>
+                <div className="w-full">
+                  <Stack spacing="form">
+                    <HStack>
+                      <label className="block text-sm font-medium mb-1">
+                        이름
+                      </label>
+                      <div className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2">
+                        Input
+                      </div>
+                    </HStack>
+                    <HStack>
+                      <label className="block text-sm font-medium mb-1">
+                        이메일
+                      </label>
+                      <div className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2">
+                        Input
+                      </div>
+                    </HStack>
+                  </Stack>
+                </div>
               </ComponentPreview>
               <div className="mt-4">
                 <CodeBlock
@@ -468,7 +609,7 @@ export default function StackPage() {
             <Heading level="h3">Alignment</Heading>
             <div>
               <ComponentPreview>
-                <div className="space-y-6">
+                <div className="w-full space-y-6">
                   <div>
                     <p className="text-sm font-semibold mb-2">
                       Center Alignment
