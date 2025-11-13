@@ -105,13 +105,13 @@ export default function CardPage() {
                 <h3 className="text-xl font-semibold mb-4">Padding</h3>
                 <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
                   <div className="space-y-4">
-                    <Card padding="small">
+                    <Card padding="sm">
                       <CardBody>Small Padding</CardBody>
                     </Card>
-                    <Card padding="medium">
+                    <Card padding="md">
                       <CardBody>Medium Padding</CardBody>
                     </Card>
-                    <Card padding="large">
+                    <Card padding="lg">
                       <CardBody>Large Padding</CardBody>
                     </Card>
                   </div>

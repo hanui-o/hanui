@@ -135,7 +135,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               variant="primary"
-              size="large"
+              size="lg"
               className="login-button"
               disabled={isSubmitting}
             >

@@ -120,8 +120,8 @@ export interface InputProps
  * <Input variant="filled" />
  *
  * // With sizes
- * <Input size="small" />
- * <Input size="large" />
+ * <Input size="sm" />
+ * <Input size="lg" />
  *
  * // With error
  * <Input error />

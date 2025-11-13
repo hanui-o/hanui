@@ -80,7 +80,7 @@ export default function Layout({ children }: LayoutProps) {
                 <Button
                   type="submit"
                   variant="primary"
-                  size="small"
+                  size="sm"
                   className="search-button"
                 >
                   검색
@@ -89,7 +89,7 @@ export default function Layout({ children }: LayoutProps) {
 
               {/* Login Button */}
               <Link to="/login">
-                <Button variant="secondary" size="small">
+                <Button variant="secondary" size="sm">
                   로그인
                 </Button>
               </Link>

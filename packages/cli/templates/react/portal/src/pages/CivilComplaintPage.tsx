@@ -324,7 +324,7 @@ export default function CivilComplaintPage() {
             <Button
               type="button"
               variant="secondary"
-              size="large"
+              size="lg"
               onClick={() => navigate(-1)}
             >
               취소
@@ -332,7 +332,7 @@ export default function CivilComplaintPage() {
             <Button
               type="submit"
               variant="primary"
-              size="large"
+              size="lg"
               disabled={isSubmitting}
             >
               {isSubmitting ? '처리중...' : '신청하기'}

@@ -135,7 +135,7 @@ export default function NoticeListPage() {
             <div className="pagination">
               <Button
                 variant="secondary"
-                size="small"
+                size="sm"
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
                 aria-label="이전 페이지"
@@ -161,7 +161,7 @@ export default function NoticeListPage() {
 
               <Button
                 variant="secondary"
-                size="small"
+                size="sm"
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
                 aria-label="다음 페이지"

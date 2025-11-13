@@ -162,11 +162,11 @@ export default function DesignTokensPage() {
           <GuidelineSection type="do" title="카드 리스트 - gap-7 (24px)">
             <ComponentPreview>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
-                <Card variant="default" padding="medium">
+                <Card variant="default" padding="md">
                   <h4 className="font-semibold mb-2">카드 1</h4>
                   <p className="text-sm text-gray-600">카드 내용</p>
                 </Card>
-                <Card variant="default" padding="medium">
+                <Card variant="default" padding="md">
                   <h4 className="font-semibold mb-2">카드 2</h4>
                   <p className="text-sm text-gray-600">카드 내용</p>
                 </Card>
@@ -175,11 +175,11 @@ export default function DesignTokensPage() {
             <div className="mt-4">
               <CodeBlock
                 code={`<div className="grid grid-cols-2 gap-7">
-  <Card variant="default" padding="medium">
+  <Card variant="default" padding="md">
     <h4 className="font-semibold">카드 1</h4>
     <p className="text-sm">카드 내용</p>
   </Card>
-  <Card variant="default" padding="medium">
+  <Card variant="default" padding="md">
     <h4 className="font-semibold">카드 2</h4>
     <p className="text-sm">카드 내용</p>
   </Card>

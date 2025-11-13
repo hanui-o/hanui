@@ -26,12 +26,12 @@ export default function MainPage() {
           </p>
           <div className="hero-actions">
             <Link to="/civil-complaint">
-              <Button variant="primary" size="large">
+              <Button variant="primary" size="lg">
                 민원 신청하기
               </Button>
             </Link>
             <Link to="/notice">
-              <Button variant="secondary" size="large">
+              <Button variant="secondary" size="lg">
                 공지사항 보기
               </Button>
             </Link>

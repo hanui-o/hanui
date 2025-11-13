@@ -14,9 +14,9 @@ const cardVariants = cva(['rounded-lg', 'transition-shadow'].join(' '), {
     },
     padding: {
       none: 'p-0',
-      small: 'p-4', // 16px
-      medium: 'p-6', // 24px
-      large: 'p-8', // 32px
+      sm: 'p-4', // 16px
+      md: 'p-6', // 24px
+      lg: 'p-8', // 32px
     },
     hoverable: {
       true: ['hover:shadow-lg', 'cursor-pointer'].join(' '),
@@ -25,7 +25,7 @@ const cardVariants = cva(['rounded-lg', 'transition-shadow'].join(' '), {
   },
   defaultVariants: {
     variant: 'default',
-    padding: 'medium',
+    padding: 'md',
     hoverable: false,
   },
 });
@@ -44,9 +44,9 @@ export interface CardProps
 
   /**
    * Padding size
-   * @default "medium"
+   * @default "md"
    */
-  padding?: 'none' | 'small' | 'medium' | 'large';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
 
   /**
    * Enable hover effect
@@ -89,7 +89,7 @@ export interface CardProps
  * <Card variant="filled">배경색</Card>
  *
  * // With padding
- * <Card padding="small">작은 패딩</Card>
+ * <Card padding="sm">작은 패딩</Card>
  *
  * // Hoverable (clickable)
  * <Card hoverable onClick={handleClick}>
