@@ -1005,7 +1005,7 @@ export default function SpacingPage() {
               </Section>
             </ComponentPreview>
             <CodeBlock
-              code={`<Stack spacing="breadcrumb-h1">
+              code={`<Stack spacing="breadcrumb">
   <Breadcrumb />
   <Stack spacing="h1-h2">
     <h1>KRDS 디자인 시스템 소개</h1>
@@ -1064,7 +1064,7 @@ export default function SpacingPage() {
                       <h3 className="text-heading-md font-semibold">
                         주요 기능
                       </h3>
-                      <Stack spacing="h4-h5">
+                      <Stack spacing="content-tight">
                         <h4 className="text-heading-sm font-semibold">
                           접근성
                         </h4>
@@ -1090,7 +1090,7 @@ export default function SpacingPage() {
     <h2>첫 번째 섹션</h2>
     <Stack spacing="h3-h4">
       <h3>주요 기능</h3>
-      <Stack spacing="h4-h5">
+      <Stack spacing="content-tight">
         <h4>접근성</h4>
         <h5>WCAG 2.1 AA 준수</h5>
       </Stack>
