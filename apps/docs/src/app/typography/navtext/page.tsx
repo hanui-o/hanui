@@ -206,25 +206,46 @@ export default function NavTextPage() {
           <div>
             <h3 className="text-xl font-semibold mb-4">다양한 HTML 태그</h3>
             <ComponentPreview>
-              <div className="space-y-2">
-                <NavText as="a" variant="tit-lg">
-                  링크로 렌더링
-                </NavText>
-                <NavText as="button" variant="depth-md">
-                  버튼으로 렌더링
-                </NavText>
-                <NavText as="span" variant="depth-sm">
-                  span으로 렌더링
-                </NavText>
+              <div className="space-y-3">
+                <div>
+                  <NavText
+                    as="a"
+                    href="#"
+                    variant="tit-lg"
+                    className="text-blue-600 hover:underline"
+                  >
+                    링크로 렌더링 (a 태그)
+                  </NavText>
+                </div>
+                <div>
+                  <NavText
+                    as="button"
+                    variant="depth-md"
+                    onClick={() => alert('클릭!')}
+                    className="hover:text-primary-60"
+                  >
+                    버튼으로 렌더링 (button 태그)
+                  </NavText>
+                </div>
+                <div>
+                  <NavText as="span" variant="depth-sm">
+                    span으로 렌더링 (기본)
+                  </NavText>
+                </div>
               </div>
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<NavText as="a" variant="tit-lg">
-  링크로 렌더링
+                code={`<NavText as="a" href="/page" variant="tit-lg">
+  링크로 렌더링 (a 태그)
 </NavText>
-<NavText as="button" variant="depth-md">
-  버튼으로 렌더링
+
+<NavText as="button" variant="depth-md" onClick={handleClick}>
+  버튼으로 렌더링 (button 태그)
+</NavText>
+
+<NavText as="span" variant="depth-sm">
+  span으로 렌더링 (기본)
 </NavText>`}
                 language="tsx"
               />
