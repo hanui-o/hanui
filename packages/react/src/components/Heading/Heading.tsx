@@ -53,10 +53,25 @@ export interface HeadingProps
 }
 
 /**
+ * Generate a URL-friendly ID from text
+ */
+function generateId(text: React.ReactNode): string {
+  if (typeof text === 'string') {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\s가-힣-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+  return '';
+}
+
+/**
  * Heading Component
  *
  * KRDS 타이포그래피 - 페이지/섹션 제목
  * 시맨틱 HTML 태그(h1-h6)와 함께 사용되어 SEO와 접근성을 보장
+ * 자동으로 id를 생성하여 TOC 링크를 지원
  *
  * @example
  * ```tsx
@@ -66,11 +81,15 @@ export interface HeadingProps
  * ```
  */
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, level = 'h2', children, ...props }, ref) => {
+  ({ className, level = 'h2', children, id, ...props }, ref) => {
     const Tag = level;
+
+    // Generate id from children if not provided
+    const headingId = id || generateId(children);
 
     const headingProps = {
       ref,
+      id: headingId,
       className: cn(headingVariants({ level }), className),
       ...props,
     };
