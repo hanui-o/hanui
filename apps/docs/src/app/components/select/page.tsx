@@ -137,19 +137,22 @@ export default function SelectPage() {
               </p>
               <ComponentPreview>
                 <div className="max-w-md space-y-2">
-                  <label className="block space-y-2">
-                    <span className="text-sm font-medium">배송 국가</span>
-                    <Select
-                      options={[
-                        { value: 'kr', label: '대한민국' },
-                        { value: 'us', label: '미국' },
-                        { value: 'jp', label: '일본' },
-                      ]}
-                      value=""
-                      onChange={() => {}}
-                      placeholder="국가를 선택하세요"
-                    />
+                  <label
+                    htmlFor="country"
+                    className="block text-sm font-medium"
+                  >
+                    배송 국가
                   </label>
+                  <Select
+                    options={[
+                      { value: 'kr', label: '대한민국' },
+                      { value: 'us', label: '미국' },
+                      { value: 'jp', label: '일본' },
+                    ]}
+                    value=""
+                    onChange={() => {}}
+                    placeholder="국가를 선택하세요"
+                  />
                 </div>
               </ComponentPreview>
             </GuidelineSection>
@@ -230,34 +233,37 @@ const options = [
           <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
             <p className="text-sm text-blue-900 dark:text-blue-100">
               <strong>언제 사용하나요?</strong> 모든 선택 목록에는 명확한
-              레이블이 필요합니다. label 요소를 사용하여 선택 목록의 용도를
-              명확하게 전달합니다.
+              레이블이 필요합니다. label 요소의 htmlFor와 Select의 id를 연결하여
+              접근성을 보장합니다.
             </p>
           </div>
           <ComponentPreview>
-            <div className="max-w-md">
-              <label className="block space-y-2">
-                <span className="text-sm font-medium">좋아하는 과일</span>
-                <Select
-                  options={options}
-                  value=""
-                  onChange={() => {}}
-                  placeholder="과일을 선택하세요"
-                />
+            <div className="max-w-md space-y-2">
+              <label
+                htmlFor="fruit-select"
+                className="block text-sm font-medium"
+              >
+                좋아하는 과일
               </label>
+              <Select
+                options={options}
+                value=""
+                onChange={() => {}}
+                placeholder="과일을 선택하세요"
+              />
             </div>
           </ComponentPreview>
           <div className="mt-4">
             <CodeBlock
-              code={`<label className="block space-y-2">
-  <span className="text-sm font-medium">좋아하는 과일</span>
-  <Select
-    options={options}
-    value={value}
-    onChange={setValue}
-    placeholder="과일을 선택하세요"
-  />
-</label>`}
+              code={`<label className="block text-sm font-medium">
+  좋아하는 과일
+</label>
+<Select
+  options={options}
+  value={value}
+  onChange={setValue}
+  placeholder="과일을 선택하세요"
+/>`}
               language="tsx"
               showLineNumbers={false}
             />

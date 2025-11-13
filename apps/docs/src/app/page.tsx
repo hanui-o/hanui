@@ -62,6 +62,26 @@ export default function Home() {
             </Stack>
           </Section>
 
+          {/* Installation Section */}
+          <Section
+            padding="content-area"
+            as="section"
+            background="gray"
+            className="dark:bg-gray-900/50"
+          >
+            <Stack spacing="h2-h3" align="center">
+              <Stack spacing="title-body-small" align="center">
+                <h2 className="text-2xl sm:text-3xl font-bold">설치</h2>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                  원하는 패키지 매니저로 HANUI를 설치하세요
+                </p>
+              </Stack>
+              <div className="w-full max-w-3xl">
+                <PackageManagerTabs />
+              </div>
+            </Stack>
+          </Section>
+
           {/* Example Showcase Section */}
           <Section padding="content-area" as="section">
             <ExampleShowcase />

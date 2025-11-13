@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HANUI OG Image Generator</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .og-image {
+      width: 1200px;
+      height: 630px;
+      background: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+    .grid-pattern {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(#f3f4f6 1px, transparent 1px),
+        linear-gradient(90deg, #f3f4f6 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .accent-circle {
+      position: absolute;
+      top: -150px;
+      right: -150px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 110, 244, 0.1) 0%, rgba(37, 110, 244, 0) 70%);
+    }
+    .content {
+      position: relative;
+      padding: 80px 100px;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .logo-icon {
+      width: 120px;
+      height: 120px;
+      border: 4px solid #111827;
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+    .logo-square {
+      background: #111827;
+      border-radius: 4px;
+    }
+    .logo-text {
+      font-size: 96px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -2px;
+      margin: 0;
+      margin-left: 30px;
+    }
+    .tagline {
+      font-size: 36px;
+      font-weight: 500;
+      color: #6b7280;
+      margin: 0 0 60px 0;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 80px;
+    }
+    .feature {
+      font-size: 24px;
+      font-weight: 500;
+      color: #256ef4;
+      display: flex;
+      align-items: center;
+    }
+    .feature::before {
+      content: '✓';
+      margin-right: 12px;
+      font-weight: 700;
+    }
+    .instructions {
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .instructions h2 {
+      margin-top: 0;
+      color: #111827;
+    }
+    .instructions p {
+      color: #6b7280;
+      line-height: 1.6;
+    }
+    .instructions code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="color: #111827; margin-bottom: 20px;">HANUI Open Graph Image</h1>
+
+    <div class="og-image" id="og-image">
+      <div class="grid-pattern"></div>
+      <div class="accent-circle"></div>
+
+      <div class="content">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <div class="logo-square"></div>
+            <div class="logo-square"></div>
+            <div class="logo-square"></div>
+            <div class="logo-square"></div>
+          </div>
+          <h1 class="logo-text">HANUI</h1>
+        </div>
+
+        <p class="tagline">KRDS 기반 공공 웹 UI 컴포넌트 라이브러리</p>
+
+        <div class="features">
+          <div class="feature">KRDS 100% 준수</div>
+          <div class="feature">9개 핵심 컴포넌트</div>
+          <div class="feature">접근성 AA 등급</div>
+          <div class="feature">다크 모드 지원</div>
+          <div class="feature">TypeScript 지원</div>
+          <div class="feature">Tree-shaking 최적화</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h2>📸 이미지 저장 방법</h2>
+      <p>
+        <strong>1. 스크린샷으로 저장:</strong><br>
+        - Mac: Cmd + Shift + 4를 누르고 위의 이미지를 드래그하여 캡처<br>
+        - Windows: Windows + Shift + S를 누르고 영역 선택<br>
+        <br>
+        <strong>2. 개발자 도구로 저장:</strong><br>
+        - 브라우저에서 F12 > Elements 탭 > <code>id="og-image"</code> 요소 우클릭 > "Capture node screenshot"<br>
+        <br>
+        <strong>3. 저장 위치:</strong><br>
+        저장한 이미지를 <code>apps/docs/public/og-image.png</code>로 저장하세요.<br>
+        <br>
+        <strong>4. 카카오톡 미리보기 테스트:</strong><br>
+        배포 후 <a href="https://developers.kakao.com/tool/debugger/sharing" target="_blank">카카오 디버거</a>에서 URL을 입력하여 확인하세요.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
