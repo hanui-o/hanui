@@ -1,1 +1,1 @@
-export { Stack, stackVariants, type StackProps } from './Stack';
+export { Stack, VStack, HStack, stackVariants, type StackProps } from './Stack';

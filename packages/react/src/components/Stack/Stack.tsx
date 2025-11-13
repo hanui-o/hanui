@@ -7,7 +7,7 @@ import { cn } from '../../lib/utils';
  *
  * KRDS gap-layout semantic spacing (responsive PC/Mobile)
  */
-const stackVariants = cva(['flex', 'flex-col'].join(' '), {
+const stackVariants = cva('flex', {
   variants: {
     /**
      * Spacing - Semantic gap values based on KRDS
@@ -229,6 +229,49 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
   }
 );
 Stack.displayName = 'Stack';
+
+/**
+ * VStack Component - Vertical Stack
+ *
+ * Convenience wrapper for Stack with vertical direction
+ *
+ * @example
+ * ```tsx
+ * <VStack spacing="md">
+ *   <div>First</div>
+ *   <div>Second</div>
+ * </VStack>
+ * ```
+ */
+export const VStack = React.forwardRef<
+  HTMLDivElement,
+  Omit<StackProps, 'direction'>
+>((props, ref) => {
+  return <Stack ref={ref} direction="vertical" {...props} />;
+});
+VStack.displayName = 'VStack';
+
+/**
+ * HStack Component - Horizontal Stack
+ *
+ * Convenience wrapper for Stack with horizontal direction
+ * Default align is 'center' for better horizontal alignment
+ *
+ * @example
+ * ```tsx
+ * <HStack spacing="md">
+ *   <div>Left</div>
+ *   <div>Right</div>
+ * </HStack>
+ * ```
+ */
+export const HStack = React.forwardRef<
+  HTMLDivElement,
+  Omit<StackProps, 'direction'>
+>(({ align = 'center', ...props }, ref) => {
+  return <Stack ref={ref} direction="horizontal" align={align} {...props} />;
+});
+HStack.displayName = 'HStack';
 
 /**
  * Export stackVariants for extending
