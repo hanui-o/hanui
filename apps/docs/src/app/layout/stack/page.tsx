@@ -364,6 +364,20 @@ export default function StackPage() {
               </tr>
               <tr>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  direction
+                </td>
+                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  &apos;vertical&apos; | &apos;horizontal&apos;
+                </td>
+                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  &apos;vertical&apos;
+                </td>
+                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  스택 방향 (Stack만 사용 가능)
+                </td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
                   align
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
@@ -371,7 +385,7 @@ export default function StackPage() {
                   &apos;stretch&apos;
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
-                  -
+                  - (HStack: &apos;center&apos;)
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
                   교차축 정렬
@@ -409,6 +423,450 @@ export default function StackPage() {
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div className="mt-8">
+          <Heading level="h3" className="mb-4">
+            Spacing Options
+          </Heading>
+          <Body className="mb-4 text-gray-700 dark:text-gray-300">
+            KRDS 기준에 따른 의미론적 간격 프리셋
+          </Body>
+          <div className="overflow-x-auto">
+            <table className="min-w-full border border-gray-300 dark:border-gray-700">
+              <thead className="bg-gray-100 dark:bg-gray-800">
+                <tr>
+                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    값
+                  </th>
+                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    간격
+                  </th>
+                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    용도
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="bg-gray-50 dark:bg-gray-900">
+                  <td
+                    colSpan={3}
+                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                  >
+                    Header & Navigation
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    header-breadcrumb
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    16px (Mobile) / 24px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    헤더와 브레드크럼 간격
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-900">
+                  <td
+                    colSpan={3}
+                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                  >
+                    Layout Spacing
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    left-contents
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    0px (Mobile) / 64px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    왼쪽 사이드바와 콘텐츠
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    contents-right
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    0px (Mobile) / 40px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    콘텐츠와 오른쪽 사이드바
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    contents-footer
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    40px (Mobile) / 64px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    콘텐츠와 푸터
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-900">
+                  <td
+                    colSpan={3}
+                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                  >
+                    Heading Hierarchy
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    h1-h2
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    32px (Mobile) / 48px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    H1과 H2 사이
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    h2-h2
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    40px (Mobile) / 80px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    H2와 H2 사이
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    h2-h3
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    24px (Mobile) / 40px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    H2와 H3 사이
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    h3-h3
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    32px (Mobile) / 64px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    H3과 H3 사이
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    h3-h4
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    16px (Mobile) / 24px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    H3과 H4 사이
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    h4-h4
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    24px (Mobile) / 40px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    H4와 H4 사이
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    h4-h5
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    12px (Mobile) / 16px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    H4와 H5 사이
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    h5-h5
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    16px (Mobile) / 32px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    H5와 H5 사이
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-900">
+                  <td
+                    colSpan={3}
+                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                  >
+                    Title to Body Spacing
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    title-body-small
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    8px (Mobile) / 16px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    제목과 본문 (작은 간격)
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    title-body-medium
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    12px (Mobile) / 20px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    제목과 본문 (중간 간격)
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    title-body-large
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    20px (Mobile) / 24px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    제목과 본문 (큰 간격)
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    breadcrumb-h1
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    32px (Mobile) / 40px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    브레드크럼과 H1
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-900">
+                  <td
+                    colSpan={3}
+                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                  >
+                    Text Spacing
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    text-text-large
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    16px (Mobile) / 20px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    텍스트 단락 (큰 간격)
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    text-text-medium
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    12px (Mobile) / 16px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    텍스트 단락 (중간 간격)
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    text-text-small
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    10px (Mobile) / 12px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    텍스트 단락 (작은 간격)
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-900">
+                  <td
+                    colSpan={3}
+                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                  >
+                    Image to Text Spacing
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    image-text-small
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    16px (Mobile) / 20px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    이미지와 텍스트 (작은 간격)
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    image-text-medium
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    20px (Mobile) / 24px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    이미지와 텍스트 (중간 간격)
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    image-text-large
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    24px (Mobile) / 32px (PC)
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    이미지와 텍스트 (큰 간격)
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-900">
+                  <td
+                    colSpan={3}
+                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                  >
+                    Component Spacing
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    form
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    16px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    폼 필드 간격
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    card-list
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    24px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    카드 리스트
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    input-group
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    8px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    인풋 그룹 (라벨-입력)
+                  </td>
+                </tr>
+                <tr className="bg-gray-50 dark:bg-gray-900">
+                  <td
+                    colSpan={3}
+                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                  >
+                    Generic Spacing
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    xs
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    8px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    매우 작은 간격
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    sm
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    12px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    작은 간격
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    md
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    16px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    중간 간격 (기본값)
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    lg
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    24px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    큰 간격
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    xl
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    32px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    매우 큰 간격
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    2xl
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    40px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    2배 큰 간격
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    3xl
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    64px
+                  </td>
+                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    3배 큰 간격
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
