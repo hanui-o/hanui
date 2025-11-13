@@ -16,8 +16,10 @@ export function DocsLayout({ children }: DocsLayoutProps) {
       <Header />
       <div className="flex-1 flex">
         <Sidebar />
-        <main className="flex-1 overflow-auto">
-          <Container className="py-0">{children}</Container>
+        <main className="flex-1">
+          <Container>
+            <div className="flex gap-8">{children}</div>
+          </Container>
         </main>
       </div>
       <Footer />

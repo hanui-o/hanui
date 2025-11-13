@@ -1,18 +1,10 @@
 import type { ReactNode } from 'react';
-import { DocsLayout } from '@/components/DocsLayout';
-import { PageNav } from '@/components/docs/PageNav';
+import { DocsContentLayout } from '@/components/DocsContentLayout';
 
 export default function ComponentsLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  return (
-    <DocsLayout>
-      <div className="flex gap-8 max-w-7xl mx-auto px-4 py-12">
-        <div className="flex-1 max-w-4xl">{children}</div>
-        <PageNav />
-      </div>
-    </DocsLayout>
-  );
+  return <DocsContentLayout>{children}</DocsContentLayout>;
 }
