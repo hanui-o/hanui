@@ -53,14 +53,23 @@ export default function NavTextPage() {
             <div className="space-y-6">
               <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                 <div className="mb-4">
-                  <NavText variant="tit-lg">Title Large</NavText>
+                  <NavText
+                    as="a"
+                    href="#"
+                    variant="tit-lg"
+                    className="hover:text-primary-60 transition-colors"
+                  >
+                    Title Large
+                  </NavText>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   24px (PC) / 22px (Mobile) · 700 (Bold) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
                   <CodeBlock
-                    code={`<NavText variant="tit-lg">메인 메뉴</NavText>`}
+                    code={`<NavText as="a" href="/menu" variant="tit-lg">
+  메인 메뉴
+</NavText>`}
                     language="tsx"
                     showLineNumbers={false}
                   />
@@ -69,14 +78,23 @@ export default function NavTextPage() {
 
               <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                 <div className="mb-4">
-                  <NavText variant="tit-sm">Title Small</NavText>
+                  <NavText
+                    as="a"
+                    href="#"
+                    variant="tit-sm"
+                    className="hover:text-primary-60 transition-colors"
+                  >
+                    Title Small
+                  </NavText>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   19px (PC) / 17px (Mobile) · 700 (Bold) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
                   <CodeBlock
-                    code={`<NavText variant="tit-sm">서브 메뉴</NavText>`}
+                    code={`<NavText as="a" href="/submenu" variant="tit-sm">
+  서브 메뉴
+</NavText>`}
                     language="tsx"
                     showLineNumbers={false}
                   />
@@ -91,14 +109,23 @@ export default function NavTextPage() {
             <div className="space-y-6">
               <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                 <div className="mb-4">
-                  <NavText variant="depth-md">Depth Medium</NavText>
+                  <NavText
+                    as="a"
+                    href="#"
+                    variant="depth-md"
+                    className="hover:text-primary-60 transition-colors"
+                  >
+                    Depth Medium
+                  </NavText>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   17px · 400 (Regular) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
                   <CodeBlock
-                    code={`<NavText variant="depth-md">메뉴 항목</NavText>`}
+                    code={`<NavText as="a" href="/item" variant="depth-md">
+  메뉴 항목
+</NavText>`}
                     language="tsx"
                     showLineNumbers={false}
                   />
@@ -107,14 +134,23 @@ export default function NavTextPage() {
 
               <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
                 <div className="mb-4">
-                  <NavText variant="depth-sm">Depth Small</NavText>
+                  <NavText
+                    as="a"
+                    href="#"
+                    variant="depth-sm"
+                    className="hover:text-primary-60 transition-colors"
+                  >
+                    Depth Small
+                  </NavText>
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   15px · 400 (Regular) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
                   <CodeBlock
-                    code={`<NavText variant="depth-sm">하위 항목</NavText>`}
+                    code={`<NavText as="a" href="/subitem" variant="depth-sm">
+  하위 항목
+</NavText>`}
                     language="tsx"
                     showLineNumbers={false}
                   />
@@ -139,13 +175,34 @@ export default function NavTextPage() {
               <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
                 <ul className="space-y-4">
                   <li>
-                    <NavText variant="tit-lg">서비스 소개</NavText>
+                    <NavText
+                      as="a"
+                      href="#"
+                      variant="tit-lg"
+                      className="hover:text-primary-60 transition-colors"
+                    >
+                      서비스 소개
+                    </NavText>
                   </li>
                   <li>
-                    <NavText variant="tit-lg">이용 안내</NavText>
+                    <NavText
+                      as="a"
+                      href="#"
+                      variant="tit-lg"
+                      className="hover:text-primary-60 transition-colors"
+                    >
+                      이용 안내
+                    </NavText>
                   </li>
                   <li>
-                    <NavText variant="tit-lg">고객 지원</NavText>
+                    <NavText
+                      as="a"
+                      href="#"
+                      variant="tit-lg"
+                      className="hover:text-primary-60 transition-colors"
+                    >
+                      고객 지원
+                    </NavText>
                   </li>
                 </ul>
               </nav>
@@ -154,9 +211,21 @@ export default function NavTextPage() {
               <CodeBlock
                 code={`<nav>
   <ul>
-    <li><NavText variant="tit-lg">서비스 소개</NavText></li>
-    <li><NavText variant="tit-lg">이용 안내</NavText></li>
-    <li><NavText variant="tit-lg">고객 지원</NavText></li>
+    <li>
+      <NavText as="a" href="/about" variant="tit-lg">
+        서비스 소개
+      </NavText>
+    </li>
+    <li>
+      <NavText as="a" href="/guide" variant="tit-lg">
+        이용 안내
+      </NavText>
+    </li>
+    <li>
+      <NavText as="a" href="/support" variant="tit-lg">
+        고객 지원
+      </NavText>
+    </li>
   </ul>
 </nav>`}
                 language="tsx"
@@ -171,16 +240,44 @@ export default function NavTextPage() {
               <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
                 <div className="space-y-4">
                   <div>
-                    <NavText variant="tit-sm">공지사항</NavText>
+                    <NavText
+                      as="a"
+                      href="#"
+                      variant="tit-sm"
+                      className="hover:text-primary-60 transition-colors"
+                    >
+                      공지사항
+                    </NavText>
                     <ul className="mt-2 ml-4 space-y-2">
                       <li>
-                        <NavText variant="depth-md">시스템 공지</NavText>
+                        <NavText
+                          as="a"
+                          href="#"
+                          variant="depth-md"
+                          className="hover:text-primary-60 transition-colors"
+                        >
+                          시스템 공지
+                        </NavText>
                       </li>
                       <li>
-                        <NavText variant="depth-md">이벤트 소식</NavText>
+                        <NavText
+                          as="a"
+                          href="#"
+                          variant="depth-md"
+                          className="hover:text-primary-60 transition-colors"
+                        >
+                          이벤트 소식
+                        </NavText>
                       </li>
                       <li>
-                        <NavText variant="depth-md">업데이트 내역</NavText>
+                        <NavText
+                          as="a"
+                          href="#"
+                          variant="depth-md"
+                          className="hover:text-primary-60 transition-colors"
+                        >
+                          업데이트 내역
+                        </NavText>
                       </li>
                     </ul>
                   </div>
@@ -190,11 +287,25 @@ export default function NavTextPage() {
             <div className="mt-4">
               <CodeBlock
                 code={`<nav>
-  <NavText variant="tit-sm">공지사항</NavText>
+  <NavText as="a" href="/notice" variant="tit-sm">
+    공지사항
+  </NavText>
   <ul>
-    <li><NavText variant="depth-md">시스템 공지</NavText></li>
-    <li><NavText variant="depth-md">이벤트 소식</NavText></li>
-    <li><NavText variant="depth-md">업데이트 내역</NavText></li>
+    <li>
+      <NavText as="a" href="/notice/system" variant="depth-md">
+        시스템 공지
+      </NavText>
+    </li>
+    <li>
+      <NavText as="a" href="/notice/event" variant="depth-md">
+        이벤트 소식
+      </NavText>
+    </li>
+    <li>
+      <NavText as="a" href="/notice/update" variant="depth-md">
+        업데이트 내역
+      </NavText>
+    </li>
   </ul>
 </nav>`}
                 language="tsx"
@@ -259,23 +370,48 @@ export default function NavTextPage() {
               <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
                 <ul className="space-y-2">
                   <li>
-                    <NavText variant="depth-md" className="text-primary-60">
+                    <NavText
+                      as="a"
+                      href="#"
+                      variant="depth-md"
+                      className="text-primary-60"
+                    >
                       현재 페이지
                     </NavText>
                   </li>
                   <li>
-                    <NavText variant="depth-md">다른 페이지</NavText>
+                    <NavText
+                      as="a"
+                      href="#"
+                      variant="depth-md"
+                      className="hover:text-primary-60 transition-colors"
+                    >
+                      다른 페이지
+                    </NavText>
                   </li>
                 </ul>
               </nav>
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<NavText
+                code={`{/* 현재 페이지 */}
+<NavText
+  as="a"
+  href="/current"
   variant="depth-md"
   className="text-primary-60"
 >
   현재 페이지
+</NavText>
+
+{/* 다른 페이지 */}
+<NavText
+  as="a"
+  href="/other"
+  variant="depth-md"
+  className="hover:text-primary-60"
+>
+  다른 페이지
 </NavText>`}
                 language="tsx"
               />
