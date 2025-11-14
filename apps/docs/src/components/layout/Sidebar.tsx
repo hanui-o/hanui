@@ -20,6 +20,10 @@ const navigation = [
     ],
   },
   {
+    title: 'Components',
+    items: [{ title: 'Overview', href: '/components' }],
+  },
+  {
     title: 'Typography',
     items: [
       { title: 'Display', href: '/typography/display' },
