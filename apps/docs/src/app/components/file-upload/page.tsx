@@ -6,12 +6,14 @@ import {
   Heading,
   Body,
   Stack,
+  SkipLink,
 } from '@hanui/react';
 import { useState } from 'react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { GuidelineSection } from '@/components/content/GuidelineSection';
 
 export default function FileUploadPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -34,13 +36,20 @@ export default function FileUploadPage() {
 
   return (
     <>
+      <SkipLink
+        links={[{ href: '#file-upload-content', label: '본문 바로가기' }]}
+      />
+
       <PageHeader
-        title="FileUpload"
-        description="파일 업로드 기능을 제공하는 KRDS 기반 파일 업로드 컴포넌트"
+        title="FileUpload (파일 업로드)"
+        description="드래그 앤 드롭과 파일 검증을 지원하는 KRDS 기반 파일 업로드 컴포넌트입니다. WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다."
       />
 
       {/* Quick Start */}
       <PageSection>
+        <Heading level="h2" id="file-upload-content">
+          개요
+        </Heading>
         <ComponentPreview>
           <div className="max-w-md">
             <FileUpload
@@ -77,14 +86,14 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            사용 예시
           </Heading>
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* With Label */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">With Label</Heading>
+            <Heading level="h3">라벨 포함</Heading>
             <Body className="mb-4">
               라벨을 표시하여 업로드 영역의 의미를 명확히 합니다.
             </Body>
@@ -251,7 +260,7 @@ export default () => {
 
           {/* With File List */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">With File List</Heading>
+            <Heading level="h3">파일 목록 포함</Heading>
             <Body className="mb-4">
               showFileList prop으로 업로드된 파일 목록을 표시할 수 있습니다.
               기본값은 true입니다.
@@ -288,7 +297,7 @@ export default () => {
 
           {/* Without File List */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Without File List</Heading>
+            <Heading level="h3">파일 목록 미포함</Heading>
             <Body className="mb-4">파일 목록을 숨길 수 있습니다.</Body>
             <div>
               <ComponentPreview>
@@ -320,7 +329,7 @@ export default () => {
 
           {/* Disabled */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Disabled</Heading>
+            <Heading level="h3">비활성화</Heading>
             <Body className="mb-4">비활성화된 파일 업로드 컴포넌트입니다.</Body>
             <div>
               <ComponentPreview>
@@ -400,11 +409,92 @@ export default () => {
         </Stack>
       </PageSection>
 
+      {/* Guidelines */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="guidelines">
+            사용 가이드라인
+          </Heading>
+
+          <GuidelineSection title="언제 사용하나요?" type="do">
+            <ul className="list-disc list-inside space-y-2">
+              <li>
+                사용자가 문서, 이미지, 또는 기타 파일을 시스템에 업로드해야 할
+                때
+              </li>
+              <li>프로필 사진, 첨부 파일, 증빙 서류 등을 제출해야 할 때</li>
+              <li>드래그 앤 드롭으로 편리한 파일 업로드를 제공하고 싶을 때</li>
+              <li>파일 유형이나 크기 제한이 필요한 경우</li>
+              <li>여러 파일을 한 번에 업로드해야 하는 경우</li>
+            </ul>
+          </GuidelineSection>
+
+          <GuidelineSection title="언제 사용하지 말아야 하나요?" type="dont">
+            <ul className="list-disc list-inside space-y-2">
+              <li>간단한 텍스트 입력만 필요한 경우 (Input 컴포넌트 사용)</li>
+              <li>
+                단일 이미지 선택만 필요하고 미리보기가 주요 기능인 경우 (별도의
+                이미지 선택기 사용)
+              </li>
+              <li>파일 업로드가 아닌 URL 입력을 받아야 하는 경우</li>
+              <li>실시간 편집이 필요한 경우 (텍스트 에디터 사용)</li>
+            </ul>
+          </GuidelineSection>
+        </Stack>
+      </PageSection>
+
+      {/* Design Principles */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="design-principles">
+            디자인 원칙
+          </Heading>
+          <div className="space-y-4">
+            <div>
+              <Heading level="h3" className="text-lg font-semibold mb-2">
+                1. 명확한 인터랙션 표시
+              </Heading>
+              <Body>
+                드래그 앤 드롭과 클릭 모두 가능하다는 것을 시각적으로 명확히
+                표시합니다. 드래그 중일 때는 명확한 시각적 피드백을 제공합니다.
+              </Body>
+            </div>
+            <div>
+              <Heading level="h3" className="text-lg font-semibold mb-2">
+                2. 사전 검증 및 명확한 에러 메시지
+              </Heading>
+              <Body>
+                파일 유형, 크기, 개수를 미리 검증하고, 검증 실패 시 구체적이고
+                이해하기 쉬운 에러 메시지를 제공합니다.
+              </Body>
+            </div>
+            <div>
+              <Heading level="h3" className="text-lg font-semibold mb-2">
+                3. 업로드 상태 피드백
+              </Heading>
+              <Body>
+                파일 목록과 함께 업로드 진행 상태를 표시하여 사용자가 현재
+                상황을 파악할 수 있도록 합니다.
+              </Body>
+            </div>
+            <div>
+              <Heading level="h3" className="text-lg font-semibold mb-2">
+                4. 접근성 우선
+              </Heading>
+              <Body>
+                키보드만으로도 모든 기능에 접근 가능하며, 스크린 리더 사용자를
+                위한 적절한 ARIA 속성을 제공합니다.
+              </Body>
+            </div>
+          </div>
+        </Stack>
+      </PageSection>
+
       {/* API Reference */}
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="api">
-            API Reference
+            API
           </Heading>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
@@ -535,7 +625,7 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="best-practices">
-            Best Practices
+            모범 사례
           </Heading>
           <ul className="list-disc list-inside space-y-2 ml-4">
             <li>
@@ -570,33 +660,159 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="accessibility">
-            Accessibility
+            접근성
           </Heading>
-          <Body>이 컴포넌트는 WCAG 2.1 AA 기준을 준수합니다:</Body>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>
-              <strong>레이블 연결:</strong> label과 input이 적절히 연결되어
-              스크린 리더 지원
-            </li>
-            <li>
-              <strong>키보드 접근:</strong> Tab 키로 포커스 이동, Enter/Space로
-              파일 선택 대화상자 열기
-            </li>
-            <li>
-              <strong>포커스 표시:</strong> 포커스 시 명확한 시각적 표시
-            </li>
-            <li>
-              <strong>ARIA 속성:</strong> 적절한 role과 aria-label 제공
-            </li>
-            <li>
-              <strong>에러 메시지:</strong> 에러 발생 시 스크린 리더가 읽을 수
-              있도록 구현
-            </li>
-            <li>
-              <strong>상태 알림:</strong> 업로드 진행, 완료, 실패 상태를 스크린
-              리더에 전달
-            </li>
-          </ul>
+          <Body>
+            이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 기준을 준수하여 모든 사용자가
+            파일 업로드 기능을 사용할 수 있도록 설계되었습니다:
+          </Body>
+
+          <div className="space-y-4 mt-4">
+            <div>
+              <Heading level="h3" className="text-base font-semibold mb-2">
+                1. 키보드 내비게이션 (Keyboard Navigation)
+              </Heading>
+              <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                <li>
+                  <strong>Tab:</strong> 업로드 영역과 파일 삭제 버튼 간 포커스
+                  이동
+                </li>
+                <li>
+                  <strong>Enter/Space:</strong> 파일 선택 대화상자 열기
+                </li>
+                <li>
+                  <strong>Focus Ring:</strong> 포커스된 요소에 명확한 파란색 링
+                  표시
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <Heading level="h3" className="text-base font-semibold mb-2">
+                2. 스크린 리더 지원 (Screen Reader Support)
+              </Heading>
+              <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                <li>
+                  <strong>ARIA Labels:</strong> aria-label로 업로드 영역의 목적
+                  설명
+                </li>
+                <li>
+                  <strong>File List:</strong> 업로드된 파일 목록을 aria-label로
+                  명시
+                </li>
+                <li>
+                  <strong>Remove Buttons:</strong> 각 파일 삭제 버튼에 파일명
+                  포함된 aria-label
+                </li>
+                <li>
+                  <strong>Disabled State:</strong> aria-disabled로 비활성 상태
+                  전달
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <Heading level="h3" className="text-base font-semibold mb-2">
+                3. 시각적 피드백 (Visual Feedback)
+              </Heading>
+              <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                <li>
+                  <strong>Drag State:</strong> 드래그 중일 때 테두리와 배경색
+                  변경
+                </li>
+                <li>
+                  <strong>Progress Bar:</strong> 업로드 진행 상태를 시각적으로
+                  표시
+                </li>
+                <li>
+                  <strong>Error States:</strong> 에러 발생 시 빨간색으로 강조
+                  표시
+                </li>
+                <li>
+                  <strong>Dark Mode:</strong> 다크 모드에서도 충분한 대비율 유지
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <Heading level="h3" className="text-base font-semibold mb-2">
+                4. 에러 처리 (Error Handling)
+              </Heading>
+              <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                <li>
+                  <strong>Validation:</strong> 파일 유형, 크기, 개수를 즉시 검증
+                </li>
+                <li>
+                  <strong>Error Messages:</strong> 구체적이고 이해하기 쉬운 에러
+                  메시지
+                </li>
+                <li>
+                  <strong>Error Callback:</strong> onError로 커스텀 에러 처리
+                  가능
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Stack>
+      </PageSection>
+
+      {/* Foundation Layer */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="foundation-layer">
+            KRDS 준수사항
+          </Heading>
+          <Body>
+            FileUpload 컴포넌트는 Foundation Layer에서 다음 기능들을 자동으로
+            처리합니다:
+          </Body>
+          <div className="space-y-3 mt-4">
+            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+              <Heading level="h3" className="text-sm font-semibold mb-1">
+                ✅ 1. 드래그 앤 드롭 (Drag & Drop)
+              </Heading>
+              <Body className="text-sm">
+                HTML5 드래그 앤 드롭 API를 사용하여 파일을 드래그하여 업로드할
+                수 있습니다. 드래그 중 시각적 피드백을 자동으로 제공합니다.
+              </Body>
+            </div>
+            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+              <Heading level="h3" className="text-sm font-semibold mb-1">
+                ✅ 2. 파일 검증 (File Validation)
+              </Heading>
+              <Body className="text-sm">
+                파일 유형(accept), 크기(maxSize), 개수(maxFiles)를 자동으로
+                검증하고 적절한 에러 메시지를 표시합니다.
+              </Body>
+            </div>
+            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+              <Heading level="h3" className="text-sm font-semibold mb-1">
+                ✅ 3. 이미지 미리보기 (Image Preview)
+              </Heading>
+              <Body className="text-sm">
+                이미지 파일은 자동으로 썸네일 미리보기를 생성하여 표시합니다.
+                메모리 누수 방지를 위해 컴포넌트 언마운트 시 자동 정리합니다.
+              </Body>
+            </div>
+            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+              <Heading level="h3" className="text-sm font-semibold mb-1">
+                ✅ 4. 키보드 접근성 (Keyboard Accessibility)
+              </Heading>
+              <Body className="text-sm">
+                Tab 키로 포커스 이동, Enter/Space 키로 파일 선택 대화상자 열기
+                등 완전한 키보드 지원을 제공합니다.
+              </Body>
+            </div>
+            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+              <Heading level="h3" className="text-sm font-semibold mb-1">
+                ✅ 5. 다크 모드 (Dark Mode)
+              </Heading>
+              <Body className="text-sm">
+                모든 상태(default, hover, dragging, disabled, error)에서
+                라이트/다크 모드를 자동으로 지원합니다.
+              </Body>
+            </div>
+          </div>
         </Stack>
       </PageSection>
     </>

@@ -10,7 +10,7 @@ export default function BoxPage() {
   return (
     <>
       <PageHeader
-        title="Box"
+        title="Box (박스)"
         description="유연한 레이아웃을 위한 컨테이너 컴포넌트"
       />
 
@@ -149,7 +149,7 @@ export default function BoxPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="direction">
-            방향 (Direction)
+            Direction (방향)
           </Heading>
         </Stack>
 
@@ -224,7 +224,7 @@ export default function BoxPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="alignment">
-            정렬
+            Alignment (정렬)
           </Heading>
         </Stack>
 
@@ -370,7 +370,7 @@ export default function BoxPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="gap">
-            간격 (Gap)
+            Gap (간격)
           </Heading>
         </Stack>
 

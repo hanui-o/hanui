@@ -38,7 +38,9 @@ export default function StackPage() {
       {/* Overview */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2">개요</Heading>
+          <Heading level="h2" id="overview">
+            개요
+          </Heading>
           <Body className="text-gray-700 dark:text-gray-300 leading-relaxed">
             Stack 계열 컴포넌트는 요소들을 수직 또는 수평으로 정렬하고{' '}
             <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>의 간격 기준을
@@ -67,7 +69,9 @@ export default function StackPage() {
       {/* Why Context-Based Spacing */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2">왜 맥락 기반 간격 시스템인가?</Heading>
+          <Heading level="h2" id="why-context-based">
+            왜 맥락 기반 간격 시스템인가?
+          </Heading>
           <Body>
             KRDS Gap-layout 가이드는 매우 세밀한 간격 체계를 제공합니다 (h1-h2,
             h2-h2, h2-h3, h3-h3, h3-h4, h4-h4, h4-h5, h5-h5, title-body-small,
@@ -166,7 +170,9 @@ export default function StackPage() {
       {/* Spacing Guide */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2">Spacing 선택 가이드</Heading>
+          <Heading level="h2" id="spacing-guide">
+            Spacing 선택 가이드
+          </Heading>
           <Body>
             요소 간 <strong>관계</strong>에 따라 spacing을 선택하세요. HTML
             태그가 아닌 맥락으로 생각하면 쉽습니다.
@@ -412,7 +418,9 @@ export default function StackPage() {
       {/* Usage */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2">Usage</Heading>
+          <Heading level="h2" id="usage">
+            Usage
+          </Heading>
           <Body>Stack, VStack, HStack 세 가지 컴포넌트를 제공합니다:</Body>
         </Stack>
 
@@ -463,7 +471,9 @@ export default function StackPage() {
 
       {/* Examples */}
       <PageSection>
-        <Heading level="h2">Examples</Heading>
+        <Heading level="h2" id="examples">
+          Examples
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* VStack */}
@@ -671,7 +681,9 @@ export default function StackPage() {
       {/* API Reference */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2">API Reference</Heading>
+          <Heading level="h2" id="api">
+            API Reference
+          </Heading>
 
           <Body>
             <strong>Stack</strong>, <strong>VStack</strong>,{' '}

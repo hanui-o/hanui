@@ -69,14 +69,14 @@ export default function SectionPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            예제
           </Heading>
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Default */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Default</Heading>
+            <Heading level="h3">기본</Heading>
             <div>
               <ComponentPreview>
                 <Section background="gray">

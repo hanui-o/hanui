@@ -31,7 +31,7 @@ export default function ModalPage() {
   return (
     <>
       <PageHeader
-        title="Modal"
+        title="Modal (모달)"
         description="Headless UI Dialog 기반의 접근성 높은 모달 컴포넌트"
       />
 
@@ -90,14 +90,14 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            예제
           </Heading>
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Sizes */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Sizes</Heading>
+            <Heading level="h3">Size (크기)</Heading>
             <Body className="mb-4">
               다섯 가지 크기를 지원합니다: sm, md, lg, xl, full
             </Body>
@@ -232,7 +232,7 @@ export default () => {
 
           {/* With Close Button */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">With Close Button</Heading>
+            <Heading level="h3">닫기 버튼 포함</Heading>
             <Body className="mb-4">상단에 닫기 버튼을 추가할 수 있습니다.</Body>
             <div>
               <ComponentPreview>
@@ -546,37 +546,213 @@ export default () => {
 
       {/* Accessibility */}
       <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="accessibility">
-            Accessibility
-          </Heading>
-          <Body>이 컴포넌트는 WCAG 2.1 AA 기준을 준수합니다:</Body>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>
-              <strong>Headless UI Dialog:</strong> 접근성 기능이 내장된 Dialog
-              컴포넌트 사용
-            </li>
-            <li>
-              <strong>포커스 트랩:</strong> 모달 열릴 때 자동으로 포커스 트랩
-              적용
-            </li>
-            <li>
-              <strong>포커스 복원:</strong> 모달 닫힐 때 이전 포커스 위치로 복원
-            </li>
-            <li>
-              <strong>ESC 키:</strong> ESC 키로 모달 닫기
-            </li>
-            <li>
-              <strong>백드롭 클릭:</strong> 모달 외부 클릭 시 닫기
-            </li>
-            <li>
-              <strong>ARIA 속성:</strong> role=&quot;dialog&quot;,
-              aria-modal=&quot;true&quot; 자동 설정
-            </li>
-            <li>
-              <strong>스크롤 잠금:</strong> 모달 열릴 때 배경 스크롤 방지
-            </li>
-          </ul>
+        <Heading
+          level="h2"
+          id="accessibility"
+          className="text-2xl font-semibold"
+        >
+          접근성
+        </Heading>
+
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          <Body>KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:</Body>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">1. Focus Management</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>
+                <strong>모달 열림 시</strong>: 키보드 포커스가 모달 자체 또는 첫
+                번째 상호작용 요소로 자동 이동
+              </li>
+              <li>
+                <strong>모달 닫힘 시</strong>: 포커스가 모달을 연 버튼으로 자동
+                복원
+              </li>
+              <li>
+                <strong>포커스 트랩</strong>: 모달이 활성화된 동안 포커스는 모달
+                내부에만 유지
+              </li>
+            </ul>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">2. Close Button Positioning</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>
+                <strong>KRDS 요구사항</strong>: 닫기 버튼은 모달의 마지막 요소로
+                마크업되어야 함
+              </li>
+              <li>
+                <strong>이유</strong>: 순차 네비게이션 시 사용자가 본문 콘텐츠를
+                놓치지 않도록 방지
+              </li>
+              <li>
+                <strong>구현</strong>: ModalCloseButton을 컴포넌트 트리의
+                마지막에 배치
+              </li>
+            </ul>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">3. Keyboard Navigation</Heading>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                    <th className="text-left py-2 px-4">키</th>
+                    <th className="text-left py-2 px-4">동작</th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-700 dark:text-gray-300">
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">Tab</td>
+                    <td className="py-2 px-4">
+                      다음 상호작용 요소로 이동 (마지막에서 첫 번째로 순환)
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">Shift+Tab</td>
+                    <td className="py-2 px-4">
+                      이전 상호작용 요소로 이동 (첫 번째에서 마지막으로 순환)
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">ESC</td>
+                    <td className="py-2 px-4">
+                      닫기 버튼이 있는 경우 모달 닫기
+                    </td>
+                  </tr>
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">Arrow ↑/↓</td>
+                    <td className="py-2 px-4">본문 콘텐츠 세로 스크롤</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">4. ARIA Attributes</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>
+                <strong>role=&quot;dialog&quot;</strong>: Headless UI Dialog가
+                자동 설정
+              </li>
+              <li>
+                <strong>aria-modal=&quot;true&quot;</strong>: 배경 윈도우
+                비활성화 표시
+              </li>
+              <li>
+                <strong>Dialog.Title</strong>: 모달 제목에 자동 ARIA 레이블링
+              </li>
+            </ul>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">5. Usability Standards</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>
+                <strong>콘텐츠 최소화</strong>: 모달 내 상호작용을 최소화
+              </li>
+              <li>
+                <strong>스크롤 시각화</strong>: 스크롤이 필요한 경우 스크롤바,
+                블러 효과 등으로 시각적 단서 제공
+              </li>
+              <li>
+                <strong>Footer 고정</strong>: 액션 버튼이 항상 보이도록 Footer
+                영구 표시
+              </li>
+              <li>
+                <strong>명확한 레이블</strong>: 헤더, 콘텐츠, 버튼 레이블이
+                목적과 액션을 명확히 전달
+              </li>
+            </ul>
+          </Stack>
+        </Stack>
+      </PageSection>
+
+      {/* Foundation Layer */}
+      <PageSection>
+        <Heading
+          level="h2"
+          id="foundation-layer"
+          className="text-2xl font-semibold"
+        >
+          Foundation Layer
+        </Heading>
+
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          <Body>
+            Modal 컴포넌트는 Headless UI Dialog를 기반으로 Foundation Layer
+            아키텍처를 통해 개발자가 직접 관리하지 않아도 KRDS 접근성 기준을
+            자동으로 충족합니다:
+          </Body>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">1. Focus Management Automation</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>
+                모달 열림 시 자동 포커스 이동 (모달 또는 첫 상호작용 요소)
+              </li>
+              <li>모달 닫힘 시 자동 포커스 복원 (트리거 버튼)</li>
+              <li>
+                포커스 트랩 자동 활성화 (Tab/Shift+Tab 순환, 모달 외부 포커스
+                방지)
+              </li>
+            </ul>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">2. ARIA Automation</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>
+                <strong>role=&quot;dialog&quot;</strong>: Dialog 역할 자동 설정
+              </li>
+              <li>
+                <strong>aria-modal=&quot;true&quot;</strong>: 배경 윈도우
+                비활성화 자동 표시
+              </li>
+              <li>
+                <strong>Dialog.Title 연결</strong>: ModalTitle이 자동으로 모달
+                레이블로 연결
+              </li>
+            </ul>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">3. Keyboard Navigation</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>
+                <strong>ESC 키</strong>: onClose 콜백 자동 호출로 모달 닫기
+              </li>
+              <li>
+                <strong>Tab 순환</strong>: 첫 번째 ↔ 마지막 요소 자동 순환
+                네비게이션
+              </li>
+              <li>
+                <strong>포커스 가시성</strong>: focus:ring 스타일로 키보드
+                포커스 명확화
+              </li>
+            </ul>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">4. Background Interaction Prevention</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>Overlay로 배경 윈도우 시각적 분리</li>
+              <li>배경 스크롤 자동 방지</li>
+              <li>배경 클릭 시 onClose 콜백 호출 (선택적)</li>
+            </ul>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">5. Smooth Animations</Heading>
+            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+              <li>Transition 컴포넌트로 부드러운 열기/닫기 애니메이션</li>
+              <li>Overlay와 Panel의 독립적인 애니메이션 타이밍</li>
+              <li>prefers-reduced-motion 존중</li>
+            </ul>
+          </Stack>
         </Stack>
       </PageSection>
     </>

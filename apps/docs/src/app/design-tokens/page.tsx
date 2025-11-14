@@ -17,7 +17,9 @@ export default function DesignTokensPage() {
 
       {/* Overview */}
       <PageSection>
-        <Heading level="h2">개요</Heading>
+        <Heading level="h2" id="overview">
+          개요
+        </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body className="leading-relaxed">
@@ -618,7 +620,7 @@ export default function DesignTokensPage() {
       {/* Best Practices */}
       <PageSection>
         <Heading level="h2" id="best-practices">
-          Best Practices
+          모범 사례
         </Heading>
 
         <div className="space-y-6 mt-2 md:mt-4">

@@ -5,12 +5,13 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { GuidelineBox } from '@/components/content/GuidelineBox';
 
 export default function DisplayPage() {
   return (
     <>
       <PageHeader
-        title="Display"
+        title="Display (디스플레이)"
         description="배너와 마케팅용 대형 텍스트 컴포넌트"
       />
 
@@ -47,7 +48,7 @@ export default function DisplayPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="sizes">
-            크기
+            Size (크기)
           </Heading>
         </Stack>
 
@@ -170,32 +171,23 @@ export default function DisplayPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-green-900 dark:text-green-100 mb-3"
-            >
-              ✓ Display를 사용하기 적합한 경우
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-green-800 dark:text-green-200">
+          <GuidelineBox title="Display를 사용하기 적합한 경우">
+            <ul className="list-disc list-inside space-y-2">
               <li>랜딩 페이지의 히어로 섹션</li>
               <li>프로모션 배너의 핵심 메시지</li>
               <li>서비스 소개 페이지의 대제목</li>
               <li>강력한 시각적 임팩트가 필요한 곳</li>
             </ul>
-          </div>
+          </GuidelineBox>
 
-          <div className="rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30 p-6">
-            <Heading level="h3" className="text-red-900 dark:text-red-100 mb-3">
-              ✗ Display를 사용하지 말아야 하는 경우
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-red-800 dark:text-red-200">
+          <GuidelineBox title="Display를 사용하지 말아야 하는 경우">
+            <ul className="list-disc list-inside space-y-2">
               <li>일반 페이지 제목 (Heading 사용 권장)</li>
               <li>본문 내용 (Body 사용 권장)</li>
               <li>폼 라벨 (Label 사용 권장)</li>
               <li>텍스트가 많은 콘텐츠 영역</li>
             </ul>
-          </div>
+          </GuidelineBox>
         </Stack>
       </PageSection>
 

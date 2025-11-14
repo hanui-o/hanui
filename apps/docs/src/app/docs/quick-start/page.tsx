@@ -15,7 +15,9 @@ export default function QuickStartPage() {
 
       {/* First Component */}
       <PageSection>
-        <Heading level="h2">첫 번째 컴포넌트 사용하기</Heading>
+        <Heading level="h2" id="first-component">
+          첫 번째 컴포넌트 사용하기
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>가장 기본적인 Button 컴포넌트부터 시작해보겠습니다.</Body>
@@ -73,7 +75,9 @@ export default function QuickStartPage() {
 
       {/* Common Patterns */}
       <PageSection>
-        <Heading level="h2">자주 사용하는 패턴</Heading>
+        <Heading level="h2" id="common-patterns">
+          자주 사용하는 패턴
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Form Example */}
@@ -219,7 +223,9 @@ function ConfirmDialog() {
 
       {/* TypeScript Support */}
       <PageSection>
-        <Heading level="h2">TypeScript 지원</Heading>
+        <Heading level="h2" id="typescript-support">
+          TypeScript 지원
+        </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body>
@@ -252,7 +258,9 @@ function CustomButton(props: ButtonProps) {
 
       {/* Styling Customization */}
       <PageSection>
-        <Heading level="h2">스타일 커스터마이징</Heading>
+        <Heading level="h2" id="styling-customization">
+          스타일 커스터마이징
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>
@@ -291,7 +299,9 @@ function CustomButton(props: ButtonProps) {
 
       {/* Accessibility */}
       <PageSection>
-        <Heading level="h2">접근성 (Accessibility)</Heading>
+        <Heading level="h2" id="accessibility">
+          접근성 (Accessibility)
+        </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body>HANUI는 웹 접근성을 기본으로 제공합니다:</Body>
@@ -331,7 +341,9 @@ function CustomButton(props: ButtonProps) {
 
       {/* Best Practices */}
       <PageSection>
-        <Heading level="h2">모범 사례</Heading>
+        <Heading level="h2" id="best-practices">
+          모범 사례
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <div className="border-l-4 border-green-500 pl-4 py-2">
@@ -383,7 +395,9 @@ function CustomButton(props: ButtonProps) {
 
       {/* Next Steps */}
       <PageSection>
-        <Heading level="h2">다음 단계</Heading>
+        <Heading level="h2" id="next-steps">
+          다음 단계
+        </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-gray-700">

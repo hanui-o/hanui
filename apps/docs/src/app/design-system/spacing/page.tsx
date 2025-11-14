@@ -15,7 +15,9 @@ export default function SpacingPage() {
 
       <Stack spacing="h1-h2">
         <Stack spacing="h2-h3">
-          <h2 className="text-heading-lg font-bold">왜 시맨틱 스페이싱인가?</h2>
+          <h2 id="why-semantic-spacing" className="text-heading-lg font-bold">
+            왜 시맨틱 스페이싱인가?
+          </h2>
 
           <div className="bg-gray-5 dark:bg-gray-90 p-6 rounded-lg">
             <Stack spacing="h3-content">
@@ -45,7 +47,9 @@ export default function SpacingPage() {
         </Stack>
 
         <Stack spacing="h2-h3">
-          <h2 className="text-heading-lg font-bold">Stack - Gap Layout</h2>
+          <h2 id="stack-gap-layout" className="text-heading-lg font-bold">
+            Stack - Gap Layout
+          </h2>
           <p className="text-body-md text-gray-70">
             Stack은 수직/수평 방향으로 요소를 배치하고 간격을 관리하는
             컴포넌트입니다. KRDS gap-layout 토큰을 시맨틱하게 적용할 수
@@ -502,7 +506,7 @@ export default function SpacingPage() {
         </Stack>
 
         <Stack spacing="h2-h3">
-          <h2 className="text-heading-lg font-bold">
+          <h2 id="section-padding-layout" className="text-heading-lg font-bold">
             Section - Padding Layout
           </h2>
           <p className="text-body-md text-gray-70">
@@ -728,7 +732,9 @@ export default function SpacingPage() {
         </Stack>
 
         <Stack spacing="h2-h3">
-          <h2 className="text-heading-lg font-bold">복합 사용 예제</h2>
+          <h2 id="combined-examples" className="text-heading-lg font-bold">
+            복합 사용 예제
+          </h2>
           <p className="text-body-md text-gray-70">
             Stack과 Section을 함께 사용하여 완전한 페이지 레이아웃을 구성할 수
             있습니다.
@@ -849,7 +855,9 @@ export default function SpacingPage() {
         </Stack>
 
         <Stack spacing="h2-h3">
-          <h2 className="text-heading-lg font-bold">API</h2>
+          <h2 id="api" className="text-heading-lg font-bold">
+            API
+          </h2>
 
           <Stack spacing="h3-content">
             <h3 className="text-heading-md font-bold">Stack Props</h3>
@@ -965,7 +973,9 @@ export default function SpacingPage() {
         </Stack>
 
         <Stack spacing="h2-h3">
-          <h2 className="text-heading-lg font-bold">실전 예제</h2>
+          <h2 id="practical-examples" className="text-heading-lg font-bold">
+            실전 예제
+          </h2>
           <p className="text-body-md text-gray-70">
             다양한 KRDS gap-layout 토큰을 실제로 사용하는 예제입니다.
           </p>
@@ -1174,7 +1184,10 @@ export default function SpacingPage() {
         </Stack>
 
         <Stack spacing="h2-h3">
-          <h2 className="text-heading-lg font-bold">
+          <h2
+            id="section-practical-examples"
+            className="text-heading-lg font-bold"
+          >
             Section (Padding-Layout) 실전 예제
           </h2>
 
@@ -1636,7 +1649,9 @@ export default function SpacingPage() {
         </Stack>
 
         <Stack spacing="h2-h3">
-          <h2 className="text-heading-lg font-bold">베스트 프랙티스</h2>
+          <h2 id="best-practices" className="text-heading-lg font-bold">
+            베스트 프랙티스
+          </h2>
 
           <Stack spacing="card-list">
             <Section

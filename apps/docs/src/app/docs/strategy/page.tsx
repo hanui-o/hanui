@@ -14,7 +14,7 @@ export default function StrategyPage() {
       </Body>
 
       <section className="mb-12">
-        <Heading level="h2" className="mb-6">
+        <Heading level="h2" id="market-analysis" className="mb-6">
           1. 글로벌 UI 프레임워크 시장 분석
         </Heading>
 
@@ -133,7 +133,7 @@ export default function StrategyPage() {
       </section>
 
       <section className="mb-12">
-        <Heading level="h2" className="mb-6">
+        <Heading level="h2" id="differentiation-strategy" className="mb-6">
           2. HANUI의 차별화 전략
         </Heading>
 
@@ -341,7 +341,7 @@ export default function StrategyPage() {
       </section>
 
       <section className="mb-12">
-        <Heading level="h2" className="mb-6">
+        <Heading level="h2" id="a11y-strategy" className="mb-6">
           3. A11y(Accessibility) 핵심 전략
         </Heading>
 
@@ -667,7 +667,7 @@ export default function StrategyPage() {
       </section>
 
       <section className="mb-12">
-        <Heading level="h2" className="mb-6">
+        <Heading level="h2" id="conclusion" className="mb-6">
           4. 결론
         </Heading>
 

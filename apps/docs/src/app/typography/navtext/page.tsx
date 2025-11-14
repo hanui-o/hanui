@@ -5,6 +5,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { GuidelineBox } from '@/components/content/GuidelineBox';
 
 export default function NavTextPage() {
   return (
@@ -435,48 +436,33 @@ export default function NavTextPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-green-900 dark:text-green-100 mb-3"
-            >
-              ✓ NavText를 사용하기 적합한 경우
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-green-800 dark:text-green-200">
+          <GuidelineBox title="NavText를 사용하기 적합한 경우">
+            <ul className="list-disc list-inside space-y-2">
               <li>헤더 네비게이션 메뉴</li>
               <li>사이드바 메뉴</li>
               <li>드롭다운 메뉴</li>
               <li>탭 메뉴</li>
               <li>브레드크럼(breadcrumb) 네비게이션</li>
             </ul>
-          </div>
+          </GuidelineBox>
 
-          <div className="rounded-lg border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-amber-900 dark:text-amber-100 mb-3"
-            >
-              ⚠ 주의사항
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-amber-800 dark:text-amber-200">
+          <GuidelineBox title="주의사항">
+            <ul className="list-disc list-inside space-y-2">
               <li>tit 변형은 메뉴 제목/그룹명에 사용</li>
               <li>depth 변형은 실제 링크 항목에 사용</li>
               <li>계층 구조가 명확히 드러나도록 구성</li>
               <li>활성 상태는 색상이나 굵기로 명확히 표시</li>
             </ul>
-          </div>
+          </GuidelineBox>
 
-          <div className="rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30 p-6">
-            <Heading level="h3" className="text-red-900 dark:text-red-100 mb-3">
-              ✗ NavText를 사용하지 말아야 하는 경우
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-red-800 dark:text-red-200">
+          <GuidelineBox title="NavText를 사용하지 말아야 하는 경우">
+            <ul className="list-disc list-inside space-y-2">
               <li>일반 본문 텍스트 (Body 사용 권장)</li>
               <li>페이지 제목 (Heading 사용 권장)</li>
               <li>버튼 텍스트 (Button 컴포넌트 사용)</li>
               <li>폼 라벨 (Label 사용 권장)</li>
             </ul>
-          </div>
+          </GuidelineBox>
         </Stack>
       </PageSection>
 

@@ -58,7 +58,7 @@ export default function InputPage() {
   return (
     <>
       <PageHeader
-        title="Input"
+        title="Input (입력)"
         description="다양한 스타일과 크기를 지원하는 입력 필드 컴포넌트"
       />
 
@@ -210,7 +210,7 @@ export default function InputPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            Usage
+            사용법
           </Heading>
           <CodeBlock
             code={`import { Input } from '@hanui/react'
@@ -226,7 +226,7 @@ export default function InputPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            예제
           </Heading>
         </Stack>
 
@@ -234,7 +234,7 @@ export default function InputPage() {
           {/* Default */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="default">
-              Default
+              기본
             </Heading>
             <div>
               <ComponentPreview>
@@ -255,7 +255,7 @@ export default function InputPage() {
           {/* Sizes */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="sizes">
-              Sizes
+              Size (크기)
             </Heading>
             <div>
               <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
@@ -365,7 +365,7 @@ export default function InputPage() {
           {/* Error State */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="error">
-              Error State
+              에러 상태
             </Heading>
             <div>
               <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
@@ -416,7 +416,7 @@ export default function InputPage() {
           {/* Disabled */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="disabled">
-              Disabled
+              비활성화
             </Heading>
             <div>
               <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">

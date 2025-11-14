@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useEffect, useRef, useState } from 'react';
 import { Logo } from './Logo';
@@ -78,42 +79,20 @@ const MoonIcon = () => (
 export function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
-  const [indicatorStyle, setIndicatorStyle] = useState({
-    left: 0,
-    width: 0,
-    opacity: 0,
-  });
+  const pathname = usePathname();
+  const isMainPage = pathname === '/';
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const target = e.currentTarget;
-    const nav = navRef.current;
-    if (nav) {
-      const navRect = nav.getBoundingClientRect();
-      const targetRect = target.getBoundingClientRect();
-      setIndicatorStyle({
-        left: targetRect.left - navRect.left,
-        width: targetRect.width,
-        opacity: 1,
-      });
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
-  };
-
   return (
     <header
       id="header"
-      className="sticky top-0 z-50 w-full bg-white/95 dark:bg-gray-950/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-950/60"
+      className={`sticky top-0 z-50 w-full bg-white/95 dark:bg-gray-950/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-950/60 ${isMainPage ? '' : 'shadow-[0_1px_#00002d17]'}`}
     >
-      <Container maxWidth="full" className="h-16 flex items-center gap-4">
+      <Container maxWidth="full" className="h-12 flex items-center gap-4">
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-6">
           {/* Logo */}
@@ -123,33 +102,16 @@ export function Header() {
           </Link>
 
           {/* Navigation */}
-          <nav
-            ref={navRef}
-            className="hidden md:flex items-center space-x-6 text-sm font-medium relative"
-            onMouseLeave={handleMouseLeave}
-          >
-            {/* Sliding background indicator */}
-            <span
-              className="absolute h-8 bg-gray-100 dark:bg-gray-900 rounded-md transition-all duration-300 ease-out pointer-events-none"
-              style={{
-                left: `${indicatorStyle.left}px`,
-                width: `${indicatorStyle.width}px`,
-                opacity: indicatorStyle.opacity,
-                top: '50%',
-                transform: 'translateY(-50%)',
-              }}
-            />
+          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             <Link
               href="/components"
-              className="relative z-10 px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-              onMouseEnter={handleMouseEnter}
+              className="px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-100 rounded-md transition-colors"
             >
               Components
             </Link>
             <Link
               href="/examples"
-              className="relative z-10 px-3 py-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-              onMouseEnter={handleMouseEnter}
+              className="px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-100 rounded-md transition-colors"
             >
               Examples
             </Link>

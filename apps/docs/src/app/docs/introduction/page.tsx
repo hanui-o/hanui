@@ -12,7 +12,9 @@ export default function IntroductionPage() {
 
       {/* What is HANUI */}
       <PageSection>
-        <Heading level="h2">HANUI란?</Heading>
+        <Heading level="h2" id="what-is-hanui">
+          HANUI란?
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body className="leading-relaxed">
@@ -59,7 +61,9 @@ export default function IntroductionPage() {
 
       {/* Key Features */}
       <PageSection>
-        <Heading level="h2">주요 기능</Heading>
+        <Heading level="h2" id="key-features">
+          주요 기능
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Stack spacing="heading-tight">
@@ -101,7 +105,9 @@ export default function IntroductionPage() {
 
       {/* Who should use HANUI */}
       <PageSection>
-        <Heading level="h2">누가 사용하나요?</Heading>
+        <Heading level="h2" id="who-should-use">
+          누가 사용하나요?
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Stack spacing="heading-tight">
@@ -132,7 +138,9 @@ export default function IntroductionPage() {
 
       {/* Browser Support */}
       <PageSection>
-        <Heading level="h2">브라우저 지원</Heading>
+        <Heading level="h2" id="browser-support">
+          브라우저 지원
+        </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body>HANUI는 최신 브라우저를 지원합니다:</Body>
@@ -167,7 +175,9 @@ export default function IntroductionPage() {
 
       {/* Next Steps */}
       <PageSection>
-        <Heading level="h2">다음 단계</Heading>
+        <Heading level="h2" id="next-steps">
+          다음 단계
+        </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body>설치부터 시작해보세요:</Body>

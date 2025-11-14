@@ -73,9 +73,20 @@ function generatePageNumbers(
 }
 
 /**
- * Pagination Component
+ * Pagination Component (페이지네이션)
  *
- * KRDS-compliant pagination with accessibility
+ * **Foundation Layer Features:**
+ * - ✅ Semantic HTML: nav element with proper ARIA attributes
+ * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation and focus management
+ * - ✅ Screen Reader Support: aria-label and aria-current attributes
+ * - ✅ Visual Hierarchy: Clear active state and disabled states
+ * - ✅ Dark Mode: Automatic dark mode support with optimized colors
+ *
+ * **Design Principles:**
+ * - Clear current page indication
+ * - Smart ellipsis for many pages
+ * - Keyboard accessible navigation
+ * - Responsive button sizing (minimum 40px touch target)
  *
  * @example
  * ```tsx
@@ -107,6 +118,16 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
       }
     };
 
+    const handleKeyDown = (
+      e: React.KeyboardEvent<HTMLButtonElement>,
+      action: () => void
+    ) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        action();
+      }
+    };
+
     return (
       <nav
         ref={ref}
@@ -117,10 +138,15 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
         {/* Previous Button */}
         <button
           onClick={handlePrevious}
+          onKeyDown={(e) => handleKeyDown(e, handlePrevious)}
           disabled={currentPage === 1}
           className={cn(
-            'inline-flex h-9 items-center justify-center rounded-md px-3 text-sm font-medium transition-colors',
-            'hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#256ef4]',
+            'inline-flex h-10 min-w-[80px] items-center justify-center rounded-md px-3',
+            'text-sm font-medium transition-colors',
+            'text-gray-900 dark:text-gray-100',
+            'hover:bg-gray-100 dark:hover:bg-gray-800',
+            'focus-visible:outline-none focus-visible:ring-2',
+            'focus-visible:ring-blue-600 dark:focus-visible:ring-blue-400',
             'disabled:pointer-events-none disabled:opacity-50'
           )}
           aria-label="Go to previous page"
@@ -134,7 +160,11 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
             return (
               <span
                 key={`ellipsis-${index}`}
-                className="inline-flex h-9 w-9 items-center justify-center text-sm"
+                className={cn(
+                  'inline-flex h-10 w-10 items-center justify-center',
+                  'text-sm text-gray-600 dark:text-gray-400'
+                )}
+                aria-hidden="true"
               >
                 ...
               </span>
@@ -148,14 +178,31 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
             <button
               key={pageNumber}
               onClick={() => onPageChange(pageNumber)}
+              onKeyDown={(e) =>
+                handleKeyDown(e, () => onPageChange(pageNumber))
+              }
               aria-current={isActive ? 'page' : undefined}
+              disabled={isActive}
               className={cn(
-                'inline-flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium transition-colors',
-                'hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#256ef4]',
-                isActive &&
-                  'bg-[#256ef4] text-white hover:bg-[#0b50d0] pointer-events-none'
+                'inline-flex h-10 w-10 items-center justify-center rounded-md',
+                'text-sm font-medium transition-colors',
+                !isActive && [
+                  'text-gray-900 dark:text-gray-100',
+                  'hover:bg-gray-100 dark:hover:bg-gray-800',
+                  'focus-visible:outline-none focus-visible:ring-2',
+                  'focus-visible:ring-blue-600 dark:focus-visible:ring-blue-400',
+                ],
+                isActive && [
+                  'bg-blue-600 dark:bg-blue-500',
+                  'text-white',
+                  'cursor-default',
+                ]
               )}
-              aria-label={`Go to page ${pageNumber}`}
+              aria-label={
+                isActive
+                  ? `Current page, page ${pageNumber}`
+                  : `Go to page ${pageNumber}`
+              }
             >
               {pageNumber}
             </button>
@@ -165,10 +212,15 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
         {/* Next Button */}
         <button
           onClick={handleNext}
+          onKeyDown={(e) => handleKeyDown(e, handleNext)}
           disabled={currentPage === totalPages}
           className={cn(
-            'inline-flex h-9 items-center justify-center rounded-md px-3 text-sm font-medium transition-colors',
-            'hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#256ef4]',
+            'inline-flex h-10 min-w-[80px] items-center justify-center rounded-md px-3',
+            'text-sm font-medium transition-colors',
+            'text-gray-900 dark:text-gray-100',
+            'hover:bg-gray-100 dark:hover:bg-gray-800',
+            'focus-visible:outline-none focus-visible:ring-2',
+            'focus-visible:ring-blue-600 dark:focus-visible:ring-blue-400',
             'disabled:pointer-events-none disabled:opacity-50'
           )}
           aria-label="Go to next page"
