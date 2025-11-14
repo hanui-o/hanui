@@ -78,8 +78,8 @@ const navigation = [
   {
     title: 'Input',
     items: [
-      { title: 'Text Input', href: '/components/form/input' },
       { title: 'Label', href: '/components/form/label' },
+      { title: 'Text Input', href: '/components/form/input' },
       { title: 'File Upload', href: '/components/form/file-upload' },
     ],
   },

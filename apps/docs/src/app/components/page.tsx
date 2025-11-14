@@ -26,12 +26,6 @@ const typographyComponents = [
     updated: true,
   },
   {
-    name: 'Label',
-    description: '라벨',
-    href: '/typography/label',
-    updated: true,
-  },
-  {
     name: 'NavText',
     description: '네비게이션 텍스트',
     href: '/typography/navtext',
@@ -44,19 +38,19 @@ const identityComponents = [
   {
     name: 'Masthead',
     description: '공식 배너',
-    href: '/components/masthead',
+    href: '/components/identity/masthead',
     updated: true,
   },
   {
     name: 'Identifier',
     description: '운영기관 식별자',
-    href: '/components/identifier',
+    href: '/components/identity/identifier',
     updated: true,
   },
   {
     name: 'Header',
     description: '헤더',
-    href: '/components/header',
+    href: '/components/identity/header',
     updated: true,
   },
   // { name: 'Footer', description: '푸터', href: '/components/footer', updated: false },
@@ -67,14 +61,14 @@ const navigationComponents = [
   {
     name: 'SkipLink',
     description: '건너뛰기 링크',
-    href: '/components/skiplink',
+    href: '/components/navigation/skiplink',
     updated: true,
   },
   // { name: 'Main Menu', description: '메인 메뉴', href: '/components/main-menu', updated: false },
   {
     name: 'Breadcrumb',
     description: '브레드크럼',
-    href: '/components/breadcrumb',
+    href: '/components/navigation/breadcrumb',
     updated: true,
   },
   // { name: 'Side Navigation', description: '사이드 메뉴', href: '/components/side-navigation', updated: false },
@@ -82,7 +76,7 @@ const navigationComponents = [
   {
     name: 'Pagination',
     description: '페이지네이션',
-    href: '/components/pagination',
+    href: '/components/navigation/pagination',
     updated: true,
   },
   // { name: 'Tab Bars', description: '탭바', href: '/components/tab-bars', updated: false },
@@ -118,23 +112,23 @@ const presentationComponents = [
   {
     name: 'Modal',
     description: '모달',
-    href: '/components/modal',
+    href: '/layout/modal',
     updated: true,
   },
   // { name: 'Badge', description: '배지', href: '/components/badge', updated: false },
   {
     name: 'Accordion',
     description: '아코디언',
-    href: '/components/accordion',
+    href: '/layout/accordion',
     updated: true,
   },
   // { name: 'Image', description: '이미지', href: '/components/image', updated: false },
   // { name: 'Carousel', description: '캐러셀', href: '/components/carousel', updated: false },
-  { name: 'Tab', description: '탭', href: '/components/tabs', updated: true },
+  { name: 'Tab', description: '탭', href: '/layout/tabs', updated: true },
   {
     name: 'Table',
     description: '표',
-    href: '/components/table',
+    href: '/layout/table',
     updated: true,
   },
   // { name: 'Splash Screen', description: '스플래시 스크린', href: '/components/splash-screen', updated: false },
@@ -142,7 +136,7 @@ const presentationComponents = [
   {
     name: 'Card',
     description: '카드',
-    href: '/components/card',
+    href: '/layout/card',
     updated: true,
   },
 ];
@@ -153,7 +147,7 @@ const actionComponents = [
   {
     name: 'Button',
     description: '버튼',
-    href: '/components/button',
+    href: '/components/action/button',
     updated: true,
   },
 ];
@@ -165,7 +159,7 @@ const selectionComponents = [
   {
     name: 'Select',
     description: '셀렉트',
-    href: '/components/select',
+    href: '/components/selection/select',
     updated: true,
   },
   // { name: 'Tag', description: '태그', href: '/components/tag', updated: false },
@@ -187,7 +181,7 @@ const helpComponents = [
   {
     name: 'Tooltip',
     description: '툴팁',
-    href: '/components/tooltip',
+    href: '/components/help/tooltip',
     updated: true,
   },
 ];
@@ -197,15 +191,21 @@ const inputComponents = [
   // { name: 'Date Input', description: '날짜 입력 필드', href: '/components/date-input', updated: false },
   // { name: 'Textarea', description: '텍스트 영역', href: '/components/textarea', updated: false },
   {
+    name: 'Label',
+    description: '라벨',
+    href: '/components/form/label',
+    updated: true,
+  },
+  {
     name: 'Text Input',
     description: '텍스트 입력 필드',
-    href: '/components/input',
+    href: '/components/form/input',
     updated: true,
   },
   {
     name: 'File Upload',
     description: '파일 업로드',
-    href: '/components/file-upload',
+    href: '/components/form/file-upload',
     updated: true,
   },
 ];
