@@ -89,5 +89,8 @@ export type { NavTextProps } from './components/NavText';
 export { Box } from './components/Box';
 export type { BoxProps } from './components/Box';
 
+export { Tooltip } from './components/Tooltip';
+export type { TooltipProps } from './components/Tooltip';
+
 // Utils
 export { cn } from './lib/utils';
