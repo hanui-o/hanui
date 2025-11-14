@@ -61,6 +61,7 @@ export default [
       'react/react-in-jsx-scope': 'off', // Not needed in React 18+
       'react/prop-types': 'off', // Using TypeScript for prop types
       'react/jsx-uses-react': 'off', // Not needed in React 18+
+      'react/no-unescaped-entities': 'off', // Allow quotes in JSX text
 
       // TypeScript specific rules
       '@typescript-eslint/no-unused-vars': [
