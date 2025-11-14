@@ -34,15 +34,6 @@ const navigation = [
     ],
   },
   {
-    title: 'Layout',
-    items: [
-      { title: 'Container', href: '/layout/container' },
-      { title: 'Box', href: '/layout/box' },
-      { title: 'Stack', href: '/layout/stack' },
-      { title: 'Section', href: '/layout/section' },
-    ],
-  },
-  {
     title: 'Identity',
     items: [
       { title: 'Masthead', href: '/components/masthead' },
@@ -59,8 +50,12 @@ const navigation = [
     ],
   },
   {
-    title: 'Presentation',
+    title: 'Layout & Presentation',
     items: [
+      { title: 'Container', href: '/layout/container' },
+      { title: 'Box', href: '/layout/box' },
+      { title: 'Stack', href: '/layout/stack' },
+      { title: 'Section', href: '/layout/section' },
       { title: 'Modal', href: '/components/modal' },
       { title: 'Accordion', href: '/components/accordion' },
       { title: 'Tabs', href: '/components/tabs' },
