@@ -50,7 +50,7 @@ export default function TablePage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="table-content">
-            Quick Start
+            개요
           </Heading>
           <Body>
             Table 컴포넌트는 정형 데이터를 표 형식으로 표시하는 컴포넌트입니다.
@@ -130,7 +130,7 @@ export default function TablePage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            사용 예시
           </Heading>
         </Stack>
 
@@ -594,7 +594,7 @@ const handleSort = (column: string) => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="accessibility">
-            Accessibility
+            접근성
           </Heading>
           <Body weight="bold">
             이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다:
@@ -646,7 +646,7 @@ const handleSort = (column: string) => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="design-principles">
-            Design Principles
+            디자인 원칙
           </Heading>
         </Stack>
 
@@ -690,7 +690,7 @@ const handleSort = (column: string) => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="api">
-            API Reference
+            API
           </Heading>
         </Stack>
 
@@ -920,7 +920,7 @@ const handleSort = (column: string) => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="foundation-layer">
-            Foundation Layer
+            KRDS 준수사항
           </Heading>
           <Body>
             HANUI의 Table 컴포넌트는 다음과 같은 기반 기능을 자동으로

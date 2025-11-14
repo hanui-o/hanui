@@ -48,7 +48,7 @@ export default function FileUploadPage() {
       {/* Quick Start */}
       <PageSection>
         <Heading level="h2" id="file-upload-content">
-          Quick Start
+          개요
         </Heading>
         <ComponentPreview>
           <div className="max-w-md">
@@ -86,7 +86,7 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            사용 예시
           </Heading>
         </Stack>
 
@@ -413,7 +413,7 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="guidelines">
-            Guidelines (가이드라인)
+            사용 가이드라인
           </Heading>
 
           <GuidelineSection title="언제 사용하나요?" type="do">
@@ -447,7 +447,7 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="design-principles">
-            Design Principles (디자인 원칙)
+            디자인 원칙
           </Heading>
           <div className="space-y-4">
             <div>
@@ -494,7 +494,7 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="api">
-            API Reference
+            API
           </Heading>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
@@ -625,7 +625,7 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="best-practices">
-            Best Practices
+            모범 사례
           </Heading>
           <ul className="list-disc list-inside space-y-2 ml-4">
             <li>
@@ -660,7 +660,7 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="accessibility">
-            Accessibility (접근성)
+            접근성
           </Heading>
           <Body>
             이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 기준을 준수하여 모든 사용자가
@@ -760,7 +760,7 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="foundation-layer">
-            Foundation Layer (기초 레이어)
+            KRDS 준수사항
           </Heading>
           <Body>
             FileUpload 컴포넌트는 Foundation Layer에서 다음 기능들을 자동으로

@@ -33,7 +33,7 @@ export default function PaginationPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="pagination-content">
-            Quick Start
+            개요
           </Heading>
           <Body>
             Pagination 컴포넌트는 많은 콘텐츠를 여러 페이지로 나누어 표시할 때
@@ -78,7 +78,7 @@ export default function Example() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            사용 예시
           </Heading>
         </Stack>
 
@@ -354,7 +354,7 @@ return (
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="accessibility">
-            Accessibility
+            접근성
           </Heading>
           <Body weight="bold">
             이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다:
@@ -404,7 +404,7 @@ return (
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="design-principles">
-            Design Principles
+            디자인 원칙
           </Heading>
         </Stack>
 
@@ -455,7 +455,7 @@ return (
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="api">
-            API Reference
+            API
           </Heading>
         </Stack>
 
@@ -548,7 +548,7 @@ return (
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="best-practices">
-            Best Practices
+            모범 사례
           </Heading>
         </Stack>
 
@@ -597,7 +597,7 @@ return (
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="foundation-layer">
-            Foundation Layer
+            KRDS 준수사항
           </Heading>
           <Body>
             HANUI의 Pagination 컴포넌트는 다음과 같은 기반 기능을 자동으로
