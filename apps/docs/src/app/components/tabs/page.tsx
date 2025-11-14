@@ -11,6 +11,7 @@ import {
   Body,
   Card,
   CardBody,
+  SkipLink,
 } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
@@ -22,6 +23,9 @@ import { PageSection } from '@/components/content/PageSection';
 export default function TabsPage() {
   return (
     <>
+      {/* Skip Link */}
+      <SkipLink links={[{ href: '#tabs-content', label: '본문 바로가기' }]} />
+
       {/* Page Header */}
       <PageHeader
         title="Tabs (탭)"
@@ -68,7 +72,7 @@ export default function TabsPage() {
       {/* Overview */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="overview">
+          <Heading level="h2" id="tabs-content">
             개요
           </Heading>
           <Body className="leading-relaxed">
@@ -273,7 +277,7 @@ export default function MyComponent() {
       {/* Examples */}
       <PageSection>
         <Heading level="h2" id="examples">
-          예제
+          사용 예시
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
@@ -544,7 +548,7 @@ export default function MyComponent() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="api">
-            API Reference
+            API
           </Heading>
 
           <Stack spacing="heading-tight">
@@ -729,7 +733,7 @@ export default function MyComponent() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="foundation-layer">
-            Foundation Layer 기능
+            KRDS 준수사항
           </Heading>
           <Body className="leading-relaxed">
             HANUI Tabs는 Foundation Layer의 자동화된 접근성 기능을 제공합니다.
