@@ -9,10 +9,7 @@ import { PageSection } from '@/components/content/PageSection';
 export default function LabelPage() {
   return (
     <>
-      <PageHeader
-        title="Label (라벨)"
-        description="폼 요소를 위한 라벨 컴포넌트"
-      />
+      <PageHeader title="Label" description="폼 요소를 위한 라벨 컴포넌트" />
 
       <PageSection>
         <ComponentPreview>
@@ -73,7 +70,7 @@ export default function LabelPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="sizes">
-            크기
+            크기 (Size)
           </Heading>
         </Stack>
 
