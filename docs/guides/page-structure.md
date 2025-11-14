@@ -574,32 +574,60 @@ export default function ComponentsListPage() {
 
 ## ✅ 제목 구조 (Heading Hierarchy)
 
-**시맨틱 HTML 규칙:**
+**HANUI 제목 작성 규칙:**
+
+### 언어 사용 기준
+
+| 레벨   | 언어 규칙            | 예시                                                                            |
+| ------ | -------------------- | ------------------------------------------------------------------------------- |
+| **h1** | 영어                 | `Button (버튼)`, `Typography`, `Design Tokens`                                  |
+| **h2** | 한글 (영어)          | `사용 가이드라인 (Guidelines)`, `API 레퍼런스 (API Reference)`                  |
+| **h3** | 맥락에 따라 자유롭게 | 영어: `Default`, `Sizes`, `Props`<br>한글: `언제 사용해야 하나요?`, `기본 사용` |
+
+### 적용 예시
 
 ```tsx
-{/* h1: 페이지 제목 (PageHeader 자동 처리) */}
-<PageHeader title="버튼" />
+{/* h1: 영어 (PageHeader 자동 처리) */}
+<PageHeader title="Button (버튼)" description="..." />
 
-{/* h2: 주요 섹션 */}
-<Heading level="h2">개요</Heading>
-<Heading level="h2">사용 가이드라인</Heading>
-<Heading level="h2">Examples</Heading>
+{/* h2: 한글 (영어) */}
+<Heading level="h2" id="guidelines">사용 가이드라인 (Guidelines)</Heading>
+<Heading level="h2" id="api-reference">API 레퍼런스 (API Reference)</Heading>
+<Heading level="h2" id="examples">사용 예시 (Examples)</Heading>
 
-{/* h3: 하위 섹션 */}
-<Heading level="h3">언제 사용해야 하나요?</Heading>
+{/* h3: 맥락에 따라 영어 또는 한글 */}
+{/* 기술 용어는 영어 */}
 <Heading level="h3">Default</Heading>
 <Heading level="h3">Sizes</Heading>
+<Heading level="h3">Props</Heading>
 
-{/* h4: 세부 항목 (필요시) */}
+{/* 설명형 제목은 한글 */}
+<Heading level="h3">언제 사용해야 하나요?</Heading>
+<Heading level="h3">버튼 위계</Heading>
+<Heading level="h3">접근성 고려사항</Heading>
+
+{/* h4: 필요시 (영어/한글 혼용 가능) */}
 <Heading level="h4">Primary - 가장 중요한 액션</Heading>
 ```
 
 **규칙:**
 
+- **h1**: 항상 영어 (한글 병기 가능)
+- **h2**: 항상 "한글 (영어)" 형식 (예외: 순수 한글 섹션)
+- **h3**: 기술 용어는 영어, 설명형은 한글
 - h1은 페이지당 1개 (PageHeader가 자동 생성)
-- h2는 주요 섹션 제목
-- h3는 h2 하위의 소섹션
 - 레벨을 건너뛰지 않기 (h2 → h4 ❌)
+
+**h2 ID 속성:**
+
+SEO와 앵커 링크를 위해 h2에는 반드시 영어 kebab-case ID를 추가합니다:
+
+```tsx
+<Heading level="h2" id="api-reference">API 레퍼런스</Heading>
+<Heading level="h2" id="guidelines">사용 가이드라인</Heading>
+<Heading level="h2" id="examples">사용 예시</Heading>
+<Heading level="h2" id="foundation-layer">기반 레이어</Heading>
+```
 
 ---
 
