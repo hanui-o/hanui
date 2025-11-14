@@ -22,7 +22,8 @@
   <!-- Logo Icon -->
   <g transform="translate(100, 180)">
     <rect x="0" y="0" width="120" height="120" rx="20" stroke="#111827" stroke-width="4" fill="none"/>
-    <rect x="15" y="15" width="40" height="40" rx="4" fill="#111827"/>
+    <!-- Top-left: 사용자 (People/Accessibility) - Primary color -->
+    <rect x="15" y="15" width="40" height="40" rx="4" fill="#0b50d0"/>
     <rect x="65" y="15" width="40" height="40" rx="4" fill="#111827"/>
     <rect x="15" y="65" width="40" height="40" rx="4" fill="#111827"/>
     <rect x="65" y="65" width="40" height="40" rx="4" fill="#111827"/>

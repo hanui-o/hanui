@@ -23,7 +23,15 @@ export function Logo({ width = 24, height = 24, className }: LogoProps) {
         stroke="currentColor"
         strokeWidth="2"
       />
-      <rect x="5" y="5" width="6" height="6" fill="currentColor" />
+      {/* Top-left: 사용자 (People/Accessibility) - Primary color */}
+      <rect
+        x="5"
+        y="5"
+        width="6"
+        height="6"
+        fill="#0b50d0"
+        className="dark:fill-[#4c87f6]"
+      />
       <rect x="13" y="5" width="6" height="6" fill="currentColor" />
       <rect x="5" y="13" width="6" height="6" fill="currentColor" />
       <rect x="13" y="13" width="6" height="6" fill="currentColor" />
