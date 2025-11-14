@@ -116,5 +116,11 @@ export type {
 export { Masthead } from './components/Masthead';
 export type { MastheadProps } from './components/Masthead';
 
+export { Identifier } from './components/Identifier';
+export type {
+  IdentifierProps,
+  IdentifierVariant,
+} from './components/Identifier';
+
 // Utils
 export { cn } from './lib/utils';

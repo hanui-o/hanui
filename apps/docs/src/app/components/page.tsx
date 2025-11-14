@@ -40,6 +40,11 @@ const components = [
     updated: true,
   },
   {
+    name: 'Identifier',
+    href: '/components/identifier',
+    updated: true,
+  },
+  {
     name: 'Breadcrumb',
     href: '/components/breadcrumb',
     updated: false,

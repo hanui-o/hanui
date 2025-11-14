@@ -50,6 +50,7 @@ const navigation = [
       { title: 'Table', href: '/components/table' },
       { title: 'Modal', href: '/components/modal' },
       { title: 'Masthead', href: '/components/masthead' },
+      { title: 'Identifier', href: '/components/identifier' },
       { title: 'Breadcrumb', href: '/components/breadcrumb' },
       { title: 'Pagination', href: '/components/pagination' },
       { title: 'File Upload', href: '/components/file-upload' },
