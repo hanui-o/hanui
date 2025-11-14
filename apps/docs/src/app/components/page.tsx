@@ -27,7 +27,7 @@ const components = [
   {
     name: 'Table',
     href: '/components/table',
-    updated: false,
+    updated: true,
   },
   {
     name: 'Modal',
