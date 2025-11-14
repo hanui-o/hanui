@@ -419,7 +419,7 @@ export default function StackPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            Usage
+            사용법
           </Heading>
           <Body>Stack, VStack, HStack 세 가지 컴포넌트를 제공합니다:</Body>
         </Stack>
@@ -472,7 +472,7 @@ export default function StackPage() {
       {/* Examples */}
       <PageSection>
         <Heading level="h2" id="examples">
-          Examples
+          예제
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
@@ -681,8 +681,8 @@ export default function StackPage() {
       {/* API Reference */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="api">
-            API Reference
+          <Heading level="h2" id="api-reference">
+            API 레퍼런스
           </Heading>
 
           <Body>

@@ -226,7 +226,7 @@ export default function ContainerPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            Usage
+            사용법
           </Heading>
           <CodeBlock
             code={`import { Container } from '@hanui/react'
@@ -244,7 +244,7 @@ export default function ContainerPage() {
       {/* Examples */}
       <PageSection>
         <Heading level="h2" id="examples">
-          Examples
+          예제
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
@@ -574,7 +574,7 @@ export default function ContainerPage() {
       {/* API Reference */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="api">
+          <Heading level="h2" id="api-reference">
             API Reference
           </Heading>
 

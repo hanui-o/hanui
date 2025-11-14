@@ -10,7 +10,7 @@ export default function BoxPage() {
   return (
     <>
       <PageHeader
-        title="Box (박스)"
+        title="Box"
         description="유연한 레이아웃을 위한 컨테이너 컴포넌트"
       />
 
@@ -46,7 +46,7 @@ export default function BoxPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="display">
-            Display
+            디스플레이 (Display)
           </Heading>
         </Stack>
 
@@ -149,7 +149,7 @@ export default function BoxPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="direction">
-            Direction (방향)
+            방향 (Direction)
           </Heading>
         </Stack>
 
@@ -224,7 +224,7 @@ export default function BoxPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="alignment">
-            Alignment (정렬)
+            정렬 (Alignment)
           </Heading>
         </Stack>
 
@@ -370,7 +370,7 @@ export default function BoxPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="gap">
-            Gap (간격)
+            간격 (Gap)
           </Heading>
         </Stack>
 
@@ -412,7 +412,7 @@ export default function BoxPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            사용 예시
+            예제
           </Heading>
         </Stack>
 
@@ -534,8 +534,8 @@ export default function BoxPage() {
       {/* API */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="api">
-            API
+          <Heading level="h2" id="api-reference">
+            API 레퍼런스
           </Heading>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">

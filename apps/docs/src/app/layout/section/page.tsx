@@ -50,7 +50,7 @@ export default function SectionPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            Usage
+            사용법
           </Heading>
           <CodeBlock
             code={`import { Section } from '@hanui/react'
@@ -271,8 +271,8 @@ export default function SectionPage() {
       {/* API Reference */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="api">
-            API Reference
+          <Heading level="h2" id="api-reference">
+            API 레퍼런스
           </Heading>
 
           <div className="overflow-x-auto">
