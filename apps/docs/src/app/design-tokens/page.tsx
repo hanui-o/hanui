@@ -17,7 +17,9 @@ export default function DesignTokensPage() {
 
       {/* Overview */}
       <PageSection>
-        <Heading level="h2">개요</Heading>
+        <Heading level="h2" id="overview">
+          개요
+        </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body className="leading-relaxed">

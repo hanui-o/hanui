@@ -100,5 +100,18 @@ export type {
   TabsContentProps,
 } from './components/Tabs';
 
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from './components/Accordion';
+export type {
+  AccordionProps,
+  AccordionItemProps,
+  AccordionTriggerProps,
+  AccordionContentProps,
+} from './components/Accordion';
+
 // Utils
 export { cn } from './lib/utils';

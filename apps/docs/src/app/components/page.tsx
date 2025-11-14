@@ -59,6 +59,11 @@ const components = [
     href: '/components/tabs',
     updated: true,
   },
+  {
+    name: 'Accordion',
+    href: '/components/accordion',
+    updated: true,
+  },
 ];
 
 const layoutComponents = [

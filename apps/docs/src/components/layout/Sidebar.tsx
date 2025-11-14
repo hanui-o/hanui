@@ -54,6 +54,7 @@ const navigation = [
       { title: 'File Upload', href: '/components/file-upload' },
       { title: 'Tooltip', href: '/components/tooltip' },
       { title: 'Tabs', href: '/components/tabs' },
+      { title: 'Accordion', href: '/components/accordion' },
     ],
   },
 ];
