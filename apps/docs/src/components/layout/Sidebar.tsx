@@ -52,6 +52,8 @@ const navigation = [
       { title: 'Breadcrumb', href: '/components/breadcrumb' },
       { title: 'Pagination', href: '/components/pagination' },
       { title: 'File Upload', href: '/components/file-upload' },
+      { title: 'Tooltip', href: '/components/tooltip' },
+      { title: 'Tabs', href: '/components/tabs' },
     ],
   },
 ];
