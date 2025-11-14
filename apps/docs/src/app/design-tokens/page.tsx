@@ -620,7 +620,7 @@ export default function DesignTokensPage() {
       {/* Best Practices */}
       <PageSection>
         <Heading level="h2" id="best-practices">
-          Best Practices
+          모범 사례
         </Heading>
 
         <div className="space-y-6 mt-2 md:mt-4">

@@ -58,7 +58,7 @@ export function PageNav() {
     <nav className="hidden xl:block w-48 flex-shrink-0">
       <div className="sticky top-24">
         <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
-          목차
+          이 페이지의 구성
         </h4>
         <ul className="space-y-1.5 text-sm">
           {headings.map((heading) => {
