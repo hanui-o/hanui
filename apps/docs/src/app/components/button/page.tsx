@@ -28,7 +28,9 @@ export default function ButtonPage() {
       {/* Overview */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2">개요</Heading>
+          <Heading level="h2" id="overview">
+            개요
+          </Heading>
           <Body className="leading-relaxed">
             버튼은 사용자가 서비스를 이용하는 과정에서 어떤 행동이 중요한지
             알려주는 핵심 인터랙션 요소입니다. HANUI Button은{' '}
@@ -40,7 +42,9 @@ export default function ButtonPage() {
 
       {/* Usage Guidelines */}
       <PageSection>
-        <Heading level="h2">사용 가이드라인</Heading>
+        <Heading level="h2" id="guidelines">
+          사용 가이드라인
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* When to use */}
@@ -197,7 +201,9 @@ export default function ButtonPage() {
       {/* Usage */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2">Usage</Heading>
+          <Heading level="h2" id="usage">
+            Usage
+          </Heading>
           <CodeBlock
             code={`import { Button } from '@hanui/react'
 
@@ -210,7 +216,9 @@ export default function ButtonPage() {
 
       {/* Examples */}
       <PageSection>
-        <Heading level="h2">Examples</Heading>
+        <Heading level="h2" id="examples">
+          Examples
+        </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Default */}

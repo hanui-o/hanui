@@ -49,6 +49,11 @@ const components = [
     href: '/components/file-upload',
     updated: false,
   },
+  {
+    name: 'Tooltip',
+    href: '/components/tooltip',
+    updated: true,
+  },
 ];
 
 const layoutComponents = [
