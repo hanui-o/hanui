@@ -13,10 +13,13 @@ import { cn } from '../../lib/utils';
  * - xsmall (h5): 17px - 부차 정보
  * - xxsmall (h6): 15px - 최소 제목
  * - 모든 레벨 굵기 700(bold), 줄 간격 150%
+ * - 기본 색상: gray-900 (라이트) / gray-100 (다크) - KRDS 명도 대비 4.5:1 준수
  */
 const headingVariants = cva(
-  // Base styles
-  ['font-bold', 'leading-[150%]'].join(' '),
+  // Base styles - KRDS 명도 대비 4.5:1 이상을 만족하는 기본 색상
+  ['font-bold', 'leading-[150%]', 'text-gray-900', 'dark:text-gray-100'].join(
+    ' '
+  ),
   {
     variants: {
       level: {
