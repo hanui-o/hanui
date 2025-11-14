@@ -32,7 +32,7 @@ const components = [
   {
     name: 'Modal',
     href: '/components/modal',
-    updated: false,
+    updated: true,
   },
   {
     name: 'Breadcrumb',

@@ -1,3 +1,5 @@
+'use client';
+
 import { Dialog, Transition } from '@headlessui/react';
 import * as React from 'react';
 import { cn } from '../../lib/utils';
@@ -47,23 +49,41 @@ export interface ModalProps {
 /**
  * Modal Component
  *
- * KRDS-compliant modal using Headless UI Dialog
- * - Full accessibility (focus trap, ESC key, ARIA)
- * - Backdrop overlay
- * - Smooth animations
+ * **Foundation Layer Features:**
+ * - ✅ Focus Management: Auto focus trap + focus restoration on close
+ * - ✅ ARIA Automation: role="dialog", aria-modal="true" (via Headless UI)
+ * - ✅ Keyboard Navigation: ESC to close, Tab/Shift+Tab cyclic navigation
+ * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Focus Order, No Keyboard Trap, Meaningful Sequence
+ *
+ * **KRDS Standards:**
+ * - Focus moves to modal or first interactive element when opened
+ * - Focus returns to opening button when closed
+ * - Focus remains within modal (keyboard trap) while active
+ * - Close button positioned as final element for sequential navigation
+ * - ESC key closes modal if close button present
+ * - Tab wraps from last to first element (cyclic navigation)
+ * - Overlay prevents base window interaction
+ *
+ * **Modal Structure:**
+ * - Overlay: Visual separator between modal and base window
+ * - Header: Title and description (ModalTitle)
+ * - Close Button: Optional X icon (ModalCloseButton)
+ * - Body: Content area (ModalBody)
+ * - Footer: Action buttons (ModalFooter)
  *
  * @example
  * ```tsx
  * const [isOpen, setIsOpen] = useState(false);
  *
  * <Modal open={isOpen} onClose={setIsOpen}>
- *   <Modal.Title>제목</Modal.Title>
- *   <Modal.Body>
+ *   <ModalTitle>제목</ModalTitle>
+ *   <ModalBody>
  *     내용
- *   </Modal.Body>
- *   <Modal.Footer>
+ *   </ModalBody>
+ *   <ModalFooter>
  *     <Button onClick={() => setIsOpen(false)}>확인</Button>
- *   </Modal.Footer>
+ *   </ModalFooter>
+ *   <ModalCloseButton onClick={() => setIsOpen(false)} />
  * </Modal>
  * ```
  */
@@ -102,7 +122,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   className={cn(
                     'w-full',
                     modalSizes[size],
-                    'transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all',
+                    'transform overflow-hidden rounded-lg bg-white dark:bg-gray-900 p-6 text-left align-middle shadow-xl transition-all',
                     className
                   )}
                 >
@@ -120,6 +140,10 @@ Modal.displayName = 'Modal';
 
 /**
  * Modal Title Component
+ *
+ * **Foundation Layer:**
+ * - Auto-applies as Dialog.Title for ARIA labeling
+ * - Semantic h3 heading
  */
 export const ModalTitle = React.forwardRef<
   HTMLHeadingElement,
@@ -128,7 +152,10 @@ export const ModalTitle = React.forwardRef<
   <Dialog.Title
     as="h3"
     ref={ref}
-    className={cn('text-lg font-medium leading-6 text-gray-900', className)}
+    className={cn(
+      'text-lg font-medium leading-6 text-gray-900 dark:text-gray-100',
+      className
+    )}
     {...props}
   >
     {children}
@@ -138,6 +165,9 @@ ModalTitle.displayName = 'ModalTitle';
 
 /**
  * Modal Body Component
+ *
+ * **Foundation Layer:**
+ * - Content area for modal information and components
  */
 export const ModalBody = React.forwardRef<
   HTMLDivElement,
@@ -145,7 +175,7 @@ export const ModalBody = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('mt-4 text-sm text-gray-600', className)}
+    className={cn('mt-4 text-sm text-gray-700 dark:text-gray-300', className)}
     {...props}
   />
 ));
@@ -168,6 +198,16 @@ ModalFooter.displayName = 'ModalFooter';
 
 /**
  * Modal Close Button Component
+ *
+ * **Foundation Layer:**
+ * - Positioned as final element for KRDS sequential navigation
+ * - Screen reader label "닫기"
+ * - Focus ring for keyboard accessibility
+ * - X icon with aria-hidden
+ *
+ * **KRDS Note:**
+ * Close button must be marked up as the final modal element
+ * to prevent users from missing body content during Tab navigation
  */
 export const ModalCloseButton = React.forwardRef<
   HTMLButtonElement,
@@ -177,7 +217,9 @@ export const ModalCloseButton = React.forwardRef<
     ref={ref}
     type="button"
     className={cn(
-      'absolute right-4 top-4 rounded-md p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#256ef4]',
+      'absolute right-4 top-4 rounded-md p-1',
+      'text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300',
+      'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
       className
     )}
     {...props}
