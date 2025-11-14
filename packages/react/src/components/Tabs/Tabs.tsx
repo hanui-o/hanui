@@ -252,53 +252,51 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
      * Foundation Layer: Keyboard Navigation
      * Arrow Left/Right, Home, End keys
      */
-    const handleKeyDown = React.useCallback(
-      (event: React.KeyboardEvent<HTMLDivElement>) => {
-        const tabsList = 'current' in tabsListRef ? tabsListRef.current : null;
-        if (!tabsList) return;
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      const tabsList = 'current' in tabsListRef ? tabsListRef.current : null;
+      if (!tabsList) return;
 
-        const tabs = Array.from(
-          tabsList.querySelectorAll<HTMLButtonElement>(
-            '[role="tab"]:not([disabled])'
-          )
-        );
-        const currentIndex = tabs.findIndex((tab) => tab === event.target);
+      const tabs = Array.from(
+        tabsList.querySelectorAll<HTMLButtonElement>(
+          '[role="tab"]:not([disabled])'
+        )
+      );
+      const currentIndex = tabs.findIndex((tab) => tab === event.target);
 
-        if (currentIndex === -1) return;
+      if (currentIndex === -1) return;
 
-        let nextIndex = currentIndex;
+      let nextIndex = currentIndex;
 
-        switch (event.key) {
-          case 'ArrowLeft':
-            event.preventDefault();
-            nextIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
-            break;
-          case 'ArrowRight':
-            event.preventDefault();
-            nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
-            break;
-          case 'Home':
-            event.preventDefault();
-            nextIndex = 0;
-            break;
-          case 'End':
-            event.preventDefault();
-            nextIndex = tabs.length - 1;
-            break;
-          default:
-            return;
-        }
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          nextIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+          break;
+        case 'Home':
+          event.preventDefault();
+          nextIndex = 0;
+          break;
+        case 'End':
+          event.preventDefault();
+          nextIndex = tabs.length - 1;
+          break;
+        default:
+          return;
+      }
 
-        tabs[nextIndex]?.focus();
-        tabs[nextIndex]?.click();
-      },
-      []
-    );
+      tabs[nextIndex]?.focus();
+      tabs[nextIndex]?.click();
+    };
 
     return (
       <div
         ref={tabsListRef}
         role="tablist"
+        tabIndex={-1}
         className={cn(tabsListVariants({ variant }), className)}
         onKeyDown={handleKeyDown}
         {...props}

@@ -259,13 +259,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Development warning: icon-only buttons must have aria-label
     React.useEffect(() => {
-      if (process.env.NODE_ENV !== 'production') {
-        if (isIconOnly && !props['aria-label'] && !props['aria-labelledby']) {
-          console.warn(
-            'HANUI Button: Icon-only buttons must have an aria-label or aria-labelledby attribute for accessibility.',
-            'Example: <Button iconLeft={<Icon />} aria-label="검색" />'
-          );
-        }
+      if (isIconOnly && !props['aria-label'] && !props['aria-labelledby']) {
+        console.warn(
+          'HANUI Button: Icon-only buttons must have an aria-label or aria-labelledby attribute for accessibility.',
+          'Example: <Button iconLeft={<Icon />} aria-label="검색" />'
+        );
       }
     }, [isIconOnly, props]);
 

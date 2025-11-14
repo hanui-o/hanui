@@ -288,7 +288,7 @@ export default function ComponentsPage() {
   return (
     <>
       <PageHeader
-        title="컴포넌트"
+        title="Components"
         description="HANUI 라이브러리에서 제공하는 모든 컴포넌트를 KRDS(Korean Design System) 분류 체계에 따라 정리했습니다."
       />
 

@@ -11,7 +11,7 @@ export default function DisplayPage() {
   return (
     <>
       <PageHeader
-        title="Display (디스플레이)"
+        title="Display"
         description="배너와 마케팅용 대형 텍스트 컴포넌트"
       />
 
@@ -48,7 +48,7 @@ export default function DisplayPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="sizes">
-            Size (크기)
+            크기 (Size)
           </Heading>
         </Stack>
 

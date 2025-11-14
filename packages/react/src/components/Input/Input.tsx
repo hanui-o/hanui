@@ -2,18 +2,6 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../../lib/utils';
 
-// Optional: Import form field hooks for automatic integration
-let useFormFieldContext: (() => any) | undefined;
-let useFormFieldIds: (() => any) | undefined;
-
-try {
-  const formModule = require('../Form');
-  useFormFieldContext = formModule.useFormField;
-  useFormFieldIds = formModule.useFormFieldIds;
-} catch {
-  // Form module not available, continue without integration
-}
-
 /**
  * Input Variants Definition
  *
@@ -177,39 +165,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    // Try to get form field context (if used inside FormField)
-    let formFieldContext: any = null;
-    let formFieldIds: any = null;
-
-    try {
-      if (useFormFieldContext) {
-        formFieldContext = useFormFieldContext();
-      }
-      if (useFormFieldIds) {
-        formFieldIds = useFormFieldIds();
-      }
-    } catch {
-      // Not inside FormField, use standalone mode
-    }
-
-    // Merge form context with props
+    // Use props directly without form field integration
     const mergedProps = {
       ...props,
-      id: props.id || formFieldIds?.inputId,
-      disabled: disabled || formFieldContext?.disabled,
-      'aria-invalid': error || formFieldContext?.error,
-      'aria-required': props['aria-required'] || formFieldContext?.required,
-      'aria-describedby':
-        [
-          props['aria-describedby'],
-          formFieldIds?.descriptionId,
-          formFieldContext?.error ? formFieldIds?.errorId : undefined,
-        ]
-          .filter(Boolean)
-          .join(' ') || undefined,
+      disabled,
+      'aria-invalid': error ? true : undefined,
+      'aria-required': props['aria-required'],
+      'aria-describedby': props['aria-describedby'],
     };
 
-    const finalError = error || formFieldContext?.error;
+    const finalError = error;
 
     // If there are addons, wrap in container
     if (leftAddon || rightAddon) {

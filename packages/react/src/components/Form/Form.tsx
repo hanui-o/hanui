@@ -301,7 +301,7 @@ export function useFormFieldIds() {
  * Returns all necessary props for accessible form inputs
  */
 export function useFormFieldProps() {
-  const { id, name, error, disabled, required } = useFormField();
+  const { name, error, disabled, required } = useFormField();
   const ids = useFormFieldIds();
 
   return {
