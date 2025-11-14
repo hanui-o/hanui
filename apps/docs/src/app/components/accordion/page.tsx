@@ -242,7 +242,7 @@ export default function AccordionPage() {
 
           {/* Default Value */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Default Value</Heading>
+            <Heading level="h3">기본값</Heading>
             <Body>defaultValue로 초기에 열릴 패널을 지정할 수 있습니다.</Body>
             <div>
               <ComponentPreview>
@@ -301,7 +301,7 @@ export default function AccordionPage() {
 
           {/* With Cards */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">With Cards</Heading>
+            <Heading level="h3">카드와 함께 사용</Heading>
             <Body>
               AccordionContent 내부에 Card를 사용하여 구조화된 콘텐츠를 표시할
               수 있습니다.

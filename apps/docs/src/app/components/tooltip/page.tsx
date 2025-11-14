@@ -211,7 +211,7 @@ export default function TooltipPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            Usage
+            사용법
           </Heading>
           <CodeBlock
             code={`import { Tooltip, Button } from '@hanui/react'
@@ -230,13 +230,13 @@ export default function MyComponent() {
       {/* Examples */}
       <PageSection>
         <Heading level="h2" id="examples">
-          Examples
+          예제
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Default */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Default</Heading>
+            <Heading level="h3">기본</Heading>
             <div>
               <ComponentPreview>
                 <Tooltip content="기본 툴팁입니다">
@@ -255,7 +255,7 @@ export default function MyComponent() {
 
           {/* Position */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Position</Heading>
+            <Heading level="h3">위치</Heading>
             <Body>
               툴팁의 위치를 <code>position</code> prop으로 지정할 수 있습니다.
             </Body>
@@ -298,7 +298,7 @@ export default function MyComponent() {
 
           {/* Variants */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Variants</Heading>
+            <Heading level="h3">변형</Heading>
             <Body>
               <code>variant</code> prop으로 툴팁 스타일을 변경할 수 있습니다.
             </Body>
@@ -407,7 +407,7 @@ export default function MyComponent() {
 
           {/* Disabled */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Disabled</Heading>
+            <Heading level="h3">비활성화</Heading>
             <Body>
               <code>disabled</code> prop으로 툴팁을 비활성화할 수 있습니다.
             </Body>

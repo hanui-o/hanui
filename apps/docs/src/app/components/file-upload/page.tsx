@@ -93,7 +93,7 @@ export default () => {
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* With Label */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">With Label</Heading>
+            <Heading level="h3">라벨 포함</Heading>
             <Body className="mb-4">
               라벨을 표시하여 업로드 영역의 의미를 명확히 합니다.
             </Body>
@@ -260,7 +260,7 @@ export default () => {
 
           {/* With File List */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">With File List</Heading>
+            <Heading level="h3">파일 목록 포함</Heading>
             <Body className="mb-4">
               showFileList prop으로 업로드된 파일 목록을 표시할 수 있습니다.
               기본값은 true입니다.
@@ -297,7 +297,7 @@ export default () => {
 
           {/* Without File List */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Without File List</Heading>
+            <Heading level="h3">파일 목록 미포함</Heading>
             <Body className="mb-4">파일 목록을 숨길 수 있습니다.</Body>
             <div>
               <ComponentPreview>
@@ -329,7 +329,7 @@ export default () => {
 
           {/* Disabled */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Disabled</Heading>
+            <Heading level="h3">비활성화</Heading>
             <Body className="mb-4">비활성화된 파일 업로드 컴포넌트입니다.</Body>
             <div>
               <ComponentPreview>

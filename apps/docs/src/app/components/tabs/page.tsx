@@ -249,7 +249,7 @@ export default function TabsPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            Usage
+            사용법
           </Heading>
           <CodeBlock
             code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@hanui/react'
@@ -273,13 +273,13 @@ export default function MyComponent() {
       {/* Examples */}
       <PageSection>
         <Heading level="h2" id="examples">
-          Examples
+          예제
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Default */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Default (Underline)</Heading>
+            <Heading level="h3">기본 (밑줄)</Heading>
             <Body>기본 스타일은 밑줄로 선택된 탭을 표시합니다.</Body>
             <div>
               <ComponentPreview>
@@ -423,7 +423,7 @@ export default function MyComponent() {
 
           {/* Disabled Tab */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Disabled Tab</Heading>
+            <Heading level="h3">비활성화된 탭</Heading>
             <Body>
               <code>disabled</code> prop으로 특정 탭을 비활성화할 수 있습니다.
             </Body>
@@ -469,7 +469,7 @@ export default function MyComponent() {
 
           {/* With Cards */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">With Cards</Heading>
+            <Heading level="h3">카드와 함께 사용</Heading>
             <Body>
               탭 콘텐츠를 Card로 감싸서 시각적 구분을 강화할 수 있습니다.
             </Body>

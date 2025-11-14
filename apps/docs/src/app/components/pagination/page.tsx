@@ -86,7 +86,7 @@ export default function Example() {
           {/* Basic Pagination */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="basic">
-              Basic Pagination
+              기본 페이지네이션
             </Heading>
             <Body>
               기본 페이지네이션입니다. 이전/다음 버튼과 페이지 번호를
