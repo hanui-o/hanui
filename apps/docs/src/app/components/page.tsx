@@ -67,7 +67,7 @@ const components = [
   {
     name: 'File Upload',
     href: '/components/file-upload',
-    updated: false,
+    updated: true,
   },
   {
     name: 'Tooltip',

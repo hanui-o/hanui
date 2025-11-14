@@ -104,9 +104,21 @@ function isImageFile(file: File): boolean {
 }
 
 /**
- * FileUpload Component
+ * FileUpload Component (파일 업로드)
  *
- * KRDS-compliant file upload with drag & drop, validation, and accessibility
+ * **Foundation Layer Features:**
+ * - ✅ Semantic HTML: Proper button role and ARIA attributes
+ * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation and focus management
+ * - ✅ Screen Reader Support: Descriptive aria-labels and file list
+ * - ✅ Drag & Drop: Native HTML5 drag and drop with visual feedback
+ * - ✅ Dark Mode: Automatic dark mode support with optimized colors
+ *
+ * **Design Principles:**
+ * - Client-side validation (file type, size, count)
+ * - Image preview generation for uploaded images
+ * - Progress tracking support
+ * - Clear error states and messaging
+ * - Keyboard accessible (Enter/Space to open file dialog)
  *
  * @example
  * ```tsx
@@ -352,11 +364,24 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           aria-disabled={disabled}
           className={cn(
             'relative border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer',
-            'focus:outline-none focus:ring-2 focus:ring-[#256ef4] focus:border-transparent',
-            isDragging && !disabled && 'border-[#256ef4] bg-blue-50',
-            !isDragging && !disabled && 'border-gray-300 hover:border-gray-400',
-            disabled &&
-              'border-gray-200 bg-gray-50 cursor-not-allowed opacity-60'
+            'focus:outline-none focus:ring-2',
+            'focus:ring-blue-600 dark:focus:ring-blue-400',
+            'focus:border-transparent',
+            isDragging &&
+              !disabled && [
+                'border-blue-600 dark:border-blue-400',
+                'bg-blue-50 dark:bg-blue-950/30',
+              ],
+            !isDragging &&
+              !disabled && [
+                'border-gray-300 dark:border-gray-600',
+                'hover:border-gray-400 dark:hover:border-gray-500',
+              ],
+            disabled && [
+              'border-gray-200 dark:border-gray-700',
+              'bg-gray-50 dark:bg-gray-900',
+              'cursor-not-allowed opacity-60',
+            ]
           )}
           onDragEnter={handleDragEnter}
           onDragOver={handleDragOver}
@@ -380,7 +405,9 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           <svg
             className={cn(
               'mx-auto h-12 w-12 mb-4',
-              disabled ? 'text-gray-300' : 'text-gray-400'
+              disabled
+                ? 'text-gray-300 dark:text-gray-700'
+                : 'text-gray-400 dark:text-gray-500'
             )}
             stroke="currentColor"
             fill="none"
@@ -399,7 +426,9 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           <p
             className={cn(
               'text-sm',
-              disabled ? 'text-gray-400' : 'text-gray-600'
+              disabled
+                ? 'text-gray-400 dark:text-gray-600'
+                : 'text-gray-600 dark:text-gray-300'
             )}
           >
             {label}
@@ -407,7 +436,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
           {/* File Info */}
           {(accept || maxSize) && (
-            <p className="mt-2 text-xs text-gray-500">
+            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
               {accept && <span>형식: {accept}</span>}
               {accept && maxSize && <span> · </span>}
               {maxSize && <span>최대 크기: {formatBytes(maxSize)}</span>}
@@ -424,8 +453,8 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                 className={cn(
                   'flex items-center gap-3 p-3 rounded-md border',
                   uploadedFile.error
-                    ? 'border-red-200 bg-red-50'
-                    : 'border-gray-200 bg-gray-50'
+                    ? 'border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30'
+                    : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50'
                 )}
               >
                 {/* Preview or Icon */}
@@ -436,9 +465,9 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                     className="h-12 w-12 object-cover rounded"
                   />
                 ) : (
-                  <div className="h-12 w-12 flex items-center justify-center bg-gray-200 rounded">
+                  <div className="h-12 w-12 flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded">
                     <svg
-                      className="h-6 w-6 text-gray-500"
+                      className="h-6 w-6 text-gray-500 dark:text-gray-400"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -455,19 +484,19 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
                 {/* File Info */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">
+                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                     {uploadedFile.file.name}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {formatBytes(uploadedFile.file.size)}
                   </p>
 
                   {/* Progress Bar */}
                   {uploadedFile.progress !== undefined &&
                     uploadedFile.progress < 100 && (
-                      <div className="mt-1 w-full bg-gray-200 rounded-full h-1.5">
+                      <div className="mt-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
                         <div
-                          className="bg-[#256ef4] h-1.5 rounded-full transition-all"
+                          className="bg-blue-600 dark:bg-blue-500 h-1.5 rounded-full transition-all"
                           style={{ width: `${uploadedFile.progress}%` }}
                         />
                       </div>
@@ -475,7 +504,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
                   {/* Error Message */}
                   {uploadedFile.error && (
-                    <p className="mt-1 text-xs text-red-600">
+                    <p className="mt-1 text-xs text-red-600 dark:text-red-400">
                       {uploadedFile.error}
                     </p>
                   )}
@@ -486,8 +515,12 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                   type="button"
                   onClick={() => removeFile(uploadedFile.id)}
                   className={cn(
-                    'p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-200',
-                    'focus:outline-none focus:ring-2 focus:ring-[#256ef4]'
+                    'p-1 rounded-md',
+                    'text-gray-400 dark:text-gray-500',
+                    'hover:text-gray-600 dark:hover:text-gray-300',
+                    'hover:bg-gray-200 dark:hover:bg-gray-700',
+                    'focus:outline-none focus:ring-2',
+                    'focus:ring-blue-600 dark:focus:ring-blue-400'
                   )}
                   aria-label={`${uploadedFile.file.name} 삭제`}
                 >
