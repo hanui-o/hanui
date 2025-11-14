@@ -52,7 +52,7 @@ export default function HeadingPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="levels">
-            레벨
+            Levels (레벨)
           </Heading>
           <Stack spacing="content-loose">
             <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">

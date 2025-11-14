@@ -240,7 +240,7 @@ export default function ButtonPage() {
 
           {/* Sizes */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">크기</Heading>
+            <Heading level="h3">Size (크기)</Heading>
             <div>
               <ComponentPreview>
                 <div className="flex items-center gap-4">

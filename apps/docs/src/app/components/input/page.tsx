@@ -255,7 +255,7 @@ export default function InputPage() {
           {/* Sizes */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="sizes">
-              크기
+              Size (크기)
             </Heading>
             <div>
               <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">

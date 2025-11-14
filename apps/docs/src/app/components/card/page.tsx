@@ -61,7 +61,7 @@ export default function Example() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="variants">
-            변형 (Variants)
+            Variants (변형)
           </Heading>
           <Body size="md" className="text-gray-600 dark:text-gray-400">
             Card는 4가지 시각적 변형을 제공합니다.
@@ -149,7 +149,7 @@ export default function Example() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="padding">
-            패딩 옵션
+            Padding (패딩)
           </Heading>
           <Body size="md" className="text-gray-600 dark:text-gray-400">
             Card는 다양한 패딩 크기를 지원합니다.

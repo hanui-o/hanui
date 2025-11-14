@@ -97,7 +97,7 @@ export default () => {
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Sizes */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">크기</Heading>
+            <Heading level="h3">Size (크기)</Heading>
             <Body className="mb-4">
               다섯 가지 크기를 지원합니다: sm, md, lg, xl, full
             </Body>
