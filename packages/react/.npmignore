@@ -1,0 +1,31 @@
+# Source files
+src/
+*.ts
+*.tsx
+!*.d.ts
+
+# Config files
+tsconfig.json
+vite.config.ts
+.eslintrc.cjs
+
+# Development
+node_modules/
+.turbo/
+*.log
+.DS_Store
+
+# Testing
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Build artifacts (keep dist/)
+.vite/
+
+# Documentation
+docs/
+*.md
+!README.md

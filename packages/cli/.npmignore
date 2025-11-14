@@ -1,0 +1,31 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Config files
+tsconfig.json
+tsup.config.ts
+.eslintrc.cjs
+
+# Development
+node_modules/
+.turbo/
+*.log
+.DS_Store
+
+# Testing
+__tests__/
+*.test.ts
+*.spec.ts
+
+# Build artifacts (keep dist/)
+.tsup/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Templates are needed for CLI
+!templates/
