@@ -855,8 +855,8 @@ export default function SpacingPage() {
         </Stack>
 
         <Stack spacing="h2-h3">
-          <h2 id="api" className="text-heading-lg font-bold">
-            API
+          <h2 id="api-reference" className="text-heading-lg font-bold">
+            API 레퍼런스
           </h2>
 
           <Stack spacing="h3-content">

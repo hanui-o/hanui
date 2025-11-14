@@ -160,7 +160,7 @@ export default function HeadingPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            사용 예시
+            예제
           </Heading>
         </Stack>
 
@@ -247,8 +247,8 @@ export default function HeadingPage() {
       {/* API */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="api">
-            API
+          <Heading level="h2" id="api-reference">
+            API 레퍼런스
           </Heading>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
