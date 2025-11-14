@@ -52,7 +52,7 @@ const components = [
   {
     name: 'Breadcrumb',
     href: '/components/breadcrumb',
-    updated: false,
+    updated: true,
   },
   {
     name: 'Pagination',

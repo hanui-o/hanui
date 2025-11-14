@@ -1,337 +1,354 @@
-'use client';
-
-import { Breadcrumb, BreadcrumbItem, Heading, Body, Stack } from '@hanui/react';
-import Link from 'next/link';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
+import { Breadcrumb, BreadcrumbItem, Stack, Heading, Body } from '@hanui/react';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
-
-// Example icons using SVG
-const HomeIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M8 1L1 6V15H6V11H10V15H15V6L8 1Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
-    />
-  </svg>
-);
-
-const FolderIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M2 4C2 3.44772 2.44772 3 3 3H6.58579C6.851 3 7.10536 3.10536 7.29289 3.29289L8.70711 4.70711C8.89464 4.89464 9.149 5 9.41421 5H13C13.5523 5 14 5.44772 14 6V12C14 12.5523 13.5523 13 13 13H3C2.44772 13 2 12.5523 2 12V4Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill="none"
-    />
-  </svg>
-);
+import { CodeBlock } from '@/components/content/CodeBlock';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
+import { GuidelineSection } from '@/components/content/GuidelineSection';
 
 export default function BreadcrumbPage() {
   return (
     <>
+      {/* Header */}
       <PageHeader
-        title="Breadcrumb"
-        description="현재 페이지의 위치를 나타내는 KRDS 기반 브레드크럼 네비게이션 컴포넌트"
+        title="Breadcrumb (브레드크럼)"
+        description="탐색 계층 구조를 표시하여 사용자가 현재 위치를 파악하고 계층 구조의 수준을 이동할 수 있게 해주는 네비게이션 컴포넌트입니다."
       />
 
-      {/* Quick Start */}
+      {/* Usage Examples */}
       <PageSection>
-        <ComponentPreview>
-          <Breadcrumb>
-            <BreadcrumbItem href="/">홈</BreadcrumbItem>
-            <BreadcrumbItem href="/products">제품</BreadcrumbItem>
-            <BreadcrumbItem href="/products/electronics">
-              전자제품
-            </BreadcrumbItem>
-            <BreadcrumbItem current>노트북</BreadcrumbItem>
-          </Breadcrumb>
-        </ComponentPreview>
-        <div className="mt-4">
-          <CodeBlock
-            code={`import { Breadcrumb, BreadcrumbItem } from '@hanui/react';
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="usage" className="text-2xl font-semibold">
+            사용 예제
+          </Heading>
+
+          <Stack spacing="heading-tight">
+            <Heading
+              level="h3"
+              id="usage-basic"
+              className="text-lg font-medium"
+            >
+              기본 사용 (권장)
+            </Heading>
+            <Body color="secondary">
+              첫 번째 아이템에 isHome prop을 설정하여 홈 링크를 표시합니다.
+              마지막 아이템에 current prop을 설정하여 현재 페이지를 나타냅니다.
+            </Body>
+            <div>
+              <ComponentPreview>
+                <Breadcrumb>
+                  <BreadcrumbItem href="/" isHome>
+                    홈
+                  </BreadcrumbItem>
+                  <BreadcrumbItem href="/notice">공지사항</BreadcrumbItem>
+                  <BreadcrumbItem current>상세보기</BreadcrumbItem>
+                </Breadcrumb>
+              </ComponentPreview>
+
+              <div className="mt-4">
+                <CodeBlock
+                  language="tsx"
+                  code={`import { Breadcrumb, BreadcrumbItem } from '@hanui/react';
 
 <Breadcrumb>
-  <BreadcrumbItem href="/">홈</BreadcrumbItem>
+  <BreadcrumbItem href="/" isHome>
+    홈
+  </BreadcrumbItem>
+  <BreadcrumbItem href="/notice">공지사항</BreadcrumbItem>
+  <BreadcrumbItem current>상세보기</BreadcrumbItem>
+</Breadcrumb>`}
+                />
+              </div>
+            </div>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading
+              level="h3"
+              id="usage-service"
+              className="text-lg font-medium"
+            >
+              서비스 신청 경로
+            </Heading>
+            <Body color="secondary">
+              정부 서비스 신청 흐름을 보여주는 브레드크럼 예제입니다.
+            </Body>
+            <div>
+              <ComponentPreview>
+                <Breadcrumb>
+                  <BreadcrumbItem href="/" isHome>
+                    홈
+                  </BreadcrumbItem>
+                  <BreadcrumbItem href="/service">서비스 신청</BreadcrumbItem>
+                  <BreadcrumbItem current>서비스 신청2</BreadcrumbItem>
+                </Breadcrumb>
+              </ComponentPreview>
+
+              <div className="mt-4">
+                <CodeBlock
+                  language="tsx"
+                  code={`import { Breadcrumb, BreadcrumbItem } from '@hanui/react';
+
+<Breadcrumb>
+  <BreadcrumbItem href="/" isHome>
+    홈
+  </BreadcrumbItem>
+  <BreadcrumbItem href="/service">서비스 신청</BreadcrumbItem>
+  <BreadcrumbItem current>서비스 신청2</BreadcrumbItem>
+</Breadcrumb>`}
+                />
+              </div>
+            </div>
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading
+              level="h3"
+              id="usage-separator"
+              className="text-lg font-medium"
+            >
+              커스텀 구분자
+            </Heading>
+            <Body color="secondary">
+              separator prop으로 구분자를 커스터마이징할 수 있습니다.
+            </Body>
+            <div>
+              <ComponentPreview>
+                <Breadcrumb separator="/">
+                  <BreadcrumbItem href="/" isHome>
+                    홈
+                  </BreadcrumbItem>
+                  <BreadcrumbItem href="/products">제품</BreadcrumbItem>
+                  <BreadcrumbItem href="/products/electronics">
+                    전자제품
+                  </BreadcrumbItem>
+                  <BreadcrumbItem current>노트북</BreadcrumbItem>
+                </Breadcrumb>
+              </ComponentPreview>
+
+              <div className="mt-4">
+                <CodeBlock
+                  language="tsx"
+                  code={`import { Breadcrumb, BreadcrumbItem } from '@hanui/react';
+
+<Breadcrumb separator="/">
+  <BreadcrumbItem href="/" isHome>
+    홈
+  </BreadcrumbItem>
   <BreadcrumbItem href="/products">제품</BreadcrumbItem>
   <BreadcrumbItem href="/products/electronics">
     전자제품
   </BreadcrumbItem>
   <BreadcrumbItem current>노트북</BreadcrumbItem>
 </Breadcrumb>`}
-            language="tsx"
-            showLineNumbers={false}
-          />
-        </div>
-      </PageSection>
-
-      {/* Examples */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="examples">
-            Examples
-          </Heading>
-        </Stack>
-
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* Basic Breadcrumb */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Basic Breadcrumb</Heading>
-            <Body className="mb-4">
-              기본 브레드크럼입니다. 마지막 항목에 current prop을 설정합니다.
-            </Body>
-            <div>
-              <ComponentPreview>
-                <Breadcrumb>
-                  <BreadcrumbItem href="/">홈</BreadcrumbItem>
-                  <BreadcrumbItem href="/docs">문서</BreadcrumbItem>
-                  <BreadcrumbItem current>컴포넌트</BreadcrumbItem>
-                </Breadcrumb>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Breadcrumb>
-  <BreadcrumbItem href="/">홈</BreadcrumbItem>
-  <BreadcrumbItem href="/docs">문서</BreadcrumbItem>
-  <BreadcrumbItem current>컴포넌트</BreadcrumbItem>
-</Breadcrumb>`}
-                  language="tsx"
-                  showLineNumbers={false}
                 />
               </div>
             </div>
           </Stack>
 
-          {/* Custom Separator */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Custom Separator</Heading>
-            <Body className="mb-4">
-              separator prop으로 구분자를 커스터마이징할 수 있습니다. 기본값은
-              &apos;&gt;&apos;입니다.
-            </Body>
-            <div>
-              <ComponentPreview>
-                <div className="space-y-4">
-                  <Breadcrumb separator="/">
-                    <BreadcrumbItem href="/">홈</BreadcrumbItem>
-                    <BreadcrumbItem href="/users">사용자</BreadcrumbItem>
-                    <BreadcrumbItem current>프로필</BreadcrumbItem>
-                  </Breadcrumb>
-
-                  <Breadcrumb separator="-">
-                    <BreadcrumbItem href="/">홈</BreadcrumbItem>
-                    <BreadcrumbItem href="/settings">설정</BreadcrumbItem>
-                    <BreadcrumbItem current>계정</BreadcrumbItem>
-                  </Breadcrumb>
-
-                  <Breadcrumb separator="·">
-                    <BreadcrumbItem href="/">홈</BreadcrumbItem>
-                    <BreadcrumbItem href="/blog">블로그</BreadcrumbItem>
-                    <BreadcrumbItem current>게시글</BreadcrumbItem>
-                  </Breadcrumb>
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Breadcrumb separator="/">
-  <BreadcrumbItem href="/">홈</BreadcrumbItem>
-  <BreadcrumbItem href="/users">사용자</BreadcrumbItem>
-  <BreadcrumbItem current>프로필</BreadcrumbItem>
-</Breadcrumb>
-
-<Breadcrumb separator="-">
-  <BreadcrumbItem href="/">홈</BreadcrumbItem>
-  <BreadcrumbItem href="/settings">설정</BreadcrumbItem>
-  <BreadcrumbItem current>계정</BreadcrumbItem>
-</Breadcrumb>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-
-          {/* With Icons */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">With Icons</Heading>
-            <Body className="mb-4">아이콘을 포함한 브레드크럼입니다.</Body>
-            <div>
-              <ComponentPreview>
-                <Breadcrumb>
-                  <BreadcrumbItem href="/">
-                    <span className="flex items-center gap-1">
-                      <HomeIcon />
-                      <span>홈</span>
-                    </span>
-                  </BreadcrumbItem>
-                  <BreadcrumbItem href="/projects">
-                    <span className="flex items-center gap-1">
-                      <FolderIcon />
-                      <span>프로젝트</span>
-                    </span>
-                  </BreadcrumbItem>
-                  <BreadcrumbItem current>디자인 시스템</BreadcrumbItem>
-                </Breadcrumb>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Breadcrumb>
-  <BreadcrumbItem href="/">
-    <span className="flex items-center gap-1">
-      <HomeIcon />
-      <span>홈</span>
-    </span>
-  </BreadcrumbItem>
-  <BreadcrumbItem href="/projects">
-    <span className="flex items-center gap-1">
-      <FolderIcon />
-      <span>프로젝트</span>
-    </span>
-  </BreadcrumbItem>
-  <BreadcrumbItem current>디자인 시스템</BreadcrumbItem>
-</Breadcrumb>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-
-          {/* Icon Only */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Icon Only</Heading>
-            <Body className="mb-4">
-              첫 번째 항목을 아이콘만으로 표시할 수 있습니다.
+            <Heading
+              level="h3"
+              id="usage-long-text"
+              className="text-lg font-medium"
+            >
+              긴 텍스트 자동 처리
+            </Heading>
+            <Body color="secondary">
+              긴 텍스트는 자동으로 말줄임(ellipsis)으로 표시되며, 마우스를
+              올리면 전체 텍스트를 툴팁으로 확인할 수 있습니다.
             </Body>
             <div>
               <ComponentPreview>
                 <Breadcrumb>
-                  <BreadcrumbItem href="/">
-                    <HomeIcon />
+                  <BreadcrumbItem href="/" isHome>
+                    홈
                   </BreadcrumbItem>
-                  <BreadcrumbItem href="/library">라이브러리</BreadcrumbItem>
-                  <BreadcrumbItem href="/library/components">
-                    컴포넌트
+                  <BreadcrumbItem href="/government">
+                    정부 서비스
                   </BreadcrumbItem>
-                  <BreadcrumbItem current>Breadcrumb</BreadcrumbItem>
+                  <BreadcrumbItem href="/government/digital">
+                    디지털 정부혁신
+                  </BreadcrumbItem>
+                  <BreadcrumbItem current>
+                    디지털 서비스 표준 가이드라인 및 적용 방안
+                  </BreadcrumbItem>
                 </Breadcrumb>
               </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Breadcrumb>
-  <BreadcrumbItem href="/">
-    <HomeIcon />
-  </BreadcrumbItem>
-  <BreadcrumbItem href="/library">라이브러리</BreadcrumbItem>
-  <BreadcrumbItem href="/library/components">
-    컴포넌트
-  </BreadcrumbItem>
-  <BreadcrumbItem current>Breadcrumb</BreadcrumbItem>
-</Breadcrumb>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
 
-          {/* Deep Navigation */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Deep Navigation</Heading>
-            <Body className="mb-4">
-              깊은 계층 구조의 네비게이션 예제입니다.
-            </Body>
-            <div>
-              <ComponentPreview>
-                <Breadcrumb>
-                  <BreadcrumbItem href="/">홈</BreadcrumbItem>
-                  <BreadcrumbItem href="/admin">관리</BreadcrumbItem>
-                  <BreadcrumbItem href="/admin/settings">설정</BreadcrumbItem>
-                  <BreadcrumbItem href="/admin/settings/users">
-                    사용자
-                  </BreadcrumbItem>
-                  <BreadcrumbItem href="/admin/settings/users/permissions">
-                    권한
-                  </BreadcrumbItem>
-                  <BreadcrumbItem current>역할 관리</BreadcrumbItem>
-                </Breadcrumb>
-              </ComponentPreview>
               <div className="mt-4">
                 <CodeBlock
-                  code={`<Breadcrumb>
-  <BreadcrumbItem href="/">홈</BreadcrumbItem>
-  <BreadcrumbItem href="/admin">관리</BreadcrumbItem>
-  <BreadcrumbItem href="/admin/settings">설정</BreadcrumbItem>
-  <BreadcrumbItem href="/admin/settings/users">
-    사용자
-  </BreadcrumbItem>
-  <BreadcrumbItem href="/admin/settings/users/permissions">
-    권한
-  </BreadcrumbItem>
-  <BreadcrumbItem current>역할 관리</BreadcrumbItem>
-</Breadcrumb>`}
                   language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-
-          {/* With Next.js Link */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">With Next.js Link</Heading>
-            <Body className="mb-4">
-              Next.js Link 컴포넌트와 함께 사용할 수 있습니다.
-            </Body>
-            <div>
-              <ComponentPreview>
-                <Breadcrumb>
-                  <BreadcrumbItem href="/">
-                    <Link href="/">홈</Link>
-                  </BreadcrumbItem>
-                  <BreadcrumbItem href="/components">
-                    <Link href="/components">컴포넌트</Link>
-                  </BreadcrumbItem>
-                  <BreadcrumbItem current>Breadcrumb</BreadcrumbItem>
-                </Breadcrumb>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`import Link from 'next/link';
+                  code={`import { Breadcrumb, BreadcrumbItem } from '@hanui/react';
 
 <Breadcrumb>
-  <BreadcrumbItem href="/">
-    <Link href="/">홈</Link>
+  <BreadcrumbItem href="/" isHome>
+    홈
   </BreadcrumbItem>
-  <BreadcrumbItem href="/components">
-    <Link href="/components">컴포넌트</Link>
+  <BreadcrumbItem href="/government">
+    정부 서비스
   </BreadcrumbItem>
-  <BreadcrumbItem current>Breadcrumb</BreadcrumbItem>
+  <BreadcrumbItem href="/government/digital">
+    디지털 정부혁신
+  </BreadcrumbItem>
+  <BreadcrumbItem current>
+    디지털 서비스 표준 가이드라인 및 적용 방안
+  </BreadcrumbItem>
 </Breadcrumb>`}
-                  language="tsx"
-                  showLineNumbers={false}
                 />
               </div>
             </div>
+          </Stack>
+        </Stack>
+      </PageSection>
+
+      {/* Guidelines */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading
+            level="h2"
+            id="guidelines"
+            className="text-2xl font-semibold"
+          >
+            사용 가이드라인
+          </Heading>
+
+          <GuidelineSection title="언제 사용하나요?" type="do">
+            <ul className="list-disc list-inside space-y-2">
+              <li>다층 구조의 계층형 네비게이션이 있을 때</li>
+              <li>사용자가 현재 위치를 파악해야 할 때</li>
+              <li>상위 레벨로 빠르게 이동해야 할 때</li>
+              <li>정부 디지털 서비스의 표준 네비게이션 제공 시</li>
+            </ul>
+          </GuidelineSection>
+
+          <GuidelineSection title="언제 사용하지 않나요?" type="dont">
+            <ul className="list-disc list-inside space-y-2">
+              <li>단일 레벨 사이트 (계층 구조가 없을 때)</li>
+              <li>메인 페이지나 랜딩 페이지</li>
+              <li>
+                진행 단계 표시 (단계별 프로세스는 Step Indicator 사용 권장)
+              </li>
+              <li>메인 메뉴나 사이드바를 대체하는 용도</li>
+            </ul>
+          </GuidelineSection>
+        </Stack>
+      </PageSection>
+
+      {/* Accessibility */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading
+            level="h2"
+            id="accessibility"
+            className="text-2xl font-semibold"
+          >
+            접근성
+          </Heading>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="wcag-compliance" className="text-lg">
+              WCAG 2.1 / KWCAG 2.2 준수
+            </Heading>
+            <Body>
+              이 컴포넌트는 다음 접근성 기준을 준수합니다:
+              <br />
+              <br />
+              <strong>Semantic Structure:</strong> nav 요소와 ordered list로
+              구조화되어 스크린 리더가 네비게이션 랜드마크로 인식합니다.
+              <br />
+              <br />
+              <strong>ARIA Labels:</strong>{' '}
+              aria-label=&quot;브레드크럼&quot;으로 네비게이션 목적을 명확히
+              전달합니다.
+              <br />
+              <br />
+              <strong>Visual Contrast:</strong> 구분자는 배경과 최소 3:1
+              명암비를 유지하며, 링크에는 밑줄과 호버 효과를 제공합니다.
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="keyboard-navigation" className="text-lg">
+              키보드 내비게이션
+            </Heading>
+            <Body>
+              <strong>Tab:</strong> 다음 브레드크럼 링크로 포커스 이동
+              <br />
+              <strong>Shift + Tab:</strong> 이전 브레드크럼 링크로 포커스 이동
+              <br />
+              <strong>Enter / Click:</strong> 링크된 페이지로 이동
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="screen-reader" className="text-lg">
+              스크린 리더 지원
+            </Heading>
+            <Body>
+              - 스크린 리더는 &quot;브레드크럼 네비게이션&quot;으로 인식합니다
+              <br />
+              - 구분자는 aria-hidden=&quot;true&quot;로 스크린 리더에서
+              숨겨집니다
+              <br />
+              - 현재 페이지는 aria-current=&quot;page&quot;로 명확히 표시됩니다
+              <br />- 각 링크의 텍스트가 명확하게 읽힙니다
+            </Body>
+          </Stack>
+        </Stack>
+      </PageSection>
+
+      {/* Design Principles */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading
+            level="h2"
+            id="design-principles"
+            className="text-2xl font-semibold"
+          >
+            디자인 원칙
+          </Heading>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="home-first" className="text-lg">
+              1. 홈 링크 우선
+            </Heading>
+            <Body>
+              항상 메인 화면 링크를 첫 번째 아이템으로 포함합니다. isHome prop을
+              설정하여 KRDS 표준 &quot;home&quot; 클래스가 자동으로 적용됩니다.
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="single-line" className="text-lg">
+              2. 단일 라인 유지
+            </Heading>
+            <Body>
+              브레드크럼은 항상 단일 라인으로 표시됩니다. 긴 경로는 자동으로
+              말줄임 처리되며, 데스크톱에서는 최대 4개 링크, 모바일에서는 첫
+              번째와 마지막 경로만 표시하고 중간은 생략 기호로 처리할 수
+              있습니다.
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="positioning" className="text-lg">
+              3. 위치 및 정렬
+            </Heading>
+            <Body>
+              페이지 제목 위에 배치하고 왼쪽 정렬합니다. 경로 링크 간 충분한
+              간격을 제공하여 가독성을 높입니다.
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="visual-hierarchy" className="text-lg">
+              4. 시각적 계층 구조
+            </Heading>
+            <Body>
+              구분자로 시각적 계층을 제공하며, 현재 페이지는 굵은 글씨로
+              강조됩니다. 링크에는 밑줄과 호버 효과로 클릭 가능함을 명확히
+              표시합니다.
+            </Body>
           </Stack>
         </Stack>
       </PageSection>
@@ -339,111 +356,109 @@ export default function BreadcrumbPage() {
       {/* API Reference */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="api">
+          <Heading level="h2" id="api" className="text-2xl font-semibold">
             API Reference
           </Heading>
-        </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* Breadcrumb */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Breadcrumb</Heading>
+            <Heading level="h3" id="breadcrumb-props" className="text-lg">
+              Breadcrumb Props
+            </Heading>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <th className="text-left py-3 px-4 font-semibold w-1/5">
-                      Prop
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-2/5">
-                      Type
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-1/6">
-                      Default
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-1/4">
-                      Description
-                    </th>
+                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                    <th className="text-left py-2 px-4">Prop</th>
+                    <th className="text-left py-2 px-4">Type</th>
+                    <th className="text-left py-2 px-4">Default</th>
+                    <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">separator</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      string | React.ReactNode
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;&gt;&quot;
-                    </td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      항목 간 구분자
+                <tbody className="text-gray-700 dark:text-gray-300">
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">separator</td>
+                    <td className="py-2 px-4 font-mono">ReactNode</td>
+                    <td className="py-2 px-4 font-mono">&quot;&gt;&quot;</td>
+                    <td className="py-2 px-4">
+                      아이템 간 커스텀 구분자 (예: &quot;/&quot;,
+                      &quot;&gt;&quot;)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      React.ReactNode
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      BreadcrumbItem 컴포넌트들
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">className</td>
+                    <td className="py-2 px-4 font-mono">string</td>
+                    <td className="py-2 px-4">-</td>
+                    <td className="py-2 px-4">추가 CSS 클래스</td>
+                  </tr>
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">children</td>
+                    <td className="py-2 px-4 font-mono">ReactNode</td>
+                    <td className="py-2 px-4">-</td>
+                    <td className="py-2 px-4">
+                      BreadcrumbItem 컴포넌트들 (필수)
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <Body className="mt-2">
+              <strong>중요:</strong> Breadcrumb는 자동으로 .krds-breadcrumb-wrap
+              클래스와 aria-label=&quot;브레드크럼&quot;을 적용하여 KRDS 표준을
+              준수합니다.
+            </Body>
           </Stack>
 
-          {/* BreadcrumbItem */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">BreadcrumbItem</Heading>
+            <Heading level="h3" id="breadcrumbitem-props" className="text-lg">
+              BreadcrumbItem Props
+            </Heading>
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <th className="text-left py-3 px-4 font-semibold w-1/5">
-                      Prop
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-2/5">
-                      Type
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-1/6">
-                      Default
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-1/4">
-                      Description
-                    </th>
+                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                    <th className="text-left py-2 px-4">Prop</th>
+                    <th className="text-left py-2 px-4">Type</th>
+                    <th className="text-left py-2 px-4">Default</th>
+                    <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">href</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      string
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      링크 URL (current가 false일 때 필수)
+                <tbody className="text-gray-700 dark:text-gray-300">
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">href</td>
+                    <td className="py-2 px-4 font-mono">string</td>
+                    <td className="py-2 px-4">-</td>
+                    <td className="py-2 px-4">
+                      링크 URL (현재 페이지가 아닐 때)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">current</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      boolean
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">false</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      현재 페이지 여부
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">current</td>
+                    <td className="py-2 px-4 font-mono">boolean</td>
+                    <td className="py-2 px-4">false</td>
+                    <td className="py-2 px-4">
+                      현재 페이지 여부 (aria-current=&quot;page&quot; 설정)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
-                      React.ReactNode
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">isHome</td>
+                    <td className="py-2 px-4 font-mono">boolean</td>
+                    <td className="py-2 px-4">false</td>
+                    <td className="py-2 px-4">
+                      홈 아이템 여부 (KRDS &quot;home&quot; 클래스 자동 적용)
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      표시할 내용
+                  </tr>
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">className</td>
+                    <td className="py-2 px-4 font-mono">string</td>
+                    <td className="py-2 px-4">-</td>
+                    <td className="py-2 px-4">추가 CSS 클래스</td>
+                  </tr>
+                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                    <td className="py-2 px-4 font-mono">children</td>
+                    <td className="py-2 px-4 font-mono">ReactNode</td>
+                    <td className="py-2 px-4">-</td>
+                    <td className="py-2 px-4">
+                      아이템 텍스트 또는 콘텐츠 (필수)
                     </td>
                   </tr>
                 </tbody>
@@ -453,65 +468,81 @@ export default function BreadcrumbPage() {
         </Stack>
       </PageSection>
 
-      {/* Best Practices */}
+      {/* Foundation Layer */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="best-practices">
-            Best Practices
+          <Heading
+            level="h2"
+            id="foundation-layer"
+            className="text-2xl font-semibold"
+          >
+            Foundation Layer
           </Heading>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>
-              <strong>현재 페이지 표시:</strong> 마지막 항목에는 항상 current
-              prop을 설정하세요
-            </li>
-            <li>
-              <strong>홈 링크:</strong> 첫 번째 항목은 일반적으로 홈 페이지로
-              연결합니다
-            </li>
-            <li>
-              <strong>간결성:</strong> 항목 이름은 짧고 명확하게 유지하세요
-            </li>
-            <li>
-              <strong>모바일 대응:</strong> 깊은 계층에서는 중간 항목을
-              생략하거나 드롭다운으로 처리하는 것을 고려하세요
-            </li>
-            <li>
-              <strong>일관성:</strong> 사이트 전체에서 동일한 구분자와 스타일을
-              사용하세요
-            </li>
-          </ul>
-        </Stack>
-      </PageSection>
 
-      {/* Accessibility */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="accessibility">
-            Accessibility
-          </Heading>
-          <Body>이 컴포넌트는 WCAG 2.1 AA 기준을 준수합니다:</Body>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>
-              <strong>시맨틱 마크업:</strong> nav 태그와 적절한 ARIA 레이블 사용
-            </li>
-            <li>
-              <strong>구조화된 데이터:</strong> ol/li 태그로 순서 있는 목록 표현
-            </li>
-            <li>
-              <strong>ARIA 속성:</strong> aria-label=&quot;breadcrumb&quot;로
-              네비게이션 유형 명시
-            </li>
-            <li>
-              <strong>현재 페이지:</strong> aria-current=&quot;page&quot;로 현재
-              위치 표시
-            </li>
-            <li>
-              <strong>키보드 네비게이션:</strong> Tab 키로 링크 간 이동 가능
-            </li>
-            <li>
-              <strong>스크린 리더:</strong> 구분자는 aria-hidden으로 숨김 처리
-            </li>
-          </ul>
+          <Body>
+            Breadcrumb 컴포넌트는 HANUI의 Foundation Layer를 통해 다음 5가지
+            핵심 기능을 자동으로 제공합니다:
+          </Body>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="fl-required-class" className="text-lg">
+              1. Required CSS Class (.krds-breadcrumb-wrap)
+            </Heading>
+            <Body>
+              KRDS 표준에서 요구하는 .krds-breadcrumb-wrap 클래스가 자동으로
+              적용됩니다. 개발자가 수동으로 클래스를 추가할 필요가 없습니다.
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="fl-semantic" className="text-lg">
+              2. Semantic HTML
+            </Heading>
+            <Body>
+              nav 요소와 ordered list(ol) 구조가 자동으로 생성되어 스크린 리더가
+              네비게이션 랜드마크로 인식합니다.
+              aria-label=&quot;브레드크럼&quot;이 자동으로 설정됩니다.
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="fl-wcag" className="text-lg">
+              3. WCAG 2.1 / KWCAG 2.2 Compliance
+            </Heading>
+            <Body>
+              키보드 네비게이션, 포커스 관리, ARIA 속성이 자동으로 처리됩니다.
+              구분자는 aria-hidden=&quot;true&quot;로 스크린 리더에서 숨겨지며,
+              현재 페이지는 aria-current=&quot;page&quot;로 명확히 표시됩니다.
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="fl-screen-reader" className="text-lg">
+              4. Screen Reader Support
+            </Heading>
+            <Body>
+              시맨틱 HTML과 적절한 ARIA 레이블로 보조 기술과의 호환성을
+              보장합니다. 구분자는 스크린 리더에서 숨겨지고, 경로 구조만
+              명확하게 전달됩니다.
+            </Body>
+          </Stack>
+
+          <Stack spacing="content-tight">
+            <Heading level="h3" id="fl-visual-hierarchy" className="text-lg">
+              5. Visual Hierarchy
+            </Heading>
+            <Body>
+              구분자는 배경과 3:1 명암비를 유지하며, 링크에는 밑줄과 호버 효과가
+              자동으로 적용됩니다. 긴 텍스트는 말줄임 처리되고 툴팁으로 전체
+              내용을 확인할 수 있습니다.
+            </Body>
+          </Stack>
+
+          <Body color="secondary" className="mt-4">
+            이러한 자동화된 기능들은 개발자가 접근성 구현에 대한 깊은 지식
+            없이도 KRDS 표준을 준수하는 컴포넌트를 쉽게 사용할 수 있도록
+            돕습니다.
+          </Body>
         </Stack>
       </PageSection>
     </>
