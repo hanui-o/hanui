@@ -149,7 +149,7 @@ https://www.npmjs.com/package/create-hanui-app
    ```
    Dashboard → New Project
    → Import Git Repository
-   → Select: odada-o/hanui
+   → Select: hanui-o/hanui
    ```
 
 3. **프로젝트 설정**
@@ -344,13 +344,13 @@ https://www.npmjs.com/package/create-hanui-app
 
 ```
 Production: https://hanui.io
-Vercel Dashboard: https://vercel.com/odada-o/hanui-docs
+Vercel Dashboard: https://vercel.com/hanui-o/hanui-docs
 ```
 
 ### GitHub Actions
 
 ```
-https://github.com/odada-o/hanui/actions
+https://github.com/hanui-o/hanui/actions
 ```
 
 ---

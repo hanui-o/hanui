@@ -14,7 +14,7 @@
 - ✅ 6개 Epic, 23개 Issue 생성 완료
 - ✅ 예상 개발 시간: 179h (약 22일)
 
-**확인**: https://github.com/odada-o/hanui/issues
+**확인**: https://github.com/hanui-o/hanui/issues
 
 ### 2. 기술 스택 확정
 
@@ -363,6 +363,6 @@ git checkout -b feat/setup-monorepo
 **완료일**: 2025-11-10  
 **Status**: ✅ Phase 1 기획 완료 → 🚀 개발 시작 대기
 
-**Repository**: https://github.com/odada-o/hanui  
-**Issues**: https://github.com/odada-o/hanui/issues  
-**Milestone**: https://github.com/odada-o/hanui/milestone/1
+**Repository**: https://github.com/hanui-o/hanui  
+**Issues**: https://github.com/hanui-o/hanui/issues  
+**Milestone**: https://github.com/hanui-o/hanui/milestone/1

@@ -145,6 +145,6 @@ pnpm update @hanui/react
 - Husky pre-commit hooks
 - GitHub repository 초기 설정
 
-[unreleased]: https://github.com/odada-o/hanui/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/odada-o/hanui/releases/tag/v0.1.0
-[0.1.0-alpha.1]: https://github.com/odada-o/hanui/releases/tag/v0.1.0-alpha.1
+[unreleased]: https://github.com/hanui-o/hanui/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/hanui-o/hanui/releases/tag/v0.1.0
+[0.1.0-alpha.1]: https://github.com/hanui-o/hanui/releases/tag/v0.1.0-alpha.1

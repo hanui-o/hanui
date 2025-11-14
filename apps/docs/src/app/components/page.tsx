@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import { Stack } from '@hanui/react';
+import { Stack, Heading } from '@hanui/react';
+import { PageHeader } from '@/components/content/PageHeader';
+import { PageSection } from '@/components/content/PageSection';
 
 const components = [
   {
@@ -102,86 +104,88 @@ const typographyComponents = [
 
 export default function ComponentsPage() {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12 pb-32 relative">
-      <Stack spacing="section">
-        {/* Header */}
-        <Stack spacing="heading-content">
-          <h1 className="text-4xl font-bold">Components (컴포넌트)</h1>
-          <p className="text-base text-gray-600 dark:text-gray-400">
-            HANUI 라이브러리에서 제공하는 모든 컴포넌트를 확인할 수 있습니다. 더
-            많은 컴포넌트를 추가하고 있습니다.
-          </p>
-        </Stack>
+    <>
+      {/* Header */}
+      <PageHeader
+        title="Components (컴포넌트)"
+        description="HANUI 라이브러리에서 제공하는 모든 컴포넌트를 확인할 수 있습니다. 더
+            많은 컴포넌트를 추가하고 있습니다."
+      />
 
+      <PageSection>
         {/* Typography Section */}
         <Stack spacing="heading-content">
-          <h2 className="text-2xl font-semibold">타이포그래피</h2>
+          <Heading level="h2" className="text-2xl font-semibold">
+            타이포그래피
+          </Heading>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {typographyComponents.map((component) => (
               <Link
                 key={component.name}
                 href={component.href}
-                className="relative block rounded-lg transition-all group"
+                className="relative rounded-lg transition-all group flex items-center gap-2"
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:underline transition-all">
-                    {component.name}
-                  </span>
-                  {component.updated && (
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
-                  )}
-                </div>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:underline transition-all">
+                  {component.name}
+                </span>
+                {component.updated && (
+                  <span className="w-2 h-2 rounded-full bg-blue-500" />
+                )}
               </Link>
             ))}
           </div>
         </Stack>
+      </PageSection>
 
+      <PageSection>
         {/* Layout Section */}
         <Stack spacing="heading-content">
-          <h2 className="text-2xl font-semibold">레이아웃</h2>
+          <Heading level="h2" className="text-2xl font-semibold">
+            레이아웃
+          </Heading>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {layoutComponents.map((component) => (
               <Link
                 key={component.name}
                 href={component.href}
-                className="relative block rounded-lg transition-all group"
+                className="relative rounded-lg transition-all group flex items-center gap-2"
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:underline transition-all">
-                    {component.name}
-                  </span>
-                  {component.updated && (
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
-                  )}
-                </div>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:underline transition-all">
+                  {component.name}
+                </span>
+                {component.updated && (
+                  <span className="w-2 h-2 rounded-full bg-blue-500" />
+                )}
               </Link>
             ))}
           </div>
         </Stack>
+      </PageSection>
 
+      <PageSection>
         {/* Components Section */}
         <Stack spacing="heading-content">
-          <h2 className="text-2xl font-semibold">Components</h2>
+          <Heading level="h2" className="text-2xl font-semibold">
+            Components
+          </Heading>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {components.map((component) => (
               <Link
                 key={component.name}
                 href={component.href}
-                className="relative block rounded-lg transition-all group"
+                className="relative rounded-lg transition-all group flex items-center gap-2"
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:underline transition-all">
-                    {component.name}
-                  </span>
-                  {component.updated && (
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
-                  )}
-                </div>
+                <span className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:underline transition-all">
+                  {component.name}
+                </span>
+                {component.updated && (
+                  <span className="w-2 h-2 rounded-full bg-blue-500" />
+                )}
               </Link>
             ))}
           </div>
         </Stack>
-      </Stack>
-    </div>
+      </PageSection>
+    </>
   );
 }

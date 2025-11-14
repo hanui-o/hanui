@@ -17,9 +17,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
       <div className="flex-1 flex">
         <Sidebar />
         <main className="flex-1">
-          <Container>
-            <div className="flex gap-8">{children}</div>
-          </Container>
+          <Container>{children}</Container>
         </main>
       </div>
       <Footer />

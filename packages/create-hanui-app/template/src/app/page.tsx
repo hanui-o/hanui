@@ -42,7 +42,7 @@ export default function Home() {
               <li>
                 ✓{' '}
                 <a
-                  href="https://github.com/odada-o/hanui"
+                  href="https://github.com/hanui-o/hanui"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary-60 hover:underline"

@@ -250,8 +250,8 @@ Epic 1: 프로젝트 기반 설정 (3개)
 Milestone: v0.1.0
 
 다음 단계:
-1. GitHub에서 이슈 확인: https://github.com/odada-o/hanui/issues
-2. Project Board 설정: https://github.com/odada-o/hanui/projects
+1. GitHub에서 이슈 확인: https://github.com/hanui-o/hanui/issues
+2. Project Board 설정: https://github.com/hanui-o/hanui/projects
 3. Week 1 Day 1 시작: Issue #1 (Monorepo 설정)
 
 🚀 HANUI Phase 1 시작 준비 완료!
@@ -265,7 +265,7 @@ Milestone: v0.1.0
 
 ```bash
 # 브라우저에서 이슈 페이지 열기
-open https://github.com/odada-o/hanui/issues
+open https://github.com/hanui-o/hanui/issues
 ```
 
 ### CLI로 확인
@@ -335,7 +335,7 @@ GitHub Projects로 칸반 보드를 만들어 이슈를 관리할 수 있습니�
 
 ```bash
 # 브라우저에서 Projects 페이지 열기
-open https://github.com/odada-o/hanui/projects
+open https://github.com/hanui-o/hanui/projects
 ```
 
 **추천 구조:**

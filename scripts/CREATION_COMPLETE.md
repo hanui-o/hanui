@@ -31,108 +31,108 @@
 
 1. **Issue #1**: [Setup] Turborepo + pnpm Monorepo 설정 (4h)
    - Labels: `setup`, `phase-1`
-   - https://github.com/odada-o/hanui/issues/1
+   - https://github.com/hanui-o/hanui/issues/1
 
 2. **Issue #2**: [Setup] TypeScript + Tailwind CSS + 빌드 설정 (5h) ⭐
    - Labels: `setup`, `phase-1`
    - Tailwind CSS 설정 포함
-   - https://github.com/odada-o/hanui/issues/2
+   - https://github.com/hanui-o/hanui/issues/2
 
 3. **Issue #3**: [Setup] ESLint + Prettier + Husky 설정 (2h)
    - Labels: `setup`, `phase-1`
-   - https://github.com/odada-o/hanui/issues/3
+   - https://github.com/hanui-o/hanui/issues/3
 
 ### Epic 2: 디자인 시스템 기초 (3개)
 
 4. **Issue #4**: [Core] KRDS 컬러 토큰 시스템 구현 (6h)
    - Labels: `core`, `design-system`, `phase-1`
-   - https://github.com/odada-o/hanui/issues/4
+   - https://github.com/hanui-o/hanui/issues/4
 
 5. **Issue #5**: [Core] 타이포그래피 시스템 구현 (4h)
    - Labels: `core`, `design-system`, `phase-1`
-   - https://github.com/odada-o/hanui/issues/5
+   - https://github.com/hanui-o/hanui/issues/5
 
 6. **Issue #6**: [Core] Spacing 및 Layout 시스템 구현 (5h)
    - Labels: `core`, `design-system`, `phase-1`
-   - https://github.com/odada-o/hanui/issues/6
+   - https://github.com/hanui-o/hanui/issues/6
 
 ### Epic 3: 핵심 컴포넌트 개발 (9개)
 
 7. **Issue #7**: [Component] Button 컴포넌트 구현 (8h)
    - Labels: `component`, `react`, `phase-1`
-   - https://github.com/odada-o/hanui/issues/7
+   - https://github.com/hanui-o/hanui/issues/7
 
 8. **Issue #8**: [Component] Input 컴포넌트 구현 (8h)
    - Labels: `component`, `react`, `phase-1`
-   - https://github.com/odada-o/hanui/issues/8
+   - https://github.com/hanui-o/hanui/issues/8
 
 9. **Issue #9**: [Component] Card 컴포넌트 구현 (6h)
    - Labels: `component`, `react`, `phase-1`
-   - https://github.com/odada-o/hanui/issues/9
+   - https://github.com/hanui-o/hanui/issues/9
 
 10. **Issue #10**: [Component] Table 컴포넌트 구현 (10h) ⭐
     - Labels: `component`, `react`, `phase-1`, `public-essential`, `high-priority`
-    - https://github.com/odada-o/hanui/issues/10
+    - https://github.com/hanui-o/hanui/issues/10
 
 11. **Issue #11**: [Component] Modal 컴포넌트 구현 (8h) - Headless UI ⭐
     - Labels: `component`, `react`, `phase-1`
-    - https://github.com/odada-o/hanui/issues/11
+    - https://github.com/hanui-o/hanui/issues/11
 
 12. **Issue #12**: [Component] Pagination 컴포넌트 구현 (6h) ⭐
     - Labels: `component`, `react`, `phase-1`, `public-essential`
-    - https://github.com/odada-o/hanui/issues/12
+    - https://github.com/hanui-o/hanui/issues/12
 
 13. **Issue #13**: [Component] Breadcrumb 컴포넌트 구현 (4h) ⭐
     - Labels: `component`, `react`, `phase-1`, `public-essential`
-    - https://github.com/odada-o/hanui/issues/13
+    - https://github.com/hanui-o/hanui/issues/13
 
 14. **Issue #14**: [Component] FileUpload 컴포넌트 구현 (12h) ⭐
     - Labels: `component`, `react`, `phase-1`, `public-essential`, `high-complexity`
-    - https://github.com/odada-o/hanui/issues/14
+    - https://github.com/hanui-o/hanui/issues/14
 
 15. **Issue #15**: [Component] Select 컴포넌트 구현 (8h) - Headless UI ⭐
     - Labels: `component`, `react`, `phase-1`, `high-priority`
-    - https://github.com/odada-o/hanui/issues/15
+    - https://github.com/hanui-o/hanui/issues/15
 
 ### Epic 4: CLI 도구 (2개)
 
 16. **Issue #16**: [CLI] create-hanui-app 기본 구현 (12h)
     - Labels: `cli`, `phase-1`
-    - https://github.com/odada-o/hanui/issues/16
+    - https://github.com/hanui-o/hanui/issues/16
 
 17. **Issue #17**: [CLI] 공공 프로젝트 특화 템플릿 2개 개발 (27h) 🔥
     - Labels: `cli`, `templates`, `phase-1`, `critical`
     - Portal (Next.js) + Admin (React + Vite)
-    - https://github.com/odada-o/hanui/issues/17
+    - https://github.com/hanui-o/hanui/issues/17
 
 ### Epic 5: 문서 사이트 (3개)
 
 18. **Issue #18**: [Docs] Next.js 문서 사이트 초기 설정 (12h)
     - Labels: `docs`, `phase-1`
-    - https://github.com/odada-o/hanui/issues/18
+    - https://github.com/hanui-o/hanui/issues/18
 
 19. **Issue #19**: [Docs] 컴포넌트 API 자동 생성 (10h)
     - Labels: `docs`, `phase-1`
-    - https://github.com/odada-o/hanui/issues/19
+    - https://github.com/hanui-o/hanui/issues/19
 
 20. **Issue #20**: [Docs] 메인 페이지 구현 (8h)
     - Labels: `docs`, `phase-1`
     - shadcn/ui + Radix UI 패턴 적용
-    - https://github.com/odada-o/hanui/issues/20
+    - https://github.com/hanui-o/hanui/issues/20
 
 ### Epic 6: NPM 배포 (3개)
 
 21. **Issue #21**: [Release] NPM 배포 준비 (4h)
     - Labels: `release`, `phase-1`
-    - https://github.com/odada-o/hanui/issues/21
+    - https://github.com/hanui-o/hanui/issues/21
 
 22. **Issue #22**: [Release] GitHub Actions CI/CD 설정 (6h)
     - Labels: `devops`, `phase-1`
-    - https://github.com/odada-o/hanui/issues/22
+    - https://github.com/hanui-o/hanui/issues/22
 
 23. **Issue #23**: [Release] v0.1.0 First Release 🚀 (4h)
     - Labels: `release`, `phase-1`, `critical`
-    - https://github.com/odada-o/hanui/issues/23
+    - https://github.com/hanui-o/hanui/issues/23
 
 ---
 
@@ -223,7 +223,7 @@ Epic 6:  14h  (변동 없음)
 
 ```bash
 # 브라우저에서 이슈 페이지 열기
-open https://github.com/odada-o/hanui/issues
+open https://github.com/hanui-o/hanui/issues
 
 # CLI로 이슈 목록 확인
 gh issue list --limit 30
@@ -235,7 +235,7 @@ GitHub Projects로 칸반 보드를 만들어 이슈를 관리할 수 있습니�
 
 ```bash
 # 브라우저에서 Projects 페이지 열기
-open https://github.com/odada-o/hanui/projects
+open https://github.com/hanui-o/hanui/projects
 ```
 
 **추천 구조**:
@@ -337,6 +337,6 @@ gh pr create \
 **작성일**: 2025-11-10  
 **Status**: ✅ 이슈 생성 완료 → 🚀 개발 시작 대기
 
-**Repository**: https://github.com/odada-o/hanui  
-**Issues**: https://github.com/odada-o/hanui/issues  
-**Milestone**: https://github.com/odada-o/hanui/milestone/1
+**Repository**: https://github.com/hanui-o/hanui  
+**Issues**: https://github.com/hanui-o/hanui/issues  
+**Milestone**: https://github.com/hanui-o/hanui/milestone/1

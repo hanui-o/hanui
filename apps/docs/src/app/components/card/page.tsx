@@ -9,185 +9,174 @@ import {
   CardFooter,
   Button,
   Container,
+  Heading,
+  Body,
+  Stack,
 } from '@hanui/react';
 import Link from 'next/link';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
+import { CodeBlock } from '@/components/content/CodeBlock';
+import { PageHeader } from '@/components/content/PageHeader';
+import { PageSection } from '@/components/content/PageSection';
 
 export default function CardPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="border-b border-gray-20 dark:border-gray-80">
-        <Container>
-          <Link href="/">
-            <h1 className="text-2xl font-bold text-primary-60">HANUI</h1>
-          </Link>
-        </Container>
-      </header>
+    <>
+      <PageHeader
+        title="Card"
+        description="콘텐츠를 담는 KRDS 기반 카드 레이아웃 컴포넌트"
+      />
 
-      {/* Main */}
-      <main className="flex-1">
-        <Container>
-          <div className="text-sm text-gray-60 dark:text-gray-40 mb-4">
-            <Link href="/" className="hover:text-primary-60">
-              홈
-            </Link>
-            {' / '}
-            <Link href="/components" className="hover:text-primary-60">
-              컴포넌트
-            </Link>
-            {' / '}
-            <span>Card</span>
-          </div>
-
-          <h1 className="text-4xl font-bold mb-4">Card</h1>
-          <p className="text-xl text-gray-60 dark:text-gray-40 mb-8">
-            콘텐츠를 담는 KRDS 기반 카드 레이아웃 컴포넌트
-          </p>
-
-          {/* Quick Start */}
-          <section className="mb-12">
-            <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-              <Card>
-                <CardHeader>
-                  <CardTitle>카드 제목</CardTitle>
-                  <CardDescription>카드 설명입니다</CardDescription>
-                </CardHeader>
-                <CardBody>카드 본문 내용</CardBody>
-                <CardFooter>
-                  <Button size="sm">확인</Button>
-                </CardFooter>
-              </Card>
-            </div>
-            <pre className="mt-4 p-4 bg-white dark:bg-gray-95 rounded overflow-x-auto text-sm">
-              <code>{`import { Card } from '@hanui/react';
+      {/* Quick Start */}
+      <PageSection>
+        <ComponentPreview>
+          <Card>
+            <CardHeader>
+              <CardTitle>카드 제목</CardTitle>
+              <CardDescription>카드 설명입니다</CardDescription>
+            </CardHeader>
+            <CardBody>카드 본문 내용</CardBody>
+            <CardFooter>
+              <Button size="sm">확인</Button>
+            </CardFooter>
+          </Card>
+        </ComponentPreview>
+        <div className="mt-4">
+          <CodeBlock
+            code={`import { Card } from '@hanui/react';
 
 <Card>
-  <Card.Header>
-    <Card.Title>카드 제목</Card.Title>
-    <Card.Description>카드 설명</Card.Description>
-  </Card.Header>
-  <Card.Body>내용</Card.Body>
-  <Card.Footer>
+  <CardHeader>
+    <CardTitle>카드 제목</CardTitle>
+    <CardDescription>카드 설명</CardDescription>
+  </CardHeader>
+  <CardBody>내용</CardBody>
+  <CardFooter>
     <Button>확인</Button>
-  </Card.Footer>
-</Card>`}</code>
-            </pre>
-          </section>
+  </CardFooter>
+</Card>`}
+            language="tsx"
+            showLineNumbers={false}
+          />
+        </div>
+      </PageSection>
 
-          {/* Examples */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-8">Examples</h2>
+      {/* Examples */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="examples">
+            Examples
+          </Heading>
+        </Stack>
 
-            <div className="space-y-12">
-              {/* Variant */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Variant</h3>
-                <p className="text-gray-60 dark:text-gray-40 mb-4">
-                  세 가지 시각적 스타일을 지원합니다.
-                </p>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <Card variant="default">
-                      <CardBody>Default (그림자)</CardBody>
-                    </Card>
-                    <Card variant="outlined">
-                      <CardBody>Outlined (테두리)</CardBody>
-                    </Card>
-                    <Card variant="filled">
-                      <CardBody>Filled (배경)</CardBody>
-                    </Card>
-                  </div>
-                </div>
-              </div>
-
-              {/* Padding */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Padding</h3>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <div className="space-y-4">
-                    <Card padding="sm">
-                      <CardBody>Small Padding</CardBody>
-                    </Card>
-                    <Card padding="md">
-                      <CardBody>Medium Padding</CardBody>
-                    </Card>
-                    <Card padding="lg">
-                      <CardBody>Large Padding</CardBody>
-                    </Card>
-                  </div>
-                </div>
-              </div>
-
-              {/* Hoverable */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Hoverable</h3>
-                <div className="p-6 bg-gray-5 dark:bg-gray-90 rounded-lg">
-                  <Card hoverable onClick={() => alert('클릭!')}>
-                    <CardBody>클릭 가능한 카드 (마우스 올려보세요)</CardBody>
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          {/* Variant */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">Variant</Heading>
+            <Body className="mb-4">세 가지 시각적 스타일을 지원합니다.</Body>
+            <div>
+              <ComponentPreview>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card variant="default">
+                    <CardBody>Default (그림자)</CardBody>
+                  </Card>
+                  <Card variant="outlined">
+                    <CardBody>Outlined (테두리)</CardBody>
+                  </Card>
+                  <Card variant="filled">
+                    <CardBody>Filled (배경)</CardBody>
                   </Card>
                 </div>
-              </div>
+              </ComponentPreview>
             </div>
-          </section>
+          </Stack>
 
-          {/* API Reference */}
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-8">API Reference</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <th className="text-left py-3 px-4 font-semibold">Prop</th>
-                    <th className="text-left py-3 px-4 font-semibold">Type</th>
-                    <th className="text-left py-3 px-4 font-semibold">
-                      Default
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">variant</td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;default&quot; | &quot;outlined&quot; |
-                      &quot;filled&quot;
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;default&quot;
-                    </td>
-                    <td className="py-3 px-4">카드의 시각적 스타일</td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">padding</td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; |
-                      &quot;lg&quot;
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;md&quot;
-                    </td>
-                    <td className="py-3 px-4">패딩 크기</td>
-                  </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
-                    <td className="py-3 px-4 font-mono text-sm">hoverable</td>
-                    <td className="py-3 px-4 font-mono text-sm">boolean</td>
-                    <td className="py-3 px-4 font-mono text-sm">false</td>
-                    <td className="py-3 px-4">호버 효과 활성화</td>
-                  </tr>
-                </tbody>
-              </table>
+          {/* Padding */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">Padding</Heading>
+            <div>
+              <ComponentPreview>
+                <div className="space-y-4">
+                  <Card padding="sm">
+                    <CardBody>Small Padding</CardBody>
+                  </Card>
+                  <Card padding="md">
+                    <CardBody>Medium Padding</CardBody>
+                  </Card>
+                  <Card padding="lg">
+                    <CardBody>Large Padding</CardBody>
+                  </Card>
+                </div>
+              </ComponentPreview>
             </div>
-          </section>
-        </Container>
-      </main>
+          </Stack>
 
-      <footer className="border-t border-gray-20 dark:border-gray-80 py-8">
-        <Container className="ext-center text-gray-60 dark:text-gray-40">
-          <p>MIT License · KRDS 기반 공공 웹 UI 컴포넌트 라이브러리</p>
-        </Container>
-      </footer>
-    </div>
+          {/* Hoverable */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">Hoverable</Heading>
+            <div>
+              <ComponentPreview>
+                <Card hoverable onClick={() => alert('클릭!')}>
+                  <CardBody>클릭 가능한 카드 (마우스 올려보세요)</CardBody>
+                </Card>
+              </ComponentPreview>
+            </div>
+          </Stack>
+        </Stack>
+      </PageSection>
+
+      {/* API Reference */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="api">
+            API Reference
+          </Heading>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <th className="text-left py-3 px-4 font-semibold">Prop</th>
+                  <th className="text-left py-3 px-4 font-semibold">Type</th>
+                  <th className="text-left py-3 px-4 font-semibold">Default</th>
+                  <th className="text-left py-3 px-4 font-semibold">
+                    Description
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <td className="py-3 px-4 font-mono text-sm">variant</td>
+                  <td className="py-3 px-4 font-mono text-sm">
+                    &quot;default&quot; | &quot;outlined&quot; |
+                    &quot;filled&quot;
+                  </td>
+                  <td className="py-3 px-4 font-mono text-sm">
+                    &quot;default&quot;
+                  </td>
+                  <td className="py-3 px-4">카드의 시각적 스타일</td>
+                </tr>
+                <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <td className="py-3 px-4 font-mono text-sm">padding</td>
+                  <td className="py-3 px-4 font-mono text-sm">
+                    &quot;none&quot; | &quot;sm&quot; | &quot;md&quot; |
+                    &quot;lg&quot;
+                  </td>
+                  <td className="py-3 px-4 font-mono text-sm">
+                    &quot;md&quot;
+                  </td>
+                  <td className="py-3 px-4">패딩 크기</td>
+                </tr>
+                <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <td className="py-3 px-4 font-mono text-sm">hoverable</td>
+                  <td className="py-3 px-4 font-mono text-sm">boolean</td>
+                  <td className="py-3 px-4 font-mono text-sm">false</td>
+                  <td className="py-3 px-4">호버 효과 활성화</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Stack>
+      </PageSection>
+    </>
   );
 }

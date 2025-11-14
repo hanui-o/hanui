@@ -17,7 +17,7 @@ interface DocsContentLayoutProps {
 export function DocsContentLayout({ children }: DocsContentLayoutProps) {
   return (
     <DocsLayout>
-      <div className="flex gap-8 py-12">
+      <div className="flex justify-between gap-8 py-12">
         <div className="flex-1 max-w-4xl">{children}</div>
         <PageNav />
       </div>

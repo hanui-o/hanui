@@ -1,7 +1,9 @@
 'use client';
 
+import { Stack, Heading, Body } from '@hanui/react';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
+import { PageSection } from '@/components/content/PageSection';
 
 export default function QuickStartPage() {
   return (
@@ -12,48 +14,46 @@ export default function QuickStartPage() {
       />
 
       {/* First Component */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">
-          첫 번째 컴포넌트 사용하기
-        </h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-4">
-          가장 기본적인 Button 컴포넌트부터 시작해보겠습니다.
-        </p>
+      <PageSection>
+        <Heading level="h2">첫 번째 컴포넌트 사용하기</Heading>
 
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-              1. 컴포넌트 import
-            </h3>
-            <CodeBlock
-              code="import { Button } from '@hanui/react';"
-              language="typescript"
-              showLineNumbers={false}
-            />
-          </div>
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          <Body>가장 기본적인 Button 컴포넌트부터 시작해보겠습니다.</Body>
 
-          <div>
-            <h3 className="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-              2. 컴포넌트 사용
-            </h3>
-            <CodeBlock
-              code={`function App() {
+          <div className="space-y-4">
+            <div>
+              <Body size="sm" weight="bold" className="mb-2">
+                1. 컴포넌트 import
+              </Body>
+              <CodeBlock
+                code="import { Button } from '@hanui/react';"
+                language="typescript"
+                showLineNumbers={false}
+              />
+            </div>
+
+            <div>
+              <Body size="sm" weight="bold" className="mb-2">
+                2. 컴포넌트 사용
+              </Body>
+              <CodeBlock
+                code={`function App() {
   return (
     <div className="p-8">
       <Button>클릭하세요</Button>
     </div>
   );
 }`}
-              language="tsx"
-            />
-          </div>
+                language="tsx"
+              />
+            </div>
 
-          <div>
-            <h3 className="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-              3. Props로 커스터마이징
-            </h3>
-            <CodeBlock
-              code={`<Button variant="primary" size="lg">
+            <div>
+              <Body size="sm" weight="bold" className="mb-2">
+                3. Props로 커스터마이징
+              </Body>
+              <CodeBlock
+                code={`<Button variant="primary" size="lg">
   주요 버튼
 </Button>
 
@@ -64,25 +64,27 @@ export default function QuickStartPage() {
 <Button variant="outline" size="sm">
   외곽선 버튼
 </Button>`}
-              language="tsx"
-            />
+                language="tsx"
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </Stack>
+      </PageSection>
 
       {/* Common Patterns */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">자주 사용하는 패턴</h2>
+      <PageSection>
+        <Heading level="h2">자주 사용하는 패턴</Heading>
 
-        <div className="space-y-8">
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Form Example */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">폼 만들기</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-              Input과 Button을 조합하여 간단한 로그인 폼을 만들어보세요:
-            </p>
-            <CodeBlock
-              code={`import { Input, Button } from '@hanui/react';
+          <Stack spacing="heading-tight">
+            <Heading level="h3">폼 만들기</Heading>
+            <div>
+              <Body size="sm" className="text-gray-600 dark:text-gray-400 mb-3">
+                Input과 Button을 조합하여 간단한 로그인 폼을 만들어보세요:
+              </Body>
+              <CodeBlock
+                code={`import { Input, Button } from '@hanui/react';
 
 function LoginForm() {
   return (
@@ -115,18 +117,20 @@ function LoginForm() {
     </form>
   );
 }`}
-              language="tsx"
-            />
-          </div>
+                language="tsx"
+              />
+            </div>
+          </Stack>
 
           {/* Card Layout */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">카드 레이아웃</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-              Container와 Card를 사용하여 깔끔한 레이아웃을 구성하세요:
-            </p>
-            <CodeBlock
-              code={`import { Container, Card, Button } from '@hanui/react';
+          <Stack spacing="heading-tight">
+            <Heading level="h3">카드 레이아웃</Heading>
+            <div>
+              <Body size="sm" className="text-gray-600 dark:text-gray-400 mb-3">
+                Container와 Card를 사용하여 깔끔한 레이아웃을 구성하세요:
+              </Body>
+              <CodeBlock
+                code={`import { Container, Card, Button } from '@hanui/react';
 
 function Dashboard() {
   return (
@@ -152,18 +156,20 @@ function Dashboard() {
     </Container>
   );
 }`}
-              language="tsx"
-            />
-          </div>
+                language="tsx"
+              />
+            </div>
+          </Stack>
 
           {/* Modal Usage */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">모달 사용하기</h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-              Modal 컴포넌트로 사용자 인터랙션을 추가하세요:
-            </p>
-            <CodeBlock
-              code={`import { useState } from 'react';
+          <Stack spacing="heading-tight">
+            <Heading level="h3">모달 사용하기</Heading>
+            <div>
+              <Body size="sm" className="text-gray-600 dark:text-gray-400 mb-3">
+                Modal 컴포넌트로 사용자 인터랙션을 추가하세요:
+              </Body>
+              <CodeBlock
+                code={`import { useState } from 'react';
 import { Modal, Button } from '@hanui/react';
 
 function ConfirmDialog() {
@@ -204,20 +210,23 @@ function ConfirmDialog() {
     </>
   );
 }`}
-              language="tsx"
-            />
-          </div>
-        </div>
-      </section>
+                language="tsx"
+              />
+            </div>
+          </Stack>
+        </Stack>
+      </PageSection>
 
       {/* TypeScript Support */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">TypeScript 지원</h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-4">
-          HANUI는 TypeScript로 작성되어 완벽한 타입 지원을 제공합니다:
-        </p>
-        <CodeBlock
-          code={`import { Button, type ButtonProps } from '@hanui/react';
+      <PageSection>
+        <Heading level="h2">TypeScript 지원</Heading>
+
+        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+          <Body>
+            HANUI는 TypeScript로 작성되어 완벽한 타입 지원을 제공합니다:
+          </Body>
+          <CodeBlock
+            code={`import { Button, type ButtonProps } from '@hanui/react';
 
 // Props의 타입이 자동으로 추론됩니다
 function CustomButton(props: ButtonProps) {
@@ -236,23 +245,23 @@ function CustomButton(props: ButtonProps) {
 }}>
   클릭
 </Button>`}
-          language="tsx"
-        />
-      </section>
+            language="tsx"
+          />
+        </Stack>
+      </PageSection>
 
       {/* Styling Customization */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">스타일 커스터마이징</h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-4">
-          Tailwind CSS 클래스를 사용하여 컴포넌트를 쉽게 커스터마이징할 수
-          있습니다:
-        </p>
+      <PageSection>
+        <Heading level="h2">스타일 커스터마이징</Heading>
 
-        <div className="space-y-4">
-          <div>
-            <h3 className="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-              className prop 사용
-            </h3>
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          <Body>
+            Tailwind CSS 클래스를 사용하여 컴포넌트를 쉽게 커스터마이징할 수
+            있습니다:
+          </Body>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">className prop 사용</Heading>
             <CodeBlock
               code={`<Button className="w-full rounded-full shadow-lg">
   전체 너비 둥근 버튼
@@ -265,12 +274,10 @@ function CustomButton(props: ButtonProps) {
 </Card>`}
               language="tsx"
             />
-          </div>
+          </Stack>
 
-          <div>
-            <h3 className="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
-              다크 모드 지원
-            </h3>
+          <Stack spacing="heading-tight">
+            <Heading level="h3">다크 모드 지원</Heading>
             <CodeBlock
               code={`// HANUI 컴포넌트는 기본적으로 다크 모드를 지원합니다
 <div className="bg-white dark:bg-gray-900">
@@ -278,56 +285,62 @@ function CustomButton(props: ButtonProps) {
 </div>`}
               language="tsx"
             />
-          </div>
-        </div>
-      </section>
+          </Stack>
+        </Stack>
+      </PageSection>
 
       {/* Accessibility */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">접근성 (Accessibility)</h2>
-        <p className="text-gray-700 dark:text-gray-300 mb-4">
-          HANUI는 웹 접근성을 기본으로 제공합니다:
-        </p>
+      <PageSection>
+        <Heading level="h2">접근성 (Accessibility)</Heading>
 
-        <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-6 border border-blue-200 dark:border-blue-900">
-          <ul className="space-y-3 text-sm text-blue-800 dark:text-blue-200">
-            <li className="flex items-start gap-2">
-              <span className="text-blue-600 dark:text-blue-400">✓</span>
-              <span>
-                <strong>키보드 네비게이션:</strong> Tab, Enter, Space 키로 모든
-                컴포넌트 조작 가능
-              </span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-blue-600 dark:text-blue-400">✓</span>
-              <span>
-                <strong>스크린 리더:</strong> ARIA 레이블과 역할이 자동으로 적용
-              </span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-blue-600 dark:text-blue-400">✓</span>
-              <span>
-                <strong>포커스 관리:</strong> 명확한 포커스 표시 및 순서
-              </span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="text-blue-600 dark:text-blue-400">✓</span>
-              <span>
-                <strong>색상 대비:</strong> WCAG 2.1 AA 수준의 명암비 준수
-              </span>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+          <Body>HANUI는 웹 접근성을 기본으로 제공합니다:</Body>
+
+          <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-6 border border-blue-200 dark:border-blue-900">
+            <ul className="space-y-3 text-sm text-blue-800 dark:text-blue-200">
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400">✓</span>
+                <span>
+                  <strong>키보드 네비게이션:</strong> Tab, Enter, Space 키로
+                  모든 컴포넌트 조작 가능
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400">✓</span>
+                <span>
+                  <strong>스크린 리더:</strong> ARIA 레이블과 역할이 자동으로
+                  적용
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400">✓</span>
+                <span>
+                  <strong>포커스 관리:</strong> 명확한 포커스 표시 및 순서
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-600 dark:text-blue-400">✓</span>
+                <span>
+                  <strong>색상 대비:</strong> WCAG 2.1 AA 수준의 명암비 준수
+                </span>
+              </li>
+            </ul>
+          </div>
+        </Stack>
+      </PageSection>
 
       {/* Best Practices */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">모범 사례</h2>
-        <div className="space-y-4">
+      <PageSection>
+        <Heading level="h2">모범 사례</Heading>
+
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <div className="border-l-4 border-green-500 pl-4 py-2">
-            <h3 className="font-semibold mb-1 text-green-800 dark:text-green-200">
+            <Heading
+              level="h3"
+              className="text-green-800 dark:text-green-200 mb-1"
+            >
               ✓ Do: 시맨틱 HTML 사용
-            </h3>
+            </Heading>
             <CodeBlock
               code={`<Container as="main">
   <h1>페이지 제목</h1>
@@ -339,9 +352,12 @@ function CustomButton(props: ButtonProps) {
           </div>
 
           <div className="border-l-4 border-green-500 pl-4 py-2">
-            <h3 className="font-semibold mb-1 text-green-800 dark:text-green-200">
+            <Heading
+              level="h3"
+              className="text-green-800 dark:text-green-200 mb-1"
+            >
               ✓ Do: 명확한 레이블 제공
-            </h3>
+            </Heading>
             <CodeBlock
               code={`<label htmlFor="email">이메일</label>
 <Input id="email" type="email" />`}
@@ -351,9 +367,9 @@ function CustomButton(props: ButtonProps) {
           </div>
 
           <div className="border-l-4 border-red-500 pl-4 py-2">
-            <h3 className="font-semibold mb-1 text-red-800 dark:text-red-200">
+            <Heading level="h3" className="text-red-800 dark:text-red-200 mb-1">
               ✗ Don't: 접근성 무시
-            </h3>
+            </Heading>
             <CodeBlock
               code={`<div onClick={handleClick}>  {/* 버튼이 아님 */}
   클릭하세요
@@ -362,53 +378,56 @@ function CustomButton(props: ButtonProps) {
               showLineNumbers={false}
             />
           </div>
-        </div>
-      </section>
+        </Stack>
+      </PageSection>
 
       {/* Next Steps */}
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">다음 단계</h2>
-        <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
-          <p className="mb-4">
-            이제 HANUI의 기본 사용법을 익혔습니다! 더 많은 컴포넌트를
-            살펴보세요:
-          </p>
-          <div className="space-y-2">
-            <a
-              href="/components"
-              className="block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-center"
-            >
-              전체 컴포넌트 보기 →
-            </a>
-            <div className="grid grid-cols-2 gap-2 mt-2">
+      <PageSection>
+        <Heading level="h2">다음 단계</Heading>
+
+        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+            <Body className="mb-4">
+              이제 HANUI의 기본 사용법을 익혔습니다! 더 많은 컴포넌트를
+              살펴보세요:
+            </Body>
+            <div className="space-y-2">
               <a
-                href="/components/button"
-                className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                href="/components"
+                className="block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-center"
               >
-                Button
+                전체 컴포넌트 보기 →
               </a>
-              <a
-                href="/components/input"
-                className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
-              >
-                Input
-              </a>
-              <a
-                href="/components/select"
-                className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
-              >
-                Select
-              </a>
-              <a
-                href="/layout/container"
-                className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
-              >
-                Container
-              </a>
+              <div className="grid grid-cols-2 gap-2 mt-2">
+                <a
+                  href="/components/button"
+                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                >
+                  Button
+                </a>
+                <a
+                  href="/components/input"
+                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                >
+                  Input
+                </a>
+                <a
+                  href="/components/select"
+                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                >
+                  Select
+                </a>
+                <a
+                  href="/layout/container"
+                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                >
+                  Container
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </Stack>
+      </PageSection>
     </>
   );
 }

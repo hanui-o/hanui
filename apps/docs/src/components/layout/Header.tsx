@@ -169,7 +169,7 @@ export function Header() {
 
           {/* GitHub */}
           <Link
-            href="https://github.com/odada-o/hanui"
+            href="https://github.com/hanui-o/hanui"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 h-9 px-3 text-sm font-medium rounded-md hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"

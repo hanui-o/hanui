@@ -305,7 +305,7 @@ export default function HomePage() {
             <a href="/docs">시작하기</a>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <a href="https://github.com/odada-o/hanui">GitHub</a>
+            <a href="https://github.com/hanui-o/hanui">GitHub</a>
           </Button>
         </div>
       </section>

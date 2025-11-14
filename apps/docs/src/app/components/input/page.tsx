@@ -1,11 +1,12 @@
 'use client';
 
-import { Input } from '@hanui/react';
+import { Input, Heading, Body, Stack } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { Installation } from '@/components/content/Installation';
 import { GuidelineSection } from '@/components/content/GuidelineSection';
 import { PageHeader } from '@/components/content/PageHeader';
+import { PageSection } from '@/components/content/PageSection';
 
 // Example icons using SVG
 const SearchIcon = () => (
@@ -61,40 +62,42 @@ export default function InputPage() {
         description="다양한 스타일과 크기를 지원하는 입력 필드 컴포넌트"
       />
 
-      <div>
+      <PageSection>
         <ComponentPreview>
           <div className="flex flex-col gap-4 max-w-md">
             <Input placeholder="기본 입력 필드" />
             <Input leftAddon={<SearchIcon />} placeholder="검색어 입력" />
           </div>
         </ComponentPreview>
-      </div>
+      </PageSection>
 
       {/* Overview */}
-      <div>
-        <h2 id="overview" className="text-2xl font-bold mb-4">
-          개요
-        </h2>
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          입력 필드는 사용자로부터 정보를 받는 가장 기본적인 인터랙션
-          요소입니다. HANUI Input은{' '}
-          <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여 레이블
-          연결, 에러 처리, 키보드 네비게이션 등 웹 접근성을 보장합니다.
-        </p>
-      </div>
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="overview">
+            개요
+          </Heading>
+          <Body className="leading-relaxed">
+            입력 필드는 사용자로부터 정보를 받는 가장 기본적인 인터랙션
+            요소입니다. HANUI Input은{' '}
+            <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여
+            레이블 연결, 에러 처리, 키보드 네비게이션 등 웹 접근성을 보장합니다.
+          </Body>
+        </Stack>
+      </PageSection>
 
       {/* Usage Guidelines */}
-      <div>
-        <h2 id="guidelines" className="text-2xl font-bold mb-6">
-          사용 가이드라인
-        </h2>
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="guidelines">
+            사용 가이드라인
+          </Heading>
+        </Stack>
 
-        <div className="space-y-8">
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* When to use */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">
-              언제 사용해야 하나요?
-            </h3>
+          <Stack spacing="heading-tight">
+            <Heading level="h3">언제 사용해야 하나요?</Heading>
             <div className="grid grid-cols-1 gap-4">
               <GuidelineSection
                 type="do"
@@ -121,11 +124,11 @@ export default function InputPage() {
                 </ul>
               </GuidelineSection>
             </div>
-          </div>
+          </Stack>
 
           {/* Label Guidelines */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">레이블 가이드</h3>
+          <Stack spacing="heading-tight">
+            <Heading level="h3">레이블 가이드</Heading>
             <GuidelineSection type="do" title="레이블은 항상 제공">
               <p className="mb-3">
                 모든 입력 필드에는 명확한 레이블이 필요합니다. 시각적으로 숨겨진
@@ -156,13 +159,11 @@ export default function InputPage() {
                 </p>
               </GuidelineSection>
             </div>
-          </div>
+          </Stack>
 
           {/* Input Type */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">
-              적절한 Input Type 사용
-            </h3>
+          <Stack spacing="heading-tight">
+            <Heading level="h3">적절한 Input Type 사용</Heading>
             <GuidelineSection type="do" title="HTML5 input type 활용">
               <p className="mb-3">
                 email, tel, url, number, date 등을 사용하여 모바일 환경에서
@@ -176,11 +177,11 @@ export default function InputPage() {
                 </div>
               </ComponentPreview>
             </GuidelineSection>
-          </div>
+          </Stack>
 
           {/* Error Messages */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">에러 메시지</h3>
+          <Stack spacing="heading-tight">
+            <Heading level="h3">에러 메시지</Heading>
             <GuidelineSection type="do" title="명확하고 구체적인 에러 메시지">
               <p className="mb-3">
                 &quot;잘못된 입력&quot;이 아닌 &quot;이메일 형식이 올바르지
@@ -197,139 +198,151 @@ export default function InputPage() {
                 </div>
               </ComponentPreview>
             </GuidelineSection>
-          </div>
-        </div>
-      </div>
+          </Stack>
+        </Stack>
+      </PageSection>
 
-      <div>
+      <PageSection>
         <Installation componentName="input" />
-      </div>
+      </PageSection>
 
       {/* Usage */}
-      <div>
-        <h2 id="usage" className="text-2xl font-bold mb-4">
-          Usage
-        </h2>
-        <CodeBlock
-          code={`import { Input } from '@hanui/react'
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="usage">
+            Usage
+          </Heading>
+          <CodeBlock
+            code={`import { Input } from '@hanui/react'
 
 <Input placeholder="내용을 입력하세요" />`}
-          language="tsx"
-          showLineNumbers={false}
-        />
-      </div>
+            language="tsx"
+            showLineNumbers={false}
+          />
+        </Stack>
+      </PageSection>
 
       {/* Examples */}
-      <div>
-        <h2 id="examples" className="text-2xl font-bold mb-6">
-          Examples
-        </h2>
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="examples">
+            Examples
+          </Heading>
+        </Stack>
 
-        {/* Default */}
-        <div className="mb-10">
-          <h3 id="default" className="text-xl font-semibold mb-4">
-            Default
-          </h3>
-          <ComponentPreview>
-            <div className="max-w-md">
-              <Input placeholder="내용을 입력하세요" />
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          {/* Default */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="default">
+              Default
+            </Heading>
+            <div>
+              <ComponentPreview>
+                <div className="max-w-md">
+                  <Input placeholder="내용을 입력하세요" />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Input placeholder="내용을 입력하세요" />`}
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Input placeholder="내용을 입력하세요" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
+          </Stack>
 
-        {/* Sizes */}
-        <div className="mb-10">
-          <h3 id="sizes" className="text-xl font-semibold mb-4">
-            Sizes
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 입력 필드 크기는 예상 입력
-              길이와 일치시킵니다. Small은 우편번호 등 짧은 입력, Large는
-              제목이나 주소 등 긴 입력에 적합합니다.
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md space-y-4">
-              <Input size="sm" placeholder="Small (32px)" />
-              <Input size="md" placeholder="Medium (40px)" />
-              <Input size="lg" placeholder="Large (48px)" />
-            </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Input size="sm" placeholder="Small (32px)" />
+          {/* Sizes */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="sizes">
+              Sizes
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 입력 필드 크기는 예상 입력
+                  길이와 일치시킵니다. Small은 우편번호 등 짧은 입력, Large는
+                  제목이나 주소 등 긴 입력에 적합합니다.
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md space-y-4">
+                  <Input size="sm" placeholder="Small (32px)" />
+                  <Input size="md" placeholder="Medium (40px)" />
+                  <Input size="lg" placeholder="Large (48px)" />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Input size="sm" placeholder="Small (32px)" />
 <Input size="md" placeholder="Medium (40px)" />
 <Input size="lg" placeholder="Large (48px)" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* Variant */}
-        <div className="mb-10">
-          <h3 id="variant" className="text-xl font-semibold mb-4">
-            Variant
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> Default는 일반적인 경우,
-              Filled는 배경이 있는 디자인에 적합합니다.
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md space-y-4">
-              <Input variant="default" placeholder="Default (테두리)" />
-              <Input variant="filled" placeholder="Filled (배경)" />
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Input variant="default" placeholder="Default (테두리)" />
+          </Stack>
+
+          {/* Variant */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="variant">
+              Variant
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> Default는 일반적인 경우,
+                  Filled는 배경이 있는 디자인에 적합합니다.
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md space-y-4">
+                  <Input variant="default" placeholder="Default (테두리)" />
+                  <Input variant="filled" placeholder="Filled (배경)" />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Input variant="default" placeholder="Default (테두리)" />
 <Input variant="filled" placeholder="Filled (배경)" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* With Icons */}
-        <div className="mb-10">
-          <h3 id="with-icons" className="text-xl font-semibold mb-4">
-            With Icons
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 입력 필드의 용도를 시각적으로
-              명확히 하고 싶을 때 사용합니다. 예: 검색(돋보기), 이메일(편지),
-              비밀번호(자물쇠)
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md space-y-4">
-              <Input
-                leftAddon={<SearchIcon />}
-                placeholder="검색어를 입력하세요"
-              />
-              <Input
-                leftAddon={<EmailIcon />}
-                type="email"
-                placeholder="example@email.com"
-              />
-              <Input rightAddon={<CheckIcon />} placeholder="확인 완료" />
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Input
+          </Stack>
+
+          {/* With Icons */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="with-icons">
+              With Icons
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 입력 필드의 용도를
+                  시각적으로 명확히 하고 싶을 때 사용합니다. 예: 검색(돋보기),
+                  이메일(편지), 비밀번호(자물쇠)
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md space-y-4">
+                  <Input
+                    leftAddon={<SearchIcon />}
+                    placeholder="검색어를 입력하세요"
+                  />
+                  <Input
+                    leftAddon={<EmailIcon />}
+                    type="email"
+                    placeholder="example@email.com"
+                  />
+                  <Input rightAddon={<CheckIcon />} placeholder="확인 완료" />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Input
   leftAddon={<SearchIcon />}
   placeholder="검색어를 입력하세요"
 />
@@ -342,129 +355,139 @@ export default function InputPage() {
   rightAddon={<CheckIcon />}
   placeholder="확인 완료"
 />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* Error State */}
-        <div className="mb-10">
-          <h3 id="error" className="text-xl font-semibold mb-4">
-            Error State
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 입력값이 유효하지 않을 때
-              사용자에게 즉각적인 피드백을 제공합니다. 에러 메시지는 구체적인
-              해결 방법을 포함해야 합니다.
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md space-y-4">
-              <div>
-                <Input
-                  error
-                  placeholder="잘못된 입력"
-                  defaultValue="invalid@"
+                  language="tsx"
+                  showLineNumbers={false}
                 />
-                <p className="mt-1 text-sm text-red-600">
-                  이메일 형식이 올바르지 않습니다. &apos;@&apos;를 포함해주세요.
-                </p>
-              </div>
-              <div>
-                <Input
-                  error
-                  leftAddon={<EmailIcon />}
-                  placeholder="example@email.com"
-                />
-                <p className="mt-1 text-sm text-red-600">
-                  필수 입력 항목입니다.
-                </p>
               </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Input error placeholder="잘못된 입력" defaultValue="invalid@" />
+          </Stack>
+
+          {/* Error State */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="error">
+              Error State
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 입력값이 유효하지 않을 때
+                  사용자에게 즉각적인 피드백을 제공합니다. 에러 메시지는
+                  구체적인 해결 방법을 포함해야 합니다.
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md space-y-4">
+                  <div>
+                    <Input
+                      error
+                      placeholder="잘못된 입력"
+                      defaultValue="invalid@"
+                    />
+                    <p className="mt-1 text-sm text-red-600">
+                      이메일 형식이 올바르지 않습니다. &apos;@&apos;를
+                      포함해주세요.
+                    </p>
+                  </div>
+                  <div>
+                    <Input
+                      error
+                      leftAddon={<EmailIcon />}
+                      placeholder="example@email.com"
+                    />
+                    <p className="mt-1 text-sm text-red-600">
+                      필수 입력 항목입니다.
+                    </p>
+                  </div>
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Input error placeholder="잘못된 입력" defaultValue="invalid@" />
 <p className="mt-1 text-sm text-red-600">
   이메일 형식이 올바르지 않습니다. '@'를 포함해주세요.
 </p>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* Disabled */}
-        <div className="mb-10">
-          <h3 id="disabled" className="text-xl font-semibold mb-4">
-            Disabled
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아 입력을
-              받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한 없음
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md space-y-4">
-              <Input disabled placeholder="비활성화된 입력 필드" />
-              <Input
-                disabled
-                variant="filled"
-                placeholder="비활성화된 Filled"
-              />
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Input disabled placeholder="비활성화된 입력 필드" />
+          </Stack>
+
+          {/* Disabled */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="disabled">
+              Disabled
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아
+                  입력을 받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한
+                  없음
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md space-y-4">
+                  <Input disabled placeholder="비활성화된 입력 필드" />
+                  <Input
+                    disabled
+                    variant="filled"
+                    placeholder="비활성화된 Filled"
+                  />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Input disabled placeholder="비활성화된 입력 필드" />
 <Input disabled variant="filled" placeholder="비활성화된 Filled" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* Types */}
-        <div className="mb-10">
-          <h3 id="types" className="text-xl font-semibold mb-4">
-            Input Types
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 각 데이터 타입에 맞는 type을
-              사용하면 모바일에서 적절한 키보드가 표시되고, 브라우저의 자동 검증
-              기능을 활용할 수 있습니다.
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md space-y-4">
-              <Input type="text" placeholder="텍스트" />
-              <Input type="email" placeholder="이메일" />
-              <Input type="password" placeholder="비밀번호" />
-              <Input type="number" placeholder="숫자" />
-              <Input type="tel" placeholder="전화번호" />
-              <Input type="url" placeholder="URL" />
-              <Input type="date" />
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Input type="text" placeholder="텍스트" />
+          </Stack>
+
+          {/* Types */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="types">
+              Input Types
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 각 데이터 타입에 맞는 type을
+                  사용하면 모바일에서 적절한 키보드가 표시되고, 브라우저의 자동
+                  검증 기능을 활용할 수 있습니다.
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md space-y-4">
+                  <Input type="text" placeholder="텍스트" />
+                  <Input type="email" placeholder="이메일" />
+                  <Input type="password" placeholder="비밀번호" />
+                  <Input type="number" placeholder="숫자" />
+                  <Input type="tel" placeholder="전화번호" />
+                  <Input type="url" placeholder="URL" />
+                  <Input type="date" />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Input type="text" placeholder="텍스트" />
 <Input type="email" placeholder="이메일" />
 <Input type="password" placeholder="비밀번호" />
 <Input type="number" placeholder="숫자" />
 <Input type="tel" placeholder="전화번호" />
 <Input type="url" placeholder="URL" />
 <Input type="date" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-      </div>
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
+            </div>
+          </Stack>
+        </Stack>
+      </PageSection>
     </>
   );
 }

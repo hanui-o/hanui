@@ -16,13 +16,13 @@
   "homepage": "https://hanui.io",
   "repository": {
     "type": "git",
-    "url": "https://github.com/odada-o/hanui.git",
+    "url": "https://github.com/hanui-o/hanui.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/odada-o/hanui/issues"
+    "url": "https://github.com/hanui-o/hanui/issues"
   },
-  "author": "odada-o",
+  "author": "hanui-o",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

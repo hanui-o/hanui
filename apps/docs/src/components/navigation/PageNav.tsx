@@ -48,8 +48,8 @@ export function PageNav() {
   }
 
   return (
-    <nav className="hidden xl:block w-64 flex-shrink-0">
-      <div className="sticky top-24 pl-8">
+    <nav className="hidden xl:block w-48 flex-shrink-0">
+      <div className="sticky top-24">
         <h4 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
           이 페이지 구성
         </h4>

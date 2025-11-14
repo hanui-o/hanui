@@ -22,7 +22,7 @@ npm login
 
 ### 2.1 Repository Settings 이동
 
-1. GitHub 저장소 페이지: https://github.com/odada-o/hanui
+1. GitHub 저장소 페이지: https://github.com/hanui-o/hanui
 2. **Settings** → **Secrets and variables** → **Actions**
 3. **New repository secret** 클릭
 
@@ -98,7 +98,7 @@ git push
 
 ### 4.2 GitHub Release 확인
 
-- https://github.com/odada-o/hanui/releases
+- https://github.com/hanui-o/hanui/releases
 
 ## 5. 패키지 설치 테스트
 

@@ -3,7 +3,7 @@
 > KRDS 기반 공공 웹사이트용 React 컴포넌트 라이브러리
 
 [![npm version](https://img.shields.io/npm/v/@hanui/react.svg)](https://www.npmjs.com/package/@hanui/react)
-[![license](https://img.shields.io/npm/l/@hanui/react.svg)](https://github.com/odada-o/hanui/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/@hanui/react.svg)](https://github.com/hanui-o/hanui/blob/main/LICENSE)
 
 [한국어](#한국어) | [English](#english)
 

@@ -2,6 +2,18 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '../../lib/utils';
 
+// Optional: Import form field hooks for automatic integration
+let useFormFieldContext: (() => any) | undefined;
+let useFormFieldIds: (() => any) | undefined;
+
+try {
+  const formModule = require('../Form');
+  useFormFieldContext = formModule.useFormField;
+  useFormFieldIds = formModule.useFormFieldIds;
+} catch {
+  // Form module not available, continue without integration
+}
+
 /**
  * Input Variants Definition
  *
@@ -133,7 +145,14 @@ export interface InputProps
  * // With layout className
  * <Input className="w-full max-w-md" />
  *
- * // Form integration
+ * // Form integration (NEW - automatic)
+ * <FormField name="email" error={!!errors.email} required>
+ *   <FormLabel>이메일</FormLabel>
+ *   <Input type="email" placeholder="example@email.com" />
+ *   {errors.email && <FormError>{errors.email}</FormError>}
+ * </FormField>
+ *
+ * // Traditional manual integration (still supported)
  * <label htmlFor="email">이메일</label>
  * <Input
  *   id="email"
@@ -158,6 +177,40 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
+    // Try to get form field context (if used inside FormField)
+    let formFieldContext: any = null;
+    let formFieldIds: any = null;
+
+    try {
+      if (useFormFieldContext) {
+        formFieldContext = useFormFieldContext();
+      }
+      if (useFormFieldIds) {
+        formFieldIds = useFormFieldIds();
+      }
+    } catch {
+      // Not inside FormField, use standalone mode
+    }
+
+    // Merge form context with props
+    const mergedProps = {
+      ...props,
+      id: props.id || formFieldIds?.inputId,
+      disabled: disabled || formFieldContext?.disabled,
+      'aria-invalid': error || formFieldContext?.error,
+      'aria-required': props['aria-required'] || formFieldContext?.required,
+      'aria-describedby':
+        [
+          props['aria-describedby'],
+          formFieldIds?.descriptionId,
+          formFieldContext?.error ? formFieldIds?.errorId : undefined,
+        ]
+          .filter(Boolean)
+          .join(' ') || undefined,
+    };
+
+    const finalError = error || formFieldContext?.error;
+
     // If there are addons, wrap in container
     if (leftAddon || rightAddon) {
       return (
@@ -171,15 +224,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type={type}
             className={cn(
               inputVariants({ variant, size }),
-              error &&
+              finalError &&
                 'border-[#DC3545] focus-visible:ring-[#DC3545] focus-visible:ring-offset-0',
               leftAddon && 'pl-10',
               rightAddon && 'pr-10'
             )}
             ref={ref}
-            disabled={disabled}
-            aria-invalid={error}
-            {...props}
+            {...mergedProps}
           />
           {rightAddon && (
             <div className="pointer-events-none absolute right-3 flex items-center text-gray-500">
@@ -196,14 +247,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         type={type}
         className={cn(
           inputVariants({ variant, size }),
-          error &&
+          finalError &&
             'border-[#DC3545] focus-visible:ring-[#DC3545] focus-visible:ring-offset-0',
           className
         )}
         ref={ref}
-        disabled={disabled}
-        aria-invalid={error}
-        {...props}
+        {...mergedProps}
       />
     );
   }

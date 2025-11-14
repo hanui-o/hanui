@@ -40,7 +40,7 @@ export const logger = {
     console.log(chalk.cyan('  pnpm dev'));
     console.log();
     console.log(chalk.gray('문서: https://hanui.io'));
-    console.log(chalk.gray('GitHub: https://github.com/odada-o/hanui'));
+    console.log(chalk.gray('GitHub: https://github.com/hanui-o/hanui'));
     console.log();
   },
 };

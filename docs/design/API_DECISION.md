@@ -404,7 +404,7 @@ const variants = {
 
 - [COMPONENT_API_STRATEGY.md](./COMPONENT_API_STRATEGY.md) - 구현 상세 가이드
 - [TECH_STACK.md](../../TECH_STACK.md) - 전체 기술 스택
-- [Issue #7](https://github.com/odada-o/hanui/issues/7) - Button 컴포넌트 (첫 적용)
+- [Issue #7](https://github.com/hanui-o/hanui/issues/7) - Button 컴포넌트 (첫 적용)
 
 ---
 

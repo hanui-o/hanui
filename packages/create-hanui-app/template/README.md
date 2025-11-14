@@ -1,6 +1,6 @@
 # HANUI App
 
-이 프로젝트는 [create-hanui-app](https://github.com/odada-o/hanui)으로 생성되었습니다.
+이 프로젝트는 [create-hanui-app](https://github.com/hanui-o/hanui)으로 생성되었습니다.
 
 ## 시작하기
 
@@ -44,5 +44,5 @@ export default function Page() {
 
 ## 더 알아보기
 
-- [HANUI GitHub](https://github.com/odada-o/hanui)
+- [HANUI GitHub](https://github.com/hanui-o/hanui)
 - [KRDS 디자인 시스템](https://www.gov.kr/portal/designSystem)

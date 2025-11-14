@@ -289,7 +289,7 @@ gh auth login
 
 ```bash
 # 1. 저장소 클론
-git clone https://github.com/odada-o/hanui.git
+git clone https://github.com/hanui-o/hanui.git
 cd hanui
 
 # 2. Dependencies 설치

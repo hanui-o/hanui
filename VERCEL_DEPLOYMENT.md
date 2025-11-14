@@ -11,7 +11,7 @@
 ### 1-2. 새 프로젝트 Import
 
 1. Vercel 대시보드에서 **"Add New" → "Project"** 클릭
-2. GitHub 저장소 선택: **odada-o/hanui**
+2. GitHub 저장소 선택: **hanui-o/hanui**
 3. 저장소 권한 부여 (처음이라면 "Add GitHub Account" 또는 "Adjust GitHub App Permissions")
 
 ### 1-3. 프로젝트 설정

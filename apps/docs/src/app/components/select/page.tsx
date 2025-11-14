@@ -1,11 +1,12 @@
 'use client';
 
-import { Select } from '@hanui/react';
+import { Select, Heading, Body, Stack } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { Installation } from '@/components/content/Installation';
 import { GuidelineSection } from '@/components/content/GuidelineSection';
 import { PageHeader } from '@/components/content/PageHeader';
+import { PageSection } from '@/components/content/PageSection';
 import { useState } from 'react';
 
 export default function SelectPage() {
@@ -35,7 +36,7 @@ export default function SelectPage() {
         description="접근성을 고려한 선택 목록 컴포넌트"
       />
 
-      <div>
+      <PageSection>
         <ComponentPreview>
           <div className="max-w-md">
             <Select
@@ -48,33 +49,36 @@ export default function SelectPage() {
             />
           </div>
         </ComponentPreview>
-      </div>
+      </PageSection>
 
       {/* Overview */}
-      <div>
-        <h2 id="overview" className="text-2xl font-bold mb-4">
-          개요
-        </h2>
-        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-          선택 목록은 여러 옵션 중 하나 또는 여러 개를 선택할 수 있는
-          컴포넌트입니다. HANUI Select는{' '}
-          <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여 키보드
-          네비게이션, ARIA 속성, 스크린 리더 지원 등 완전한 접근성을 제공합니다.
-        </p>
-      </div>
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="overview">
+            개요
+          </Heading>
+          <Body className="leading-relaxed">
+            선택 목록은 여러 옵션 중 하나 또는 여러 개를 선택할 수 있는
+            컴포넌트입니다. HANUI Select는{' '}
+            <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여
+            키보드 네비게이션, ARIA 속성, 스크린 리더 지원 등 완전한 접근성을
+            제공합니다.
+          </Body>
+        </Stack>
+      </PageSection>
 
       {/* Usage Guidelines */}
-      <div>
-        <h2 id="guidelines" className="text-2xl font-bold mb-6">
-          사용 가이드라인
-        </h2>
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="guidelines">
+            사용 가이드라인
+          </Heading>
+        </Stack>
 
-        <div className="space-y-8">
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* When to use */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">
-              언제 사용해야 하나요?
-            </h3>
+          <Stack spacing="heading-tight">
+            <Heading level="h3">언제 사용해야 하나요?</Heading>
             <div className="grid grid-cols-1 gap-4">
               <GuidelineSection
                 type="do"
@@ -103,11 +107,11 @@ export default function SelectPage() {
                 </ul>
               </GuidelineSection>
             </div>
-          </div>
+          </Stack>
 
           {/* Sorting Options */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">옵션 정렬</h3>
+          <Stack spacing="heading-tight">
+            <Heading level="h3">옵션 정렬</Heading>
             <GuidelineSection type="do" title="논리적 순서로 정렬">
               <p className="mb-3">
                 알파벳순, 가나다순 등 예측 가능한 순서로 정렬하거나, 사용 빈도가
@@ -124,11 +128,11 @@ export default function SelectPage() {
                 </div>
               </ComponentPreview>
             </GuidelineSection>
-          </div>
+          </Stack>
 
           {/* Label */}
-          <div>
-            <h3 className="text-xl font-semibold mb-4">명확한 레이블</h3>
+          <Stack spacing="heading-tight">
+            <Heading level="h3">명확한 레이블</Heading>
             <GuidelineSection type="do" title="구체적인 레이블 제공">
               <p className="mb-3">
                 &quot;선택하세요&quot;가 아닌 &quot;배송 국가를
@@ -155,21 +159,22 @@ export default function SelectPage() {
                 </div>
               </ComponentPreview>
             </GuidelineSection>
-          </div>
-        </div>
-      </div>
+          </Stack>
+        </Stack>
+      </PageSection>
 
-      <div>
+      <PageSection>
         <Installation componentName="select" />
-      </div>
+      </PageSection>
 
       {/* Usage */}
-      <div>
-        <h2 id="usage" className="text-2xl font-bold mb-4">
-          Usage
-        </h2>
-        <CodeBlock
-          code={`import { Select } from '@hanui/react'
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="usage">
+            Usage
+          </Heading>
+          <CodeBlock
+            code={`import { Select } from '@hanui/react'
 
 const options = [
   { value: 'apple', label: '사과' },
@@ -182,79 +187,86 @@ const options = [
   onChange={setValue}
   placeholder="과일을 선택하세요"
 />`}
-          language="tsx"
-          showLineNumbers={false}
-        />
-      </div>
+            language="tsx"
+            showLineNumbers={false}
+          />
+        </Stack>
+      </PageSection>
 
       {/* Examples */}
-      <div>
-        <h2 id="examples" className="text-2xl font-bold mb-6">
-          Examples
-        </h2>
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="examples">
+            Examples
+          </Heading>
+        </Stack>
 
-        {/* Default */}
-        <div className="mb-10">
-          <h3 id="default" className="text-xl font-semibold mb-4">
-            Default
-          </h3>
-          <ComponentPreview>
-            <div className="max-w-md">
-              <Select
-                options={options}
-                value={selectedValue}
-                onChange={(value) =>
-                  setSelectedValue(Array.isArray(value) ? value[0] : value)
-                }
-                placeholder="과일을 선택하세요"
-              />
-            </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Select
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          {/* Default */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="default">
+              Default
+            </Heading>
+            <div>
+              <ComponentPreview>
+                <div className="max-w-md">
+                  <Select
+                    options={options}
+                    value={selectedValue}
+                    onChange={(value) =>
+                      setSelectedValue(Array.isArray(value) ? value[0] : value)
+                    }
+                    placeholder="과일을 선택하세요"
+                  />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Select
   options={options}
   value={value}
   onChange={setValue}
   placeholder="과일을 선택하세요"
 />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* With Label */}
-        <div className="mb-10">
-          <h3 id="with-label" className="text-xl font-semibold mb-4">
-            With Label
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 모든 선택 목록에는 명확한
-              레이블이 필요합니다. label 요소의 htmlFor와 Select의 id를 연결하여
-              접근성을 보장합니다.
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md space-y-2">
-              <label
-                htmlFor="fruit-select"
-                className="block text-sm font-medium"
-              >
-                좋아하는 과일
-              </label>
-              <Select
-                options={options}
-                value=""
-                onChange={() => {}}
-                placeholder="과일을 선택하세요"
-              />
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<label className="block text-sm font-medium">
+          </Stack>
+
+          {/* With Label */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="with-label">
+              With Label
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 모든 선택 목록에는 명확한
+                  레이블이 필요합니다. label 요소의 htmlFor와 Select의 id를
+                  연결하여 접근성을 보장합니다.
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md space-y-2">
+                  <label
+                    htmlFor="fruit-select"
+                    className="block text-sm font-medium"
+                  >
+                    좋아하는 과일
+                  </label>
+                  <Select
+                    options={options}
+                    value=""
+                    onChange={() => {}}
+                    placeholder="과일을 선택하세요"
+                  />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<label className="block text-sm font-medium">
   좋아하는 과일
 </label>
 <Select
@@ -263,115 +275,122 @@ const options = [
   onChange={setValue}
   placeholder="과일을 선택하세요"
 />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* Multiple Selection */}
-        <div className="mb-10">
-          <h3 id="multiple" className="text-xl font-semibold mb-4">
-            Multiple Selection
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 여러 항목을 동시에 선택해야 할
-              때 사용합니다. 선택된 항목은 태그 형태로 표시되어 현재 선택 상태를
-              명확히 보여줍니다.
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md">
-              <Select
-                options={options}
-                value={multipleValues}
-                onChange={(value) =>
-                  setMultipleValues(Array.isArray(value) ? value : [value])
-                }
-                placeholder="여러 과일을 선택하세요"
-                multiple
-              />
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Select
+          </Stack>
+
+          {/* Multiple Selection */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="multiple">
+              Multiple Selection
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 여러 항목을 동시에 선택해야
+                  할 때 사용합니다. 선택된 항목은 태그 형태로 표시되어 현재 선택
+                  상태를 명확히 보여줍니다.
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md">
+                  <Select
+                    options={options}
+                    value={multipleValues}
+                    onChange={(value) =>
+                      setMultipleValues(Array.isArray(value) ? value : [value])
+                    }
+                    placeholder="여러 과일을 선택하세요"
+                    multiple
+                  />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Select
   options={options}
   value={multipleValues}
   onChange={setMultipleValues}
   placeholder="여러 과일을 선택하세요"
   multiple
 />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* Disabled */}
-        <div className="mb-10">
-          <h3 id="disabled" className="text-xl font-semibold mb-4">
-            Disabled
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아 선택을
-              받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한 없음
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md">
-              <Select
-                options={options}
-                value=""
-                onChange={() => {}}
-                placeholder="비활성화된 선택"
-                disabled
-              />
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Select
+          </Stack>
+
+          {/* Disabled */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="disabled">
+              Disabled
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아
+                  선택을 받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한
+                  없음
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md">
+                  <Select
+                    options={options}
+                    value=""
+                    onChange={() => {}}
+                    placeholder="비활성화된 선택"
+                    disabled
+                  />
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Select
   options={options}
   value=""
   onChange={() => {}}
   placeholder="비활성화된 선택"
   disabled
 />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-
-        {/* Error State */}
-        <div className="mb-10">
-          <h3 id="error" className="text-xl font-semibold mb-4">
-            Error State
-          </h3>
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-            <p className="text-sm text-blue-900 dark:text-blue-100">
-              <strong>언제 사용하나요?</strong> 필수 선택 항목이 선택되지
-              않았거나, 유효하지 않은 선택일 때 에러 상태를 표시합니다.
-            </p>
-          </div>
-          <ComponentPreview>
-            <div className="max-w-md space-y-2">
-              <Select
-                options={options}
-                value=""
-                onChange={() => {}}
-                placeholder="과일을 선택하세요"
-                error
-              />
-              <p className="text-sm text-red-600">필수 선택 항목입니다.</p>
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
             </div>
-          </ComponentPreview>
-          <div className="mt-4">
-            <CodeBlock
-              code={`<Select
+          </Stack>
+
+          {/* Error State */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3" id="error">
+              Error State
+            </Heading>
+            <div>
+              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
+                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+                  <strong>언제 사용하나요?</strong> 필수 선택 항목이 선택되지
+                  않았거나, 유효하지 않은 선택일 때 에러 상태를 표시합니다.
+                </Body>
+              </div>
+              <ComponentPreview>
+                <div className="max-w-md space-y-2">
+                  <Select
+                    options={options}
+                    value=""
+                    onChange={() => {}}
+                    placeholder="과일을 선택하세요"
+                    error
+                  />
+                  <p className="text-sm text-red-600">필수 선택 항목입니다.</p>
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Select
   options={options}
   value=""
   onChange={() => {}}
@@ -379,12 +398,14 @@ const options = [
   error
 />
 <p className="text-sm text-red-600">필수 선택 항목입니다.</p>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </div>
-        </div>
-      </div>
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
+            </div>
+          </Stack>
+        </Stack>
+      </PageSection>
     </>
   );
 }
