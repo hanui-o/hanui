@@ -62,7 +62,7 @@ const components = [
   {
     name: 'Pagination',
     href: '/components/pagination',
-    updated: false,
+    updated: true,
   },
   {
     name: 'File Upload',
