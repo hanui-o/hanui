@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useRef } from 'react';
 
 const navigation = [
   {
@@ -29,24 +30,23 @@ const navigation = [
       { title: 'Display', href: '/typography/display' },
       { title: 'Heading', href: '/typography/heading' },
       { title: 'Body', href: '/typography/body' },
-      { title: 'Label', href: '/typography/label' },
       { title: 'NavText', href: '/typography/navtext' },
     ],
   },
   {
     title: 'Identity',
     items: [
-      { title: 'Masthead', href: '/components/masthead' },
-      { title: 'Identifier', href: '/components/identifier' },
-      { title: 'Header', href: '/components/header' },
+      { title: 'Masthead', href: '/components/identity/masthead' },
+      { title: 'Identifier', href: '/components/identity/identifier' },
+      { title: 'Header', href: '/components/identity/header' },
     ],
   },
   {
     title: 'Navigation',
     items: [
-      { title: 'SkipLink', href: '/components/skiplink' },
-      { title: 'Breadcrumb', href: '/components/breadcrumb' },
-      { title: 'Pagination', href: '/components/pagination' },
+      { title: 'SkipLink', href: '/components/navigation/skiplink' },
+      { title: 'Breadcrumb', href: '/components/navigation/breadcrumb' },
+      { title: 'Pagination', href: '/components/navigation/pagination' },
     ],
   },
   {
@@ -56,31 +56,31 @@ const navigation = [
       { title: 'Box', href: '/layout/box' },
       { title: 'Stack', href: '/layout/stack' },
       { title: 'Section', href: '/layout/section' },
-      { title: 'Modal', href: '/components/modal' },
-      { title: 'Accordion', href: '/components/accordion' },
-      { title: 'Tabs', href: '/components/tabs' },
-      { title: 'Table', href: '/components/table' },
-      { title: 'Card', href: '/components/card' },
+      { title: 'Modal', href: '/layout/modal' },
+      { title: 'Accordion', href: '/layout/accordion' },
+      { title: 'Tabs', href: '/layout/tabs' },
+      { title: 'Table', href: '/layout/table' },
+      { title: 'Card', href: '/layout/card' },
     ],
   },
   {
     title: 'Action',
-    items: [{ title: 'Button', href: '/components/button' }],
+    items: [{ title: 'Button', href: '/components/action/button' }],
   },
   {
     title: 'Selection',
-    items: [{ title: 'Select', href: '/components/select' }],
+    items: [{ title: 'Select', href: '/components/selection/select' }],
   },
   {
     title: 'Help',
-    items: [{ title: 'Tooltip', href: '/components/tooltip' }],
+    items: [{ title: 'Tooltip', href: '/components/help/tooltip' }],
   },
   {
     title: 'Input',
     items: [
-      { title: 'Text Input', href: '/components/input' },
-      { title: 'Label', href: '/components/label' },
-      { title: 'File Upload', href: '/components/file-upload' },
+      { title: 'Text Input', href: '/components/form/input' },
+      { title: 'Label', href: '/components/form/label' },
+      { title: 'File Upload', href: '/components/form/file-upload' },
     ],
   },
 ];
@@ -117,9 +117,39 @@ function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
 }
 
 export function Sidebar() {
+  const navRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+
+  // Save scroll position before navigation
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const handleClick = () => {
+      sessionStorage.setItem('sidebar-scroll', nav.scrollTop.toString());
+    };
+
+    nav.addEventListener('click', handleClick);
+    return () => nav.removeEventListener('click', handleClick);
+  }, []);
+
+  // Restore scroll position after navigation
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const savedScroll = sessionStorage.getItem('sidebar-scroll');
+    if (savedScroll) {
+      nav.scrollTop = parseInt(savedScroll, 10);
+    }
+  }, [pathname]);
+
   return (
     <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-gray-200 dark:border-gray-800">
-      <nav className="sticky top-12 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide">
+      <nav
+        ref={navRef}
+        className="sticky top-12 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide"
+      >
         <div className="space-y-8">
           {navigation.map((section) => (
             <SidebarSection key={section.title} section={section} />

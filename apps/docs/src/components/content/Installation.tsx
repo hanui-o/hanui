@@ -32,7 +32,7 @@ export function Installation({
   return (
     <div className="space-y-4">
       <Heading level="h2" id="installation" className="text-2xl font-bold mb-4">
-        Installation
+        설치
       </Heading>
 
       {/* Tabs */}
