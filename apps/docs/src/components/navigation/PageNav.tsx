@@ -23,8 +23,9 @@ export function PageNav() {
       level: parseInt(element.tagName.substring(1)),
     }));
 
+    // Update headings state in a separate microtask to avoid cascading renders
     if (items.length > 0) {
-      setHeadings(items);
+      Promise.resolve().then(() => setHeadings(items));
     }
 
     // Set up intersection observer for active section highlighting

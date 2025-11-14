@@ -45,7 +45,7 @@ export default function BodyPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="sizes">
-            크기
+            크기 (Size)
           </Heading>
           <Stack spacing="content-loose">
             <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
@@ -131,7 +131,7 @@ export default function BodyPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="weights">
-            굵기
+            굵기 (Weight)
           </Heading>
           <Stack spacing="content-loose">
             <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">

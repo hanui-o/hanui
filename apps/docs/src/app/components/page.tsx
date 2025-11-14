@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Stack, Heading, Body, HStack } from '@hanui/react';
+import { Stack, Heading, Body } from '@hanui/react';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
 
