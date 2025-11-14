@@ -57,9 +57,9 @@ const tooltipVariants = cva(
  * Tooltip Props Interface
  *
  * Foundation Layer auto-implementation:
- * - aria-describedby auto-connection
+ * - aria-labelledby auto-connection (KRDS 2.2 requirement)
  * - Focus management (mouse hover + keyboard focus)
- * - ESC key handler
+ * - ESC key handler with focus restoration
  */
 export interface TooltipProps extends VariantProps<typeof tooltipVariants> {
   /**
@@ -99,15 +99,16 @@ export interface TooltipProps extends VariantProps<typeof tooltipVariants> {
  * Tooltip Component
  *
  * **Foundation Layer Features:**
- * - ✅ Focus Management: Mouse hover + keyboard focus detection
- * - ✅ ARIA Automation: aria-describedby auto-connection
- * - ✅ Keyboard Navigation: ESC key closes tooltip
+ * - ✅ Focus Management: Mouse hover + keyboard focus detection + Blur handling
+ * - ✅ ARIA Automation: aria-labelledby auto-connection (KRDS 2.2)
+ * - ✅ Keyboard Navigation: ESC key closes tooltip and restores focus
  * - ✅ WCAG 2.2 Compliance: 1.4.13 Content on Hover or Focus
  *
- * **KRDS Standards:**
- * - Dark background (#1a1a1a) with white text
- * - Sufficient contrast ratio (>7:1)
- * - Hover/Focus persistent display
+ * **KRDS 2.2 Standards:**
+ * - aria-labelledby connects activation button to tooltip content
+ * - Blur: Tab/Shift+Tab moves focus and hides tooltip
+ * - ESC: Closes tooltip and returns focus to activation button
+ * - Dark background with white text (contrast ratio >7:1)
  *
  * @example
  * ```tsx
@@ -144,6 +145,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     );
     const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
     const wrapperRef = React.useRef<HTMLDivElement>(null);
+    const buttonRef = React.useRef<HTMLElement | null>(null);
 
     /**
      * Foundation Layer: Focus Management
@@ -174,12 +176,16 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
 
     /**
      * Foundation Layer: Keyboard Navigation
-     * ESC key closes tooltip (WCAG 2.2 success criterion)
+     * ESC key closes tooltip and restores focus to activation button (KRDS 2.2)
      */
     const handleKeyDown = React.useCallback(
       (event: KeyboardEvent) => {
         if (event.key === 'Escape' && isVisible) {
           handleHide();
+          // KRDS: Restore focus to activation button after ESC
+          if (buttonRef.current) {
+            buttonRef.current.focus();
+          }
         }
       },
       [isVisible, handleHide]
@@ -187,7 +193,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
 
     /**
      * Foundation Layer: Event Listeners Setup
-     * Mouse hover + keyboard focus + ESC key
+     * Mouse hover + keyboard focus + blur + ESC key
      */
     React.useEffect(() => {
       const wrapper = wrapperRef.current;
@@ -196,15 +202,18 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       const child = wrapper.firstElementChild as HTMLElement;
       if (!child) return;
 
-      // Mouse events
+      // Store reference to activation button for ESC focus restoration
+      buttonRef.current = child;
+
+      // Mouse events (KRDS: Mouseover/Mouseleave)
       child.addEventListener('mouseenter', handleShow);
       child.addEventListener('mouseleave', handleHide);
 
-      // Focus events (keyboard navigation)
+      // Focus events (KRDS: Focus shows, Blur hides on Tab/Shift+Tab)
       child.addEventListener('focus', handleShow);
       child.addEventListener('blur', handleHide);
 
-      // ESC key handler
+      // ESC key handler (KRDS: Close and restore focus)
       document.addEventListener('keydown', handleKeyDown);
 
       return () => {
@@ -222,10 +231,10 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
 
     /**
      * Foundation Layer: ARIA Automation
-     * Clone child with aria-describedby auto-connection
+     * Clone child with aria-labelledby auto-connection (KRDS 2.2 requirement)
      */
     const childWithAria = React.cloneElement(children, {
-      'aria-describedby': isVisible ? tooltipId : undefined,
+      'aria-labelledby': isVisible ? tooltipId : undefined,
     } as React.HTMLAttributes<HTMLElement>);
 
     return (
