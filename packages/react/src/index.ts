@@ -113,5 +113,8 @@ export type {
   AccordionContentProps,
 } from './components/Accordion';
 
+export { Masthead } from './components/Masthead';
+export type { MastheadProps } from './components/Masthead';
+
 // Utils
 export { cn } from './lib/utils';

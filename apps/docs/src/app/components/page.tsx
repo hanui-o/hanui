@@ -35,6 +35,11 @@ const components = [
     updated: true,
   },
   {
+    name: 'Masthead',
+    href: '/components/masthead',
+    updated: true,
+  },
+  {
     name: 'Breadcrumb',
     href: '/components/breadcrumb',
     updated: false,
