@@ -11,11 +11,7 @@ export default function Home() {
       <Container>
         {/* Hero Section */}
         <Section padding="page-section" as="section">
-          <Stack
-            spacing="title-body-large"
-            align="center"
-            className="text-center"
-          >
+          <Stack spacing="heading-loose" align="center" className="text-center">
             {/* Badge */}
             <div className="inline-flex items-center rounded-full border border-gray-200 dark:border-gray-800 px-3 py-1 text-xs font-medium">
               <span className="mr-1.5">✨</span>
@@ -64,8 +60,8 @@ export default function Home() {
 
         {/* Code Example Section */}
         <Section padding="content-area" as="section">
-          <Stack spacing="h2-h3" align="center">
-            <Stack spacing="title-body-small" align="center">
+          <Stack spacing="content-loose" align="center">
+            <Stack spacing="heading-tight" align="center">
               <h2 className="text-2xl sm:text-3xl font-bold">
                 30초 만에 시작하기
               </h2>

@@ -998,7 +998,7 @@ export default function StackPage() {
                 </tr>
                 <tr>
                   <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
-                    breadcrumb-h1
+                    breadcrumb
                   </td>
                   <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
                     32px (Mobile) / 40px (PC)
