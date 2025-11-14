@@ -92,5 +92,13 @@ export type { BoxProps } from './components/Box';
 export { Tooltip } from './components/Tooltip';
 export type { TooltipProps } from './components/Tooltip';
 
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs';
+export type {
+  TabsProps,
+  TabsListProps,
+  TabsTriggerProps,
+  TabsContentProps,
+} from './components/Tabs';
+
 // Utils
 export { cn } from './lib/utils';
