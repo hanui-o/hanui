@@ -1650,7 +1650,7 @@ export default function SpacingPage() {
 
         <Stack spacing="h2-h3">
           <h2 id="best-practices" className="text-heading-lg font-bold">
-            베스트 프랙티스
+            모범 사례
           </h2>
 
           <Stack spacing="card-list">
