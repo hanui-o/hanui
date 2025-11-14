@@ -45,6 +45,11 @@ const components = [
     updated: true,
   },
   {
+    name: 'SkipLink',
+    href: '/components/skiplink',
+    updated: true,
+  },
+  {
     name: 'Breadcrumb',
     href: '/components/breadcrumb',
     updated: false,

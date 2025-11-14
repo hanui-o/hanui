@@ -122,5 +122,12 @@ export type {
   IdentifierVariant,
 } from './components/Identifier';
 
+export { SkipLink } from './components/SkipLink';
+export type {
+  SkipLinkProps,
+  SkipLinkItem,
+  SkipLinkVariant,
+} from './components/SkipLink';
+
 // Utils
 export { cn } from './lib/utils';

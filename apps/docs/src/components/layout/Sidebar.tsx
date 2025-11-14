@@ -51,6 +51,7 @@ const navigation = [
       { title: 'Modal', href: '/components/modal' },
       { title: 'Masthead', href: '/components/masthead' },
       { title: 'Identifier', href: '/components/identifier' },
+      { title: 'SkipLink', href: '/components/skiplink' },
       { title: 'Breadcrumb', href: '/components/breadcrumb' },
       { title: 'Pagination', href: '/components/pagination' },
       { title: 'File Upload', href: '/components/file-upload' },

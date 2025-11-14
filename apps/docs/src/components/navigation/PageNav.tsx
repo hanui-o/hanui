@@ -13,33 +13,62 @@ export function PageNav() {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    // Extract only h2 headings from the page
-    const elements = document.querySelectorAll('h2[id]');
-    const items: NavItem[] = Array.from(elements).map((element) => ({
-      id: element.id,
-      title: element.textContent || '',
-      level: parseInt(element.tagName.substring(1)),
-    }));
-    setHeadings(items);
+    // Wait for content to be fully rendered before extracting headings
+    const extractHeadings = () => {
+      const elements = document.querySelectorAll('h2[id]');
+      const items: NavItem[] = Array.from(elements).map((element) => ({
+        id: element.id,
+        title: element.textContent || '',
+        level: parseInt(element.tagName.substring(1)),
+      }));
+
+      // Only update if we found headings
+      if (items.length > 0) {
+        setHeadings(items);
+      }
+    };
+
+    // Extract immediately
+    extractHeadings();
+
+    // Also try after a short delay to handle client-side rendering
+    const timer = setTimeout(extractHeadings, 100);
 
     // Set up intersection observer for active section highlighting
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: '-80px 0px -80% 0px',
-      }
-    );
+    const setupObserver = () => {
+      const elements = document.querySelectorAll('h2[id]');
+      if (elements.length === 0) return null;
 
-    elements.forEach((element) => observer.observe(element));
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveId(entry.target.id);
+            }
+          });
+        },
+        {
+          rootMargin: '-80px 0px -80% 0px',
+        }
+      );
+
+      elements.forEach((element) => observer.observe(element));
+      return observer;
+    };
+
+    const observer = setupObserver();
+    const observerTimer = setTimeout(() => {
+      if (!observer) {
+        setupObserver();
+      }
+    }, 100);
 
     return () => {
-      elements.forEach((element) => observer.unobserve(element));
+      clearTimeout(timer);
+      clearTimeout(observerTimer);
+      if (observer) {
+        observer.disconnect();
+      }
     };
   }, []);
 
