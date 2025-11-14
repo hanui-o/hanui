@@ -54,6 +54,11 @@ const components = [
     href: '/components/tooltip',
     updated: true,
   },
+  {
+    name: 'Tabs',
+    href: '/components/tabs',
+    updated: true,
+  },
 ];
 
 const layoutComponents = [
@@ -120,7 +125,11 @@ export default function ComponentsPage() {
       <PageSection>
         {/* Typography Section */}
         <Stack spacing="heading-content">
-          <Heading level="h2" className="text-2xl font-semibold">
+          <Heading
+            level="h2"
+            id="typography"
+            className="text-2xl font-semibold"
+          >
             타이포그래피
           </Heading>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -145,7 +154,7 @@ export default function ComponentsPage() {
       <PageSection>
         {/* Layout Section */}
         <Stack spacing="heading-content">
-          <Heading level="h2" className="text-2xl font-semibold">
+          <Heading level="h2" id="layout" className="text-2xl font-semibold">
             레이아웃
           </Heading>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -170,7 +179,11 @@ export default function ComponentsPage() {
       <PageSection>
         {/* Components Section */}
         <Stack spacing="heading-content">
-          <Heading level="h2" className="text-2xl font-semibold">
+          <Heading
+            level="h2"
+            id="components"
+            className="text-2xl font-semibold"
+          >
             Components
           </Heading>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
