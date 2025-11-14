@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['@hanui/react'],
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  experimental: {
+    optimizePackageImports: ['@hanui/react'],
+  },
 };
 
 const withMDX = createMDX({

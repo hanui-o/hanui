@@ -22,6 +22,8 @@ body {
     /* KRDS 기본 폰트 크기: 17px (Pretendard GOV 최적화) */
     font-size: 17px;
     line-height: 1.5; /* 150% */
+    /* 앵커 링크 스크롤 시 고정 헤더 높이만큼 오프셋 적용 */
+    scroll-padding-top: 4rem; /* 64px - 헤더 높이 */
   }
 
   body {
