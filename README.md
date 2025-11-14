@@ -6,7 +6,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@hanui/react.svg)](https://www.npmjs.com/package/@hanui/react)
 [![license](https://img.shields.io/npm/l/@hanui/react.svg)](./LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/odada-o/hanui)](https://github.com/odada-o/hanui/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/hanui-o/hanui)](https://github.com/hanui-o/hanui/stargazers)
 
 [한국어](#한국어) | [English](#english)
 
@@ -154,11 +154,11 @@ pnpm format
 
 ## 📄 라이선스
 
-MIT © [odada-o](https://github.com/odada-o)
+MIT © [hanui-o](https://github.com/hanui-o)
 
 ## 📮 문의
 
-- GitHub Issues: https://github.com/odada-o/hanui/issues
+- GitHub Issues: https://github.com/hanui-o/hanui/issues
 - NPM: [@hanui/react](https://www.npmjs.com/package/@hanui/react)
 - Documentation: https://hanui.io
 
@@ -212,4 +212,4 @@ Visit [https://hanui.io](https://hanui.io) for full documentation.
 
 ### License
 
-MIT © [odada-o](https://github.com/odada-o)
+MIT © [hanui-o](https://github.com/hanui-o)

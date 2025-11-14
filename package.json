@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Korean Government Design System (KRDS) based React Component Library",
-  "author": "odada-o",
+  "author": "hanui-o",
   "license": "MIT",
   "packageManager": "pnpm@10.17.1",
   "engines": {

@@ -22,7 +22,7 @@
     "create-app",
     "cli"
   ],
-  "author": "odd:odd",
+  "author": "hanui-o",
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",
