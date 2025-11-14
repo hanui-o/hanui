@@ -10,18 +10,444 @@
 
 ## 📋 목차
 
-1. [KRDS 색상 시스템 설정](#krds-색상-시스템-설정)
-2. [Tailwind CSS 설정](#tailwind-css-설정)
-3. [타이포그래피 설정](#타이포그래피-설정)
-4. [다크 모드 설정](#다크-모드-설정)
-5. [프로젝트 구조](#프로젝트-구조)
-6. [필수 의존성](#필수-의존성)
+1. [필수 컴포넌트 현황](#필수-컴포넌트-현황)
+2. [스타터킷 예제 페이지](#스타터킷-예제-페이지)
+3. [KRDS 색상 시스템 설정](#krds-색상-시스템-설정)
+4. [Tailwind CSS 설정](#tailwind-css-설정)
+5. [타이포그래피 설정](#타이포그래피-설정)
+6. [다크 모드 설정](#다크-모드-설정)
+7. [프로젝트 구조](#프로젝트-구조)
+8. [필수 의존성](#필수-의존성)
 
 ---
 
-## 1. KRDS 색상 시스템 설정
+## 1. 필수 컴포넌트 현황
 
-### 1.1 globals.css 설정
+### 1.1 현재 제공 중인 컴포넌트 (26개)
+
+#### Typography (5개)
+
+- ✅ **Display** - 대형 제목 (36px, 44px, 60px)
+- ✅ **Heading** - 제목 (17px ~ 40px)
+- ✅ **Body** - 본문 (13px ~ 19px)
+- ✅ **NavText** - 네비게이션 텍스트
+- ✅ **Label** - 라벨 (폼 필드용)
+
+#### Layout (5개)
+
+- ✅ **Container** - 컨테이너 (max-width 제한)
+- ✅ **Stack** - 수직/수평 스택 레이아웃
+- ✅ **Section** - 섹션 래퍼
+- ✅ **Box** - 범용 박스 컴포넌트
+- ✅ **Card** - 카드 (Header, Body, Footer)
+
+#### Form (5개)
+
+- ✅ **Input** - 텍스트 입력
+- ✅ **Select** - 드롭다운 선택
+- ✅ **FileUpload** - 파일 업로드
+- ✅ **Label** - 폼 라벨
+- ✅ **Button** - 버튼
+- 🔜 **Checkbox** - 체크박스 (v1.0 필수)
+- 🔜 **Radio** - 라디오 버튼 (v1.0 필수)
+- 🔜 **Textarea** - 텍스트 영역 (v1.0 필수)
+
+#### Navigation (5개)
+
+- ✅ **Breadcrumb** - 경로 표시
+- ✅ **Pagination** - 페이지네이션
+- ✅ **Tabs** - 탭
+- ✅ **Header** - 헤더 (Identity)
+- ✅ **SkipLink** - 스킵 링크 (접근성)
+- 🔜 **Footer** - 푸터 (v1.0 권장)
+- 🔜 **Link** - 링크 컴포넌트 (v1.1)
+
+#### Feedback (2개)
+
+- ✅ **Modal** - 모달 대화상자
+- ✅ **Tooltip** - 툴팁
+- 🔜 **Alert** - 알림 배너 (v1.0 필수)
+- 🔜 **Badge** - 뱃지/태그 (v1.0 권장)
+- 🔜 **Toast** - 토스트 알림 (v1.1)
+- 🔜 **Spinner** - 로딩 (v1.1)
+
+#### Data Display (2개)
+
+- ✅ **Table** - 테이블
+- ✅ **Accordion** - 아코디언
+- 🔜 **List** - 리스트 (v1.1)
+
+#### Identity (2개)
+
+- ✅ **Masthead** - 마스트헤드 (정부 사이트 상단)
+- ✅ **Identifier** - 신원 표시
+
+### 1.2 v1.0 출시 전 필수 추가 컴포넌트
+
+실무에서 정부 사이트를 구축하려면 최소한 다음 컴포넌트가 필요합니다:
+
+#### 🔥 High Priority (v1.0 필수)
+
+1. **Checkbox** - 가장 많이 사용되는 폼 요소
+2. **Radio** - 단일 선택 폼 요소
+3. **Textarea** - 긴 텍스트 입력
+4. **Alert** - 에러/성공/경고 메시지 표시
+5. **Badge** - 상태 표시 (신규, 진행중, 완료 등)
+6. **Footer** - Header와 세트 (저작권, 주소, 연락처 필수)
+7. **Link** - 접근성 고려한 링크 컴포넌트
+
+### 1.3 컴포넌트 완성도 목표
+
+```
+v1.0 (스타터킷 출시)  → 33개 (현재 26개 + 필수 7개)
+v1.1 (첫 업데이트)    → 37개 (Toast, Spinner, FormField, Nav)
+v1.2 (두번째 업데이트) → 40개 (List, Divider, Skeleton)
+v2.0 (메이저 업데이트) → 45개+ (고급 기능)
+```
+
+---
+
+## 2. 스타터킷 예제 페이지
+
+### 2.1 필수 포함 페이지
+
+스타터킷을 사용해 정부 사이트를 만들 때, 최소한 다음 페이지를 구현할 수 있어야 합니다:
+
+#### 1) 메인 페이지 (`/`)
+
+```tsx
+// app/page.tsx
+import {
+  Masthead,
+  Header,
+  Container,
+  Section,
+  Heading,
+  Body,
+  Card,
+  Button,
+  Footer,
+} from '@hanui/react';
+
+export default function HomePage() {
+  return (
+    <>
+      <Masthead />
+      <Header />
+
+      <main>
+        {/* Hero Section */}
+        <Section className="bg-primary-5 dark:bg-primary-95">
+          <Container>
+            <Heading level="h1" size="xl">
+              대한민국 정부 서비스
+            </Heading>
+            <Body size="lg" className="mt-4">
+              국민을 위한 디지털 서비스를 제공합니다.
+            </Body>
+            <Button variant="primary" size="lg" className="mt-6">
+              서비스 시작하기
+            </Button>
+          </Container>
+        </Section>
+
+        {/* Features */}
+        <Section>
+          <Container>
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card>
+                <Card.Header>
+                  <Card.Title>빠른 민원 처리</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <Body>온라인으로 간편하게 민원을 신청하세요.</Body>
+                </Card.Body>
+              </Card>
+              {/* More cards... */}
+            </div>
+          </Container>
+        </Section>
+      </main>
+
+      <Footer />
+    </>
+  );
+}
+```
+
+#### 2) 폼 페이지 (`/apply`)
+
+민원 신청, 회원가입 등 폼이 필요한 페이지:
+
+```tsx
+// app/apply/page.tsx
+import {
+  Container,
+  Heading,
+  Body,
+  Input,
+  Textarea,
+  Select,
+  Checkbox,
+  Radio,
+  Button,
+  Alert,
+} from '@hanui/react';
+
+export default function ApplyPage() {
+  return (
+    <Container>
+      <Heading level="h1">민원 신청</Heading>
+
+      <Alert variant="information" className="mt-4">
+        모든 항목을 정확히 입력해주세요.
+      </Alert>
+
+      <form className="mt-6 space-y-6">
+        {/* 이름 */}
+        <div>
+          <Label htmlFor="name">이름</Label>
+          <Input id="name" placeholder="홍길동" required />
+        </div>
+
+        {/* 연락처 */}
+        <div>
+          <Label htmlFor="phone">연락처</Label>
+          <Input id="phone" type="tel" placeholder="010-1234-5678" />
+        </div>
+
+        {/* 민원 종류 */}
+        <div>
+          <Label htmlFor="type">민원 종류</Label>
+          <Select
+            id="type"
+            options={[
+              { value: 'complaint', label: '불편 신고' },
+              { value: 'suggestion', label: '건의 사항' },
+              { value: 'inquiry', label: '문의 사항' },
+            ]}
+          />
+        </div>
+
+        {/* 민원 내용 */}
+        <div>
+          <Label htmlFor="content">민원 내용</Label>
+          <Textarea
+            id="content"
+            rows={5}
+            placeholder="상세한 내용을 입력하세요"
+          />
+        </div>
+
+        {/* 동의 체크박스 */}
+        <Checkbox id="agree">
+          <Label htmlFor="agree">개인정보 수집 및 이용에 동의합니다.</Label>
+        </Checkbox>
+
+        {/* 알림 수신 라디오 */}
+        <div>
+          <Body size="sm" className="mb-2">
+            처리 결과 알림 수신 방법
+          </Body>
+          <Radio name="notification" value="email">
+            이메일
+          </Radio>
+          <Radio name="notification" value="sms">
+            SMS
+          </Radio>
+        </div>
+
+        <Button type="submit" variant="primary" size="lg" fullWidth>
+          신청하기
+        </Button>
+      </form>
+    </Container>
+  );
+}
+```
+
+#### 3) 목록 페이지 (`/notices`)
+
+공지사항, 게시판 등 목록 페이지:
+
+```tsx
+// app/notices/page.tsx
+import {
+  Container,
+  Heading,
+  Table,
+  Badge,
+  Pagination,
+  Input,
+  Button,
+} from '@hanui/react';
+
+export default function NoticesPage() {
+  return (
+    <Container>
+      <Heading level="h1">공지사항</Heading>
+
+      {/* 검색 */}
+      <div className="flex gap-2 mt-6">
+        <Input placeholder="검색어를 입력하세요" className="flex-1" />
+        <Button variant="primary">검색</Button>
+      </div>
+
+      {/* 테이블 */}
+      <Table className="mt-6">
+        <Table.Header>
+          <Table.Row>
+            <Table.Head>번호</Table.Head>
+            <Table.Head>제목</Table.Head>
+            <Table.Head>작성일</Table.Head>
+            <Table.Head>상태</Table.Head>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>1</Table.Cell>
+            <Table.Cell>시스템 점검 안내</Table.Cell>
+            <Table.Cell>2025-11-15</Table.Cell>
+            <Table.Cell>
+              <Badge variant="danger">긴급</Badge>
+            </Table.Cell>
+          </Table.Row>
+          {/* More rows... */}
+        </Table.Body>
+      </Table>
+
+      {/* 페이지네이션 */}
+      <Pagination currentPage={1} totalPages={10} className="mt-6" />
+    </Container>
+  );
+}
+```
+
+#### 4) 상세 페이지 (`/notices/[id]`)
+
+공지사항 상세, 민원 조회 등:
+
+```tsx
+// app/notices/[id]/page.tsx
+import {
+  Container,
+  Heading,
+  Body,
+  Badge,
+  Breadcrumb,
+  Card,
+  Button,
+} from '@hanui/react';
+
+export default function NoticeDetailPage() {
+  return (
+    <Container>
+      {/* 경로 표시 */}
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">홈</Breadcrumb.Item>
+        <Breadcrumb.Item href="/notices">공지사항</Breadcrumb.Item>
+        <Breadcrumb.Item current>시스템 점검 안내</Breadcrumb.Item>
+      </Breadcrumb>
+
+      {/* 제목 */}
+      <div className="mt-6">
+        <div className="flex items-center gap-2">
+          <Badge variant="danger">긴급</Badge>
+          <Heading level="h1">시스템 점검 안내</Heading>
+        </div>
+        <Body size="sm" className="text-gray-60 mt-2">
+          작성일: 2025-11-15 | 조회수: 1,234
+        </Body>
+      </div>
+
+      {/* 내용 */}
+      <Card className="mt-6">
+        <Card.Body>
+          <Body>
+            시스템 점검으로 인해 2025년 11월 20일 02:00 ~ 06:00까지 서비스
+            이용이 일시 중단됩니다.
+          </Body>
+          <Body className="mt-4">이용에 불편을 드려 죄송합니다.</Body>
+        </Card.Body>
+      </Card>
+
+      {/* 버튼 */}
+      <div className="flex gap-2 mt-6">
+        <Button variant="outline" href="/notices">
+          목록으로
+        </Button>
+        <Button variant="primary">이전 글</Button>
+        <Button variant="primary">다음 글</Button>
+      </div>
+    </Container>
+  );
+}
+```
+
+#### 5) 에러 페이지 (`app/error.tsx`)
+
+```tsx
+// app/error.tsx
+'use client';
+
+import { Container, Heading, Body, Button, Alert } from '@hanui/react';
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
+  return (
+    <Container className="py-20 text-center">
+      <Alert variant="danger" className="mb-6">
+        오류가 발생했습니다
+      </Alert>
+      <Heading level="h1">서비스 오류</Heading>
+      <Body className="mt-4">
+        일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요.
+      </Body>
+      <div className="flex gap-2 justify-center mt-6">
+        <Button variant="primary" onClick={reset}>
+          다시 시도
+        </Button>
+        <Button variant="outline" href="/">
+          홈으로
+        </Button>
+      </div>
+    </Container>
+  );
+}
+```
+
+### 2.2 페이지 구성 체크리스트
+
+스타터킷으로 최소한 다음 페이지를 만들 수 있어야 실무 사용 가능:
+
+- [ ] **메인 페이지** - Hero, Features, CTA
+- [ ] **폼 페이지** - 민원 신청, 회원가입
+- [ ] **목록 페이지** - 공지사항, 게시판
+- [ ] **상세 페이지** - 공지사항 상세, 민원 조회
+- [ ] **에러 페이지** - 404, 500 에러
+- [ ] **로그인 페이지** - 이메일/비밀번호 폼
+- [ ] **마이페이지** - 사용자 정보 수정
+
+### 2.3 현재 불가능한 페이지
+
+다음 컴포넌트가 없어서 현재는 만들기 어려운 페이지:
+
+- ❌ **회원가입** - Checkbox, Radio 없음
+- ❌ **설정 페이지** - Checkbox, Radio 없음
+- ❌ **리뷰/댓글** - Textarea 없음
+- ❌ **알림 센터** - Alert, Badge 없음
+- ❌ **로딩 상태** - Spinner 없음
+
+---
+
+## 3. KRDS 색상 시스템 설정
+
+### 3.1 globals.css 설정
 
 **파일**: `src/app/globals.css` (Next.js) 또는 `src/index.css` (Vite)
 
@@ -271,7 +697,7 @@ body {
 }
 ```
 
-### 1.2 중요한 설계 결정
+### 3.2 중요한 설계 결정
 
 #### ❌ 제거된 스케일
 
@@ -292,9 +718,9 @@ body {
 
 ---
 
-## 2. Tailwind CSS 설정
+## 4. Tailwind CSS 설정
 
-### 2.1 tailwind.config.ts 필수 설정
+### 4.1 tailwind.config.ts 필수 설정
 
 **파일**: `tailwind.config.ts`
 
@@ -391,7 +817,7 @@ const config: Config = {
 export default config;
 ```
 
-### 2.2 색상 사용 규칙
+### 4.2 색상 사용 규칙
 
 #### ✅ KRDS 스케일 사용 (권장)
 
@@ -421,15 +847,15 @@ export default config;
 
 ---
 
-## 3. 타이포그래피 설정
+## 5. 타이포그래피 설정
 
-### 3.1 Pretendard 폰트 설치
+### 5.1 Pretendard 폰트 설치
 
 ```bash
 pnpm add pretendard
 ```
 
-### 3.2 폰트 적용
+### 5.2 폰트 적용
 
 **Next.js App Router**:
 
@@ -450,7 +876,7 @@ export default function RootLayout({
 }
 ```
 
-### 3.3 타이포그래피 컴포넌트 사용
+### 5.3 타이포그래피 컴포넌트 사용
 
 ```tsx
 import { Heading, Body } from '@hanui/react';
@@ -466,15 +892,15 @@ import { Heading, Body } from '@hanui/react';
 
 ---
 
-## 4. 다크 모드 설정
+## 6. 다크 모드 설정
 
-### 4.1 next-themes 설치 (Next.js)
+### 6.1 next-themes 설치 (Next.js)
 
 ```bash
 pnpm add next-themes
 ```
 
-### 4.2 ThemeProvider 설정
+### 6.2 ThemeProvider 설정
 
 ```tsx
 // app/providers.tsx
@@ -510,7 +936,7 @@ export default function RootLayout({
 }
 ```
 
-### 4.3 다크 모드 자동 전환
+### 6.3 다크 모드 자동 전환
 
 ```tsx
 // ✅ 권장: CSS 변수가 자동으로 전환됨
@@ -534,9 +960,9 @@ export default function RootLayout({
 
 ---
 
-## 5. 프로젝트 구조
+## 7. 프로젝트 구조
 
-### 5.1 권장 폴더 구조
+### 7.1 권장 폴더 구조
 
 ```
 my-hanui-app/
@@ -560,9 +986,9 @@ my-hanui-app/
 
 ---
 
-## 6. 필수 의존성
+## 8. 필수 의존성
 
-### 6.1 package.json
+### 8.1 package.json
 
 ```json
 {
@@ -587,7 +1013,7 @@ my-hanui-app/
 
 ---
 
-## 7. 체크리스트
+## 9. 체크리스트
 
 ### 프로젝트 시작 전
 
@@ -607,7 +1033,7 @@ my-hanui-app/
 
 ---
 
-## 8. 참고 문서
+## 10. 참고 문서
 
 - [KRDS 공식 색상 가이드](https://www.krds.go.kr/html/site/utility/utility_03.html)
 - [KRDS 리소스 가이드](./KRDS_RESOURCES.md)
@@ -617,10 +1043,17 @@ my-hanui-app/
 
 **작성자**: @odada-o
 **업데이트**: 2025-11-15
-**Status**: ✅ 스타터킷 가이드 작성 완료
+**Status**: ✅ 스타터킷 가이드 작성 완료 (컴포넌트 현황 및 예제 페이지 추가)
+
+**다음 작업**:
+
+- [ ] v1.0 필수 컴포넌트 7개 구현 (Checkbox, Radio, Textarea, Alert, Badge, Footer, Link)
+- [ ] 스타터킷 예제 프로젝트 생성 (create-hanui-app)
+- [ ] 컴포넌트 문서 작성 (각 컴포넌트별 상세 가이드)
 
 **관련 이슈**:
 
 - KRDS 색상 시스템 통합
 - 타이포그래피 시스템
 - 다크 모드 구현
+- v1.0 필수 컴포넌트 개발
