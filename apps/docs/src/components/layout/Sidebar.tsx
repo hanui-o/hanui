@@ -103,7 +103,7 @@ function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
                 className={`block text-sm py-1 px-2 rounded-md transition-colors ${
                   isActive
                     ? 'bg-blue-600 text-white font-medium'
-                    : 'text-gray-900 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-100'
+                    : 'text-gray-90 dark:text-gray-400 hover:bg-gray-5 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-100'
                 }`}
               >
                 {item.title}
@@ -145,7 +145,7 @@ export function Sidebar() {
   }, [pathname]);
 
   return (
-    <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-gray-200 dark:border-gray-800">
+    <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-gray-10 dark:border-gray-80">
       <nav
         ref={navRef}
         className="sticky top-12 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide"

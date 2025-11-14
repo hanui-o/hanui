@@ -41,10 +41,304 @@ export default function DesignTokensPage() {
         </Stack>
       </PageSection>
 
+      {/* KRDS Color System Integration */}
+      <PageSection>
+        <Heading level="h2" id="krds-integration">
+          KRDS 색상 시스템 통합
+        </Heading>
+
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          <Body>
+            HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS와
+            통합하여 사용합니다. 두 시스템의 색상 스케일이 다르기 때문에, CSS
+            변수를 활용한 브릿지 방식을 채택했습니다.
+          </Body>
+
+          {/* Problem */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">문제 상황</Heading>
+            <Body>
+              KRDS와 Tailwind CSS는 서로 다른 색상 스케일을 사용합니다:
+            </Body>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="p-4 bg-gray-5 dark:bg-gray-90 rounded-lg border border-gray-20 dark:border-gray-80">
+                <Heading level="h4" className="mb-2">
+                  KRDS 스케일
+                </Heading>
+                <Body size="sm" className="text-gray-70 dark:text-gray-30">
+                  5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95
+                </Body>
+                <Body size="sm" className="mt-2">
+                  예:{' '}
+                  <code className="px-1.5 py-0.5 bg-white dark:bg-gray-95 rounded text-primary-60">
+                    primary-60
+                  </code>
+                </Body>
+              </div>
+              <div className="p-4 bg-gray-5 dark:bg-gray-90 rounded-lg border border-gray-20 dark:border-gray-80">
+                <Heading level="h4" className="mb-2">
+                  Tailwind 스케일
+                </Heading>
+                <Body size="sm" className="text-gray-70 dark:text-gray-30">
+                  50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
+                </Body>
+                <Body size="sm" className="mt-2">
+                  예:{' '}
+                  <code className="px-1.5 py-0.5 bg-white dark:bg-gray-95 rounded text-primary-60">
+                    primary-600
+                  </code>
+                </Body>
+              </div>
+            </div>
+          </Stack>
+
+          {/* Solution */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">해결 방법</Heading>
+            <Body>
+              CSS 변수를 사용하여 두 스케일을 모두 지원합니다.
+              <code className="px-1.5 py-0.5 mx-1 bg-gray-10 dark:bg-gray-90 rounded">
+                globals.css
+              </code>
+              에서 KRDS 색상을 CSS 변수로 정의하고,
+              <code className="px-1.5 py-0.5 mx-1 bg-gray-10 dark:bg-gray-90 rounded">
+                tailwind.config.ts
+              </code>
+              에서 이를 매핑합니다.
+            </Body>
+
+            <div className="space-y-4">
+              <div>
+                <Body size="sm" className="font-semibold mb-2">
+                  1. globals.css - CSS 변수 정의
+                </Body>
+                <CodeBlock
+                  language="css"
+                  code={`:root {
+  /* KRDS Primary Colors - Light Mode */
+  --krds-color-light-primary-5: #ecf2fe;
+  --krds-color-light-primary-10: #d8e5fd;
+  --krds-color-light-primary-20: #b1cefb;
+  --krds-color-light-primary-60: #0b50d0;
+  --krds-color-light-primary-95: #020f27;
+}
+
+.dark {
+  /* Dark Mode - 반전된 밝기 */
+  --krds-color-light-primary-5: #020f27;
+  --krds-color-light-primary-60: #4c87f6;
+  --krds-color-light-primary-95: #ecf2fe;
+}`}
+                />
+              </div>
+
+              <div>
+                <Body size="sm" className="font-semibold mb-2">
+                  2. tailwind.config.ts - 듀얼 스케일 매핑
+                </Body>
+                <CodeBlock
+                  language="typescript"
+                  code={`colors: {
+  primary: {
+    // KRDS 스케일 (5-95)
+    5: 'var(--krds-color-light-primary-5)',
+    10: 'var(--krds-color-light-primary-10)',
+    60: 'var(--krds-color-light-primary-60)',
+    95: 'var(--krds-color-light-primary-95)',
+
+    // Tailwind 호환 스케일 (100-950)
+    100: 'var(--krds-color-light-primary-10)',
+    200: 'var(--krds-color-light-primary-20)',
+    600: 'var(--krds-color-light-primary-60)',
+    950: 'var(--krds-color-light-primary-95)',
+  }
+}`}
+                />
+              </div>
+            </div>
+          </Stack>
+
+          {/* Usage */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">사용 방법</Heading>
+            <Body>
+              KRDS 스케일과 Tailwind 스케일을 모두 사용할 수 있습니다. 같은 CSS
+              변수를 참조하므로 결과는 동일합니다.
+            </Body>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <Body size="sm" className="font-semibold mb-2">
+                  KRDS 방식 (권장)
+                </Body>
+                <CodeBlock
+                  language="tsx"
+                  code={`<div className="bg-primary-60 text-gray-10">
+  KRDS 스케일 사용
+</div>
+
+<button className="bg-danger-50 hover:bg-danger-60">
+  Delete
+</button>`}
+                />
+              </div>
+
+              <div>
+                <Body size="sm" className="font-semibold mb-2">
+                  Tailwind 방식
+                </Body>
+                <CodeBlock
+                  language="tsx"
+                  code={`<div className="bg-primary-600 text-gray-100">
+  Tailwind 스케일 사용
+</div>
+
+<button className="bg-danger-500 hover:bg-danger-600">
+  Delete
+</button>`}
+                />
+              </div>
+            </div>
+
+            <div className="p-4 bg-information-5 dark:bg-information-95/30 rounded-lg border border-information-20 dark:border-information-80">
+              <Body
+                size="sm"
+                className="text-information-80 dark:text-information-20"
+              >
+                <strong>📌 권장사항:</strong> KRDS 공식 스케일(5-95)을 사용하는
+                것을 권장합니다. 이는 KRDS 디자인 가이드라인과 일치하며, 다른
+                KRDS 기반 프로젝트와의 일관성을 유지할 수 있습니다.
+              </Body>
+            </div>
+          </Stack>
+
+          {/* Dark Mode */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">다크 모드</Heading>
+            <Body>
+              다크 모드는{' '}
+              <code className="px-1.5 py-0.5 bg-gray-10 dark:bg-gray-90 rounded">
+                .dark
+              </code>{' '}
+              클래스로 자동 전환됩니다. CSS 변수가 자동으로 변경되므로,
+              클래스명에
+              <code className="px-1.5 py-0.5 mx-1 bg-gray-10 dark:bg-gray-90 rounded">
+                dark:
+              </code>
+              접두사를 붙일 필요가 없습니다.
+            </Body>
+
+            <div className="space-y-4">
+              <div>
+                <Body size="sm" className="font-semibold mb-2">
+                  자동 전환 예시
+                </Body>
+                <CodeBlock
+                  language="tsx"
+                  code={`// ✅ 권장: CSS 변수가 자동으로 전환됨
+<div className="bg-primary-60 text-gray-10">
+  라이트 모드: 진한 파란색 배경
+  다크 모드: 밝은 파란색 배경
+</div>
+
+// ❌ 불필요: dark: 접두사 사용할 필요 없음
+<div className="bg-primary-60 dark:bg-primary-40">
+  CSS 변수가 자동 전환되므로 이렇게 할 필요 없음
+</div>`}
+                />
+              </div>
+
+              <div className="p-4 bg-warning-5 dark:bg-warning-95/30 rounded-lg border border-warning-20 dark:border-warning-80">
+                <Body
+                  size="sm"
+                  className="text-warning-80 dark:text-warning-20"
+                >
+                  <strong>⚠️ 예외:</strong> CSS 변수를 사용하지 않는 Tailwind
+                  기본 유틸리티 (예:{' '}
+                  <code className="px-1 py-0.5 bg-white dark:bg-gray-95 rounded">
+                    opacity-50
+                  </code>
+                  ,
+                  <code className="px-1 py-0.5 bg-white dark:bg-gray-95 rounded mx-1">
+                    shadow-lg
+                  </code>
+                  )는 여전히{' '}
+                  <code className="px-1 py-0.5 bg-white dark:bg-gray-95 rounded">
+                    dark:
+                  </code>
+                  접두사가 필요합니다.
+                </Body>
+              </div>
+            </div>
+          </Stack>
+
+          {/* Important Notes */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">주의사항</Heading>
+            <div className="space-y-3">
+              <div className="p-4 bg-danger-5 dark:bg-danger-95/30 rounded-lg border border-danger-20 dark:border-danger-80">
+                <Body size="sm" className="text-danger-80 dark:text-danger-20">
+                  <strong>🚫 제거된 스케일:</strong> KRDS의{' '}
+                  <code className="px-1 py-0.5 bg-white dark:bg-gray-95 rounded">
+                    gray-0
+                  </code>
+                  과
+                  <code className="px-1 py-0.5 mx-1 bg-white dark:bg-gray-95 rounded">
+                    gray-100
+                  </code>
+                  은 Tailwind 스케일과의 충돌을 방지하기 위해 제거되었습니다.
+                  <code className="px-1 py-0.5 mx-1 bg-white dark:bg-gray-95 rounded">
+                    gray-5
+                  </code>
+                  부터
+                  <code className="px-1 py-0.5 mx-1 bg-white dark:bg-gray-95 rounded">
+                    gray-95
+                  </code>
+                  까지만 사용하세요.
+                </Body>
+              </div>
+
+              <div className="p-4 bg-gray-5 dark:bg-gray-90 rounded-lg border border-gray-20 dark:border-gray-80">
+                <Body size="sm">
+                  <strong>💡 스케일 매핑 규칙:</strong>
+                </Body>
+                <ul className="mt-2 space-y-1 text-sm list-disc list-inside">
+                  <li>Tailwind 100-200 → KRDS 10-20</li>
+                  <li>Tailwind 300-400 → KRDS 30-40</li>
+                  <li>Tailwind 500-600 → KRDS 50-60</li>
+                  <li>Tailwind 700-800 → KRDS 70-80</li>
+                  <li>Tailwind 900-950 → KRDS 90-95</li>
+                </ul>
+              </div>
+            </div>
+          </Stack>
+
+          {/* Reference */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">참고 자료</Heading>
+            <div className="space-y-2">
+              <a
+                href="https://www.krds.go.kr/html/site/utility/utility_03.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block p-3 bg-white dark:bg-gray-95 border border-gray-20 dark:border-gray-80 rounded-lg hover:border-primary-40 dark:hover:border-primary-60 transition-colors"
+              >
+                <Body size="sm" className="font-semibold text-primary-60">
+                  KRDS 공식 색상 가이드 →
+                </Body>
+                <Body size="xs" className="text-gray-60 dark:text-gray-40 mt-1">
+                  대한민국 디자인 시스템의 공식 색상 체계 및 사용 지침
+                </Body>
+              </a>
+            </div>
+          </Stack>
+        </Stack>
+      </PageSection>
+
       {/* Spacing */}
       <PageSection>
         <Heading level="h2" id="spacing">
-          Spacing (간격)
+          간격 (Spacing)
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
@@ -245,7 +539,7 @@ export default function DesignTokensPage() {
       {/* Typography */}
       <PageSection>
         <Heading level="h2" id="typography">
-          Typography (타이포그래피)
+          타이포그래피 (Typography)
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
@@ -369,7 +663,7 @@ export default function DesignTokensPage() {
       {/* Colors */}
       <PageSection>
         <Heading level="h2" id="colors">
-          Colors (색상)
+          색상 (Colors)
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
@@ -487,7 +781,7 @@ export default function DesignTokensPage() {
       {/* Border Radius */}
       <PageSection>
         <Heading level="h2" id="border-radius">
-          Border Radius (모서리 둥글기)
+          모서리 둥글기 (Border Radius)
         </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
@@ -547,7 +841,7 @@ export default function DesignTokensPage() {
       {/* Breakpoints */}
       <PageSection>
         <Heading level="h2" id="breakpoints">
-          Breakpoints (반응형)
+          반응형 (Breakpoints)
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
