@@ -22,7 +22,7 @@ const components = [
   {
     name: 'Card',
     href: '/components/card',
-    updated: false,
+    updated: true,
   },
   {
     name: 'Table',

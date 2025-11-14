@@ -5,30 +5,53 @@ import { cn } from '../../lib/utils';
 /**
  * Card Variants Definition
  */
-const cardVariants = cva(['rounded-lg', 'transition-shadow'].join(' '), {
-  variants: {
-    variant: {
-      default: ['bg-white', 'shadow-md', 'border', 'border-gray-200'].join(' '),
-      outlined: ['bg-white', 'border-2', 'border-gray-300'].join(' '),
-      filled: ['bg-gray-50', 'border-0'].join(' '),
+const cardVariants = cva(
+  ['rounded-lg', 'transition-all', 'duration-200'].join(' '),
+  {
+    variants: {
+      variant: {
+        default: [
+          'bg-white dark:bg-gray-800',
+          'shadow-md dark:shadow-gray-900/50',
+          'border border-gray-200 dark:border-gray-700',
+        ].join(' '),
+        outlined: [
+          'bg-white dark:bg-gray-800',
+          'border-2 border-gray-300 dark:border-gray-600',
+        ].join(' '),
+        filled: [
+          'bg-gray-50 dark:bg-gray-900',
+          'border border-gray-200 dark:border-gray-800',
+        ].join(' '),
+        elevated: [
+          'bg-white dark:bg-gray-800',
+          'shadow-lg dark:shadow-gray-900/50',
+          'border-0',
+        ].join(' '),
+      },
+      padding: {
+        none: 'p-0',
+        sm: 'p-4', // 16px
+        md: 'p-6', // 24px
+        lg: 'p-8', // 32px
+      },
+      hoverable: {
+        true: [
+          'hover:shadow-xl dark:hover:shadow-gray-900/70',
+          'hover:-translate-y-0.5',
+          'cursor-pointer',
+          'focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-400',
+        ].join(' '),
+        false: '',
+      },
     },
-    padding: {
-      none: 'p-0',
-      sm: 'p-4', // 16px
-      md: 'p-6', // 24px
-      lg: 'p-8', // 32px
+    defaultVariants: {
+      variant: 'default',
+      padding: 'md',
+      hoverable: false,
     },
-    hoverable: {
-      true: ['hover:shadow-lg', 'cursor-pointer'].join(' '),
-      false: '',
-    },
-  },
-  defaultVariants: {
-    variant: 'default',
-    padding: 'md',
-    hoverable: false,
-  },
-});
+  }
+);
 
 /**
  * Card Props Interface
@@ -40,7 +63,7 @@ export interface CardProps
    * Card variant (visual style)
    * @default "default"
    */
-  variant?: 'default' | 'outlined' | 'filled';
+  variant?: 'default' | 'outlined' | 'filled' | 'elevated';
 
   /**
    * Padding size
@@ -59,16 +82,29 @@ export interface CardProps
    * Additional className for layout adjustments
    */
   className?: string;
+
+  /**
+   * Optional accessible label for the card
+   */
+  'aria-label'?: string;
 }
 
 /**
- * Card Component
+ * Card Component (카드)
  *
- * KRDS-compliant card component with:
- * - Props-based API (variant, padding)
+ * **Foundation Layer Features:**
+ * - ✅ Semantic HTML: article role for content cards
+ * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
+ * - ✅ Screen Reader Support: Proper ARIA attributes and semantic structure
+ * - ✅ Visual Hierarchy: Consistent spacing and shadow system
+ * - ✅ Dark Mode: Automatic dark mode support with optimized colors
+ *
+ * **Design Principles:**
+ * - Flexible container for grouping related content
+ * - Multiple variants for different visual emphasis levels
+ * - Compound component pattern for structured content
  * - Hoverable state for interactive cards
- * - Compound component pattern
- * - className escape hatch for layout
+ * - Responsive padding options
  *
  * @example
  * ```tsx
@@ -87,9 +123,7 @@ export interface CardProps
  * // With variants
  * <Card variant="outlined">테두리만</Card>
  * <Card variant="filled">배경색</Card>
- *
- * // With padding
- * <Card padding="sm">작은 패딩</Card>
+ * <Card variant="elevated">그림자 강조</Card>
  *
  * // Hoverable (clickable)
  * <Card hoverable onClick={handleClick}>
@@ -99,12 +133,21 @@ export interface CardProps
  */
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, padding, hoverable, ...props }, ref) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (hoverable && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        (e.currentTarget as HTMLDivElement).click();
+      }
+      props.onKeyDown?.(e);
+    };
+
     return (
       <div
         ref={ref}
         className={cn(cardVariants({ variant, padding, hoverable }), className)}
         role={hoverable ? 'button' : 'article'}
         tabIndex={hoverable ? 0 : undefined}
+        onKeyDown={handleKeyDown}
         {...props}
       />
     );
@@ -165,7 +208,12 @@ export const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-[15px]', 'leading-[150%]', 'text-gray-600', className)}
+    className={cn(
+      'text-[15px]',
+      'leading-[150%]',
+      'text-gray-600 dark:text-gray-400',
+      className
+    )}
     {...props}
   />
 ));
