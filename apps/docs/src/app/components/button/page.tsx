@@ -12,7 +12,7 @@ export default function ButtonPage() {
   return (
     <>
       <PageHeader
-        title="Button"
+        title="Button (버튼)"
         description="다양한 스타일과 크기를 지원하는 버튼 컴포넌트"
       />
 
@@ -202,7 +202,7 @@ export default function ButtonPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            Usage
+            사용법
           </Heading>
           <CodeBlock
             code={`import { Button } from '@hanui/react'
@@ -217,13 +217,13 @@ export default function ButtonPage() {
       {/* Examples */}
       <PageSection>
         <Heading level="h2" id="examples">
-          Examples
+          예제
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Default */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Default</Heading>
+            <Heading level="h3">기본</Heading>
             <div>
               <ComponentPreview>
                 <Button>Button</Button>
@@ -240,7 +240,7 @@ export default function ButtonPage() {
 
           {/* Sizes */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Sizes</Heading>
+            <Heading level="h3">크기</Heading>
             <div>
               <ComponentPreview>
                 <div className="flex items-center gap-4">
@@ -463,7 +463,7 @@ export default function ButtonPage() {
 
           {/* Disabled */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Disabled</Heading>
+            <Heading level="h3">비활성화</Heading>
             <div>
               <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
                 <p className="text-sm text-blue-900 dark:text-blue-100">

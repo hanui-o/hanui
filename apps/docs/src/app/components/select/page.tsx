@@ -32,7 +32,7 @@ export default function SelectPage() {
   return (
     <>
       <PageHeader
-        title="Select"
+        title="Select (셀렉트)"
         description="접근성을 고려한 선택 목록 컴포넌트"
       />
 
@@ -171,7 +171,7 @@ export default function SelectPage() {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="usage">
-            Usage
+            사용법
           </Heading>
           <CodeBlock
             code={`import { Select } from '@hanui/react'
@@ -197,7 +197,7 @@ const options = [
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            예제
           </Heading>
         </Stack>
 
@@ -205,7 +205,7 @@ const options = [
           {/* Default */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="default">
-              Default
+              기본
             </Heading>
             <div>
               <ComponentPreview>
@@ -238,7 +238,7 @@ const options = [
           {/* With Label */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="with-label">
-              With Label
+              라벨 포함
             </Heading>
             <div>
               <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
@@ -285,7 +285,7 @@ const options = [
           {/* Multiple Selection */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="multiple">
-              Multiple Selection
+              다중 선택
             </Heading>
             <div>
               <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
@@ -327,7 +327,7 @@ const options = [
           {/* Disabled */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="disabled">
-              Disabled
+              비활성화
             </Heading>
             <div>
               <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
@@ -367,7 +367,7 @@ const options = [
           {/* Error State */}
           <Stack spacing="heading-tight">
             <Heading level="h3" id="error">
-              Error State
+              에러 상태
             </Heading>
             <div>
               <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">

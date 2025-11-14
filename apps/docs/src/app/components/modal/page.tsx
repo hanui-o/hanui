@@ -31,7 +31,7 @@ export default function ModalPage() {
   return (
     <>
       <PageHeader
-        title="Modal"
+        title="Modal (모달)"
         description="Headless UI Dialog 기반의 접근성 높은 모달 컴포넌트"
       />
 
@@ -90,14 +90,14 @@ export default () => {
       <PageSection>
         <Stack spacing="heading-content">
           <Heading level="h2" id="examples">
-            Examples
+            예제
           </Heading>
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Sizes */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">Sizes</Heading>
+            <Heading level="h3">크기</Heading>
             <Body className="mb-4">
               다섯 가지 크기를 지원합니다: sm, md, lg, xl, full
             </Body>
@@ -232,7 +232,7 @@ export default () => {
 
           {/* With Close Button */}
           <Stack spacing="heading-tight">
-            <Heading level="h3">With Close Button</Heading>
+            <Heading level="h3">닫기 버튼 포함</Heading>
             <Body className="mb-4">상단에 닫기 버튼을 추가할 수 있습니다.</Body>
             <div>
               <ComponentPreview>
@@ -546,7 +546,11 @@ export default () => {
 
       {/* Accessibility */}
       <PageSection>
-        <Heading level="h2" className="text-2xl font-semibold">
+        <Heading
+          level="h2"
+          id="accessibility"
+          className="text-2xl font-semibold"
+        >
           접근성
         </Heading>
 
@@ -669,7 +673,11 @@ export default () => {
 
       {/* Foundation Layer */}
       <PageSection>
-        <Heading level="h2" className="text-2xl font-semibold">
+        <Heading
+          level="h2"
+          id="foundation-layer"
+          className="text-2xl font-semibold"
+        >
           Foundation Layer
         </Heading>
 

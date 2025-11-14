@@ -9,7 +9,10 @@ import { PageSection } from '@/components/content/PageSection';
 export default function LabelPage() {
   return (
     <>
-      <PageHeader title="Label" description="폼 요소를 위한 라벨 컴포넌트" />
+      <PageHeader
+        title="Label (라벨)"
+        description="폼 요소를 위한 라벨 컴포넌트"
+      />
 
       <PageSection>
         <ComponentPreview>
