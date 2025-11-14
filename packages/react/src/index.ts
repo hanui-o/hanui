@@ -129,5 +129,15 @@ export type {
   SkipLinkVariant,
 } from './components/SkipLink';
 
+export { Header } from './components/Header';
+export type {
+  HeaderProps,
+  HeaderBrandingProps,
+  HeaderLogoProps,
+  HeaderSloganProps,
+  HeaderUtilityProps,
+  HeaderUtilityLinkProps,
+} from './components/Header';
+
 // Utils
 export { cn } from './lib/utils';
