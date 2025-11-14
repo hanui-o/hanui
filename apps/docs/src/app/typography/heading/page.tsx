@@ -5,6 +5,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { GuidelineBox } from '@/components/content/GuidelineBox';
 
 export default function HeadingPage() {
   return (
@@ -17,12 +18,14 @@ export default function HeadingPage() {
       <PageSection>
         <ComponentPreview>
           <div className="flex flex-col gap-4">
-            <Heading level="h1">h1 - 페이지 최상위 제목</Heading>
-            <Heading level="h2">h2 - 주요 섹션 제목</Heading>
-            <Heading level="h3">h3 - 하위 섹션 제목</Heading>
-            <Heading level="h4">h4 - 세부 항목 제목</Heading>
-            <Heading level="h5">h5 - 작은 제목</Heading>
-            <Heading level="h6">h6 - 최소 제목</Heading>
+            <div className="text-heading-xl font-bold">
+              h1 - 페이지 최상위 제목
+            </div>
+            <div className="text-heading-lg font-bold">h2 - 주요 섹션 제목</div>
+            <div className="text-heading-md font-bold">h3 - 하위 섹션 제목</div>
+            <div className="text-heading-sm font-bold">h4 - 세부 항목 제목</div>
+            <div className="text-heading-xs font-bold">h5 - 작은 제목</div>
+            <div className="text-heading-2xs font-bold">h6 - 최소 제목</div>
           </div>
         </ComponentPreview>
       </PageSection>
@@ -70,7 +73,9 @@ export default function HeadingPage() {
 
             <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
               <div className="mb-4">
-                <Heading level="h2">h2 - Large Heading</Heading>
+                <div className="text-heading-lg font-bold">
+                  h2 - Large Heading
+                </div>
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
                 32px (PC) / 24px (Mobile) · 700 (Bold) · 150% 줄 간격
@@ -165,10 +170,10 @@ export default function HeadingPage() {
             <Heading level="h3">페이지 구조</Heading>
             <ComponentPreview>
               <div className="space-y-4">
-                <Heading level="h1">페이지 제목</Heading>
-                <Heading level="h2">주요 섹션</Heading>
-                <Heading level="h3">하위 섹션</Heading>
-                <Heading level="h4">세부 항목</Heading>
+                <div className="text-heading-xl font-bold">페이지 제목</div>
+                <div className="text-heading-lg font-bold">주요 섹션</div>
+                <div className="text-heading-md font-bold">하위 섹션</div>
+                <div className="text-heading-sm font-bold">세부 항목</div>
               </div>
             </ComponentPreview>
             <div className="mt-4">
@@ -186,9 +191,9 @@ export default function HeadingPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">커스텀 스타일</Heading>
             <ComponentPreview>
-              <Heading level="h2" className="text-primary-60">
+              <div className="text-heading-lg font-bold text-primary-60">
                 브랜드 컬러 제목
-              </Heading>
+              </div>
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
@@ -211,46 +216,31 @@ export default function HeadingPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-green-900 dark:text-green-100 mb-3"
-            >
-              ✓ Heading을 사용하기 적합한 경우
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-green-800 dark:text-green-200">
+          <GuidelineBox title="Heading을 사용하기 적합한 경우">
+            <ul className="list-disc list-inside space-y-2">
               <li>페이지의 메인 제목 (h1)</li>
               <li>주요 섹션 구분 (h2)</li>
               <li>하위 섹션의 제목 (h3-h6)</li>
               <li>명확한 콘텐츠 계층 구조가 필요한 곳</li>
             </ul>
-          </div>
+          </GuidelineBox>
 
-          <div className="rounded-lg border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-amber-900 dark:text-amber-100 mb-3"
-            >
-              ⚠ 주의사항
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-amber-800 dark:text-amber-200">
+          <GuidelineBox title="주의사항">
+            <ul className="list-disc list-inside space-y-2">
               <li>페이지당 h1은 하나만 사용</li>
               <li>레벨을 건너뛰지 말고 순차적으로 사용 (h2 다음 h4는 지양)</li>
               <li>스타일 목적이 아닌 구조적 의미로 사용</li>
             </ul>
-          </div>
+          </GuidelineBox>
 
-          <div className="rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30 p-6">
-            <Heading level="h3" className="text-red-900 dark:text-red-100 mb-3">
-              ✗ Heading을 사용하지 말아야 하는 경우
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-red-800 dark:text-red-200">
+          <GuidelineBox title="Heading을 사용하지 말아야 하는 경우">
+            <ul className="list-disc list-inside space-y-2">
               <li>배너나 히어로 섹션 (Display 사용 권장)</li>
               <li>본문 텍스트 (Body 사용 권장)</li>
               <li>폼 라벨 (Label 사용 권장)</li>
               <li>네비게이션 메뉴 (NavText 사용 권장)</li>
             </ul>
-          </div>
+          </GuidelineBox>
         </Stack>
       </PageSection>
 

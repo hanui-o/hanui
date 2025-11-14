@@ -5,6 +5,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { GuidelineBox } from '@/components/content/GuidelineBox';
 
 export default function BodyPage() {
   return (
@@ -264,33 +265,24 @@ export default function BodyPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-green-900 dark:text-green-100 mb-3"
-            >
-              ✓ Body를 사용하기 적합한 경우
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-green-800 dark:text-green-200">
+          <GuidelineBox title="Body를 사용하기 적합한 경우">
+            <ul className="list-disc list-inside space-y-2">
               <li>일반 문단과 본문 콘텐츠</li>
               <li>설명 텍스트</li>
               <li>리스트 항목</li>
               <li>카드 내용</li>
               <li>캡션 및 메타 정보</li>
             </ul>
-          </div>
+          </GuidelineBox>
 
-          <div className="rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30 p-6">
-            <Heading level="h3" className="text-red-900 dark:text-red-100 mb-3">
-              ✗ Body를 사용하지 말아야 하는 경우
-            </Heading>
-            <ul className="list-disc list-inside space-y-2 text-red-800 dark:text-red-200">
+          <GuidelineBox title="Body를 사용하지 말아야 하는 경우">
+            <ul className="list-disc list-inside space-y-2">
               <li>페이지 제목 (Heading 사용 권장)</li>
               <li>배너 텍스트 (Display 사용 권장)</li>
               <li>폼 라벨 (Label 사용 권장)</li>
               <li>네비게이션 메뉴 (NavText 사용 권장)</li>
             </ul>
-          </div>
+          </GuidelineBox>
         </Stack>
       </PageSection>
 
