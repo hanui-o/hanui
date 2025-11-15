@@ -17,6 +17,7 @@ const navigation = [
     title: 'Design System',
     items: [
       { title: 'Design Tokens', href: '/design-tokens' },
+      { title: 'Colors', href: '/design-system/colors' },
       { title: 'Spacing', href: '/design-system/spacing' },
     ],
   },
@@ -145,7 +146,7 @@ export function Sidebar() {
   }, [pathname]);
 
   return (
-    <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-gray-10 dark:border-gray-80">
+    <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-krds-gray-10 dark:border-gray-80">
       <nav
         ref={navRef}
         className="sticky top-12 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide"
