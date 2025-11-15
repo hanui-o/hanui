@@ -29,8 +29,7 @@ export function Logo({ width = 24, height = 24, className }: LogoProps) {
         y="5"
         width="6"
         height="6"
-        fill="#0b50d0"
-        className="dark:fill-[#4c87f6]"
+        className="fill-[var(--krds-primary-base)]"
       />
       <rect x="13" y="5" width="6" height="6" fill="currentColor" />
       <rect x="5" y="13" width="6" height="6" fill="currentColor" />

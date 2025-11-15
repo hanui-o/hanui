@@ -1,7 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { Button, Container, Stack, Section } from '@hanui/react';
+import {
+  Button,
+  Container,
+  Stack,
+  Section,
+  Display,
+  Body,
+  Heading,
+} from '@hanui/react';
 import { HomeLayout } from '@/components/HomeLayout';
 import { ExampleShowcase } from '@/components/ExampleShowcase';
 
@@ -19,16 +27,16 @@ export default function Home() {
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight !leading-normal">
+            <Display size="lg" as="h1" className="tracking-tight">
               WCAG 2.1 AA와 KRDS를 <br /> 완벽히 준수하는 시맨틱 React 컴포넌트
-            </h1>
+            </Display>
 
             {/* Description */}
-            <p className="text-base text-krds-gray-70 max-w-2xl">
+            <Body size="md" className="max-w-2xl">
               접근성과 사용성을 갖춘 React 컴포넌트.
               <br className="hidden sm:block" />
               KRDS를 완벽히 준수하는 공공기관 웹사이트 개발의 시작.
-            </p>
+            </Body>
 
             {/* CTA Buttons */}
             <Stack
@@ -60,12 +68,10 @@ export default function Home() {
         <Section padding="content-area" as="section">
           <Stack spacing="content-loose" align="center">
             <Stack spacing="heading-tight" align="center">
-              <h2 className="text-2xl sm:text-3xl font-bold">
-                30초 만에 시작하기
-              </h2>
-              <p className="text-sm sm:text-base text-krds-gray-70">
+              <Heading level="h2">30초 만에 시작하기</Heading>
+              <Body size="md">
                 CLI로 프로젝트를 생성하고 바로 개발을 시작하세요
-              </p>
+              </Body>
             </Stack>
 
             <div className="rounded-lg border border-krds-gray-20 bg-krds-gray-95 overflow-hidden shadow-2xl w-full">

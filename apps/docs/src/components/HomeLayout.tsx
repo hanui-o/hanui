@@ -10,7 +10,7 @@ interface HomeLayoutProps {
 
 export function HomeLayout({ children }: HomeLayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950">
+    <div className="min-h-screen flex flex-col bg-krds-gray-0">
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

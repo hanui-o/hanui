@@ -90,13 +90,16 @@ export function Header() {
   return (
     <header
       id="header"
-      className={`sticky top-0 z-50 w-full bg-white/95 dark:bg-gray-950/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-950/60 ${isMainPage ? '' : 'shadow-[0_1px_#00002d17]'}`}
+      className={`sticky top-0 z-50 w-full bg-krds-white/95 backdrop-blur supports-[backdrop-filter]:bg-krds-white/60 ${isMainPage ? '' : 'shadow-[0_1px_#00002d17]'}`}
     >
       <Container maxWidth="full" className="h-12 flex items-center gap-4">
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
+          <Link
+            href="/"
+            className="flex items-center space-x-2 flex-shrink-0 text-krds-gray-95"
+          >
             <Logo />
             <span className="text-lg font-bold font-krona">HANUI</span>
           </Link>
@@ -105,13 +108,13 @@ export function Header() {
           <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
             <Link
               href="/components"
-              className="px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-100 rounded-md transition-colors"
+              className="px-3 py-2 text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95 rounded-md transition-colors"
             >
               Components
             </Link>
             <Link
               href="/examples"
-              className="px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-100 rounded-md transition-colors"
+              className="px-3 py-2 text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95 rounded-md transition-colors"
             >
               Examples
             </Link>
@@ -121,10 +124,10 @@ export function Header() {
         {/* Right: Search + GitHub + Theme */}
         <div className="flex items-center gap-2 ml-auto">
           {/* Search */}
-          <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
+          <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-krds-gray-70 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors">
             <SearchIcon />
             <span className="hidden lg:inline">Search documentation...</span>
-            <kbd className="hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 px-1.5 font-mono text-xs font-medium text-gray-600 dark:text-gray-400 ml-auto">
+            <kbd className="hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-5 px-1.5 font-mono text-xs font-medium text-krds-gray-70 ml-auto">
               <span className="text-xs">⌘</span>K
             </kbd>
           </button>
@@ -134,7 +137,7 @@ export function Header() {
             href="https://github.com/hanui-o/hanui"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 h-9 px-3 text-sm font-medium rounded-md hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+            className="flex items-center gap-2 h-9 px-3 text-sm font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors"
           >
             <GitHubIcon />
             <span className="hidden">GitHub</span>
@@ -144,7 +147,7 @@ export function Header() {
           {mounted && (
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="flex items-center justify-center text-lg h-9 w-9 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+              className="flex items-center justify-center text-lg h-9 w-9 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <SunIcon /> : <MoonIcon />}

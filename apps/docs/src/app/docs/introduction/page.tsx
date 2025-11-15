@@ -27,28 +27,28 @@ export default function IntroductionPage() {
             <Heading level="h3">핵심 가치</Heading>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span className="text-krds-primary-text mt-1">•</span>
                 <Body>
                   <strong>KRDS 준수:</strong> 한국 정부 디자인 시스템 가이드라인
                   완벽 준수
                 </Body>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span className="text-krds-primary-text mt-1">•</span>
                 <Body>
                   <strong>웹 접근성:</strong> WCAG 2.1 AA 수준 웹 접근성 기준
                   충족
                 </Body>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span className="text-krds-primary-text mt-1">•</span>
                 <Body>
                   <strong>개발자 경험:</strong> TypeScript 완벽 지원 및 직관적인
                   API
                 </Body>
               </li>
               <li className="flex items-start gap-3">
-                <span className="text-blue-600 dark:text-blue-400 mt-1">•</span>
+                <span className="text-krds-primary-text mt-1">•</span>
                 <Body>
                   <strong>커스터마이징:</strong> Tailwind CSS 기반으로 쉬운 확장
                   가능
@@ -147,27 +147,19 @@ export default function IntroductionPage() {
           <ul className="space-y-2">
             <li className="flex items-center gap-3">
               <Body className="w-24 font-medium">Chrome</Body>
-              <Body className="text-gray-600 dark:text-gray-400">
-                최신 2개 버전
-              </Body>
+              <Body className="text-krds-gray-70">최신 2개 버전</Body>
             </li>
             <li className="flex items-center gap-3">
               <Body className="w-24 font-medium">Firefox</Body>
-              <Body className="text-gray-600 dark:text-gray-400">
-                최신 2개 버전
-              </Body>
+              <Body className="text-krds-gray-70">최신 2개 버전</Body>
             </li>
             <li className="flex items-center gap-3">
               <Body className="w-24 font-medium">Safari</Body>
-              <Body className="text-gray-600 dark:text-gray-400">
-                최신 2개 버전
-              </Body>
+              <Body className="text-krds-gray-70">최신 2개 버전</Body>
             </li>
             <li className="flex items-center gap-3">
               <Body className="w-24 font-medium">Edge</Body>
-              <Body className="text-gray-600 dark:text-gray-400">
-                최신 2개 버전
-              </Body>
+              <Body className="text-krds-gray-70">최신 2개 버전</Body>
             </li>
           </ul>
         </Stack>
@@ -183,7 +175,7 @@ export default function IntroductionPage() {
           <Body>설치부터 시작해보세요:</Body>
           <a
             href="/docs/installation"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors font-medium"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-krds-gray-5 text-krds-gray-95 rounded-lg hover:bg-krds-gray-10 transition-colors font-medium"
           >
             Installation
             <svg
