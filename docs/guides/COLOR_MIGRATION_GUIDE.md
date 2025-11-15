@@ -22,6 +22,24 @@ HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 사용합니
 
 ## 🔄 색상 매핑 가이드
 
+### Base Colors (흰색/검은색)
+
+| Tailwind 기본  | KRDS 색상    | 용도                                     |
+| -------------- | ------------ | ---------------------------------------- |
+| `white`        | `krds-white` | 배경 색상 (다크 모드 자동 전환, 권장)    |
+| `black`        | `krds-black` | 텍스트 색상 (다크 모드 자동 전환, 권장)  |
+| `white` (순수) | `white`      | 항상 흰색이 필요한 경우 (로고, 아이콘)   |
+| `black` (순수) | `black`      | 항상 검은색이 필요한 경우 (로고, 아이콘) |
+
+**예시**:
+
+```diff
+- <div className="bg-white text-black">
++ <div className="bg-krds-white text-krds-black">
+  {/* 다크 모드 자동 전환 */}
+</div>
+```
+
 ### Gray 색상
 
 | Tailwind 기본 | KRDS 색상                          | 용도               |
@@ -84,7 +102,7 @@ HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 사용합니
 
 // ✅ 이후
 <div className="bg-krds-gray-5">배경</div>
-<div className="bg-white">배경</div>
+<div className="bg-krds-white">배경</div>
 ```
 
 ### 3. 테두리 색상
@@ -151,6 +169,8 @@ HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 사용합니
 - [ ] 모든 `yellow-*` 색상을 `krds-warning-*`로 변경
 - [ ] 모든 `green-*` 색상을 `krds-success-*`로 변경
 - [ ] 모든 `dark:*` 클래스 제거
+- [ ] UI 요소의 `bg-white`가 `bg-krds-white`로 변경되었는가? (코드 블록, 카드 배경 등)
+- [ ] UI 요소의 `text-black`이 `text-krds-black`로 변경되었는가?
 - [ ] Semantic 변수 사용 검토 (`text-krds-primary-text` 등)
 - [ ] 접근성 확인 (색상 대비율)
 
@@ -168,12 +188,21 @@ HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 사용합니
 
 1. **Semantic 변수 우선 사용**: 일반적인 UI 컴포넌트에서는 Semantic 변수(`text-krds-primary-text`, `bg-krds-primary-surface`)를 사용하는 것이 좋습니다.
 
-2. **일괄 검색/교체**: VS Code의 "Find and Replace" 기능을 사용하여 일괄 변경할 수 있습니다:
+2. **UI 요소에서 KRDS 색상 사용**: 문서 사이트나 컴포넌트 내부 UI 요소에서는 Tailwind 기본 색상 대신 KRDS 색상을 사용하는 것을 권장합니다:
+   - `bg-white` → `bg-krds-white` (다크 모드 자동 전환)
+   - `text-black` → `text-krds-black` (다크 모드 자동 전환)
+   - 코드 블록 배경, 카드 배경 등 모든 UI 요소에 적용
+
+3. **일괄 검색/교체**: VS Code의 "Find and Replace" 기능을 사용하여 일괄 변경할 수 있습니다:
    - `text-gray-700 dark:text-gray-300` → `text-krds-gray-90`
    - `bg-gray-50 dark:bg-gray-900` → `bg-krds-gray-5`
    - `border-gray-200 dark:border-gray-800` → `border-krds-gray-20`
+   - `bg-white dark:bg-krds-gray-95` → `bg-krds-white`
+   - `text-black dark:text-krds-gray-10` → `text-krds-black`
 
-3. **단계별 마이그레이션**: 한 번에 모든 파일을 변경하지 말고, 페이지 단위로 순차적으로 마이그레이션하세요.
+4. **다크 모드 접두사 제거**: 모든 KRDS 색상은 CSS 변수를 통해 자동 전환되므로 `dark:` 접두사는 필요 없습니다. 모든 `dark:` 접두사를 제거하세요.
+
+5. **단계별 마이그레이션**: 한 번에 모든 파일을 변경하지 말고, 페이지 단위로 순차적으로 마이그레이션하세요.
 
 ---
 

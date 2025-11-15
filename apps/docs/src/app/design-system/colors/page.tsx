@@ -18,31 +18,29 @@ export default function ColorsPage() {
         <Stack spacing="heading-tight">
           <Heading level="h3">빠른 요약</Heading>
           <Body>
-            <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
-              krds-
-            </code>{' '}
+            <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">krds-</code>{' '}
             접두사를 사용하여 Tailwind 기본 색상과 KRDS 색상을 구분합니다.
           </Body>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+            <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
               <Heading level="h4" className="mb-2">
                 Tailwind 기본 색상
               </Heading>
               <Body size="sm" className="mt-2">
                 예:{' '}
-                <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                <code className="px-1.5 py-0.5 bg-krds-white rounded">
                   bg-gray-50
                 </code>
               </Body>
             </div>
-            <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+            <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
               <Heading level="h4" className="mb-2">
                 KRDS 색상 (krds- 접두사)
               </Heading>
               <Body size="sm" className="mt-2">
                 예:{' '}
-                <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                <code className="px-1.5 py-0.5 bg-krds-white rounded">
                   bg-krds-gray-50
                 </code>
               </Body>
@@ -62,21 +60,14 @@ export default function ColorsPage() {
             HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS에서
             사용할 수 있도록 통합했습니다. Tailwind의 기본 색상(gray, red, blue
             등)과 충돌을 피하기 위해{' '}
-            <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
-              krds-
-            </code>{' '}
+            <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">krds-</code>{' '}
             접두사를 붙인 별도 네임스페이스를 사용합니다.
           </Body>
 
-          <div className="p-4 bg-krds-information-5 dark:bg-krds-information-95/30 rounded-lg border border-krds-information-20 dark:border-krds-information-80">
-            <Body
-              size="sm"
-              className="text-krds-information-80 dark:text-krds-information-20"
-            >
+          <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
+            <Body size="sm" className="text-krds-information-80">
               <strong>💡 핵심:</strong>{' '}
-              <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
-                krds-
-              </code>{' '}
+              <code className="px-1 py-0.5 bg-krds-white rounded">krds-</code>{' '}
               접두사를 사용하면 Tailwind 기본 색상과 KRDS 색상이 공존할 수
               있습니다. 필요에 따라 둘 다 사용할 수 있습니다.
             </Body>
@@ -93,9 +84,7 @@ export default function ColorsPage() {
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>
             Tailwind의 기본 색상(gray, red, blue 등)과 충돌을 피하기 위해{' '}
-            <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
-              krds-
-            </code>{' '}
+            <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">krds-</code>{' '}
             접두사를 붙인 별도 네임스페이스를 사용합니다.
           </Body>
 
@@ -108,51 +97,40 @@ export default function ColorsPage() {
             </Body>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <Heading level="h4" className="mb-2">
                   Tailwind 기본 색상
                 </Heading>
-                <Body
-                  size="sm"
-                  className="text-krds-gray-70 dark:text-krds-gray-30"
-                >
+                <Body size="sm" className="text-krds-gray-70">
                   gray-50, gray-100, gray-200...
                 </Body>
                 <Body size="sm" className="mt-2">
                   예:{' '}
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     bg-gray-50
                   </code>
                 </Body>
               </div>
-              <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <Heading level="h4" className="mb-2">
                   KRDS 색상 (krds- 접두사)
                 </Heading>
-                <Body
-                  size="sm"
-                  className="text-krds-gray-70 dark:text-krds-gray-30"
-                >
+                <Body size="sm" className="text-krds-gray-70">
                   krds-gray-50, krds-primary-60...
                 </Body>
                 <Body size="sm" className="mt-2">
                   예:{' '}
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     bg-krds-gray-50
                   </code>
                 </Body>
               </div>
             </div>
 
-            <div className="p-4 bg-krds-information-5 dark:bg-krds-information-95/30 rounded-lg border border-krds-information-20 dark:border-krds-information-80">
-              <Body
-                size="sm"
-                className="text-krds-information-80 dark:text-krds-information-20"
-              >
+            <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
+              <Body size="sm" className="text-krds-information-80">
                 <strong>💡 핵심:</strong>{' '}
-                <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
-                  krds-
-                </code>{' '}
+                <code className="px-1 py-0.5 bg-krds-white rounded">krds-</code>{' '}
                 접두사를 사용하면 Tailwind 기본 색상과 KRDS 색상이 공존할 수
                 있습니다. 필요에 따라 둘 다 사용할 수 있습니다.
               </Body>
@@ -163,15 +141,15 @@ export default function ColorsPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">구현 방법</Heading>
             <Body>
-              <code className="px-1.5 py-0.5 mx-1 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 mx-1 bg-krds-gray-10 rounded">
                 globals.css
               </code>
               에서 KRDS 색상을 CSS 변수로 정의하고,
-              <code className="px-1.5 py-0.5 mx-1 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 mx-1 bg-krds-gray-10 rounded">
                 tailwind.config.ts
               </code>
               에서{' '}
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 krds-
               </code>{' '}
               접두사를 붙여 Tailwind 유틸리티로 사용할 수 있도록 매핑합니다.
@@ -231,7 +209,7 @@ export default function ColorsPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">사용 방법</Heading>
             <Body>
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 krds-
               </code>{' '}
               접두사를 붙인 클래스명을 사용합니다.
@@ -269,45 +247,42 @@ export default function ColorsPage() {
                 />
               </div>
 
-              <div className="p-4 bg-krds-warning-5 dark:bg-krds-warning-95/30 rounded-lg border border-krds-warning-20 dark:border-krds-warning-80">
-                <Body
-                  size="sm"
-                  className="text-krds-warning-80 dark:text-krds-warning-20"
-                >
+              <div className="p-4 bg-krds-warning-5 rounded-lg border border-krds-warning-20">
+                <Body size="sm" className="text-krds-warning-80">
                   <strong>⚠️ 주의:</strong>
                 </Body>
                 <ul className="mt-2 space-y-2 text-sm">
                   <li>
                     <strong>숫자 스케일도 자동 전환됨:</strong>{' '}
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1 py-0.5 bg-krds-white rounded">
                       bg-krds-gray-5
                     </code>
                     ,{' '}
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1 py-0.5 bg-krds-white rounded">
                       text-krds-gray-10
                     </code>
                     같은 숫자 스케일도 CSS 변수를 통해 자동 전환됩니다.{' '}
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                    <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                       globals.css
                     </code>
                     의{' '}
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                    <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                       .dark
                     </code>
                     에서 변수 값을 재정의하므로{' '}
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                    <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                       dark:
                     </code>
                     접두사가 필요 없습니다.
                   </li>
                   <li>
                     <strong>text-white 사용:</strong>{' '}
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1 py-0.5 bg-krds-white rounded">
                       text-white
                     </code>
                     는 순수 흰색(#ffffff) CSS 변수를 사용합니다. 다크 모드에서도
                     항상 흰색이므로, 배경이 모드에 따라 변한다면 KRDS 색상 변수(
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                    <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                       text-krds-gray-10
                     </code>
                     등)를 사용하세요. 순수 흰색이 필요한 경우(로고, 아이콘
@@ -316,14 +291,11 @@ export default function ColorsPage() {
                 </ul>
               </div>
 
-              <div className="p-4 bg-krds-information-5 dark:bg-krds-information-95/30 rounded-lg border border-krds-information-20 dark:border-krds-information-80">
-                <Body
-                  size="sm"
-                  className="text-krds-information-80 dark:text-krds-information-20"
-                >
+              <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
+                <Body size="sm" className="text-krds-information-80">
                   <strong>📌 참고:</strong> Tailwind 기본 색상(gray-50, red-500
                   등)도 그대로 사용할 수 있습니다. KRDS 색상은{' '}
-                  <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1 py-0.5 bg-krds-white rounded">
                     krds-
                   </code>{' '}
                   접두사가 붙은 것만 사용하면 됩니다.
@@ -352,24 +324,24 @@ export default function ColorsPage() {
             <Body>
               흰색과 검은색은 모드에 따라 자동으로 반전됩니다. 순수
               흰색/검은색이 필요한 경우에는{' '}
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 white
               </code>
               와{' '}
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 black
               </code>
               을 사용하세요.
             </Body>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <div className="p-4 bg-krds-white text-krds-black rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-white text-krds-black rounded-lg border border-krds-gray-20">
                 <code className="text-sm block mb-2">bg-krds-white</code>
                 <p className="text-sm">
                   기본 모드: 흰색, 다크 모드: 검은색 (자동 반전)
                 </p>
               </div>
-              <div className="p-4 bg-krds-black text-krds-white rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-black text-krds-white rounded-lg border border-krds-gray-20">
                 <code className="text-sm block mb-2">bg-krds-black</code>
                 <p className="text-sm">
                   기본 모드: 검은색, 다크 모드: 흰색 (자동 반전)
@@ -388,6 +360,8 @@ export default function ColorsPage() {
 </div>
 
 // 순수 흰색/검은색 (모드 무관, 항상 동일)
+// 주의: white/black은 다크 모드에서 자동 전환되지 않습니다
+// 참고: 실제 사용 시에는 krds-white/krds-black 사용 권장
 <div className="bg-white text-black">
   {/* 항상 흰색 배경 + 검은색 텍스트 */}
 </div>`}
@@ -395,29 +369,26 @@ export default function ColorsPage() {
               showLineNumbers={false}
             />
 
-            <div className="p-4 bg-krds-information-5 dark:bg-krds-information-95/30 rounded-lg border border-krds-information-20 dark:border-krds-information-80">
-              <Body
-                size="sm"
-                className="text-krds-information-80 dark:text-krds-information-20"
-              >
+            <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
+              <Body size="sm" className="text-krds-information-80">
                 <strong>💡 차이점:</strong>
                 <ul className="mt-2 space-y-1 text-sm list-disc list-inside">
                   <li>
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1 py-0.5 bg-krds-white rounded">
                       krds-white
                     </code>
                     /
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                    <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                       krds-black
                     </code>
                     : 모드에 따라 자동 반전 (권장)
                   </li>
                   <li>
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1 py-0.5 bg-krds-white rounded">
                       white
                     </code>
                     /
-                    <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                    <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                       black
                     </code>
                     : 모드 무관, 항상 동일 (순수 색상이 필요한 경우)
@@ -461,10 +432,10 @@ export default function ColorsPage() {
               사용합니다.
             </Body>
             <div className="space-y-2 mb-4">
-              <div className="flex items-center gap-4 p-3 bg-white rounded-lg border border-krds-gray-20">
-                <div className="w-16 h-16 bg-white border border-krds-gray-20 rounded"></div>
+              <div className="flex items-center gap-4 p-3 bg-krds-white rounded-lg border border-krds-gray-20">
+                <div className="w-16 h-16 bg-krds-white border border-krds-gray-20 rounded"></div>
                 <div>
-                  <code className="text-sm">bg-white</code>
+                  <code className="text-sm">bg-krds-white</code>
                   <p className="text-xs text-krds-gray-70">
                     Surface 0 - 기본 배경
                   </p>
@@ -570,50 +541,50 @@ export default function ColorsPage() {
           </Body>
 
           <div className="grid md:grid-cols-2 gap-4 mb-4">
-            <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+            <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
               <Heading level="h4" className="mb-2">
                 기본 모드
               </Heading>
               <ul className="space-y-1 text-sm">
                 <li>
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     base
                   </code>{' '}
                   = 50
                 </li>
                 <li>
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     text
                   </code>{' '}
                   = 80
                 </li>
                 <li>
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     surface
                   </code>{' '}
                   = 5
                 </li>
               </ul>
             </div>
-            <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+            <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
               <Heading level="h4" className="mb-2">
                 다크 모드
               </Heading>
               <ul className="space-y-1 text-sm">
                 <li>
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     base
                   </code>{' '}
                   = 60
                 </li>
                 <li>
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     text
                   </code>{' '}
                   = 20
                 </li>
                 <li>
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     surface
                   </code>{' '}
                   = 95
@@ -683,19 +654,17 @@ export default function ColorsPage() {
             </Body>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <Heading level="h4" className="mb-3">
                   Semantic 변수{' '}
-                  <span className="text-krds-primary-60 dark:text-krds-primary-40">
-                    (권장)
-                  </span>
+                  <span className="text-krds-primary-60">(권장)</span>
                 </Heading>
                 <Body size="sm" className="mb-3">
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     bg-krds-primary-surface
                   </code>
                   ,{' '}
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     text-krds-primary-text
                   </code>
                 </Body>
@@ -707,16 +676,16 @@ export default function ColorsPage() {
                 </ul>
               </div>
 
-              <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <Heading level="h4" className="mb-3">
                   숫자 스케일
                 </Heading>
                 <Body size="sm" className="mb-3">
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     bg-krds-gray-5
                   </code>
                   ,{' '}
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     text-krds-gray-90
                   </code>
                 </Body>
@@ -729,11 +698,8 @@ export default function ColorsPage() {
               </div>
             </div>
 
-            <div className="p-4 bg-krds-information-5 dark:bg-krds-information-95/30 rounded-lg border border-krds-information-20 dark:border-krds-information-80">
-              <Body
-                size="sm"
-                className="text-krds-information-80 dark:text-krds-information-20"
-              >
+            <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
+              <Body size="sm" className="text-krds-information-80">
                 <strong>💡 언제 무엇을 사용하나요?</strong>
                 <ul className="mt-2 space-y-1 text-sm list-disc list-inside">
                   <li>
@@ -756,92 +722,92 @@ export default function ColorsPage() {
             <Body>다음 컬러들이 Semantic 변수를 지원합니다:</Body>
 
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <Heading level="h4" className="mb-3">
                   Primary
                 </Heading>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       text-krds-primary-text
                     </code>
                   </li>
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       bg-krds-primary-surface
                     </code>
                   </li>
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       bg-krds-primary-base
                     </code>
                   </li>
                 </ul>
               </div>
 
-              <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <Heading level="h4" className="mb-3">
                   Secondary
                 </Heading>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       text-krds-secondary-text
                     </code>
                   </li>
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       bg-krds-secondary-surface
                     </code>
                   </li>
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       bg-krds-secondary-base
                     </code>
                   </li>
                 </ul>
               </div>
 
-              <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <Heading level="h4" className="mb-3">
                   Accent (강조)
                 </Heading>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       text-krds-accent-text
                     </code>
                   </li>
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       bg-krds-accent-surface
                     </code>
                   </li>
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       bg-krds-accent-base
                     </code>
                   </li>
                 </ul>
               </div>
 
-              <div className="p-4 bg-krds-gray-5 dark:bg-krds-gray-90 rounded-lg border border-krds-gray-20 dark:border-krds-gray-80">
+              <div className="p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <Heading level="h4" className="mb-3">
                   Danger (위험/에러)
                 </Heading>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       text-krds-danger-text
                     </code>
                   </li>
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       bg-krds-danger-surface
                     </code>
                   </li>
                   <li>
-                    <code className="px-1.5 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                    <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       border-krds-danger-border
                     </code>
                   </li>
@@ -861,13 +827,9 @@ export default function ColorsPage() {
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>
             HANUI는 CSS 변수를 활용하여 다크 모드를 자동으로 지원합니다.{' '}
-            <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
-              html
-            </code>
+            <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">html</code>
             요소에{' '}
-            <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
-              dark
-            </code>
+            <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">dark</code>
             클래스를 추가하면 모든 KRDS 색상이 자동으로 전환됩니다.
           </Body>
 
@@ -876,15 +838,15 @@ export default function ColorsPage() {
             <Heading level="h3">작동 원리</Heading>
             <Body>
               CSS 변수는 상위 요소의 값을 상속받습니다.{' '}
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 globals.css
               </code>
               에서{' '}
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 :root
               </code>
               와{' '}
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 .dark
               </code>
               에서 같은 변수명을 사용하지만 다른 값을 할당하여, 모드에 따라
@@ -1038,11 +1000,11 @@ export default function ColorsPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">다크 모드 활성화 방법</Heading>
             <Body>
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 html
               </code>
               요소에{' '}
-              <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
                 dark
               </code>{' '}
               클래스를 추가하면 됩니다.
@@ -1084,19 +1046,16 @@ function App() {
           <Stack spacing="heading-tight">
             <Heading level="h3">주의사항</Heading>
             <div className="space-y-3">
-              <div className="p-4 bg-krds-warning-5 dark:bg-krds-warning-95/30 rounded-lg border border-krds-warning-20 dark:border-krds-warning-80">
-                <Body
-                  size="sm"
-                  className="text-krds-warning-80 dark:text-krds-warning-20"
-                >
+              <div className="p-4 bg-krds-warning-5 rounded-lg border border-krds-warning-20">
+                <Body size="sm" className="text-krds-warning-80">
                   <strong>⚠️ text-white 사용:</strong>{' '}
-                  <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded">
+                  <code className="px-1 py-0.5 bg-krds-white rounded">
                     text-white
                   </code>
                   는 순수 흰색(#ffffff) CSS 변수를 사용하지만, 모드에 따라 값이
                   변하지 않으므로 항상 흰색입니다. 배경이 모드에 따라 변한다면
                   KRDS 색상 변수(
-                  <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                  <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                     text-krds-gray-10
                   </code>
                   등)를 사용하세요. 순수 흰색이 필요한 경우(로고, 아이콘 등)에만
@@ -1104,23 +1063,20 @@ function App() {
                 </Body>
               </div>
 
-              <div className="p-4 bg-krds-information-5 dark:bg-krds-information-95/30 rounded-lg border border-krds-information-20 dark:border-krds-information-80">
-                <Body
-                  size="sm"
-                  className="text-krds-information-80 dark:text-krds-information-20"
-                >
+              <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
+                <Body size="sm" className="text-krds-information-80">
                   <strong>💡 핵심:</strong> 모든 KRDS 색상(숫자 스케일, semantic
                   변수, `krds-white`/`krds-black` 모두)은 CSS 변수를 통해 자동
                   전환되므로,{' '}
-                  <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                  <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                     dark:
                   </code>{' '}
                   접두사가 필요 없습니다.{' '}
-                  <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                  <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                     html
                   </code>{' '}
                   요소에{' '}
-                  <code className="px-1 py-0.5 bg-white dark:bg-krds-gray-95 rounded mx-1">
+                  <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
                     dark
                   </code>{' '}
                   클래스만 추가하면 됩니다.

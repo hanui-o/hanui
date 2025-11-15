@@ -1026,6 +1026,14 @@ export default config;
 
 3. **Tailwind 기본 색상과 공존**: `krds-` 접두사를 사용하므로 Tailwind 기본 색상(`gray-50`, `red-500` 등)도 그대로 사용할 수 있습니다.
 
+4. **UI 요소에서 KRDS 색상 사용 권장**: 문서 사이트나 컴포넌트 내부 UI 요소에서는 Tailwind 기본 색상(`bg-white`, `text-black` 등) 대신 KRDS 색상을 사용하는 것을 권장합니다:
+   - `bg-white` → `bg-krds-white` (다크 모드 자동 전환)
+   - `text-black` → `text-krds-black` (다크 모드 자동 전환)
+   - `bg-gray-50` → `bg-krds-gray-5` (KRDS 색상 스케일)
+   - `text-gray-700` → `text-krds-gray-90` (KRDS 색상 스케일)
+
+5. **다크 모드 미사용 시**: 현재 HANUI 문서 사이트는 다크 모드를 사용하지 않으므로, `dark:` 접두사는 사용하지 않습니다. 모든 KRDS 색상은 CSS 변수를 통해 자동 전환되므로 `dark:` 접두사가 필요 없습니다.
+
 #### 4.3.10 참고 자료
 
 - **사용자 문서**: `/design-system/colors` - 색상 시스템 사용법
