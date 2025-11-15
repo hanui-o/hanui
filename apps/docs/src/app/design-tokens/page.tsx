@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Button, Input, Card, Stack, Heading, Body } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
@@ -49,289 +50,31 @@ export default function DesignTokensPage() {
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>
-            HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS와
-            통합하여 사용합니다. 두 시스템의 색상 스케일이 다르기 때문에, CSS
-            변수를 활용한 브릿지 방식을 채택했습니다.
+            HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS에서
+            사용할 수 있도록 통합했습니다. Tailwind의 기본 색상(gray, red, blue
+            등)과 충돌을 피하기 위해{' '}
+            <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
+              krds-
+            </code>{' '}
+            접두사를 붙인 별도 네임스페이스를 사용합니다.
           </Body>
 
-          {/* Problem */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">문제 상황</Heading>
-            <Body>
-              KRDS와 Tailwind CSS는 서로 다른 색상 스케일을 사용합니다:
-            </Body>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 bg-gray-5 dark:bg-gray-90 rounded-lg border border-gray-20 dark:border-gray-80">
-                <Heading level="h4" className="mb-2">
-                  KRDS 스케일
-                </Heading>
-                <Body size="sm" className="text-gray-70 dark:text-gray-30">
-                  5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95
-                </Body>
-                <Body size="sm" className="mt-2">
-                  예:{' '}
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-gray-95 rounded text-primary-60">
-                    primary-60
-                  </code>
-                </Body>
-              </div>
-              <div className="p-4 bg-gray-5 dark:bg-gray-90 rounded-lg border border-gray-20 dark:border-gray-80">
-                <Heading level="h4" className="mb-2">
-                  Tailwind 스케일
-                </Heading>
-                <Body size="sm" className="text-gray-70 dark:text-gray-30">
-                  50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
-                </Body>
-                <Body size="sm" className="mt-2">
-                  예:{' '}
-                  <code className="px-1.5 py-0.5 bg-white dark:bg-gray-95 rounded text-primary-60">
-                    primary-600
-                  </code>
-                </Body>
-              </div>
-            </div>
-          </Stack>
-
-          {/* Solution */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">해결 방법</Heading>
-            <Body>
-              CSS 변수를 사용하여 두 스케일을 모두 지원합니다.
-              <code className="px-1.5 py-0.5 mx-1 bg-gray-10 dark:bg-gray-90 rounded">
-                globals.css
-              </code>
-              에서 KRDS 색상을 CSS 변수로 정의하고,
-              <code className="px-1.5 py-0.5 mx-1 bg-gray-10 dark:bg-gray-90 rounded">
-                tailwind.config.ts
-              </code>
-              에서 이를 매핑합니다.
-            </Body>
-
-            <div className="space-y-4">
-              <div>
-                <Body size="sm" className="font-semibold mb-2">
-                  1. globals.css - CSS 변수 정의
-                </Body>
-                <CodeBlock
-                  language="css"
-                  code={`:root {
-  /* KRDS Primary Colors - Light Mode */
-  --krds-color-light-primary-5: #ecf2fe;
-  --krds-color-light-primary-10: #d8e5fd;
-  --krds-color-light-primary-20: #b1cefb;
-  --krds-color-light-primary-60: #0b50d0;
-  --krds-color-light-primary-95: #020f27;
-}
-
-.dark {
-  /* Dark Mode - 반전된 밝기 */
-  --krds-color-light-primary-5: #020f27;
-  --krds-color-light-primary-60: #4c87f6;
-  --krds-color-light-primary-95: #ecf2fe;
-}`}
-                />
-              </div>
-
-              <div>
-                <Body size="sm" className="font-semibold mb-2">
-                  2. tailwind.config.ts - 듀얼 스케일 매핑
-                </Body>
-                <CodeBlock
-                  language="typescript"
-                  code={`colors: {
-  primary: {
-    // KRDS 스케일 (5-95)
-    5: 'var(--krds-color-light-primary-5)',
-    10: 'var(--krds-color-light-primary-10)',
-    60: 'var(--krds-color-light-primary-60)',
-    95: 'var(--krds-color-light-primary-95)',
-
-    // Tailwind 호환 스케일 (100-950)
-    100: 'var(--krds-color-light-primary-10)',
-    200: 'var(--krds-color-light-primary-20)',
-    600: 'var(--krds-color-light-primary-60)',
-    950: 'var(--krds-color-light-primary-95)',
-  }
-}`}
-                />
-              </div>
-            </div>
-          </Stack>
-
-          {/* Usage */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">사용 방법</Heading>
-            <Body>
-              KRDS 스케일과 Tailwind 스케일을 모두 사용할 수 있습니다. 같은 CSS
-              변수를 참조하므로 결과는 동일합니다.
-            </Body>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <Body size="sm" className="font-semibold mb-2">
-                  KRDS 방식 (권장)
-                </Body>
-                <CodeBlock
-                  language="tsx"
-                  code={`<div className="bg-primary-60 text-gray-10">
-  KRDS 스케일 사용
-</div>
-
-<button className="bg-danger-50 hover:bg-danger-60">
-  Delete
-</button>`}
-                />
-              </div>
-
-              <div>
-                <Body size="sm" className="font-semibold mb-2">
-                  Tailwind 방식
-                </Body>
-                <CodeBlock
-                  language="tsx"
-                  code={`<div className="bg-primary-600 text-gray-100">
-  Tailwind 스케일 사용
-</div>
-
-<button className="bg-danger-500 hover:bg-danger-600">
-  Delete
-</button>`}
-                />
-              </div>
-            </div>
-
-            <div className="p-4 bg-information-5 dark:bg-information-95/30 rounded-lg border border-information-20 dark:border-information-80">
-              <Body
-                size="sm"
-                className="text-information-80 dark:text-information-20"
+          <div className="p-4 bg-krds-information-5 dark:bg-krds-information-95/30 rounded-lg border border-krds-information-20 dark:border-krds-information-80">
+            <Body
+              size="sm"
+              className="text-krds-information-80 dark:text-krds-information-20"
+            >
+              <strong>📖 상세 내용:</strong> 색상 시스템의 자세한 사용법,
+              Semantic 변수, 다크 모드 등은{' '}
+              <Link
+                href="/design-system/colors"
+                className="text-krds-primary-60 dark:text-krds-primary-40 hover:underline font-semibold"
               >
-                <strong>📌 권장사항:</strong> KRDS 공식 스케일(5-95)을 사용하는
-                것을 권장합니다. 이는 KRDS 디자인 가이드라인과 일치하며, 다른
-                KRDS 기반 프로젝트와의 일관성을 유지할 수 있습니다.
-              </Body>
-            </div>
-          </Stack>
-
-          {/* Dark Mode */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">다크 모드</Heading>
-            <Body>
-              다크 모드는{' '}
-              <code className="px-1.5 py-0.5 bg-gray-10 dark:bg-gray-90 rounded">
-                .dark
-              </code>{' '}
-              클래스로 자동 전환됩니다. CSS 변수가 자동으로 변경되므로,
-              클래스명에
-              <code className="px-1.5 py-0.5 mx-1 bg-gray-10 dark:bg-gray-90 rounded">
-                dark:
-              </code>
-              접두사를 붙일 필요가 없습니다.
+                Design System → Colors
+              </Link>
+              페이지를 참고하세요.
             </Body>
-
-            <div className="space-y-4">
-              <div>
-                <Body size="sm" className="font-semibold mb-2">
-                  자동 전환 예시
-                </Body>
-                <CodeBlock
-                  language="tsx"
-                  code={`// ✅ 권장: CSS 변수가 자동으로 전환됨
-<div className="bg-primary-60 text-gray-10">
-  라이트 모드: 진한 파란색 배경
-  다크 모드: 밝은 파란색 배경
-</div>
-
-// ❌ 불필요: dark: 접두사 사용할 필요 없음
-<div className="bg-primary-60 dark:bg-primary-40">
-  CSS 변수가 자동 전환되므로 이렇게 할 필요 없음
-</div>`}
-                />
-              </div>
-
-              <div className="p-4 bg-warning-5 dark:bg-warning-95/30 rounded-lg border border-warning-20 dark:border-warning-80">
-                <Body
-                  size="sm"
-                  className="text-warning-80 dark:text-warning-20"
-                >
-                  <strong>⚠️ 예외:</strong> CSS 변수를 사용하지 않는 Tailwind
-                  기본 유틸리티 (예:{' '}
-                  <code className="px-1 py-0.5 bg-white dark:bg-gray-95 rounded">
-                    opacity-50
-                  </code>
-                  ,
-                  <code className="px-1 py-0.5 bg-white dark:bg-gray-95 rounded mx-1">
-                    shadow-lg
-                  </code>
-                  )는 여전히{' '}
-                  <code className="px-1 py-0.5 bg-white dark:bg-gray-95 rounded">
-                    dark:
-                  </code>
-                  접두사가 필요합니다.
-                </Body>
-              </div>
-            </div>
-          </Stack>
-
-          {/* Important Notes */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">주의사항</Heading>
-            <div className="space-y-3">
-              <div className="p-4 bg-danger-5 dark:bg-danger-95/30 rounded-lg border border-danger-20 dark:border-danger-80">
-                <Body size="sm" className="text-danger-80 dark:text-danger-20">
-                  <strong>🚫 제거된 스케일:</strong> KRDS의{' '}
-                  <code className="px-1 py-0.5 bg-white dark:bg-gray-95 rounded">
-                    gray-0
-                  </code>
-                  과
-                  <code className="px-1 py-0.5 mx-1 bg-white dark:bg-gray-95 rounded">
-                    gray-100
-                  </code>
-                  은 Tailwind 스케일과의 충돌을 방지하기 위해 제거되었습니다.
-                  <code className="px-1 py-0.5 mx-1 bg-white dark:bg-gray-95 rounded">
-                    gray-5
-                  </code>
-                  부터
-                  <code className="px-1 py-0.5 mx-1 bg-white dark:bg-gray-95 rounded">
-                    gray-95
-                  </code>
-                  까지만 사용하세요.
-                </Body>
-              </div>
-
-              <div className="p-4 bg-gray-5 dark:bg-gray-90 rounded-lg border border-gray-20 dark:border-gray-80">
-                <Body size="sm">
-                  <strong>💡 스케일 매핑 규칙:</strong>
-                </Body>
-                <ul className="mt-2 space-y-1 text-sm list-disc list-inside">
-                  <li>Tailwind 100-200 → KRDS 10-20</li>
-                  <li>Tailwind 300-400 → KRDS 30-40</li>
-                  <li>Tailwind 500-600 → KRDS 50-60</li>
-                  <li>Tailwind 700-800 → KRDS 70-80</li>
-                  <li>Tailwind 900-950 → KRDS 90-95</li>
-                </ul>
-              </div>
-            </div>
-          </Stack>
-
-          {/* Reference */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">참고 자료</Heading>
-            <div className="space-y-2">
-              <a
-                href="https://www.krds.go.kr/html/site/utility/utility_03.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block p-3 bg-white dark:bg-gray-95 border border-gray-20 dark:border-gray-80 rounded-lg hover:border-primary-40 dark:hover:border-primary-60 transition-colors"
-              >
-                <Body size="sm" className="font-semibold text-primary-60">
-                  KRDS 공식 색상 가이드 →
-                </Body>
-                <Body size="xs" className="text-gray-60 dark:text-gray-40 mt-1">
-                  대한민국 디자인 시스템의 공식 색상 체계 및 사용 지침
-                </Body>
-              </a>
-            </div>
-          </Stack>
+          </div>
         </Stack>
       </PageSection>
 
@@ -655,124 +398,6 @@ export default function DesignTokensPage() {
                 language="tsx"
                 showLineNumbers={false}
               />
-            </div>
-          </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* Colors */}
-      <PageSection>
-        <Heading level="h2" id="colors">
-          색상 (Colors)
-        </Heading>
-
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Body>
-            KRDS 색상 시스템은 접근성을 최우선으로 하며, WCAG 2.1 AA 기준을
-            준수합니다.
-          </Body>
-
-          {/* Primary Colors */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Primary Colors</Heading>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <div className="p-4 bg-[#256ef4] text-white rounded-lg">
-                <code className="text-sm block mb-2">bg-[#256ef4]</code>
-                <p className="text-sm">Primary - 주요 상호작용</p>
-              </div>
-              <div className="p-4 bg-[#0b50d0] text-white rounded-lg">
-                <code className="text-sm block mb-2">hover:bg-[#0b50d0]</code>
-                <p className="text-sm">Primary Hover</p>
-              </div>
-            </div>
-            <CodeBlock
-              code={`<Button variant="primary">확인</Button>
-// 또는
-<button className="bg-[#256ef4] hover:bg-[#0b50d0] text-white">
-  확인
-</button>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </Stack>
-
-          {/* Gray Scale */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Gray Scale</Heading>
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center gap-4 p-3 bg-white rounded-lg">
-                <div className="w-16 h-16 bg-white border border-gray-300 rounded"></div>
-                <div>
-                  <code className="text-sm">bg-white</code>
-                  <p className="text-xs text-gray-600">배경색 (밝은 테마)</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
-                <div className="w-16 h-16 bg-gray-50 border border-gray-300 rounded"></div>
-                <div>
-                  <code className="text-sm">bg-gray-50</code>
-                  <p className="text-xs text-gray-600">보조 배경색</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-3 bg-gray-100 rounded-lg">
-                <div className="w-16 h-16 bg-gray-100 border border-gray-300 rounded"></div>
-                <div>
-                  <code className="text-sm">bg-gray-100</code>
-                  <p className="text-xs text-gray-600">비활성 배경</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-3 bg-gray-200 rounded-lg">
-                <div className="w-16 h-16 bg-gray-200 border border-gray-300 rounded"></div>
-                <div>
-                  <code className="text-sm">bg-gray-200</code>
-                  <p className="text-xs text-gray-600">구분선, 테두리</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-3 bg-gray-600 rounded-lg">
-                <div className="w-16 h-16 bg-gray-600 rounded"></div>
-                <div>
-                  <code className="text-sm text-white">text-gray-600</code>
-                  <p className="text-xs text-gray-300">보조 텍스트</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 p-3 bg-gray-900 rounded-lg">
-                <div className="w-16 h-16 bg-gray-900 rounded"></div>
-                <div>
-                  <code className="text-sm text-white">text-gray-900</code>
-                  <p className="text-xs text-gray-300">본문 텍스트</p>
-                </div>
-              </div>
-            </div>
-          </Stack>
-
-          {/* System Colors */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">System Colors</Heading>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <code className="text-sm text-red-700 block mb-2">
-                  bg-red-50 / text-red-700
-                </code>
-                <p className="text-sm text-red-900">Danger - 오류, 삭제</p>
-              </div>
-              <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                <code className="text-sm text-yellow-700 block mb-2">
-                  bg-yellow-50 / text-yellow-700
-                </code>
-                <p className="text-sm text-yellow-900">Warning - 경고, 주의</p>
-              </div>
-              <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                <code className="text-sm text-green-700 block mb-2">
-                  bg-green-50 / text-green-700
-                </code>
-                <p className="text-sm text-green-900">Success - 완료, 성공</p>
-              </div>
-              <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                <code className="text-sm text-blue-700 block mb-2">
-                  bg-blue-50 / text-blue-700
-                </code>
-                <p className="text-sm text-blue-900">Info - 정보, 안내</p>
-              </div>
             </div>
           </Stack>
         </Stack>
