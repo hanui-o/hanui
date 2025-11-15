@@ -12,13 +12,11 @@ import { cn } from '../../lib/utils';
  * - Xsmall: 13px
  * - 가중치: Regular(400) 기본
  * - 줄 간격 150%
- * - 기본 색상: gray-700 (라이트) / gray-300 (다크) - KRDS 명도 대비 4.5:1 준수
+ * - 기본 색상: gray-90 (basic) - KRDS 명도 대비 4.5:1 준수, 다크 모드 자동 전환
  */
 const labelVariants = cva(
   // Base styles - KRDS 명도 대비 4.5:1 이상을 만족하는 기본 색상
-  ['font-normal', 'leading-[150%]', 'text-gray-700', 'dark:text-gray-300'].join(
-    ' '
-  ),
+  ['font-normal', 'leading-[150%]', 'text-krds-gray-90'].join(' '),
   {
     variants: {
       size: {

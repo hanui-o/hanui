@@ -10,13 +10,11 @@ import { cn } from '../../lib/utils';
  * - Medium: 44px(PC) / 32px(Mobile) - 주요 제목
  * - Small: 36px(PC) / 28px(Mobile) - 보조 제목
  * - 모든 레벨 굵기 700(bold), 줄 간격 150%
- * - 기본 색상: gray-900 (라이트) / gray-100 (다크) - KRDS 명도 대비 4.5:1 준수
+ * - 기본 색상: gray-95 (bolder) - KRDS 명도 대비 4.5:1 준수, 다크 모드 자동 전환
  */
 const displayVariants = cva(
   // Base styles - KRDS 명도 대비 4.5:1 이상을 만족하는 기본 색상
-  ['font-bold', 'leading-[150%]', 'text-gray-900', 'dark:text-gray-100'].join(
-    ' '
-  ),
+  ['font-bold', 'leading-[150%]', 'text-krds-gray-95'].join(' '),
   {
     variants: {
       size: {

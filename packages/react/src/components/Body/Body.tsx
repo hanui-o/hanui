@@ -12,11 +12,12 @@ import { cn } from '../../lib/utils';
  * - Xsmall: 13px
  * - 가중치: Regular(400) / Bold(700)
  * - 모든 레벨 줄 간격 150%
- * - 기본 색상: gray-700 (라이트) / gray-300 (다크) - KRDS 명도 대비 4.5:1 준수
+ * - 기본 색상: gray-90 (basic, regular weight) / gray-95 (bolder, bold weight)
+ * - 다크 모드 자동 전환 (CSS 변수 기반)
  */
 const bodyVariants = cva(
   // Base styles - KRDS 명도 대비 4.5:1 이상을 만족하는 기본 색상
-  ['leading-[150%]', 'text-gray-700', 'dark:text-gray-300'].join(' '),
+  ['leading-[150%]'].join(' '),
   {
     variants: {
       size: {
@@ -26,8 +27,8 @@ const bodyVariants = cva(
         xs: 'text-[13px]',
       },
       weight: {
-        regular: 'font-normal', // 400
-        bold: 'font-bold', // 700
+        regular: ['font-normal', 'text-krds-gray-90'].join(' '), // 400 = basic
+        bold: ['font-bold', 'text-krds-gray-95'].join(' '), // 700 = bolder
       },
     },
     defaultVariants: {

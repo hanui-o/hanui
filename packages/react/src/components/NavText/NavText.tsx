@@ -14,9 +14,9 @@ import { cn } from '../../lib/utils';
  *   - Small: 15px - Regular(400) / Bold(700)
  * - 줄 간격 150%
  * - 기본 색상:
- *   - Title (tit-*): gray-900/gray-100 (강한 대비)
- *   - Depth (depth-*): gray-700/gray-300 (중간 대비)
- *   - KRDS 명도 대비 4.5:1 준수
+ *   - Title (tit-*): gray-95 (bolder, 강한 대비)
+ *   - Depth (depth-*): gray-90 (basic, 중간 대비)
+ *   - KRDS 명도 대비 4.5:1 준수, 다크 모드 자동 전환
  */
 const navTextVariants = cva(
   // Base styles
@@ -28,22 +28,16 @@ const navTextVariants = cva(
           'text-[22px]',
           'md:text-[24px]',
           'font-bold',
-          'text-gray-900',
-          'dark:text-gray-100',
+          'text-krds-gray-95',
         ].join(' '),
         'tit-sm': [
           'text-[17px]',
           'md:text-[19px]',
           'font-bold',
-          'text-gray-900',
-          'dark:text-gray-100',
+          'text-krds-gray-95',
         ].join(' '),
-        'depth-md': ['text-[17px]', 'text-gray-700', 'dark:text-gray-300'].join(
-          ' '
-        ),
-        'depth-sm': ['text-[15px]', 'text-gray-700', 'dark:text-gray-300'].join(
-          ' '
-        ),
+        'depth-md': ['text-[17px]', 'text-krds-gray-90'].join(' '),
+        'depth-sm': ['text-[15px]', 'text-krds-gray-90'].join(' '),
       },
       weight: {
         regular: 'font-normal', // 400
