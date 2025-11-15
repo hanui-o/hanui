@@ -48,14 +48,14 @@ export default function BodyPage() {
             크기 (Size)
           </Heading>
           <Stack spacing="content-loose">
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Body size="lg">
                   Large - 주요 본문이나 중요한 설명에 사용하는 텍스트입니다.
                   가독성이 높아 중요한 정보 전달에 적합합니다.
                 </Body>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 19px · 400 (Regular) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -67,14 +67,14 @@ export default function BodyPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Body size="md">
                   Medium - 일반적인 본문 텍스트에 사용합니다. 가장 기본이 되는
                   크기로 대부분의 콘텐츠에 적용됩니다.
                 </Body>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 17px · 400 (Regular) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -86,14 +86,14 @@ export default function BodyPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Body size="sm">
                   Small - 보조 설명이나 부가 정보에 사용합니다. 작지만 여전히
                   읽기 편한 크기입니다.
                 </Body>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 15px · 400 (Regular) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -105,14 +105,14 @@ export default function BodyPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Body size="xs">
                   XSmall - 캡션, 각주, 메타 정보 등에 사용합니다. 가장 작은
                   크기입니다.
                 </Body>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 13px · 400 (Regular) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -134,7 +134,7 @@ export default function BodyPage() {
             굵기 (Weight)
           </Heading>
           <Stack spacing="content-loose">
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Body size="md" weight="regular">
                   Regular (400) - 일반적인 본문 텍스트에 사용하는 기본
@@ -150,7 +150,7 @@ export default function BodyPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Body size="md" weight="bold">
                   Bold (700) - 강조가 필요한 본문 텍스트에 사용합니다.
@@ -240,13 +240,13 @@ export default function BodyPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">커스텀 스타일</Heading>
             <ComponentPreview>
-              <Body size="md" className="text-primary-60">
+              <Body size="md" className="text-krds-primary-base">
                 브랜드 컬러가 적용된 텍스트
               </Body>
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<Body size="md" className="text-primary-60">
+                code={`<Body size="md" className="text-krds-primary-base">
   브랜드 컬러가 적용된 텍스트
 </Body>`}
                 language="tsx"
@@ -295,15 +295,15 @@ export default function BodyPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>
                   <th className="text-left py-3 px-4">Type</th>
                   <th className="text-left py-3 px-4">Default</th>
                   <th className="text-left py-3 px-4">Description</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700 dark:text-gray-300">
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+              <tbody className="text-krds-gray-90">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>size</code>
                   </td>
@@ -318,7 +318,7 @@ export default function BodyPage() {
                   </td>
                   <td className="py-3 px-4">텍스트 크기</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>weight</code>
                   </td>
@@ -330,7 +330,7 @@ export default function BodyPage() {
                   </td>
                   <td className="py-3 px-4">폰트 굵기</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>as</code>
                   </td>
@@ -344,7 +344,7 @@ export default function BodyPage() {
                   </td>
                   <td className="py-3 px-4">렌더링할 HTML 태그</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>className</code>
                   </td>
@@ -376,8 +376,8 @@ export default function BodyPage() {
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ 150% 줄 간격으로 가독성 확보</li>
               <li>✓ 4단계 크기 시스템 (Large, Medium, Small, XSmall)</li>
               <li>✓ 2단계 굵기 시스템 (Regular, Bold)</li>

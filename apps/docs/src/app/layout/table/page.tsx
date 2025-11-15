@@ -60,7 +60,7 @@ export default function TablePage() {
         </Stack>
 
         <div className="mt-4 space-y-4">
-          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+          <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -146,7 +146,7 @@ export default function TablePage() {
             </Body>
 
             <div className="space-y-4">
-              <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
                 <Table>
                   <TableCaption>2024년 1분기 매출 현황</TableCaption>
                   <TableHeader>
@@ -211,7 +211,7 @@ export default function TablePage() {
             </Body>
 
             <div className="space-y-4">
-              <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -282,7 +282,7 @@ export default function TablePage() {
             </Body>
 
             <div className="space-y-4">
-              <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -359,7 +359,7 @@ export default function TablePage() {
             </Body>
 
             <div className="space-y-4">
-              <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -464,7 +464,7 @@ const handleSort = (column: string) => {
             </Body>
 
             <div className="space-y-4">
-              <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
                 <Table>
                   <TableCaption>
                     2024년 부서별 예산 집행 현황 (단위: 만원)
@@ -703,7 +703,7 @@ const handleSort = (column: string) => {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold w-1/5">
                       Prop
                     </th>
@@ -719,23 +719,21 @@ const handleSort = (column: string) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       React.ReactNode
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
-                      테이블 내용
-                    </td>
+                    <td className="py-3 px-4 text-krds-gray-70">테이블 내용</td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">className</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       string
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       추가 CSS 클래스
                     </td>
                   </tr>
@@ -752,7 +750,7 @@ const handleSort = (column: string) => {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold w-1/5">
                       Prop
                     </th>
@@ -768,15 +766,13 @@ const handleSort = (column: string) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       React.ReactNode
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
-                      헤더 행
-                    </td>
+                    <td className="py-3 px-4 text-krds-gray-70">헤더 행</td>
                   </tr>
                 </tbody>
               </table>
@@ -791,7 +787,7 @@ const handleSort = (column: string) => {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold w-1/5">
                       Prop
                     </th>
@@ -807,25 +803,23 @@ const handleSort = (column: string) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">striped</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       boolean
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">false</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       교차 배경색 적용
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       React.ReactNode
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
-                      데이터 행
-                    </td>
+                    <td className="py-3 px-4 text-krds-gray-70">데이터 행</td>
                   </tr>
                 </tbody>
               </table>
@@ -840,7 +834,7 @@ const handleSort = (column: string) => {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold w-1/5">
                       Prop
                     </th>
@@ -856,49 +850,45 @@ const handleSort = (column: string) => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">sortable</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       boolean
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">false</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       정렬 가능 여부
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">
                       sortDirection
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       &apos;asc&apos; | &apos;desc&apos; | null
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">null</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       현재 정렬 방향
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">onSort</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       () =&gt; void
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
-                      정렬 핸들러
-                    </td>
+                    <td className="py-3 px-4 text-krds-gray-70">정렬 핸들러</td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">scope</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       string
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">
                       &apos;col&apos;
                     </td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
-                      헤더 범위
-                    </td>
+                    <td className="py-3 px-4 text-krds-gray-70">헤더 범위</td>
                   </tr>
                 </tbody>
               </table>

@@ -82,7 +82,7 @@ export default function ButtonPage() {
                 버튼의 시각적 강조도는 액션의 중요도와 일치해야 합니다.
               </Body>
               <Stack spacing="compact">
-                <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+                <div className="rounded-lg border border-krds-gray-20 bg-krds-white p-4">
                   <Stack spacing="compact">
                     <div className="flex items-center justify-between">
                       <h4 className="font-semibold">
@@ -92,14 +92,14 @@ export default function ButtonPage() {
                         제출
                       </Button>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-krds-gray-70">
                       페이지당 하나만 사용 권장. 주요 목표 달성 액션 (제출,
                       저장, 구매 등)
                     </p>
                   </Stack>
                 </div>
 
-                <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+                <div className="rounded-lg border border-krds-gray-20 bg-krds-white p-4">
                   <Stack spacing="compact">
                     <div className="flex items-center justify-between">
                       <h4 className="font-semibold">Secondary - 보조 액션</h4>
@@ -107,13 +107,13 @@ export default function ButtonPage() {
                         취소
                       </Button>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-krds-gray-70">
                       Primary와 함께 사용. 취소, 이전 단계 등
                     </p>
                   </Stack>
                 </div>
 
-                <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+                <div className="rounded-lg border border-krds-gray-20 bg-krds-white p-4">
                   <Stack spacing="compact">
                     <div className="flex items-center justify-between">
                       <h4 className="font-semibold">Outline - 낮은 강조</h4>
@@ -121,13 +121,13 @@ export default function ButtonPage() {
                         옵션
                       </Button>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-krds-gray-70">
                       추가 옵션이나 덜 중요한 액션
                     </p>
                   </Stack>
                 </div>
 
-                <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+                <div className="rounded-lg border border-krds-gray-20 bg-krds-white p-4">
                   <Stack spacing="compact">
                     <div className="flex items-center justify-between">
                       <h4 className="font-semibold">Ghost - 최소 강조</h4>
@@ -135,7 +135,7 @@ export default function ButtonPage() {
                         닫기
                       </Button>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-krds-gray-70">
                       인라인 액션, 닫기 버튼 등
                     </p>
                   </Stack>
@@ -265,8 +265,8 @@ export default function ButtonPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Primary</Heading>
             <div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 페이지에서 가장 중요한
                   액션에 사용합니다. 예: 회원가입 완료, 결제하기, 제출
                 </p>
@@ -294,8 +294,8 @@ export default function ButtonPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Secondary</Heading>
             <div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> Primary 버튼의 보조 액션에
                   사용합니다. 예: 취소, 뒤로가기, 건너뛰기
                 </p>
@@ -323,8 +323,8 @@ export default function ButtonPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Success & Danger</Heading>
             <div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> Success는 긍정적 결과,
                   Danger는 삭제나 위험한 액션에 사용합니다.
                 </p>
@@ -350,8 +350,8 @@ export default function ButtonPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Outline</Heading>
             <div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 중간 수준의 강조가 필요한
                   경우에 사용합니다. 예: 필터 옵션, 추가 설정, 보조 기능
                 </p>
@@ -379,8 +379,8 @@ export default function ButtonPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Ghost</Heading>
             <div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 최소한의 시각적 강조가
                   필요한 경우에 사용합니다. 예: 닫기, 접기/펼치기, 인라인 액션
                 </p>
@@ -408,8 +408,8 @@ export default function ButtonPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Ghost Primary</Heading>
             <div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> Ghost 스타일이지만 Primary
                   색상으로 약간의 강조가 필요한 경우. 예: 중요한 링크형 액션
                 </p>
@@ -435,8 +435,8 @@ export default function ButtonPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Loading</Heading>
             <div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 비동기 작업 처리 중임을
                   표시하고 중복 클릭을 방지할 때 사용합니다. 예: 데이터 전송,
                   파일 업로드
@@ -465,8 +465,8 @@ export default function ButtonPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">비활성화</Heading>
             <div>
-              <div className="p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아
                   액션을 수행할 수 없을 때 사용합니다. 예: 필수 입력 미완료,
                   권한 없음

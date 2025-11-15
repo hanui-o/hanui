@@ -379,7 +379,7 @@ export default () => {
                     onChange={handleChange}
                     onError={handleError}
                   />
-                  <p className="mt-2 text-sm text-gray-60 dark:text-gray-40">
+                  <p className="mt-2 text-sm text-krds-gray-70">
                     이미지, PDF, 문서 파일만 업로드 가능합니다. (최대 10MB, 3개)
                   </p>
                 </div>
@@ -499,7 +499,7 @@ export default () => {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4 font-semibold w-1/5">
                     Prop
                   </th>
@@ -515,103 +515,99 @@ export default () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">accept</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     string
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">-</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 text-krds-gray-70">
                     허용할 파일 유형
                   </td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">maxSize</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     number
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">-</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 text-krds-gray-70">
                     최대 파일 크기 (바이트)
                   </td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">maxFiles</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     number
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">-</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 text-krds-gray-70">
                     최대 파일 개수
                   </td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">multiple</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     boolean
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">false</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 text-krds-gray-70">
                     다중 파일 업로드 허용
                   </td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">onUpload</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     (files: File[]) =&gt; void
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">-</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 text-krds-gray-70">
                     업로드 버튼 클릭 시 호출
                   </td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">onChange</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     (files: File[]) =&gt; void
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">-</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 text-krds-gray-70">
                     파일 선택 시 호출
                   </td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">onError</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     (error: string) =&gt; void
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">-</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 text-krds-gray-70">
                     에러 발생 시 호출
                   </td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">disabled</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     boolean
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">false</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                    비활성화 상태
-                  </td>
+                  <td className="py-3 px-4 text-krds-gray-70">비활성화 상태</td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">label</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     string
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">-</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                    라벨 텍스트
-                  </td>
+                  <td className="py-3 px-4 text-krds-gray-70">라벨 텍스트</td>
                 </tr>
-                <tr className="border-b border-gray-20 dark:border-gray-80">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4 font-mono text-sm">showFileList</td>
-                  <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                     boolean
                   </td>
                   <td className="py-3 px-4 font-mono text-sm">true</td>
-                  <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                  <td className="py-3 px-4 text-krds-gray-70">
                     파일 목록 표시 여부
                   </td>
                 </tr>
@@ -767,7 +763,7 @@ export default () => {
             처리합니다:
           </Body>
           <div className="space-y-3 mt-4">
-            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+            <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
                 ✅ 1. 드래그 앤 드롭 (Drag & Drop)
               </Heading>
@@ -776,7 +772,7 @@ export default () => {
                 수 있습니다. 드래그 중 시각적 피드백을 자동으로 제공합니다.
               </Body>
             </div>
-            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+            <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
                 ✅ 2. 파일 검증 (File Validation)
               </Heading>
@@ -785,7 +781,7 @@ export default () => {
                 검증하고 적절한 에러 메시지를 표시합니다.
               </Body>
             </div>
-            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+            <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
                 ✅ 3. 이미지 미리보기 (Image Preview)
               </Heading>
@@ -794,7 +790,7 @@ export default () => {
                 메모리 누수 방지를 위해 컴포넌트 언마운트 시 자동 정리합니다.
               </Body>
             </div>
-            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+            <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
                 ✅ 4. 키보드 접근성 (Keyboard Accessibility)
               </Heading>
@@ -803,7 +799,7 @@ export default () => {
                 등 완전한 키보드 지원을 제공합니다.
               </Body>
             </div>
-            <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
+            <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
                 ✅ 5. 다크 모드 (Dark Mode)
               </Heading>

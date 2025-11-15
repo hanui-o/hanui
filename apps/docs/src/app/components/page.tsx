@@ -249,9 +249,7 @@ function ComponentSection({
             {title}
           </Heading>
           {description && (
-            <Body className="text-gray-600 dark:text-gray-400 mt-2">
-              {description}
-            </Body>
+            <Body className="text-krds-gray-70 mt-2">{description}</Body>
           )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
@@ -263,15 +261,15 @@ function ComponentSection({
             >
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:underline transition-all">
+                  <span className="text-base font-medium text-krds-gray-95 group-hover:underline transition-all">
                     {component.name}
                   </span>
                   {component.updated && (
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
+                    <span className="w-2 h-2 rounded-full bg-krds-primary-base" />
                   )}
                 </div>
                 {component.description && (
-                  <span className="text-sm text-gray-500 dark:text-gray-500">
+                  <span className="text-sm text-krds-gray-70">
                     {component.description}
                   </span>
                 )}

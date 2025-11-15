@@ -300,7 +300,7 @@ export default () => {
                 >
                   <ModalTitle>계정을 삭제하시겠습니까?</ModalTitle>
                   <ModalBody>
-                    <p className="text-gray-70 dark:text-gray-30">
+                    <p className="text-krds-gray-70">
                       이 작업은 되돌릴 수 없습니다. 계정과 모든 데이터가
                       영구적으로 삭제됩니다.
                     </p>
@@ -371,7 +371,7 @@ export default () => {
                         <input
                           id="project-name"
                           type="text"
-                          className="w-full px-3 py-2 border border-gray-30 dark:border-gray-70 rounded focus:outline-none focus:ring-2 focus:ring-primary-60"
+                          className="w-full px-3 py-2 border border-krds-gray-20 rounded focus:outline-none focus:ring-2 focus:ring-krds-primary-base"
                           placeholder="프로젝트 이름을 입력하세요"
                         />
                       </div>
@@ -385,7 +385,7 @@ export default () => {
                         <textarea
                           id="project-description"
                           rows={3}
-                          className="w-full px-3 py-2 border border-gray-30 dark:border-gray-70 rounded focus:outline-none focus:ring-2 focus:ring-primary-60"
+                          className="w-full px-3 py-2 border border-krds-gray-20 rounded focus:outline-none focus:ring-2 focus:ring-krds-primary-base"
                           placeholder="프로젝트 설명을 입력하세요"
                         />
                       </div>
@@ -447,7 +447,7 @@ export default () => {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold w-1/5">
                       Prop
                     </th>
@@ -463,48 +463,44 @@ export default () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">open</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       boolean
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       모달 표시 여부
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">onClose</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       () =&gt; void
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       모달 닫기 핸들러
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">size</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; |
                       &quot;xl&quot; | &quot;full&quot;
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">
                       &quot;md&quot;
                     </td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      모달 크기
-                    </td>
+                    <td className="py-3 px-4 text-krds-gray-70">모달 크기</td>
                   </tr>
-                  <tr className="border-b border-gray-20 dark:border-gray-80">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-60 dark:text-gray-40">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       React.ReactNode
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-60 dark:text-gray-40">
-                      모달 내용
-                    </td>
+                    <td className="py-3 px-4 text-krds-gray-70">모달 내용</td>
                   </tr>
                 </tbody>
               </table>
@@ -559,7 +555,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">1. Focus Management</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>모달 열림 시</strong>: 키보드 포커스가 모달 자체 또는 첫
                 번째 상호작용 요소로 자동 이동
@@ -577,7 +573,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">2. Close Button Positioning</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>KRDS 요구사항</strong>: 닫기 버튼은 모달의 마지막 요소로
                 마크업되어야 함
@@ -598,31 +594,31 @@ export default () => {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">키</th>
                     <th className="text-left py-2 px-4">동작</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700 dark:text-gray-300">
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                <tbody className="text-krds-gray-90">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">Tab</td>
                     <td className="py-2 px-4">
                       다음 상호작용 요소로 이동 (마지막에서 첫 번째로 순환)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">Shift+Tab</td>
                     <td className="py-2 px-4">
                       이전 상호작용 요소로 이동 (첫 번째에서 마지막으로 순환)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">ESC</td>
                     <td className="py-2 px-4">
                       닫기 버튼이 있는 경우 모달 닫기
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">Arrow ↑/↓</td>
                     <td className="py-2 px-4">본문 콘텐츠 세로 스크롤</td>
                   </tr>
@@ -633,7 +629,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">4. ARIA Attributes</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>role=&quot;dialog&quot;</strong>: Headless UI Dialog가
                 자동 설정
@@ -650,7 +646,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">5. Usability Standards</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>콘텐츠 최소화</strong>: 모달 내 상호작용을 최소화
               </li>
@@ -690,7 +686,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">1. Focus Management Automation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 모달 열림 시 자동 포커스 이동 (모달 또는 첫 상호작용 요소)
               </li>
@@ -704,7 +700,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">2. ARIA Automation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>role=&quot;dialog&quot;</strong>: Dialog 역할 자동 설정
               </li>
@@ -721,7 +717,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">3. Keyboard Navigation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>ESC 키</strong>: onClose 콜백 자동 호출로 모달 닫기
               </li>
@@ -738,7 +734,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">4. Background Interaction Prevention</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>Overlay로 배경 윈도우 시각적 분리</li>
               <li>배경 스크롤 자동 방지</li>
               <li>배경 클릭 시 onClose 콜백 호출 (선택적)</li>
@@ -747,7 +743,7 @@ export default () => {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">5. Smooth Animations</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>Transition 컴포넌트로 부드러운 열기/닫기 애니메이션</li>
               <li>Overlay와 Panel의 독립적인 애니메이션 타이밍</li>
               <li>prefers-reduced-motion 존중</li>

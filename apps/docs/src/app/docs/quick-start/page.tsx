@@ -84,7 +84,7 @@ export default function QuickStartPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">폼 만들기</Heading>
             <div>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400 mb-3">
+              <Body size="sm" className="text-krds-gray-70 mb-3">
                 Input과 Button을 조합하여 간단한 로그인 폼을 만들어보세요:
               </Body>
               <CodeBlock
@@ -130,7 +130,7 @@ function LoginForm() {
           <Stack spacing="heading-tight">
             <Heading level="h3">카드 레이아웃</Heading>
             <div>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400 mb-3">
+              <Body size="sm" className="text-krds-gray-70 mb-3">
                 Container와 Card를 사용하여 깔끔한 레이아웃을 구성하세요:
               </Body>
               <CodeBlock
@@ -169,7 +169,7 @@ function Dashboard() {
           <Stack spacing="heading-tight">
             <Heading level="h3">모달 사용하기</Heading>
             <div>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400 mb-3">
+              <Body size="sm" className="text-krds-gray-70 mb-3">
                 Modal 컴포넌트로 사용자 인터랙션을 추가하세요:
               </Body>
               <CodeBlock
@@ -288,7 +288,7 @@ function CustomButton(props: ButtonProps) {
             <Heading level="h3">다크 모드 지원</Heading>
             <CodeBlock
               code={`// HANUI 컴포넌트는 기본적으로 다크 모드를 지원합니다
-<div className="bg-white dark:bg-gray-900">
+<div className="bg-krds-white">
   <Button>자동으로 다크 모드 적용</Button>
 </div>`}
               language="tsx"
@@ -306,30 +306,30 @@ function CustomButton(props: ButtonProps) {
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body>HANUI는 웹 접근성을 기본으로 제공합니다:</Body>
 
-          <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-6 border border-blue-200 dark:border-blue-900">
-            <ul className="space-y-3 text-sm text-blue-800 dark:text-blue-200">
+          <div className="bg-krds-primary-surface rounded-lg p-6 border border-krds-primary-border">
+            <ul className="space-y-3 text-sm text-krds-primary-text">
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400">✓</span>
+                <span className="text-krds-primary-base">✓</span>
                 <span>
                   <strong>키보드 네비게이션:</strong> Tab, Enter, Space 키로
                   모든 컴포넌트 조작 가능
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400">✓</span>
+                <span className="text-krds-primary-base">✓</span>
                 <span>
                   <strong>스크린 리더:</strong> ARIA 레이블과 역할이 자동으로
                   적용
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400">✓</span>
+                <span className="text-krds-primary-base">✓</span>
                 <span>
                   <strong>포커스 관리:</strong> 명확한 포커스 표시 및 순서
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-blue-600 dark:text-blue-400">✓</span>
+                <span className="text-krds-primary-base">✓</span>
                 <span>
                   <strong>색상 대비:</strong> WCAG 2.1 AA 수준의 명암비 준수
                 </span>
@@ -346,11 +346,8 @@ function CustomButton(props: ButtonProps) {
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="border-l-4 border-green-500 pl-4 py-2">
-            <Heading
-              level="h3"
-              className="text-green-800 dark:text-green-200 mb-1"
-            >
+          <div className="border-l-4 border-krds-success-base pl-4 py-2">
+            <Heading level="h3" className="text-krds-success-text mb-1">
               ✓ Do: 시맨틱 HTML 사용
             </Heading>
             <CodeBlock
@@ -363,11 +360,8 @@ function CustomButton(props: ButtonProps) {
             />
           </div>
 
-          <div className="border-l-4 border-green-500 pl-4 py-2">
-            <Heading
-              level="h3"
-              className="text-green-800 dark:text-green-200 mb-1"
-            >
+          <div className="border-l-4 border-krds-success-base pl-4 py-2">
+            <Heading level="h3" className="text-krds-success-text mb-1">
               ✓ Do: 명확한 레이블 제공
             </Heading>
             <CodeBlock
@@ -378,8 +372,8 @@ function CustomButton(props: ButtonProps) {
             />
           </div>
 
-          <div className="border-l-4 border-red-500 pl-4 py-2">
-            <Heading level="h3" className="text-red-800 dark:text-red-200 mb-1">
+          <div className="border-l-4 border-krds-danger-base pl-4 py-2">
+            <Heading level="h3" className="text-krds-danger-text mb-1">
               ✗ Don't: 접근성 무시
             </Heading>
             <CodeBlock
@@ -400,7 +394,7 @@ function CustomButton(props: ButtonProps) {
         </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
-          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
             <Body className="mb-4">
               이제 HANUI의 기본 사용법을 익혔습니다! 더 많은 컴포넌트를
               살펴보세요:
@@ -408,32 +402,32 @@ function CustomButton(props: ButtonProps) {
             <div className="space-y-2">
               <a
                 href="/components"
-                className="block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-center"
+                className="block px-4 py-2 bg-krds-primary-base text-krds-white rounded-md hover:bg-krds-primary-60 transition-colors text-center"
               >
                 전체 컴포넌트 보기 →
               </a>
               <div className="grid grid-cols-2 gap-2 mt-2">
                 <a
                   href="/components/button"
-                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center text-sm"
                 >
                   Button
                 </a>
                 <a
                   href="/components/input"
-                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center text-sm"
                 >
                   Input
                 </a>
                 <a
                   href="/components/select"
-                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center text-sm"
                 >
                   Select
                 </a>
                 <a
                   href="/layout/container"
-                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-center text-sm"
+                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center text-sm"
                 >
                   Container
                 </a>

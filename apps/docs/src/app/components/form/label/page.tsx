@@ -21,7 +21,7 @@ export default function LabelPage() {
               <input
                 id="input-large"
                 type="text"
-                className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                className="mt-1 w-full px-3 py-2 border border-krds-gray-20 rounded"
               />
             </div>
             <div>
@@ -31,7 +31,7 @@ export default function LabelPage() {
               <input
                 id="input-medium"
                 type="text"
-                className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                className="mt-1 w-full px-3 py-2 border border-krds-gray-20 rounded"
               />
             </div>
             <div>
@@ -41,7 +41,7 @@ export default function LabelPage() {
               <input
                 id="input-small"
                 type="text"
-                className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                className="mt-1 w-full px-3 py-2 border border-krds-gray-20 rounded"
               />
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function LabelPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <div>
                 <Label size="lg" htmlFor="demo-large">
@@ -85,10 +85,10 @@ export default function LabelPage() {
                   id="demo-large"
                   type="text"
                   placeholder="입력하세요"
-                  className="mt-2 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                  className="mt-2 w-full px-3 py-2 border border-krds-gray-20 rounded"
                 />
               </div>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 19px · 700 (Bold) · 150% 줄 간격
               </Body>
               <div>
@@ -102,7 +102,7 @@ export default function LabelPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <div>
                 <Label size="md" htmlFor="demo-medium">
@@ -112,10 +112,10 @@ export default function LabelPage() {
                   id="demo-medium"
                   type="text"
                   placeholder="입력하세요"
-                  className="mt-2 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                  className="mt-2 w-full px-3 py-2 border border-krds-gray-20 rounded"
                 />
               </div>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 17px · 700 (Bold) · 150% 줄 간격
               </Body>
               <div>
@@ -129,7 +129,7 @@ export default function LabelPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <div>
                 <Label size="sm" htmlFor="demo-small">
@@ -139,10 +139,10 @@ export default function LabelPage() {
                   id="demo-small"
                   type="text"
                   placeholder="입력하세요"
-                  className="mt-2 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                  className="mt-2 w-full px-3 py-2 border border-krds-gray-20 rounded"
                 />
               </div>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 15px · 700 (Bold) · 150% 줄 간격
               </Body>
               <div>
@@ -156,7 +156,7 @@ export default function LabelPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <div>
                 <Label size="xs" htmlFor="demo-xsmall">
@@ -166,10 +166,10 @@ export default function LabelPage() {
                   id="demo-xsmall"
                   type="text"
                   placeholder="입력하세요"
-                  className="mt-2 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                  className="mt-2 w-full px-3 py-2 border border-krds-gray-20 rounded"
                 />
               </div>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 13px · 700 (Bold) · 150% 줄 간격
               </Body>
               <div>
@@ -208,7 +208,7 @@ export default function LabelPage() {
                       id="name"
                       type="text"
                       required
-                      className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                      className="mt-1 w-full px-3 py-2 border border-krds-gray-20 rounded"
                     />
                   </div>
                   <div>
@@ -218,7 +218,7 @@ export default function LabelPage() {
                     <input
                       id="email"
                       type="email"
-                      className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                      className="mt-1 w-full px-3 py-2 border border-krds-gray-20 rounded"
                     />
                   </div>
                 </div>
@@ -284,20 +284,21 @@ export default function LabelPage() {
               <ComponentPreview>
                 <div className="max-w-md">
                   <Label size="md" htmlFor="required-field">
-                    필수 입력 항목 <span className="text-red-500">*</span>
+                    필수 입력 항목{' '}
+                    <span className="text-krds-danger-text">*</span>
                   </Label>
                   <input
                     id="required-field"
                     type="text"
                     required
-                    className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                    className="mt-1 w-full px-3 py-2 border border-krds-gray-20 rounded"
                   />
                 </div>
               </ComponentPreview>
               <div className="mt-4">
                 <CodeBlock
                   code={`<Label size="md" htmlFor="required-field">
-  필수 입력 항목 <span className="text-red-500">*</span>
+  필수 입력 항목 <span className="text-krds-danger-text">*</span>
 </Label>
 <input id="required-field" type="text" required />`}
                   language="tsx"
@@ -312,19 +313,23 @@ export default function LabelPage() {
             <div>
               <ComponentPreview>
                 <div>
-                  <Label size="md" htmlFor="custom" className="text-primary-60">
+                  <Label
+                    size="md"
+                    htmlFor="custom"
+                    className="text-krds-primary-base"
+                  >
                     브랜드 컬러 라벨
                   </Label>
                   <input
                     id="custom"
                     type="text"
-                    className="mt-1 w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded"
+                    className="mt-1 w-full px-3 py-2 border border-krds-gray-20 rounded"
                   />
                 </div>
               </ComponentPreview>
               <div className="mt-4">
                 <CodeBlock
-                  code={`<Label size="md" htmlFor="custom" className="text-primary-60">
+                  code={`<Label size="md" htmlFor="custom" className="text-krds-primary-base">
   브랜드 컬러 라벨
 </Label>`}
                   language="tsx"
@@ -344,14 +349,11 @@ export default function LabelPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-green-900 dark:text-green-100 mb-3"
-            >
+          <div className="rounded-lg border border-krds-success-border bg-krds-success-surface p-6">
+            <Heading level="h3" className="text-krds-success-text mb-3">
               ✓ Label을 사용하기 적합한 경우
             </Heading>
-            <ul className="list-disc list-inside space-y-2 text-green-800 dark:text-green-200">
+            <ul className="list-disc list-inside space-y-2 text-krds-success-text">
               <li>텍스트 입력 필드</li>
               <li>체크박스와 라디오 버튼</li>
               <li>셀렉트 박스</li>
@@ -360,25 +362,22 @@ export default function LabelPage() {
             </ul>
           </div>
 
-          <div className="rounded-lg border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-amber-900 dark:text-amber-100 mb-3"
-            >
+          <div className="rounded-lg border border-krds-warning-border bg-krds-warning-surface p-6">
+            <Heading level="h3" className="text-krds-warning-text mb-3">
               ⚠ 주의사항
             </Heading>
-            <ul className="list-disc list-inside space-y-2 text-amber-800 dark:text-amber-200">
+            <ul className="list-disc list-inside space-y-2 text-krds-warning-text">
               <li>항상 htmlFor 속성으로 입력 요소와 연결</li>
               <li>필수 필드는 명확하게 표시 (*, 필수 등)</li>
               <li>라벨 텍스트는 간결하고 명확하게 작성</li>
             </ul>
           </div>
 
-          <div className="rounded-lg border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30 p-6">
-            <Heading level="h3" className="text-red-900 dark:text-red-100 mb-3">
+          <div className="rounded-lg border border-krds-danger-border bg-krds-danger-surface p-6">
+            <Heading level="h3" className="text-krds-danger-text mb-3">
               ✗ Label을 사용하지 말아야 하는 경우
             </Heading>
-            <ul className="list-disc list-inside space-y-2 text-red-800 dark:text-red-200">
+            <ul className="list-disc list-inside space-y-2 text-krds-danger-text">
               <li>일반 본문 텍스트 (Body 사용 권장)</li>
               <li>페이지 제목 (Heading 사용 권장)</li>
               <li>버튼 텍스트 (Button 컴포넌트 사용)</li>
@@ -396,15 +395,15 @@ export default function LabelPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>
                   <th className="text-left py-3 px-4">Type</th>
                   <th className="text-left py-3 px-4">Default</th>
                   <th className="text-left py-3 px-4">Description</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700 dark:text-gray-300">
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+              <tbody className="text-krds-gray-90">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>size</code>
                   </td>
@@ -419,7 +418,7 @@ export default function LabelPage() {
                   </td>
                   <td className="py-3 px-4">라벨 크기</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>htmlFor</code>
                   </td>
@@ -429,7 +428,7 @@ export default function LabelPage() {
                   <td className="py-3 px-4">-</td>
                   <td className="py-3 px-4">연결할 입력 요소의 id</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>className</code>
                   </td>
@@ -461,8 +460,8 @@ export default function LabelPage() {
           <Heading level="h2" id="accessibility">
             접근성
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ label 태그 사용으로 스크린 리더가 폼 요소를 정확히 식별</li>
               <li>✓ htmlFor 속성으로 입력 요소와 명시적 연결</li>
               <li>✓ 라벨 클릭 시 연결된 입력 요소에 포커스</li>
@@ -478,8 +477,8 @@ export default function LabelPage() {
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ 모든 Label은 Bold (700) 폰트 굵기 사용</li>
               <li>✓ 150% 줄 간격으로 가독성 확보</li>
               <li>✓ 4단계 크기 시스템 (Large, Medium, Small, XSmall)</li>

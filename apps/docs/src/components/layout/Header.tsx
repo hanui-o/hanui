@@ -124,7 +124,7 @@ export function Header() {
         {/* Right: Search + GitHub + Theme */}
         <div className="flex items-center gap-2 ml-auto">
           {/* Search */}
-          <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-krds-gray-70 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors">
+          <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors">
             <SearchIcon />
             <span className="hidden lg:inline">Search documentation...</span>
             <kbd className="hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-5 px-1.5 font-mono text-xs font-medium text-krds-gray-70 ml-auto">

@@ -21,31 +21,25 @@ export default function InstallationPage() {
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body>HANUI를 사용하기 전에 다음 요구사항을 확인하세요:</Body>
-          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
-                <code className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded text-sm">
+                <code className="bg-krds-gray-10 px-2 py-1 rounded text-sm">
                   React
                 </code>
-                <span className="text-gray-600 dark:text-gray-400">
-                  18.0.0 이상
-                </span>
+                <span className="text-krds-gray-70">18.0.0 이상</span>
               </li>
               <li className="flex items-center gap-2">
-                <code className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded text-sm">
+                <code className="bg-krds-gray-10 px-2 py-1 rounded text-sm">
                   Node.js
                 </code>
-                <span className="text-gray-600 dark:text-gray-400">
-                  18.0.0 이상
-                </span>
+                <span className="text-krds-gray-70">18.0.0 이상</span>
               </li>
               <li className="flex items-center gap-2">
-                <code className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded text-sm">
+                <code className="bg-krds-gray-10 px-2 py-1 rounded text-sm">
                   Tailwind CSS
                 </code>
-                <span className="text-gray-600 dark:text-gray-400">
-                  3.0.0 이상
-                </span>
+                <span className="text-krds-gray-70">3.0.0 이상</span>
               </li>
             </ul>
           </div>
@@ -120,7 +114,7 @@ npx tailwindcss init -p`}
           <Stack spacing="heading-tight">
             <Heading level="h3">tailwind.config.js 설정</Heading>
             <div>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400 mb-3">
+              <Body size="sm" className="text-krds-gray-70 mb-3">
                 HANUI 컴포넌트를 위해 content 경로를 추가하세요:
               </Body>
               <CodeBlock
@@ -202,19 +196,16 @@ module.exports = {
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           {/* Next.js */}
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+          <div className="border border-krds-gray-20 rounded-lg p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Next.js</Heading>
               <div>
-                <Body
-                  size="sm"
-                  className="text-gray-600 dark:text-gray-400 mb-3"
-                >
+                <Body size="sm" className="text-krds-gray-70 mb-3">
                   Next.js 13+ (App Router)를 사용하는 경우 추가 설정이 필요하지
                   않습니다.
                 </Body>
-                <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-4 border border-blue-200 dark:border-blue-900">
-                  <Body size="sm" className="text-blue-800 dark:text-blue-200">
+                <div className="bg-krds-primary-surface rounded-lg p-4 border border-krds-primary-20">
+                  <Body size="sm" className="text-krds-primary-text">
                     💡 <strong>Tip:</strong> 클라이언트 컴포넌트가 필요한 HANUI
                     컴포넌트는 자동으로 'use client' 지시어가 포함되어 있습니다.
                   </Body>
@@ -224,14 +215,11 @@ module.exports = {
           </div>
 
           {/* Vite */}
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+          <div className="border border-krds-gray-20 rounded-lg p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Vite</Heading>
               <div>
-                <Body
-                  size="sm"
-                  className="text-gray-600 dark:text-gray-400 mb-3"
-                >
+                <Body size="sm" className="text-krds-gray-70 mb-3">
                   Vite 프로젝트에서는 별도 설정 없이 바로 사용 가능합니다.
                 </Body>
                 <CodeBlock
@@ -246,14 +234,11 @@ import { Button } from '@hanui/react';`}
           </div>
 
           {/* Create React App */}
-          <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-6">
+          <div className="border border-krds-gray-20 rounded-lg p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Create React App</Heading>
               <div>
-                <Body
-                  size="sm"
-                  className="text-gray-600 dark:text-gray-400 mb-3"
-                >
+                <Body size="sm" className="text-krds-gray-70 mb-3">
                   CRA에서 Tailwind CSS를 사용하려면 CRACO를 설치해야 합니다:
                 </Body>
                 <CodeBlock
@@ -302,29 +287,26 @@ export default App;`}
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="border-l-4 border-yellow-500 pl-4 py-2">
+          <div className="border-l-4 border-krds-warning-base pl-4 py-2">
             <Stack spacing="heading-tight">
               <Heading level="h3">스타일이 적용되지 않는 경우</Heading>
               <div>
-                <Body
-                  size="sm"
-                  className="text-gray-600 dark:text-gray-400 mb-2"
-                >
+                <Body size="sm" className="text-krds-gray-70 mb-2">
                   tailwind.config.js의 content 경로에 HANUI 경로가 포함되어
                   있는지 확인하세요.
                 </Body>
-                <code className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                <code className="text-xs bg-krds-gray-5 px-2 py-1 rounded">
                   ./node_modules/@hanui/react/**/*.{'{'}js,ts,jsx,tsx{'}'}
                 </code>
               </div>
             </Stack>
           </div>
 
-          <div className="border-l-4 border-yellow-500 pl-4 py-2">
+          <div className="border-l-4 border-krds-warning-base pl-4 py-2">
             <Stack spacing="heading-tight">
               <Heading level="h3">TypeScript 타입 에러</Heading>
               <div>
-                <Body size="sm" className="text-gray-600 dark:text-gray-400">
+                <Body size="sm" className="text-krds-gray-70">
                   @types/react 버전이 18 이상인지 확인하세요. 필요시 업데이트:
                 </Body>
                 <div className="mt-2">
@@ -338,11 +320,11 @@ export default App;`}
             </Stack>
           </div>
 
-          <div className="border-l-4 border-yellow-500 pl-4 py-2">
+          <div className="border-l-4 border-krds-warning-base pl-4 py-2">
             <Stack spacing="heading-tight">
               <Heading level="h3">모듈을 찾을 수 없는 경우</Heading>
               <div>
-                <Body size="sm" className="text-gray-600 dark:text-gray-400">
+                <Body size="sm" className="text-krds-gray-70">
                   node_modules를 삭제하고 다시 설치해보세요:
                 </Body>
                 <div className="mt-2">
@@ -365,13 +347,13 @@ export default App;`}
         </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
-          <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+          <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
             <Body className="mb-4">
               설치가 완료되었습니다! 이제 HANUI를 사용할 준비가 되었습니다.
             </Body>
             <a
               href="/docs/quick-start"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-krds-primary-base text-krds-white rounded-md hover:bg-krds-primary-60 transition-colors"
             >
               Quick Start 가이드 보기 →
             </a>

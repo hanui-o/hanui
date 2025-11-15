@@ -18,11 +18,11 @@ export default function ContainerPage() {
 
       <PageSection>
         <ComponentPreview>
-          <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
-            <Container className="bg-blue-50 dark:bg-blue-950/30 py-8">
+          <div className="w-full border-2 border-dashed border-krds-gray-20">
+            <Container className="bg-krds-primary-surface py-8">
               <div className="text-center">
                 <h2 className="text-xl font-semibold mb-2">Container</h2>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-krds-gray-70">
                   콘텐츠가 중앙에 정렬되고 최대 너비가 제한됩니다
                 </p>
               </div>
@@ -119,8 +119,8 @@ export default function ContainerPage() {
           {/* Semantic HTML */}
           <Stack spacing="heading-tight">
             <Heading level="h3">시맨틱 HTML (선택사항)</Heading>
-            <div className="mb-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <p className="text-sm text-gray-700 dark:text-gray-300">
+            <div className="mb-4 p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
+              <p className="text-sm text-krds-gray-90">
                 <strong>as</strong> prop을 사용하면 접근성을 향상시킬 수 있지만,
                 필수는 아닙니다. 두 가지 패턴 모두 권장됩니다.
               </p>
@@ -167,24 +167,24 @@ export default function ContainerPage() {
             </div>
 
             <div className="mt-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+              <p className="text-sm text-krds-gray-70 mb-2">
                 <strong>시맨틱 요소 참고:</strong>
               </p>
-              <ul className="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-70">
                 <li>
-                  <code className="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-xs">
+                  <code className="bg-krds-gray-5 px-1.5 py-0.5 rounded text-xs">
                     main
                   </code>
                   : 페이지의 주요 콘텐츠
                 </li>
                 <li>
-                  <code className="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-xs">
+                  <code className="bg-krds-gray-5 px-1.5 py-0.5 rounded text-xs">
                     section
                   </code>
                   : 관련된 콘텐츠 그룹
                 </li>
                 <li>
-                  <code className="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-xs">
+                  <code className="bg-krds-gray-5 px-1.5 py-0.5 rounded text-xs">
                     article
                   </code>
                   : 독립적인 콘텐츠 (블로그 글, 뉴스 기사 등)
@@ -196,11 +196,11 @@ export default function ContainerPage() {
           {/* KRDS Layout System */}
           <Stack spacing="heading-tight">
             <Heading level="h3">KRDS 레이아웃 시스템</Heading>
-            <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-6 border border-blue-200 dark:border-blue-900">
-              <h4 className="font-semibold mb-3 text-blue-900 dark:text-blue-100">
+            <div className="bg-krds-primary-surface rounded-lg p-6 border border-krds-primary-border">
+              <h4 className="font-semibold mb-3 text-krds-primary-text">
                 그리드 요소
               </h4>
-              <ul className="space-y-2 text-sm text-blue-900 dark:text-blue-100">
+              <ul className="space-y-2 text-sm text-krds-primary-text">
                 <li>
                   <strong>Screen Margin (스크린 마진)</strong>: 화면 양쪽
                   가장자리의 여백 (16-24px)
@@ -254,17 +254,17 @@ export default function ContainerPage() {
               Default (xl)
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 일반적인 페이지 콘텐츠에
                   사용합니다. 최대 너비 1280px로 제한되어 넓은 화면에서도
                   가독성이 유지됩니다.
                 </p>
               </div>
               <ComponentPreview>
-                <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
-                  <Container className="bg-green-50 dark:bg-green-950/30 py-8">
-                    <p className="text-center text-gray-700 dark:text-gray-300">
+                <div className="w-full border-2 border-dashed border-krds-gray-20">
+                  <Container className="bg-krds-success-surface py-8">
+                    <p className="text-center text-krds-gray-90">
                       Default Container (max-width: 1280px)
                     </p>
                   </Container>
@@ -289,19 +289,19 @@ export default function ContainerPage() {
               Small Width
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 로그인 폼, 회원가입 폼 등
                   좁은 콘텐츠에 적합합니다. 최대 너비 640px입니다.
                 </p>
               </div>
               <ComponentPreview>
-                <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
+                <div className="w-full border-2 border-dashed border-krds-gray-20">
                   <Container
                     maxWidth="sm"
-                    className="bg-purple-50 dark:bg-purple-950/30 py-8"
+                    className="bg-krds-accent-surface py-8"
                   >
-                    <p className="text-center text-gray-700 dark:text-gray-300">
+                    <p className="text-center text-krds-gray-90">
                       Small Container (max-width: 640px)
                     </p>
                   </Container>
@@ -328,20 +328,20 @@ export default function ContainerPage() {
               Extra Large Width
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 대시보드, 데이터 테이블 등
                   넓은 레이아웃이 필요한 경우 사용합니다. 최대 너비
                   1280px입니다.
                 </p>
               </div>
               <ComponentPreview>
-                <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
+                <div className="w-full border-2 border-dashed border-krds-gray-20">
                   <Container
                     maxWidth="xl"
-                    className="bg-orange-50 dark:bg-orange-950/30 py-8"
+                    className="bg-krds-warning-surface py-8"
                   >
-                    <p className="text-center text-gray-700 dark:text-gray-300">
+                    <p className="text-center text-krds-gray-90">
                       Extra Large Container (max-width: 1280px)
                     </p>
                   </Container>
@@ -365,20 +365,20 @@ export default function ContainerPage() {
               Full Width
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 전체 너비를 사용하되 양쪽
                   여백은 유지하고 싶을 때 사용합니다. 히어로 섹션이나 배경이
                   있는 영역에 적합합니다.
                 </p>
               </div>
               <ComponentPreview>
-                <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
+                <div className="w-full border-2 border-dashed border-krds-gray-20">
                   <Container
                     maxWidth="full"
-                    className="bg-pink-50 dark:bg-pink-950/30 py-8"
+                    className="bg-krds-information-surface py-8"
                   >
-                    <p className="text-center text-gray-700 dark:text-gray-300">
+                    <p className="text-center text-krds-gray-90">
                       Full Width Container (max-width: 100%)
                     </p>
                   </Container>
@@ -402,20 +402,20 @@ export default function ContainerPage() {
               No Gutters (disableGutters)
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 좌우 패딩을 제거하여
                   콘텐츠가 화면 끝까지 확장되도록 합니다. 전체 화면 이미지나
                   배경에 적합합니다.
                 </p>
               </div>
               <ComponentPreview>
-                <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
+                <div className="w-full border-2 border-dashed border-krds-gray-20">
                   <Container
                     disableGutters
-                    className="bg-cyan-50 dark:bg-cyan-950/30 py-8"
+                    className="bg-krds-secondary-surface py-8"
                   >
-                    <p className="text-center text-gray-700 dark:text-gray-300">
+                    <p className="text-center text-krds-gray-90">
                       No Gutters Container (패딩 없음)
                     </p>
                   </Container>
@@ -439,8 +439,8 @@ export default function ContainerPage() {
               Semantic HTML (as prop)
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 접근성 향상을 위해 콘텐츠의
                   의미에 맞는 시맨틱 HTML 요소를 사용합니다. 스크린 리더
                   사용자에게 더 나은 경험을 제공합니다.
@@ -448,27 +448,24 @@ export default function ContainerPage() {
               </div>
               <ComponentPreview>
                 <div className="space-y-4">
-                  <Container
-                    as="main"
-                    className="bg-indigo-50 dark:bg-indigo-950/30 py-4"
-                  >
-                    <p className="text-sm text-center text-gray-700 dark:text-gray-300">
+                  <Container as="main" className="bg-krds-primary-surface py-4">
+                    <p className="text-sm text-center text-krds-gray-90">
                       &lt;main&gt; - 페이지의 주요 콘텐츠
                     </p>
                   </Container>
                   <Container
                     as="section"
-                    className="bg-emerald-50 dark:bg-emerald-950/30 py-4"
+                    className="bg-krds-success-surface py-4"
                   >
-                    <p className="text-sm text-center text-gray-700 dark:text-gray-300">
+                    <p className="text-sm text-center text-krds-gray-90">
                       &lt;section&gt; - 섹션 그룹
                     </p>
                   </Container>
                   <Container
                     as="article"
-                    className="bg-amber-50 dark:bg-amber-950/30 py-4"
+                    className="bg-krds-warning-surface py-4"
                   >
-                    <p className="text-sm text-center text-gray-700 dark:text-gray-300">
+                    <p className="text-sm text-center text-krds-gray-90">
                       &lt;article&gt; - 독립적인 콘텐츠
                     </p>
                   </Container>
@@ -506,8 +503,8 @@ export default function ContainerPage() {
               Multiple Sections
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <p className="text-sm text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <p className="text-sm text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 여러 섹션이 있는 페이지에서
                   각 섹션마다 Container를 사용하여 일관된 정렬을 유지합니다.
                   Container를 중첩하지 않도록 주의하세요.
@@ -515,32 +512,32 @@ export default function ContainerPage() {
               </div>
               <ComponentPreview>
                 <div className="space-y-4">
-                  <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
-                    <Container className="bg-blue-50 dark:bg-blue-950/30 py-6">
+                  <div className="w-full border-2 border-dashed border-krds-gray-20">
+                    <Container className="bg-krds-primary-surface py-6">
                       <h3 className="text-lg font-semibold text-center mb-2">
                         Header Section
                       </h3>
-                      <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-center text-sm text-krds-gray-70">
                         첫 번째 섹션
                       </p>
                     </Container>
                   </div>
-                  <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
-                    <Container className="bg-green-50 dark:bg-green-950/30 py-6">
+                  <div className="w-full border-2 border-dashed border-krds-gray-20">
+                    <Container className="bg-krds-success-surface py-6">
                       <h3 className="text-lg font-semibold text-center mb-2">
                         Main Section
                       </h3>
-                      <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-center text-sm text-krds-gray-70">
                         두 번째 섹션
                       </p>
                     </Container>
                   </div>
-                  <div className="w-full border-2 border-dashed border-gray-300 dark:border-gray-700">
-                    <Container className="bg-purple-50 dark:bg-purple-950/30 py-6">
+                  <div className="w-full border-2 border-dashed border-krds-gray-20">
+                    <Container className="bg-krds-accent-surface py-6">
                       <h3 className="text-lg font-semibold text-center mb-2">
                         Footer Section
                       </h3>
-                      <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-center text-sm text-krds-gray-70">
                         세 번째 섹션
                       </p>
                     </Container>
@@ -579,79 +576,79 @@ export default function ContainerPage() {
           </Heading>
 
           <div className="overflow-x-auto">
-            <table className="min-w-full border border-gray-300 dark:border-gray-700">
-              <thead className="bg-gray-100 dark:bg-gray-800">
+            <table className="min-w-full border border-krds-gray-20">
+              <thead className="bg-krds-gray-5">
                 <tr>
-                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     Prop
                   </th>
-                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     Type
                   </th>
-                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     Default
                   </th>
-                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     Description
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     maxWidth
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos; |
                     &apos;xl&apos; | &apos;2xl&apos; | &apos;full&apos; | false
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     &apos;lg&apos;
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     최대 너비 설정
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     disableGutters
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     boolean
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     false
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     좌우 패딩 제거 여부
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     as
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     &apos;div&apos; | &apos;section&apos; | &apos;article&apos;
                     | &apos;main&apos; | ...
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     &apos;div&apos;
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     렌더링할 HTML 요소
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     className
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     string
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     -
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     추가 CSS 클래스
                   </td>
                 </tr>
@@ -664,84 +661,84 @@ export default function ContainerPage() {
               Max Width 값
             </Heading>
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-300 dark:border-gray-700">
-                <thead className="bg-gray-100 dark:bg-gray-800">
+              <table className="min-w-full border border-krds-gray-20">
+                <thead className="bg-krds-gray-5">
                   <tr>
-                    <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       값
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       최대 너비
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       용도
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       sm
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       640px
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       로그인 폼, 간단한 콘텐츠
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       md
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       768px
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       블로그 포스트, 기사
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       lg
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       1024px
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       일반 페이지 (기본값, 권장)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       xl
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       1280px
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       대시보드, 데이터 테이블
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       2xl
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       1440px
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       매우 넓은 레이아웃
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       full
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       100%
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       전체 너비 + 여백 유지
                     </td>
                   </tr>
@@ -755,51 +752,51 @@ export default function ContainerPage() {
               KRDS 스크린 마진 (Screen Margin)
             </Heading>
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-300 dark:border-gray-700">
-                <thead className="bg-gray-100 dark:bg-gray-800">
+              <table className="min-w-full border border-krds-gray-20">
+                <thead className="bg-krds-gray-5">
                   <tr>
-                    <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       브레이크포인트
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       화면 크기
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       좌우 패딩
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       Mobile (기본)
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       ~640px
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       16px (px-4)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       Tablet (sm)
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       640px~
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       24px (px-6)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       Desktop (lg)
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                       1024px~
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                       32px (px-8)
                     </td>
                   </tr>

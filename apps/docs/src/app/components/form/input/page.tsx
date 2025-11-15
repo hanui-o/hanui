@@ -191,7 +191,7 @@ export default function InputPage() {
               <ComponentPreview>
                 <div className="max-w-md space-y-2">
                   <Input error type="email" defaultValue="invalid" />
-                  <p className="text-sm text-red-600">
+                  <p className="text-sm text-krds-danger-text">
                     이메일 형식이 올바르지 않습니다. &apos;@&apos;를
                     포함해주세요.
                   </p>
@@ -258,8 +258,8 @@ export default function InputPage() {
               Size (크기)
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 입력 필드 크기는 예상 입력
                   길이와 일치시킵니다. Small은 우편번호 등 짧은 입력, Large는
                   제목이나 주소 등 긴 입력에 적합합니다.
@@ -290,8 +290,8 @@ export default function InputPage() {
               Variant
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> Default는 일반적인 경우,
                   Filled는 배경이 있는 디자인에 적합합니다.
                 </Body>
@@ -319,8 +319,8 @@ export default function InputPage() {
               With Icons
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 입력 필드의 용도를
                   시각적으로 명확히 하고 싶을 때 사용합니다. 예: 검색(돋보기),
                   이메일(편지), 비밀번호(자물쇠)
@@ -368,8 +368,8 @@ export default function InputPage() {
               에러 상태
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 입력값이 유효하지 않을 때
                   사용자에게 즉각적인 피드백을 제공합니다. 에러 메시지는
                   구체적인 해결 방법을 포함해야 합니다.
@@ -383,7 +383,7 @@ export default function InputPage() {
                       placeholder="잘못된 입력"
                       defaultValue="invalid@"
                     />
-                    <p className="mt-1 text-sm text-red-600">
+                    <p className="mt-1 text-sm text-krds-danger-text">
                       이메일 형식이 올바르지 않습니다. &apos;@&apos;를
                       포함해주세요.
                     </p>
@@ -394,7 +394,7 @@ export default function InputPage() {
                       leftAddon={<EmailIcon />}
                       placeholder="example@email.com"
                     />
-                    <p className="mt-1 text-sm text-red-600">
+                    <p className="mt-1 text-sm text-krds-danger-text">
                       필수 입력 항목입니다.
                     </p>
                   </div>
@@ -403,7 +403,7 @@ export default function InputPage() {
               <div className="mt-4">
                 <CodeBlock
                   code={`<Input error placeholder="잘못된 입력" defaultValue="invalid@" />
-<p className="mt-1 text-sm text-red-600">
+<p className="mt-1 text-sm text-krds-danger-text">
   이메일 형식이 올바르지 않습니다. '@'를 포함해주세요.
 </p>`}
                   language="tsx"
@@ -419,8 +419,8 @@ export default function InputPage() {
               비활성화
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아
                   입력을 받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한
                   없음
@@ -453,8 +453,8 @@ export default function InputPage() {
               Input Types
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 각 데이터 타입에 맞는 type을
                   사용하면 모바일에서 적절한 키보드가 표시되고, 브라우저의 자동
                   검증 기능을 활용할 수 있습니다.

@@ -241,8 +241,8 @@ const options = [
               라벨 포함
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 모든 선택 목록에는 명확한
                   레이블이 필요합니다. label 요소의 htmlFor와 Select의 id를
                   연결하여 접근성을 보장합니다.
@@ -288,8 +288,8 @@ const options = [
               다중 선택
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 여러 항목을 동시에 선택해야
                   할 때 사용합니다. 선택된 항목은 태그 형태로 표시되어 현재 선택
                   상태를 명확히 보여줍니다.
@@ -330,8 +330,8 @@ const options = [
               비활성화
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아
                   선택을 받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한
                   없음
@@ -370,8 +370,8 @@ const options = [
               에러 상태
             </Heading>
             <div>
-              <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-950/30 rounded-md border border-blue-200 dark:border-blue-900">
-                <Body size="sm" className="text-blue-900 dark:text-blue-100">
+              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+                <Body size="sm" className="text-krds-primary-text">
                   <strong>언제 사용하나요?</strong> 필수 선택 항목이 선택되지
                   않았거나, 유효하지 않은 선택일 때 에러 상태를 표시합니다.
                 </Body>
@@ -385,7 +385,9 @@ const options = [
                     placeholder="과일을 선택하세요"
                     error
                   />
-                  <p className="text-sm text-red-600">필수 선택 항목입니다.</p>
+                  <p className="text-sm text-krds-danger-text">
+                    필수 선택 항목입니다.
+                  </p>
                 </div>
               </ComponentPreview>
               <div className="mt-4">
@@ -397,7 +399,7 @@ const options = [
   placeholder="과일을 선택하세요"
   error
 />
-<p className="text-sm text-red-600">필수 선택 항목입니다.</p>`}
+<p className="text-sm text-krds-danger-text">필수 선택 항목입니다.</p>`}
                   language="tsx"
                   showLineNumbers={false}
                 />

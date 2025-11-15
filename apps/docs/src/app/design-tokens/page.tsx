@@ -29,11 +29,11 @@ export default function DesignTokensPage() {
             <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 따르는 디자인
             토큰을 제공하며, Tailwind CSS를 통해 쉽게 사용할 수 있습니다.
           </Body>
-          <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200 dark:border-blue-900">
-            <Body size="sm" className="text-blue-900 dark:text-blue-100">
+          <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
+            <Body size="sm" className="text-krds-primary-text">
               <strong>💡 Tip:</strong> 모든 토큰은 CSS 변수로도 사용 가능하며,
               네임스페이스는{' '}
-              <code className="px-1.5 py-0.5 bg-blue-100 dark:bg-blue-900 rounded">
+              <code className="px-1.5 py-0.5 bg-krds-primary-10 rounded">
                 --krds
               </code>
               로 시작합니다.
@@ -53,22 +53,17 @@ export default function DesignTokensPage() {
             HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS에서
             사용할 수 있도록 통합했습니다. Tailwind의 기본 색상(gray, red, blue
             등)과 충돌을 피하기 위해{' '}
-            <code className="px-1.5 py-0.5 bg-krds-gray-10 dark:bg-krds-gray-90 rounded">
-              krds-
-            </code>{' '}
+            <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">krds-</code>{' '}
             접두사를 붙인 별도 네임스페이스를 사용합니다.
           </Body>
 
-          <div className="p-4 bg-krds-information-5 dark:bg-krds-information-95/30 rounded-lg border border-krds-information-20 dark:border-krds-information-80">
-            <Body
-              size="sm"
-              className="text-krds-information-80 dark:text-krds-information-20"
-            >
+          <div className="p-4 bg-krds-information-surface rounded-lg border border-krds-information-border">
+            <Body size="sm" className="text-krds-information-text">
               <strong>📖 상세 내용:</strong> 색상 시스템의 자세한 사용법,
               Semantic 변수, 다크 모드 등은{' '}
               <Link
                 href="/design-system/colors"
-                className="text-krds-primary-60 dark:text-krds-primary-40 hover:underline font-semibold"
+                className="text-krds-primary-base hover:underline font-semibold"
               >
                 Design System → Colors
               </Link>
@@ -94,63 +89,63 @@ export default function DesignTokensPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">간격 스케일</Heading>
             <div className="space-y-3">
-              <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded min-w-[80px]">
+              <div className="flex items-center gap-4 p-3 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm font-mono bg-krds-gray-5 px-2 py-1 rounded min-w-[80px]">
                   gap-3
                 </code>
                 <div
-                  className="h-2 bg-blue-500 rounded"
+                  className="h-2 bg-krds-primary-base rounded"
                   style={{ width: '8px' }}
                 ></div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-krds-gray-70">
                   8px (0.5rem) - 작은 요소 간격
                 </span>
               </div>
-              <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded min-w-[80px]">
+              <div className="flex items-center gap-4 p-3 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm font-mono bg-krds-gray-5 px-2 py-1 rounded min-w-[80px]">
                   gap-5
                 </code>
                 <div
-                  className="h-2 bg-blue-500 rounded"
+                  className="h-2 bg-krds-primary-base rounded"
                   style={{ width: '16px' }}
                 ></div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-krds-gray-70">
                   16px (1rem) - 기본 간격
                 </span>
               </div>
-              <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded min-w-[80px]">
+              <div className="flex items-center gap-4 p-3 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm font-mono bg-krds-gray-5 px-2 py-1 rounded min-w-[80px]">
                   gap-7
                 </code>
                 <div
-                  className="h-2 bg-blue-500 rounded"
+                  className="h-2 bg-krds-primary-base rounded"
                   style={{ width: '24px' }}
                 ></div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-krds-gray-70">
                   24px (1.5rem) - 카드/섹션 간격
                 </span>
               </div>
-              <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded min-w-[80px]">
+              <div className="flex items-center gap-4 p-3 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm font-mono bg-krds-gray-5 px-2 py-1 rounded min-w-[80px]">
                   gap-8
                 </code>
                 <div
-                  className="h-2 bg-blue-500 rounded"
+                  className="h-2 bg-krds-primary-base rounded"
                   style={{ width: '32px' }}
                 ></div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-krds-gray-70">
                   32px (2rem) - 큰 섹션 간격
                 </span>
               </div>
-              <div className="flex items-center gap-4 p-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded min-w-[80px]">
+              <div className="flex items-center gap-4 p-3 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm font-mono bg-krds-gray-5 px-2 py-1 rounded min-w-[80px]">
                   gap-10
                 </code>
                 <div
-                  className="h-2 bg-blue-500 rounded"
+                  className="h-2 bg-krds-primary-base rounded"
                   style={{ width: '40px' }}
                 ></div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-krds-gray-70">
                   40px (2.5rem) - 레이아웃 간격
                 </span>
               </div>
@@ -239,37 +234,37 @@ export default function DesignTokensPage() {
             <Stack spacing="heading-content">
               <Body>
                 컴포넌트 내부 여백은{' '}
-                <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-sm">
+                <code className="px-1.5 py-0.5 bg-krds-gray-5 rounded text-sm">
                   p-*
                 </code>{' '}
                 또는{' '}
-                <code className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-sm">
+                <code className="px-1.5 py-0.5 bg-krds-gray-5 rounded text-sm">
                   padding
                 </code>{' '}
                 prop을 사용합니다.
               </Body>
               <div className="space-y-3">
                 <div className="flex items-center gap-4">
-                  <code className="text-sm font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded min-w-[100px]">
+                  <code className="text-sm font-mono bg-krds-gray-5 px-2 py-1 rounded min-w-[100px]">
                     p-4
                   </code>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                  <span className="text-sm text-krds-gray-70">
                     16px - Small padding
                   </span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <code className="text-sm font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded min-w-[100px]">
+                  <code className="text-sm font-mono bg-krds-gray-5 px-2 py-1 rounded min-w-[100px]">
                     p-6
                   </code>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                  <span className="text-sm text-krds-gray-70">
                     24px - Medium padding (기본값)
                   </span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <code className="text-sm font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded min-w-[100px]">
+                  <code className="text-sm font-mono bg-krds-gray-5 px-2 py-1 rounded min-w-[100px]">
                     p-8
                   </code>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                  <span className="text-sm text-krds-gray-70">
                     32px - Large padding
                   </span>
                 </div>
@@ -295,32 +290,32 @@ export default function DesignTokensPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Heading Scale</Heading>
             <div className="space-y-4">
-              <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+              <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm text-krds-gray-70 mb-2 block">
                   text-heading-xl
                 </code>
                 <h1 className="text-4xl font-bold">
                   40px / 700 - 페이지 제목 (h1)
                 </h1>
               </div>
-              <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+              <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm text-krds-gray-70 mb-2 block">
                   text-heading-lg
                 </code>
                 <h2 className="text-3xl font-bold">
                   32px / 700 - 섹션 제목 (h2)
                 </h2>
               </div>
-              <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+              <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm text-krds-gray-70 mb-2 block">
                   text-heading-md
                 </code>
                 <h3 className="text-2xl font-bold">
                   24px / 700 - 하위 섹션 제목 (h3)
                 </h3>
               </div>
-              <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+              <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm text-krds-gray-70 mb-2 block">
                   text-heading-sm
                 </code>
                 <h4 className="text-lg font-bold">
@@ -334,32 +329,32 @@ export default function DesignTokensPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Body Text</Heading>
             <div className="space-y-4">
-              <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+              <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm text-krds-gray-70 mb-2 block">
                   text-body-lg
                 </code>
                 <p className="text-lg">
                   19px / 400 - 큰 본문 텍스트 (강조된 문단)
                 </p>
               </div>
-              <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+              <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm text-krds-gray-70 mb-2 block">
                   text-body-md (기본값)
                 </code>
                 <p className="text-base">
                   17px / 400 - 기본 본문 텍스트 (가장 많이 사용)
                 </p>
               </div>
-              <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+              <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm text-krds-gray-70 mb-2 block">
                   text-body-sm
                 </code>
                 <p className="text-sm">
                   15px / 400 - 작은 본문 텍스트 (보조 정보)
                 </p>
               </div>
-              <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
-                <code className="text-sm text-gray-500 dark:text-gray-400 mb-2 block">
+              <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+                <code className="text-sm text-krds-gray-70 mb-2 block">
                   text-body-xs
                 </code>
                 <p className="text-xs">
@@ -375,11 +370,11 @@ export default function DesignTokensPage() {
             <ComponentPreview>
               <article className="space-y-4">
                 <h2 className="text-3xl font-bold">섹션 제목</h2>
-                <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p className="text-base text-krds-gray-90 leading-relaxed">
                   이것은 기본 본문 텍스트입니다. KRDS 기준에 따라 17px 크기와
                   150% line-height를 사용하여 최적의 가독성을 제공합니다.
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-krds-gray-70">
                   보조 정보는 작은 텍스트로 표시합니다. (15px)
                 </p>
               </article>
@@ -416,47 +411,45 @@ export default function DesignTokensPage() {
 
           <div className="space-y-4">
             <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-blue-500 rounded-sm"></div>
+              <div className="w-20 h-20 bg-krds-primary-base rounded-sm"></div>
               <div>
-                <code className="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                <code className="text-sm bg-krds-gray-5 px-2 py-1 rounded">
                   rounded-sm
                 </code>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                <p className="text-sm text-krds-gray-70 mt-1">
                   4px - 작은 요소 (Badge, Tag)
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-blue-500 rounded-md"></div>
+              <div className="w-20 h-20 bg-krds-primary-base rounded-md"></div>
               <div>
-                <code className="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                <code className="text-sm bg-krds-gray-5 px-2 py-1 rounded">
                   rounded-md
                 </code>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                <p className="text-sm text-krds-gray-70 mt-1">
                   6px - 기본값 (Button, Input)
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-blue-500 rounded-lg"></div>
+              <div className="w-20 h-20 bg-krds-primary-base rounded-lg"></div>
               <div>
-                <code className="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                <code className="text-sm bg-krds-gray-5 px-2 py-1 rounded">
                   rounded-lg
                 </code>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                <p className="text-sm text-krds-gray-70 mt-1">
                   10px - 큰 요소 (Card, Modal)
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-6">
-              <div className="w-20 h-20 bg-blue-500 rounded-xl"></div>
+              <div className="w-20 h-20 bg-krds-primary-base rounded-xl"></div>
               <div>
-                <code className="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                <code className="text-sm bg-krds-gray-5 px-2 py-1 rounded">
                   rounded-xl
                 </code>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  12px - 최대값
-                </p>
+                <p className="text-sm text-krds-gray-70 mt-1">12px - 최대값</p>
               </div>
             </div>
           </div>
@@ -473,33 +466,31 @@ export default function DesignTokensPage() {
           <Body>KRDS는 모바일 우선(Mobile First) 접근 방식을 따릅니다.</Body>
 
           <div className="space-y-3 mb-6">
-            <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
+            <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <code className="text-sm font-mono">sm: 360px~</code>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm text-krds-gray-70 mt-1">
                 Small - 모바일 (기준 348px)
               </p>
             </div>
-            <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
+            <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <code className="text-sm font-mono">md: 768px~</code>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Medium - 태블릿
-              </p>
+              <p className="text-sm text-krds-gray-70 mt-1">Medium - 태블릿</p>
             </div>
-            <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
+            <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <code className="text-sm font-mono">lg: 1024px~</code>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm text-krds-gray-70 mt-1">
                 Large - 데스크톱 (기준 1200px)
               </p>
             </div>
-            <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
+            <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <code className="text-sm font-mono">xl: 1280px~</code>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm text-krds-gray-70 mt-1">
                 XLarge - 큰 데스크톱
               </p>
             </div>
-            <div className="p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg">
+            <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <code className="text-sm font-mono">2xl: 1440px~</code>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm text-krds-gray-70 mt-1">
                 XXLarge - 매우 큰 화면
               </p>
             </div>
@@ -509,13 +500,13 @@ export default function DesignTokensPage() {
             <Heading level="h3">반응형 그리드 예시</Heading>
             <ComponentPreview>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-lg text-center">
+                <div className="p-4 bg-krds-primary-surface rounded-lg text-center">
                   1
                 </div>
-                <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-lg text-center">
+                <div className="p-4 bg-krds-primary-surface rounded-lg text-center">
                   2
                 </div>
-                <div className="p-4 bg-blue-100 dark:bg-blue-900 rounded-lg text-center">
+                <div className="p-4 bg-krds-primary-surface rounded-lg text-center">
                   3
                 </div>
               </div>
@@ -619,10 +610,10 @@ export default function DesignTokensPage() {
             href="https://www.krds.go.kr/html/site/style/style_05.html"
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-[#256ef4] transition-colors"
+            className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
           >
             <h4 className="font-semibold mb-1">KRDS 레이아웃 가이드</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-krds-gray-70">
               간격, 그리드, 브레이크포인트 기준
             </p>
           </a>
@@ -630,10 +621,10 @@ export default function DesignTokensPage() {
             href="https://www.krds.go.kr/html/site/style/style_03.html"
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-[#256ef4] transition-colors"
+            className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
           >
             <h4 className="font-semibold mb-1">KRDS 타이포그래피 가이드</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-krds-gray-70">
               폰트, 크기, line-height 기준
             </p>
           </a>
@@ -641,10 +632,10 @@ export default function DesignTokensPage() {
             href="https://www.krds.go.kr/html/site/style/style_02.html"
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-4 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-[#256ef4] transition-colors"
+            className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
           >
             <h4 className="font-semibold mb-1">KRDS 색상 시스템</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-krds-gray-70">
               색상 팔레트, 접근성 기준
             </p>
           </a>

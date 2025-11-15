@@ -21,13 +21,13 @@ export default function StackPage() {
         <ComponentPreview>
           <div className="w-full">
             <Stack spacing="md">
-              <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
+              <div className="bg-krds-primary-surface p-4 rounded">
                 첫 번째 아이템
               </div>
-              <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
+              <div className="bg-krds-primary-surface p-4 rounded">
                 두 번째 아이템
               </div>
-              <div className="bg-blue-100 dark:bg-blue-900/30 p-4 rounded">
+              <div className="bg-krds-primary-surface p-4 rounded">
                 세 번째 아이템
               </div>
             </Stack>
@@ -41,12 +41,12 @@ export default function StackPage() {
           <Heading level="h2" id="overview">
             개요
           </Heading>
-          <Body className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <Body className="text-krds-gray-90 leading-relaxed">
             Stack 계열 컴포넌트는 요소들을 수직 또는 수평으로 정렬하고{' '}
             <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>의 간격 기준을
             준수하는 레이아웃 컴포넌트입니다.
           </Body>
-          <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+          <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
             <li>
               <strong>Stack</strong>: 기본 수직 레이아웃 (direction prop으로
               제어 가능)
@@ -87,7 +87,7 @@ export default function StackPage() {
               기존 KRDS 간격 이름(h2-h3, h3-h4 등)은 특정 HTML 태그에
               종속되어있어:
             </Body>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90 ml-4">
               <li>HTML 구조가 바뀌면 spacing도 변경해야 함</li>
               <li>
                 같은 관계(제목→내용)여도 태그에 따라 다른 spacing을 찾아야 함
@@ -103,28 +103,28 @@ export default function StackPage() {
               KRDS의 모든 간격을 분석한 결과, 실제로는{' '}
               <strong>4가지 관계 패턴</strong>으로 단순화할 수 있습니다:
             </Body>
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg">
+            <div className="bg-krds-primary-surface p-6 rounded-lg">
               <Stack spacing="content-tight">
                 <div>
-                  <strong className="text-blue-700 dark:text-blue-300">
+                  <strong className="text-krds-primary-text">
                     1. Section Level
                   </strong>{' '}
                   - 큰 블록 간 구분 (40px/80px, 32px/64px)
                 </div>
                 <div>
-                  <strong className="text-blue-700 dark:text-blue-300">
+                  <strong className="text-krds-primary-text">
                     2. Heading-Content
                   </strong>{' '}
                   - 제목과 내용의 긴밀한 관계 (8px/16px ~ 20px/24px)
                 </div>
                 <div>
-                  <strong className="text-blue-700 dark:text-blue-300">
+                  <strong className="text-krds-primary-text">
                     3. Content Level
                   </strong>{' '}
                   - 동등한 콘텐츠 요소 간격 (12px/16px ~ 24px/40px)
                 </div>
                 <div>
-                  <strong className="text-blue-700 dark:text-blue-300">
+                  <strong className="text-krds-primary-text">
                     4. Inline/Compact
                   </strong>{' '}
                   - 작은 요소 나열 (4px/8px, 8px/12px)
@@ -135,7 +135,7 @@ export default function StackPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">실무적 이점</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300 ml-4">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90 ml-4">
               <li>
                 <strong>배우기 쉬움:</strong> 7개 핵심 이름만 기억 (vs 12개
                 이상)
@@ -188,7 +188,7 @@ export default function StackPage() {
               주요 섹션을 구분할 때 사용합니다. KRDS의 h2-h2, h3-h3 간격에
               해당합니다.
             </Body>
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+            <div className="bg-krds-primary-surface p-4 rounded-lg">
               <Stack spacing="compact">
                 <div>
                   <code className="text-sm font-mono">spacing="section"</code> →{' '}
@@ -205,11 +205,11 @@ export default function StackPage() {
             <ComponentPreview>
               <div className="w-full">
                 <Stack spacing="section" className="w-full">
-                  <div className="bg-blue-100 dark:bg-blue-900/30 p-6 rounded">
+                  <div className="bg-krds-primary-surface p-6 rounded">
                     <h2 className="font-bold text-lg mb-2">첫 번째 섹션</h2>
                     <p>주요 내용...</p>
                   </div>
-                  <div className="bg-blue-100 dark:bg-blue-900/30 p-6 rounded">
+                  <div className="bg-krds-primary-surface p-6 rounded">
                     <h2 className="font-bold text-lg mb-2">두 번째 섹션</h2>
                     <p>주요 내용...</p>
                   </div>
@@ -239,7 +239,7 @@ export default function StackPage() {
               제목과 바로 아래 설명/내용이 긴밀할 때 사용합니다. KRDS의
               title-body-* 간격에 해당합니다.
             </Body>
-            <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+            <div className="bg-krds-success-surface p-4 rounded-lg">
               <Stack spacing="compact">
                 <div>
                   <code className="text-sm font-mono">
@@ -268,7 +268,7 @@ export default function StackPage() {
               <div className="w-full">
                 <Stack spacing="heading-content">
                   <h3 className="font-bold text-lg">제품 소개</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-krds-gray-70">
                     이 제품은 KRDS 기반으로 설계된 디자인 시스템입니다.
                   </p>
                 </Stack>
@@ -302,7 +302,7 @@ export default function StackPage() {
               문단, 카드, 리스트 아이템 등 동등한 요소들 사이에 사용합니다.
               KRDS의 h3-h4, h3-content 간격에 해당합니다.
             </Body>
-            <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+            <div className="bg-krds-accent-surface p-4 rounded-lg">
               <Stack spacing="compact">
                 <div>
                   <code className="text-sm font-mono">
@@ -328,13 +328,13 @@ export default function StackPage() {
             <ComponentPreview>
               <div className="w-full">
                 <Stack spacing="content">
-                  <div className="bg-purple-100 dark:bg-purple-900/30 p-4 rounded">
+                  <div className="bg-krds-accent-surface p-4 rounded">
                     카드 1
                   </div>
-                  <div className="bg-purple-100 dark:bg-purple-900/30 p-4 rounded">
+                  <div className="bg-krds-accent-surface p-4 rounded">
                     카드 2
                   </div>
-                  <div className="bg-purple-100 dark:bg-purple-900/30 p-4 rounded">
+                  <div className="bg-krds-accent-surface p-4 rounded">
                     카드 3
                   </div>
                 </Stack>
@@ -369,7 +369,7 @@ export default function StackPage() {
               태그, 칩, 배지 같은 작은 요소들을 나열할 때 사용합니다. KRDS의
               input-group 등 조밀한 레이아웃에 해당합니다.
             </Body>
-            <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
+            <div className="bg-krds-warning-surface p-4 rounded-lg">
               <Stack spacing="compact">
                 <div>
                   <code className="text-sm font-mono">spacing="compact"</code> →{' '}
@@ -385,13 +385,13 @@ export default function StackPage() {
             <ComponentPreview>
               <div className="w-full">
                 <HStack spacing="inline" className="flex-wrap">
-                  <span className="bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full text-sm">
+                  <span className="bg-krds-warning-surface px-3 py-1 rounded-full text-sm">
                     React
                   </span>
-                  <span className="bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full text-sm">
+                  <span className="bg-krds-warning-surface px-3 py-1 rounded-full text-sm">
                     TypeScript
                   </span>
-                  <span className="bg-orange-100 dark:bg-orange-900/30 px-3 py-1 rounded-full text-sm">
+                  <span className="bg-krds-warning-surface px-3 py-1 rounded-full text-sm">
                     Tailwind
                   </span>
                 </HStack>
@@ -483,13 +483,13 @@ export default function StackPage() {
               <ComponentPreview>
                 <div className="w-full">
                   <VStack spacing="md">
-                    <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
+                    <div className="bg-krds-success-surface p-4 rounded w-full">
                       첫 번째 아이템
                     </div>
-                    <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
+                    <div className="bg-krds-success-surface p-4 rounded w-full">
                       두 번째 아이템
                     </div>
-                    <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded w-full">
+                    <div className="bg-krds-success-surface p-4 rounded w-full">
                       세 번째 아이템
                     </div>
                   </VStack>
@@ -516,13 +516,13 @@ export default function StackPage() {
               <ComponentPreview>
                 <div className="w-full">
                   <HStack spacing="md">
-                    <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
+                    <div className="bg-krds-primary-surface px-4 py-2 rounded">
                       왼쪽
                     </div>
-                    <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
+                    <div className="bg-krds-primary-surface px-4 py-2 rounded">
                       중앙
                     </div>
-                    <div className="bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded">
+                    <div className="bg-krds-primary-surface px-4 py-2 rounded">
                       오른쪽
                     </div>
                   </HStack>
@@ -550,7 +550,7 @@ export default function StackPage() {
                 <div className="w-full">
                   <Stack spacing="heading-loose">
                     <h1 className="text-3xl font-bold">메인 제목</h1>
-                    <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-400">
+                    <h2 className="text-2xl font-semibold text-krds-gray-70">
                       부제목
                     </h2>
                   </Stack>
@@ -580,7 +580,7 @@ export default function StackPage() {
                       <label className="block text-sm font-medium mb-1">
                         이름
                       </label>
-                      <div className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2">
+                      <div className="border border-krds-gray-20 rounded px-3 py-2">
                         Input
                       </div>
                     </HStack>
@@ -588,7 +588,7 @@ export default function StackPage() {
                       <label className="block text-sm font-medium mb-1">
                         이메일
                       </label>
-                      <div className="border border-gray-300 dark:border-gray-700 rounded px-3 py-2">
+                      <div className="border border-krds-gray-20 rounded px-3 py-2">
                         Input
                       </div>
                     </HStack>
@@ -627,12 +627,12 @@ export default function StackPage() {
                     <Stack
                       spacing="sm"
                       align="center"
-                      className="border border-gray-300 dark:border-gray-700 rounded p-4"
+                      className="border border-krds-gray-20 rounded p-4"
                     >
-                      <div className="bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded">
+                      <div className="bg-krds-accent-surface px-4 py-2 rounded">
                         중앙 정렬
                       </div>
-                      <div className="bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded">
+                      <div className="bg-krds-accent-surface px-4 py-2 rounded">
                         아이템
                       </div>
                     </Stack>
@@ -644,12 +644,12 @@ export default function StackPage() {
                     </p>
                     <HStack
                       justify="between"
-                      className="border border-gray-300 dark:border-gray-700 rounded p-4"
+                      className="border border-krds-gray-20 rounded p-4"
                     >
-                      <div className="bg-orange-100 dark:bg-orange-900/30 px-4 py-2 rounded">
+                      <div className="bg-krds-warning-surface px-4 py-2 rounded">
                         왼쪽
                       </div>
-                      <div className="bg-orange-100 dark:bg-orange-900/30 px-4 py-2 rounded">
+                      <div className="bg-krds-warning-surface px-4 py-2 rounded">
                         오른쪽
                       </div>
                     </HStack>
@@ -693,94 +693,94 @@ export default function StackPage() {
         </Stack>
 
         <div className="overflow-x-auto mt-2 md:mt-4">
-          <table className="min-w-full border border-gray-300 dark:border-gray-700">
-            <thead className="bg-gray-100 dark:bg-gray-800">
+          <table className="min-w-full border border-krds-gray-20">
+            <thead className="bg-krds-gray-5">
               <tr>
-                <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                   Prop
                 </th>
-                <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                   Type
                 </th>
-                <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                   Default
                 </th>
-                <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                   Description
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   spacing
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   StackSpacing
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   &apos;md&apos;
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                   간격 프리셋
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   direction
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   &apos;vertical&apos; | &apos;horizontal&apos;
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   &apos;vertical&apos;
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                   스택 방향 (Stack만 사용 가능)
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   align
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   &apos;start&apos; | &apos;center&apos; | &apos;end&apos; |
                   &apos;stretch&apos;
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   - (HStack: &apos;center&apos;)
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                   교차축 정렬
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   justify
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   &apos;start&apos; | &apos;center&apos; | &apos;end&apos; |
                   &apos;between&apos; | &apos;around&apos;
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   -
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                   주축 정렬
                 </td>
               </tr>
               <tr>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   as
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   &apos;div&apos; | &apos;section&apos; | &apos;nav&apos; |
                   &apos;ul&apos; | ...
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                   &apos;div&apos;
                 </td>
-                <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                   렌더링할 HTML 요소
                 </td>
               </tr>
@@ -791,439 +791,439 @@ export default function StackPage() {
         <div className="mt-8 md:mt-16">
           <Stack spacing="heading-content">
             <Heading level="h3">Spacing Options</Heading>
-            <Body className="text-gray-700 dark:text-gray-300">
+            <Body className="text-krds-gray-90">
               맥락 기반 KRDS 간격 시스템 (Context-based Spacing)
             </Body>
           </Stack>
           <div className="overflow-x-auto">
-            <table className="min-w-full border border-gray-300 dark:border-gray-700">
-              <thead className="bg-gray-100 dark:bg-gray-800">
+            <table className="min-w-full border border-krds-gray-20">
+              <thead className="bg-krds-gray-5">
                 <tr>
-                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     값
                   </th>
-                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     간격
                   </th>
-                  <th className="px-4 py-2 text-left border-b border-gray-300 dark:border-gray-700">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     용도
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-gray-50 dark:bg-gray-900">
+                <tr className="bg-krds-gray-5">
                   <td
                     colSpan={3}
-                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold text-sm"
                   >
                     Header & Navigation
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     header-breadcrumb
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     16px (Mobile) / 24px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     헤더와 브레드크럼 간격
                   </td>
                 </tr>
-                <tr className="bg-gray-50 dark:bg-gray-900">
+                <tr className="bg-krds-gray-5">
                   <td
                     colSpan={3}
-                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold text-sm"
                   >
                     Layout Spacing
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     left-contents
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     0px (Mobile) / 64px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     왼쪽 사이드바와 콘텐츠
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     contents-right
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     0px (Mobile) / 40px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     콘텐츠와 오른쪽 사이드바
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     contents-footer
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     40px (Mobile) / 64px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     콘텐츠와 푸터
                   </td>
                 </tr>
-                <tr className="bg-gray-50 dark:bg-gray-900">
+                <tr className="bg-krds-gray-5">
                   <td
                     colSpan={3}
-                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold text-sm"
                   >
                     Heading Hierarchy
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     h1-h2
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     32px (Mobile) / 48px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     H1과 H2 사이
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     h2-h2
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     40px (Mobile) / 80px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     H2와 H2 사이
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     h2-h3
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     24px (Mobile) / 40px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     H2와 H3 사이
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     h3-h3
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     32px (Mobile) / 64px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     H3과 H3 사이
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     h3-h4
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     16px (Mobile) / 24px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     H3과 H4 사이
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     h4-h4
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     24px (Mobile) / 40px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     H4와 H4 사이
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     h4-h5
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     12px (Mobile) / 16px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     H4와 H5 사이
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     h5-h5
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     16px (Mobile) / 32px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     H5와 H5 사이
                   </td>
                 </tr>
-                <tr className="bg-gray-50 dark:bg-gray-900">
+                <tr className="bg-krds-gray-5">
                   <td
                     colSpan={3}
-                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold text-sm"
                   >
                     Title to Body Spacing
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     title-body-small
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     8px (Mobile) / 16px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     제목과 본문 (작은 간격)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     title-body-medium
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     12px (Mobile) / 20px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     제목과 본문 (중간 간격)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     title-body-large
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     20px (Mobile) / 24px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     제목과 본문 (큰 간격)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     breadcrumb
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     32px (Mobile) / 40px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     브레드크럼과 H1
                   </td>
                 </tr>
-                <tr className="bg-gray-50 dark:bg-gray-900">
+                <tr className="bg-krds-gray-5">
                   <td
                     colSpan={3}
-                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold text-sm"
                   >
                     Text Spacing
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     text-text-large
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     16px (Mobile) / 20px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     텍스트 단락 (큰 간격)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     text-text-medium
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     12px (Mobile) / 16px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     텍스트 단락 (중간 간격)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     text-text-small
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     10px (Mobile) / 12px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     텍스트 단락 (작은 간격)
                   </td>
                 </tr>
-                <tr className="bg-gray-50 dark:bg-gray-900">
+                <tr className="bg-krds-gray-5">
                   <td
                     colSpan={3}
-                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold text-sm"
                   >
                     Image to Text Spacing
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     image-text-small
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     16px (Mobile) / 20px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     이미지와 텍스트 (작은 간격)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     image-text-medium
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     20px (Mobile) / 24px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     이미지와 텍스트 (중간 간격)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     image-text-large
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     24px (Mobile) / 32px (PC)
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     이미지와 텍스트 (큰 간격)
                   </td>
                 </tr>
-                <tr className="bg-gray-50 dark:bg-gray-900">
+                <tr className="bg-krds-gray-5">
                   <td
                     colSpan={3}
-                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold text-sm"
                   >
                     Component Spacing
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     form
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     16px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     폼 필드 간격
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     card-list
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     24px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     카드 리스트
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     input-group
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     8px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     인풋 그룹 (라벨-입력)
                   </td>
                 </tr>
-                <tr className="bg-gray-50 dark:bg-gray-900">
+                <tr className="bg-krds-gray-5">
                   <td
                     colSpan={3}
-                    className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-semibold text-sm"
+                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold text-sm"
                   >
                     Generic Spacing
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     xs
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     8px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     매우 작은 간격
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     sm
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     12px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     작은 간격
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     md
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     16px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     중간 간격 (기본값)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     lg
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     24px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     큰 간격
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     xl
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     32px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     매우 큰 간격
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     2xl
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     40px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     2배 큰 간격
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
                     3xl
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     64px
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-300 dark:border-gray-700 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
                     3배 큰 간격
                   </td>
                 </tr>

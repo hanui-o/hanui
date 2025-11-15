@@ -53,10 +53,10 @@ export default function DisplayPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Display size="lg">Large Display</Display>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 60px (PC) / 44px (Mobile) · 700 (Bold) · 150% 줄 간격
               </Body>
               <div>
@@ -69,10 +69,10 @@ export default function DisplayPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Display size="md">Medium Display</Display>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 44px (PC) / 32px (Mobile) · 700 (Bold) · 150% 줄 간격
               </Body>
               <div>
@@ -85,10 +85,10 @@ export default function DisplayPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Display size="sm">Small Display</Display>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 36px (PC) / 28px (Mobile) · 700 (Bold) · 150% 줄 간격
               </Body>
               <div>
@@ -145,13 +145,13 @@ export default function DisplayPage() {
             <Heading level="h3">커스텀 스타일</Heading>
             <div>
               <ComponentPreview>
-                <Display size="md" className="text-primary-60">
+                <Display size="md" className="text-krds-primary-base">
                   브랜드 컬러 적용
                 </Display>
               </ComponentPreview>
               <div className="mt-4">
                 <CodeBlock
-                  code={`<Display size="md" className="text-primary-60">
+                  code={`<Display size="md" className="text-krds-primary-base">
   브랜드 컬러 적용
 </Display>`}
                   language="tsx"
@@ -200,15 +200,15 @@ export default function DisplayPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>
                   <th className="text-left py-3 px-4">Type</th>
                   <th className="text-left py-3 px-4">Default</th>
                   <th className="text-left py-3 px-4">Description</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700 dark:text-gray-300">
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+              <tbody className="text-krds-gray-90">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>size</code>
                   </td>
@@ -220,7 +220,7 @@ export default function DisplayPage() {
                   </td>
                   <td className="py-3 px-4">Display 크기</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>as</code>
                   </td>
@@ -232,7 +232,7 @@ export default function DisplayPage() {
                   </td>
                   <td className="py-3 px-4">렌더링할 HTML 태그</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>className</code>
                   </td>
@@ -264,8 +264,8 @@ export default function DisplayPage() {
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ 모든 Display는 Bold (700) 폰트 굵기 사용</li>
               <li>✓ 150% 줄 간격으로 가독성 확보</li>
               <li>✓ 반응형 크기 (PC/모바일 최적화)</li>

@@ -147,6 +147,9 @@
   --krds-primary-base: var(
     --krds-color-light-primary-50
   ); /* 기본 모드: 50, 다크 모드: 50 */
+  --krds-primary-border: var(
+    --krds-color-light-primary-20
+  ); /* 기본 모드: 20, 다크 모드: 80 */
   /* Secondary */
   --krds-secondary-text: var(
     --krds-color-light-secondary-80
@@ -353,6 +356,7 @@
     --krds-color-light-primary-95
   ); /* 다크 모드: 95 */
   --krds-primary-base: var(--krds-color-light-primary-50); /* 다크 모드: 50 */
+  --krds-primary-border: var(--krds-color-light-primary-80); /* 다크 모드: 80 */
   /* Secondary */
   --krds-secondary-text: var(
     --krds-color-light-secondary-20

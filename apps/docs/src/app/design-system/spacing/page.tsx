@@ -19,12 +19,12 @@ export default function SpacingPage() {
             왜 시맨틱 스페이싱인가?
           </h2>
 
-          <div className="bg-gray-5 dark:bg-gray-90 p-6 rounded-lg">
+          <div className="bg-krds-gray-5 p-6 rounded-lg">
             <Stack spacing="h3-content">
-              <h3 className="text-heading-sm font-semibold text-primary-70">
+              <h3 className="text-heading-sm font-semibold text-krds-primary-text">
                 문제점
               </h3>
-              <p className="text-body-md text-gray-70">
+              <p className="text-body-md text-krds-gray-70">
                 기존 방식에서는 "폼에는 gap-5를 쓰고, 카드 리스트에는 gap-7을
                 쓴다"는 규칙을 모든 개발자가 외워야 했습니다. 바쁜 작업 중에
                 KRDS 문서를 확인하며 작업하는 것은 비효율적입니다.
@@ -32,12 +32,12 @@ export default function SpacingPage() {
             </Stack>
 
             <Stack spacing="h3-content" className="mt-6">
-              <h3 className="text-heading-sm font-semibold text-primary-70">
+              <h3 className="text-heading-sm font-semibold text-krds-primary-text">
                 해결책
               </h3>
-              <p className="text-body-md text-gray-70">
+              <p className="text-body-md text-krds-gray-70">
                 시맨틱 컴포넌트를 사용하면{' '}
-                <code className="text-sm bg-gray-10 px-2 py-1 rounded">
+                <code className="text-sm bg-krds-gray-10 px-2 py-1 rounded">
                   spacing="form"
                 </code>
                 처럼 의미를 명시하면 자동으로 올바른 간격이 적용됩니다.
@@ -50,7 +50,7 @@ export default function SpacingPage() {
           <h2 id="stack-gap-layout" className="text-heading-lg font-bold">
             Stack - Gap Layout
           </h2>
-          <p className="text-body-md text-gray-70">
+          <p className="text-body-md text-krds-gray-70">
             Stack은 수직/수평 방향으로 요소를 배치하고 간격을 관리하는
             컴포넌트입니다. KRDS gap-layout 토큰을 시맨틱하게 적용할 수
             있습니다.
@@ -101,17 +101,23 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">카드 리스트</h3>
             <ComponentPreview>
               <Stack spacing="card-list">
-                <div className="p-6 bg-white dark:bg-gray-90 rounded-lg border">
+                <div className="p-6 bg-krds-white rounded-lg border border-krds-gray-20">
                   <h4 className="text-heading-sm font-semibold mb-2">카드 1</h4>
-                  <p className="text-body-sm text-gray-70">카드 내용입니다.</p>
+                  <p className="text-body-sm text-krds-gray-70">
+                    카드 내용입니다.
+                  </p>
                 </div>
-                <div className="p-6 bg-white dark:bg-gray-90 rounded-lg border">
+                <div className="p-6 bg-krds-white rounded-lg border border-krds-gray-20">
                   <h4 className="text-heading-sm font-semibold mb-2">카드 2</h4>
-                  <p className="text-body-sm text-gray-70">카드 내용입니다.</p>
+                  <p className="text-body-sm text-krds-gray-70">
+                    카드 내용입니다.
+                  </p>
                 </div>
-                <div className="p-6 bg-white dark:bg-gray-90 rounded-lg border">
+                <div className="p-6 bg-krds-white rounded-lg border border-krds-gray-20">
                   <h4 className="text-heading-sm font-semibold mb-2">카드 3</h4>
-                  <p className="text-body-sm text-gray-70">카드 내용입니다.</p>
+                  <p className="text-body-sm text-krds-gray-70">
+                    카드 내용입니다.
+                  </p>
                 </div>
               </Stack>
             </ComponentPreview>
@@ -134,7 +140,7 @@ export default function SpacingPage() {
                   <h2 className="text-heading-lg font-bold">서브 제목 1</h2>
                   <Stack spacing="h3-content">
                     <h3 className="text-heading-md font-bold">소제목</h3>
-                    <p className="text-body-md text-gray-70">
+                    <p className="text-body-md text-krds-gray-70">
                       콘텐츠 내용입니다. KRDS 타이포그래피 계층에 맞춰 자동으로
                       간격이 조정됩니다.
                     </p>
@@ -180,7 +186,7 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">
               전체 KRDS 스페이싱 프리셋
             </h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               모든 간격은 반응형으로 모바일과 PC에서 자동으로 조정됩니다.
             </p>
             <div className="overflow-x-auto">
@@ -194,7 +200,7 @@ export default function SpacingPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Header & Navigation
                     </td>
@@ -208,7 +214,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">헤더와 브레드크럼 사이</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Layout Spacing
                     </td>
@@ -238,7 +244,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">콘텐츠-푸터 간격</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Heading Hierarchy
                     </td>
@@ -308,7 +314,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">H5 제목들 사이</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Title to Body
                     </td>
@@ -346,7 +352,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">브레드크럼-H1 간격</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Text Spacing
                     </td>
@@ -376,7 +382,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">큰 텍스트 간격</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Image to Text
                     </td>
@@ -406,7 +412,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">큰 이미지-텍스트 간격</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Common Use Cases
                     </td>
@@ -445,7 +451,7 @@ export default function SpacingPage() {
 
           <Stack spacing="h3-content">
             <h3 className="text-heading-md font-bold">제네릭 스페이싱</h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               시맨틱 프리셋이 없는 경우 제네릭 사이즈를 사용할 수 있습니다.
             </p>
             <div className="overflow-x-auto">
@@ -509,7 +515,7 @@ export default function SpacingPage() {
           <h2 id="section-padding-layout" className="text-heading-lg font-bold">
             Section - Padding Layout
           </h2>
-          <p className="text-body-md text-gray-70">
+          <p className="text-body-md text-krds-gray-70">
             Section은 페이지 섹션, 카드, 폼 등에 패딩을 적용하는 컴포넌트입니다.
             KRDS padding-layout 토큰을 시맨틱하게 적용할 수 있습니다.
           </p>
@@ -519,7 +525,7 @@ export default function SpacingPage() {
             <ComponentPreview>
               <Section padding="page-section" background="gray">
                 <h2 className="text-heading-lg font-bold mb-4">페이지 섹션</h2>
-                <p className="text-body-md text-gray-70">
+                <p className="text-body-md text-krds-gray-70">
                   페이지 섹션 기본 패딩이 적용되었습니다. PC에서는 24px/64px,
                   모바일에서는 16px/40px이 적용됩니다.
                 </p>
@@ -545,7 +551,7 @@ export default function SpacingPage() {
                 <h3 className="text-heading-sm font-semibold mb-2">
                   카드 제목
                 </h3>
-                <p className="text-body-sm text-gray-70">
+                <p className="text-body-sm text-krds-gray-70">
                   카드 미디엄 패딩(24px)이 적용되었습니다.
                 </p>
               </Section>
@@ -606,7 +612,7 @@ export default function SpacingPage() {
 
           <Stack spacing="h3-content">
             <h3 className="text-heading-md font-bold">전체 KRDS 패딩 프리셋</h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               모든 패딩은 반응형으로 모바일과 PC에서 자동으로 조정됩니다.
             </p>
             <div className="overflow-x-auto">
@@ -620,7 +626,7 @@ export default function SpacingPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       KRDS Card Padding
                     </td>
@@ -658,7 +664,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">매우 작은 카드</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Page Sections
                     </td>
@@ -680,7 +686,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">콘텐츠 영역</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Form Sections
                     </td>
@@ -704,7 +710,7 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">입력 필드 컨테이너</td>
                   </tr>
 
-                  <tr className="border-b bg-gray-5 dark:bg-gray-90">
+                  <tr className="border-b bg-krds-gray-5">
                     <td colSpan={4} className="py-2 px-4 font-semibold">
                       Navigation/Header
                     </td>
@@ -735,7 +741,7 @@ export default function SpacingPage() {
           <h2 id="combined-examples" className="text-heading-lg font-bold">
             복합 사용 예제
           </h2>
-          <p className="text-body-md text-gray-70">
+          <p className="text-body-md text-krds-gray-70">
             Stack과 Section을 함께 사용하여 완전한 페이지 레이아웃을 구성할 수
             있습니다.
           </p>
@@ -976,7 +982,7 @@ export default function SpacingPage() {
           <h2 id="practical-examples" className="text-heading-lg font-bold">
             실전 예제
           </h2>
-          <p className="text-body-md text-gray-70">
+          <p className="text-body-md text-krds-gray-70">
             다양한 KRDS gap-layout 토큰을 실제로 사용하는 예제입니다.
           </p>
 
@@ -991,7 +997,7 @@ export default function SpacingPage() {
                 className="rounded-lg border max-w-2xl"
               >
                 <Stack spacing="breadcrumb">
-                  <div className="text-sm text-primary-70">
+                  <div className="text-sm text-krds-primary-text">
                     홈 &gt; 블로그 &gt; 개발
                   </div>
                   <Stack spacing="h1-h2">
@@ -1004,7 +1010,7 @@ export default function SpacingPage() {
                         <h3 className="text-heading-md font-semibold">
                           설치 방법
                         </h3>
-                        <p className="text-body-md text-gray-70">
+                        <p className="text-body-md text-krds-gray-70">
                           KRDS는 한국 정부의 공식 디자인 시스템입니다. 접근성과
                           사용성을 최우선으로 설계되었습니다.
                         </p>
@@ -1036,12 +1042,12 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">이미지 갤러리</h3>
             <ComponentPreview>
               <Stack spacing="content">
-                <div className="bg-gray-20 h-48 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-60">이미지</span>
+                <div className="bg-krds-gray-20 h-48 rounded-lg flex items-center justify-center">
+                  <span className="text-krds-gray-70">이미지</span>
                 </div>
                 <Stack spacing="compact">
                   <h4 className="text-heading-sm font-semibold">서울 야경</h4>
-                  <p className="text-body-sm text-gray-70">
+                  <p className="text-body-sm text-krds-gray-70">
                     서울 남산에서 바라본 아름다운 야경입니다.
                   </p>
                 </Stack>
@@ -1087,7 +1093,7 @@ export default function SpacingPage() {
 
                   <Stack spacing="h2-h3">
                     <h2 className="text-heading-lg font-bold">두 번째 섹션</h2>
-                    <p className="text-body-md text-gray-70">
+                    <p className="text-body-md text-krds-gray-70">
                       다른 섹션 내용...
                     </p>
                   </Stack>
@@ -1152,13 +1158,13 @@ export default function SpacingPage() {
                 align="start"
                 className="w-full"
               >
-                <div className="hidden md:block w-48 bg-gray-10 dark:bg-gray-90 p-4 rounded-lg">
+                <div className="hidden md:block w-48 bg-krds-gray-10 p-4 rounded-lg">
                   <p className="text-body-sm font-semibold">사이드바</p>
                 </div>
                 <div className="flex-1">
                   <Stack spacing="h2-h3">
                     <h2 className="text-heading-lg font-bold">메인 콘텐츠</h2>
-                    <p className="text-body-md text-gray-70">
+                    <p className="text-body-md text-krds-gray-70">
                       PC에서는 사이드바와 64px 간격이 적용되고, 모바일에서는
                       사이드바가 숨겨지고 간격이 0이 됩니다.
                     </p>
@@ -1195,7 +1201,7 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">
               대형 카드 (card-large)
             </h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               중요한 콘텐츠나 히어로 섹션에 적합한 넉넉한 패딩입니다. 모바일:
               24px / PC: 40px
             </p>
@@ -1206,10 +1212,10 @@ export default function SpacingPage() {
                 className="rounded-lg max-w-2xl"
               >
                 <Stack spacing="title-body-large">
-                  <h3 className="text-heading-lg font-bold text-primary-90 dark:text-primary-10">
+                  <h3 className="text-heading-lg font-bold text-krds-white">
                     환영합니다
                   </h3>
-                  <p className="text-body-md text-primary-80 dark:text-primary-20">
+                  <p className="text-body-md text-krds-white/90">
                     HANUI는 KRDS 기반의 React 컴포넌트 라이브러리입니다.
                     접근성과 일관성을 최우선으로 설계되었습니다.
                   </p>
@@ -1233,7 +1239,7 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">
               중형 카드 (card-medium)
             </h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               일반적인 카드 컴포넌트에 적합한 표준 패딩입니다. 모바일: 24px /
               PC: 32px
             </p>
@@ -1246,7 +1252,7 @@ export default function SpacingPage() {
                 >
                   <Stack spacing="title-body-medium">
                     <h4 className="text-heading-md font-bold">디자인 토큰</h4>
-                    <p className="text-body-sm text-gray-70">
+                    <p className="text-body-sm text-krds-gray-70">
                       KRDS 기반의 색상, 타이포그래피, 간격 토큰을 제공합니다.
                     </p>
                   </Stack>
@@ -1258,7 +1264,7 @@ export default function SpacingPage() {
                 >
                   <Stack spacing="title-body-medium">
                     <h4 className="text-heading-md font-bold">접근성</h4>
-                    <p className="text-body-sm text-gray-70">
+                    <p className="text-body-sm text-krds-gray-70">
                       WCAG 2.1 AA 기준을 준수하여 모든 사용자가 접근 가능합니다.
                     </p>
                   </Stack>
@@ -1288,7 +1294,7 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">
               소형 카드 (card-small)
             </h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               간결한 정보 카드나 목록 아이템에 적합합니다. 모바일: 20px / PC:
               24px
             </p>
@@ -1301,12 +1307,12 @@ export default function SpacingPage() {
                 >
                   <Stack spacing="input-group">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary-60 flex items-center justify-center text-white font-bold">
+                      <div className="w-10 h-10 rounded-full bg-krds-primary-base flex items-center justify-center text-krds-white font-bold">
                         1
                       </div>
                       <div>
                         <h5 className="text-heading-xs font-semibold">설치</h5>
-                        <p className="text-body-xs text-gray-60">
+                        <p className="text-body-xs text-krds-gray-70">
                           npm install @hanui/react
                         </p>
                       </div>
@@ -1320,14 +1326,14 @@ export default function SpacingPage() {
                 >
                   <Stack spacing="input-group">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary-60 flex items-center justify-center text-white font-bold">
+                      <div className="w-10 h-10 rounded-full bg-krds-primary-base flex items-center justify-center text-krds-white font-bold">
                         2
                       </div>
                       <div>
                         <h5 className="text-heading-xs font-semibold">
                           Import
                         </h5>
-                        <p className="text-body-xs text-gray-60">
+                        <p className="text-body-xs text-krds-gray-70">
                           컴포넌트를 가져오기
                         </p>
                       </div>
@@ -1341,12 +1347,12 @@ export default function SpacingPage() {
                 >
                   <Stack spacing="input-group">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary-60 flex items-center justify-center text-white font-bold">
+                      <div className="w-10 h-10 rounded-full bg-krds-primary-base flex items-center justify-center text-krds-white font-bold">
                         3
                       </div>
                       <div>
                         <h5 className="text-heading-xs font-semibold">사용</h5>
-                        <p className="text-body-xs text-gray-60">
+                        <p className="text-body-xs text-krds-gray-70">
                           프로젝트에 적용
                         </p>
                       </div>
@@ -1360,7 +1366,7 @@ export default function SpacingPage() {
   <Section padding="card-small" background="white">
     <Stack spacing="input-group">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-primary-60">1</div>
+        <div className="w-10 h-10 rounded-full bg-krds-primary-base">1</div>
         <div>
           <h5>설치</h5>
           <p>npm install @hanui/react</p>
@@ -1380,7 +1386,7 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">
               초소형 카드 (card-xsmall)
             </h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               태그, 칩, 작은 레이블 등에 적합한 최소 패딩입니다. 모바일: 12px /
               PC: 16px
             </p>
@@ -1392,7 +1398,7 @@ export default function SpacingPage() {
                   className="rounded-full border inline-flex"
                   as="div"
                 >
-                  <span className="text-body-xs font-medium text-primary-70">
+                  <span className="text-body-xs font-medium text-krds-primary-text">
                     React
                   </span>
                 </Section>
@@ -1402,7 +1408,7 @@ export default function SpacingPage() {
                   className="rounded-full border inline-flex"
                   as="div"
                 >
-                  <span className="text-body-xs font-medium text-primary-70">
+                  <span className="text-body-xs font-medium text-krds-primary-text">
                     TypeScript
                   </span>
                 </Section>
@@ -1412,7 +1418,7 @@ export default function SpacingPage() {
                   className="rounded-full border inline-flex"
                   as="div"
                 >
-                  <span className="text-body-xs font-medium text-primary-70">
+                  <span className="text-body-xs font-medium text-krds-primary-text">
                     Tailwind CSS
                   </span>
                 </Section>
@@ -1422,7 +1428,7 @@ export default function SpacingPage() {
                   className="rounded-full border inline-flex"
                   as="div"
                 >
-                  <span className="text-body-xs font-medium text-primary-70">
+                  <span className="text-body-xs font-medium text-krds-primary-text">
                     KRDS
                   </span>
                 </Section>
@@ -1453,7 +1459,7 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">
               폼 섹션 (form-section)
             </h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               폼 컨테이너에 적합한 패딩입니다. 24px 고정값
             </p>
             <ComponentPreview>
@@ -1464,7 +1470,7 @@ export default function SpacingPage() {
               >
                 <Stack spacing="form">
                   <Stack spacing="input-group">
-                    <label className="text-body-sm font-semibold text-gray-90 dark:text-gray-10">
+                    <label className="text-body-sm font-semibold text-krds-gray-95">
                       이름
                     </label>
                     <input
@@ -1474,7 +1480,7 @@ export default function SpacingPage() {
                     />
                   </Stack>
                   <Stack spacing="input-group">
-                    <label className="text-body-sm font-semibold text-gray-90 dark:text-gray-10">
+                    <label className="text-body-sm font-semibold text-krds-gray-95">
                       이메일
                     </label>
                     <input
@@ -1483,7 +1489,7 @@ export default function SpacingPage() {
                       placeholder="hong@example.com"
                     />
                   </Stack>
-                  <button className="mt-2 w-full bg-primary-60 text-white py-2 px-4 rounded-lg text-body-md font-medium hover:bg-primary-70 transition-colors">
+                  <button className="mt-2 w-full bg-krds-primary-base text-krds-white py-2 px-4 rounded-lg text-body-md font-medium hover:bg-krds-primary-60 transition-colors">
                     제출
                   </button>
                 </Stack>
@@ -1511,7 +1517,7 @@ export default function SpacingPage() {
             <h3 className="text-heading-md font-bold">
               대시보드 레이아웃 (복합 예제)
             </h3>
-            <p className="text-body-md text-gray-70">
+            <p className="text-body-md text-krds-gray-70">
               다양한 패딩 크기를 조합한 대시보드 레이아웃 예제입니다.
             </p>
             <ComponentPreview>
@@ -1546,8 +1552,10 @@ export default function SpacingPage() {
                     className="rounded-lg border"
                   >
                     <Stack spacing="input-group">
-                      <p className="text-body-sm text-gray-60">총 방문자</p>
-                      <p className="text-heading-lg font-bold text-primary-70">
+                      <p className="text-body-sm text-krds-gray-70">
+                        총 방문자
+                      </p>
+                      <p className="text-heading-lg font-bold text-krds-primary-text">
                         1,234
                       </p>
                     </Stack>
@@ -1558,8 +1566,10 @@ export default function SpacingPage() {
                     className="rounded-lg border"
                   >
                     <Stack spacing="input-group">
-                      <p className="text-body-sm text-gray-60">신규 사용자</p>
-                      <p className="text-heading-lg font-bold text-primary-70">
+                      <p className="text-body-sm text-krds-gray-70">
+                        신규 사용자
+                      </p>
+                      <p className="text-heading-lg font-bold text-krds-primary-text">
                         567
                       </p>
                     </Stack>
@@ -1570,8 +1580,8 @@ export default function SpacingPage() {
                     className="rounded-lg border"
                   >
                     <Stack spacing="input-group">
-                      <p className="text-body-sm text-gray-60">전환율</p>
-                      <p className="text-heading-lg font-bold text-primary-70">
+                      <p className="text-body-sm text-krds-gray-70">전환율</p>
+                      <p className="text-heading-lg font-bold text-krds-primary-text">
                         12.3%
                       </p>
                     </Stack>
@@ -1662,7 +1672,7 @@ export default function SpacingPage() {
               <h3 className="text-heading-sm font-semibold mb-2">
                 1. 시맨틱 프리셋 우선 사용
               </h3>
-              <p className="text-body-sm text-gray-70">
+              <p className="text-body-sm text-krds-gray-70">
                 가능하면 "form", "card-list" 같은 시맨틱 프리셋을 사용하세요.
                 코드의 의도가 명확해지고 KRDS 가이드라인을 자동으로 따릅니다.
               </p>
@@ -1676,7 +1686,7 @@ export default function SpacingPage() {
               <h3 className="text-heading-sm font-semibold mb-2">
                 2. 시맨틱 HTML 요소 활용
               </h3>
-              <p className="text-body-sm text-gray-70">
+              <p className="text-body-sm text-krds-gray-70">
                 as prop을 사용하여 적절한 시맨틱 HTML 요소를 렌더링하세요.
                 접근성과 SEO에 도움이 됩니다.
               </p>
@@ -1690,7 +1700,7 @@ export default function SpacingPage() {
               <h3 className="text-heading-sm font-semibold mb-2">
                 3. 일관된 간격 유지
               </h3>
-              <p className="text-body-sm text-gray-70">
+              <p className="text-body-sm text-krds-gray-70">
                 직접 gap/padding 클래스를 사용하지 말고 Stack/Section을 사용하여
                 프로젝트 전체에서 일관된 간격을 유지하세요.
               </p>
@@ -1704,7 +1714,7 @@ export default function SpacingPage() {
               <h3 className="text-heading-sm font-semibold mb-2">
                 4. 중첩 사용
               </h3>
-              <p className="text-body-sm text-gray-70">
+              <p className="text-body-sm text-krds-gray-70">
                 복잡한 레이아웃은 Stack과 Section을 중첩하여 구성하세요. 각
                 레벨에서 적절한 시맨틱 프리셋을 사용하면 됩니다.
               </p>

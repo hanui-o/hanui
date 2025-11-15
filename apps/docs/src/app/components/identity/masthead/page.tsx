@@ -59,15 +59,12 @@ export default function MastheadPage() {
                 <div className="w-full">
                   <a
                     href="#main-content"
-                    className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded"
+                    className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-krds-primary-base focus:text-krds-white focus:rounded"
                   >
                     본문으로 바로가기
                   </a>
                   <Masthead />
-                  <div
-                    id="main-content"
-                    className="p-4 bg-white dark:bg-gray-800 mt-4"
-                  >
+                  <div id="main-content" className="p-4 bg-krds-white mt-4">
                     <Body>여기가 본문 콘텐츠입니다.</Body>
                   </div>
                 </div>
@@ -81,7 +78,7 @@ export default function MastheadPage() {
 <>
   <a
     href="#main-content"
-    className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded"
+    className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-krds-primary-base focus:text-krds-white focus:rounded"
   >
     본문으로 바로가기
   </a>
@@ -128,20 +125,20 @@ export default function MastheadPage() {
             </Body>
             <div>
               <ComponentPreview>
-                <div className="w-full border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
+                <div className="w-full border border-krds-gray-20 rounded-lg overflow-hidden">
                   <Masthead />
-                  <header className="bg-blue-600 text-white p-4">
-                    <Body className="text-white font-bold">
+                  <header className="bg-krds-primary-base text-krds-white p-4">
+                    <Body className="text-krds-white font-bold">
                       정부 누리집 헤더
                     </Body>
                   </header>
-                  <nav className="bg-gray-100 dark:bg-gray-900 p-4 border-b border-gray-200 dark:border-gray-800">
+                  <nav className="bg-krds-gray-5 p-4 border-b border-krds-gray-20">
                     <Body>네비게이션 메뉴</Body>
                   </nav>
-                  <main className="p-4 bg-white dark:bg-gray-800">
+                  <main className="p-4 bg-krds-white">
                     <Body>본문 콘텐츠</Body>
                   </main>
-                  <footer className="bg-gray-100 dark:bg-gray-900 p-4">
+                  <footer className="bg-krds-gray-5 p-4">
                     <Body>푸터</Body>
                   </footer>
                 </div>
@@ -233,7 +230,7 @@ export default function MastheadPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">접근성</Heading>
             <Body>KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:</Body>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>Skip Link 선행</strong> - 공식 배너는 Skip Link 다음에
                 배치되어야 함 (Bypass Blocks 준수)
@@ -258,7 +255,7 @@ export default function MastheadPage() {
           {/* Design Principles */}
           <Stack spacing="heading-tight">
             <Heading level="h3">디자인 원칙</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>시각적 절제</strong> - 배너가 지나치게 주의를 끌지
                 않도록 표현
@@ -280,7 +277,7 @@ export default function MastheadPage() {
           {/* Usability */}
           <Stack spacing="heading-tight">
             <Heading level="h3">사용성 권장사항</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>반응형 디자인</strong> - 모바일/태블릿/데스크톱에서 모두
                 잘 보이도록 구현
@@ -312,15 +309,15 @@ export default function MastheadPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
                     <th className="text-left py-2 px-4">Type</th>
                     <th className="text-left py-2 px-4">Default</th>
                     <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700 dark:text-gray-300">
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                <tbody className="text-krds-gray-90">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">text</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4 font-mono">
@@ -328,7 +325,7 @@ export default function MastheadPage() {
                     </td>
                     <td className="py-2 px-4">배너에 표시될 텍스트</td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">className</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4">-</td>
@@ -363,7 +360,7 @@ export default function MastheadPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">1. 필수 식별자 자동 적용</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>#krds-masthead ID</strong>: KRDS 표준에 따른 필수 CSS
                 식별자 자동 설정
@@ -375,7 +372,7 @@ export default function MastheadPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">2. Skip Link 호환성</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>Bypass Blocks 준수</strong>: WCAG 2.1 Level A / KWCAG
                 2.2 기준
@@ -387,7 +384,7 @@ export default function MastheadPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">3. 시맨틱 구조</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>의미있는 HTML</strong>: div 컨테이너 + p 텍스트 요소
               </li>
@@ -398,7 +395,7 @@ export default function MastheadPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">4. 반응형 & 다크 모드</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>모바일 우선</strong>: 모든 화면 크기에서 최적화된 표시
               </li>
@@ -412,7 +409,7 @@ export default function MastheadPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">5. 표준 텍스트 보장</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>기본값 제공</strong>: KRDS 표준 텍스트가 기본으로 설정됨
               </li>

@@ -113,7 +113,7 @@ export default function TooltipPage() {
               HANUI Tooltip은 KRDS 2.2 접근성 가이드라인을 준수합니다:
             </Body>
 
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>aria-labelledby 자동 연결</strong> - 활성화 버튼과 툴팁
                 콘텐츠를 ARIA로 자동 연결
@@ -143,55 +143,55 @@ export default function TooltipPage() {
             <Body>KRDS 2.2에서 정의한 툴팁 상호작용 패턴:</Body>
 
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-200 dark:border-gray-800">
-                <thead className="bg-gray-50 dark:bg-gray-900">
+              <table className="min-w-full border border-krds-gray-20">
+                <thead className="bg-krds-gray-5">
                   <tr>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       상호작용
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       동작
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-medium">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-medium">
                       Mouseover
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       활성화 버튼에 마우스를 올리면 툴팁 표시
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-medium">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-medium">
                       Focus
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       키보드로 버튼에 포커스하면 툴팁 표시
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-medium">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-medium">
                       Mouseleave
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       마우스가 버튼을 벗어나면 툴팁 숨김
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-medium">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-medium">
                       Blur (Tab/Shift+Tab)
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       포커스가 버튼에서 이동하면 툴팁 숨김
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-medium">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-medium">
                       ESC
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       툴팁을 닫고 활성화 버튼으로 포커스 복원
                     </td>
                   </tr>
@@ -486,134 +486,126 @@ export default function MyComponent() {
           </Heading>
 
           <div className="overflow-x-auto">
-            <table className="min-w-full border border-gray-200 dark:border-gray-800">
-              <thead className="bg-gray-50 dark:bg-gray-900">
+            <table className="min-w-full border border-krds-gray-20">
+              <thead className="bg-krds-gray-5">
                 <tr>
-                  <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     Prop
                   </th>
-                  <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     Type
                   </th>
-                  <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     Default
                   </th>
-                  <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                     Description
                   </th>
                 </tr>
               </thead>
               <tbody className="text-sm">
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     content
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                     React.ReactNode
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-                    -
-                  </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">-</td>
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     툴팁에 표시할 콘텐츠 (필수)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     children
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                     React.ReactElement
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-                    -
-                  </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">-</td>
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     툴팁을 트리거할 활성화 버튼 요소 (필수)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     variant
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                     &quot;default&quot; | &quot;light&quot;
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     &quot;default&quot;
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     툴팁 스타일 변형
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     position
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                     &quot;top&quot; | &quot;right&quot; | &quot;bottom&quot; |
                     &quot;left&quot;
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     &quot;top&quot;
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     툴팁 표시 위치
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     delay
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                     number
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     200
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     툴팁이 나타나기 전 지연 시간 (밀리초)
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     disabled
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                     boolean
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     false
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     툴팁 비활성화 여부
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     className
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                     string
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-                    -
-                  </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">-</td>
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     툴팁 컨테이너에 적용할 추가 CSS 클래스
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     wrapperClassName
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                     string
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
-                    -
-                  </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">-</td>
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     래퍼에 적용할 추가 CSS 클래스
                   </td>
                 </tr>
@@ -639,7 +631,7 @@ export default function MyComponent() {
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Stack spacing="heading-tight">
             <Heading level="h3">1. ARIA Automation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <code>aria-labelledby</code> 속성을 활성화 버튼에 자동 연결
                 (KRDS 2.2 요구사항)
@@ -653,7 +645,7 @@ export default function MyComponent() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">2. Focus Management</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>마우스 호버와 키보드 포커스를 모두 감지</li>
               <li>
                 Blur 이벤트 자동 처리 (Tab/Shift+Tab으로 포커스 이동 시 툴팁
@@ -665,7 +657,7 @@ export default function MyComponent() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">3. Keyboard Navigation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>Tab 키로 활성화 버튼에 포커스 → 툴팁 자동 표시</li>
               <li>Shift + Tab으로 역방향 이동 → 툴팁 자동 숨김</li>
               <li>ESC 키로 툴팁 닫기 및 포커스 복원</li>
@@ -674,7 +666,7 @@ export default function MyComponent() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">4. Event Cleanup</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>컴포넌트 언마운트 시 모든 이벤트 리스너 자동 제거</li>
               <li>타이머 자동 정리로 메모리 누수 방지</li>
               <li>React useEffect cleanup 함수로 안전한 정리 보장</li>

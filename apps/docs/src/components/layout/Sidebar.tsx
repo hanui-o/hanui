@@ -91,9 +91,7 @@ function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
 
   return (
     <div>
-      <h3 className="px-2 text-xs text-gray-500 dark:text-gray-100 mb-3">
-        {section.title}
-      </h3>
+      <h3 className="px-2 text-xs text-krds-gray-50 mb-3">{section.title}</h3>
       <ul className="space-y-1">
         {section.items.map((item) => {
           const isActive = pathname === item.href;
@@ -103,8 +101,8 @@ function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
                 href={item.href}
                 className={`block text-sm py-1 px-2 rounded-md transition-colors ${
                   isActive
-                    ? 'bg-blue-600 text-white font-medium'
-                    : 'text-gray-90 dark:text-gray-400 hover:bg-gray-5 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-100'
+                    ? 'bg-krds-primary-base text-krds-white font-medium'
+                    : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'
                 }`}
               >
                 {item.title}
@@ -146,7 +144,7 @@ export function Sidebar() {
   }, [pathname]);
 
   return (
-    <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-krds-gray-10 dark:border-gray-80">
+    <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-krds-gray-5">
       <nav
         ref={navRef}
         className="sticky top-12 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide"

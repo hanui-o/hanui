@@ -17,9 +17,9 @@ export default function BoxPage() {
       <PageSection>
         <ComponentPreview>
           <Box display="flex" direction="row" gap={4} align="center">
-            <div className="w-20 h-20 bg-primary-60 rounded" />
-            <div className="w-20 h-20 bg-primary-50 rounded" />
-            <div className="w-20 h-20 bg-primary-40 rounded" />
+            <div className="w-20 h-20 bg-krds-primary-base rounded" />
+            <div className="w-20 h-20 bg-krds-primary-50 rounded" />
+            <div className="w-20 h-20 bg-krds-primary-40 rounded" />
           </Box>
         </ComponentPreview>
       </PageSection>
@@ -51,19 +51,19 @@ export default function BoxPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Flex</Heading>
               <div>
                 <ComponentPreview>
                   <Box display="flex" direction="row" gap={4}>
-                    <div className="w-20 h-20 bg-blue-500 rounded flex items-center justify-center text-white">
+                    <div className="w-20 h-20 bg-krds-primary-base rounded flex items-center justify-center text-krds-white">
                       1
                     </div>
-                    <div className="w-20 h-20 bg-blue-500 rounded flex items-center justify-center text-white">
+                    <div className="w-20 h-20 bg-krds-primary-base rounded flex items-center justify-center text-krds-white">
                       2
                     </div>
-                    <div className="w-20 h-20 bg-blue-500 rounded flex items-center justify-center text-white">
+                    <div className="w-20 h-20 bg-krds-primary-base rounded flex items-center justify-center text-krds-white">
                       3
                     </div>
                   </Box>
@@ -83,19 +83,19 @@ export default function BoxPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Grid</Heading>
               <div>
                 <ComponentPreview>
                   <Box display="grid" gap={4} className="grid-cols-3">
-                    <div className="h-20 bg-green-500 rounded flex items-center justify-center text-white">
+                    <div className="h-20 bg-krds-success-base rounded flex items-center justify-center text-krds-white">
                       1
                     </div>
-                    <div className="h-20 bg-green-500 rounded flex items-center justify-center text-white">
+                    <div className="h-20 bg-krds-success-base rounded flex items-center justify-center text-krds-white">
                       2
                     </div>
-                    <div className="h-20 bg-green-500 rounded flex items-center justify-center text-white">
+                    <div className="h-20 bg-krds-success-base rounded flex items-center justify-center text-krds-white">
                       3
                     </div>
                   </Box>
@@ -115,16 +115,16 @@ export default function BoxPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Block</Heading>
               <div>
                 <ComponentPreview>
                   <Box display="block">
-                    <div className="h-20 bg-purple-500 rounded flex items-center justify-center text-white mb-4">
+                    <div className="h-20 bg-krds-accent-base rounded flex items-center justify-center text-krds-white mb-4">
                       Block 1
                     </div>
-                    <div className="h-20 bg-purple-500 rounded flex items-center justify-center text-white">
+                    <div className="h-20 bg-krds-accent-base rounded flex items-center justify-center text-krds-white">
                       Block 2
                     </div>
                   </Box>
@@ -154,19 +154,19 @@ export default function BoxPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Row (가로)</Heading>
               <div>
                 <ComponentPreview>
                   <Box display="flex" direction="row" gap={3}>
-                    <div className="w-16 h-16 bg-orange-500 rounded flex items-center justify-center text-white text-sm">
+                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white text-sm">
                       1
                     </div>
-                    <div className="w-16 h-16 bg-orange-500 rounded flex items-center justify-center text-white text-sm">
+                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white text-sm">
                       2
                     </div>
-                    <div className="w-16 h-16 bg-orange-500 rounded flex items-center justify-center text-white text-sm">
+                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white text-sm">
                       3
                     </div>
                   </Box>
@@ -186,19 +186,19 @@ export default function BoxPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Column (세로)</Heading>
               <div>
                 <ComponentPreview>
                   <Box display="flex" direction="column" gap={3}>
-                    <div className="w-full h-16 bg-pink-500 rounded flex items-center justify-center text-white">
+                    <div className="w-full h-16 bg-krds-information-base rounded flex items-center justify-center text-krds-white">
                       1
                     </div>
-                    <div className="w-full h-16 bg-pink-500 rounded flex items-center justify-center text-white">
+                    <div className="w-full h-16 bg-krds-information-base rounded flex items-center justify-center text-krds-white">
                       2
                     </div>
-                    <div className="w-full h-16 bg-pink-500 rounded flex items-center justify-center text-white">
+                    <div className="w-full h-16 bg-krds-information-base rounded flex items-center justify-center text-krds-white">
                       3
                     </div>
                   </Box>
@@ -229,15 +229,12 @@ export default function BoxPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Align Items</Heading>
               <div className="space-y-4">
                 <div>
-                  <Body
-                    size="sm"
-                    className="mb-2 text-gray-600 dark:text-gray-400"
-                  >
+                  <Body size="sm" className="mb-2 text-krds-gray-70">
                     align=&quot;start&quot;
                   </Body>
                   <ComponentPreview>
@@ -246,20 +243,17 @@ export default function BoxPage() {
                       direction="row"
                       gap={3}
                       align="start"
-                      className="h-32 bg-gray-100 dark:bg-gray-900"
+                      className="h-32 bg-krds-gray-5"
                     >
-                      <div className="w-16 h-16 bg-teal-500 rounded" />
-                      <div className="w-16 h-20 bg-teal-500 rounded" />
-                      <div className="w-16 h-12 bg-teal-500 rounded" />
+                      <div className="w-16 h-16 bg-krds-secondary-base rounded" />
+                      <div className="w-16 h-20 bg-krds-secondary-base rounded" />
+                      <div className="w-16 h-12 bg-krds-secondary-base rounded" />
                     </Box>
                   </ComponentPreview>
                 </div>
 
                 <div>
-                  <Body
-                    size="sm"
-                    className="mb-2 text-gray-600 dark:text-gray-400"
-                  >
+                  <Body size="sm" className="mb-2 text-krds-gray-70">
                     align=&quot;center&quot;
                   </Body>
                   <ComponentPreview>
@@ -268,20 +262,17 @@ export default function BoxPage() {
                       direction="row"
                       gap={3}
                       align="center"
-                      className="h-32 bg-gray-100 dark:bg-gray-900"
+                      className="h-32 bg-krds-gray-5"
                     >
-                      <div className="w-16 h-16 bg-teal-500 rounded" />
-                      <div className="w-16 h-20 bg-teal-500 rounded" />
-                      <div className="w-16 h-12 bg-teal-500 rounded" />
+                      <div className="w-16 h-16 bg-krds-secondary-base rounded" />
+                      <div className="w-16 h-20 bg-krds-secondary-base rounded" />
+                      <div className="w-16 h-12 bg-krds-secondary-base rounded" />
                     </Box>
                   </ComponentPreview>
                 </div>
 
                 <div>
-                  <Body
-                    size="sm"
-                    className="mb-2 text-gray-600 dark:text-gray-400"
-                  >
+                  <Body size="sm" className="mb-2 text-krds-gray-70">
                     align=&quot;end&quot;
                   </Body>
                   <ComponentPreview>
@@ -290,11 +281,11 @@ export default function BoxPage() {
                       direction="row"
                       gap={3}
                       align="end"
-                      className="h-32 bg-gray-100 dark:bg-gray-900"
+                      className="h-32 bg-krds-gray-5"
                     >
-                      <div className="w-16 h-16 bg-teal-500 rounded" />
-                      <div className="w-16 h-20 bg-teal-500 rounded" />
-                      <div className="w-16 h-12 bg-teal-500 rounded" />
+                      <div className="w-16 h-16 bg-krds-secondary-base rounded" />
+                      <div className="w-16 h-20 bg-krds-secondary-base rounded" />
+                      <div className="w-16 h-12 bg-krds-secondary-base rounded" />
                     </Box>
                   </ComponentPreview>
                 </div>
@@ -302,30 +293,24 @@ export default function BoxPage() {
             </Stack>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+          <div className="rounded-lg border border-krds-gray-20 p-6">
             <Stack spacing="heading-tight">
               <Heading level="h3">Justify Content</Heading>
               <div className="space-y-4">
                 <div>
-                  <Body
-                    size="sm"
-                    className="mb-2 text-gray-600 dark:text-gray-400"
-                  >
+                  <Body size="sm" className="mb-2 text-krds-gray-70">
                     justify=&quot;start&quot;
                   </Body>
                   <ComponentPreview>
                     <Box display="flex" direction="row" gap={3} justify="start">
-                      <div className="w-16 h-16 bg-indigo-500 rounded" />
-                      <div className="w-16 h-16 bg-indigo-500 rounded" />
+                      <div className="w-16 h-16 bg-krds-primary-base rounded" />
+                      <div className="w-16 h-16 bg-krds-primary-base rounded" />
                     </Box>
                   </ComponentPreview>
                 </div>
 
                 <div>
-                  <Body
-                    size="sm"
-                    className="mb-2 text-gray-600 dark:text-gray-400"
-                  >
+                  <Body size="sm" className="mb-2 text-krds-gray-70">
                     justify=&quot;center&quot;
                   </Body>
                   <ComponentPreview>
@@ -335,17 +320,14 @@ export default function BoxPage() {
                       gap={3}
                       justify="center"
                     >
-                      <div className="w-16 h-16 bg-indigo-500 rounded" />
-                      <div className="w-16 h-16 bg-indigo-500 rounded" />
+                      <div className="w-16 h-16 bg-krds-primary-base rounded" />
+                      <div className="w-16 h-16 bg-krds-primary-base rounded" />
                     </Box>
                   </ComponentPreview>
                 </div>
 
                 <div>
-                  <Body
-                    size="sm"
-                    className="mb-2 text-gray-600 dark:text-gray-400"
-                  >
+                  <Body size="sm" className="mb-2 text-krds-gray-70">
                     justify=&quot;between&quot;
                   </Body>
                   <ComponentPreview>
@@ -355,8 +337,8 @@ export default function BoxPage() {
                       gap={3}
                       justify="between"
                     >
-                      <div className="w-16 h-16 bg-indigo-500 rounded" />
-                      <div className="w-16 h-16 bg-indigo-500 rounded" />
+                      <div className="w-16 h-16 bg-krds-primary-base rounded" />
+                      <div className="w-16 h-16 bg-krds-primary-base rounded" />
                     </Box>
                   </ComponentPreview>
                 </div>
@@ -378,16 +360,16 @@ export default function BoxPage() {
           {['xs', 'sm', 'md', 'lg', 'xl'].map((size) => (
             <div
               key={size}
-              className="rounded-lg border border-gray-200 dark:border-gray-800 p-6"
+              className="rounded-lg border border-krds-gray-20 p-6"
             >
               <Stack spacing="heading-tight">
                 <Heading level="h3">gap=&quot;{size}&quot;</Heading>
                 <div>
                   <ComponentPreview>
                     <Box display="flex" direction="row" gap={size as any}>
-                      <div className="w-16 h-16 bg-cyan-500 rounded" />
-                      <div className="w-16 h-16 bg-cyan-500 rounded" />
-                      <div className="w-16 h-16 bg-cyan-500 rounded" />
+                      <div className="w-16 h-16 bg-krds-accent-base rounded" />
+                      <div className="w-16 h-16 bg-krds-accent-base rounded" />
+                      <div className="w-16 h-16 bg-krds-accent-base rounded" />
                     </Box>
                   </ComponentPreview>
                   <div className="mt-4">
@@ -427,7 +409,7 @@ export default function BoxPage() {
                     display="flex"
                     direction="column"
                     gap={3}
-                    className="flex-1 p-4 border border-gray-200 dark:border-gray-800 rounded"
+                    className="flex-1 p-4 border border-krds-gray-20 rounded"
                   >
                     <Body size="md" weight="bold">
                       카드 제목
@@ -438,7 +420,7 @@ export default function BoxPage() {
                     display="flex"
                     direction="column"
                     gap={3}
-                    className="flex-1 p-4 border border-gray-200 dark:border-gray-800 rounded"
+                    className="flex-1 p-4 border border-krds-gray-20 rounded"
                   >
                     <Body size="md" weight="bold">
                       카드 제목
@@ -475,7 +457,7 @@ export default function BoxPage() {
                   direction="column"
                   align="center"
                   justify="center"
-                  className="h-48 border border-gray-200 dark:border-gray-800 rounded"
+                  className="h-48 border border-krds-gray-20 rounded"
                 >
                   <Body size="lg" weight="bold">
                     중앙 정렬
@@ -540,15 +522,15 @@ export default function BoxPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>
                   <th className="text-left py-3 px-4">Type</th>
                   <th className="text-left py-3 px-4">Default</th>
                   <th className="text-left py-3 px-4">Description</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700 dark:text-gray-300">
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+              <tbody className="text-krds-gray-90">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>display</code>
                   </td>
@@ -562,7 +544,7 @@ export default function BoxPage() {
                   </td>
                   <td className="py-3 px-4">Display 타입</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>direction</code>
                   </td>
@@ -576,7 +558,7 @@ export default function BoxPage() {
                     Flex 방향 (display=&quot;flex&quot;일 때)
                   </td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>align</code>
                   </td>
@@ -589,7 +571,7 @@ export default function BoxPage() {
                   <td className="py-3 px-4">-</td>
                   <td className="py-3 px-4">align-items (교차축 정렬)</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>justify</code>
                   </td>
@@ -602,7 +584,7 @@ export default function BoxPage() {
                   <td className="py-3 px-4">-</td>
                   <td className="py-3 px-4">justify-content (주축 정렬)</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>gap</code>
                   </td>
@@ -615,7 +597,7 @@ export default function BoxPage() {
                   <td className="py-3 px-4">-</td>
                   <td className="py-3 px-4">자식 요소 간 간격</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>as</code>
                   </td>
@@ -630,7 +612,7 @@ export default function BoxPage() {
                   </td>
                   <td className="py-3 px-4">렌더링할 HTML 태그</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>className</code>
                   </td>
@@ -665,14 +647,11 @@ export default function BoxPage() {
         </Stack>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-green-900 dark:text-green-100 mb-3"
-            >
+          <div className="rounded-lg border border-krds-success-border bg-krds-success-surface p-6">
+            <Heading level="h3" className="text-krds-success-text mb-3">
               ✓ Box를 사용하기 적합한 경우
             </Heading>
-            <ul className="list-disc list-inside space-y-2 text-green-800 dark:text-green-200">
+            <ul className="list-disc list-inside space-y-2 text-krds-success-text">
               <li>Flex 또는 Grid 레이아웃 구성</li>
               <li>컴포넌트 내부 레이아웃 정리</li>
               <li>간단한 간격 조정</li>
@@ -680,14 +659,11 @@ export default function BoxPage() {
             </ul>
           </div>
 
-          <div className="rounded-lg border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-6">
-            <Heading
-              level="h3"
-              className="text-amber-900 dark:text-amber-100 mb-3"
-            >
+          <div className="rounded-lg border border-krds-warning-border bg-krds-warning-surface p-6">
+            <Heading level="h3" className="text-krds-warning-text mb-3">
               ⚠ 주의사항
             </Heading>
-            <ul className="list-disc list-inside space-y-2 text-amber-800 dark:text-amber-200">
+            <ul className="list-disc list-inside space-y-2 text-krds-warning-text">
               <li>복잡한 레이아웃은 전용 컴포넌트 사용 권장</li>
               <li>시맨틱한 HTML 구조를 위해 as prop 적극 활용</li>
               <li>과도한 중첩은 피하고 간결하게 구성</li>
@@ -702,8 +678,8 @@ export default function BoxPage() {
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ KRDS Spacing 토큰 기반 간격 시스템</li>
               <li>✓ 일관된 레이아웃 구조 제공</li>
               <li>✓ 반응형 레이아웃 지원</li>

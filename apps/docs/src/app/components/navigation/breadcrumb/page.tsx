@@ -371,15 +371,15 @@ export default function BreadcrumbPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
                     <th className="text-left py-2 px-4">Type</th>
                     <th className="text-left py-2 px-4">Default</th>
                     <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700 dark:text-gray-300">
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                <tbody className="text-krds-gray-90">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">separator</td>
                     <td className="py-2 px-4 font-mono">ReactNode</td>
                     <td className="py-2 px-4 font-mono">&quot;&gt;&quot;</td>
@@ -388,13 +388,13 @@ export default function BreadcrumbPage() {
                       &quot;&gt;&quot;)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">className</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4">-</td>
                     <td className="py-2 px-4">추가 CSS 클래스</td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">children</td>
                     <td className="py-2 px-4 font-mono">ReactNode</td>
                     <td className="py-2 px-4">-</td>
@@ -419,15 +419,15 @@ export default function BreadcrumbPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
                     <th className="text-left py-2 px-4">Type</th>
                     <th className="text-left py-2 px-4">Default</th>
                     <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700 dark:text-gray-300">
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                <tbody className="text-krds-gray-90">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">href</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4">-</td>
@@ -435,7 +435,7 @@ export default function BreadcrumbPage() {
                       링크 URL (현재 페이지가 아닐 때)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">current</td>
                     <td className="py-2 px-4 font-mono">boolean</td>
                     <td className="py-2 px-4">false</td>
@@ -443,7 +443,7 @@ export default function BreadcrumbPage() {
                       현재 페이지 여부 (aria-current=&quot;page&quot; 설정)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">isHome</td>
                     <td className="py-2 px-4 font-mono">boolean</td>
                     <td className="py-2 px-4">false</td>
@@ -451,13 +451,13 @@ export default function BreadcrumbPage() {
                       홈 아이템 여부 (KRDS &quot;home&quot; 클래스 자동 적용)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">className</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4">-</td>
                     <td className="py-2 px-4">추가 CSS 클래스</td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">children</td>
                     <td className="py-2 px-4 font-mono">ReactNode</td>
                     <td className="py-2 px-4">-</td>

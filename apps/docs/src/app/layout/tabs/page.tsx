@@ -146,7 +146,7 @@ export default function TabsPage() {
             <Heading level="h3">접근성</Heading>
             <Body>HANUI Tabs는 KRDS 접근성 가이드라인을 준수합니다:</Body>
 
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>색상 독립성</strong> - 선택 상태를 색상만으로 구별하지
                 않고 밑줄, 배경 등 시각적 요소 추가
@@ -176,63 +176,63 @@ export default function TabsPage() {
             <Body>KRDS에서 정의한 탭 키보드 상호작용:</Body>
 
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-200 dark:border-gray-800">
-                <thead className="bg-gray-50 dark:bg-gray-900">
+              <table className="min-w-full border border-krds-gray-20">
+                <thead className="bg-krds-gray-5">
                   <tr>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       키
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       동작
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       Tab
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       탭 리스트로 포커스 진입
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       Enter
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       포커스된 탭 선택 및 패널 전환
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       Arrow Left
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       이전 탭으로 포커스 이동 (순환)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       Arrow Right
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       다음 탭으로 포커스 이동 (순환)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       Home
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       첫 번째 탭으로 포커스 이동
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       End
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       마지막 탭으로 포커스 이동
                     </td>
                   </tr>
@@ -553,77 +553,77 @@ export default function MyComponent() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Tabs</Heading>
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-200 dark:border-gray-800">
-                <thead className="bg-gray-50 dark:bg-gray-900">
+              <table className="min-w-full border border-krds-gray-20">
+                <thead className="bg-krds-gray-5">
                   <tr>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Prop
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Type
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Default
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Description
                     </th>
                   </tr>
                 </thead>
                 <tbody className="text-sm">
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       defaultValue
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                       string
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       -
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       초기 활성 탭 (비제어 모드)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       value
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                       string
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       -
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       활성 탭 (제어 모드)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       onValueChange
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                       (value: string) =&gt; void
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       -
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       탭 변경 시 호출되는 콜백
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       variant
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                       &quot;default&quot; | &quot;pills&quot;
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       &quot;default&quot;
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       탭 스타일 변형
                     </td>
                   </tr>
@@ -635,49 +635,49 @@ export default function MyComponent() {
           <Stack spacing="heading-tight">
             <Heading level="h3">TabsTrigger</Heading>
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-200 dark:border-gray-800">
-                <thead className="bg-gray-50 dark:bg-gray-900">
+              <table className="min-w-full border border-krds-gray-20">
+                <thead className="bg-krds-gray-5">
                   <tr>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Prop
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Type
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Default
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Description
                     </th>
                   </tr>
                 </thead>
                 <tbody className="text-sm">
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       value
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                       string
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       -
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       탭 식별자 (필수)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       disabled
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                       boolean
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       false
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       탭 비활성화 여부
                     </td>
                   </tr>
@@ -689,35 +689,35 @@ export default function MyComponent() {
           <Stack spacing="heading-tight">
             <Heading level="h3">TabsContent</Heading>
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-gray-200 dark:border-gray-800">
-                <thead className="bg-gray-50 dark:bg-gray-900">
+              <table className="min-w-full border border-krds-gray-20">
+                <thead className="bg-krds-gray-5">
                   <tr>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Prop
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Type
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Default
                     </th>
-                    <th className="px-4 py-2 text-left border-b border-gray-200 dark:border-gray-800">
+                    <th className="px-4 py-2 text-left border-b border-krds-gray-20">
                       Description
                     </th>
                   </tr>
                 </thead>
                 <tbody className="text-sm">
                   <tr>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       value
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800 font-mono text-xs">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-xs">
                       string
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       -
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       연결된 탭 식별자 (필수)
                     </td>
                   </tr>
@@ -744,7 +744,7 @@ export default function MyComponent() {
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Stack spacing="heading-tight">
             <Heading level="h3">1. ARIA Automation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <code>role="tablist"</code> 탭 리스트 컨테이너에 자동 적용
               </li>
@@ -768,7 +768,7 @@ export default function MyComponent() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">2. Keyboard Navigation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>Arrow Left/Right</strong>: 탭 간 순환 네비게이션
                 (양방향)
@@ -791,7 +791,7 @@ export default function MyComponent() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">3. Focus Management</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>키보드 포커스 시 명확한 시각적 표시 (ring)</li>
               <li>WCAG 2.1 Focus Visible (AA) 기준 충족</li>
               <li>Arrow 키로 탭 전환 시 자동 포커스 이동</li>
@@ -801,7 +801,7 @@ export default function MyComponent() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">4. Color Independence</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>Default variant</strong>: 밑줄 (border-bottom) + 색상
                 변화

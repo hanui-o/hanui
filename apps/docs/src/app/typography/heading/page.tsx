@@ -55,11 +55,11 @@ export default function HeadingPage() {
             레벨 (Levels)
           </Heading>
           <Stack spacing="content-loose">
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Heading level="h1">h1 - Extra Large Heading</Heading>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 40px (PC) / 28px (Mobile) · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -71,13 +71,13 @@ export default function HeadingPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <div className="text-heading-lg font-bold">
                   h2 - Large Heading
                 </div>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 32px (PC) / 24px (Mobile) · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -89,11 +89,11 @@ export default function HeadingPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Heading level="h3">h3 - Medium Heading</Heading>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 24px (PC) / 22px (Mobile) · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -105,11 +105,11 @@ export default function HeadingPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Heading level="h4">h4 - Small Heading</Heading>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 19px · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -121,11 +121,11 @@ export default function HeadingPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Heading level="h5">h5 - Extra Small Heading</Heading>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 17px · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -137,11 +137,11 @@ export default function HeadingPage() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+            <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Heading level="h6">h6 - Extra Extra Small Heading</Heading>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-krds-gray-70">
                 15px · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -191,13 +191,13 @@ export default function HeadingPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">커스텀 스타일</Heading>
             <ComponentPreview>
-              <div className="text-heading-lg font-bold text-primary-60">
+              <div className="text-heading-lg font-bold text-krds-primary-base">
                 브랜드 컬러 제목
               </div>
             </ComponentPreview>
             <div className="mt-4">
               <CodeBlock
-                code={`<Heading level="h2" className="text-primary-60">
+                code={`<Heading level="h2" className="text-krds-primary-base">
   브랜드 컬러 제목
 </Heading>`}
                 language="tsx"
@@ -253,15 +253,15 @@ export default function HeadingPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>
                   <th className="text-left py-3 px-4">Type</th>
                   <th className="text-left py-3 px-4">Default</th>
                   <th className="text-left py-3 px-4">Description</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700 dark:text-gray-300">
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+              <tbody className="text-krds-gray-90">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>level</code>
                   </td>
@@ -276,7 +276,7 @@ export default function HeadingPage() {
                   </td>
                   <td className="py-3 px-4">제목 레벨 (시맨틱 태그)</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>className</code>
                   </td>
@@ -308,8 +308,8 @@ export default function HeadingPage() {
           <Heading level="h2" id="accessibility">
             접근성
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ 시맨틱 HTML 태그 사용으로 스크린 리더 지원</li>
               <li>✓ 명확한 계층 구조로 콘텐츠 탐색 용이</li>
               <li>✓ 페이지당 h1은 하나만 사용하여 주제 명확화</li>
@@ -325,8 +325,8 @@ export default function HeadingPage() {
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ 모든 Heading은 Bold (700) 폰트 굵기 사용</li>
               <li>✓ 150% 줄 간격으로 가독성 확보</li>
               <li>✓ 반응형 크기 (h1-h3는 PC/모바일 최적화)</li>

@@ -74,6 +74,7 @@ const config: Config = {
           text: 'var(--krds-primary-text)', // 기본 모드: 60, 다크 모드: 20
           surface: 'var(--krds-primary-surface)', // 기본 모드: 5, 다크 모드: 95
           base: 'var(--krds-primary-base)', // 기본 모드: 50, 다크 모드: 50
+          border: 'var(--krds-primary-border)', // 기본 모드: 20, 다크 모드: 80
           // 숫자 스케일 (직접 사용 시)
           5: 'var(--krds-color-light-primary-5)', // surface
           10: 'var(--krds-color-light-primary-10)',

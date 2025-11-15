@@ -42,14 +42,14 @@ export default function PaginationPage() {
         </Stack>
 
         <div className="mt-4 space-y-4">
-          <div className="flex justify-center p-8 bg-gray-50 dark:bg-gray-900 rounded-lg">
+          <div className="flex justify-center p-8 bg-krds-gray-5 rounded-lg">
             <Pagination
               currentPage={currentPage}
               totalPages={10}
               onPageChange={setCurrentPage}
             />
           </div>
-          <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-center text-sm text-krds-gray-70">
             현재 페이지: {currentPage}
           </p>
 
@@ -94,7 +94,7 @@ export default function Example() {
             </Body>
 
             <div className="space-y-4">
-              <div className="flex justify-center p-8 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <div className="flex justify-center p-8 bg-krds-gray-5 rounded-lg">
                 <Pagination
                   currentPage={currentPage2}
                   totalPages={20}
@@ -125,7 +125,7 @@ export default function Example() {
             </Body>
 
             <div className="space-y-4">
-              <div className="space-y-6 p-8 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <div className="space-y-6 p-8 bg-krds-gray-5 rounded-lg">
                 <div>
                   <Body size="sm" className="mb-2 text-center">
                     siblingCount = 1 (기본값)
@@ -187,7 +187,7 @@ export default function Example() {
             </Body>
 
             <div className="space-y-4">
-              <div className="flex justify-center p-8 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <div className="flex justify-center p-8 bg-krds-gray-5 rounded-lg">
                 <Pagination
                   currentPage={currentPage5}
                   totalPages={5}
@@ -217,14 +217,14 @@ export default function Example() {
             </Body>
 
             <div className="space-y-4">
-              <div className="flex justify-center p-8 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <div className="flex justify-center p-8 bg-krds-gray-5 rounded-lg">
                 <Pagination
                   currentPage={currentPage6}
                   totalPages={100}
                   onPageChange={setCurrentPage6}
                 />
               </div>
-              <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-center text-sm text-krds-gray-70">
                 총 100페이지 중 {currentPage6}페이지
               </p>
 
@@ -251,18 +251,18 @@ export default function Example() {
             </Body>
 
             <div className="space-y-4">
-              <div className="space-y-4 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg">
+              <div className="space-y-4 p-6 bg-krds-gray-5 rounded-lg">
                 {/* Mock Data List */}
                 <div className="space-y-2">
                   {Array.from({ length: 5 }, (_, i) => (
                     <div
                       key={i}
-                      className="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"
+                      className="p-4 bg-krds-white rounded-lg border border-krds-gray-20"
                     >
-                      <h4 className="font-semibold text-gray-900 dark:text-gray-100">
+                      <h4 className="font-semibold text-krds-gray-95">
                         항목 {(currentPage7 - 1) * 5 + i + 1}
                       </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      <p className="text-sm text-krds-gray-70 mt-1">
                         페이지 {currentPage7}의 항목입니다.
                       </p>
                     </div>
@@ -467,7 +467,7 @@ return (
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold w-1/5">
                       Prop
                     </th>
@@ -483,57 +483,57 @@ return (
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">currentPage</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       number
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       현재 페이지 번호 (1부터 시작)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">totalPages</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       number
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       전체 페이지 수
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">
                       onPageChange
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       (page: number) =&gt; void
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       페이지 변경 시 호출되는 함수
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">
                       siblingCount
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       number
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">1</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       현재 페이지 양쪽에 표시할 페이지 수
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-3 px-4 font-mono text-sm">className</td>
-                    <td className="py-3 px-4 font-mono text-sm text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
                       string
                     </td>
                     <td className="py-3 px-4 font-mono text-sm">-</td>
-                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400">
+                    <td className="py-3 px-4 text-krds-gray-70">
                       추가 CSS 클래스
                     </td>
                   </tr>

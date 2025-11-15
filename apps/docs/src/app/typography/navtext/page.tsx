@@ -17,7 +17,7 @@ export default function NavTextPage() {
 
       <PageSection>
         <ComponentPreview>
-          <div className="flex flex-col gap-4 bg-gray-50 dark:bg-gray-900 p-6 rounded">
+          <div className="flex flex-col gap-4 bg-krds-gray-5 p-6 rounded">
             <NavText variant="tit-lg">Title Large</NavText>
             <NavText variant="tit-sm">Title Small</NavText>
             <NavText variant="depth-md">Depth Medium</NavText>
@@ -56,18 +56,18 @@ export default function NavTextPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Title (메뉴 제목)</Heading>
             <Stack spacing="content-loose">
-              <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+              <div className="rounded-lg border border-krds-gray-20 p-6">
                 <div className="mb-4">
                   <NavText
                     as="a"
                     href="#"
                     variant="tit-lg"
-                    className="hover:text-primary-60 transition-colors"
+                    className="hover:text-krds-primary-base transition-colors"
                   >
                     Title Large
                   </NavText>
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-sm text-krds-gray-70">
                   24px (PC) / 22px (Mobile) · 700 (Bold) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
@@ -81,18 +81,18 @@ export default function NavTextPage() {
                 </div>
               </div>
 
-              <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+              <div className="rounded-lg border border-krds-gray-20 p-6">
                 <div className="mb-4">
                   <NavText
                     as="a"
                     href="#"
                     variant="tit-sm"
-                    className="hover:text-primary-60 transition-colors"
+                    className="hover:text-krds-primary-base transition-colors"
                   >
                     Title Small
                   </NavText>
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-sm text-krds-gray-70">
                   19px (PC) / 17px (Mobile) · 700 (Bold) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
@@ -112,18 +112,18 @@ export default function NavTextPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Depth (메뉴 항목)</Heading>
             <Stack spacing="content-loose">
-              <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+              <div className="rounded-lg border border-krds-gray-20 p-6">
                 <div className="mb-4">
                   <NavText
                     as="a"
                     href="#"
                     variant="depth-md"
-                    className="hover:text-primary-60 transition-colors"
+                    className="hover:text-krds-primary-base transition-colors"
                   >
                     Depth Medium
                   </NavText>
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-sm text-krds-gray-70">
                   17px · 400 (Regular) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
@@ -137,18 +137,18 @@ export default function NavTextPage() {
                 </div>
               </div>
 
-              <div className="rounded-lg border border-gray-200 dark:border-gray-800 p-6">
+              <div className="rounded-lg border border-krds-gray-20 p-6">
                 <div className="mb-4">
                   <NavText
                     as="a"
                     href="#"
                     variant="depth-sm"
-                    className="hover:text-primary-60 transition-colors"
+                    className="hover:text-krds-primary-base transition-colors"
                   >
                     Depth Small
                   </NavText>
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">
+                <div className="text-sm text-krds-gray-70">
                   15px · 400 (Regular) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
@@ -179,14 +179,14 @@ export default function NavTextPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">메인 네비게이션</Heading>
             <ComponentPreview>
-              <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
+              <nav className="bg-krds-gray-5 p-6 rounded">
                 <ul className="space-y-4">
                   <li>
                     <NavText
                       as="a"
                       href="#"
                       variant="tit-lg"
-                      className="hover:text-primary-60 transition-colors"
+                      className="hover:text-krds-primary-base transition-colors"
                     >
                       서비스 소개
                     </NavText>
@@ -196,7 +196,7 @@ export default function NavTextPage() {
                       as="a"
                       href="#"
                       variant="tit-lg"
-                      className="hover:text-primary-60 transition-colors"
+                      className="hover:text-krds-primary-base transition-colors"
                     >
                       이용 안내
                     </NavText>
@@ -206,7 +206,7 @@ export default function NavTextPage() {
                       as="a"
                       href="#"
                       variant="tit-lg"
-                      className="hover:text-primary-60 transition-colors"
+                      className="hover:text-krds-primary-base transition-colors"
                     >
                       고객 지원
                     </NavText>
@@ -244,14 +244,14 @@ export default function NavTextPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">계층형 네비게이션</Heading>
             <ComponentPreview>
-              <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
+              <nav className="bg-krds-gray-5 p-6 rounded">
                 <div className="space-y-4">
                   <div>
                     <NavText
                       as="a"
                       href="#"
                       variant="tit-sm"
-                      className="hover:text-primary-60 transition-colors"
+                      className="hover:text-krds-primary-base transition-colors"
                     >
                       공지사항
                     </NavText>
@@ -261,7 +261,7 @@ export default function NavTextPage() {
                           as="a"
                           href="#"
                           variant="depth-md"
-                          className="hover:text-primary-60 transition-colors"
+                          className="hover:text-krds-primary-base transition-colors"
                         >
                           시스템 공지
                         </NavText>
@@ -271,7 +271,7 @@ export default function NavTextPage() {
                           as="a"
                           href="#"
                           variant="depth-md"
-                          className="hover:text-primary-60 transition-colors"
+                          className="hover:text-krds-primary-base transition-colors"
                         >
                           이벤트 소식
                         </NavText>
@@ -281,7 +281,7 @@ export default function NavTextPage() {
                           as="a"
                           href="#"
                           variant="depth-md"
-                          className="hover:text-primary-60 transition-colors"
+                          className="hover:text-krds-primary-base transition-colors"
                         >
                           업데이트 내역
                         </NavText>
@@ -330,7 +330,7 @@ export default function NavTextPage() {
                     as="a"
                     href="#"
                     variant="tit-lg"
-                    className="text-blue-600 hover:underline"
+                    className="text-krds-primary-base hover:underline"
                   >
                     링크로 렌더링 (a 태그)
                   </NavText>
@@ -340,7 +340,7 @@ export default function NavTextPage() {
                     as="button"
                     variant="depth-md"
                     onClick={() => alert('클릭!')}
-                    className="hover:text-primary-60"
+                    className="hover:text-krds-primary-base"
                   >
                     버튼으로 렌더링 (button 태그)
                   </NavText>
@@ -374,14 +374,14 @@ export default function NavTextPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">활성 상태 스타일링</Heading>
             <ComponentPreview>
-              <nav className="bg-gray-50 dark:bg-gray-900 p-6 rounded">
+              <nav className="bg-krds-gray-5 p-6 rounded">
                 <ul className="space-y-2">
                   <li>
                     <NavText
                       as="a"
                       href="#"
                       variant="depth-md"
-                      className="text-primary-60"
+                      className="text-krds-primary-base"
                     >
                       현재 페이지
                     </NavText>
@@ -391,7 +391,7 @@ export default function NavTextPage() {
                       as="a"
                       href="#"
                       variant="depth-md"
-                      className="hover:text-primary-60 transition-colors"
+                      className="hover:text-krds-primary-base transition-colors"
                     >
                       다른 페이지
                     </NavText>
@@ -406,7 +406,7 @@ export default function NavTextPage() {
   as="a"
   href="/current"
   variant="depth-md"
-  className="text-primary-60"
+  className="text-krds-primary-base"
 >
   현재 페이지
 </NavText>
@@ -416,7 +416,7 @@ export default function NavTextPage() {
   as="a"
   href="/other"
   variant="depth-md"
-  className="hover:text-primary-60"
+  className="hover:text-krds-primary-base"
 >
   다른 페이지
 </NavText>`}
@@ -475,15 +475,15 @@ export default function NavTextPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>
                   <th className="text-left py-3 px-4">Type</th>
                   <th className="text-left py-3 px-4">Default</th>
                   <th className="text-left py-3 px-4">Description</th>
                 </tr>
               </thead>
-              <tbody className="text-gray-700 dark:text-gray-300">
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+              <tbody className="text-krds-gray-90">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>variant</code>
                   </td>
@@ -495,7 +495,7 @@ export default function NavTextPage() {
                   </td>
                   <td className="py-3 px-4">네비게이션 텍스트 스타일</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>weight</code>
                   </td>
@@ -509,7 +509,7 @@ export default function NavTextPage() {
                     글자 굵기 (tit-* 에는 자동 적용)
                   </td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>as</code>
                   </td>
@@ -521,7 +521,7 @@ export default function NavTextPage() {
                   </td>
                   <td className="py-3 px-4">렌더링할 HTML 태그</td>
                 </tr>
-                <tr className="border-b border-gray-200 dark:border-gray-800">
+                <tr className="border-b border-krds-gray-20">
                   <td className="py-3 px-4">
                     <code>className</code>
                   </td>
@@ -553,8 +553,8 @@ export default function NavTextPage() {
           <Heading level="h2" id="accessibility">
             접근성
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ 시맨틱 nav 태그와 함께 사용</li>
               <li>✓ 링크는 a 태그로, 동작 트리거는 button 태그로 렌더링</li>
               <li>
@@ -573,8 +573,8 @@ export default function NavTextPage() {
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>
-          <div className="rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950/30 p-6">
-            <ul className="space-y-2 text-blue-900 dark:text-blue-100">
+          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
+            <ul className="space-y-2 text-krds-primary-text">
               <li>✓ tit 변형은 Bold (700) 폰트 굵기</li>
               <li>✓ depth 변형은 Regular (400) 폰트 굵기</li>
               <li>✓ 150% 줄 간격으로 가독성 확보</li>

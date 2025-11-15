@@ -450,7 +450,7 @@ export default function AccordionPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">접근성</Heading>
             <Body>KRDS 및 WCAG 2.1 접근성 기준을 준수합니다:</Body>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>시맨틱 제목 구조</strong> - AccordionTrigger를 h1-h6로
                 감싸서 스크린 리더 사용자가 빠르게 탐색 가능
@@ -480,7 +480,7 @@ export default function AccordionPage() {
           {/* Usability */}
           <Stack spacing="heading-tight">
             <Heading level="h3">사용성 권장사항</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>아이콘 위치 일관성</strong> - 아이콘을 헤더 끝에
                 일관되게 배치하여 시선 피로 감소
@@ -515,15 +515,15 @@ export default function AccordionPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
                     <th className="text-left py-2 px-4">Type</th>
                     <th className="text-left py-2 px-4">Default</th>
                     <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700 dark:text-gray-300">
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                <tbody className="text-krds-gray-90">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">type</td>
                     <td className="py-2 px-4 font-mono">
                       &quot;single&quot; | &quot;multiple&quot;
@@ -533,7 +533,7 @@ export default function AccordionPage() {
                       한 번에 하나만 열기(single) 또는 여러 개 열기(multiple)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">collapsible</td>
                     <td className="py-2 px-4 font-mono">boolean</td>
                     <td className="py-2 px-4 font-mono">false</td>
@@ -542,13 +542,13 @@ export default function AccordionPage() {
                       때만)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">defaultValue</td>
                     <td className="py-2 px-4 font-mono">string | string[]</td>
                     <td className="py-2 px-4">-</td>
                     <td className="py-2 px-4">기본으로 열릴 패널의 value</td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">value</td>
                     <td className="py-2 px-4 font-mono">string | string[]</td>
                     <td className="py-2 px-4">-</td>
@@ -556,7 +556,7 @@ export default function AccordionPage() {
                       제어 모드: 열린 패널의 value (controlled)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">onValueChange</td>
                     <td className="py-2 px-4 font-mono">
                       (value: string | string[]) =&gt; void
@@ -566,7 +566,7 @@ export default function AccordionPage() {
                       패널이 열리거나 닫힐 때 호출되는 콜백
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">variant</td>
                     <td className="py-2 px-4 font-mono">
                       &quot;default&quot; | &quot;line&quot;
@@ -587,15 +587,15 @@ export default function AccordionPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
                     <th className="text-left py-2 px-4">Type</th>
                     <th className="text-left py-2 px-4">Default</th>
                     <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700 dark:text-gray-300">
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                <tbody className="text-krds-gray-90">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">value</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4">-</td>
@@ -614,15 +614,15 @@ export default function AccordionPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
                     <th className="text-left py-2 px-4">Type</th>
                     <th className="text-left py-2 px-4">Default</th>
                     <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700 dark:text-gray-300">
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                <tbody className="text-krds-gray-90">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">disabled</td>
                     <td className="py-2 px-4 font-mono">boolean</td>
                     <td className="py-2 px-4">-</td>
@@ -661,7 +661,7 @@ export default function AccordionPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">1. ARIA Automation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>aria-expanded</strong>: 패널의 펼침/접힘 상태 자동 관리
               </li>
@@ -679,7 +679,7 @@ export default function AccordionPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">2. Keyboard Navigation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>Tab / Shift+Tab</strong>: 아코디언 헤더 간 순차적 접근
               </li>
@@ -692,7 +692,7 @@ export default function AccordionPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">3. Semantic Heading Structure</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>AccordionTrigger를 h1-h6로 감싸서 문서 계층 구조 표현</li>
               <li>
                 스크린 리더 사용자가 헤딩 목록으로 빠르게 원하는 섹션으로 이동
@@ -703,7 +703,7 @@ export default function AccordionPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">4. Visual Direction</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>아이콘이 펼침/접힘 상태에 따라 자동 회전 (∨ ↔ ∧)</li>
               <li>색상만으로 상태를 구별하지 않음 (KRDS 색상 독립성 준수)</li>
             </ul>

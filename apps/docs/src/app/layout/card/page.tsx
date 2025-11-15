@@ -18,7 +18,7 @@ export default function CardPage() {
           <Heading level="h2" id="basic-usage">
             개요
           </Heading>
-          <Body size="md" className="text-gray-600 dark:text-gray-400">
+          <Body size="md" className="text-krds-gray-70">
             Card는 Compound Component 패턴을 사용하여 구조화된 콘텐츠를 담을 수
             있습니다.
           </Body>
@@ -63,7 +63,7 @@ export default function Example() {
           <Heading level="h2" id="variants">
             변형 (Variants)
           </Heading>
-          <Body size="md" className="text-gray-600 dark:text-gray-400">
+          <Body size="md" className="text-krds-gray-70">
             Card는 4가지 시각적 변형을 제공합니다.
           </Body>
 
@@ -75,7 +75,7 @@ export default function Example() {
             >
               Default
             </Heading>
-            <Body size="sm" className="text-gray-600 dark:text-gray-400">
+            <Body size="sm" className="text-krds-gray-70">
               그림자와 테두리가 있는 기본 스타일입니다.
             </Body>
             <CodeBlock
@@ -94,7 +94,7 @@ export default function Example() {
             >
               Outlined
             </Heading>
-            <Body size="sm" className="text-gray-600 dark:text-gray-400">
+            <Body size="sm" className="text-krds-gray-70">
               강조된 테두리만 있는 스타일입니다.
             </Body>
             <CodeBlock
@@ -113,7 +113,7 @@ export default function Example() {
             >
               Filled
             </Heading>
-            <Body size="sm" className="text-gray-600 dark:text-gray-400">
+            <Body size="sm" className="text-krds-gray-70">
               배경색이 있는 스타일입니다.
             </Body>
             <CodeBlock
@@ -132,7 +132,7 @@ export default function Example() {
             >
               Elevated
             </Heading>
-            <Body size="sm" className="text-gray-600 dark:text-gray-400">
+            <Body size="sm" className="text-krds-gray-70">
               강한 그림자로 강조되는 스타일입니다.
             </Body>
             <CodeBlock
@@ -151,7 +151,7 @@ export default function Example() {
           <Heading level="h2" id="padding">
             패딩 (Padding)
           </Heading>
-          <Body size="md" className="text-gray-600 dark:text-gray-400">
+          <Body size="md" className="text-krds-gray-70">
             Card는 다양한 패딩 크기를 지원합니다.
           </Body>
 
@@ -195,7 +195,7 @@ export default function Example() {
           <Heading level="h2" id="hoverable">
             인터랙티브 카드
           </Heading>
-          <Body size="md" className="text-gray-600 dark:text-gray-400">
+          <Body size="md" className="text-krds-gray-70">
             hoverable prop을 사용하면 클릭 가능한 카드를 만들 수 있습니다.
           </Body>
 
@@ -207,7 +207,7 @@ export default function Example() {
             >
               클릭 가능한 카드
             </Heading>
-            <Body size="sm" className="text-gray-600 dark:text-gray-400">
+            <Body size="sm" className="text-krds-gray-70">
               hoverable 카드는 호버 시 그림자가 강조되고 약간 위로 올라갑니다.
               키보드로도 접근 가능합니다 (Enter, Space).
             </Body>
@@ -276,7 +276,7 @@ export default function Example() {
             >
               카드 그리드
             </Heading>
-            <Body size="sm" className="text-gray-600 dark:text-gray-400">
+            <Body size="sm" className="text-krds-gray-70">
               여러 카드를 그리드 레이아웃으로 배치할 수 있습니다.
             </Body>
             <CodeBlock
@@ -350,7 +350,7 @@ export default function Example() {
           <Heading level="h2" id="accessibility">
             접근성
           </Heading>
-          <Body size="md" className="text-gray-600 dark:text-gray-400">
+          <Body size="md" className="text-krds-gray-70">
             Card 컴포넌트는 WCAG 2.1 및 KWCAG 2.2 표준을 준수합니다.
           </Body>
 
@@ -359,25 +359,25 @@ export default function Example() {
               <Heading level="h3" className="text-lg font-semibold mb-2">
                 키보드 네비게이션 (hoverable 카드)
               </Heading>
-              <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
                 <li>
-                  <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">
+                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
                     Tab
                   </code>
                   : 카드로 포커스 이동
                 </li>
                 <li>
-                  <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">
+                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
                     Enter
                   </code>{' '}
                   또는{' '}
-                  <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">
+                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
                     Space
                   </code>
                   : 카드 활성화 (클릭)
                 </li>
                 <li>
-                  <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">
+                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
                     Shift + Tab
                   </code>
                   : 이전 요소로 포커스 이동
@@ -389,7 +389,7 @@ export default function Example() {
               <Heading level="h3" className="text-lg font-semibold mb-2">
                 스크린 리더
               </Heading>
-              <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
                 <li>일반 카드는 article role로 인식됩니다</li>
                 <li>hoverable 카드는 button role로 인식됩니다</li>
                 <li>
@@ -414,7 +414,7 @@ export default function Example() {
               <Heading level="h3" className="text-lg font-semibold">
                 유연성 (Flexibility)
               </Heading>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 다양한 콘텐츠 타입과 레이아웃을 지원하며, 필요에 따라 구조를
                 조정할 수 있습니다.
               </Body>
@@ -424,7 +424,7 @@ export default function Example() {
               <Heading level="h3" className="text-lg font-semibold">
                 일관성 (Consistency)
               </Heading>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 모든 카드가 동일한 시각적 언어를 사용하여 사용자에게 예측 가능한
                 경험을 제공합니다.
               </Body>
@@ -434,7 +434,7 @@ export default function Example() {
               <Heading level="h3" className="text-lg font-semibold">
                 구조화 (Structure)
               </Heading>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 Header, Body, Footer로 명확히 구분된 구조를 통해 콘텐츠를
                 체계적으로 조직합니다.
               </Body>
@@ -444,7 +444,7 @@ export default function Example() {
               <Heading level="h3" className="text-lg font-semibold">
                 인터랙션 (Interaction)
               </Heading>
-              <Body size="sm" className="text-gray-600 dark:text-gray-400">
+              <Body size="sm" className="text-krds-gray-70">
                 hoverable 옵션으로 카드를 인터랙티브하게 만들어 사용자 참여를
                 유도합니다.
               </Body>
@@ -466,21 +466,21 @@ export default function Example() {
               <Heading level="h3" className="text-xl font-semibold mb-4">
                 Card
               </Heading>
-              <Body size="md" className="text-gray-600 dark:text-gray-400 mb-4">
+              <Body size="md" className="text-krds-gray-70 mb-4">
                 카드 컨테이너 컴포넌트입니다.
               </Body>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-gray-200 dark:border-gray-800">
+                    <tr className="border-b border-krds-gray-20">
                       <th className="text-left py-2 px-4">Prop</th>
                       <th className="text-left py-2 px-4">Type</th>
                       <th className="text-left py-2 px-4">Default</th>
                       <th className="text-left py-2 px-4">Description</th>
                     </tr>
                   </thead>
-                  <tbody className="text-gray-700 dark:text-gray-300">
-                    <tr className="border-b border-gray-100 dark:border-gray-800">
+                  <tbody className="text-krds-gray-90">
+                    <tr className="border-b border-krds-gray-20">
                       <td className="py-2 px-4">
                         <code>variant</code>
                       </td>
@@ -495,7 +495,7 @@ export default function Example() {
                       </td>
                       <td className="py-2 px-4">카드 시각적 변형</td>
                     </tr>
-                    <tr className="border-b border-gray-100 dark:border-gray-800">
+                    <tr className="border-b border-krds-gray-20">
                       <td className="py-2 px-4">
                         <code>padding</code>
                       </td>
@@ -510,7 +510,7 @@ export default function Example() {
                       </td>
                       <td className="py-2 px-4">패딩 크기</td>
                     </tr>
-                    <tr className="border-b border-gray-100 dark:border-gray-800">
+                    <tr className="border-b border-krds-gray-20">
                       <td className="py-2 px-4">
                         <code>hoverable</code>
                       </td>
@@ -522,7 +522,7 @@ export default function Example() {
                       </td>
                       <td className="py-2 px-4">호버 효과 및 클릭 가능 여부</td>
                     </tr>
-                    <tr className="border-b border-gray-100 dark:border-gray-800">
+                    <tr className="border-b border-krds-gray-20">
                       <td className="py-2 px-4">
                         <code>className</code>
                       </td>
@@ -532,7 +532,7 @@ export default function Example() {
                       <td className="py-2 px-4">-</td>
                       <td className="py-2 px-4">추가 CSS 클래스</td>
                     </tr>
-                    <tr className="border-b border-gray-100 dark:border-gray-800">
+                    <tr className="border-b border-krds-gray-20">
                       <td className="py-2 px-4">
                         <code>aria-label</code>
                       </td>
@@ -555,46 +555,31 @@ export default function Example() {
               <div className="space-y-4">
                 <div>
                   <code className="text-sm font-semibold">CardHeader</code>
-                  <Body
-                    size="sm"
-                    className="text-gray-600 dark:text-gray-400 mt-1"
-                  >
+                  <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 헤더 영역. CardTitle과 CardDescription을 포함합니다.
                   </Body>
                 </div>
                 <div>
                   <code className="text-sm font-semibold">CardTitle</code>
-                  <Body
-                    size="sm"
-                    className="text-gray-600 dark:text-gray-400 mt-1"
-                  >
+                  <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 제목 (h3 요소, 24px, font-semibold).
                   </Body>
                 </div>
                 <div>
                   <code className="text-sm font-semibold">CardDescription</code>
-                  <Body
-                    size="sm"
-                    className="text-gray-600 dark:text-gray-400 mt-1"
-                  >
+                  <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 설명 (p 요소, 15px, text-gray-600).
                   </Body>
                 </div>
                 <div>
                   <code className="text-sm font-semibold">CardBody</code>
-                  <Body
-                    size="sm"
-                    className="text-gray-600 dark:text-gray-400 mt-1"
-                  >
+                  <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 본문 콘텐츠 영역.
                   </Body>
                 </div>
                 <div>
                   <code className="text-sm font-semibold">CardFooter</code>
-                  <Body
-                    size="sm"
-                    className="text-gray-600 dark:text-gray-400 mt-1"
-                  >
+                  <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 푸터 영역. 주로 버튼 등 액션을 배치합니다.
                   </Body>
                 </div>
@@ -610,24 +595,20 @@ export default function Example() {
           <Heading level="h2" id="foundation-layer">
             기반 레이어
           </Heading>
-          <Body size="md" className="text-gray-600 dark:text-gray-400">
+          <Body size="md" className="text-krds-gray-70">
             Card 컴포넌트는 다음과 같은 기능을 자동으로 적용합니다:
           </Body>
 
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
                 1
               </div>
               <div>
-                <Body
-                  size="md"
-                  weight="bold"
-                  className="text-gray-900 dark:text-gray-100"
-                >
+                <Body size="md" weight="bold" className="text-krds-gray-95">
                   시맨틱 HTML 자동 적용
                 </Body>
-                <Body size="sm" className="text-gray-600 dark:text-gray-400">
+                <Body size="sm" className="text-krds-gray-70">
                   일반 카드는 article role, hoverable 카드는 button role이
                   자동으로 적용됩니다.
                 </Body>
@@ -635,18 +616,14 @@ export default function Example() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
                 2
               </div>
               <div>
-                <Body
-                  size="md"
-                  weight="bold"
-                  className="text-gray-900 dark:text-gray-100"
-                >
+                <Body size="md" weight="bold" className="text-krds-gray-95">
                   키보드 접근성 자동 지원
                 </Body>
-                <Body size="sm" className="text-gray-600 dark:text-gray-400">
+                <Body size="sm" className="text-krds-gray-70">
                   hoverable 카드는 Tab 키로 포커스 가능하며, Enter/Space 키로
                   클릭할 수 있습니다.
                 </Body>
@@ -654,18 +631,14 @@ export default function Example() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
                 3
               </div>
               <div>
-                <Body
-                  size="md"
-                  weight="bold"
-                  className="text-gray-900 dark:text-gray-100"
-                >
+                <Body size="md" weight="bold" className="text-krds-gray-95">
                   다크 모드 자동 지원
                 </Body>
-                <Body size="sm" className="text-gray-600 dark:text-gray-400">
+                <Body size="sm" className="text-krds-gray-70">
                   시스템 설정에 따라 다크 모드가 자동으로 적용되며, 모든 색상과
                   그림자가 최적화됩니다.
                 </Body>
@@ -673,18 +646,14 @@ export default function Example() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
                 4
               </div>
               <div>
-                <Body
-                  size="md"
-                  weight="bold"
-                  className="text-gray-900 dark:text-gray-100"
-                >
+                <Body size="md" weight="bold" className="text-krds-gray-95">
                   시각적 피드백 자동 적용
                 </Body>
-                <Body size="sm" className="text-gray-600 dark:text-gray-400">
+                <Body size="sm" className="text-krds-gray-70">
                   hoverable 카드는 호버 시 그림자 강조 및 약간의 위로 이동
                   애니메이션이 자동으로 적용됩니다.
                 </Body>
@@ -692,18 +661,14 @@ export default function Example() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-blue-600 dark:text-blue-300 font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
                 5
               </div>
               <div>
-                <Body
-                  size="md"
-                  weight="bold"
-                  className="text-gray-900 dark:text-gray-100"
-                >
+                <Body size="md" weight="bold" className="text-krds-gray-95">
                   포커스 관리 자동 지원
                 </Body>
-                <Body size="sm" className="text-gray-600 dark:text-gray-400">
+                <Body size="sm" className="text-krds-gray-70">
                   hoverable 카드는 포커스 시 명확한 focus ring이 표시되어 현재
                   위치를 쉽게 파악할 수 있습니다.
                 </Body>

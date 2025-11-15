@@ -120,9 +120,9 @@ export default function IdentifierPage() {
             </Body>
             <div>
               <ComponentPreview>
-                <div className="w-full border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
-                  <footer className="bg-white dark:bg-gray-950">
-                    <div className="p-6 border-b border-gray-200 dark:border-gray-800">
+                <div className="w-full border border-krds-gray-20 rounded-lg overflow-hidden">
+                  <footer className="bg-krds-white">
+                    <div className="p-6 border-b border-krds-gray-20">
                       <Body className="font-bold mb-2">정부 누리집 Footer</Body>
                       <Body className="text-sm">
                         관련 링크, 저작권 정보, 연락처 등
@@ -223,7 +223,7 @@ export default function IdentifierPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">접근성</Heading>
             <Body>KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:</Body>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>대체 텍스트</strong> - 로고 이미지에 alt 텍스트 필수
                 제공
@@ -245,7 +245,7 @@ export default function IdentifierPage() {
           {/* Design Principles */}
           <Stack spacing="heading-tight">
             <Heading level="h3">디자인 원칙</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>시각적 절제</strong> - 지나치게 주의를 끌지 않는
                 subtle한 표현
@@ -281,21 +281,21 @@ export default function IdentifierPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200 dark:border-gray-800">
+                  <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
                     <th className="text-left py-2 px-4">Type</th>
                     <th className="text-left py-2 px-4">Default</th>
                     <th className="text-left py-2 px-4">Description</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700 dark:text-gray-300">
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                <tbody className="text-krds-gray-90">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">organizationName</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4">-</td>
                     <td className="py-2 px-4">운영 기관 이름 (필수)</td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">logo</td>
                     <td className="py-2 px-4 font-mono">string | ReactNode</td>
                     <td className="py-2 px-4">-</td>
@@ -303,7 +303,7 @@ export default function IdentifierPage() {
                       기관 로고 (이미지 URL 또는 React 엘리먼트)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">logoAlt</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4">-</td>
@@ -311,7 +311,7 @@ export default function IdentifierPage() {
                       로고 alt 텍스트 (logo가 string일 때 필수)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">variant</td>
                     <td className="py-2 px-4 font-mono">
                       &quot;light&quot; | &quot;dark&quot;
@@ -319,7 +319,7 @@ export default function IdentifierPage() {
                     <td className="py-2 px-4 font-mono">&quot;light&quot;</td>
                     <td className="py-2 px-4">시각적 테마 변형</td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">text</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4 font-mono">
@@ -329,7 +329,7 @@ export default function IdentifierPage() {
                       커스텀 텍스트 ({'{'}organization{'}'} 플레이스홀더 사용)
                     </td>
                   </tr>
-                  <tr className="border-b border-gray-100 dark:border-gray-900">
+                  <tr className="border-b border-krds-gray-20">
                     <td className="py-2 px-4 font-mono">className</td>
                     <td className="py-2 px-4 font-mono">string</td>
                     <td className="py-2 px-4">-</td>
@@ -360,7 +360,7 @@ export default function IdentifierPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">1. 필수 CSS 클래스 자동 적용</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>.krds-identifier</strong>: KRDS 표준에 따른 필수 CSS
                 클래스 자동 설정
@@ -372,7 +372,7 @@ export default function IdentifierPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">2. 시맨틱 구조 & 접근성</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>section 요소</strong>: Footer 내 구조화된 콘텐츠 영역
               </li>
@@ -386,7 +386,7 @@ export default function IdentifierPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">3. 반응형 & 다크 모드</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>모바일 우선</strong>: 모든 화면 크기에서 최적화된 표시
               </li>
@@ -399,7 +399,7 @@ export default function IdentifierPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">4. 유연한 로고 지원</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>이미지 URL</strong>: 일반 이미지 파일 경로 지원
               </li>
@@ -413,7 +413,7 @@ export default function IdentifierPage() {
 
           <Stack spacing="heading-tight">
             <Heading level="h3">5. 커스터마이징 지원</Heading>
-            <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>텍스트 커스터마이징</strong>: text prop으로 문구 변경
                 가능
