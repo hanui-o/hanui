@@ -8,6 +8,14 @@
   --font-pretendard:
     'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
+  /* Base Colors - 순수 흰색/검은색 (모드에 따라 반전) */
+  --krds-white: #ffffff; /* 기본 모드: 흰색, 다크 모드: 검은색 */
+  --krds-black: #000000; /* 기본 모드: 검은색, 다크 모드: 흰색 */
+
+  /* 순수 흰색/검은색 (모드 무관, 항상 동일) */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
   /* KRDS Color Tokens - Light Mode */
   /* Primary */
   --krds-color-light-primary-5: #ecf2fe;
@@ -47,6 +55,19 @@
   --krds-color-light-gray-80: #33363d;
   --krds-color-light-gray-90: #1e2124;
   --krds-color-light-gray-95: #131416;
+
+  /* Accent */
+  --krds-color-light-accent-5: #fbeff0;
+  --krds-color-light-accent-10: #f5d6d9;
+  --krds-color-light-accent-20: #ebadb2;
+  --krds-color-light-accent-30: #e0858c;
+  --krds-color-light-accent-40: #d65c66;
+  --krds-color-light-accent-50: #d63d4a;
+  --krds-color-light-accent-60: #ab2b36;
+  --krds-color-light-accent-70: #7a1f26;
+  --krds-color-light-accent-80: #521419;
+  --krds-color-light-accent-90: #310c0f;
+  --krds-color-light-accent-95: #21080a;
 
   /* Danger */
   --krds-color-light-danger-5: #fdefec;
@@ -112,9 +133,58 @@
   --krds-color-light-point-80: #521419;
   --krds-color-light-point-90: #310c0f;
   --krds-color-light-point-95: #21080a;
+
+  /* Semantic Color Tokens - 모드에 따라 자동 변경 */
+  /* Primary */
+  --krds-primary-text: var(
+    --krds-color-light-primary-80
+  ); /* 기본 모드: 80, 다크 모드: 20 */
+  --krds-primary-surface: var(
+    --krds-color-light-primary-5
+  ); /* 기본 모드: 5, 다크 모드: 95 */
+  --krds-primary-base: var(
+    --krds-color-light-primary-50
+  ); /* 기본 모드: 50, 다크 모드: 60 */
+  /* Secondary */
+  --krds-secondary-text: var(
+    --krds-color-light-secondary-80
+  ); /* 기본 모드: 80, 다크 모드: 20 */
+  --krds-secondary-surface: var(
+    --krds-color-light-secondary-5
+  ); /* 기본 모드: 5, 다크 모드: 95 */
+  --krds-secondary-base: var(
+    --krds-color-light-secondary-50
+  ); /* 기본 모드: 50, 다크 모드: 60 */
+  /* Accent (강조 색상) */
+  --krds-accent-text: var(
+    --krds-color-light-accent-60
+  ); /* 기본 모드: 60, 다크 모드: 20 */
+  --krds-accent-surface: var(
+    --krds-color-light-accent-5
+  ); /* 기본 모드: 5, 다크 모드: 95 */
+  --krds-accent-base: var(--krds-color-light-accent-50); /* 모드 무관: 50 */
+  /* Danger (위험/에러 색상) */
+  --krds-danger-text: var(
+    --krds-color-light-danger-60
+  ); /* 기본 모드: 60, 다크 모드: 20 */
+  --krds-danger-surface: var(
+    --krds-color-light-danger-5
+  ); /* 기본 모드: 5, 다크 모드: 95 */
+  --krds-danger-base: var(--krds-color-light-danger-50); /* 모드 무관: 50 */
+  --krds-danger-border: var(
+    --krds-color-light-danger-10
+  ); /* 기본 모드: 10, 다크 모드: 90 */
 }
 
 .dark {
+  /* Base Colors - 순수 흰색/검은색 (모드에 따라 반전) */
+  --krds-white: #000000; /* 다크 모드: 검은색 */
+  --krds-black: #ffffff; /* 다크 모드: 흰색 */
+
+  /* 순수 흰색/검은색 (모드 무관, 항상 동일) */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
   /* KRDS Color Tokens - Dark Mode */
   /* Primary - 다크모드에서는 밝은 톤 사용 */
   --krds-color-light-primary-5: #020f27;
@@ -219,6 +289,33 @@
   --krds-color-light-point-80: #ebadb2;
   --krds-color-light-point-90: #f5d6d9;
   --krds-color-light-point-95: #fbeff0;
+
+  /* Semantic Color Tokens - 다크 모드 */
+  /* Primary */
+  --krds-primary-text: var(--krds-color-light-primary-20); /* 다크 모드: 20 */
+  --krds-primary-surface: var(
+    --krds-color-light-primary-95
+  ); /* 다크 모드: 95 */
+  --krds-primary-base: var(--krds-color-light-primary-60); /* 다크 모드: 60 */
+  /* Secondary */
+  --krds-secondary-text: var(
+    --krds-color-light-secondary-20
+  ); /* 다크 모드: 20 */
+  --krds-secondary-surface: var(
+    --krds-color-light-secondary-95
+  ); /* 다크 모드: 95 */
+  --krds-secondary-base: var(
+    --krds-color-light-secondary-60
+  ); /* 다크 모드: 60 */
+  /* Accent (강조 색상) */
+  --krds-accent-text: var(--krds-color-light-accent-20); /* 다크 모드: 20 */
+  --krds-accent-surface: var(--krds-color-light-accent-95); /* 다크 모드: 95 */
+  --krds-accent-base: var(--krds-color-light-accent-50); /* 모드 무관: 50 */
+  /* Danger (위험/에러 색상) */
+  --krds-danger-text: var(--krds-color-light-danger-20); /* 다크 모드: 20 */
+  --krds-danger-surface: var(--krds-color-light-danger-95); /* 다크 모드: 95 */
+  --krds-danger-base: var(--krds-color-light-danger-50); /* 모드 무관: 50 */
+  --krds-danger-border: var(--krds-color-light-danger-90); /* 다크 모드: 90 */
 }
 
 body {
@@ -227,7 +324,7 @@ body {
 
 @layer base {
   * {
-    @apply border-gray-20 dark:border-gray-80;
+    @apply border-krds-gray-20 dark:border-krds-gray-80;
   }
 
   html {
@@ -239,7 +336,7 @@ body {
   }
 
   body {
-    @apply bg-white dark:bg-gray-95 text-gray-90 dark:text-gray-10;
+    @apply bg-white dark:bg-krds-gray-95 text-krds-gray-90 dark:text-krds-gray-10;
     font-size: 1rem; /* 17px */
   }
 }
