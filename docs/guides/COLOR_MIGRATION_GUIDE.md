@@ -79,6 +79,154 @@ HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 사용합니
 
 ---
 
+## 🎨 Semantic 변수 참조표
+
+KRDS 색상 시스템은 Semantic 변수를 제공하여 모드에 따라 자동으로 적절한 색상을 사용합니다. 다음 표는 각 색상의 Semantic 변수와 모드별 값입니다.
+
+### Gray Scale (회색 스케일)
+
+| 스케일          | 용도                | 설명                         |
+| --------------- | ------------------- | ---------------------------- |
+| `krds-gray-0`   | background, surface | 흰색 (배경, 표면)            |
+| `krds-gray-5`   | background, surface | 매우 밝은 배경, 표면         |
+| `krds-gray-10`  | background, surface | 밝은 배경, 표면              |
+| `krds-gray-20`  | -                   | 테두리, 구분선               |
+| `krds-gray-30`  | -                   | 테두리 (더 진함)             |
+| `krds-gray-40`  | disabled            | 비활성 텍스트                |
+| `krds-gray-50`  | disabled            | 비활성 텍스트                |
+| `krds-gray-60`  | -                   | 보조 텍스트                  |
+| `krds-gray-70`  | subtle              | 미묘한 텍스트                |
+| `krds-gray-80`  | -                   | 보조 텍스트                  |
+| `krds-gray-90`  | basic               | 기본 텍스트 (Regular weight) |
+| `krds-gray-95`  | bolder              | 강조 텍스트 (Bold weight)    |
+| `krds-gray-100` | -                   | 검은색                       |
+
+### Primary (주요 색상)
+
+| Semantic 변수          | 기본 모드 | 선명한 화면 모드 | 용도                  |
+| ---------------------- | --------- | ---------------- | --------------------- |
+| `krds-primary-base`    | 50        | 50               | 기본 색상 (모드 무관) |
+| `krds-primary-text`    | 60        | 20               | 텍스트 색상           |
+| `krds-primary-surface` | 5         | 95               | 배경/표면 색상        |
+
+**사용 예시**:
+
+```tsx
+<button className="bg-krds-primary-surface text-krds-primary-text">
+  Primary 버튼
+</button>
+```
+
+### Secondary (보조 색상)
+
+| Semantic 변수            | 기본 모드 | 선명한 화면 모드 | 용도           |
+| ------------------------ | --------- | ---------------- | -------------- |
+| `krds-secondary-base`    | 70        | 60               | 기본 색상      |
+| `krds-secondary-text`    | 80        | 20               | 텍스트 색상    |
+| `krds-secondary-surface` | 5         | 95               | 배경/표면 색상 |
+
+**사용 예시**:
+
+```tsx
+<div className="bg-krds-secondary-surface text-krds-secondary-text">
+  Secondary 영역
+</div>
+```
+
+### Accent (강조 색상)
+
+> ⚠️ **주의**: 강조 색상은 5% 이하 비율로 제한적 사용
+
+| Semantic 변수         | 기본 모드 | 선명한 화면 모드 | 용도                  |
+| --------------------- | --------- | ---------------- | --------------------- |
+| `krds-accent-base`    | 50        | 50               | 기본 색상 (모드 무관) |
+| `krds-accent-text`    | 60        | 20               | 텍스트 색상           |
+| `krds-accent-surface` | 5         | 95               | 배경/표면 색상        |
+
+**사용 예시**:
+
+```tsx
+<div className="bg-krds-accent-surface text-krds-accent-text">강조 알림</div>
+```
+
+### Danger (위험/에러 색상)
+
+| Semantic 변수         | 기본 모드 | 선명한 화면 모드 | 용도                  |
+| --------------------- | --------- | ---------------- | --------------------- |
+| `krds-danger-base`    | 50        | 50               | 기본 색상 (모드 무관) |
+| `krds-danger-icon`    | 50        | 20               | 아이콘 색상           |
+| `krds-danger-text`    | 60        | 20               | 텍스트 색상           |
+| `krds-danger-surface` | 5         | 95               | 배경/표면 색상        |
+| `krds-danger-border`  | 10        | 90               | 테두리 색상           |
+
+**사용 예시**:
+
+```tsx
+<div className="border-krds-danger-border bg-krds-danger-surface">
+  <Icon className="text-krds-danger-icon" />
+  <p className="text-krds-danger-text">에러 메시지</p>
+</div>
+```
+
+### Warning (주의 색상)
+
+| Semantic 변수          | 기본 모드 | 선명한 화면 모드 | 용도                  |
+| ---------------------- | --------- | ---------------- | --------------------- |
+| `krds-warning-base`    | 30        | 30               | 기본 색상 (모드 무관) |
+| `krds-warning-icon`    | 50        | 20               | 아이콘 색상           |
+| `krds-warning-text`    | 60        | 20               | 텍스트 색상           |
+| `krds-warning-surface` | 5         | 95               | 배경/표면 색상        |
+| `krds-warning-border`  | 10        | 90               | 테두리 색상           |
+
+**사용 예시**:
+
+```tsx
+<div className="border-krds-warning-border bg-krds-warning-surface">
+  <Icon className="text-krds-warning-icon" />
+  <p className="text-krds-warning-text">주의 메시지</p>
+</div>
+```
+
+### Success (성공 색상)
+
+| Semantic 변수          | 기본 모드 | 선명한 화면 모드 | 용도                  |
+| ---------------------- | --------- | ---------------- | --------------------- |
+| `krds-success-base`    | 50        | 50               | 기본 색상 (모드 무관) |
+| `krds-success-icon`    | 50        | 20               | 아이콘 색상           |
+| `krds-success-text`    | 60        | 20               | 텍스트 색상           |
+| `krds-success-surface` | 5         | 95               | 배경/표면 색상        |
+| `krds-success-border`  | 10        | 90               | 테두리 색상           |
+
+**사용 예시**:
+
+```tsx
+<div className="border-krds-success-border bg-krds-success-surface">
+  <Icon className="text-krds-success-icon" />
+  <p className="text-krds-success-text">성공 메시지</p>
+</div>
+```
+
+### Information (안내 색상)
+
+| Semantic 변수              | 기본 모드 | 선명한 화면 모드 | 용도                  |
+| -------------------------- | --------- | ---------------- | --------------------- |
+| `krds-information-base`    | 50        | 50               | 기본 색상 (모드 무관) |
+| `krds-information-icon`    | 50        | 20               | 아이콘 색상           |
+| `krds-information-text`    | 60        | 20               | 텍스트 색상           |
+| `krds-information-surface` | 5         | 95               | 배경/표면 색상        |
+| `krds-information-border`  | 10        | 90               | 테두리 색상           |
+
+**사용 예시**:
+
+```tsx
+<div className="border-krds-information-border bg-krds-information-surface">
+  <Icon className="text-krds-information-icon" />
+  <p className="text-krds-information-text">안내 메시지</p>
+</div>
+```
+
+---
+
 ## 📝 변경 예시
 
 ### 1. 텍스트 색상
@@ -157,6 +305,81 @@ HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 사용합니
 <span className="text-krds-accent-50">import</span>
 ```
 
+### 7. 타이포그래피 컴포넌트 색상
+
+HANUI 타이포그래피 컴포넌트는 기본 색상이 내장되어 있어 별도로 색상을 지정할 필요가 없습니다.
+
+#### 기본 색상 시스템
+
+| 컴포넌트            | Weight        | 기본 색상      | 설명                     |
+| ------------------- | ------------- | -------------- | ------------------------ |
+| **Display**         | Bold (700)    | `krds-gray-95` | bolder (최대 강조)       |
+| **Heading**         | Bold (700)    | `krds-gray-95` | bolder (제목)            |
+| **Body**            | Regular (400) | `krds-gray-90` | basic (본문)             |
+| **Body**            | Bold (700)    | `krds-gray-95` | bolder (강조 본문)       |
+| **NavText (Title)** | Bold (700)    | `krds-gray-95` | bolder (네비게이션 제목) |
+| **NavText (Depth)** | Regular/Bold  | `krds-gray-90` | basic (네비게이션 항목)  |
+| **Label**           | Regular (400) | `krds-gray-90` | basic (폼 라벨)          |
+
+#### 색상 규칙
+
+- **gray-90 (basic)**: Regular weight 텍스트의 기본 색상
+- **gray-95 (bolder)**: Bold weight 텍스트의 기본 색상
+- **다크 모드 자동 전환**: 모든 KRDS 색상은 CSS 변수를 통해 자동으로 다크 모드에 대응됩니다.
+
+#### 사용 예시
+
+```tsx
+// ❌ 이전 (수동 색상 지정 + 다크 모드)
+<h1 className="text-gray-900 dark:text-gray-100 font-bold">
+  제목
+</h1>
+<p className="text-gray-700 dark:text-gray-300">
+  본문 텍스트
+</p>
+<p className="text-gray-900 dark:text-gray-100 font-bold">
+  강조 텍스트
+</p>
+
+// ✅ 이후 (컴포넌트 기본 색상 사용)
+<Display size="lg">제목</Display>
+<Body>본문 텍스트</Body>
+<Body weight="bold">강조 텍스트</Body>
+
+// 또는 Heading 사용
+<Heading level="h1">페이지 제목</Heading>
+<Heading level="h2">섹션 제목</Heading>
+```
+
+#### 타이포그래피 컴포넌트 마이그레이션
+
+```tsx
+// ❌ 이전 (수동 스타일링)
+<h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+  섹션 제목
+</h2>
+<p className="text-base text-gray-700 dark:text-gray-300">
+  설명 텍스트
+</p>
+
+// ✅ 이후 (HANUI 컴포넌트 사용)
+<Heading level="h2">섹션 제목</Heading>
+<Body>설명 텍스트</Body>
+```
+
+#### 특정 색상이 필요한 경우
+
+기본 색상을 오버라이드해야 하는 경우에만 `className`으로 색상을 지정합니다:
+
+```tsx
+// 기본 색상 사용 (권장)
+<Body>일반 텍스트</Body>
+
+// 특정 색상이 필요한 경우에만 오버라이드
+<Body className="text-krds-primary-60">링크 스타일 텍스트</Body>
+<Body className="text-krds-danger-50">에러 메시지</Body>
+```
+
 ---
 
 ## 🔍 체크리스트
@@ -171,6 +394,8 @@ HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 사용합니
 - [ ] 모든 `dark:*` 클래스 제거
 - [ ] UI 요소의 `bg-white`가 `bg-krds-white`로 변경되었는가? (코드 블록, 카드 배경 등)
 - [ ] UI 요소의 `text-black`이 `text-krds-black`로 변경되었는가?
+- [ ] 타이포그래피 컴포넌트 사용: `<h1>`, `<p>` 대신 `<Heading>`, `<Body>` 사용
+- [ ] 타이포그래피 컴포넌트에서 불필요한 색상 className 제거 (기본 색상 사용)
 - [ ] Semantic 변수 사용 검토 (`text-krds-primary-text` 등)
 - [ ] 접근성 확인 (색상 대비율)
 
@@ -199,10 +424,15 @@ HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 사용합니
    - `border-gray-200 dark:border-gray-800` → `border-krds-gray-20`
    - `bg-white dark:bg-krds-gray-95` → `bg-krds-white`
    - `text-black dark:text-krds-gray-10` → `text-krds-black`
+   - `<h1 className="text-gray-900 dark:text-gray-100` → `<Display` 또는 `<Heading level="h1"`
+   - `<p className="text-gray-700 dark:text-gray-300` → `<Body`
+   - `text-gray-900 dark:text-gray-100 font-bold` → 컴포넌트 기본 색상 사용 (색상 제거)
 
 4. **다크 모드 접두사 제거**: 모든 KRDS 색상은 CSS 변수를 통해 자동 전환되므로 `dark:` 접두사는 필요 없습니다. 모든 `dark:` 접두사를 제거하세요.
 
 5. **단계별 마이그레이션**: 한 번에 모든 파일을 변경하지 말고, 페이지 단위로 순차적으로 마이그레이션하세요.
+
+6. **타이포그래피 컴포넌트 활용**: HANUI의 타이포그래피 컴포넌트(`Display`, `Heading`, `Body`, `NavText`, `Label`)를 사용하면 기본 색상이 자동으로 적용됩니다. 수동으로 색상을 지정할 필요가 없습니다.
 
 ---
 
