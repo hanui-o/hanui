@@ -10,6 +10,10 @@
 2. [전체 아키텍처](#전체-아키텍처)
 3. [Phase별 기술 스택](#phase별-기술-스택)
 4. [핵심 컴포넌트 설계](#핵심-컴포넌트-설계)
+   - [4.1 컴포넌트 API 디자인](#41-컴포넌트-api-디자인)
+   - [4.2 테마 시스템](#42-테마-시스템)
+   - [4.3 컬러 시스템](#43-컬러-시스템-color-system)
+   - [4.4 접근성 유틸리티](#44-접근성-유틸리티)
 5. [인프라 및 배포](#인프라-및-배포)
 
 ---
@@ -648,7 +652,387 @@ export function useColorMode() {
 }
 ```
 
-### 4.3 접근성 유틸리티
+### 4.3 컬러 시스템 (Color System)
+
+HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS와 통합하여 사용합니다. 핵심 설계 원칙은 **네임스페이스 분리**, **CSS 변수 기반**, **자동 다크 모드 전환**입니다.
+
+#### 4.3.1 아키텍처 개요
+
+```
+┌─────────────────────────────────────────────────────────┐
+│              KRDS Color System Architecture              │
+└─────────────────────────────────────────────────────────┘
+                           │
+         ┌─────────────────┼─────────────────┐
+         │                 │                 │
+         ▼                 ▼                 ▼
+┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│  globals.css │   │ tailwind.    │   │  Components  │
+│  (CSS 변수)  │──▶│ config.ts    │──▶│  (사용)      │
+│              │   │ (매핑)       │   │              │
+└──────────────┘   └──────────────┘   └──────────────┘
+```
+
+**3단계 구조**:
+
+1. **CSS 변수 정의** (`globals.css`): KRDS 색상 값을 CSS 변수로 정의
+2. **Tailwind 매핑** (`tailwind.config.ts`): CSS 변수를 Tailwind 유틸리티로 매핑
+3. **컴포넌트 사용**: `bg-krds-primary-50` 같은 클래스명으로 사용
+
+#### 4.3.2 네임스페이스 전략
+
+Tailwind의 기본 색상(`gray`, `red`, `blue` 등)과 KRDS 색상이 충돌하지 않도록 `krds-` 접두사를 사용합니다.
+
+```typescript
+// tailwind.config.ts
+colors: {
+  // Tailwind 기본 색상 (그대로 사용 가능)
+  gray: {
+    50: '#f9fafb',
+    100: '#f3f4f6',
+    // ...
+  },
+
+  // KRDS 색상 (krds- 접두사)
+  'krds-gray': {
+    5: 'var(--krds-color-light-gray-5)',
+    10: 'var(--krds-color-light-gray-10)',
+    // ...
+  },
+  'krds-primary': {
+    50: 'var(--krds-color-light-primary-50)',
+    60: 'var(--krds-color-light-primary-60)',
+    // ...
+  }
+}
+```
+
+**사용 예시**:
+
+```tsx
+// Tailwind 기본 색상
+<div className="bg-gray-50 text-gray-900">...</div>
+
+// KRDS 색상 (krds- 접두사)
+<div className="bg-krds-gray-5 text-krds-gray-90">...</div>
+<div className="bg-krds-primary-50 text-krds-primary-10">...</div>
+```
+
+#### 4.3.3 CSS 변수 구조
+
+**기본 구조**:
+
+```css
+/* globals.css */
+
+:root {
+  /* 숫자 스케일 - 기본 모드 (라이트 모드) */
+  --krds-color-light-primary-5: #ecf2fe;
+  --krds-color-light-primary-50: #256ef4;
+  --krds-color-light-primary-80: #052561;
+
+  /* Semantic 변수 - 기본 모드 */
+  --krds-primary-text: var(--krds-color-light-primary-80);
+  --krds-primary-surface: var(--krds-color-light-primary-5);
+  --krds-primary-base: var(--krds-color-light-primary-50);
+}
+
+.dark {
+  /* 숫자 스케일 - 다크 모드 (같은 변수명, 다른 값) */
+  --krds-color-light-primary-5: #020f27; /* 어두운 색으로 변경 */
+  --krds-color-light-primary-50: #256ef4; /* 동일 */
+  --krds-color-light-primary-80: #b1cefb; /* 밝은 색으로 변경 */
+
+  /* Semantic 변수 - 다크 모드 */
+  --krds-primary-text: var(--krds-color-light-primary-20); /* 80 → 20 */
+  --krds-primary-surface: var(--krds-color-light-primary-95); /* 5 → 95 */
+  --krds-primary-base: var(--krds-color-light-primary-60); /* 50 → 60 */
+}
+```
+
+**핵심 원리**:
+
+- 같은 CSS 변수명을 `:root`와 `.dark`에서 재정의
+- `html` 요소에 `dark` 클래스가 있으면 `.dark`의 값이 적용됨
+- Tailwind는 CSS 변수를 참조하므로 자동으로 색상이 변경됨
+
+#### 4.3.4 Semantic 변수 설계
+
+기본 모드와 다크 모드에서 적절한 색상 값이 다르기 때문에, Semantic 변수를 통해 자동으로 올바른 색상을 선택합니다.
+
+**Primary 색상 예시**:
+
+| Semantic  | 기본 모드    | 다크 모드      | 용도        |
+| --------- | ------------ | -------------- | ----------- |
+| `text`    | 80 (진한 색) | 20 (밝은 색)   | 텍스트 색상 |
+| `surface` | 5 (밝은 색)  | 95 (어두운 색) | 배경 색상   |
+| `base`    | 50 (중간 색) | 60 (밝은 색)   | 기본 색상   |
+
+**구현**:
+
+```css
+/* globals.css */
+:root {
+  --krds-primary-text: var(--krds-color-light-primary-80);
+  --krds-primary-surface: var(--krds-color-light-primary-5);
+  --krds-primary-base: var(--krds-color-light-primary-50);
+}
+
+.dark {
+  --krds-primary-text: var(--krds-color-light-primary-20);
+  --krds-primary-surface: var(--krds-color-light-primary-95);
+  --krds-primary-base: var(--krds-color-light-primary-60);
+}
+```
+
+```typescript
+// tailwind.config.ts
+colors: {
+  'krds-primary': {
+    DEFAULT: 'var(--krds-primary-base)',
+    text: 'var(--krds-primary-text)',
+    surface: 'var(--krds-primary-surface)',
+    base: 'var(--krds-primary-base)',
+    // 숫자 스케일도 제공
+    5: 'var(--krds-color-light-primary-5)',
+    50: 'var(--krds-color-light-primary-50)',
+    80: 'var(--krds-color-light-primary-80)',
+  }
+}
+```
+
+**사용 예시**:
+
+```tsx
+// ✅ 권장: Semantic 변수 사용 (모드에 따라 자동 전환)
+<div className="bg-krds-primary-surface text-krds-primary-text">
+  {/*
+    라이트 모드: surface(5) + text(80)
+    다크 모드: surface(95) + text(20)
+    → 자동 전환!
+  */}
+</div>
+
+// 숫자 스케일 직접 사용 (특정 색상 값이 필요한 경우)
+<div className="bg-krds-primary-5 text-krds-primary-80">
+  {/*
+    라이트 모드: 밝은 배경(5) + 진한 텍스트(80)
+    다크 모드: 어두운 배경(5) + 밝은 텍스트(80)
+    → 자동 전환!
+  */}
+</div>
+```
+
+#### 4.3.5 지원하는 색상 팔레트
+
+KRDS 표준에 따라 다음 색상 팔레트를 제공합니다:
+
+| 색상               | 용도                       | Semantic 변수                       |
+| ------------------ | -------------------------- | ----------------------------------- |
+| `krds-primary`     | 주요 상호작용 (버튼, 링크) | `text`, `surface`, `base`           |
+| `krds-secondary`   | 보조 상호작용              | `text`, `surface`, `base`           |
+| `krds-gray`        | 중립 색상 (배경, 텍스트)   | 없음 (숫자 스케일만)                |
+| `krds-accent`      | 강조 색상                  | `text`, `surface`, `base`           |
+| `krds-danger`      | 위험/에러                  | `text`, `surface`, `base`, `border` |
+| `krds-warning`     | 경고                       | 없음 (숫자 스케일만)                |
+| `krds-success`     | 성공                       | 없음 (숫자 스케일만)                |
+| `krds-information` | 정보                       | 없음 (숫자 스케일만)                |
+| `krds-point`       | 포인트 색상                | 없음 (숫자 스케일만)                |
+
+**숫자 스케일**: 모든 색상은 `5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95` 스케일을 제공합니다.
+
+#### 4.3.6 Base Colors (흰색/검은색)
+
+순수 흰색/검은색과 모드에 따라 반전되는 흰색/검은색을 구분합니다:
+
+```css
+/* globals.css */
+:root {
+  /* 순수 흰색/검은색 (모드 무관, 항상 동일) */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* KRDS 흰색/검은색 (모드에 따라 반전) */
+  --krds-white: #ffffff; /* 기본 모드: 흰색 */
+  --krds-black: #000000; /* 기본 모드: 검은색 */
+}
+
+.dark {
+  /* 순수 흰색/검은색 (변경 없음) */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* KRDS 흰색/검은색 (반전) */
+  --krds-white: #000000; /* 다크 모드: 검은색 */
+  --krds-black: #ffffff; /* 다크 모드: 흰색 */
+}
+```
+
+**사용 예시**:
+
+```tsx
+// 순수 흰색/검은색 (로고, 아이콘 등)
+<div className="bg-white text-black">...</div>
+
+// KRDS 흰색/검은색 (모드에 따라 반전)
+<div className="bg-krds-white text-krds-black">
+  {/*
+    라이트 모드: 흰색 배경 + 검은색 텍스트
+    다크 모드: 검은색 배경 + 흰색 텍스트
+  */}
+</div>
+```
+
+#### 4.3.7 다크 모드 자동 전환
+
+모든 KRDS 색상은 CSS 변수를 통해 자동으로 다크 모드에 대응합니다. `dark:` 접두사가 필요 없습니다.
+
+**작동 원리**:
+
+1. `html` 요소에 `dark` 클래스 추가
+2. `.dark` 블록의 CSS 변수 값이 적용됨
+3. Tailwind는 CSS 변수를 참조하므로 자동으로 색상 변경
+
+**예시**:
+
+```tsx
+// ❌ 불필요: dark: 접두사 사용
+<div className="bg-krds-gray-5 dark:bg-krds-gray-90">
+  {/* dark: 접두사 불필요! */}
+</div>
+
+// ✅ 올바름: 자동 전환
+<div className="bg-krds-gray-5 text-krds-gray-90">
+  {/*
+    라이트 모드: 밝은 배경(5) + 진한 텍스트(90)
+    다크 모드: 어두운 배경(5) + 밝은 텍스트(90)
+    → 자동 전환!
+  */}
+</div>
+
+// ✅ Semantic 변수도 자동 전환
+<div className="bg-krds-primary-surface text-krds-primary-text">
+  {/*
+    라이트 모드: surface(5) + text(80)
+    다크 모드: surface(95) + text(20)
+    → 자동 전환!
+  */}
+</div>
+```
+
+#### 4.3.8 파일 구조
+
+```
+apps/docs/
+├── src/
+│   └── app/
+│       └── globals.css          # CSS 변수 정의
+└── tailwind.config.ts           # Tailwind 매핑
+```
+
+**globals.css 구조**:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base Colors */
+  --krds-white: #ffffff;
+  --krds-black: #000000;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* KRDS Color Tokens - Light Mode */
+  --krds-color-light-primary-5: #ecf2fe;
+  --krds-color-light-primary-50: #256ef4;
+  --krds-color-light-primary-80: #052561;
+  /* ... 모든 색상 팔레트 ... */
+
+  /* Semantic Color Tokens */
+  --krds-primary-text: var(--krds-color-light-primary-80);
+  --krds-primary-surface: var(--krds-color-light-primary-5);
+  --krds-primary-base: var(--krds-color-light-primary-50);
+  /* ... */
+}
+
+.dark {
+  /* Base Colors - 반전 */
+  --krds-white: #000000;
+  --krds-black: #ffffff;
+
+  /* KRDS Color Tokens - Dark Mode */
+  --krds-color-light-primary-5: #020f27;
+  --krds-color-light-primary-50: #256ef4;
+  --krds-color-light-primary-80: #b1cefb;
+  /* ... 모든 색상 팔레트 반전 ... */
+
+  /* Semantic Color Tokens - 다크 모드 */
+  --krds-primary-text: var(--krds-color-light-primary-20);
+  --krds-primary-surface: var(--krds-color-light-primary-95);
+  --krds-primary-base: var(--krds-color-light-primary-60);
+  /* ... */
+}
+```
+
+**tailwind.config.ts 구조**:
+
+```typescript
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        // Base Colors
+        white: 'var(--color-white)',
+        black: 'var(--color-black)',
+        'krds-white': {
+          DEFAULT: 'var(--krds-white)',
+        },
+        'krds-black': {
+          DEFAULT: 'var(--krds-black)',
+        },
+
+        // KRDS Primary
+        'krds-primary': {
+          DEFAULT: 'var(--krds-primary-base)',
+          text: 'var(--krds-primary-text)',
+          surface: 'var(--krds-primary-surface)',
+          base: 'var(--krds-primary-base)',
+          5: 'var(--krds-color-light-primary-5)',
+          10: 'var(--krds-color-light-primary-10)',
+          // ... 모든 숫자 스케일 ...
+        },
+
+        // ... 다른 색상 팔레트 ...
+      },
+    },
+  },
+};
+
+export default config;
+```
+
+#### 4.3.9 주의사항
+
+1. **`text-white` 사용 주의**: `text-white`는 순수 흰색(#ffffff)을 사용하며, 다크 모드에서도 항상 흰색입니다. 배경이 모드에 따라 변한다면 `text-krds-gray-10` 같은 KRDS 색상을 사용하세요.
+
+2. **숫자 스케일 vs Semantic 변수**:
+   - **Semantic 변수 권장**: 일반적인 UI 컴포넌트에서 의미에 맞는 색상을 사용할 때
+   - **숫자 스케일 사용**: 특정 색상 값이 필요한 경우
+
+3. **Tailwind 기본 색상과 공존**: `krds-` 접두사를 사용하므로 Tailwind 기본 색상(`gray-50`, `red-500` 등)도 그대로 사용할 수 있습니다.
+
+#### 4.3.10 참고 자료
+
+- **사용자 문서**: `/design-system/colors` - 색상 시스템 사용법
+- **KRDS 공식**: https://www.krds.go.kr/ - 대한민국 디자인 시스템
+- **Tailwind CSS**: https://tailwindcss.com/docs/customizing-colors - 커스텀 색상 설정
+
+### 4.4 접근성 유틸리티
 
 ```typescript
 // packages/utils/src/a11y/announcer.ts
