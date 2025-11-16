@@ -28,7 +28,7 @@ export interface FooterProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * Footer content (compound components)
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 
   /**
    * Additional className
@@ -73,7 +73,7 @@ export interface FooterProps extends React.HTMLAttributes<HTMLElement> {
  * </Footer>
  * ```
  */
-export const Footer = React.forwardRef<HTMLElement, FooterProps>(
+const FooterBase = React.forwardRef<HTMLElement, FooterProps>(
   ({ variant = 'default', className, children, ...props }, ref) => {
     return (
       <FooterContext.Provider value={{ variant }}>
@@ -96,7 +96,7 @@ export const Footer = React.forwardRef<HTMLElement, FooterProps>(
     );
   }
 );
-Footer.displayName = 'Footer';
+FooterBase.displayName = 'Footer';
 
 /**
  * Footer.QuickLinks Props Interface
@@ -1025,17 +1025,18 @@ interface FooterComponent
 /**
  * Compound exports
  */
-(Footer as FooterComponent).QuickLinks = FooterQuickLinks;
-(Footer as FooterComponent).QuickLink = FooterQuickLink;
-(Footer as FooterComponent).Logo = FooterLogo;
-(Footer as FooterComponent).Content = FooterContent;
-(Footer as FooterComponent).Info = FooterInfo;
-(Footer as FooterComponent).Address = FooterAddress;
-(Footer as FooterComponent).Contact = FooterContact;
-(Footer as FooterComponent).Links = FooterLinks;
-(Footer as FooterComponent).UtilityLinks = FooterUtilityLinks;
-(Footer as FooterComponent).SocialLinks = FooterSocialLinks;
-(Footer as FooterComponent).Bottom = FooterBottom;
-(Footer as FooterComponent).PolicyLinks = FooterPolicyLinks;
-(Footer as FooterComponent).Copyright = FooterCopyright;
-(Footer as FooterComponent).Identifier = FooterIdentifier;
+export const Footer = FooterBase as FooterComponent;
+Footer.QuickLinks = FooterQuickLinks;
+Footer.QuickLink = FooterQuickLink;
+Footer.Logo = FooterLogo;
+Footer.Content = FooterContent;
+Footer.Info = FooterInfo;
+Footer.Address = FooterAddress;
+Footer.Contact = FooterContact;
+Footer.Links = FooterLinks;
+Footer.UtilityLinks = FooterUtilityLinks;
+Footer.SocialLinks = FooterSocialLinks;
+Footer.Bottom = FooterBottom;
+Footer.PolicyLinks = FooterPolicyLinks;
+Footer.Copyright = FooterCopyright;
+Footer.Identifier = FooterIdentifier;

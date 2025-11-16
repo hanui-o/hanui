@@ -8,6 +8,7 @@ import {
   Input,
   Heading,
   Body,
+  Footer,
 } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
