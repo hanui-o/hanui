@@ -29,7 +29,7 @@ export default function Home() {
 
             {/* Title */}
             <Display size="lg" as="h1" className="tracking-tight">
-              WCAG 2.1 AA와 KRDS를 <br /> 완벽히 준수하는 시맨틱 React 컴포넌트
+              WCAG 2.1 AA와 KRDS를 <br /> 준수하는 시맨틱 React 컴포넌트
             </Display>
 
             {/* Description */}
