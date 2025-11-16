@@ -45,9 +45,7 @@ interface PageHeaderProps {
 export function PageHeader({ title, description, children }: PageHeaderProps) {
   return (
     <div className="mb-8 lg:mb-12">
-      <Heading level="h1" className="mb-4">
-        {title}
-      </Heading>
+      <Heading level="h1">{title}</Heading>
       {description && (
         <Body className="text-gray-600 dark:text-gray-400">{description}</Body>
       )}

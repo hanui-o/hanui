@@ -18,9 +18,9 @@ const navigation = [
     items: [
       { title: 'Design Tokens', href: '/design-tokens' },
       { title: 'Colors', href: '/design-system/colors' },
-      { title: 'Spacing', href: '/design-system/spacing' },
       { title: 'Typography', href: '/design-system/typography' },
       { title: 'Border Radius', href: '/design-system/border-radius' },
+      { title: 'Spacing', href: '/design-system/spacing' },
       { title: 'Breakpoints', href: '/design-system/breakpoints' },
     ],
   },

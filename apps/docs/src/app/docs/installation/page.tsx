@@ -206,7 +206,7 @@ module.exports = {
                 </Body>
                 <div className="bg-krds-primary-surface rounded-lg p-4 border border-krds-primary-20">
                   <Body size="sm" className="text-krds-primary-text">
-                    💡 <strong>Tip:</strong> 클라이언트 컴포넌트가 필요한 HANUI
+                    <strong>Tip:</strong> 클라이언트 컴포넌트가 필요한 HANUI
                     컴포넌트는 자동으로 'use client' 지시어가 포함되어 있습니다.
                   </Body>
                 </div>
