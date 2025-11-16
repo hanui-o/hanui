@@ -119,7 +119,14 @@ const config: Config = {
         //   70: subtle
         //   90: basic
         //   95: bolder
+        //   ✅ Semantic 변수 사용 권장: text-krds-gray-text (모드 자동 대응)
         'krds-gray': {
+          // Semantic 변수 (모드에 따라 자동 변경)
+          text: 'var(--krds-gray-text)', // 기본 모드: 90, 다크 모드: 10
+          surface: 'var(--krds-gray-surface)', // 기본 모드: 5, 다크 모드: 95
+          background: 'var(--krds-gray-background)', // 기본 모드: 0, 다크 모드: 100
+          border: 'var(--krds-gray-border)', // 기본 모드: 20, 다크 모드: 80
+          // 숫자 스케일 (직접 사용 시)
           0: 'var(--krds-color-light-gray-0)', // background, surface (white)
           5: 'var(--krds-color-light-gray-5)', // background, surface
           10: 'var(--krds-color-light-gray-10)', // background, surface

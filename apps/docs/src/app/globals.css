@@ -137,6 +137,20 @@
   --krds-color-light-point-95: #21080a;
 
   /* Semantic Color Tokens - 모드에 따라 자동 변경 */
+  /* Gray (회색 스케일) */
+  /* 가이드라인: 기본 모드 - text=90 (basic), surface=5, background=0 */
+  --krds-gray-text: var(
+    --krds-color-light-gray-90
+  ); /* 기본 모드: 90 (basic), 다크 모드: 10 */
+  --krds-gray-surface: var(
+    --krds-color-light-gray-5
+  ); /* 기본 모드: 5, 다크 모드: 95 */
+  --krds-gray-background: var(
+    --krds-color-light-gray-0
+  ); /* 기본 모드: 0 (white), 다크 모드: 100 (black) */
+  --krds-gray-border: var(
+    --krds-color-light-gray-20
+  ); /* 기본 모드: 20, 다크 모드: 80 */
   /* Primary */
   --krds-primary-text: var(
     --krds-color-light-primary-60
@@ -350,6 +364,14 @@
   --krds-color-light-point-95: #fbeff0; /* accent surface */
 
   /* Semantic Color Tokens - 다크 모드 */
+  /* Gray (회색 스케일) */
+  /* 가이드라인: 다크 모드 - text=10, surface=95, background=100 */
+  --krds-gray-text: var(--krds-color-light-gray-10); /* 다크 모드: 10 */
+  --krds-gray-surface: var(--krds-color-light-gray-95); /* 다크 모드: 95 */
+  --krds-gray-background: var(
+    --krds-color-light-gray-100
+  ); /* 다크 모드: 100 (black) */
+  --krds-gray-border: var(--krds-color-light-gray-80); /* 다크 모드: 80 */
   /* Primary */
   --krds-primary-text: var(--krds-color-light-primary-20); /* 다크 모드: 20 */
   --krds-primary-surface: var(
