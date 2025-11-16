@@ -139,5 +139,24 @@ export type {
   HeaderUtilityLinkProps,
 } from './components/Header';
 
+export { Footer } from './components/Footer';
+export type {
+  FooterProps,
+  FooterQuickLinksProps,
+  FooterQuickLinkProps,
+  FooterLogoProps,
+  FooterContentProps,
+  FooterInfoProps,
+  FooterAddressProps,
+  FooterContactProps,
+  FooterLinksProps,
+  FooterUtilityLinksProps,
+  FooterSocialLinksProps,
+  FooterBottomProps,
+  FooterPolicyLinksProps,
+  FooterCopyrightProps,
+  FooterIdentifierProps,
+} from './components/Footer';
+
 // Utils
 export { cn } from './lib/utils';
