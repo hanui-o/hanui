@@ -160,7 +160,7 @@ export default function TypographyPage() {
           <div className="space-y-6">
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <h3 className="text-heading-sm font-semibold mb-2">
-                ✅ 접근성 고려
+                접근성 고려
               </h3>
               <p className="text-body-sm text-krds-gray-70 mb-3">
                 최소 텍스트 크기(16px), 충분한 대비(4.5:1), 터치 타겟
