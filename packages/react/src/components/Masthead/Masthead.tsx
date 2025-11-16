@@ -23,10 +23,10 @@ export interface MastheadProps extends React.HTMLAttributes<HTMLDivElement> {
  * Masthead Component (공식 배너)
  *
  * **Foundation Layer Features:**
- * - ✅ Required CSS Selector: #krds-masthead (KRDS mandatory identifier)
- * - ✅ Skip Link Compatibility: Designed to work with skip links that precede it
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Bypass Blocks (Level A)
- * - ✅ Semantic HTML: Uses semantic elements for accessibility
+ * - Required CSS Selector: #krds-masthead (KRDS mandatory identifier)
+ * - Skip Link Compatibility: Designed to work with skip links that precede it
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Bypass Blocks (Level A)
+ * - Semantic HTML: Uses semantic elements for accessibility
  *
  * **KRDS Standards:**
  * - Must be positioned at the top of all government digital service pages

@@ -70,11 +70,11 @@ const BreadcrumbContext = React.createContext<BreadcrumbContextValue>({
  * Breadcrumb Component (브레드크럼)
  *
  * **Foundation Layer Features:**
- * - ✅ Required CSS Class: .krds-breadcrumb-wrap (KRDS mandatory)
- * - ✅ Semantic HTML: nav with aria-label, ordered list structure
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
- * - ✅ Screen Reader Support: Proper ARIA labels and separators hidden from screen readers
- * - ✅ Visual Hierarchy: Separators with 3:1 contrast ratio, hover effects
+ * - Required CSS Class: .krds-breadcrumb-wrap (KRDS mandatory)
+ * - Semantic HTML: nav with aria-label, ordered list structure
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
+ * - Screen Reader Support: Proper ARIA labels and separators hidden from screen readers
+ * - Visual Hierarchy: Separators with 3:1 contrast ratio, hover effects
  *
  * **KRDS Standards:**
  * - Displays hierarchical navigation structure

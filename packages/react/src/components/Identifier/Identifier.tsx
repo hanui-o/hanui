@@ -50,11 +50,11 @@ export interface IdentifierProps extends React.HTMLAttributes<HTMLElement> {
  * Identifier Component (운영기관 식별자)
  *
  * **Foundation Layer Features:**
- * - ✅ Required CSS Class: .krds-identifier (KRDS mandatory)
- * - ✅ Semantic HTML: section/article element for proper nesting
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Info and Relationships (Level A)
- * - ✅ Alternative Text: Logo images include alt text for screen readers
- * - ✅ Dark Mode Support: Light and dark variants
+ * - Required CSS Class: .krds-identifier (KRDS mandatory)
+ * - Semantic HTML: section/article element for proper nesting
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Info and Relationships (Level A)
+ * - Alternative Text: Logo images include alt text for screen readers
+ * - Dark Mode Support: Light and dark variants
  *
  * **KRDS Standards:**
  * - Establishes credibility by identifying managing organization

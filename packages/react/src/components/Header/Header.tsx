@@ -39,11 +39,11 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
  * Header Component (헤더)
  *
  * **Foundation Layer Features:**
- * - ✅ Required ID: #krds-header (KRDS mandatory)
- * - ✅ Semantic HTML: header element with proper ARIA attributes
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
- * - ✅ Screen Reader Support: Proper ARIA labels and semantic structure
- * - ✅ Visual Hierarchy: Consistent spacing and color system
+ * - Required ID: #krds-header (KRDS mandatory)
+ * - Semantic HTML: header element with proper ARIA attributes
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
+ * - Screen Reader Support: Proper ARIA labels and semantic structure
+ * - Visual Hierarchy: Consistent spacing and color system
  *
  * **KRDS Standards:**
  * - Provides consistent navigation and branding across government websites

@@ -76,11 +76,11 @@ function generatePageNumbers(
  * Pagination Component (페이지네이션)
  *
  * **Foundation Layer Features:**
- * - ✅ Semantic HTML: nav element with proper ARIA attributes
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation and focus management
- * - ✅ Screen Reader Support: aria-label and aria-current attributes
- * - ✅ Visual Hierarchy: Clear active state and disabled states
- * - ✅ Dark Mode: Automatic dark mode support with optimized colors
+ * - Semantic HTML: nav element with proper ARIA attributes
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation and focus management
+ * - Screen Reader Support: aria-label and aria-current attributes
+ * - Visual Hierarchy: Clear active state and disabled states
+ * - Dark Mode: Automatic dark mode support with optimized colors
  *
  * **Design Principles:**
  * - Clear current page indication

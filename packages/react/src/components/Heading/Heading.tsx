@@ -21,12 +21,11 @@ const headingVariants = cva(
   {
     variants: {
       level: {
-        h1: ['text-[28px]', 'md:text-[40px]'].join(' '),
-        h2: ['text-[24px]', 'md:text-[32px]'].join(' '),
-        h3: ['text-[22px]', 'md:text-[24px]'].join(' '),
-        h4: 'text-[19px]',
-        h5: 'text-[17px]',
-        h6: 'text-[15px]',
+        h1: ['text-[28px] md:text-[40px] mb-4 md:mb-6'].join(' '),
+        h2: ['text-[24px] md:text-[32px] mb-3 md:mb-5'].join(' '),
+        h3: ['text-[22px] md:text-[24px] mb-5 md:mb-6'].join(' '),
+        h4: 'text-[19px] mb-3 md:mb-5',
+        h5: 'text-[17px] mb-2 md:mb-4',
       },
     },
     defaultVariants: {
@@ -45,7 +44,7 @@ export interface HeadingProps
    * 제목 레벨 (h1~h6)
    * @default "h2"
    */
-  level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
   /**
    * 텍스트 내용
@@ -106,8 +105,6 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
         return <h4 {...headingProps}>{children}</h4>;
       case 'h5':
         return <h5 {...headingProps}>{children}</h5>;
-      case 'h6':
-        return <h6 {...headingProps}>{children}</h6>;
       default:
         return <h2 {...headingProps}>{children}</h2>;
     }
