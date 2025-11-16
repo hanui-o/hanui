@@ -101,7 +101,7 @@ function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
                 href={item.href}
                 className={`block text-sm py-1 px-2 rounded-md transition-colors ${
                   isActive
-                    ? 'bg-krds-primary-base text-krds-white font-medium'
+                    ? 'bg-krds-primary-base text-white font-medium'
                     : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'
                 }`}
               >

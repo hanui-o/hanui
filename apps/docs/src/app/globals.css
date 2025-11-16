@@ -446,7 +446,7 @@ body {
 
 @layer base {
   * {
-    @apply border-krds-gray-20 dark:border-krds-gray-80;
+    @apply border-krds-gray-20;
   }
 
   html {
@@ -458,7 +458,7 @@ body {
   }
 
   body {
-    @apply bg-white dark:bg-krds-gray-95 text-krds-gray-90 dark:text-krds-gray-10;
+    @apply bg-krds-white text-krds-gray-90;
     font-size: 1rem; /* 17px */
   }
 }
