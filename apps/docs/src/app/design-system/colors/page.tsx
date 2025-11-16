@@ -517,8 +517,9 @@ export default function ColorsPage() {
                   오류, 삭제
                 </strong>
                 <code className="text-sm block">
-                  icon-krds-danger-50 / text-krds-danger-60 / bg-krds-danger-5 /
-                  border-krds-danger-10
+                  icon-krds-danger-50 (다크: 20) / text-krds-danger-60 (다크:
+                  20) / <br />
+                  bg-krds-danger-5 (다크: 95) / border-krds-danger-10 (다크: 90)
                 </code>
               </div>
 
@@ -529,8 +530,9 @@ export default function ColorsPage() {
                   Warning - 경고, 주의
                 </strong>
                 <code className="text-sm block">
-                  icon-krds-warning-50 / text-krds-warning-60 /
-                  bg-krds-warning-5 / border-krds-warning-10
+                  icon-krds-warning-50 (다크: 20) / text-krds-warning-60 (다크:
+                  20) / <br /> bg-krds-warning-5 (다크: 95) /
+                  border-krds-warning-10 (다크: 90)
                 </code>
               </div>
 
@@ -541,8 +543,9 @@ export default function ColorsPage() {
                   Success - 완료, 성공
                 </strong>
                 <code className="text-sm block">
-                  icon-krds-success-50 / text-krds-success-60 /
-                  bg-krds-success-5 / border-krds-success-10
+                  icon-krds-success-50 (다크: 20) / text-krds-success-60 (다크:
+                  20) / <br /> bg-krds-success-5 (다크: 95) /
+                  border-krds-success-10 (다크: 90)
                 </code>
               </div>
 
@@ -553,8 +556,9 @@ export default function ColorsPage() {
                   정보, 안내
                 </strong>
                 <code className="text-sm block">
-                  icon-krds-information-50 / text-krds-information-60 /
-                  bg-krds-information-5 / border-krds-information-10
+                  icon-krds-information-50 (다크: 20) / text-krds-information-60
+                  (다크: 20) / <br /> bg-krds-information-5 (다크: 95) /
+                  border-krds-information-10 (다크: 90)
                 </code>
               </div>
             </div>
@@ -590,7 +594,7 @@ export default function ColorsPage() {
                   <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     text
                   </code>{' '}
-                  = 80
+                  = 60
                 </li>
                 <li>
                   <code className="px-1.5 py-0.5 bg-krds-white rounded">
@@ -609,7 +613,7 @@ export default function ColorsPage() {
                   <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     base
                   </code>{' '}
-                  = 60
+                  = 50
                 </li>
                 <li>
                   <code className="px-1.5 py-0.5 bg-krds-white rounded">
@@ -640,17 +644,17 @@ export default function ColorsPage() {
               <CodeBlock
                 language="css"
                 code={`:root {
-  /* 기본 모드: text=80, surface=5, base=50 */
-  --krds-primary-text: var(--krds-color-light-primary-80);
+  /* 기본 모드: text=60, surface=5, base=50 */
+  --krds-primary-text: var(--krds-color-light-primary-60);
   --krds-primary-surface: var(--krds-color-light-primary-5);
   --krds-primary-base: var(--krds-color-light-primary-50);
 }
 
 .dark {
-  /* 다크 모드: text=20, surface=95, base=60 */
+  /* 다크 모드: text=20, surface=95, base=50 (모드 무관) */
   --krds-primary-text: var(--krds-color-light-primary-20);
   --krds-primary-surface: var(--krds-color-light-primary-95);
-  --krds-primary-base: var(--krds-color-light-primary-60);
+  --krds-primary-base: var(--krds-color-light-primary-50);
 }`}
               />
             </div>
@@ -665,9 +669,9 @@ export default function ColorsPage() {
   'krds-primary': {
     DEFAULT: 'var(--krds-primary-base)', // base 색상
     // Semantic 변수 (모드에 따라 자동 변경)
-    text: 'var(--krds-primary-text)',     // 기본: 80, 다크: 20
+    text: 'var(--krds-primary-text)',     // 기본: 60, 다크: 20
     surface: 'var(--krds-primary-surface)', // 기본: 5, 다크: 95
-    base: 'var(--krds-primary-base)',     // 기본: 50, 다크: 60
+    base: 'var(--krds-primary-base)',     // 기본: 50, 다크: 50 (모드 무관)
     // 숫자 스케일 (직접 사용 시)
     5: 'var(--krds-color-light-primary-5)',
     50: 'var(--krds-color-light-primary-50)',
@@ -993,11 +997,11 @@ export default function ColorsPage() {
   {/* 
     라이트 모드:
     - bg-krds-primary-surface → var(--krds-primary-surface) → #ecf2fe
-    - text-krds-primary-text → var(--krds-primary-text) → #052561
+    - text-krds-primary-text → var(--krds-primary-text) → #0b50d0 (primary-60)
     
     다크 모드:
     - bg-krds-primary-surface → var(--krds-primary-surface) → #ecf2fe 자동 전환!
-    - text-krds-primary-text → var(--krds-primary-text) → #b1cefb 자동 전환!
+    - text-krds-primary-text → var(--krds-primary-text) → #052561 (primary-20) 자동 전환!
     
     → dark: 접두사 불필요!
   */}
@@ -1118,6 +1122,56 @@ function App() {
             </div>
           </Stack>
         </Stack>
+      </PageSection>
+
+      {/* Best Practices */}
+      <PageSection>
+        <Heading level="h2" id="best-practices">
+          모범 사례
+        </Heading>
+
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          <div className="space-y-6">
+            <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
+              <h3 className="text-heading-sm font-semibold mb-2">
+                ✅ 의미 있는 색상 사용
+              </h3>
+              <p className="text-body-sm text-krds-gray-70 mb-3">
+                System Colors를 올바른 의미로 사용하세요.
+              </p>
+              <CodeBlock
+                code={`// Success는 긍정적 결과에
+<Button variant="success">저장 완료</Button>
+
+// Danger는 위험한 액션에
+<Button variant="danger">삭제</Button>`}
+                language="tsx"
+                showLineNumbers={false}
+              />
+            </div>
+          </div>
+        </Stack>
+      </PageSection>
+
+      {/* Reference */}
+      <PageSection>
+        <Heading level="h2" id="reference">
+          참고 자료
+        </Heading>
+
+        <div className="space-y-3 mt-2 md:mt-4">
+          <a
+            href="https://www.krds.go.kr/html/site/style/style_02.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
+          >
+            <h4 className="font-semibold mb-1">KRDS 색상 시스템</h4>
+            <p className="text-sm text-krds-gray-70">
+              색상 팔레트, 접근성 기준
+            </p>
+          </a>
+        </div>
       </PageSection>
     </>
   );
