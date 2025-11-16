@@ -397,10 +397,10 @@ import { Button } from '@/components/ui/button';
 
 ### 확정
 
-- ✅ Next.js 15 (App Router)
-- ✅ React 19
-- ✅ TypeScript
-- ✅ Tailwind CSS
+- Next.js 15 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS
 
 ### 추가 필요
 

@@ -22,12 +22,12 @@ pnpm create hanui-app my-portal-app
 
 ## 기능
 
-- ✅ **인터랙티브 프롬프트**: 프로젝트 설정을 단계별로 안내
-- ✅ **프레임워크 선택**: React (Vue 준비 중)
-- ✅ **템플릿 선택**: Portal, Admin, Both
-- ✅ **자동 설치**: Dependencies 자동 설치 (pnpm)
-- ✅ **Git 초기화**: 선택적 Git 저장소 초기화
-- ✅ **KRDS 디자인**: 공공 웹 디자인 시스템 완벽 지원
+- **인터랙티브 프롬프트**: 프로젝트 설정을 단계별로 안내
+- **프레임워크 선택**: React (Vue 준비 중)
+- **템플릿 선택**: Portal, Admin, Both
+- **자동 설치**: Dependencies 자동 설치 (pnpm)
+- **Git 초기화**: 선택적 Git 저장소 초기화
+- **KRDS 디자인**: 공공 웹 디자인 시스템 완벽 지원
 
 ## 템플릿
 

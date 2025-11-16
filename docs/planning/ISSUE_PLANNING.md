@@ -13,15 +13,15 @@
 
 ```
 장점:
-✅ 빠른 검증 가능 (2주 내 MVP)
-✅ 실사용 피드백 즉시 수집
-✅ 개발자 커뮤니티 조기 확보
-✅ npx create-hanui-app 임팩트 큼
+빠른 검증 가능 (2주 내 MVP)
+실사용 피드백 즉시 수집
+개발자 커뮤니티 조기 확보
+npx create-hanui-app 임팩트 큼
 
 단점:
-❌ 컴포넌트 문서가 없어서 사용자 혼란
-❌ 완성도 낮아 보일 수 있음
-❌ 커뮤니티 질문 대응 부담
+컴포넌트 문서가 없어서 사용자 혼란
+완성도 낮아 보일 수 있음
+커뮤니티 질문 대응 부담
 
 타임라인:
 Week 1-2: 기본 컴포넌트 5개
@@ -34,15 +34,15 @@ Week 4: NPM 배포
 
 ```
 장점:
-✅ 완성도 높은 첫인상
-✅ PrimeVue처럼 전문적인 이미지
-✅ 컴포넌트 API 명확히 정의
-✅ 사용자 셀프 서비스 가능
+완성도 높은 첫인상
+PrimeVue처럼 전문적인 이미지
+컴포넌트 API 명확히 정의
+사용자 셀프 서비스 가능
 
 단점:
-❌ 실제 사용까지 시간 소요 (1.5개월)
-❌ 피드백 수집 늦어짐
-❌ 문서만 보고 떠날 수 있음
+실제 사용까지 시간 소요 (1.5개월)
+피드백 수집 늦어짐
+문서만 보고 떠날 수 있음
 
 타임라인:
 Week 1-3: 컴포넌트 + Docs 사이트
@@ -60,12 +60,12 @@ Week 4: NPM 배포 + 문서 보완
 Week 5-6: 피드백 받으며 문서 확장
 
 장점:
-✅ 빠른 검증 + 적절한 완성도
-✅ 점진적 개선 가능
+빠른 검증 + 적절한 완성도
+점진적 개선 가능
 
 단점:
-❌ 리소스 분산
-❌ 둘 다 중간 완성도
+리소스 분산
+둘 다 중간 완성도
 ```
 
 **추천: 옵션 A (Starter Kit 우선)** ⭐
@@ -112,14 +112,14 @@ Svelte/기타: 2%
 
 ```
 장점:
-✅ 시장 점유율 높음
-✅ 생태계 방대 (참고 자료 많음)
-✅ 개발자 구인 쉬움
-✅ Next.js 연계 (Docs 사이트도 React)
+시장 점유율 높음
+생태계 방대 (참고 자료 많음)
+개발자 구인 쉬움
+Next.js 연계 (Docs 사이트도 React)
 
 단점:
-❌ Vue 사용자 이탈 위험
-❌ 경쟁 라이브러리 많음 (차별화 어려움)
+Vue 사용자 이탈 위험
+경쟁 라이브러리 많음 (차별화 어려움)
 
 타깃:
 - 대기업 SI 프론트엔드
@@ -130,15 +130,15 @@ Svelte/기타: 2%
 
 ```
 장점:
-✅ 경쟁자 적음 (@krds.ui/vue 정도)
-✅ 중소 SI 업체 타깃 (블루오션)
-✅ 러닝 커브 낮아 빠른 채택
-✅ 한국 개발자 선호도 높음
+경쟁자 적음 (@krds.ui/vue 정도)
+중소 SI 업체 타깃 (블루오션)
+러닝 커브 낮아 빠른 채택
+한국 개발자 선호도 높음
 
 단점:
-❌ 시장 규모 작음
-❌ 생태계 상대적으로 작음
-❌ Docs 사이트를 Nuxt로? (복잡도 증가)
+시장 규모 작음
+생태계 상대적으로 작음
+Docs 사이트를 Nuxt로? (복잡도 증가)
 
 타깃:
 - 중소 SI 업체
@@ -154,14 +154,14 @@ Svelte/기타: 2%
 └── @hanui/vue (Vue Wrapper)
 
 장점:
-✅ 한 번 개발로 두 프레임워크 지원
-✅ 시장 전체 커버
-✅ 유지보수 효율적
+한 번 개발로 두 프레임워크 지원
+시장 전체 커버
+유지보수 효율적
 
 단점:
-❌ 초기 구조 설계 복잡
-❌ 첫 출시 늦어짐
-❌ 각 프레임워크 특성 활용 어려움
+초기 구조 설계 복잡
+첫 출시 늦어짐
+각 프레임워크 특성 활용 어려움
 
 참고:
 - Headless UI (Tailwind)가 이 방식
@@ -789,13 +789,13 @@ Estimate: 27h (P0: Portal 13h + Admin 14h)
 Dependencies: #12 (CLI 구현 필요)
 
 Acceptance Criteria:
-✅ npx create-hanui-app 실행 시 Portal/Admin/Both 선택 가능
-✅ 선택한 템플릿이 30초 내 생성됨
-✅ 생성된 프로젝트가 즉시 실행 가능 (npm run dev)
-✅ 모든 P0 페이지가 동작함
-✅ 9개 컴포넌트가 모두 사용됨
-✅ Mock Data로 실제 동작하는 것처럼 보임
-✅ README가 명확함
+npx create-hanui-app 실행 시 Portal/Admin/Both 선택 가능
+선택한 템플릿이 30초 내 생성됨
+생성된 프로젝트가 즉시 실행 가능 (npm run dev)
+모든 P0 페이지가 동작함
+9개 컴포넌트가 모두 사용됨
+Mock Data로 실제 동작하는 것처럼 보임
+README가 명확함
 
 ````
 
@@ -1048,7 +1048,7 @@ Day 5: v0.1.0 배포! (#19) - 4h
 
 ---
 
-## 💡 전략적 권고사항 (업데이트)
+## 전략적 권고사항 (업데이트)
 
 ### 0. 포털 + 어드민 템플릿 전략 ⭐ 핵심 차별화
 
@@ -1059,15 +1059,15 @@ Day 5: v0.1.0 배포! (#19) - 4h
 - shadcn/ui: 컴포넌트 복사만
 
 HANUI의 차별화:
-✅ Portal Template (Next.js)
+Portal Template (Next.js)
    - 공공기관 대국민 포털 즉시 사용
    - SEO, 접근성, 게시판 기본 탑재
 
-✅ Admin Template (React + Vite)
+Admin Template (React + Vite)
    - 내부 관리자 시스템 즉시 사용
    - 대시보드, CRUD, 권한 관리 기본 탑재
 
-✅ Both 옵션 (Monorepo)
+Both 옵션 (Monorepo)
    - 포털 + 어드민 통합 프로젝트
    - 공통 컴포넌트 공유
 
@@ -1114,10 +1114,10 @@ Month 2-3: Vue 추가
 
 ```
 Week 4 배포 시 반드시 포함:
-✅ Button, Input, Table, Card, Modal
-✅ create-hanui-app (템플릿 3개)
-✅ 기본 문서 사이트
-✅ README (Quick Start)
+Button, Input, Table, Card, Modal
+create-hanui-app (템플릿 3개)
+기본 문서 사이트
+README (Quick Start)
 
 나중에:
 ⏳ 고급 컴포넌트 (Select, DatePicker 등)
@@ -1142,9 +1142,9 @@ Week 4 배포 전 준비:
 ### 지금 바로 해야 할 일:
 
 1. **전략 결정 확정**
-   - ✅ Starter Kit 우선
-   - ✅ React 먼저
-   - ✅ Simple Monorepo
+   - Starter Kit 우선
+   - React 먼저
+   - Simple Monorepo
 
 2. **GitHub Project 생성**
    - Project Board 만들기

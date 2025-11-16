@@ -134,7 +134,7 @@ const tokens = await WebFetch(
 
 ### 3. HANUI에서의 활용
 
-**현재 적용 상태**: ✅ 완료 (Issue #4)
+**현재 적용 상태**: 완료 (Issue #4)
 
 ```typescript
 // packages/core/src/tokens/colors.ts
@@ -169,7 +169,7 @@ export const primary: ColorScale = {
 ### 4. KRDS/Tailwind 색상 시스템 통합 ⭐ **중요**
 
 **작성일**: 2025-11-15
-**상태**: ✅ 완료
+**상태**: 완료
 
 #### 배경: 색상 스케일 충돌 문제
 
@@ -298,12 +298,12 @@ export default {
 #### 다크 모드 자동 전환
 
 ```tsx
-// ✅ 권장: CSS 변수가 자동으로 전환됨
+// 권장: CSS 변수가 자동으로 전환됨
 <div className="bg-primary-60 text-gray-10">
   라이트 모드: 진한 파란색 배경 다크 모드: 밝은 파란색 배경
 </div>
 
-// ❌ 불필요: dark: 접두사 사용할 필요 없음
+// 불필요: dark: 접두사 사용할 필요 없음
 <div className="bg-primary-60 dark:bg-primary-40">
   CSS 변수가 자동 전환되므로 이렇게 할 필요 없음
 </div>
@@ -515,7 +515,7 @@ node scripts/generate-colors.js /tmp/krds-colors.json
 
 ---
 
-## ✅ 체크리스트
+## 체크리스트
 
 ### 새 컴포넌트 개발 전
 
@@ -568,7 +568,7 @@ KRDS는 **공공 저작물**로, 자유롭게 사용 가능합니다.
 
 **작성자**: @odada-o
 **업데이트**: 2025-11-11
-**Status**: ✅ KRDS 리소스 가이드 작성 완료
+**Status**: KRDS 리소스 가이드 작성 완료
 
 **Next**:
 

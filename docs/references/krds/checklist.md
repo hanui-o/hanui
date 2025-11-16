@@ -11,8 +11,8 @@
 **1. 컴포넌트 개발 시:**
 
 - 각 항목을 개발 중 체크
-- ✅ 표시는 HANUI가 자동 처리
-- ⚠️ 표시는 개발자 수동 확인 필요
+- 표시는 HANUI가 자동 처리
+- 표시는 개발자 수동 확인 필요
 
 **2. Inspector 검증 규칙:**
 
@@ -36,9 +36,9 @@
 
 | 항목                              | 기준           | 자동화 | 우선순위 |
 | --------------------------------- | -------------- | ------ | -------- |
-| 본문 텍스트 (14px 이상)           | 4.5:1          | ✅     | Critical |
-| 큰 텍스트 (18px+ 또는 Bold 14px+) | 3:1            | ✅     | High     |
-| 비활성 텍스트                     | 대비 요구 없음 | ✅     | -        |
+| 본문 텍스트 (14px 이상)           | 4.5:1          |        | Critical |
+| 큰 텍스트 (18px+ 또는 Bold 14px+) | 3:1            |        | High     |
+| 비활성 텍스트                     | 대비 요구 없음 |        | -        |
 
 **검사 방법:**
 
@@ -64,11 +64,11 @@ function checkTextContrast(
 
 | 항목                 | 기준 | 자동화 | 우선순위 |
 | -------------------- | ---- | ------ | -------- |
-| 버튼 경계선          | 3:1  | ✅     | High     |
-| 입력 필드 경계선     | 3:1  | ✅     | High     |
-| 초점 표시            | 3:1  | ✅     | Critical |
-| 아이콘 (정보 전달용) | 3:1  | ✅     | High     |
-| 차트/그래프          | 3:1  | ⚠️     | Medium   |
+| 버튼 경계선          | 3:1  |        | High     |
+| 입력 필드 경계선     | 3:1  |        | High     |
+| 초점 표시            | 3:1  |        | Critical |
+| 아이콘 (정보 전달용) | 3:1  |        | High     |
+| 차트/그래프          | 3:1  |        | Medium   |
 
 ---
 
@@ -79,10 +79,10 @@ function checkTextContrast(
 
 | 항목           | 해결 방법       | 자동화 | 우선순위 |
 | -------------- | --------------- | ------ | -------- |
-| 필수 입력 필드 | `*` 기호 + 색상 | ⚠️     | High     |
-| 오류 상태      | 아이콘 + 색상   | ✅     | Critical |
-| 그래프 범례    | 패턴 + 색상     | ⚠️     | Medium   |
-| 링크 구분      | 밑줄 + 색상     | ✅     | Medium   |
+| 필수 입력 필드 | `*` 기호 + 색상 |        | High     |
+| 오류 상태      | 아이콘 + 색상   |        | Critical |
+| 그래프 범례    | 패턴 + 색상     |        | Medium   |
+| 링크 구분      | 밑줄 + 색상     |        | Medium   |
 
 ---
 
@@ -95,11 +95,11 @@ function checkTextContrast(
 
 | 항목            | 요구사항             | 자동화 | 우선순위 |
 | --------------- | -------------------- | ------ | -------- |
-| 모든 버튼       | `Tab` 키로 접근 가능 | ✅     | Critical |
-| 모든 링크       | `Tab` 키로 접근 가능 | ✅     | Critical |
-| 폼 요소         | `Tab` 키로 접근 가능 | ✅     | Critical |
-| 커스텀 컴포넌트 | `tabIndex={0}` 설정  | ✅     | Critical |
-| 비활성 요소     | `tabIndex={-1}` 설정 | ✅     | High     |
+| 모든 버튼       | `Tab` 키로 접근 가능 |        | Critical |
+| 모든 링크       | `Tab` 키로 접근 가능 |        | Critical |
+| 폼 요소         | `Tab` 키로 접근 가능 |        | Critical |
+| 커스텀 컴포넌트 | `tabIndex={0}` 설정  |        | Critical |
+| 비활성 요소     | `tabIndex={-1}` 설정 |        | High     |
 
 **검사 방법:**
 
@@ -126,13 +126,13 @@ function isKeyboardAccessible(element: HTMLElement): boolean {
 
 | 컴포넌트 | 필수 키                      | 자동화 | 우선순위 |
 | -------- | ---------------------------- | ------ | -------- |
-| Button   | `Enter`, `Space`             | ✅     | Critical |
-| Link     | `Enter`                      | ✅     | Critical |
-| Checkbox | `Space`                      | ✅     | Critical |
-| Radio    | `Arrow keys`                 | ✅     | High     |
-| Dropdown | `Arrow keys`, `Enter`, `Esc` | ✅     | High     |
-| Dialog   | `Esc` (닫기)                 | ✅     | Critical |
-| Tab      | `Arrow keys`                 | ✅     | High     |
+| Button   | `Enter`, `Space`             |        | Critical |
+| Link     | `Enter`                      |        | Critical |
+| Checkbox | `Space`                      |        | Critical |
+| Radio    | `Arrow keys`                 |        | High     |
+| Dropdown | `Arrow keys`, `Enter`, `Esc` |        | High     |
+| Dialog   | `Esc` (닫기)                 |        | Critical |
+| Tab      | `Arrow keys`                 |        | High     |
 
 ---
 
@@ -143,10 +143,10 @@ function isKeyboardAccessible(element: HTMLElement): boolean {
 
 | 항목             | 요구사항                        | 자동화 | 우선순위 |
 | ---------------- | ------------------------------- | ------ | -------- |
-| 초점 시각적 표시 | 명확한 outline 또는 border      | ✅     | Critical |
-| 초점 대비        | 3:1 이상                        | ✅     | High     |
-| 초점 순서        | 논리적 순서                     | ⚠️     | High     |
-| 키보드 트랩 방지 | `Tab`/`Shift+Tab`으로 탈출 가능 | ✅     | Critical |
+| 초점 시각적 표시 | 명확한 outline 또는 border      |        | Critical |
+| 초점 대비        | 3:1 이상                        |        | High     |
+| 초점 순서        | 논리적 순서                     |        | High     |
+| 키보드 트랩 방지 | `Tab`/`Shift+Tab`으로 탈출 가능 |        | Critical |
 
 ---
 
@@ -157,11 +157,11 @@ function isKeyboardAccessible(element: HTMLElement): boolean {
 
 | 시나리오    | 요구사항                          | 자동화 | 우선순위 |
 | ----------- | --------------------------------- | ------ | -------- |
-| Dialog 열기 | Dialog 내부 첫 요소로 포커스 이동 | ✅     | Critical |
-| Dialog 닫기 | 트리거 요소로 포커스 복원         | ✅     | Critical |
-| Focus Trap  | Dialog 내부에서만 포커스 순환     | ✅     | Critical |
-| 페이지 이동 | 페이지 상단으로 포커스 이동       | ⚠️     | Medium   |
-| 오류 발생   | 첫 오류 필드로 포커스 이동        | ✅     | High     |
+| Dialog 열기 | Dialog 내부 첫 요소로 포커스 이동 |        | Critical |
+| Dialog 닫기 | 트리거 요소로 포커스 복원         |        | Critical |
+| Focus Trap  | Dialog 내부에서만 포커스 순환     |        | Critical |
+| 페이지 이동 | 페이지 상단으로 포커스 이동       |        | Medium   |
+| 오류 발생   | 첫 오류 필드로 포커스 이동        |        | High     |
 
 ---
 
@@ -174,10 +174,10 @@ function isKeyboardAccessible(element: HTMLElement): boolean {
 
 | 이미지 유형   | 요구사항        | 예시                           | 자동화 | 우선순위 |
 | ------------- | --------------- | ------------------------------ | ------ | -------- |
-| 정보 전달     | 의미 있는 `alt` | `alt="2024년 1월 매출 그래프"` | ⚠️     | Critical |
-| 링크 이미지   | 링크 목적 설명  | `alt="홈으로 이동"`            | ⚠️     | Critical |
-| 장식용        | `alt=""`        | `alt=""`                       | ✅     | Medium   |
-| 복잡한 이미지 | 상세 설명 제공  | `longdesc` 또는 인접 텍스트    | ⚠️     | High     |
+| 정보 전달     | 의미 있는 `alt` | `alt="2024년 1월 매출 그래프"` |        | Critical |
+| 링크 이미지   | 링크 목적 설명  | `alt="홈으로 이동"`            |        | Critical |
+| 장식용        | `alt=""`        | `alt=""`                       |        | Medium   |
+| 복잡한 이미지 | 상세 설명 제공  | `longdesc` 또는 인접 텍스트    |        | High     |
 
 **검사 방법:**
 
@@ -219,11 +219,11 @@ function checkImageAlt(img: HTMLImageElement): {
 
 | 항목            | 요구사항                  | 자동화 | 우선순위 |
 | --------------- | ------------------------- | ------ | -------- |
-| 자막 (Captions) | 모든 음성 내용            | ⚠️     | Critical |
-| 오디오 설명     | 시각적 정보 설명          | ⚠️     | High     |
-| 컨트롤 제공     | 재생, 일시정지, 음량      | ✅     | Critical |
-| 자동 재생 금지  | 사용자 동의 필요          | ✅     | High     |
-| 3초 규칙        | 3초 이하는 자동 재생 허용 | ✅     | Medium   |
+| 자막 (Captions) | 모든 음성 내용            |        | Critical |
+| 오디오 설명     | 시각적 정보 설명          |        | High     |
+| 컨트롤 제공     | 재생, 일시정지, 음량      |        | Critical |
+| 자동 재생 금지  | 사용자 동의 필요          |        | High     |
+| 3초 규칙        | 3초 이하는 자동 재생 허용 |        | Medium   |
 
 ---
 
@@ -236,10 +236,10 @@ function checkImageAlt(img: HTMLImageElement): {
 
 | 항목             | 요구사항                    | 자동화 | 우선순위 |
 | ---------------- | --------------------------- | ------ | -------- |
-| 모든 입력 필드   | `<label>` 또는 `aria-label` | ✅     | Critical |
-| 레이블-필드 연결 | `for` 속성 또는 wrapping    | ✅     | Critical |
-| Placeholder 금지 | Label 대신 사용 불가        | ✅     | High     |
-| 필수 항목 표시   | `required` + 시각적 표시    | ✅     | High     |
+| 모든 입력 필드   | `<label>` 또는 `aria-label` |        | Critical |
+| 레이블-필드 연결 | `for` 속성 또는 wrapping    |        | Critical |
+| Placeholder 금지 | Label 대신 사용 불가        |        | High     |
+| 필수 항목 표시   | `required` + 시각적 표시    |        | High     |
 
 **검사 방법:**
 
@@ -281,12 +281,12 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 항목             | 요구사항                    | 자동화 | 우선순위 |
 | ---------------- | --------------------------- | ------ | -------- |
-| 오류 식별        | 명확한 오류 메시지          | ✅     | Critical |
-| 오류 위치        | 해당 필드로 포커스 이동     | ✅     | High     |
-| 오류 수정 제안   | 올바른 형식 예시 제공       | ⚠️     | High     |
-| 입력값 유지      | 오류 발생 시 기존 입력 유지 | ✅     | Medium   |
-| aria-invalid     | `aria-invalid="true"` 설정  | ✅     | High     |
-| aria-describedby | 오류 메시지 연결            | ✅     | High     |
+| 오류 식별        | 명확한 오류 메시지          |        | Critical |
+| 오류 위치        | 해당 필드로 포커스 이동     |        | High     |
+| 오류 수정 제안   | 올바른 형식 예시 제공       |        | High     |
+| 입력값 유지      | 오류 발생 시 기존 입력 유지 |        | Medium   |
+| aria-invalid     | `aria-invalid="true"` 설정  |        | High     |
+| aria-describedby | 오류 메시지 연결            |        | High     |
 
 ---
 
@@ -297,12 +297,12 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 입력 유형 | autocomplete 값                     | 자동화 | 우선순위 |
 | --------- | ----------------------------------- | ------ | -------- |
-| 이름      | `name`                              | ✅     | High     |
-| 이메일    | `email`                             | ✅     | High     |
-| 전화번호  | `tel`                               | ✅     | High     |
-| 주소      | `street-address`                    | ✅     | High     |
-| 생년월일  | `bday`                              | ✅     | Medium   |
-| 비밀번호  | `new-password` / `current-password` | ✅     | High     |
+| 이름      | `name`                              |        | High     |
+| 이메일    | `email`                             |        | High     |
+| 전화번호  | `tel`                               |        | High     |
+| 주소      | `street-address`                    |        | High     |
+| 생년월일  | `bday`                              |        | Medium   |
+| 비밀번호  | `new-password` / `current-password` |        | High     |
 
 ---
 
@@ -315,15 +315,15 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 항목      | 요구사항                       | 자동화 | 우선순위 |
 | --------- | ------------------------------ | ------ | -------- |
-| 위치      | 문서 최상단                    | ⚠️     | Critical |
-| 초점 표시 | 포커스 시 명확히 표시          | ✅     | Critical |
-| 대상      | 주요 콘텐츠 영역 (`main`)      | ⚠️     | Critical |
-| 텍스트    | "본문 바로가기" 등 명확한 표현 | ⚠️     | High     |
+| 위치      | 문서 최상단                    |        | Critical |
+| 초점 표시 | 포커스 시 명확히 표시          |        | Critical |
+| 대상      | 주요 콘텐츠 영역 (`main`)      |        | Critical |
+| 텍스트    | "본문 바로가기" 등 명확한 표현 |        | High     |
 
 **예시:**
 
 ```html
-<!-- ✅ 올바른 예 -->
+<!-- 올바른 예 -->
 <a href="#main-content" class="skip-link"> 본문 바로가기 </a>
 
 <main id="main-content">
@@ -340,10 +340,10 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 항목           | 요구사항                           | 자동화 | 우선순위 |
 | -------------- | ---------------------------------- | ------ | -------- |
-| `h1` 필수      | 페이지당 1개                       | ⚠️     | High     |
-| 순서 준수      | `h1` → `h2` → `h3` (건너뛰기 금지) | ⚠️     | High     |
-| 의미 있는 제목 | 섹션 내용 설명                     | ⚠️     | Medium   |
-| 시각적 스타일  | 제목 태그와 독립적                 | ✅     | Low      |
+| `h1` 필수      | 페이지당 1개                       |        | High     |
+| 순서 준수      | `h1` → `h2` → `h3` (건너뛰기 금지) |        | High     |
+| 의미 있는 제목 | 섹션 내용 설명                     |        | Medium   |
+| 시각적 스타일  | 제목 태그와 독립적                 |        | Low      |
 
 ---
 
@@ -354,12 +354,12 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 랜드마크 | 요소        | 필수 | 자동화 | 우선순위 |
 | -------- | ----------- | ---- | ------ | -------- |
-| Header   | `<header>`  | ✅   | ⚠️     | High     |
-| Main     | `<main>`    | ✅   | ⚠️     | Critical |
-| Nav      | `<nav>`     | ✅   | ⚠️     | High     |
-| Footer   | `<footer>`  | ✅   | ⚠️     | High     |
-| Aside    | `<aside>`   | -    | ⚠️     | Medium   |
-| Section  | `<section>` | -    | ⚠️     | Low      |
+| Header   | `<header>`  |      |        | High     |
+| Main     | `<main>`    |      |        | Critical |
+| Nav      | `<nav>`     |      |        | High     |
+| Footer   | `<footer>`  |      |        | High     |
+| Aside    | `<aside>`   | -    |        | Medium   |
+| Section  | `<section>` | -    |        | Low      |
 
 ---
 
@@ -372,12 +372,12 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 컴포넌트 | role      | 자동화 | 우선순위 |
 | -------- | --------- | ------ | -------- |
-| Button   | `button`  | ✅     | Critical |
-| Link     | `link`    | ✅     | Critical |
-| Dialog   | `dialog`  | ✅     | Critical |
-| Alert    | `alert`   | ✅     | High     |
-| Menu     | `menu`    | ✅     | High     |
-| Tablist  | `tablist` | ✅     | High     |
+| Button   | `button`  |        | Critical |
+| Link     | `link`    |        | Critical |
+| Dialog   | `dialog`  |        | Critical |
+| Alert    | `alert`   |        | High     |
+| Menu     | `menu`    |        | High     |
+| Tablist  | `tablist` |        | High     |
 
 ---
 
@@ -388,13 +388,13 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 속성            | 용도           | 자동화 | 우선순위 |
 | --------------- | -------------- | ------ | -------- |
-| `aria-expanded` | 확장/축소 상태 | ✅     | High     |
-| `aria-checked`  | 체크 상태      | ✅     | Critical |
-| `aria-selected` | 선택 상태      | ✅     | High     |
-| `aria-pressed`  | 토글 버튼 상태 | ✅     | Medium   |
-| `aria-disabled` | 비활성 상태    | ✅     | High     |
-| `aria-hidden`   | 숨김 상태      | ✅     | High     |
-| `aria-invalid`  | 유효성 오류    | ✅     | High     |
+| `aria-expanded` | 확장/축소 상태 |        | High     |
+| `aria-checked`  | 체크 상태      |        | Critical |
+| `aria-selected` | 선택 상태      |        | High     |
+| `aria-pressed`  | 토글 버튼 상태 |        | Medium   |
+| `aria-disabled` | 비활성 상태    |        | High     |
+| `aria-hidden`   | 숨김 상태      |        | High     |
+| `aria-invalid`  | 유효성 오류    |        | High     |
 
 ---
 
@@ -405,11 +405,11 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 속성               | 용도             | 자동화 | 우선순위 |
 | ------------------ | ---------------- | ------ | -------- |
-| `aria-label`       | 요소 레이블      | ✅     | Critical |
-| `aria-labelledby`  | 레이블 요소 참조 | ✅     | High     |
-| `aria-describedby` | 설명 요소 참조   | ✅     | High     |
-| `aria-controls`    | 제어 대상 참조   | ✅     | Medium   |
-| `aria-owns`        | 소유 관계        | ✅     | Medium   |
+| `aria-label`       | 요소 레이블      |        | Critical |
+| `aria-labelledby`  | 레이블 요소 참조 |        | High     |
+| `aria-describedby` | 설명 요소 참조   |        | High     |
+| `aria-controls`    | 제어 대상 참조   |        | Medium   |
+| `aria-owns`        | 소유 관계        |        | Medium   |
 
 ---
 
@@ -422,11 +422,11 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 항목      | 최소 크기 | 권장 크기 | 자동화 | 우선순위 |
 | --------- | --------- | --------- | ------ | -------- |
-| 버튼      | 44×44px   | 48×48px   | ✅     | High     |
-| 링크      | 44×44px   | 48×48px   | ✅     | High     |
-| 체크박스  | 24×24px   | 32×32px   | ✅     | Medium   |
-| 라디오    | 24×24px   | 32×32px   | ✅     | Medium   |
-| 터치 간격 | 8px       | 16px      | ✅     | Medium   |
+| 버튼      | 44×44px   | 48×48px   |        | High     |
+| 링크      | 44×44px   | 48×48px   |        | High     |
+| 체크박스  | 24×24px   | 32×32px   |        | Medium   |
+| 라디오    | 24×24px   | 32×32px   |        | Medium   |
+| 터치 간격 | 8px       | 16px      |        | Medium   |
 
 ---
 
@@ -437,8 +437,8 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 항목           | 요구사항               | 자동화 | 우선순위 |
 | -------------- | ---------------------- | ------ | -------- |
-| 세로/가로 모드 | 둘 다 지원             | ✅     | Medium   |
-| 레이아웃 유지  | 회전 시 정보 손실 없음 | ✅     | Medium   |
+| 세로/가로 모드 | 둘 다 지원             |        | Medium   |
+| 레이아웃 유지  | 회전 시 정보 손실 없음 |        | Medium   |
 
 ---
 
@@ -449,9 +449,9 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 항목           | 요구사항                 | 자동화 | 우선순위 |
 | -------------- | ------------------------ | ------ | -------- |
-| 200% 확대      | 레이아웃 깨짐 없음       | ✅     | High     |
-| `rem` 단위     | 텍스트 크기에 `rem` 사용 | ✅     | High     |
-| 고정 크기 금지 | `px` 단위 금지           | ✅     | Medium   |
+| 200% 확대      | 레이아웃 깨짐 없음       |        | High     |
+| `rem` 단위     | 텍스트 크기에 `rem` 사용 |        | High     |
+| 고정 크기 금지 | `px` 단위 금지           |        | Medium   |
 
 ---
 
@@ -464,11 +464,11 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 요소          | 올바른 사용     | 잘못된 사용         | 자동화 | 우선순위 |
 | ------------- | --------------- | ------------------- | ------ | -------- |
-| `<button>`    | 버튼 동작       | `<div>` + `onClick` | ✅     | Critical |
-| `<a>`         | 링크 (URL 이동) | 버튼 동작           | ✅     | Critical |
-| `<h1>`~`<h6>` | 제목 계층       | 스타일 목적         | ⚠️     | High     |
-| `<table>`     | 데이터 표       | 레이아웃 목적       | ⚠️     | High     |
-| `<ul>`/`<ol>` | 목록            | 일반 그룹핑         | ⚠️     | Medium   |
+| `<button>`    | 버튼 동작       | `<div>` + `onClick` |        | Critical |
+| `<a>`         | 링크 (URL 이동) | 버튼 동작           |        | Critical |
+| `<h1>`~`<h6>` | 제목 계층       | 스타일 목적         |        | High     |
+| `<table>`     | 데이터 표       | 레이아웃 목적       |        | High     |
+| `<ul>`/`<ol>` | 목록            | 일반 그룹핑         |        | Medium   |
 
 ---
 
@@ -479,8 +479,8 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 | 항목        | 요구사항           | 자동화 | 우선순위 |
 | ----------- | ------------------ | ------ | -------- |
-| 페이지 언어 | `<html lang="ko">` | ⚠️     | Critical |
-| 부분 언어   | `<span lang="en">` | ⚠️     | Medium   |
+| 페이지 언어 | `<html lang="ko">` |        | Critical |
+| 부분 언어   | `<span lang="en">` |        | Medium   |
 
 ---
 
@@ -519,7 +519,7 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 
 ## 🔧 HANUI 자동화 현황
 
-### 완전 자동화 (✅ 100%)
+### 완전 자동화 (100%)
 
 - 키보드 접근성
 - 초점 관리 (Trap, Restore)
@@ -528,7 +528,7 @@ function checkFormLabel(input: HTMLInputElement): boolean {
 - 터치 타겟 크기
 - 텍스트 확대 지원
 
-### 부분 자동화 (⚠️ 개발자 확인 필요)
+### 부분 자동화 (개발자 확인 필요)
 
 - 이미지 대체 텍스트 (의미 파악 필요)
 - 제목 구조 (콘텐츠 의존)

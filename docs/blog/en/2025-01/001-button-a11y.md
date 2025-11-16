@@ -12,9 +12,9 @@ You might think, "They all work the same with an `onClick` handler, right?" But 
 
 In this guide, we'll explore:
 
-- ❌ Common mistakes and their consequences
-- ⚠️ Manual accessibility implementation
-- ✅ How HANUI automates everything
+- Common mistakes and their consequences
+- Manual accessibility implementation
+- How HANUI automates everything
 
 Let's dive in with real code examples.
 
@@ -22,7 +22,7 @@ Let's dive in with real code examples.
 
 ## The Problem: Common Mistakes
 
-### ❌ Case 1: Using `<div>` as a Button
+### Case 1: Using `<div>` as a Button
 
 ```tsx
 <div className="button" onClick={handleSubmit}>
@@ -44,7 +44,7 @@ Let's dive in with real code examples.
 
 ---
 
-### ❌ Case 2: Using `<a>` as a Button
+### Case 2: Using `<a>` as a Button
 
 ```tsx
 <a
@@ -88,7 +88,7 @@ Let's dive in with real code examples.
 
 ---
 
-## ⚠️ Manual Implementation (The Right Way)
+## Manual Implementation (The Right Way)
 
 ### Method 1: Native `<button>` (Recommended)
 
@@ -104,15 +104,15 @@ Let's dive in with real code examples.
 
 **Advantages**:
 
-- ✅ Automatically gets `role="button"`
-- ✅ Focusable with Tab key
-- ✅ Both Enter and Space keys work
-- ✅ Screen reader announces "Submit button"
+- Automatically gets `role="button"`
+- Focusable with Tab key
+- Both Enter and Space keys work
+- Screen reader announces "Submit button"
 
 **Disadvantages**:
 
-- ⚠️ Need to remove default styles
-- ⚠️ Must specify `type` attribute (default is `submit` which submits forms)
+- Need to remove default styles
+- Must specify `type` attribute (default is `submit` which submits forms)
 
 ---
 
@@ -144,15 +144,15 @@ Let's dive in with real code examples.
 
 **Problems**:
 
-- ⚠️ Too complex (10 lines → can be reduced to 1)
-- ⚠️ Error-prone for developers
-- ⚠️ Hard to maintain
+- Too complex (10 lines → can be reduced to 1)
+- Error-prone for developers
+- Hard to maintain
 
 **Conclusion**: **Just use `<button>`.**
 
 ---
 
-## ✅ HANUI's Automated Solution
+## HANUI's Automated Solution
 
 HANUI Button automatically handles all accessibility requirements.
 
@@ -169,17 +169,17 @@ import { Button } from '@hanui/react';
 ```tsx
 // Internally applies:
 <button
-  type="button" // ✅ Automatic
-  role="button" // ✅ Automatic
-  tabIndex={0} // ✅ Automatic
+  type="button" // Automatic
+  role="button" // Automatic
+  tabIndex={0} // Automatic
   onClick={handleSubmit}
   onKeyDown={(e) => {
-    // ✅ Automatic
+    // Automatic
     if (e.key === 'Enter' || e.key === ' ') {
       handleSubmit();
     }
   }}
-  aria-pressed={false} // ✅ Automatic (for toggle buttons)
+  aria-pressed={false} // Automatic (for toggle buttons)
 >
   Submit
 </button>
@@ -189,18 +189,18 @@ import { Button } from '@hanui/react';
 
 ## Comparison: Three Approaches
 
-| Implementation      | Keyboard Access | Screen Reader | Code Complexity | Maintenance    | Recommendation |
-| ------------------- | --------------- | ------------- | --------------- | -------------- | -------------- |
-| ❌ `<div>`          | ✗               | ✗             | Low             | Difficult      | ✗              |
-| ⚠️ `<div>` + ARIA   | ✓               | ✓             | Very High       | Very Difficult | △              |
-| ⚠️ `<button>`       | ✓               | ✓             | Medium          | Medium         | ○              |
-| ✅ **HANUI Button** | ✓               | ✓             | **Very Low**    | **Very Easy**  | **◎**          |
+| Implementation   | Keyboard Access | Screen Reader | Code Complexity | Maintenance    | Recommendation |
+| ---------------- | --------------- | ------------- | --------------- | -------------- | -------------- |
+| `<div>`          | ✗               | ✗             | Low             | Difficult      | ✗              |
+| `<div>` + ARIA   | ✓               | ✓             | Very High       | Very Difficult | △              |
+| `<button>`       | ✓               | ✓             | Medium          | Medium         | ○              |
+| **HANUI Button** | ✓               | ✓             | **Very Low**    | **Very Easy**  | **◎**          |
 
 ---
 
 ## Real Example: Login Button
 
-### ❌ Wrong Implementation
+### Wrong Implementation
 
 ```tsx
 function LoginForm() {
@@ -209,12 +209,12 @@ function LoginForm() {
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
 
-      {/* ❌ Problem 1: Using div as button */}
+      {/* Problem 1: Using div as button */}
       <div className="login-button" onClick={handleLogin}>
         Login
       </div>
 
-      {/* ❌ Problem 2: Using anchor as button */}
+      {/* Problem 2: Using anchor as button */}
       <a href="#" onClick={handleForgotPassword}>
         Forgot Password
       </a>
@@ -225,7 +225,7 @@ function LoginForm() {
 
 ---
 
-### ✅ Fixed with HANUI
+### Fixed with HANUI
 
 ```tsx
 import { Button } from '@hanui/react';
@@ -236,12 +236,12 @@ function LoginForm() {
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
 
-      {/* ✅ All accessibility handled automatically */}
+      {/* All accessibility handled automatically */}
       <Button variant="primary" onClick={handleLogin}>
         Login
       </Button>
 
-      {/* ✅ Secondary button also accessible */}
+      {/* Secondary button also accessible */}
       <Button variant="ghost" onClick={handleForgotPassword}>
         Forgot Password
       </Button>
@@ -269,10 +269,10 @@ function LoginForm() {
 **A**: The default `type` for `<button>` is `submit`. To prevent unintended form submissions, you must specify `type="button"`.
 
 ```tsx
-// ❌ Form will submit
+// Form will submit
 <button onClick={handleClick}>Click</button>
 
-// ✅ Form won't submit
+// Form won't submit
 <button type="button" onClick={handleClick}>Click</button>
 ```
 
@@ -316,9 +316,9 @@ When creating a button, verify:
 
 Creating a button involves more accessibility considerations than you might think.
 
-- ❌ Never use `<div>` + `onClick`
-- ⚠️ Use `<button>`, but don't forget `type="button"`
-- ✅ **HANUI Button automates everything**
+- Never use `<div>` + `onClick`
+- Use `<button>`, but don't forget `type="button"`
+- **HANUI Button automates everything**
 
 Next up: **"6 Modal Accessibility Pitfalls"** - We'll explore complex accessibility issues like Focus Trap, ESC key handling, and more.
 
@@ -326,7 +326,7 @@ Next up: **"6 Modal Accessibility Pitfalls"** - We'll explore complex accessibil
 
 **Series**:
 
-- ✅ [001] The Complete Guide to Button Accessibility (Current)
+- [001] The Complete Guide to Button Accessibility (Current)
 - ⏳ [002] 6 Modal Accessibility Pitfalls
 - ⏳ [003] Select/Combobox ARIA Structure
 - ⏳ [004] Form Accessibility Checklist

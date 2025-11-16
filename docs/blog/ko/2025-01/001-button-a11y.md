@@ -12,9 +12,9 @@
 
 이 글에서는:
 
-- ❌ 잘못된 구현이 초래하는 문제
-- ⚠️ 수동으로 접근성을 구현하는 방법
-- ✅ HANUI가 자동으로 해결하는 방법
+- 잘못된 구현이 초래하는 문제
+- 수동으로 접근성을 구현하는 방법
+- HANUI가 자동으로 해결하는 방법
 
 을 실제 코드와 함께 살펴보겠습니다.
 
@@ -22,7 +22,7 @@
 
 ## 문제 상황: 흔히 보는 잘못된 구현
 
-### ❌ Case 1: `<div>`를 버튼처럼 사용
+### Case 1: `<div>`를 버튼처럼 사용
 
 ```tsx
 <div className="button" onClick={handleSubmit}>
@@ -44,7 +44,7 @@
 
 ---
 
-### ❌ Case 2: `<a>` 태그를 버튼처럼 사용
+### Case 2: `<a>` 태그를 버튼처럼 사용
 
 ```tsx
 <a
@@ -88,7 +88,7 @@
 
 ---
 
-## ⚠️ 수동으로 올바르게 구현하기
+## 수동으로 올바르게 구현하기
 
 ### 방법 1: Native `<button>` 사용 (권장)
 
@@ -100,15 +100,15 @@
 
 **장점**:
 
-- ✅ 자동으로 `role="button"` 부여
-- ✅ Tab 키로 포커스 가능
-- ✅ Enter + Space 키 모두 작동
-- ✅ 스크린 리더가 "제출하기 버튼"으로 읽음
+- 자동으로 `role="button"` 부여
+- Tab 키로 포커스 가능
+- Enter + Space 키 모두 작동
+- 스크린 리더가 "제출하기 버튼"으로 읽음
 
 **단점**:
 
-- ⚠️ 기본 스타일 제거 필요
-- ⚠️ `type` 속성 명시 필요 (기본값이 `submit`이라 form 제출됨)
+- 기본 스타일 제거 필요
+- `type` 속성 명시 필요 (기본값이 `submit`이라 form 제출됨)
 
 ---
 
@@ -140,15 +140,15 @@
 
 **문제점**:
 
-- ⚠️ 코드가 복잡함 (10줄 → 1줄로 줄일 수 있음)
-- ⚠️ 개발자가 실수하기 쉬움
-- ⚠️ 유지보수 어려움
+- 코드가 복잡함 (10줄 → 1줄로 줄일 수 있음)
+- 개발자가 실수하기 쉬움
+- 유지보수 어려움
 
 **결론**: **그냥 `<button>` 쓰세요.**
 
 ---
 
-## ✅ HANUI의 자동 해결 방법
+## HANUI의 자동 해결 방법
 
 HANUI Button 컴포넌트는 모든 접근성 요구사항을 자동으로 처리합니다.
 
@@ -165,17 +165,17 @@ import { Button } from '@hanui/react';
 ```tsx
 // 내부적으로 다음이 자동 적용됨
 <button
-  type="button" // ✅ 자동
-  role="button" // ✅ 자동
-  tabIndex={0} // ✅ 자동
+  type="button" // 자동
+  role="button" // 자동
+  tabIndex={0} // 자동
   onClick={handleSubmit}
   onKeyDown={(e) => {
-    // ✅ 자동
+    // 자동
     if (e.key === 'Enter' || e.key === ' ') {
       handleSubmit();
     }
   }}
-  aria-pressed={false} // ✅ 자동 (toggle 버튼인 경우)
+  aria-pressed={false} // 자동 (toggle 버튼인 경우)
 >
   제출하기
 </button>
@@ -185,18 +185,18 @@ import { Button } from '@hanui/react';
 
 ## 비교표: 3가지 방법
 
-| 구현 방법           | 키보드 접근 | 스크린 리더 | 코드 복잡도   | 유지보수      | 추천도 |
-| ------------------- | ----------- | ----------- | ------------- | ------------- | ------ |
-| ❌ `<div>`          | ✗           | ✗           | 낮음          | 어려움        | ✗      |
-| ⚠️ `<div>` + ARIA   | ✓           | ✓           | 매우 높음     | 매우 어려움   | △      |
-| ⚠️ `<button>`       | ✓           | ✓           | 보통          | 보통          | ○      |
-| ✅ **HANUI Button** | ✓           | ✓           | **매우 낮음** | **매우 쉬움** | **◎**  |
+| 구현 방법        | 키보드 접근 | 스크린 리더 | 코드 복잡도   | 유지보수      | 추천도 |
+| ---------------- | ----------- | ----------- | ------------- | ------------- | ------ |
+| `<div>`          | ✗           | ✗           | 낮음          | 어려움        | ✗      |
+| `<div>` + ARIA   | ✓           | ✓           | 매우 높음     | 매우 어려움   | △      |
+| `<button>`       | ✓           | ✓           | 보통          | 보통          | ○      |
+| **HANUI Button** | ✓           | ✓           | **매우 낮음** | **매우 쉬움** | **◎**  |
 
 ---
 
 ## 실전 예제: 로그인 버튼
 
-### ❌ 잘못된 구현
+### 잘못된 구현
 
 ```tsx
 function LoginForm() {
@@ -205,12 +205,12 @@ function LoginForm() {
       <input type="email" placeholder="이메일" />
       <input type="password" placeholder="비밀번호" />
 
-      {/* ❌ 문제 1: div를 버튼처럼 사용 */}
+      {/* 문제 1: div를 버튼처럼 사용 */}
       <div className="login-button" onClick={handleLogin}>
         로그인
       </div>
 
-      {/* ❌ 문제 2: a 태그를 버튼처럼 사용 */}
+      {/* 문제 2: a 태그를 버튼처럼 사용 */}
       <a href="#" onClick={handleForgotPassword}>
         비밀번호 찾기
       </a>
@@ -221,7 +221,7 @@ function LoginForm() {
 
 ---
 
-### ✅ HANUI로 해결
+### HANUI로 해결
 
 ```tsx
 import { Button } from '@hanui/react';
@@ -232,12 +232,12 @@ function LoginForm() {
       <input type="email" placeholder="이메일" />
       <input type="password" placeholder="비밀번호" />
 
-      {/* ✅ 자동으로 모든 접근성 처리됨 */}
+      {/* 자동으로 모든 접근성 처리됨 */}
       <Button variant="primary" onClick={handleLogin}>
         로그인
       </Button>
 
-      {/* ✅ 보조 버튼도 동일하게 접근 가능 */}
+      {/* 보조 버튼도 동일하게 접근 가능 */}
       <Button variant="ghost" onClick={handleForgotPassword}>
         비밀번호 찾기
       </Button>
@@ -265,10 +265,10 @@ function LoginForm() {
 **A**: `<button>`의 기본 `type`은 `submit`입니다. form 안에서 의도치 않은 제출을 방지하려면 반드시 `type="button"` 명시해야 합니다.
 
 ```tsx
-// ❌ form이 제출됨
+// form이 제출됨
 <button onClick={handleClick}>클릭</button>
 
-// ✅ form 제출 안 됨
+// form 제출 안 됨
 <button type="button" onClick={handleClick}>클릭</button>
 ```
 
@@ -304,7 +304,7 @@ HANUI는 `children`이 텍스트가 아닌 경우 `aria-label` 누락 시 경고
 - [ ] 버튼의 역할이 명확한가?
 - [ ] Icon 버튼인 경우 `aria-label`이 있는가?
 
-**HANUI Button을 사용하면 위 모든 항목이 자동으로 ✅ 처리됩니다.**
+**HANUI Button을 사용하면 위 모든 항목이 자동으로 처리됩니다.**
 
 ---
 
@@ -312,9 +312,9 @@ HANUI는 `children`이 텍스트가 아닌 경우 `aria-label` 누락 시 경고
 
 버튼 하나 만드는데도 생각보다 많은 접근성 고려사항이 있습니다.
 
-- ❌ `<div>` + `onClick`은 절대 사용하지 마세요
-- ⚠️ `<button>`을 사용하되, `type="button"` 잊지 마세요
-- ✅ **HANUI Button을 사용하면 모든 게 자동입니다**
+- `<div>` + `onClick`은 절대 사용하지 마세요
+- `<button>`을 사용하되, `type="button"` 잊지 마세요
+- **HANUI Button을 사용하면 모든 게 자동입니다**
 
 다음 글에서는 **"Modal 접근성의 6가지 함정"**을 다룹니다. Focus Trap, ESC 키 처리 등 Modal의 복잡한 접근성 이슈를 살펴보겠습니다.
 
@@ -322,7 +322,7 @@ HANUI는 `children`이 텍스트가 아닌 경우 `aria-label` 누락 시 경고
 
 **시리즈**:
 
-- ✅ [001] Button 접근성 완벽 가이드 (현재 글)
+- [001] Button 접근성 완벽 가이드 (현재 글)
 - ⏳ [002] Modal 접근성의 6가지 함정
 - ⏳ [003] Select/Combobox의 ARIA 구조
 - ⏳ [004] Form 접근성 체크리스트

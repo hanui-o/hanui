@@ -95,19 +95,19 @@
 ### 왜 Tailwind CSS인가?
 
 ```
-✅ 빠른 개발
+빠른 개발
    - 유틸리티 클래스로 즉시 스타일링
    - CSS 파일 작성 최소화
 
-✅ 일관성 유지
+일관성 유지
    - Design Token 시스템과 완벽 통합
    - KRDS 컬러, 간격을 Tailwind config에 정의
 
-✅ 성능 최적화
+성능 최적화
    - PurgeCSS로 사용하지 않는 CSS 제거
    - 최종 CSS 파일 크기 최소화
 
-✅ 개발자 경험
+개발자 경험
    - IDE 자동완성 지원
    - 클래스명 충돌 없음
 ```
@@ -183,22 +183,22 @@ export default {
 ### 왜 Headless UI인가?
 
 ```
-✅ 접근성 자동 보장
+접근성 자동 보장
    - WCAG 2.1 AA 기준 자동 준수
    - ARIA 속성 자동 설정
    - 키보드 네비게이션 자동 구현
    - Focus Management 자동
 
-✅ 복잡한 인터랙션 간소화
+복잡한 인터랙션 간소화
    - Modal: Focus Trap, ESC 닫기 자동
    - Select: 키보드 탐색, ARIA 자동
    - Combobox: 검색 + 선택 통합
 
-✅ 완전한 스타일 자유도
+완전한 스타일 자유도
    - Unstyled 컴포넌트 (Headless)
    - Tailwind CSS로 KRDS 스타일 100% 적용 가능
 
-✅ React 생태계와 완벽 통합
+React 생태계와 완벽 통합
    - React 18+ 지원
    - TypeScript 타입 완벽 지원
 ```
@@ -355,6 +355,6 @@ pnpm dev
 **작성자**: @odada-o
 **작성일**: 2025-01-08
 **버전**: v1.0
-**Status**: ✅ 기술 스택 확정 → 🚀 개발 준비 완료
+**Status**: 기술 스택 확정 → 🚀 개발 준비 완료
 
 **Next Action**: Issue #1 (Monorepo 설정) 시작

@@ -48,8 +48,8 @@
 <div onClick={handleClick}>클릭</div>
 
 // HANUI 엔진 경고
-⚠️ Warning: Interactive element without proper role
-✅ Suggestion: Use <Button> or add role="button"
+Warning: Interactive element without proper role
+Suggestion: Use <Button> or add role="button"
 
 // 자동 보정 옵션
 <div onClick={handleClick} role="button" tabIndex={0}>
@@ -240,7 +240,7 @@ const TabsKeyboardSchema = {
 **개발 모드 경고**:
 
 ```
-⚠️ Color Contrast Issue
+Color Contrast Issue
 Background: #f0f0f0
 Text: #e0e0e0
 Contrast Ratio: 1.2:1 (Minimum: 4.5:1)
@@ -260,7 +260,7 @@ Contrast Ratio: 1.2:1 (Minimum: 4.5:1)
 
 ```tsx
 <nav>
-  <div>메뉴</div> {/* ⚠️ Warning: nav should contain list */}
+  <div>메뉴</div> {/* Warning: nav should contain list */}
 </nav>
 
 // 권장 구조
@@ -392,7 +392,7 @@ ESC 키 → Dialog 닫힘
 ┌─────────────────────────────────┐
 │ HANUI A11y Inspector            │
 ├─────────────────────────────────┤
-│ ⚠️ 3 Issues Found               │
+│ 3 Issues Found               │
 │                                 │
 │ 1. Missing label (Button #3)   │
 │    → Add aria-label             │
@@ -417,7 +417,7 @@ ESC 키 → Dialog 닫힘
 **자동 감지 및 경고**:
 
 ```tsx
-<Input /> {/* ⚠️ Missing label */}
+<Input /> {/* Missing label */}
 
 // 권장 수정
 <FormField>
@@ -518,8 +518,8 @@ ESC 키 → Dialog 닫힘
 │ URL: https://example.com             │
 │                                      │
 │ Overall Score: 87/100                │
-│ WCAG 2.2 AA: ✅ Pass                 │
-│ KRDS: ⚠️ 3 Warnings                  │
+│ WCAG 2.2 AA: Pass                 │
+│ KRDS: 3 Warnings                  │
 │                                      │
 │ Issues:                              │
 │ 1. Missing alt text (3 images)      │
@@ -599,7 +599,7 @@ ESC 키 → Dialog 닫힘
 
 #### 시장 가치
 
-> 💡 **국내 기업은 Figma + React/Vue 통합을 매우 원합니다 → 시장 큰 편**
+> **국내 기업은 Figma + React/Vue 통합을 매우 원합니다 → 시장 큰 편**
 
 **타겟**:
 
@@ -615,10 +615,10 @@ ESC 키 → Dialog 닫힘
 
 **기업·공공기관이 필요한 것**:
 
-- ✅ 접근성 검증
-- ✅ 컴포넌트 확장 개발
-- ✅ 맞춤형 UI 시스템
-- ✅ KRDS 기반 리뉴얼
+- 접근성 검증
+- 컴포넌트 확장 개발
+- 맞춤형 UI 시스템
+- KRDS 기반 리뉴얼
 
 ---
 
@@ -761,10 +761,10 @@ ESC 키 → Dialog 닫힘
 
 **차별화 포인트**:
 
-1. ✅ **KRDS 특화** - 국내 유일
-2. ✅ **SaaS + 오픈소스 결합** - 글로벌 모델
-3. ✅ **교육 생태계** - 장기 브랜드 구축
-4. ✅ **Partner 프로그램** - 확장성 극대화
+1. **KRDS 특화** - 국내 유일
+2. **SaaS + 오픈소스 결합** - 글로벌 모델
+3. **교육 생태계** - 장기 브랜드 구축
+4. **Partner 프로그램** - 확장성 극대화
 
 ---
 

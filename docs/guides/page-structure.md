@@ -572,7 +572,7 @@ export default function ComponentsListPage() {
 
 ---
 
-## ✅ 제목 구조 (Heading Hierarchy)
+## 제목 구조 (Heading Hierarchy)
 
 **HANUI 제목 작성 규칙:**
 

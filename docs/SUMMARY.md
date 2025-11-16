@@ -5,29 +5,29 @@
 
 ---
 
-## ✅ 완료된 작업
+## 완료된 작업
 
 ### 1. GitHub Issues 생성 (23개)
 
-- ✅ Milestone: v0.1.0 (2025-02-28)
-- ✅ Labels: 16개 생성
-- ✅ 6개 Epic, 23개 Issue 생성 완료
-- ✅ 예상 개발 시간: 179h (약 22일)
+- Milestone: v0.1.0 (2025-02-28)
+- Labels: 16개 생성
+- 6개 Epic, 23개 Issue 생성 완료
+- 예상 개발 시간: 179h (약 22일)
 
 **확인**: https://github.com/hanui-o/hanui/issues
 
 ### 2. 기술 스택 확정
 
-- ✅ Tailwind CSS - KRDS 통합
-- ✅ Headless UI - Modal, Select
-- ✅ Props 기반 API (Radix UI 스타일)
-- ✅ className Escape Hatch
+- Tailwind CSS - KRDS 통합
+- Headless UI - Modal, Select
+- Props 기반 API (Radix UI 스타일)
+- className Escape Hatch
 
 ### 3. 디자인 레퍼런스 확정
 
-- ✅ **shadcn/ui** - 스타일/디자인
-- ✅ **Radix UI** - 기획/Props 구조
-- ✅ **KRDS** - 표준 (최우선)
+- **shadcn/ui** - 스타일/디자인
+- **Radix UI** - 기획/Props 구조
+- **KRDS** - 표준 (최우선)
 
 ### 4. 문서화 완료 (13개 문서)
 
@@ -65,12 +65,12 @@
 **결정**: Radix UI 스타일 (Props 기반) + className Escape Hatch
 
 ```tsx
-// ✅ Props로 KRDS 표준 강제
+// Props로 KRDS 표준 강제
 <Button size="medium" variant="primary">
   신청하기
 </Button>
 
-// ✅ className으로 레이아웃 확장
+// className으로 레이아웃 확장
 <Button
   size="medium"
   variant="primary"
@@ -312,7 +312,7 @@ hanui/
 
 ---
 
-## ✅ 최종 체크리스트
+## 최종 체크리스트
 
 ### 기획
 
@@ -361,7 +361,7 @@ git checkout -b feat/setup-monorepo
 
 **작성자**: @odada-o  
 **완료일**: 2025-11-10  
-**Status**: ✅ Phase 1 기획 완료 → 🚀 개발 시작 대기
+**Status**: Phase 1 기획 완료 → 🚀 개발 시작 대기
 
 **Repository**: https://github.com/hanui-o/hanui  
 **Issues**: https://github.com/hanui-o/hanui/issues  

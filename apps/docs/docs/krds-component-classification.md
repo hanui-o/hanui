@@ -108,22 +108,22 @@ KRDS(Korean Design System)에서 정의한 공식 컴포넌트 분류 체계입�
 
 ### 구현 완료
 
-- ✅ Button (액션)
-- ✅ Input (입력)
-- ✅ Label (입력)
-- ✅ Select (선택)
-- ✅ Card (레이아웃)
-- ✅ Table (레이아웃)
-- ✅ Modal (레이아웃)
-- ✅ Masthead (아이덴티티)
-- ✅ Identifier (아이덴티티)
-- ✅ SkipLink (탐색)
-- ✅ Breadcrumb (탐색)
-- ✅ Pagination (탐색)
-- ✅ File Upload (입력)
-- ✅ Tooltip (도움)
-- ✅ Tabs (레이아웃)
-- ✅ Accordion (레이아웃)
+- Button (액션)
+- Input (입력)
+- Label (입력)
+- Select (선택)
+- Card (레이아웃)
+- Table (레이아웃)
+- Modal (레이아웃)
+- Masthead (아이덴티티)
+- Identifier (아이덴티티)
+- SkipLink (탐색)
+- Breadcrumb (탐색)
+- Pagination (탐색)
+- File Upload (입력)
+- Tooltip (도움)
+- Tabs (레이아웃)
+- Accordion (레이아웃)
 
 ### 구현 예정
 

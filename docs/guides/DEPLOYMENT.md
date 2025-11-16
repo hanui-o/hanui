@@ -405,7 +405,7 @@ Vercel Dashboard → Settings → Domains
 
 ---
 
-## ✅ 체크리스트
+## 체크리스트
 
 ### Issue #21: NPM 배포 준비
 

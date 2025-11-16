@@ -203,10 +203,10 @@ PageNav는 DocsLayout에서 자동으로 포함되므로 별도로 추가할 필
 1. **Heading 컴포넌트 사용 확인**
 
    ```tsx
-   // ❌ 잘못된 방법
+   // 잘못된 방법
    <h2>제목</h2>
 
-   // ✅ 올바른 방법
+   // 올바른 방법
    <Heading level="h2">제목</Heading>
    ```
 

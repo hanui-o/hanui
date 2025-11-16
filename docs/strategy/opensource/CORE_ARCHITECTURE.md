@@ -33,10 +33,10 @@
 
 **자동화 요소**:
 
-- ✅ 포커스 트랩 (Focus Trap)
-- ✅ `aria-modal` 자동 설정
-- ✅ ESC 키로 닫기
-- ✅ 스크린 리더 announcement
+- 포커스 트랩 (Focus Trap)
+- `aria-modal` 자동 설정
+- ESC 키로 닫기
+- 스크린 리더 announcement
 
 **시장 가치**:
 
@@ -62,10 +62,10 @@
 
 **자동화 요소**:
 
-- ✅ 방향 자동 계산 (collision detection)
-- ✅ Arrow key navigation
-- ✅ `role="menu"` 자동 처리
-- ✅ `aria-activedescendant` 자동 지정
+- 방향 자동 계산 (collision detection)
+- Arrow key navigation
+- `role="menu"` 자동 처리
+- `aria-activedescendant` 자동 지정
 
 **시장 가치**:
 
@@ -91,10 +91,10 @@
 
 **자동화 요소**:
 
-- ✅ `role="tablist"` 자동 적용
-- ✅ `aria-selected`, `aria-controls` 자동 연결
-- ✅ 방향키 이동 지원 (Arrow keys)
-- ✅ 키보드 포커스 관리
+- `role="tablist"` 자동 적용
+- `aria-selected`, `aria-controls` 자동 연결
+- 방향키 이동 지원 (Arrow keys)
+- 키보드 포커스 관리
 
 **시장 가치**:
 
@@ -120,10 +120,10 @@
 
 **자동화 요소**:
 
-- ✅ `aria-expanded` 자동 관리
-- ✅ `aria-autocomplete` 자동 설정
-- ✅ 검색 + 키보드 조작 통합
-- ✅ 옵션 announcement 자동화
+- `aria-expanded` 자동 관리
+- `aria-autocomplete` 자동 설정
+- 검색 + 키보드 조작 통합
+- 옵션 announcement 자동화
 
 **시장 가치**:
 
@@ -147,10 +147,10 @@
 
 **자동화 요소**:
 
-- ✅ 포커스 접근성
-- ✅ 마우스 hover + 키보드 방식 통합
-- ✅ `aria-describedby` 자동 연결
-- ✅ ESC 키로 닫기
+- 포커스 접근성
+- 마우스 hover + 키보드 방식 통합
+- `aria-describedby` 자동 연결
+- ESC 키로 닫기
 
 **시장 가치**:
 
@@ -178,10 +178,10 @@
 
 **자동화 요소**:
 
-- ✅ `label` ↔ `input` 자동 연결
-- ✅ 오류 메시지 `aria-live` 자동 포함
-- ✅ `placeholder` 대체 텍스트 검사
-- ✅ 유효성 검사 상태 자동 전달
+- `label` ↔ `input` 자동 연결
+- 오류 메시지 `aria-live` 자동 포함
+- `placeholder` 대체 텍스트 검사
+- 유효성 검사 상태 자동 전달
 
 ```tsx
 <FormField>
@@ -198,9 +198,9 @@
 
 **자동화 요소**:
 
-- ✅ `role="checkbox"` 자동
-- ✅ `aria-checked` 상태 자동 관리
-- ✅ 키보드 Space 토글 지원
+- `role="checkbox"` 자동
+- `aria-checked` 상태 자동 관리
+- 키보드 Space 토글 지원
 
 ---
 
@@ -208,9 +208,9 @@
 
 **자동화 요소**:
 
-- ✅ `role="radiogroup"` 자동
-- ✅ Arrow key 그룹 내 이동
-- ✅ `aria-checked` 자동 관리
+- `role="radiogroup"` 자동
+- Arrow key 그룹 내 이동
+- `aria-checked` 자동 관리
 
 ---
 
@@ -218,9 +218,9 @@
 
 **자동화 요소**:
 
-- ✅ `role="switch"` 자동
-- ✅ `aria-checked` 자동
-- ✅ 토글 상태 announcement
+- `role="switch"` 자동
+- `aria-checked` 자동
+- 토글 상태 announcement
 
 ---
 
@@ -228,10 +228,10 @@
 
 **자동화 요소**:
 
-- ✅ `role="button"` 자동
-- ✅ `disabled` ARIA 자동 처리
-- ✅ `aria-pressed` 상태 자동 (토글 버튼)
-- ✅ 로딩 상태 `aria-busy` 자동
+- `role="button"` 자동
+- `disabled` ARIA 자동 처리
+- `aria-pressed` 상태 자동 (토글 버튼)
+- 로딩 상태 `aria-busy` 자동
 
 ---
 
@@ -310,9 +310,9 @@
 
 **특징**:
 
-- ✅ 디자인과 완전히 분리
-- ✅ 순수 접근성 엔진
-- ✅ 재사용 가능한 primitives
+- 디자인과 완전히 분리
+- 순수 접근성 엔진
+- 재사용 가능한 primitives
 
 **코드 예시**:
 
@@ -370,9 +370,9 @@ export const Dialog = ({ children, ...props }) => {
 
 **특징**:
 
-- ✅ 디자인 전혀 포함하지 않음
-- ✅ 100% 기능에만 집중
-- ✅ 접근성 자동 보장
+- 디자인 전혀 포함하지 않음
+- 100% 기능에만 집중
+- 접근성 자동 보장
 
 ---
 
@@ -458,9 +458,9 @@ export const Dialog = ({ children, ...props }) => {
 
 **차별화 포인트**:
 
-- ✅ 한국 공공기관 입찰 즉시 대응
-- ✅ KRDS 자동 검증
-- ✅ 한글 기반 접근성 최적화
+- 한국 공공기관 입찰 즉시 대응
+- KRDS 자동 검증
+- 한글 기반 접근성 최적화
 
 ---
 
@@ -479,9 +479,9 @@ export const Dialog = ({ children, ...props }) => {
 
 **차별화 포인트**:
 
-- ✅ 브랜드 정체성 유지 가능
-- ✅ 디자인 시스템 자유도
-- ✅ 더 가벼운 번들 사이즈
+- 브랜드 정체성 유지 가능
+- 디자인 시스템 자유도
+- 더 가벼운 번들 사이즈
 
 ---
 
@@ -500,9 +500,9 @@ export const Dialog = ({ children, ...props }) => {
 
 **차별화 포인트**:
 
-- ✅ 공공기관 특화
-- ✅ 법적 요구사항 자동 충족
-- ✅ 디자인 자유도
+- 공공기관 특화
+- 법적 요구사항 자동 충족
+- 디자인 자유도
 
 ---
 
@@ -523,9 +523,9 @@ export const Dialog = ({ children, ...props }) => {
 | 요소               | Radix      | MUI    | Semi   | **HANUI**      |
 | ------------------ | ---------- | ------ | ------ | -------------- |
 | **WCAG 지원**      | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | **⭐⭐⭐⭐⭐** |
-| **KRDS 지원**      | ❌         | ❌     | ❌     | **✅**         |
+| **KRDS 지원**      |            |        |        | **✅**         |
 | **디자인 자유도**  | ⭐⭐⭐⭐⭐ | ⭐⭐   | ⭐⭐   | **⭐⭐⭐⭐⭐** |
-| **한국 시장 특화** | ❌         | ❌     | ❌     | **✅**         |
+| **한국 시장 특화** |            |        |        | **✅**         |
 | **자동화 수준**    | ⭐⭐⭐⭐   | ⭐⭐⭐ | ⭐⭐⭐ | **⭐⭐⭐⭐⭐** |
 
 ---
@@ -559,10 +559,10 @@ export const Dialog = ({ children, ...props }) => {
 
 **각 컴포넌트당**:
 
-- ✅ WCAG 2.2 AA 준수
-- ✅ KRDS 2.2 준수
-- ✅ 자동화된 접근성 테스트
-- ✅ 문서화 (한글 + 영문)
+- WCAG 2.2 AA 준수
+- KRDS 2.2 준수
+- 자동화된 접근성 테스트
+- 문서화 (한글 + 영문)
 
 ---
 
@@ -578,9 +578,9 @@ export const Dialog = ({ children, ...props }) => {
 
 **추가 기능**:
 
-- ✅ Form 유효성 검사 자동화
-- ✅ 에러 메시지 자동 연결
-- ✅ Label 자동 매핑
+- Form 유효성 검사 자동화
+- 에러 메시지 자동 연결
+- Label 자동 매핑
 
 ---
 

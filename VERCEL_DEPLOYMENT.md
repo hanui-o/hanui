@@ -145,7 +145,7 @@ https://dnschecker.org 에서 `hanui.io` 입력 → 글로벌 DNS 전파 상태 
 
 프로젝트 **Settings → Domains**에서:
 
-- ✅ `Valid Configuration` 표시되면 성공
+- `Valid Configuration` 표시되면 성공
 - ⏳ `Pending` 상태면 DNS 전파 대기 중
 
 ---

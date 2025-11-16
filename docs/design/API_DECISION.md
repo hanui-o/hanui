@@ -100,12 +100,12 @@
 ### 결정 내용
 
 ```tsx
-// ✅ 기본: Props로 KRDS 표준 강제
+// 기본: Props로 KRDS 표준 강제
 <Button size="medium" variant="primary">
   신청하기
 </Button>
 
-// ✅ 특수 케이스: className으로 레이아웃 확장
+// 특수 케이스: className으로 레이아웃 확장
 <Button
   size="medium"
   variant="primary"
@@ -114,7 +114,7 @@
   신청하기
 </Button>
 
-// ❌ 금지: 핵심 스타일 우회 불가
+// 금지: 핵심 스타일 우회 불가
 <Button
   size="medium"
   className="h-6 px-2 bg-purple-500"  // 에러 또는 무시됨
@@ -149,10 +149,10 @@
 **예시**:
 
 ```tsx
-// ✅ Props로 접근성 자동 보장
+// Props로 접근성 자동 보장
 <Button size="medium">  // → 40px (터치 영역 충분)
 
-// ❌ className으로 접근성 위반 가능
+// className으로 접근성 위반 가능
 <Button className="h-6">  // → 24px (터치 영역 부족, 위법)
 ```
 
@@ -184,7 +184,7 @@
 
 // 2030년 개발자 B (담당자 교체)
 <Button size="medium" variant="primary" />
-// ✅ 동일한 코드, 동일한 스타일
+// 동일한 코드, 동일한 스타일
 ```
 
 vs
@@ -195,7 +195,7 @@ vs
 
 // 2030년 개발자 B (담당자 교체)
 <Button className="h-11 px-5 bg-blue-500" />
-// ❌ 미묘하게 다른 스타일, 일관성 무너짐
+// 미묘하게 다른 스타일, 일관성 무너짐
 ```
 
 ---
@@ -267,7 +267,7 @@ function filterClassName(className: string): string {
 
 ## 📋 허용/금지 패턴
 
-### ✅ 허용: 레이아웃, 간격, 정렬
+### 허용: 레이아웃, 간격, 정렬
 
 ```tsx
 // 여백
@@ -286,7 +286,7 @@ function filterClassName(className: string): string {
 <Button className="w-full md:w-auto" />
 ```
 
-### ❌ 금지: 크기, 색상, 패딩
+### 금지: 크기, 색상, 패딩
 
 ```tsx
 // 높이 (size props 사용)
@@ -377,18 +377,18 @@ const variants = {
 
 ---
 
-## ✅ 결론
+## 결론
 
 **HANUI는 Props 기반 (Radix UI 스타일)을 채택합니다.**
 
 ### 채택 이유
 
-1. ✅ 공공 프로젝트 특성 (표준 준수 > 자유도)
-2. ✅ 접근성 법적 의무 자동화
-3. ✅ KRDS 이탈 방지
-4. ✅ 장기 유지보수 일관성
-5. ✅ 초보 개발자도 쉽게 사용
-6. ✅ className Escape Hatch로 유연성 확보
+1. 공공 프로젝트 특성 (표준 준수 > 자유도)
+2. 접근성 법적 의무 자동화
+3. KRDS 이탈 방지
+4. 장기 유지보수 일관성
+5. 초보 개발자도 쉽게 사용
+6. className Escape Hatch로 유연성 확보
 
 ### Trade-off 수용
 
@@ -410,5 +410,5 @@ const variants = {
 
 **작성자**: @odada-o  
 **결정일**: 2025-11-10  
-**Status**: ✅ 최종 결정 완료  
+**Status**: 최종 결정 완료  
 **Next**: Issue #7 (Button) 구현 시 적용
