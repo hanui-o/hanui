@@ -4,6 +4,7 @@ import { Stack, Heading, Body } from '@hanui/react';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { CircleX, AlertTriangle, CheckCircle, Info } from 'lucide-react';
 
 export default function ColorsPage() {
   return (
@@ -283,10 +284,9 @@ export default function ColorsPage() {
                     는 순수 흰색(#ffffff) CSS 변수를 사용합니다. 다크 모드에서도
                     항상 흰색이므로, 배경이 모드에 따라 변한다면 KRDS 색상 변수(
                     <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
-                      text-krds-gray-10
+                      text-krds-white
                     </code>
-                    등)를 사용하세요. 순수 흰색이 필요한 경우(로고, 아이콘
-                    등)에만 사용하세요.
+                    등)를 사용하세요. 순수 흰색이 필요한 경우에만 사용하세요.
                   </li>
                 </ul>
               </div>
@@ -372,29 +372,29 @@ export default function ColorsPage() {
             <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
               <Body size="sm" className="text-krds-information-80">
                 <strong>💡 차이점:</strong>
-                <ul className="mt-2 space-y-1 text-sm list-disc list-inside">
-                  <li>
-                    <code className="px-1 py-0.5 bg-krds-white rounded">
-                      krds-white
-                    </code>
-                    /
-                    <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
-                      krds-black
-                    </code>
-                    : 모드에 따라 자동 반전 (권장)
-                  </li>
-                  <li>
-                    <code className="px-1 py-0.5 bg-krds-white rounded">
-                      white
-                    </code>
-                    /
-                    <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
-                      black
-                    </code>
-                    : 모드 무관, 항상 동일 (순수 색상이 필요한 경우)
-                  </li>
-                </ul>
               </Body>
+              <ul className="mt-2 space-y-1 text-sm list-disc list-inside text-krds-information-80">
+                <li>
+                  <code className="px-1 py-0.5 bg-krds-white rounded">
+                    krds-white
+                  </code>
+                  /
+                  <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
+                    krds-black
+                  </code>
+                  : 모드에 따라 자동 반전 (권장)
+                </li>
+                <li>
+                  <code className="px-1 py-0.5 bg-krds-white rounded">
+                    white
+                  </code>
+                  /
+                  <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
+                    black
+                  </code>
+                  : 모드 무관, 항상 동일 (순수 색상이 필요한 경우)
+                </li>
+              </ul>
             </div>
           </Stack>
 
@@ -436,41 +436,51 @@ export default function ColorsPage() {
                 <div className="w-16 h-16 bg-krds-white border border-krds-gray-20 rounded"></div>
                 <div>
                   <code className="text-sm">bg-krds-white</code>
-                  <p className="text-xs text-krds-gray-70">
-                    Surface 0 - 기본 배경
-                  </p>
+                  <p className="text-xs">Surface 0 - 기본 배경</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-3 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
                 <div className="w-16 h-16 bg-krds-gray-5 border border-krds-gray-20 rounded"></div>
                 <div>
                   <code className="text-sm">bg-krds-gray-5</code>
-                  <p className="text-xs text-krds-gray-70">
-                    Surface 5 - 보조 배경
-                  </p>
+                  <p className="text-xs">Surface 5 - 보조 배경</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-3 bg-krds-gray-10 rounded-lg border border-krds-gray-20">
                 <div className="w-16 h-16 bg-krds-gray-10 border border-krds-gray-20 rounded"></div>
                 <div>
                   <code className="text-sm">bg-krds-gray-10</code>
-                  <p className="text-xs text-krds-gray-70">
-                    Surface 10 - 강조 배경
-                  </p>
+                  <p className="text-xs">Surface 10 - 강조 배경</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-3 bg-krds-gray-20 rounded-lg border border-krds-gray-30">
                 <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
                 <div>
                   <code className="text-sm">bg-krds-gray-20</code>
-                  <p className="text-xs text-krds-gray-70">구분선, 테두리</p>
+                  <p className="text-xs">구분선, 테두리</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 p-3 bg-krds-gray-60 rounded-lg">
+              <div className="flex items-center gap-4 p-3 bg-krds-gray-40 rounded-lg border border-krds-gray-30">
+                <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
+                <div>
+                  <code className="text-sm">bg-krds-gray-40</code>
+                  <p className="text-xs">비활성화</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 p-3 bg-krds-gray-50 rounded-lg border border-krds-gray-30">
+                <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
+                <div>
+                  <code className="text-sm text-krds-gray-10">
+                    bg-krds-gray-50
+                  </code>
+                  <p className="text-xs text-krds-gray-10">비활성화</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 p-3 bg-krds-gray-70 rounded-lg">
                 <div className="w-16 h-16 bg-krds-gray-60 rounded"></div>
                 <div>
                   <code className="text-sm text-krds-gray-10">
-                    text-krds-gray-60
+                    text-krds-gray-70
                   </code>
                   <p className="text-xs text-krds-gray-30">보조 텍스트</p>
                 </div>
@@ -484,44 +494,68 @@ export default function ColorsPage() {
                   <p className="text-xs text-krds-gray-30">본문 텍스트</p>
                 </div>
               </div>
+              <div className="flex items-center gap-4 p-3 bg-krds-gray-95 rounded-lg">
+                <div className="w-16 h-16 bg-krds-gray-90 rounded"></div>
+                <div>
+                  <code className="text-sm text-krds-gray-10">
+                    text-krds-gray-95
+                  </code>
+                  <p className="text-xs text-krds-gray-30">굵은 텍스트</p>
+                </div>
+              </div>
             </div>
           </Stack>
 
           {/* System Colors */}
           <Stack spacing="heading-tight">
             <Heading level="h3">System Colors</Heading>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <div className="p-4 bg-krds-danger-5 border border-krds-danger-20 rounded-lg">
-                <code className="text-sm text-krds-danger-80 block mb-2">
-                  bg-krds-danger-5 / text-krds-danger-80
+            <div className="grid grid-cols-1 gap-4 mb-4">
+              {/* Danger */}
+              <div className="p-4 bg-krds-danger-5 border border-krds-danger-10 rounded-lg">
+                <strong className="text-sm text-krds-danger-60 mb-2 flex items-center gap-2">
+                  <CircleX className="w-4 h-4 text-krds-danger-50" /> Danger -
+                  오류, 삭제
+                </strong>
+                <code className="text-sm block">
+                  icon-krds-danger-50 / text-krds-danger-60 / bg-krds-danger-5 /
+                  border-krds-danger-10
                 </code>
-                <p className="text-sm text-krds-danger-90">
-                  Danger - 오류, 삭제
-                </p>
               </div>
-              <div className="p-4 bg-krds-warning-5 border border-krds-warning-20 rounded-lg">
-                <code className="text-sm text-krds-warning-80 block mb-2">
-                  bg-krds-warning-5 / text-krds-warning-80
-                </code>
-                <p className="text-sm text-krds-warning-90">
+
+              {/* Warning */}
+              <div className="p-4 bg-krds-warning-5 border border-krds-warning-10 rounded-lg">
+                <strong className="text-sm text-krds-warning-60 mb-2 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-krds-warning-50" />{' '}
                   Warning - 경고, 주의
-                </p>
-              </div>
-              <div className="p-4 bg-krds-success-5 border border-krds-success-20 rounded-lg">
-                <code className="text-sm text-krds-success-80 block mb-2">
-                  bg-krds-success-5 / text-krds-success-80
+                </strong>
+                <code className="text-sm block">
+                  icon-krds-warning-50 / text-krds-warning-60 /
+                  bg-krds-warning-5 / border-krds-warning-10
                 </code>
-                <p className="text-sm text-krds-success-90">
+              </div>
+
+              {/* Success */}
+              <div className="p-4 bg-krds-success-5 border border-krds-success-10 rounded-lg">
+                <strong className="text-sm text-krds-success-60 mb-2 flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-krds-success-50" />{' '}
                   Success - 완료, 성공
-                </p>
-              </div>
-              <div className="p-4 bg-krds-information-5 border border-krds-information-20 rounded-lg">
-                <code className="text-sm text-krds-information-80 block mb-2">
-                  bg-krds-information-5 / text-krds-information-80
+                </strong>
+                <code className="text-sm block">
+                  icon-krds-success-50 / text-krds-success-60 /
+                  bg-krds-success-5 / border-krds-success-10
                 </code>
-                <p className="text-sm text-krds-information-90">
-                  Info - 정보, 안내
-                </p>
+              </div>
+
+              {/* Information */}
+              <div className="p-4 bg-krds-information-5 border border-krds-information-10 rounded-lg">
+                <strong className="text-sm text-krds-information-60 mb-2 flex items-center gap-2">
+                  <Info className="w-4 h-4 text-krds-information-50" /> Info -
+                  정보, 안내
+                </strong>
+                <code className="text-sm block">
+                  icon-krds-information-50 / text-krds-information-60 /
+                  bg-krds-information-5 / border-krds-information-10
+                </code>
               </div>
             </div>
           </Stack>
@@ -701,18 +735,17 @@ export default function ColorsPage() {
             <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
               <Body size="sm" className="text-krds-information-80">
                 <strong>💡 언제 무엇을 사용하나요?</strong>
-                <ul className="mt-2 space-y-1 text-sm list-disc list-inside">
-                  <li>
-                    <strong>Semantic 변수 권장:</strong> 일반적인 UI
-                    컴포넌트(버튼, 카드, 알림 등)에서 의미에 맞는 색상을 사용할
-                    때
-                  </li>
-                  <li>
-                    <strong>숫자 스케일 사용:</strong> 특정 색상 값이 필요한
-                    경우(예: 디자인 시스템에서 정확히 5번 색상을 지정해야 할 때)
-                  </li>
-                </ul>
               </Body>
+              <ul className="mt-2 space-y-1 text-sm list-disc list-inside text-krds-information-80">
+                <li>
+                  <strong>Semantic 변수 권장:</strong> 일반적인 UI
+                  컴포넌트(버튼, 카드, 알림 등)에서 의미에 맞는 색상을 사용할 때
+                </li>
+                <li>
+                  <strong>숫자 스케일 사용:</strong> 특정 색상 값이 필요한
+                  경우(예: 디자인 시스템에서 정확히 5번 색상을 지정해야 할 때)
+                </li>
+              </ul>
             </div>
           </Stack>
 
