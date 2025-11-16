@@ -12,11 +12,13 @@
  * Follows industry standards for Korean government websites
  */
 export const breakpoints = {
-  sm: '640px', // Mobile landscape, small tablets
-  md: '768px', // Tablets
-  lg: '1024px', // Desktop, laptops
-  xl: '1280px', // Large desktop
-  '2xl': '1440px', // Extra large desktop (KRDS recommended max-width)
+  // 하이브리드 방식: Tailwind 기본값 + KRDS 브레이크포인트
+  xs: '360px', // KRDS small - 모바일 (360px 이상)
+  sm: '640px', // Tailwind 기본 - 모바일 가로, 작은 태블릿
+  md: '768px', // KRDS medium / Tailwind 기본 - 태블릿 (768px 이상)
+  lg: '1024px', // KRDS large / Tailwind 기본 - 데스크톱 (1024px 이상)
+  xl: '1280px', // KRDS xlarge / Tailwind 기본 - 큰 데스크톱 (1280px 이상)
+  '2xl': '1440px', // KRDS xxlarge - 매우 큰 화면 (1440px 이상, Tailwind 기본: 1536px)
 } as const;
 
 /**
@@ -25,11 +27,12 @@ export const breakpoints = {
  * Numeric values for calculations
  */
 export const breakpointValues = {
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  '2xl': 1440,
+  xs: 360, // KRDS small
+  sm: 640, // Tailwind 기본
+  md: 768, // KRDS medium / Tailwind 기본
+  lg: 1024, // KRDS large / Tailwind 기본
+  xl: 1280, // KRDS xlarge / Tailwind 기본
+  '2xl': 1440, // KRDS xxlarge (Tailwind 기본: 1536)
 } as const;
 
 /**
