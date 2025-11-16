@@ -31,7 +31,7 @@ export default function DesignTokensPage() {
           </Body>
           <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
             <Body size="sm" className="text-krds-primary-text">
-              <strong>💡 Tip:</strong> 모든 토큰은 CSS 변수로도 사용 가능하며,
+              <strong>Tip:</strong> 모든 토큰은 CSS 변수로도 사용 가능하며,
               네임스페이스는{' '}
               <code className="px-1.5 py-0.5 bg-krds-primary-10 rounded">
                 --krds
@@ -41,7 +41,7 @@ export default function DesignTokensPage() {
           </div>
           <div className="p-4 bg-krds-information-surface rounded-lg border border-krds-information-border">
             <Body size="sm" className="text-krds-information-text">
-              <strong>📚 KRDS 공식 가이드:</strong> 더 자세한 내용은{' '}
+              <strong>KRDS 공식 가이드:</strong> 더 자세한 내용은{' '}
               <a
                 href="https://www.krds.go.kr"
                 target="_blank"

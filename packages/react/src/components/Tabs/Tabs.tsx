@@ -164,10 +164,10 @@ const useTabsContext = () => {
  * Tabs Root Component
  *
  * **Foundation Layer Features:**
- * - ✅ ARIA Automation: role="tablist", role="tab", role="tabpanel"
- * - ✅ Keyboard Navigation: Arrow keys, Home, End
- * - ✅ Focus Management: Auto-focus on active tab
- * - ✅ WCAG 2.1 Compliance: Keyboard access, Focus visibility
+ * - ARIA Automation: role="tablist", role="tab", role="tabpanel"
+ * - Keyboard Navigation: Arrow keys, Home, End
+ * - Focus Management: Auto-focus on active tab
+ * - WCAG 2.1 Compliance: Keyboard access, Focus visibility
  *
  * **KRDS Standards:**
  * - role="tablist" for tab container

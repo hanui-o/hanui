@@ -107,11 +107,11 @@ function isImageFile(file: File): boolean {
  * FileUpload Component (파일 업로드)
  *
  * **Foundation Layer Features:**
- * - ✅ Semantic HTML: Proper button role and ARIA attributes
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation and focus management
- * - ✅ Screen Reader Support: Descriptive aria-labels and file list
- * - ✅ Drag & Drop: Native HTML5 drag and drop with visual feedback
- * - ✅ Dark Mode: Automatic dark mode support with optimized colors
+ * - Semantic HTML: Proper button role and ARIA attributes
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation and focus management
+ * - Screen Reader Support: Descriptive aria-labels and file list
+ * - Drag & Drop: Native HTML5 drag and drop with visual feedback
+ * - Dark Mode: Automatic dark mode support with optimized colors
  *
  * **Design Principles:**
  * - Client-side validation (file type, size, count)

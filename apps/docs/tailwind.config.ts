@@ -34,7 +34,7 @@ const config: Config = {
         base: ['17px', { lineHeight: '150%' }], // KRDS 기본 (기존 16px → 17px)
       },
       spacing: {
-        // ⚠️ 주의: spacing은 숫자 키를 사용하므로 Tailwind 기본값과 겹칩니다
+        // 주의: spacing은 숫자 키를 사용하므로 Tailwind 기본값과 겹칩니다
         // KRDS 전용 spacing은 별도로 정의하지 않고, Tailwind 기본값을 사용합니다
         // KRDS 8px grid는 Tailwind 기본 spacing과 호환됩니다:
         // - gap-2 = 8px (KRDS 기본 단위)
@@ -59,7 +59,7 @@ const config: Config = {
           DEFAULT: 'var(--krds-black)', // 기본 모드: 검은색, 다크 모드: 흰색
         },
 
-        // ⚠️ KRDS 컬러는 모두 `krds-*` 네임스페이스로 시작합니다
+        // KRDS 컬러는 모두 `krds-*` 네임스페이스로 시작합니다
         // Tailwind 기본 컬러(gray, red, blue 등)와 공존하며 명확히 구분됩니다
         // 사용 예: bg-krds-primary-60, text-krds-gray-50, border-krds-danger-50
 
@@ -67,7 +67,7 @@ const config: Config = {
         // 가이드라인:
         //   기본 모드: base=50, text=60, surface=5
         //   다크 모드: base=50, text=20, surface=95
-        //   ✅ Semantic 변수 사용 권장: text-krds-primary-text (모드 자동 대응)
+        //   Semantic 변수 사용 권장: text-krds-primary-text (모드 자동 대응)
         'krds-primary': {
           // Semantic 변수 (모드에 따라 자동 변경)
           DEFAULT: 'var(--krds-primary-base)', // base (기본 모드: 50, 다크 모드: 50)
@@ -92,7 +92,7 @@ const config: Config = {
         // 가이드라인:
         //   기본 모드: base=70, text=80, surface=5
         //   다크 모드: base=60, text=20, surface=95
-        //   ✅ Semantic 변수 사용 권장: text-krds-secondary-text (모드 자동 대응)
+        //   Semantic 변수 사용 권장: text-krds-secondary-text (모드 자동 대응)
         'krds-secondary': {
           DEFAULT: 'var(--krds-secondary-base)', // base (기본 모드: 70, 다크 모드: 60)
           // Semantic 변수 (모드에 따라 자동 변경)
@@ -119,7 +119,7 @@ const config: Config = {
         //   70: subtle
         //   90: basic
         //   95: bolder
-        //   ✅ Semantic 변수 사용 권장: text-krds-gray-text (모드 자동 대응)
+        //   Semantic 변수 사용 권장: text-krds-gray-text (모드 자동 대응)
         'krds-gray': {
           // Semantic 변수 (모드에 따라 자동 변경)
           text: 'var(--krds-gray-text)', // 기본 모드: 90, 다크 모드: 10
@@ -145,7 +145,7 @@ const config: Config = {
         // 가이드라인:
         //   기본 모드: surface=5, base=50, text=60
         //   선명한 화면 모드: surface=95, base=50, text=20
-        //   ✅ Semantic 변수 사용 권장: text-krds-accent-text (모드 자동 대응)
+        //   Semantic 변수 사용 권장: text-krds-accent-text (모드 자동 대응)
         //   참고: 강조 색상은 5% 이하 비율로 제한적 사용
         'krds-accent': {
           DEFAULT: 'var(--krds-accent-base)', // base (모드 무관: 50)
@@ -170,7 +170,7 @@ const config: Config = {
         // 가이드라인:
         //   기본 모드: 아이콘=50, 텍스트=60, 배경=5, 보더=10
         //   선명한 화면 모드: 아이콘=20, 텍스트=20, 배경=95, 보더=90
-        //   ✅ Semantic 변수 사용 권장: text-krds-danger-text (모드 자동 대응)
+        //   Semantic 변수 사용 권장: text-krds-danger-text (모드 자동 대응)
         'krds-danger': {
           DEFAULT: 'var(--krds-danger-base)', // base (모드 무관: 50)
           // Semantic 변수 (모드에 따라 자동 변경)
@@ -196,7 +196,7 @@ const config: Config = {
         // 가이드라인:
         //   기본 모드: 아이콘=50, 텍스트=60, 배경=5, 보더=10
         //   선명한 화면 모드: 아이콘=20, 텍스트=20, 배경=95, 보더=90
-        //   ✅ Semantic 변수 사용 권장: text-krds-warning-text (모드 자동 대응)
+        //   Semantic 변수 사용 권장: text-krds-warning-text (모드 자동 대응)
         'krds-warning': {
           DEFAULT: 'var(--krds-warning-base)', // base (모드 무관: 30)
           // Semantic 변수 (모드에 따라 자동 변경)
@@ -222,7 +222,7 @@ const config: Config = {
         // 가이드라인:
         //   기본 모드: 아이콘=50, 텍스트=60, 배경=5, 보더=10
         //   선명한 화면 모드: 아이콘=20, 텍스트=20, 배경=95, 보더=90
-        //   ✅ Semantic 변수 사용 권장: text-krds-success-text (모드 자동 대응)
+        //   Semantic 변수 사용 권장: text-krds-success-text (모드 자동 대응)
         'krds-success': {
           DEFAULT: 'var(--krds-success-base)', // base (모드 무관: 50)
           // Semantic 변수 (모드에 따라 자동 변경)
@@ -248,7 +248,7 @@ const config: Config = {
         // 가이드라인:
         //   기본 모드: 아이콘=50, 텍스트=60, 배경=5, 보더=10
         //   선명한 화면 모드: 아이콘=20, 텍스트=20, 배경=95, 보더=90
-        //   ✅ Semantic 변수 사용 권장: text-krds-information-text (모드 자동 대응)
+        //   Semantic 변수 사용 권장: text-krds-information-text (모드 자동 대응)
         'krds-information': {
           DEFAULT: 'var(--krds-information-base)', // base (모드 무관: 50)
           // Semantic 변수 (모드에 따라 자동 변경)

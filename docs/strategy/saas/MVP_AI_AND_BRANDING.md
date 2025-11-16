@@ -48,9 +48,9 @@ const accessibilityTree = await page.accessibility.snapshot();
 
 **특징**:
 
-- ✅ 빠른 개발 (5일 이내 가능)
-- ✅ 서버 부담 최소화
-- ✅ 결과 즉시 확인
+- 빠른 개발 (5일 이내 가능)
+- 서버 부담 최소화
+- 결과 즉시 확인
 
 ---
 
@@ -78,7 +78,7 @@ const accessibilityTree = await page.accessibility.snapshot();
 | **ARIA**       | aria-label 오류                 | 4.1.2     |
 | **ARIA**       | aria-hidden 남용                | 4.1.2     |
 
-> 💡 **이 30개만으로도 공공기관 WCAG 검사 항목의 60%를 커버합니다.**
+> **이 30개만으로도 공공기관 WCAG 검사 항목의 60%를 커버합니다.**
 
 ---
 
@@ -94,8 +94,8 @@ const accessibilityTree = await page.accessibility.snapshot();
 │ Date: 2025-11-14                    │
 │ Overall Score: 79/100               │
 │                                     │
-│ ✅ WCAG 2.2 AA: Pass                │
-│ ⚠️  KRDS: 3 Warnings                │
+│ WCAG 2.2 AA: Pass                │
+│  KRDS: 3 Warnings                │
 │                                     │
 ├─────────────────────────────────────┤
 │ Issues Found (12)                   │
@@ -114,7 +114,7 @@ const accessibilityTree = await page.accessibility.snapshot();
 │    Location: form > input[type=email]│
 │    Fix: Add <label for="email">    │
 │                                     │
-│ ⚠️  Warning (6)                     │
+│  Warning (6)                     │
 │ ℹ️  Info (3)                        │
 │                                     │
 ├─────────────────────────────────────┤
@@ -124,10 +124,10 @@ const accessibilityTree = await page.accessibility.snapshot();
 
 **리포트 포함 요소**:
 
-- ✅ 문제 목록 (우선순위별)
-- ✅ 위치 (CSS Selector)
-- ✅ 해결 가이드 (코드 예시 포함)
-- ✅ 점수화 (0~100점)
+- 문제 목록 (우선순위별)
+- 위치 (CSS Selector)
+- 해결 가이드 (코드 예시 포함)
+- 점수화 (0~100점)
 
 **효과**:
 
@@ -154,9 +154,9 @@ const accessibilityTree = await page.accessibility.snapshot();
 │ Score: 67/100      →  79/100 (+12)  │
 │                                      │
 │ Fixed Issues (5):                    │
-│ ✅ Logo alt text added               │
-│ ✅ Form labels added                 │
-│ ✅ Contrast improved                 │
+│ Logo alt text added               │
+│ Form labels added                 │
+│ Contrast improved                 │
 │                                      │
 │ New Issues (2):                      │
 │ 🔴 Missing heading in footer         │
@@ -238,8 +238,8 @@ URL 입력 → 검사 실행 → 리포트 생성 → 점수화 → 저장
 │  ┌─────────────┬─────────────┬─────────────┐   │
 │  │  Project A  │  Project B  │  Project C  │   │
 │  │    85/100   │    72/100   │    91/100   │   │
-│  │   ✅ 5 Pass │   ⚠️ 12 Warn│   ✅ 2 Pass │   │
-│  │   ⚠️ 3 Warn │   🔴 3 Error│   ⚠️ 1 Warn │   │
+│  │   5 Pass │   12 Warn│   2 Pass │   │
+│  │   3 Warn │   🔴 3 Error│   1 Warn │   │
 │  │   🔴 2 Error│             │             │   │
 │  └─────────────┴─────────────┴─────────────┘   │
 │                                                 │
@@ -271,9 +271,9 @@ URL 입력 → 검사 실행 → 리포트 생성 → 점수화 → 저장
 
 #### 핵심 가치
 
-- ✅ 들어오자마자 **"우리 프로젝트가 지금 어디가 문제인지"** 전체가 보임
-- ✅ 이게 HANUI Inspector의 **첫 감동 포인트**
-- ✅ 즉시 재스캔 가능 (빠른 재스캔 버튼)
+- 들어오자마자 **"우리 프로젝트가 지금 어디가 문제인지"** 전체가 보임
+- 이게 HANUI Inspector의 **첫 감동 포인트**
+- 즉시 재스캔 가능 (빠른 재스캔 버튼)
 
 ---
 
@@ -297,18 +297,18 @@ URL 입력 → 검사 실행 → 리포트 생성 → 점수화 → 저장
 │                                                 │
 │  📋 페이지 구조 트리 + 노드별 A11y 상태          │
 │                                                 │
-│  ▼ <html>                              ✅       │
-│    ▼ <header>                          ⚠️       │
-│      ▶ <nav>                           ✅       │
+│  ▼ <html>                                    │
+│    ▼ <header>                                │
+│      ▶ <nav>                                 │
 │      • <img> Logo                      🔴       │
 │        └─ Missing alt text                     │
-│    ▼ <main>                            ⚠️       │
+│    ▼ <main>                                  │
 │      ▼ <form>                          🔴       │
 │        • <input type="email">          🔴       │
 │          └─ Missing label                      │
-│        • <button>                      ⚠️       │
+│        • <button>                            │
 │          └─ Low contrast (2.1:1)               │
-│    ▶ <footer>                          ✅       │
+│    ▶ <footer>                                │
 │                                                 │
 ├─────────────────────────────────────────────────┤
 │                                                 │
@@ -328,7 +328,7 @@ URL 입력 → 검사 실행 → 리포트 생성 → 점수화 → 저장
 │  │ </header>                               │   │
 │  └─────────────────────────────────────────┘   │
 │                                                 │
-│  💡 Auto Fix Suggestion (AI):                   │
+│  Auto Fix Suggestion (AI):                   │
 │  ┌─────────────────────────────────────────┐   │
 │  │ <img src="/logo.png" alt="회사 로고">   │   │
 │  └─────────────────────────────────────────┘   │
@@ -340,11 +340,11 @@ URL 입력 → 검사 실행 → 리포트 생성 → 점수화 → 저장
 
 #### 핵심 가치
 
-- ✅ WCAG / KRDS 기준 자동 매칭
-- ✅ 코드 스니펫 자동 추출
-- ✅ AI 기반 자동 수정 제안
-- ✅ **"개발자가 바로 사용할 수 있는 해결 방법"** 제공
-- ✅ 단순한 분석 도구가 아니라 **해결 도구**로 포지셔닝
+- WCAG / KRDS 기준 자동 매칭
+- 코드 스니펫 자동 추출
+- AI 기반 자동 수정 제안
+- **"개발자가 바로 사용할 수 있는 해결 방법"** 제공
+- 단순한 분석 도구가 아니라 **해결 도구**로 포지셔닝
 
 ---
 
@@ -407,7 +407,7 @@ URL 입력 → 검사 실행 → 리포트 생성 → 점수화 → 저장
 │                                                 │
 │  AI Suggestion:                                 │
 │  ┌─────────────────────────────────────────┐   │
-│  │ background: #0066cc;  /* 4.6:1 ✅ */    │   │
+│  │ background: #0066cc;  /* 4.6:1 */    │   │
 │  │ color: #ffffff;                         │   │
 │  └─────────────────────────────────────────┘   │
 │  [✓ Apply]  [Copy Code]                        │
@@ -436,10 +436,10 @@ URL 입력 → 검사 실행 → 리포트 생성 → 점수화 → 저장
 
 #### 핵심 가치
 
-- ✅ Radix·Storybook이 못하는 최종 단계
-- ✅ **"오류 → 수정 → PR"까지 자동화**
-- ✅ HANUI 브랜드 차별화의 **압도적 포인트**
-- ✅ 개발자 경험(DX) 극대화
+- Radix·Storybook이 못하는 최종 단계
+- **"오류 → 수정 → PR"까지 자동화**
+- HANUI 브랜드 차별화의 **압도적 포인트**
+- 개발자 경험(DX) 극대화
 
 ---
 
@@ -518,8 +518,8 @@ Dashboard → Scan Results → Fix Assistant
 <div onClick={handleClick}>클릭</div>
 
 // AI 제안
-⚠️ Interactive element without proper semantics
-💡 Suggestion:
+Interactive element without proper semantics
+Suggestion:
 <button onClick={handleClick}>클릭</button>
 
 // Or add ARIA:
@@ -634,7 +634,7 @@ Current Ratio: 1.2:1
 
 Required: 4.5:1 (WCAG AA)
 
-💡 AI Suggestions:
+AI Suggestions:
 Option 1: Change text to #595959 (4.6:1) ✅
 Option 2: Change background to #ffffff (3.1:1) ⚠️
 Option 3: Change text to #000000 (15.8:1) ✅
@@ -668,10 +668,10 @@ const MyButton = ({ children, onClick }) => (
 );
 
 // 변경 사항:
-// ✅ Semantic HTML (button)
-// ✅ Built-in accessibility
-// ✅ Keyboard support
-// ✅ ARIA attributes
+// Semantic HTML (button)
+// Built-in accessibility
+// Keyboard support
+// ARIA attributes
 ```
 
 ---
@@ -707,9 +707,9 @@ const MyButton = ({ children, onClick }) => (
 </div>
 
 <!-- 변경 사항:
-✅ Landmark roles 추가
-✅ 읽기 순서 재구성
-✅ aria-label 추가
+Landmark roles 추가
+읽기 순서 재구성
+aria-label 추가
 -->
 ```
 
@@ -732,10 +732,10 @@ Screenshot analyzed: homepage.png
 Issues found:
 🔴 Header lacks government standard logo position
 🔴 Font size below 14px in footer
-⚠️  Color scheme doesn't match KRDS palette
+ Color scheme doesn't match KRDS palette
 ℹ️  Missing "이용약관" in footer
 
-💡 Suggestions:
+Suggestions:
 1. Move logo to top-left corner
 2. Increase footer font to 14px
 3. Apply KRDS color palette
@@ -938,7 +938,7 @@ build compliant interfaces without manual work.
 | **WCAG + KRDS**          | 국제 + 로컬 표준     |
 | **Government-grade**     | 신뢰성 강조          |
 
-> 💡 **이 조합이 TechCrunch에서 먹힙니다.**
+> **이 조합이 TechCrunch에서 먹힙니다.**
 
 ---
 
@@ -999,7 +999,7 @@ build compliant interfaces without manual work.
 | **개발팀 부담 감소** | 실용적 가치        |
 | **AI 기반**          | 기술 혁신성        |
 
-> 💡 **NAVER D2는 '기술적 차별성'을 좋아하므로 자동화·엔진·표준 준수가 핵심입니다.**
+> **NAVER D2는 '기술적 차별성'을 좋아하므로 자동화·엔진·표준 준수가 핵심입니다.**
 
 ---
 
@@ -1072,12 +1072,12 @@ build compliant interfaces without manual work.
 **실제 코드 비교 제공**:
 
 ```tsx
-// ❌ 잘못된 예 (접근성 미준수)
+// 잘못된 예 (접근성 미준수)
 <div className="button" onClick={handleClick}>
   제출하기
 </div>
 
-// ⚠️ 부분적으로 개선 (수동 구현 필요)
+// 부분적으로 개선 (수동 구현 필요)
 <button
   onClick={handleClick}
   aria-label="신청서 제출"
@@ -1086,7 +1086,7 @@ build compliant interfaces without manual work.
   제출하기
 </button>
 
-// ✅ HANUI 컴포넌트 (자동 처리)
+// HANUI 컴포넌트 (자동 처리)
 import { Button } from '@hanui/react';
 
 <Button onClick={handleClick}>
@@ -1108,10 +1108,10 @@ import { Button } from '@hanui/react';
 
 #### 기대 효과
 
-- ✅ 전문성과 신뢰를 압도적으로 보여줌
-- ✅ 블로그 하나만으로도 **TechCrunch와 D2가 주목**할 가능성이 높음
-- ✅ SEO 최적화로 유기적 트래픽 확보
-- ✅ 개발자 커뮤니티에서 자연스럽게 확산
+- 전문성과 신뢰를 압도적으로 보여줌
+- 블로그 하나만으로도 **TechCrunch와 D2가 주목**할 가능성이 높음
+- SEO 최적화로 유기적 트래픽 확보
+- 개발자 커뮤니티에서 자연스럽게 확산
 
 ---
 
@@ -1204,10 +1204,10 @@ PDF 리포트 무료 다운로드
 
 #### 기대 효과
 
-- ✅ HANUI가 **데이터 기반의 제품**이라는 신뢰도 확보
-- ✅ 언론 매체의 자발적 보도 유도
-- ✅ 공공기관/대기업 의사결정권자에게 어필
-- ✅ Inspector SaaS 유료 전환율 증대
+- HANUI가 **데이터 기반의 제품**이라는 신뢰도 확보
+- 언론 매체의 자발적 보도 유도
+- 공공기관/대기업 의사결정권자에게 어필
+- Inspector SaaS 유료 전환율 증대
 
 ---
 
@@ -1294,10 +1294,10 @@ PDF 리포트 무료 다운로드
 
 #### 기대 효과
 
-- ✅ SI·대기업 담당자에게 강한 인지도 확보
-- ✅ **나라장터 입찰에 강력한 포트폴리오**로 활용 가능
-- ✅ Inspector 유료 전환의 핵심 채널
-- ✅ 참가 기업의 레퍼런스 확보
+- SI·대기업 담당자에게 강한 인지도 확보
+- **나라장터 입찰에 강력한 포트폴리오**로 활용 가능
+- Inspector 유료 전환의 핵심 채널
+- 참가 기업의 레퍼런스 확보
 
 ---
 
@@ -1429,10 +1429,10 @@ hanui-a11y scan --config ./custom-rules.json
 
 **오픈소스 생태계 신뢰도 급상승**:
 
-- ✅ GitHub Stars 빠른 증가
-- ✅ 다른 개발자들이 **HANUI를 기준으로 접근성 학습**
-- ✅ 개발자 커뮤니티에서 빠르게 확산
-- ✅ 기업들의 자발적 도입 증가
+- GitHub Stars 빠른 증가
+- 다른 개발자들이 **HANUI를 기준으로 접근성 학습**
+- 개발자 커뮤니티에서 빠르게 확산
+- 기업들의 자발적 도입 증가
 
 **브랜드 포지셔닝**:
 
@@ -1522,21 +1522,21 @@ HANUI = 접근성 자동화의 표준
 
 **당신의 강점**:
 
-- ✅ 디자인 시스템 경험
-- ✅ 프론트엔드 기술력
-- ✅ SI/공공기관 경험
+- 디자인 시스템 경험
+- 프론트엔드 기술력
+- SI/공공기관 경험
 
 **한국 시장이 원하는 것**:
 
-- ✅ KRDS 준수 자동화
-- ✅ 공공기관 입찰 대응
-- ✅ 개발 효율성 향상
+- KRDS 준수 자동화
+- 공공기관 입찰 대응
+- 개발 효율성 향상
 
 **국제 표준의 흐름**:
 
-- ✅ WCAG 2.2 강화
-- ✅ EU Accessibility Act
-- ✅ ADA 소송 증가
+- WCAG 2.2 강화
+- EU Accessibility Act
+- ADA 소송 증가
 
 ---
 
@@ -1560,7 +1560,7 @@ HANUI = Radix의 접근성 + AI 자동화 + KRDS 특화
 3. **SI 회사** - 개발 생산성 향상
 4. **스타트업** - 글로벌 진출 준비
 
-> 💡 **한국 UI 생태계의 표준 플랫폼이 될 수 있습니다.**
+> **한국 UI 생태계의 표준 플랫폼이 될 수 있습니다.**
 
 ---
 
@@ -1568,24 +1568,24 @@ HANUI = Radix의 접근성 + AI 자동화 + KRDS 특화
 
 **즉시 실행 가능한 것**:
 
-1. ✅ Inspector MVP 개발 시작 (Week 1)
-2. ✅ 베타 테스터 모집 (공공기관 3곳)
-3. ✅ GitHub 리포지토리 공개
-4. ✅ NAVER D2 / Deview 발표 신청
+1. Inspector MVP 개발 시작 (Week 1)
+2. 베타 테스터 모집 (공공기관 3곳)
+3. GitHub 리포지토리 공개
+4. NAVER D2 / Deview 발표 신청
 
 **3개월 내 목표**:
 
-1. ✅ Inspector SaaS 런칭
-2. ✅ 핵심 10개 컴포넌트 완성
-3. ✅ 첫 유료 고객 확보
-4. ✅ GitHub Stars 1K
+1. Inspector SaaS 런칭
+2. 핵심 10개 컴포넌트 완성
+3. 첫 유료 고객 확보
+4. GitHub Stars 1K
 
 **6개월 내 목표**:
 
-1. ✅ AI 기능 3개 통합
-2. ✅ 파트너 프로그램 런칭
-3. ✅ 교육 과정 개설
-4. ✅ TechCrunch 기고
+1. AI 기능 3개 통합
+2. 파트너 프로그램 런칭
+3. 교육 과정 개설
+4. TechCrunch 기고
 
 ---
 

@@ -5,11 +5,11 @@ import { cn } from '../../lib/utils';
  * Table Component (테이블)
  *
  * **Foundation Layer Features:**
- * - ✅ Semantic HTML: Proper table structure with thead, tbody, tfoot
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Proper scope attributes and keyboard navigation
- * - ✅ Screen Reader Support: Caption support and proper header associations
- * - ✅ Visual Hierarchy: Clear borders and spacing system
- * - ✅ Dark Mode: Automatic dark mode support with optimized colors
+ * - Semantic HTML: Proper table structure with thead, tbody, tfoot
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Proper scope attributes and keyboard navigation
+ * - Screen Reader Support: Caption support and proper header associations
+ * - Visual Hierarchy: Clear borders and spacing system
+ * - Dark Mode: Automatic dark mode support with optimized colors
  *
  * **Design Principles:**
  * - Structured data presentation with clear hierarchy

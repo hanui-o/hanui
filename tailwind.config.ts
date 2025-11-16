@@ -7,6 +7,17 @@ const config: Config = {
     './apps/docs/components/**/*.{ts,tsx}',
   ],
   theme: {
+    screens: {
+      // 하이브리드 방식: Tailwind 기본값 유지 + KRDS 브레이크포인트 추가
+      // KRDS 브레이크포인트 (정부 사이트 표준)
+      xs: '360px', // KRDS small - 모바일 (360px 이상)
+      // Tailwind 기본 브레이크포인트 (국제 표준)
+      sm: '640px', // Tailwind 기본 - 모바일 가로, 작은 태블릿
+      md: '768px', // KRDS medium / Tailwind 기본 - 태블릿
+      lg: '1024px', // KRDS large / Tailwind 기본 - 데스크톱
+      xl: '1280px', // KRDS xlarge / Tailwind 기본 - 큰 데스크톱
+      '2xl': '1440px', // KRDS xxlarge - 매우 큰 화면 (Tailwind 기본: 1536px)
+    },
     extend: {
       colors: {
         // KRDS 공식 컬러 팔레트

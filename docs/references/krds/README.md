@@ -70,7 +70,7 @@ KRDS의 모든 구성 요소는 다음 3가지 표준을 따릅니다:
 
 ---
 
-## ⚠️ 중요 제한사항
+## 중요 제한사항
 
 > **KRDS 적용만으로는 웹 접근성을 완벽히 충족할 수 없습니다.**
 
@@ -119,12 +119,12 @@ HANUI는 다음 KRDS 요구사항을 자동으로 처리합니다:
 
 | KRDS 항목        | WCAG 2.1 기준                | HANUI 자동화 |
 | ---------------- | ---------------------------- | ------------ |
-| 키보드 사용 보장 | 2.1.1 Keyboard               | ✅           |
-| 초점 표시        | 2.4.7 Focus Visible          | ✅           |
-| 명도 대비        | 1.4.3 Contrast (Minimum)     | ✅           |
-| 대체 텍스트      | 1.1.1 Non-text Content       | ⚠️ (수동)    |
-| 레이블 제공      | 1.3.1 Info and Relationships | ✅           |
-| 오류 정정        | 3.3.1 Error Identification   | ✅           |
+| 키보드 사용 보장 | 2.1.1 Keyboard               |              |
+| 초점 표시        | 2.4.7 Focus Visible          |              |
+| 명도 대비        | 1.4.3 Contrast (Minimum)     |              |
+| 대체 텍스트      | 1.1.1 Non-text Content       | (수동)       |
+| 레이블 제공      | 1.3.1 Info and Relationships |              |
+| 오류 정정        | 3.3.1 Error Identification   |              |
 
 ---
 

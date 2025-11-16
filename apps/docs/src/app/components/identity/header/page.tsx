@@ -798,7 +798,7 @@ export default function Example() {
                 weight="bold"
                 className="text-krds-primary-text mb-2"
               >
-                ✅ Phase 1 (기본) - 완료
+                Phase 1 (기본) - 완료
               </Body>
               <ul className="list-disc list-inside space-y-1 text-sm text-krds-primary-text">
                 <li>컨테이너 구조</li>

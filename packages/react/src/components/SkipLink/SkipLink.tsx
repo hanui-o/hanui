@@ -48,11 +48,11 @@ export interface SkipLinkProps extends React.HTMLAttributes<HTMLDivElement> {
  * SkipLink Component (건너뛰기 링크)
  *
  * **Foundation Layer Features:**
- * - ✅ Required CSS ID: #krds-skip-link (KRDS mandatory)
- * - ✅ Keyboard Navigation: Tab and Enter keys
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Bypass Blocks (Level A), Focus Visible (Level AA)
- * - ✅ Focus Management: Automatic scroll to destination
- * - ✅ Screen Reader Support: Semantic navigation landmarks
+ * - Required CSS ID: #krds-skip-link (KRDS mandatory)
+ * - Keyboard Navigation: Tab and Enter keys
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Bypass Blocks (Level A), Focus Visible (Level AA)
+ * - Focus Management: Automatic scroll to destination
+ * - Screen Reader Support: Semantic navigation landmarks
  *
  * **KRDS Standards:**
  * - Allows keyboard and screen reader users to bypass repetitive content

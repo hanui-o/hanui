@@ -50,10 +50,10 @@ export interface ModalProps {
  * Modal Component
  *
  * **Foundation Layer Features:**
- * - ✅ Focus Management: Auto focus trap + focus restoration on close
- * - ✅ ARIA Automation: role="dialog", aria-modal="true" (via Headless UI)
- * - ✅ Keyboard Navigation: ESC to close, Tab/Shift+Tab cyclic navigation
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Focus Order, No Keyboard Trap, Meaningful Sequence
+ * - Focus Management: Auto focus trap + focus restoration on close
+ * - ARIA Automation: role="dialog", aria-modal="true" (via Headless UI)
+ * - Keyboard Navigation: ESC to close, Tab/Shift+Tab cyclic navigation
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Focus Order, No Keyboard Trap, Meaningful Sequence
  *
  * **KRDS Standards:**
  * - Focus moves to modal or first interactive element when opened

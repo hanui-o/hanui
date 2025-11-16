@@ -13,11 +13,11 @@
 
 ```
 왜 shadcn/ui인가?
-✅ Radix UI + Tailwind CSS (HANUI와 동일 스택)
-✅ 복사-붙여넣기 철학 (실용적)
-✅ 심플하고 세련된 디자인
-✅ 개발자 경험 최고
-✅ 다크모드 완벽 지원
+Radix UI + Tailwind CSS (HANUI와 동일 스택)
+복사-붙여넣기 철학 (실용적)
+심플하고 세련된 디자인
+개발자 경험 최고
+다크모드 완벽 지원
 ```
 
 ### 2순위: Radix UI
@@ -26,10 +26,10 @@
 
 ```
 왜 Radix UI인가?
-✅ 접근성 중심 문서화
-✅ API Reference 매우 상세
-✅ Props Table 구조 명확
-✅ Accessibility 섹션 별도
+접근성 중심 문서화
+API Reference 매우 상세
+Props Table 구조 명확
+Accessibility 섹션 별도
 ```
 
 ---
@@ -966,7 +966,7 @@ export function Search() {
 
 ---
 
-## ✅ Phase 1 체크리스트
+## Phase 1 체크리스트
 
 ### Issue #18: Docs 사이트 기본 구조
 
@@ -1000,6 +1000,6 @@ export function Search() {
 **작성자**: @odada-o
 **작성일**: 2025-01-08
 **버전**: v1.0
-**Status**: ✅ 디자인 가이드 완료 → 🚀 Issue #18 시작 대기
+**Status**: 디자인 가이드 완료 → 🚀 Issue #18 시작 대기
 
 **Next Action**: Issue #18 작업 시 이 문서 참고하여 개발

@@ -67,7 +67,7 @@ export default function ColorsPage() {
 
           <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
             <Body size="sm" className="text-krds-information-80">
-              <strong>💡 핵심:</strong>{' '}
+              <strong>핵심:</strong>{' '}
               <code className="px-1 py-0.5 bg-krds-white rounded">krds-</code>{' '}
               접두사를 사용하면 Tailwind 기본 색상과 KRDS 색상이 공존할 수
               있습니다. 필요에 따라 둘 다 사용할 수 있습니다.
@@ -130,7 +130,7 @@ export default function ColorsPage() {
 
             <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
               <Body size="sm" className="text-krds-information-80">
-                <strong>💡 핵심:</strong>{' '}
+                <strong>핵심:</strong>{' '}
                 <code className="px-1 py-0.5 bg-krds-white rounded">krds-</code>{' '}
                 접두사를 사용하면 Tailwind 기본 색상과 KRDS 색상이 공존할 수
                 있습니다. 필요에 따라 둘 다 사용할 수 있습니다.
@@ -250,7 +250,7 @@ export default function ColorsPage() {
 
               <div className="p-4 bg-krds-warning-5 rounded-lg border border-krds-warning-20">
                 <Body size="sm" className="text-krds-warning-80">
-                  <strong>⚠️ 주의:</strong>
+                  <strong>주의:</strong>
                 </Body>
                 <ul className="mt-2 space-y-2 text-sm">
                   <li>
@@ -293,7 +293,7 @@ export default function ColorsPage() {
 
               <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
                 <Body size="sm" className="text-krds-information-80">
-                  <strong>📌 참고:</strong> Tailwind 기본 색상(gray-50, red-500
+                  <strong>참고:</strong> Tailwind 기본 색상(gray-50, red-500
                   등)도 그대로 사용할 수 있습니다. KRDS 색상은{' '}
                   <code className="px-1 py-0.5 bg-krds-white rounded">
                     krds-
@@ -371,7 +371,7 @@ export default function ColorsPage() {
 
             <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
               <Body size="sm" className="text-krds-information-80">
-                <strong>💡 차이점:</strong>
+                <strong>차이점:</strong>
               </Body>
               <ul className="mt-2 space-y-1 text-sm list-disc list-inside text-krds-information-80">
                 <li>
@@ -738,7 +738,7 @@ export default function ColorsPage() {
 
             <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
               <Body size="sm" className="text-krds-information-80">
-                <strong>💡 언제 무엇을 사용하나요?</strong>
+                <strong>언제 무엇을 사용하나요?</strong>
               </Body>
               <ul className="mt-2 space-y-1 text-sm list-disc list-inside text-krds-information-80">
                 <li>
@@ -965,7 +965,7 @@ export default function ColorsPage() {
             <div className="space-y-4">
               <div>
                 <Body size="sm" className="font-semibold mb-2">
-                  ✅ 숫자 스케일 - 자동 전환
+                  숫자 스케일 - 자동 전환
                 </Body>
                 <CodeBlock
                   language="tsx"
@@ -989,7 +989,7 @@ export default function ColorsPage() {
 
               <div>
                 <Body size="sm" className="font-semibold mb-2">
-                  ✅ Semantic 변수 - 자동 전환
+                  Semantic 변수 - 자동 전환
                 </Body>
                 <CodeBlock
                   language="tsx"
@@ -1011,7 +1011,7 @@ export default function ColorsPage() {
 
               <div>
                 <Body size="sm" className="font-semibold mb-2">
-                  ✅ Base Colors - 자동 반전
+                  Base Colors - 자동 반전
                 </Body>
                 <CodeBlock
                   language="tsx"
@@ -1085,7 +1085,7 @@ function App() {
             <div className="space-y-3">
               <div className="p-4 bg-krds-warning-5 rounded-lg border border-krds-warning-20">
                 <Body size="sm" className="text-krds-warning-80">
-                  <strong>⚠️ text-white 사용:</strong>{' '}
+                  <strong>text-white 사용:</strong>{' '}
                   <code className="px-1 py-0.5 bg-krds-white rounded">
                     text-white
                   </code>
@@ -1102,7 +1102,7 @@ function App() {
 
               <div className="p-4 bg-krds-information-5 rounded-lg border border-krds-information-20">
                 <Body size="sm" className="text-krds-information-80">
-                  <strong>💡 핵심:</strong> 모든 KRDS 색상(숫자 스케일, semantic
+                  <strong>핵심:</strong> 모든 KRDS 색상(숫자 스케일, semantic
                   변수, `krds-white`/`krds-black` 모두)은 CSS 변수를 통해 자동
                   전환되므로,{' '}
                   <code className="px-1 py-0.5 bg-krds-white rounded mx-1">
@@ -1134,7 +1134,7 @@ function App() {
           <div className="space-y-6">
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <h3 className="text-heading-sm font-semibold mb-2">
-                ✅ 의미 있는 색상 사용
+                의미 있는 색상 사용
               </h3>
               <p className="text-body-sm text-krds-gray-70 mb-3">
                 System Colors를 올바른 의미로 사용하세요.

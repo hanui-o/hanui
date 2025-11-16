@@ -170,7 +170,7 @@ export interface ButtonProps
   /**
    * Additional className for layout adjustments
    *
-   * ⚠️ Warning: Props take precedence over className
+   * Warning: Props take precedence over className
    * - Allowed: margin, width, alignment
    * - Ignored: height, background, padding (use size/variant props)
    */

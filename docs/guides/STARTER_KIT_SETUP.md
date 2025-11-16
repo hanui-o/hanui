@@ -4,7 +4,7 @@
 
 **작성일**: 2025-11-15
 **대상**: 새로운 HANUI 프로젝트를 시작하는 개발자
-**상태**: ✅ 작성 완료
+**상태**: 작성 완료
 
 ---
 
@@ -27,45 +27,45 @@
 
 #### Typography (5개)
 
-- ✅ **Display** - 대형 제목 (36px, 44px, 60px)
-- ✅ **Heading** - 제목 (17px ~ 40px)
-- ✅ **Body** - 본문 (13px ~ 19px)
-- ✅ **NavText** - 네비게이션 텍스트
-- ✅ **Label** - 라벨 (폼 필드용)
+- **Display** - 대형 제목 (36px, 44px, 60px)
+- **Heading** - 제목 (17px ~ 40px)
+- **Body** - 본문 (13px ~ 19px)
+- **NavText** - 네비게이션 텍스트
+- **Label** - 라벨 (폼 필드용)
 
 #### Layout (5개)
 
-- ✅ **Container** - 컨테이너 (max-width 제한)
-- ✅ **Stack** - 수직/수평 스택 레이아웃
-- ✅ **Section** - 섹션 래퍼
-- ✅ **Box** - 범용 박스 컴포넌트
-- ✅ **Card** - 카드 (Header, Body, Footer)
+- **Container** - 컨테이너 (max-width 제한)
+- **Stack** - 수직/수평 스택 레이아웃
+- **Section** - 섹션 래퍼
+- **Box** - 범용 박스 컴포넌트
+- **Card** - 카드 (Header, Body, Footer)
 
 #### Form (5개)
 
-- ✅ **Input** - 텍스트 입력
-- ✅ **Select** - 드롭다운 선택
-- ✅ **FileUpload** - 파일 업로드
-- ✅ **Label** - 폼 라벨
-- ✅ **Button** - 버튼
+- **Input** - 텍스트 입력
+- **Select** - 드롭다운 선택
+- **FileUpload** - 파일 업로드
+- **Label** - 폼 라벨
+- **Button** - 버튼
 - 🔜 **Checkbox** - 체크박스 (v1.0 필수)
 - 🔜 **Radio** - 라디오 버튼 (v1.0 필수)
 - 🔜 **Textarea** - 텍스트 영역 (v1.0 필수)
 
 #### Navigation (5개)
 
-- ✅ **Breadcrumb** - 경로 표시
-- ✅ **Pagination** - 페이지네이션
-- ✅ **Tabs** - 탭
-- ✅ **Header** - 헤더 (Identity)
-- ✅ **SkipLink** - 스킵 링크 (접근성)
+- **Breadcrumb** - 경로 표시
+- **Pagination** - 페이지네이션
+- **Tabs** - 탭
+- **Header** - 헤더 (Identity)
+- **SkipLink** - 스킵 링크 (접근성)
 - 🔜 **Footer** - 푸터 (v1.0 권장)
 - 🔜 **Link** - 링크 컴포넌트 (v1.1)
 
 #### Feedback (2개)
 
-- ✅ **Modal** - 모달 대화상자
-- ✅ **Tooltip** - 툴팁
+- **Modal** - 모달 대화상자
+- **Tooltip** - 툴팁
 - 🔜 **Alert** - 알림 배너 (v1.0 필수)
 - 🔜 **Badge** - 뱃지/태그 (v1.0 권장)
 - 🔜 **Toast** - 토스트 알림 (v1.1)
@@ -73,14 +73,14 @@
 
 #### Data Display (2개)
 
-- ✅ **Table** - 테이블
-- ✅ **Accordion** - 아코디언
+- **Table** - 테이블
+- **Accordion** - 아코디언
 - 🔜 **List** - 리스트 (v1.1)
 
 #### Identity (2개)
 
-- ✅ **Masthead** - 마스트헤드 (정부 사이트 상단)
-- ✅ **Identifier** - 신원 표시
+- **Masthead** - 마스트헤드 (정부 사이트 상단)
+- **Identifier** - 신원 표시
 
 ### 1.2 v1.0 출시 전 필수 추가 컴포넌트
 
@@ -437,11 +437,11 @@ export default function Error({
 
 다음 컴포넌트가 없어서 현재는 만들기 어려운 페이지:
 
-- ❌ **회원가입** - Checkbox, Radio 없음
-- ❌ **설정 페이지** - Checkbox, Radio 없음
-- ❌ **리뷰/댓글** - Textarea 없음
-- ❌ **알림 센터** - Alert, Badge 없음
-- ❌ **로딩 상태** - Spinner 없음
+- **회원가입** - Checkbox, Radio 없음
+- **설정 페이지** - Checkbox, Radio 없음
+- **리뷰/댓글** - Textarea 없음
+- **알림 센터** - Alert, Badge 없음
+- **로딩 상태** - Spinner 없음
 
 ---
 
@@ -699,13 +699,13 @@ body {
 
 ### 3.2 중요한 설계 결정
 
-#### ❌ 제거된 스케일
+#### 제거된 스케일
 
 - `gray-0`과 `gray-100` 제거
 - 이유: Tailwind 스케일과 충돌 방지
 - 사용 가능: `gray-5`부터 `gray-95`까지
 
-#### ✅ CSS 변수 네이밍
+#### CSS 변수 네이밍
 
 - 라이트/다크 모드 모두 `--krds-color-light-*` 사용
 - 이유: KRDS 공식 네이밍 규칙 준수
@@ -819,7 +819,7 @@ export default config;
 
 ### 4.2 색상 사용 규칙
 
-#### ✅ KRDS 스케일 사용 (권장)
+#### KRDS 스케일 사용 (권장)
 
 ```tsx
 // 권장: KRDS 공식 스케일 사용
@@ -828,7 +828,7 @@ export default config;
 </div>
 ```
 
-#### ⚠️ Tailwind 스케일 사용 (호환)
+#### Tailwind 스케일 사용 (호환)
 
 ```tsx
 // 호환: Tailwind 스케일도 사용 가능 (같은 CSS 변수 참조)
@@ -837,10 +837,10 @@ export default config;
 </div>
 ```
 
-#### ❌ 사용 금지
+#### 사용 금지
 
 ```tsx
-// ❌ gray-0과 gray-100은 제거됨
+// gray-0과 gray-100은 제거됨
 <div className="bg-gray-0">  // 사용 불가
 <div className="bg-gray-100"> // 사용 불가 (gray-10 사용)
 ```
@@ -939,13 +939,13 @@ export default function RootLayout({
 ### 6.3 다크 모드 자동 전환
 
 ```tsx
-// ✅ 권장: CSS 변수가 자동으로 전환됨
+// 권장: CSS 변수가 자동으로 전환됨
 <div className="bg-primary-60 text-gray-10">
   라이트 모드: 진한 파란색 배경
   다크 모드: 밝은 파란색 배경 (자동 전환)
 </div>
 
-// ❌ 불필요: dark: 접두사 사용할 필요 없음
+// 불필요: dark: 접두사 사용할 필요 없음
 <div className="bg-primary-60 dark:bg-primary-40">
   CSS 변수가 자동 전환되므로 이렇게 할 필요 없음
 </div>
@@ -1043,7 +1043,7 @@ my-hanui-app/
 
 **작성자**: @odada-o
 **업데이트**: 2025-11-15
-**Status**: ✅ 스타터킷 가이드 작성 완료 (컴포넌트 현황 및 예제 페이지 추가)
+**Status**: 스타터킷 가이드 작성 완료 (컴포넌트 현황 및 예제 페이지 추가)
 
 **다음 작업**:
 

@@ -10,12 +10,12 @@
 ### 원칙 1: KRDS 표준은 Props로 강제
 
 ```tsx
-// ✅ 권장: Props로 KRDS 표준 사용
+// 권장: Props로 KRDS 표준 사용
 <Button size="medium" variant="primary">
   신청하기
 </Button>
 
-// ❌ 금지: className으로 핵심 스타일 우회
+// 금지: className으로 핵심 스타일 우회
 <Button className="h-6 bg-purple-500">
   신청하기
 </Button>
@@ -24,7 +24,7 @@
 ### 원칙 2: 레이아웃/간격은 className 허용
 
 ```tsx
-// ✅ 허용: 레이아웃, 간격, 여백
+// 허용: 레이아웃, 간격, 여백
 <Button size="medium" variant="primary" className="mt-4 w-full">
   신청하기
 </Button>
@@ -147,7 +147,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
 
-    // ⚠️ 중요: buttonVariants가 먼저, className은 나중
+    // 중요: buttonVariants가 먼저, className은 나중
     // 하지만 Tailwind 특성상 나중에 오는 클래스가 우선됨
     // 따라서 className에서 size/variant 관련 클래스는 필터링 필요
 
@@ -213,7 +213,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 ## 📊 허용되는 className 패턴
 
-### ✅ 허용 (레이아웃, 간격)
+### 허용 (레이아웃, 간격)
 
 ```tsx
 // 여백 (margin)
@@ -241,7 +241,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 <Button className="w-full md:w-auto" />
 ```
 
-### ❌ 금지 (핵심 스타일)
+### 금지 (핵심 스타일)
 
 ```tsx
 // 높이 (size props 사용)
@@ -274,11 +274,11 @@ type Color =
   | 'danger'     // #DC3545 (위험 빨간색)
   | 'gray'       // 중립 회색
 
-// ✅ 사용
+// 사용
 <Badge color="primary">새 글</Badge>
 <Alert color="warning">경고 메시지</Alert>
 
-// ❌ KRDS에 없는 색상은 props로 제공 안 함
+// KRDS에 없는 색상은 props로 제공 안 함
 <Badge color="purple" />  // TypeScript 에러
 ```
 
@@ -314,10 +314,10 @@ export default {
 **Props로 제공하지 않음**: 레이아웃은 개발자가 Tailwind로 자유롭게 조정.
 
 ```tsx
-// ✅ 권장
+// 권장
 <Button className="mt-4 mb-2">신청하기</Button>
 
-// ❌ 비권장 (Props 폭발)
+// 비권장 (Props 폭발)
 <Button mt={4} mb={2}>신청하기</Button>
 ```
 
@@ -420,7 +420,7 @@ export interface ButtonProps
 
   /**
    * 추가 className (레이아웃 조정용)
-   * ⚠️ 주의: size, variant 관련 클래스는 무시됩니다.
+   * 주의: size, variant 관련 클래스는 무시됩니다.
    */
   className?: string;
 }
@@ -428,7 +428,7 @@ export interface ButtonProps
 
 ---
 
-## ✅ 장점 요약
+## 장점 요약
 
 ### 1. KRDS 표준 강제
 
@@ -477,5 +477,5 @@ export interface ButtonProps
 
 **작성자**: @odada-o  
 **작성일**: 2025-11-10  
-**Status**: ✅ API 전략 확정  
+**Status**: API 전략 확정  
 **Next**: Issue #7 (Button 컴포넌트) 구현 시 적용

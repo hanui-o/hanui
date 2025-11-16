@@ -5,7 +5,7 @@
 
 ---
 
-## ✅ 최종 결정사항
+## 최종 결정사항
 
 ### 0. 디자인 레퍼런스: KRDS + Vercel
 
@@ -160,13 +160,13 @@ Week 5 (5일): 테스트 + 배포
 ### v0.1.0 배포 시 포함 사항:
 
 ```
-✅ @hanui/react (9개 컴포넌트)
-✅ create-hanui-app CLI
-✅ Portal 템플릿 (Next.js)
-✅ Admin 템플릿 (React + Vite)
-✅ Docs 사이트 기본
-✅ README + Quick Start
-✅ NPM 배포
+@hanui/react (9개 컴포넌트)
+create-hanui-app CLI
+Portal 템플릿 (Next.js)
+Admin 템플릿 (React + Vite)
+Docs 사이트 기본
+README + Quick Start
+NPM 배포
 ```
 
 ### 배포 후 측정 지표:
@@ -232,7 +232,7 @@ Week 5 (5일): 테스트 + 배포
 
 ### 지금 바로:
 
-1. ✅ 전략 결정 확정 (완료)
+1. 전략 결정 확정 (완료)
 2. ⏳ GitHub Issues 생성 (다음)
 3. ⏳ Week 1 Day 1 시작
 
@@ -247,22 +247,22 @@ Week 5 (5일): 테스트 + 배포
 
 ---
 
-## ⚠️ 주의사항
+## 주의사항
 
 ### 스코프 크리프 방지:
 
 ```
 Phase 1에서 절대 추가하지 말 것:
-❌ 추가 컴포넌트 (9개로 충분)
-❌ Vue 버전 (Phase 1.5로)
-❌ 고급 기능 (DatePicker, RichEditor 등)
-❌ Marketplace
-❌ VSCode Extension
+추가 컴포넌트 (9개로 충분)
+Vue 버전 (Phase 1.5로)
+고급 기능 (DatePicker, RichEditor 등)
+Marketplace
+VSCode Extension
 
 Phase 1 목표:
-✅ 최소한의 완성도로 빠르게 배포
-✅ 실사용 피드백 수집
-✅ 커뮤니티 형성
+최소한의 완성도로 빠르게 배포
+실사용 피드백 수집
+커뮤니티 형성
 ```
 
 ### 품질 기준:
@@ -306,6 +306,6 @@ Phase 1 목표:
 **버전**: v1.0
 **최종 업데이트**: 2025-01-08
 
-**Status**: ✅ 전략 확정 완료 → 🚀 개발 시작 준비 완료
+**Status**: 전략 확정 완료 → 🚀 개발 시작 준비 완료
 
 **Next Action**: GitHub Issues 생성 → Week 1 Day 1 시작!

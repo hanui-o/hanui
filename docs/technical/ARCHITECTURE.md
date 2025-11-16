@@ -804,7 +804,7 @@ colors: {
 **사용 예시**:
 
 ```tsx
-// ✅ 권장: Semantic 변수 사용 (모드에 따라 자동 전환)
+// 권장: Semantic 변수 사용 (모드에 따라 자동 전환)
 <div className="bg-krds-primary-surface text-krds-primary-text">
   {/*
     라이트 모드: surface(5) + text(80)
@@ -896,12 +896,12 @@ KRDS 표준에 따라 다음 색상 팔레트를 제공합니다:
 **예시**:
 
 ```tsx
-// ❌ 불필요: dark: 접두사 사용
+// 불필요: dark: 접두사 사용
 <div className="bg-krds-gray-5 dark:bg-krds-gray-90">
   {/* dark: 접두사 불필요! */}
 </div>
 
-// ✅ 올바름: 자동 전환
+// 올바름: 자동 전환
 <div className="bg-krds-gray-5 text-krds-gray-90">
   {/*
     라이트 모드: 밝은 배경(5) + 진한 텍스트(90)
@@ -910,7 +910,7 @@ KRDS 표준에 따라 다음 색상 팔레트를 제공합니다:
   */}
 </div>
 
-// ✅ Semantic 변수도 자동 전환
+// Semantic 변수도 자동 전환
 <div className="bg-krds-primary-surface text-krds-primary-text">
   {/*
     라이트 모드: surface(5) + text(80)

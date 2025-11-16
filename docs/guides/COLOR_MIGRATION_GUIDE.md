@@ -135,7 +135,7 @@ KRDS 색상 시스템은 Semantic 변수를 제공하여 모드에 따라 자동
 
 ### Accent (강조 색상)
 
-> ⚠️ **주의**: 강조 색상은 5% 이하 비율로 제한적 사용
+> **주의**: 강조 색상은 5% 이하 비율로 제한적 사용
 
 | Semantic 변수         | 기본 모드 | 선명한 화면 모드 | 용도                  |
 | --------------------- | --------- | ---------------- | --------------------- |
@@ -232,11 +232,11 @@ KRDS 색상 시스템은 Semantic 변수를 제공하여 모드에 따라 자동
 ### 1. 텍스트 색상
 
 ```tsx
-// ❌ 이전 (Tailwind 기본 + 다크 모드)
+// 이전 (Tailwind 기본 + 다크 모드)
 <p className="text-gray-700 dark:text-gray-300">본문 텍스트</p>
 <p className="text-gray-600 dark:text-gray-400">보조 텍스트</p>
 
-// ✅ 이후 (KRDS 색상, 다크 모드 제거)
+// 이후 (KRDS 색상, 다크 모드 제거)
 <p className="text-krds-gray-90">본문 텍스트</p>
 <p className="text-krds-gray-70">보조 텍스트</p>
 ```
@@ -244,11 +244,11 @@ KRDS 색상 시스템은 Semantic 변수를 제공하여 모드에 따라 자동
 ### 2. 배경 색상
 
 ```tsx
-// ❌ 이전
+// 이전
 <div className="bg-gray-50 dark:bg-gray-900">배경</div>
 <div className="bg-white dark:bg-gray-950">배경</div>
 
-// ✅ 이후
+// 이후
 <div className="bg-krds-gray-5">배경</div>
 <div className="bg-krds-white">배경</div>
 ```
@@ -256,22 +256,22 @@ KRDS 색상 시스템은 Semantic 변수를 제공하여 모드에 따라 자동
 ### 3. 테두리 색상
 
 ```tsx
-// ❌ 이전
+// 이전
 <div className="border border-gray-200 dark:border-gray-800">테두리</div>
 
-// ✅ 이후
+// 이후
 <div className="border border-krds-gray-20">테두리</div>
 ```
 
 ### 4. 코드 블록 색상
 
 ```tsx
-// ❌ 이전
+// 이전
 <div className="bg-gray-900 dark:bg-gray-950">
   <pre className="text-gray-100 dark:text-gray-200">코드</pre>
 </div>
 
-// ✅ 이후
+// 이후
 <div className="bg-krds-gray-95">
   <pre className="text-krds-gray-10">코드</pre>
 </div>
@@ -280,12 +280,12 @@ KRDS 색상 시스템은 Semantic 변수를 제공하여 모드에 따라 자동
 ### 5. 터미널 아이콘 색상
 
 ```tsx
-// ❌ 이전
+// 이전
 <div className="bg-red-500" />   {/* 닫기 */}
 <div className="bg-yellow-500" /> {/* 최소화 */}
 <div className="bg-green-500" />  {/* 최대화 */}
 
-// ✅ 이후
+// 이후
 <div className="bg-krds-danger-50" />   {/* 닫기 */}
 <div className="bg-krds-warning-30" /> {/* 최소화 */}
 <div className="bg-krds-success-50" />  {/* 최대화 */}
@@ -294,12 +294,12 @@ KRDS 색상 시스템은 Semantic 변수를 제공하여 모드에 따라 자동
 ### 6. 코드 하이라이트 색상
 
 ```tsx
-// ❌ 이전
+// 이전
 <span className="text-green-400">$</span>
 <span className="text-blue-400">pnpm</span>
 <span className="text-purple-400">import</span>
 
-// ✅ 이후
+// 이후
 <span className="text-krds-success-50">$</span>
 <span className="text-krds-primary-60">pnpm</span>
 <span className="text-krds-accent-50">import</span>
@@ -330,7 +330,7 @@ HANUI 타이포그래피 컴포넌트는 기본 색상이 내장되어 있어 �
 #### 사용 예시
 
 ```tsx
-// ❌ 이전 (수동 색상 지정 + 다크 모드)
+// 이전 (수동 색상 지정 + 다크 모드)
 <h1 className="text-gray-900 dark:text-gray-100 font-bold">
   제목
 </h1>
@@ -341,7 +341,7 @@ HANUI 타이포그래피 컴포넌트는 기본 색상이 내장되어 있어 �
   강조 텍스트
 </p>
 
-// ✅ 이후 (컴포넌트 기본 색상 사용)
+// 이후 (컴포넌트 기본 색상 사용)
 <Display size="lg">제목</Display>
 <Body>본문 텍스트</Body>
 <Body weight="bold">강조 텍스트</Body>
@@ -354,7 +354,7 @@ HANUI 타이포그래피 컴포넌트는 기본 색상이 내장되어 있어 �
 #### 타이포그래피 컴포넌트 마이그레이션
 
 ```tsx
-// ❌ 이전 (수동 스타일링)
+// 이전 (수동 스타일링)
 <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
   섹션 제목
 </h2>
@@ -362,7 +362,7 @@ HANUI 타이포그래피 컴포넌트는 기본 색상이 내장되어 있어 �
   설명 텍스트
 </p>
 
-// ✅ 이후 (HANUI 컴포넌트 사용)
+// 이후 (HANUI 컴포넌트 사용)
 <Heading level="h2">섹션 제목</Heading>
 <Body>설명 텍스트</Body>
 ```
@@ -409,7 +409,7 @@ HANUI 타이포그래피 컴포넌트는 기본 색상이 내장되어 있어 �
 
 ---
 
-## 💡 팁
+## 팁
 
 1. **Semantic 변수 우선 사용**: 일반적인 UI 컴포넌트에서는 Semantic 변수(`text-krds-primary-text`, `bg-krds-primary-surface`)를 사용하는 것이 좋습니다.
 

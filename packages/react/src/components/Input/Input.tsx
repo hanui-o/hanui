@@ -93,7 +93,7 @@ export interface InputProps
   /**
    * Additional className for layout adjustments
    *
-   * ⚠️ Warning: Props take precedence over className
+   * Warning: Props take precedence over className
    * - Allowed: margin, width, max-width
    * - Ignored: height, padding, border (use size/variant props)
    */

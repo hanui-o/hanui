@@ -205,7 +205,7 @@ const maxWidths = {
 
 ## 🎯 사용 가이드라인
 
-### ✅ Container를 사용하기 적합한 경우
+### Container를 사용하기 적합한 경우
 
 1. **페이지 메인 콘텐츠를 감싸는 경우**
    - 본문 내용이 넓은 화면에서 너무 퍼지지 않도록 제한
@@ -219,7 +219,7 @@ const maxWidths = {
    - Grid 컴포넌트의 부모 요소
    - 전체 레이아웃의 기준점 제공
 
-### ❌ Container를 사용하지 말아야 하는 경우
+### Container를 사용하지 말아야 하는 경우
 
 1. **전체 화면을 사용해야 하는 경우**
    - 히어로 이미지, 배경 섹션
@@ -349,8 +349,8 @@ module.exports = {
    - Container의 역할과 KRDS 레이아웃 시스템 소개
 
 2. **사용 가이드라인**
-   - ✅ 언제 사용하나?
-   - ❌ 언제 사용하지 말아야 하나?
+   - 언제 사용하나?
+   - 언제 사용하지 말아야 하나?
    - Grid System 통합 가이드
 
 3. **Installation**
@@ -397,7 +397,7 @@ module.exports = {
 ### Don't: 중첩 사용
 
 ```tsx
-❌ 잘못된 예시
+잘못된 예시
 <Container>
   <Container> {/* 불필요한 중첩 */}
     <Content />
@@ -424,7 +424,7 @@ Container 구현 후, Grid 컴포넌트도 함께 개발하여 완전한 KRDS �
 
 ---
 
-## ✅ 구현 체크리스트
+## 구현 체크리스트
 
 - [ ] Container 컴포넌트 구현 (packages/react/src/components/Container/)
 - [ ] KRDS 브레이크포인트 Tailwind Config 설정

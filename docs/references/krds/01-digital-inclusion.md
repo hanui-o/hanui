@@ -114,20 +114,20 @@ const textSizeOptions = {
 **정보 전달용 이미지:**
 
 ```html
-<!-- ✅ 올바른 예 -->
+<!-- 올바른 예 -->
 <img src="chart.png" alt="2024년 월별 매출 현황: 1월 100만원, 2월 120만원..." />
 
-<!-- ❌ 잘못된 예 -->
+<!-- 잘못된 예 -->
 <img src="chart.png" alt="차트" />
 ```
 
 **장식용 이미지:**
 
 ```html
-<!-- ✅ 올바른 예 -->
+<!-- 올바른 예 -->
 <img src="decoration.png" alt="" role="presentation" />
 
-<!-- ❌ 잘못된 예 -->
+<!-- 잘못된 예 -->
 <img src="decoration.png" alt="장식 이미지" />
 ```
 
@@ -180,11 +180,11 @@ const textSizeOptions = {
 **예시:**
 
 ```css
-/* ✅ 충분한 대비 */
+/* 충분한 대비 */
 background: #ffffff; /* 흰색 */
 color: #000000; /* 검정 - 21:1 대비 */
 
-/* ⚠️ 불충분한 대비 */
+/* 불충분한 대비 */
 background: #f0f0f0; /* 밝은 회색 */
 color: #e0e0e0; /* 더 밝은 회색 - 1.2:1 대비 */
 ```
@@ -256,7 +256,7 @@ p {
 
 ---
 
-## ✅ HANUI 자동화 항목
+## HANUI 자동화 항목
 
 HANUI 컴포넌트는 다음 디지털 포용 요구사항을 자동으로 처리합니다:
 

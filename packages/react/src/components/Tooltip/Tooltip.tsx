@@ -99,10 +99,10 @@ export interface TooltipProps extends VariantProps<typeof tooltipVariants> {
  * Tooltip Component
  *
  * **Foundation Layer Features:**
- * - ✅ Focus Management: Mouse hover + keyboard focus detection + Blur handling
- * - ✅ ARIA Automation: aria-labelledby auto-connection (KRDS 2.2)
- * - ✅ Keyboard Navigation: ESC key closes tooltip and restores focus
- * - ✅ WCAG 2.2 Compliance: 1.4.13 Content on Hover or Focus
+ * - Focus Management: Mouse hover + keyboard focus detection + Blur handling
+ * - ARIA Automation: aria-labelledby auto-connection (KRDS 2.2)
+ * - Keyboard Navigation: ESC key closes tooltip and restores focus
+ * - WCAG 2.2 Compliance: 1.4.13 Content on Hover or Focus
  *
  * **KRDS 2.2 Standards:**
  * - aria-labelledby connects activation button to tooltip content

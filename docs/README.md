@@ -128,11 +128,11 @@ GitHub Issue 생성 전 전체 로드맵
 프로젝트 시작 전 핵심 결정사항
 
 최종 결정:
-✅ Starter Kit 우선 (문서는 점진적)
-✅ React 먼저 (Vue는 Phase 1.5)
-✅ Portal + Admin 템플릿 (핵심 차별화)
-✅ 컴포넌트 9개 (공공 필수)
-✅ 5주 타임라인 (풀타임 기준)
+Starter Kit 우선 (문서는 점진적)
+React 먼저 (Vue는 Phase 1.5)
+Portal + Admin 템플릿 (핵심 차별화)
+컴포넌트 9개 (공공 필수)
+5주 타임라인 (풀타임 기준)
 
 핵심 차별화:
 "경쟁사는 컴포넌트만, HANUI는 템플릿까지"
@@ -515,6 +515,6 @@ Patch Update (v1.1.x → v1.1.y):
 ---
 
 **Last Updated**: 2025-01-08
-**Status**: ✅ 기획 완료 → ⏳ 고객 검증 필요 → 🚀 개발 시작 대기
+**Status**: 기획 완료 → ⏳ 고객 검증 필요 → 🚀 개발 시작 대기
 
 **Next Milestone**: 타깃 고객 10명 인터뷰 + Phase 1 Week 1 시작

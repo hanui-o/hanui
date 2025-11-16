@@ -765,7 +765,7 @@ export default () => {
           <div className="space-y-3 mt-4">
             <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
-                ✅ 1. 드래그 앤 드롭 (Drag & Drop)
+                1. 드래그 앤 드롭 (Drag & Drop)
               </Heading>
               <Body className="text-sm">
                 HTML5 드래그 앤 드롭 API를 사용하여 파일을 드래그하여 업로드할
@@ -774,7 +774,7 @@ export default () => {
             </div>
             <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
-                ✅ 2. 파일 검증 (File Validation)
+                2. 파일 검증 (File Validation)
               </Heading>
               <Body className="text-sm">
                 파일 유형(accept), 크기(maxSize), 개수(maxFiles)를 자동으로
@@ -783,7 +783,7 @@ export default () => {
             </div>
             <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
-                ✅ 3. 이미지 미리보기 (Image Preview)
+                3. 이미지 미리보기 (Image Preview)
               </Heading>
               <Body className="text-sm">
                 이미지 파일은 자동으로 썸네일 미리보기를 생성하여 표시합니다.
@@ -792,7 +792,7 @@ export default () => {
             </div>
             <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
-                ✅ 4. 키보드 접근성 (Keyboard Accessibility)
+                4. 키보드 접근성 (Keyboard Accessibility)
               </Heading>
               <Body className="text-sm">
                 Tab 키로 포커스 이동, Enter/Space 키로 파일 선택 대화상자 열기
@@ -801,7 +801,7 @@ export default () => {
             </div>
             <div className="p-4 bg-krds-primary-surface rounded-lg border border-krds-primary-border">
               <Heading level="h3" className="text-sm font-semibold mb-1">
-                ✅ 5. 다크 모드 (Dark Mode)
+                5. 다크 모드 (Dark Mode)
               </Heading>
               <Body className="text-sm">
                 모든 상태(default, hover, dragging, disabled, error)에서

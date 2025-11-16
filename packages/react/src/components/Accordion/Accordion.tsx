@@ -231,10 +231,10 @@ const useAccordionItemContext = () => {
  * Accordion Root Component
  *
  * **Foundation Layer Features:**
- * - ✅ ARIA Automation: aria-expanded, aria-controls, aria-labelledby
- * - ✅ Keyboard Navigation: Enter, Space to toggle
- * - ✅ Semantic Headings: Supports h1-h6 wrapper for accessibility
- * - ✅ WCAG 2.1 Compliance: Keyboard access, Focus visibility
+ * - ARIA Automation: aria-expanded, aria-controls, aria-labelledby
+ * - Keyboard Navigation: Enter, Space to toggle
+ * - Semantic Headings: Supports h1-h6 wrapper for accessibility
+ * - WCAG 2.1 Compliance: Keyboard access, Focus visibility
  *
  * **KRDS Standards:**
  * - Semantic heading structure (<h1>-<h6>)

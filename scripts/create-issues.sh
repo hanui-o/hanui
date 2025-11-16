@@ -107,9 +107,9 @@ Turborepo와 pnpm을 이용한 Monorepo 초기 설정
 - [ ] 루트 \`package.json\` scripts 정의
 
 ## Acceptance Criteria
-- ✅ \`pnpm install\` 실행 시 모든 패키지 설치 성공
-- ✅ \`pnpm build\` 실행 시 모든 패키지 빌드 성공
-- ✅ Turborepo cache 동작 확인
+- \`pnpm install\` 실행 시 모든 패키지 설치 성공
+- \`pnpm build\` 실행 시 모든 패키지 빌드 성공
+- Turborepo cache 동작 확인
 
 ## Estimate
 4h
@@ -186,11 +186,11 @@ export default {
 \`\`\`
 
 ## Acceptance Criteria
-- ✅ TypeScript 컴파일 에러 없음
-- ✅ Tailwind CSS 클래스 사용 가능
-- ✅ KRDS 컬러가 Tailwind에 적용됨
-- ✅ \`pnpm build\` 실행 시 CSS 포함된 빌드 생성
-- ✅ IDE에서 Tailwind 자동완성 동작
+- TypeScript 컴파일 에러 없음
+- Tailwind CSS 클래스 사용 가능
+- KRDS 컬러가 Tailwind에 적용됨
+- \`pnpm build\` 실행 시 CSS 포함된 빌드 생성
+- IDE에서 Tailwind 자동완성 동작
 
 ## Estimate
 5h (Tailwind 설정 추가로 +2h)
@@ -225,9 +225,9 @@ gh issue create \
   - [ ] Staged 파일만 lint
 
 ## Acceptance Criteria
-- ✅ \`pnpm lint\` 실행 시 에러 없음
-- ✅ \`pnpm format\` 실행 시 코드 포매팅 적용
-- ✅ Commit 시 자동으로 lint 실행
+- \`pnpm lint\` 실행 시 에러 없음
+- \`pnpm format\` 실행 시 코드 포매팅 적용
+- Commit 시 자동으로 lint 실행
 
 ## Estimate
 2h" \
@@ -262,9 +262,9 @@ KRDS 가이드 기반 컬러 팔레트 구현
 - [ ] CSS Variables 생성 유틸리티
 
 ## Acceptance Criteria
-- ✅ 모든 컬러가 WCAG 2.1 AA 기준 통과
-- ✅ TypeScript 타입 정의 완료
-- ✅ CSS Variables로 변환 가능
+- 모든 컬러가 WCAG 2.1 AA 기준 통과
+- TypeScript 타입 정의 완료
+- CSS Variables로 변환 가능
 
 ## Estimate
 6h
@@ -297,9 +297,9 @@ KRDS 기반 타이포그래피 시스템 구현
   - [ ] \`.text-display\`, \`.text-h1\`, etc.
 
 ## Acceptance Criteria
-- ✅ 모든 타이포그래피가 KRDS 기준 준수
-- ✅ 가독성 테스트 통과
-- ✅ TypeScript 타입 정의 완료
+- 모든 타이포그래피가 KRDS 기준 준수
+- 가독성 테스트 통과
+- TypeScript 타입 정의 완료
 
 ## Estimate
 4h" \
@@ -328,9 +328,9 @@ KRDS 기반 간격 및 레이아웃 시스템 구현
 - [ ] Responsive 유틸리티 함수
 
 ## Acceptance Criteria
-- ✅ KRDS 간격 기준 준수
-- ✅ 반응형 테스트 통과
-- ✅ TypeScript 타입 정의 완료
+- KRDS 간격 기준 준수
+- 반응형 테스트 통과
+- TypeScript 타입 정의 완료
 
 ## Estimate
 5h" \
@@ -382,10 +382,10 @@ KRDS 기준 Button 컴포넌트 구현
 \`\`\`
 
 ## Acceptance Criteria
-- ✅ KRDS 버튼 규격 준수
-- ✅ 접근성 테스트 통과
-- ✅ 스토리북 스토리 작성
-- ✅ Unit 테스트 작성
+- KRDS 버튼 규격 준수
+- 접근성 테스트 통과
+- 스토리북 스토리 작성
+- Unit 테스트 작성
 
 ## Estimate
 8h" \
@@ -419,10 +419,10 @@ KRDS 기준 Input 컴포넌트 구현
   - [ ] leftIcon, rightIcon
 
 ## Acceptance Criteria
-- ✅ KRDS Input 규격 준수
-- ✅ 접근성 테스트 통과
-- ✅ Form 통합 테스트
-- ✅ Unit 테스트 작성
+- KRDS Input 규격 준수
+- 접근성 테스트 통과
+- Form 통합 테스트
+- Unit 테스트 작성
 
 ## Estimate
 8h" \
@@ -451,10 +451,10 @@ KRDS 기준 Card 컴포넌트 구현
   - [ ] Semantic 마크업 (article, section)
 
 ## Acceptance Criteria
-- ✅ KRDS 카드 규격 준수
-- ✅ 반응형 테스트 통과
-- ✅ 스토리북 스토리 작성
-- ✅ Unit 테스트 작성
+- KRDS 카드 규격 준수
+- 반응형 테스트 통과
+- 스토리북 스토리 작성
+- Unit 테스트 작성
 
 ## Estimate
 6h" \
@@ -486,10 +486,10 @@ gh issue create \
   - [ ] 가로 스크롤
 
 ## Acceptance Criteria
-- ✅ KRDS Table 규격 준수
-- ✅ 접근성 테스트 통과 (스크린 리더)
-- ✅ 모바일 반응형 동작
-- ✅ Unit 테스트 작성
+- KRDS Table 규격 준수
+- 접근성 테스트 통과 (스크린 리더)
+- 모바일 반응형 동작
+- Unit 테스트 작성
 
 ## Estimate
 10h" \
@@ -544,12 +544,12 @@ import { Modal } from '@hanui/react'
 \`\`\`
 
 ## Acceptance Criteria
-- ✅ Headless UI Dialog 기반 구현
-- ✅ 접근성 테스트 통과 (키보드, 스크린 리더)
-- ✅ Focus Trap 자동 동작
-- ✅ ESC 키 닫기 동작
-- ✅ Tailwind로 KRDS 스타일 적용
-- ✅ Unit 테스트 작성
+- Headless UI Dialog 기반 구현
+- 접근성 테스트 통과 (키보드, 스크린 리더)
+- Focus Trap 자동 동작
+- ESC 키 닫기 동작
+- Tailwind로 KRDS 스타일 적용
+- Unit 테스트 작성
 
 ## Estimate
 8h (Headless UI 사용으로 -2h)
@@ -595,10 +595,10 @@ gh issue create \
 \`\`\`
 
 ## Acceptance Criteria
-- ✅ 접근성 테스트 통과
-- ✅ 키보드 네비게이션 동작
-- ✅ 모바일 반응형 동작
-- ✅ Unit 테스트 작성
+- 접근성 테스트 통과
+- 키보드 네비게이션 동작
+- 모바일 반응형 동작
+- Unit 테스트 작성
 
 ## Estimate
 6h" \
@@ -640,10 +640,10 @@ gh issue create \
 \`\`\`
 
 ## Acceptance Criteria
-- ✅ 접근성 테스트 통과
-- ✅ 스크린 리더 읽기 테스트
-- ✅ 모바일 반응형 동작
-- ✅ Unit 테스트 작성
+- 접근성 테스트 통과
+- 스크린 리더 읽기 테스트
+- 모바일 반응형 동작
+- Unit 테스트 작성
 
 ## Estimate
 4h" \
@@ -692,10 +692,10 @@ gh issue create \
 \`\`\`
 
 ## Acceptance Criteria
-- ✅ 드래그 앤 드롭 동작
-- ✅ 파일 검증 통과
-- ✅ 접근성 테스트 통과
-- ✅ Unit 테스트 작성
+- 드래그 앤 드롭 동작
+- 파일 검증 통과
+- 접근성 테스트 통과
+- Unit 테스트 작성
 
 ## Estimate
 12h" \
@@ -781,12 +781,12 @@ import { Select } from '@hanui/react'
 \`\`\`
 
 ## Acceptance Criteria
-- ✅ Headless UI Listbox/Combobox 기반 구현
-- ✅ 접근성 테스트 통과
-- ✅ 키보드 네비게이션 자동 동작
-- ✅ 검색 기능 동작
-- ✅ Tailwind로 KRDS 스타일 적용
-- ✅ Unit 테스트 작성
+- Headless UI Listbox/Combobox 기반 구현
+- 접근성 테스트 통과
+- 키보드 네비게이션 자동 동작
+- 검색 기능 동작
+- Tailwind로 KRDS 스타일 적용
+- Unit 테스트 작성
 
 ## Estimate
 8h (Headless UI 사용으로 -2h)
@@ -835,10 +835,10 @@ gh issue create \
   - [ ] \`pnpm dev\`
 
 ## Acceptance Criteria
-- ✅ \`npx create-hanui-app\` 실행 시 프롬프트 표시
-- ✅ 프로젝트 생성 성공
-- ✅ \`pnpm dev\` 실행 시 개발 서버 시작
-- ✅ Unit 테스트 작성
+- \`npx create-hanui-app\` 실행 시 프롬프트 표시
+- 프로젝트 생성 성공
+- \`pnpm dev\` 실행 시 개발 서버 시작
+- Unit 테스트 작성
 
 ## Estimate
 12h
@@ -958,13 +958,13 @@ my-project/
 - [ ] 배포 가이드
 
 ## Acceptance Criteria
-- ✅ \`npx create-hanui-app\` 실행 시 Portal/Admin/Both 선택 가능
-- ✅ 선택한 템플릿이 30초 내 생성됨
-- ✅ 생성된 프로젝트가 즉시 실행 가능 (\`pnpm dev\`)
-- ✅ 모든 P0 페이지가 동작함
-- ✅ 9개 컴포넌트가 모두 사용됨
-- ✅ Mock Data로 실제 동작하는 것처럼 보임
-- ✅ README가 명확함
+- \`npx create-hanui-app\` 실행 시 Portal/Admin/Both 선택 가능
+- 선택한 템플릿이 30초 내 생성됨
+- 생성된 프로젝트가 즉시 실행 가능 (\`pnpm dev\`)
+- 모든 P0 페이지가 동작함
+- 9개 컴포넌트가 모두 사용됨
+- Mock Data로 실제 동작하는 것처럼 보임
+- README가 명확함
 
 ## Estimate
 27h (P0: Portal 13h + Admin 14h)
@@ -1008,10 +1008,10 @@ KRDS + Vercel 디자인 레퍼런스 기반 문서 사이트 초기 설정
   - [ ] KRDS 다크모드 컬러 적용
 
 ## Acceptance Criteria
-- ✅ \`pnpm dev\` 실행 시 문서 사이트 로드
-- ✅ MDX 파일 렌더링 확인
-- ✅ 다크모드 토글 동작
-- ✅ 반응형 레이아웃 동작
+- \`pnpm dev\` 실행 시 문서 사이트 로드
+- MDX 파일 렌더링 확인
+- 다크모드 토글 동작
+- 반응형 레이아웃 동작
 
 ## Estimate
 12h
@@ -1045,10 +1045,10 @@ gh issue create \
   - [ ] 미리보기 창
 
 ## Acceptance Criteria
-- ✅ 컴포넌트 JSDoc에서 자동으로 Props Table 생성
-- ✅ 코드 하이라이팅 동작
-- ✅ Live Preview 동작
-- ✅ 모바일 반응형 동작
+- 컴포넌트 JSDoc에서 자동으로 Props Table 생성
+- 코드 하이라이팅 동작
+- Live Preview 동작
+- 모바일 반응형 동작
 
 ## Estimate
 10h" \
@@ -1086,10 +1086,10 @@ KRDS + Vercel 스타일 Hero Section 메인 페이지 구현
   - [ ] 저작권 정보
 
 ## Acceptance Criteria
-- ✅ KRDS 디자인 규격 준수
-- ✅ Vercel 스타일 미학 적용
-- ✅ 반응형 디자인 (모바일, 태블릿, 데스크탑)
-- ✅ Lighthouse 성능 90+ 점수
+- KRDS 디자인 규격 준수
+- Vercel 스타일 미학 적용
+- 반응형 디자인 (모바일, 태블릿, 데스크탑)
+- Lighthouse 성능 90+ 점수
 
 ## Estimate
 8h
@@ -1135,10 +1135,10 @@ NPM 배포를 위한 메타데이터 및 문서 작성
   - [ ] \`@hanui\` 네임스페이스 등록
 
 ## Acceptance Criteria
-- ✅ package.json 메타데이터 완료
-- ✅ README가 명확하고 읽기 쉬움
-- ✅ LICENSE 파일 존재
-- ✅ NPM organization 등록 완료
+- package.json 메타데이터 완료
+- README가 명확하고 읽기 쉬움
+- LICENSE 파일 존재
+- NPM organization 등록 완료
 
 ## Estimate
 4h" \
@@ -1170,10 +1170,10 @@ GitHub Actions를 이용한 CI/CD 파이프라인 구축
   - [ ] main 브랜치 푸시 시 자동 배포
 
 ## Acceptance Criteria
-- ✅ PR 시 자동 테스트 실행
-- ✅ Tag 푸시 시 NPM 자동 배포
-- ✅ Docs 사이트 Vercel 자동 배포
-- ✅ 모든 워크플로우 통과
+- PR 시 자동 테스트 실행
+- Tag 푸시 시 NPM 자동 배포
+- Docs 사이트 Vercel 자동 배포
+- 모든 워크플로우 통과
 
 ## Estimate
 6h
@@ -1222,10 +1222,10 @@ gh issue create \
 - [ ] Phase 1.5 계획
 
 ## Acceptance Criteria
-- ✅ NPM에서 \`@hanui/react\` 설치 가능
-- ✅ \`npx create-hanui-app\` 실행 가능
-- ✅ Docs 사이트 접속 가능
-- ✅ GitHub Release 생성 완료
+- NPM에서 \`@hanui/react\` 설치 가능
+- \`npx create-hanui-app\` 실행 가능
+- Docs 사이트 접속 가능
+- GitHub Release 생성 완료
 
 ## Estimate
 4h" \
@@ -1237,7 +1237,7 @@ echo ""
 
 # 완료 메시지
 echo -e "${BLUE}========================================${NC}"
-echo -e "${GREEN}✅ 모든 이슈 생성 완료!${NC}"
+echo -e "${GREEN}모든 이슈 생성 완료!${NC}"
 echo -e "${BLUE}========================================${NC}"
 echo ""
 echo -e "${YELLOW}생성된 이슈 수: 23개${NC}"

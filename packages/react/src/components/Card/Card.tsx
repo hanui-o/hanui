@@ -93,11 +93,11 @@ export interface CardProps
  * Card Component (카드)
  *
  * **Foundation Layer Features:**
- * - ✅ Semantic HTML: article role for content cards
- * - ✅ WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
- * - ✅ Screen Reader Support: Proper ARIA attributes and semantic structure
- * - ✅ Visual Hierarchy: Consistent spacing and shadow system
- * - ✅ Dark Mode: Automatic dark mode support with optimized colors
+ * - Semantic HTML: article role for content cards
+ * - WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
+ * - Screen Reader Support: Proper ARIA attributes and semantic structure
+ * - Visual Hierarchy: Consistent spacing and shadow system
+ * - Dark Mode: Automatic dark mode support with optimized colors
  *
  * **Design Principles:**
  * - Flexible container for grouping related content
