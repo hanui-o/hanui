@@ -13,252 +13,143 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { SectionHeader } from '@/components/content/SectionHeader';
 
 export default function SpacingPage() {
   return (
     <>
-      <PageHeader
+      <SectionHeader
+        level="h1"
+        id="overview"
         title="Spacing"
-        description="HANUI는 KRDS의 8포인트 그리드 시스템을 따르는 시맨틱 스페이싱 시스템을 제공합니다. Stack과 Section 컴포넌트를 사용하면 gap-layout과 padding-layout 토큰을 외우지 않고도 일관된 간격을 적용할 수 있습니다."
+        description="HANUI의 Stack과 Section 컴포넌트는 시맨틱한 간격 시스템을 제공합니다. 의미 기반의 spacing prop을 사용하여 일관된 레이아웃을 쉽게 구성할 수 있습니다."
       />
 
       <PageSection>
-        <Heading level="h2" id="overview">
-          개요
-        </Heading>
+        <SectionHeader
+          level="h2"
+          id="overview"
+          title="개요"
+          description="HANUI의 Stack과 Section 컴포넌트는 시맨틱한 간격 시스템을 제공합니다. 의미 기반의 spacing prop을 사용하여 일관된 레이아웃을 쉽게 구성할 수 있습니다."
+        />
+      </PageSection>
+
+      {/* SectionHeader 사용 예시 */}
+      <PageSection>
+        <SectionHeader
+          level="h2"
+          id="section-header-usage"
+          title="SectionHeader 컴포넌트 사용법"
+          description="SectionHeader는 PageSection 내부에서 사용하는 제목과 설명을 일관되게 표시하는 컴포넌트입니다. 레벨별로 자동으로 적절한 간격과 margin-bottom이 적용됩니다."
+        />
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Body>
-            레이아웃(Layout)은 정보 구조와 시각적 흐름을 체계적으로 구성하여
-            사용자가 콘텐츠를 쉽게 이해할 수 있도록 합니다. 레이아웃 가이드는
-            그리드, 브레이크포인트, 간격 설정을 통해 일관된 사용자 경험을
-            제공하며, 시각적 일관성과 정보 전달 효과를 높입니다.
-          </Body>
+          <div className="bg-krds-gray-5 p-6 rounded-lg">
+            <Heading level="h5" className="mb-4">
+              레벨별 margin-bottom 값:
+            </Heading>
+            <ul className="space-y-2 text-body-sm">
+              <li>h1: 48px (mb-12)</li>
+              <li>h2: 40px (mb-10)</li>
+              <li>h3: 24px (mb-6)</li>
+              <li>h4: 16px (mb-4)</li>
+              <li>h5: 16px (mb-4)</li>
+            </ul>
+          </div>
 
-          <div className="p-4 bg-krds-primary-5 border border-krds-primary-20 rounded-lg">
-            <h3 className="text-heading-sm font-semibold mb-2">
-              KRDS 공식 가이드
-            </h3>
+          <div>
+            <Heading level="h5" className="mb-3">
+              사용 예시:
+            </Heading>
+            <ComponentPreview>
+              <Stack spacing="h2-h3">
+                <SectionHeader
+                  level="h1"
+                  title="h1 제목"
+                  description="페이지의 주요 섹션을 나타내는 최상위 제목입니다. 가장 큰 간격(48px)이 적용됩니다."
+                />
+                <SectionHeader
+                  level="h2"
+                  title="h2 제목"
+                  description="주요 섹션의 하위 제목으로, 40px의 간격이 적용됩니다."
+                />
+                <SectionHeader
+                  level="h3"
+                  title="h3 제목"
+                  description="세부 섹션 제목으로, 24px의 간격이 적용됩니다."
+                />
+                <SectionHeader
+                  level="h4"
+                  title="h4 제목"
+                  description="소제목으로, 16px의 간격이 적용됩니다."
+                />
+                <SectionHeader
+                  level="h5"
+                  title="h5 제목"
+                  description="최소 단위 제목으로, 16px의 간격이 적용됩니다."
+                />
+              </Stack>
+            </ComponentPreview>
+            <CodeBlock
+              code={`import { SectionHeader } from '@/components/content/SectionHeader';
+
+// 설명과 함께 사용
+<SectionHeader
+  level="h2"
+  id="overview"
+  title="개요"
+  description="이 섹션에 대한 설명입니다."
+/>
+
+// 설명 없이 사용 (레벨별 margin-bottom만 적용)
+<SectionHeader
+  level="h3"
+  title="서브 섹션"
+/>
+
+// 커스텀 설명 콘텐츠
+<SectionHeader level="h2" title="고급 기능">
+  <Body className="text-krds-gray-70">
+    커스텀 내용 <strong>강조</strong> 가능
+  </Body>
+</SectionHeader>`}
+              language="tsx"
+            />
+          </div>
+
+          <div className="bg-krds-primary-5 border border-krds-primary-20 rounded-lg p-4">
             <Body size="sm">
-              <a
-                href="https://www.krds.go.kr/html/site/style/style_05.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-krds-primary-base hover:underline"
-              >
-                KRDS 레이아웃 가이드 →
-              </a>
+              <strong>💡 팁:</strong> PageSection 내부에서 제목과 설명이 필요한
+              경우 항상 SectionHeader를 사용하세요. 레벨별로 자동으로 적절한
+              간격이 적용되므로 별도로 margin이나 spacing을 신경 쓸 필요가
+              없습니다.
             </Body>
           </div>
         </Stack>
       </PageSection>
 
-      {/* 그리드 시스템 */}
-      <PageSection>
-        <Heading level="h2" id="grid-system">
-          그리드 시스템
-        </Heading>
-
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Body>
-            그리드 시스템은 UI에서 요소의 배치와 정렬을 지원하여 시각적 일관성과
-            질서를 유지하고, 균형 잡힌 레이아웃을 구현합니다. 주요 그리드 구성
-            요소로는 칼럼(column), 마진(margin), 가터(gutter)가 있으며, 이를
-            통해 화면 내 시각적 일관성을 강화하고 다양한 디바이스에서 최적의
-            사용자 경험을 제공합니다.
-          </Body>
-
-          <Stack spacing="h3-h3">
-            <div>
-              <Heading level="h3" className="mb-3">
-                스크린 마진 (Screen Margin)
-              </Heading>
-              <Body className="mb-4">
-                스크린 마진은 화면의 양쪽 끝에 여백을 제공해, 콘텐츠가 화면
-                가장자리에 너무 가까워지지 않도록 합니다. 이는 사용자에게
-                안정감과 일관성을 제공하며, 특히 터치 기반의 모바일 환경에서
-                가장자리 근처에 위치한 요소들이 오작동하지 않도록 합니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="bg-krds-gray-5">
-                      <th className="border border-krds-gray-20 px-4 py-2 text-left text-body-sm font-semibold">
-                        브레이크포인트
-                      </th>
-                      <th className="border border-krds-gray-20 px-4 py-2 text-left text-body-sm font-semibold">
-                        최소 스크린 마진
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        Large / Medium
-                      </td>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        24px
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        Small
-                      </td>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        16px
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="mt-4 p-4 bg-krds-warning-5 border border-krds-warning-20 rounded-lg">
-                <Body size="sm" className="text-krds-gray-70">
-                  <strong>주의:</strong> 모바일 환경에서 가장자리 요소 터치 오류
-                  방지를 위해 최소한의 마진을 필수로 설정합니다.
-                </Body>
-              </div>
-            </div>
-
-            <div>
-              <Heading level="h3" className="mb-3">
-                칼럼 (Column)
-              </Heading>
-              <Body className="mb-4">
-                칼럼은 UI 내 요소를 수직으로 정렬할 수 있는 분할 영역으로,
-                콘텐츠를 체계적이고 일관되게 배치할 수 있게 돕습니다. 칼럼 수는
-                화면 크기에 맞춰 유동적으로 변경되며, 고정값 대신 백분율로
-                설정해 다양한 화면 크기에서 레이아웃이 유연하게 반응합니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="bg-krds-gray-5">
-                      <th className="border border-krds-gray-20 px-4 py-2 text-left text-body-sm font-semibold">
-                        브레이크포인트
-                      </th>
-                      <th className="border border-krds-gray-20 px-4 py-2 text-left text-body-sm font-semibold">
-                        칼럼 수 (적정-최대)
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        Large
-                      </td>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        12-16개
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        Medium
-                      </td>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        8-12개
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        Small
-                      </td>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        4-6개
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="mt-4 p-4 bg-krds-warning-5 border border-krds-warning-20 rounded-lg">
-                <Body size="sm" className="text-krds-gray-70">
-                  <strong>주의:</strong> 동일 화면에서 칼럼 수를 혼용하지 않도록
-                  하여, 시각적으로 일관된 레이아웃을 유지합니다.
-                </Body>
-              </div>
-            </div>
-
-            <div>
-              <Heading level="h3" className="mb-3">
-                가터 (Gutter)
-              </Heading>
-              <Body className="mb-4">
-                가터는 칼럼 사이의 간격을 의미하며, 요소 사이의 여백을 제공하여
-                시각적 혼잡을 줄이고 사용자가 콘텐츠에 집중할 수 있도록 합니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="bg-krds-gray-5">
-                      <th className="border border-krds-gray-20 px-4 py-2 text-left text-body-sm font-semibold">
-                        브레이크포인트
-                      </th>
-                      <th className="border border-krds-gray-20 px-4 py-2 text-left text-body-sm font-semibold">
-                        가터 너비 (최소-적정)
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        Large
-                      </td>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        16px - 24px
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        Medium
-                      </td>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        16px - 24px
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        Small
-                      </td>
-                      <td className="border border-krds-gray-20 px-4 py-2 text-body-sm">
-                        16px - 16px
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div className="mt-4 p-4 bg-krds-warning-5 border border-krds-warning-20 rounded-lg">
-                <Body size="sm" className="text-krds-gray-70">
-                  <strong>주의:</strong> 가터 크기는 칼럼 너비의 절반 이하로
-                  설정해 과도하게 넓거나 좁아지지 않도록 합니다.
-                </Body>
-              </div>
-            </div>
-          </Stack>
-        </Stack>
-      </PageSection>
-
       {/* 컴포넌트 간격 */}
       <PageSection>
-        <Heading level="h2" id="component-spacing">
-          컴포넌트 간격
-        </Heading>
+        <SectionHeader
+          level="h2"
+          id="component-spacing"
+          title="컴포넌트 간격"
+        />
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>
             함께 사용되는 비슷한 크기의 구성 요소는 동일한 간격을 적용하는 것이
-            좋습니다. KRDS는 다양한 컴포넌트 조합에 대한 간격 가이드를
+            좋습니다. HANUI는 다양한 컴포넌트 조합에 대한 시맨틱한 간격을
             제공합니다.
           </Body>
 
           <Stack spacing="h3-h3">
             <div>
-              <Heading level="h3" className="mb-3">
-                카드 리스트
-              </Heading>
-              <Body className="mb-4">
-                카드 세로형, 가로형, 모듈형 간격은 모두 gap-7(24px)을
-                사용합니다. 대체로 세로형 카드 리스트의 간격은 gutter 값으로
-                적용합니다.
-              </Body>
+              <SectionHeader
+                level="h3"
+                title="카드 리스트"
+                description="카드 세로형, 가로형, 모듈형 간격은 모두 gap-7(24px)을 사용합니다. 대체로 세로형 카드 리스트의 간격은 gutter 값으로 적용합니다."
+              />
               <ComponentPreview>
                 <Stack spacing="card-list">
                   <div className="p-6 bg-krds-white rounded-lg border border-krds-gray-20">
@@ -300,20 +191,16 @@ export default function SpacingPage() {
             </div>
 
             <div>
-              <Heading level="h3" className="mb-3">
-                인풋 (Input)
-              </Heading>
-              <Body className="mb-4">
-                인풋과 인풋, 카드, 셀렉트 등 가로형으로 조합할 경우의 사이
-                간격은 gap-5(16px) 토큰을 사용하고, 인풋과 인풋을 세로형으로
-                조합하는 경우는 인풋의 사이즈에 따라 gap-5~gap-7(16px~24px)의
-                토큰을 사용합니다.
-              </Body>
+              <SectionHeader
+                level="h3"
+                title="인풋 (Input)"
+                description="인풋 컴포넌트 간 간격은 'form' 프리셋을 사용합니다. 가로형은 'md', 세로형은 'form' spacing을 사용합니다."
+              />
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <Body size="sm" className="mb-2 font-semibold">
+                  <Heading level="h5" className="mb-2">
                     가로형 조합
-                  </Body>
+                  </Heading>
                   <ComponentPreview>
                     <HStack spacing="md">
                       <Input placeholder="이름" />
@@ -331,9 +218,9 @@ export default function SpacingPage() {
                   />
                 </div>
                 <div>
-                  <Body size="sm" className="mb-2 font-semibold">
+                  <Heading level="h5" className="mb-2">
                     세로형 조합
-                  </Body>
+                  </Heading>
                   <ComponentPreview>
                     <Stack spacing="form">
                       <Input placeholder="이름" />
@@ -354,20 +241,16 @@ export default function SpacingPage() {
             </div>
 
             <div>
-              <Heading level="h3" className="mb-3">
-                체크박스, 라디오 버튼
-              </Heading>
-              <Body className="mb-4">
-                체크박스나 라디오 버튼을 리스트 형태로 사용 시 컴포넌트 사이즈에
-                따라 gap5-gap7(16px-24px)의 토큰을 사용합니다. 또한 가로형을
-                사용해야 하는 경우 간격을 gap7(24px) 이상의 토큰을 사용하여
-                충분한 간격을 유지합니다.
-              </Body>
+              <SectionHeader
+                level="h3"
+                title="체크박스, 라디오 버튼"
+                description="체크박스나 라디오 버튼 리스트는 'form' spacing을 사용합니다. 가로형은 'lg' spacing을 사용하여 충분한 간격을 유지합니다."
+              />
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <Body size="sm" className="mb-2 font-semibold">
+                  <Heading level="h5" className="mb-2">
                     리스트 형태
-                  </Body>
+                  </Heading>
                   <ComponentPreview>
                     <Stack spacing="form">
                       <label className="flex items-center gap-2">
@@ -386,9 +269,9 @@ export default function SpacingPage() {
                   </ComponentPreview>
                 </div>
                 <div>
-                  <Body size="sm" className="mb-2 font-semibold">
+                  <Heading level="h5" className="mb-2">
                     가로형
-                  </Body>
+                  </Heading>
                   <ComponentPreview>
                     <HStack spacing="lg">
                       <label className="flex items-center gap-2">
@@ -414,32 +297,26 @@ export default function SpacingPage() {
 
       {/* 컴포넌트 내 패딩 */}
       <PageSection>
-        <Heading level="h2" id="component-padding">
-          컴포넌트 내 패딩
-        </Heading>
+        <SectionHeader
+          level="h2"
+          id="component-padding"
+          title="컴포넌트 내 패딩"
+          description="Section 컴포넌트의 padding prop을 사용하여 컴포넌트 내부 패딩을 일관되게 적용할 수 있습니다."
+        />
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Body>
-            컴포넌트 내부의 패딩값을 정의합니다. 기능과 크기에 맞는 패딩과
-            간격을 일관되게 사용하여 통일감과 가독성을 유지합니다.
-          </Body>
-
           <Stack spacing="h3-h3">
             <div>
-              <Heading level="h3" className="mb-3">
-                카드
-              </Heading>
-              <Body className="mb-4">
-                카드, 모달, 인포박스, 알럿 등의 컨테이너는 일관된 레이아웃
-                유지를 위해 padding-card (padding8-10) 토큰을 사용합니다. PC는
-                넉넉한 여백을, 모바일은 공간 제약을 반영하여 패딩 크기를 다르게
-                적용합니다.
-              </Body>
+              <SectionHeader
+                level="h3"
+                title="카드"
+                description="카드 패딩은 'card-md', 'card-lg', 'card-sm' 등의 프리셋을 사용합니다. 반응형으로 모바일과 PC에서 자동으로 조정됩니다."
+              />
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <Body size="sm" className="mb-2 font-semibold">
+                  <Heading level="h5" className="mb-2">
                     PC (24px / 32px)
-                  </Body>
+                  </Heading>
                   <ComponentPreview>
                     <Section
                       padding="card-md"
@@ -456,9 +333,9 @@ export default function SpacingPage() {
                   </ComponentPreview>
                 </div>
                 <div>
-                  <Body size="sm" className="mb-2 font-semibold">
+                  <Heading level="h5" className="mb-2">
                     Mobile (24px)
-                  </Body>
+                  </Heading>
                   <ComponentPreview>
                     <Section
                       padding="card-md"
@@ -479,14 +356,11 @@ export default function SpacingPage() {
             </div>
 
             <div>
-              <Heading level="h3" className="mb-3">
-                텍스트 입력 필드
-              </Heading>
-              <Body className="mb-4">
-                텍스트 입력 필드(Text input)는 레이블, 부가 설명, 입력 박스,
-                시스템 메시지 순으로 정렬되며, 각 요소 간의 간격인 gap-3(8px)과
-                입력 박스의 패딩값인 padding-6(16px)를 유지하여 사용합니다.
-              </Body>
+              <SectionHeader
+                level="h3"
+                title="텍스트 입력 필드"
+                description="입력 필드 그룹은 'input-group' spacing을 사용합니다. 레이블, 입력 박스, 설명 사이의 간격이 자동으로 적용됩니다."
+              />
               <ComponentPreview>
                 <Stack spacing="input-group" className="max-w-md">
                   <label className="text-body-sm font-semibold text-krds-gray-95">
@@ -532,7 +406,7 @@ export default function SpacingPage() {
                 <p className="text-body-md text-krds-gray-70">
                   기존 방식에서는 "폼에는 gap-5를 쓰고, 카드 리스트에는 gap-7을
                   쓴다"는 규칙을 모든 개발자가 외워야 했습니다. 바쁜 작업 중에
-                  KRDS 문서를 확인하며 작업하는 것은 비효율적입니다.
+                  문서를 확인하며 작업하는 것은 비효율적입니다.
                 </p>
               </Stack>
 
@@ -552,17 +426,15 @@ export default function SpacingPage() {
           </Stack>
 
           <Stack spacing="h2-h3">
-            <h2 id="stack-gap-layout" className="text-heading-lg font-bold">
-              Stack - Gap Layout
-            </h2>
-            <p className="text-body-md text-krds-gray-70">
-              Stack은 수직/수평 방향으로 요소를 배치하고 간격을 관리하는
-              컴포넌트입니다. KRDS gap-layout 토큰을 시맨틱하게 적용할 수
-              있습니다.
-            </p>
+            <SectionHeader
+              level="h2"
+              id="stack-gap-layout"
+              title="Stack - Gap Layout"
+              description="Stack은 수직/수평 방향으로 요소를 배치하고 간격을 관리하는 컴포넌트입니다. 시맨틱한 spacing prop을 사용하여 일관된 간격을 적용할 수 있습니다."
+            />
 
             <Stack spacing="h3-content">
-              <h3 className="text-heading-md font-bold">폼 레이아웃</h3>
+              <SectionHeader level="h3" title="폼 레이아웃" />
               <ComponentPreview>
                 <Stack spacing="form" className="max-w-md">
                   <div>
@@ -652,8 +524,8 @@ export default function SpacingPage() {
                     <Stack spacing="h3-content">
                       <h3 className="text-heading-md font-bold">소제목</h3>
                       <p className="text-body-md text-krds-gray-70">
-                        콘텐츠 내용입니다. KRDS 타이포그래피 계층에 맞춰
-                        자동으로 간격이 조정됩니다.
+                        콘텐츠 내용입니다. 타이포그래피 계층에 맞춰 자동으로
+                        간격이 조정됩니다.
                       </p>
                     </Stack>
                   </Stack>
@@ -695,7 +567,7 @@ export default function SpacingPage() {
 
             <Stack spacing="h3-content">
               <h3 className="text-heading-md font-bold">
-                전체 KRDS 스페이싱 프리셋
+                전체 스페이싱 프리셋
               </h3>
               <p className="text-body-md text-krds-gray-70">
                 모든 간격은 반응형으로 모바일과 PC에서 자동으로 조정됩니다.
@@ -1147,17 +1019,12 @@ export default function SpacingPage() {
           </Stack>
 
           <Stack spacing="h2-h3">
-            <h2
+            <SectionHeader
+              level="h2"
               id="section-padding-layout"
-              className="text-heading-lg font-bold"
-            >
-              Section - Padding Layout
-            </h2>
-            <p className="text-body-md text-krds-gray-70">
-              Section은 페이지 섹션, 카드, 폼 등에 패딩을 적용하는
-              컴포넌트입니다. KRDS padding-layout 토큰을 시맨틱하게 적용할 수
-              있습니다.
-            </p>
+              title="Section - Padding Layout"
+              description="Section은 페이지 섹션, 카드, 폼 등에 패딩을 적용하는 컴포넌트입니다. 시맨틱한 padding prop을 사용하여 일관된 패딩을 적용할 수 있습니다."
+            />
 
             <Stack spacing="h3-content">
               <h3 className="text-heading-md font-bold">페이지 섹션</h3>
@@ -1252,9 +1119,7 @@ export default function SpacingPage() {
             </Stack>
 
             <Stack spacing="h3-content">
-              <h3 className="text-heading-md font-bold">
-                전체 KRDS 패딩 프리셋
-              </h3>
+              <h3 className="text-heading-md font-bold">전체 패딩 프리셋</h3>
               <p className="text-body-md text-krds-gray-70">
                 모든 패딩은 반응형으로 모바일과 PC에서 자동으로 조정됩니다.
               </p>
@@ -1271,7 +1136,7 @@ export default function SpacingPage() {
                   <tbody>
                     <tr className="border-b bg-krds-gray-5">
                       <td colSpan={4} className="py-2 px-4 font-semibold">
-                        KRDS Card Padding
+                        Card Padding
                       </td>
                     </tr>
                     <tr className="border-b">
@@ -1620,7 +1485,7 @@ export default function SpacingPage() {
             실전 예제
           </h2>
           <p className="text-body-md text-krds-gray-70">
-            다양한 KRDS gap-layout 토큰을 실제로 사용하는 예제입니다.
+            Stack과 Section 컴포넌트를 실제로 사용하는 다양한 예제입니다.
           </p>
 
           <Stack spacing="h3-content">
@@ -1639,7 +1504,7 @@ export default function SpacingPage() {
                   </div>
                   <Stack spacing="h1-h2">
                     <h1 className="text-heading-xl font-bold">
-                      KRDS 디자인 시스템 소개
+                      HANUI 디자인 시스템 소개
                     </h1>
                     <Stack spacing="h2-h3">
                       <h2 className="text-heading-lg font-bold">시작하기</h2>
@@ -1648,7 +1513,7 @@ export default function SpacingPage() {
                           설치 방법
                         </h3>
                         <p className="text-body-md text-krds-gray-70">
-                          KRDS는 한국 정부의 공식 디자인 시스템입니다. 접근성과
+                          HANUI는 React 컴포넌트 라이브러리입니다. 접근성과
                           사용성을 최우선으로 설계되었습니다.
                         </p>
                       </Stack>
@@ -1661,7 +1526,7 @@ export default function SpacingPage() {
               code={`<Stack spacing="breadcrumb">
   <Breadcrumb />
   <Stack spacing="h1-h2">
-    <h1>KRDS 디자인 시스템 소개</h1>
+    <h1>HANUI 디자인 시스템 소개</h1>
     <Stack spacing="h2-h3">
       <h2>시작하기</h2>
       <Stack spacing="title-body-medium">
@@ -1848,8 +1713,8 @@ export default function SpacingPage() {
                     환영합니다
                   </h3>
                   <p className="text-body-md text-krds-white/90">
-                    HANUI는 KRDS 기반의 React 컴포넌트 라이브러리입니다.
-                    접근성과 일관성을 최우선으로 설계되었습니다.
+                    HANUI는 React 컴포넌트 라이브러리입니다. 접근성과 일관성을
+                    최우선으로 설계되었습니다.
                   </p>
                 </Stack>
               </Section>
@@ -1859,7 +1724,7 @@ export default function SpacingPage() {
   <Stack spacing="title-body-large">
     <h3 className="text-heading-lg font-bold">환영합니다</h3>
     <p className="text-body-md">
-      HANUI는 KRDS 기반의 React 컴포넌트 라이브러리입니다.
+      HANUI는 React 컴포넌트 라이브러리입니다.
     </p>
   </Stack>
 </Section>`}
@@ -1885,7 +1750,7 @@ export default function SpacingPage() {
                   <Stack spacing="title-body-medium">
                     <h4 className="text-heading-md font-bold">디자인 토큰</h4>
                     <p className="text-body-sm text-krds-gray-70">
-                      KRDS 기반의 색상, 타이포그래피, 간격 토큰을 제공합니다.
+                      색상, 타이포그래피, 간격 토큰을 제공합니다.
                     </p>
                   </Stack>
                 </Section>
@@ -1908,7 +1773,7 @@ export default function SpacingPage() {
   <Section padding="card-medium" background="white">
     <Stack spacing="title-body-medium">
       <h4>디자인 토큰</h4>
-      <p>KRDS 기반의 색상, 타이포그래피, 간격 토큰을 제공합니다.</p>
+      <p>색상, 타이포그래피, 간격 토큰을 제공합니다.</p>
     </Stack>
   </Section>
   <Section padding="card-medium" background="white">
@@ -2306,7 +2171,7 @@ export default function SpacingPage() {
               </h3>
               <p className="text-body-sm text-krds-gray-70">
                 가능하면 "form", "card-list" 같은 시맨틱 프리셋을 사용하세요.
-                코드의 의도가 명확해지고 KRDS 가이드라인을 자동으로 따릅니다.
+                코드의 의도가 명확해지고 일관된 간격이 자동으로 적용됩니다.
               </p>
             </Section>
 
@@ -2352,28 +2217,6 @@ export default function SpacingPage() {
               </p>
             </Section>
           </Stack>
-        </Stack>
-      </PageSection>
-
-      <PageSection>
-        <Stack spacing="h2-h3">
-          <h2 id="reference" className="text-heading-lg font-bold">
-            참고 자료
-          </h2>
-
-          <div className="space-y-3">
-            <a
-              href="https://www.krds.go.kr/html/site/style/style_05.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
-            >
-              <h4 className="font-semibold mb-1">KRDS 레이아웃 가이드</h4>
-              <p className="text-sm text-krds-gray-70">
-                간격, 그리드, 브레이크포인트 기준
-              </p>
-            </a>
-          </div>
         </Stack>
       </PageSection>
     </>

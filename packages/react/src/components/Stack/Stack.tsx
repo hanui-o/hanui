@@ -20,6 +20,9 @@ const stackVariants = cva('flex', {
      * - inline: Small related elements (tags, chips, badges)
      */
     spacing: {
+      // ===== No Spacing =====
+      none: 'gap-0', // 0px - No gap between items
+
       // ===== Section Level (큰 블록 구분) =====
       section: 'gap-10 md:gap-20', // 40px/80px - Major section breaks
       'section-tight': 'gap-8 md:gap-16', // 32px/64px - Minor section breaks
@@ -93,7 +96,7 @@ const stackVariants = cva('flex', {
     },
   },
   defaultVariants: {
-    spacing: 'md',
+    spacing: 'none', // 기본값 0 - KRDS 가이드라인에 따라 명시적 간격 지정 권장
   },
 });
 
@@ -101,14 +104,16 @@ const stackVariants = cva('flex', {
  * Stack Props Interface
  */
 export interface StackProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof stackVariants> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'spacing'>,
+    Omit<VariantProps<typeof stackVariants>, 'spacing'> {
   /**
    * Context-based semantic spacing
-   * @default "md"
+   * @default "none" (0px) - KRDS 가이드라인에 따라 명시적 간격 지정 권장
    */
-  spacing?: // Section Level
-  | 'section'
+  spacing?: // No Spacing
+  | 'none'
+    // Section Level
+    | 'section'
     | 'section-tight'
     // Heading-Content
     | 'heading-content'
@@ -144,7 +149,11 @@ export interface StackProps
     | 'lg'
     | 'xl'
     | '2xl'
-    | '3xl';
+    | '3xl'
+    // Numeric string (e.g., "10" for gap-10)
+    | `${number}`
+    // Number literal (e.g., 0, 4, 10 for gap-0, gap-4, gap-10)
+    | number;
 
   /**
    * Stack direction (Stack only, not available for HStack/VStack)
@@ -210,11 +219,26 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
     },
     ref
   ) => {
+    // 숫자 또는 숫자 문자열인 경우 gap-{number} 클래스로 변환
+    const isNumericSpacing =
+      typeof spacing === 'number' ||
+      (typeof spacing === 'string' &&
+        /^\d+$/.test(spacing) &&
+        !['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl'].includes(spacing));
+
+    const spacingClass = isNumericSpacing ? `gap-${spacing}` : undefined;
+
+    // spacing이 숫자이거나 숫자 문자열이면 stackVariants에서 제외
+    const variantSpacing = isNumericSpacing
+      ? undefined
+      : (spacing as VariantProps<typeof stackVariants>['spacing']);
+
     return (
       <Component
         ref={ref as any}
         className={cn(
-          stackVariants({ spacing, direction, align, justify }),
+          stackVariants({ spacing: variantSpacing, direction, align, justify }),
+          spacingClass,
           !direction && 'flex-col', // Default to vertical if direction not specified
           className
         )}

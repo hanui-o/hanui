@@ -21,11 +21,11 @@ const headingVariants = cva(
   {
     variants: {
       level: {
-        h1: ['text-[28px] md:text-[40px] mb-4 md:mb-6'].join(' '),
-        h2: ['text-[24px] md:text-[32px] mb-3 md:mb-5'].join(' '),
-        h3: ['text-[22px] md:text-[24px] mb-5 md:mb-6'].join(' '),
-        h4: 'text-[19px] mb-3 md:mb-5',
-        h5: 'text-[17px] mb-2 md:mb-4',
+        h1: 'text-[28px] md:text-[40px]',
+        h2: 'text-[24px] md:text-[32px]',
+        h3: 'text-[22px] md:text-[24px]',
+        h4: 'text-[19px]',
+        h5: 'text-[17px]',
       },
     },
     defaultVariants: {
