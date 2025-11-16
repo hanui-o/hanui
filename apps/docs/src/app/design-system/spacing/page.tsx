@@ -1,6 +1,6 @@
 'use client';
 
-import { Stack, Section, Button, Input } from '@hanui/react';
+import { Stack, HStack, Section, Button, Input } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
@@ -166,18 +166,18 @@ export default function SpacingPage() {
           <Stack spacing="h3-content">
             <h3 className="text-heading-md font-bold">가로 방향 레이아웃</h3>
             <ComponentPreview>
-              <Stack direction="horizontal" spacing="md" align="center">
+              <HStack spacing="md" align="center">
                 <Button variant="primary">저장</Button>
                 <Button variant="outline">취소</Button>
                 <Button variant="ghost">삭제</Button>
-              </Stack>
+              </HStack>
             </ComponentPreview>
             <CodeBlock
-              code={`<Stack direction="horizontal" spacing="md" align="center">
+              code={`<HStack spacing="md" align="center">
   <Button variant="primary">저장</Button>
   <Button variant="outline">취소</Button>
   <Button variant="ghost">삭제</Button>
-</Stack>`}
+</HStack>`}
               language="tsx"
             />
           </Stack>
@@ -805,10 +805,10 @@ export default function SpacingPage() {
                   </Section>
                 </Stack>
 
-                <Stack direction="horizontal" spacing="md" justify="end">
+                <HStack spacing="md" justify="end">
                   <Button variant="outline">취소</Button>
                   <Button variant="primary">가입하기</Button>
-                </Stack>
+                </HStack>
               </Stack>
             </Section>
           </ComponentPreview>
@@ -850,10 +850,10 @@ export default function SpacingPage() {
       </Section>
     </Stack>
 
-    <Stack direction="horizontal" spacing="md" justify="end">
+    <HStack spacing="md" justify="end">
       <Button variant="outline">취소</Button>
       <Button variant="primary">가입하기</Button>
-    </Stack>
+    </HStack>
   </Stack>
 </Section>`}
             language="tsx"
@@ -885,14 +885,6 @@ export default function SpacingPage() {
                     <td className="py-3 px-4">시맨틱 프리셋 | 제네릭 사이즈</td>
                     <td className="py-3 px-4">"md"</td>
                     <td className="py-3 px-4">간격 크기</td>
-                  </tr>
-                  <tr className="border-b">
-                    <td className="py-3 px-4">
-                      <code>direction</code>
-                    </td>
-                    <td className="py-3 px-4">"vertical" | "horizontal"</td>
-                    <td className="py-3 px-4">"vertical"</td>
-                    <td className="py-3 px-4">배치 방향</td>
                   </tr>
                   <tr className="border-b">
                     <td className="py-3 px-4">
@@ -1152,12 +1144,7 @@ export default function SpacingPage() {
           <Stack spacing="h3-content">
             <h3 className="text-heading-md font-bold">2단 레이아웃</h3>
             <ComponentPreview>
-              <Stack
-                direction="horizontal"
-                spacing="lg"
-                align="start"
-                className="w-full"
-              >
+              <HStack spacing="lg" align="start" className="w-full">
                 <div className="hidden md:block w-48 bg-krds-gray-10 p-4 rounded-lg">
                   <p className="text-body-sm font-semibold">사이드바</p>
                 </div>
@@ -1170,10 +1157,10 @@ export default function SpacingPage() {
                     </p>
                   </Stack>
                 </div>
-              </Stack>
+              </HStack>
             </ComponentPreview>
             <CodeBlock
-              code={`<Stack direction="horizontal" spacing="lg">
+              code={`<HStack spacing="lg" align="start">
   <aside className="hidden md:block w-48">
     사이드바 내용
   </aside>
@@ -1183,7 +1170,7 @@ export default function SpacingPage() {
       <p>콘텐츠...</p>
     </Stack>
   </main>
-</Stack>`}
+</HStack>`}
               language="tsx"
             />
           </Stack>
@@ -1720,6 +1707,26 @@ export default function SpacingPage() {
               </p>
             </Section>
           </Stack>
+        </Stack>
+
+        <Stack spacing="h2-h3">
+          <h2 id="reference" className="text-heading-lg font-bold">
+            참고 자료
+          </h2>
+
+          <div className="space-y-3">
+            <a
+              href="https://www.krds.go.kr/html/site/style/style_05.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
+            >
+              <h4 className="font-semibold mb-1">KRDS 레이아웃 가이드</h4>
+              <p className="text-sm text-krds-gray-70">
+                간격, 그리드, 브레이크포인트 기준
+              </p>
+            </a>
+          </div>
         </Stack>
       </Stack>
     </>

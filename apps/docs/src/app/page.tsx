@@ -5,6 +5,7 @@ import {
   Button,
   Container,
   Stack,
+  HStack,
   Section,
   Display,
   Body,
@@ -39,12 +40,7 @@ export default function Home() {
             </Body>
 
             {/* CTA Buttons */}
-            <Stack
-              direction="horizontal"
-              spacing="md"
-              justify="center"
-              className="flex-wrap"
-            >
+            <HStack spacing="md" justify="center" className="flex-wrap">
               <Link href="/docs/quick-start">
                 <Button variant="black" size="md">
                   Get Started
@@ -55,7 +51,7 @@ export default function Home() {
                   View Components
                 </Button>
               </Link>
-            </Stack>
+            </HStack>
           </Stack>
         </Section>
 

@@ -48,14 +48,14 @@ export default function StackPage() {
           </Body>
           <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
             <li>
-              <strong>Stack</strong>: 기본 수직 레이아웃 (direction prop으로
-              제어 가능)
+              <strong>Stack</strong>: 기본 수직 레이아웃 (
+              <code>direction="row"</code>로 수평 방향 변경 가능)
             </li>
             <li>
-              <strong>VStack</strong>: 명시적 수직 레이아웃
+              <strong>VStack</strong>: Stack의 별칭 (항상 수직 방향)
             </li>
             <li>
-              <strong>HStack</strong>: 명시적 수평 레이아웃
+              <strong>HStack</strong>: 수평 레이아웃 (항상 수평 방향)
             </li>
           </ul>
         </Stack>
@@ -430,9 +430,16 @@ export default function StackPage() {
             <CodeBlock
               code={`import { Stack } from '@hanui/react'
 
+// 기본값: 수직
 <Stack spacing="content">
   <div>첫 번째</div>
   <div>두 번째</div>
+</Stack>
+
+// direction="row"로 수평 방향
+<Stack direction="row" spacing="md">
+  <div>왼쪽</div>
+  <div>오른쪽</div>
 </Stack>`}
               language="tsx"
               showLineNumbers={false}
@@ -535,6 +542,39 @@ export default function StackPage() {
   <div>중앙</div>
   <div>오른쪽</div>
 </HStack>`}
+                  language="tsx"
+                  showLineNumbers={false}
+                />
+              </div>
+            </div>
+          </Stack>
+
+          {/* Stack with direction="row" */}
+          <Stack spacing="heading-tight">
+            <Heading level="h3">Stack direction="row" - 수평 방향</Heading>
+            <div>
+              <ComponentPreview>
+                <div className="w-full">
+                  <Stack direction="row" spacing="md" justify="center">
+                    <div className="bg-krds-success-surface px-4 py-2 rounded">
+                      버튼 1
+                    </div>
+                    <div className="bg-krds-success-surface px-4 py-2 rounded">
+                      버튼 2
+                    </div>
+                    <div className="bg-krds-success-surface px-4 py-2 rounded">
+                      버튼 3
+                    </div>
+                  </Stack>
+                </div>
+              </ComponentPreview>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`<Stack direction="row" spacing="md" justify="center">
+  <div>버튼 1</div>
+  <div>버튼 2</div>
+  <div>버튼 3</div>
+</Stack>`}
                   language="tsx"
                   showLineNumbers={false}
                 />
@@ -686,9 +726,11 @@ export default function StackPage() {
           </Heading>
 
           <Body>
-            <strong>Stack</strong>, <strong>VStack</strong>,{' '}
-            <strong>HStack</strong> 모두 동일한 props를 지원합니다. VStack과
-            HStack은 direction prop이 고정되어 있습니다.
+            <strong>Stack</strong>은 기본적으로 수직 방향이며,{' '}
+            <code>direction="row"</code> prop으로 수평 방향으로 변경할 수
+            있습니다. <strong>VStack</strong>은 Stack의 별칭으로 항상 수직
+            방향입니다. <strong>HStack</strong>은 항상 수평 방향이며{' '}
+            <code>direction</code> prop을 사용하지 않습니다.
           </Body>
         </Stack>
 
@@ -730,13 +772,14 @@ export default function StackPage() {
                   direction
                 </td>
                 <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
-                  &apos;vertical&apos; | &apos;horizontal&apos;
+                  &apos;row&apos;
                 </td>
                 <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
-                  &apos;vertical&apos;
+                  undefined (수직)
                 </td>
                 <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
-                  스택 방향 (Stack만 사용 가능)
+                  스택 방향 (Stack만 사용 가능). <code>direction="row"</code>일
+                  때 수평 방향. VStack/HStack은 이 prop을 사용하지 않습니다.
                 </td>
               </tr>
               <tr>

@@ -67,11 +67,10 @@ const stackVariants = cva('flex', {
       '3xl': 'gap-16', // 64px
     },
     /**
-     * Direction - flex direction
+     * Direction - flex direction (Stack only)
      */
     direction: {
-      vertical: 'flex-col',
-      horizontal: 'flex-row',
+      row: 'flex-row',
     },
     /**
      * Align items
@@ -95,7 +94,6 @@ const stackVariants = cva('flex', {
   },
   defaultVariants: {
     spacing: 'md',
-    direction: 'vertical',
   },
 });
 
@@ -149,10 +147,10 @@ export interface StackProps
     | '3xl';
 
   /**
-   * Stack direction
-   * @default "vertical"
+   * Stack direction (Stack only, not available for HStack/VStack)
+   * @default undefined (vertical)
    */
-  direction?: 'vertical' | 'horizontal';
+  direction?: 'row';
 
   /**
    * Align items
@@ -217,6 +215,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
         ref={ref as any}
         className={cn(
           stackVariants({ spacing, direction, align, justify }),
+          !direction && 'flex-col', // Default to vertical if direction not specified
           className
         )}
         {...props}
@@ -231,7 +230,7 @@ Stack.displayName = 'Stack';
 /**
  * VStack Component - Vertical Stack
  *
- * Convenience wrapper for Stack with vertical direction
+ * Alias for Stack (always vertical). Use Stack or VStack interchangeably.
  *
  * @example
  * ```tsx
@@ -245,14 +244,14 @@ export const VStack = React.forwardRef<
   HTMLDivElement,
   Omit<StackProps, 'direction'>
 >((props, ref) => {
-  return <Stack ref={ref} direction="vertical" {...props} />;
+  return <Stack ref={ref} {...props} />;
 });
 VStack.displayName = 'VStack';
 
 /**
  * HStack Component - Horizontal Stack
  *
- * Convenience wrapper for Stack with horizontal direction
+ * Horizontal stack component. Always uses flex-row direction.
  * Default align is 'center' for better horizontal alignment
  *
  * @example
@@ -266,8 +265,16 @@ VStack.displayName = 'VStack';
 export const HStack = React.forwardRef<
   HTMLDivElement,
   Omit<StackProps, 'direction'>
->(({ align = 'center', ...props }, ref) => {
-  return <Stack ref={ref} direction="horizontal" align={align} {...props} />;
+>(({ align = 'center', className, ...props }, ref) => {
+  return (
+    <Stack
+      ref={ref}
+      direction="row"
+      align={align}
+      className={className}
+      {...props}
+    />
+  );
 });
 HStack.displayName = 'HStack';
 
