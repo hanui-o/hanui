@@ -1,0 +1,9 @@
+{
+  "$schema": "https://hanui.io/schema.json",
+  "componentsPath": "components/hanui",
+  "libPath": "lib",
+  "tailwind": {
+    "config": "tailwind.config.js"
+  },
+  "packageManager": "pnpm"
+}
