@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import { Container } from '@hanui/react';
+import { ExternalLinkIcon } from 'lucide-react';
 
 const SearchIcon = () => (
   <svg
@@ -73,6 +74,34 @@ const MoonIcon = () => (
     strokeLinejoin="round"
   >
     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+  </svg>
+);
+
+const HeartIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+  </svg>
+);
+
+const ChevronDownIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="m6 9 6 6 6-6" />
   </svg>
 );
 
@@ -171,22 +200,19 @@ export function Header() {
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium ml-8">
           <Link
             href="/docs/introduction"
-            className={`transition-colors ${
+            className={`transition-colors px-4 py-2 whitespace-nowrap ${
               isInDocs
-                ? 'text-krds-gray-95 font-semibold'
+                ? 'text-krds-gray-95 font-semibold bg-krds-gray-5 rounded-md'
                 : 'text-krds-gray-70 hover:text-krds-gray-95'
             }`}
           >
             Docs
           </Link>
-          <span className="text-krds-gray-70">Showcase</span>
           <Link
-            href="https://velog.io/@hanui/"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/showcase"
             className="text-krds-gray-70 hover:text-krds-gray-95 transition-colors"
           >
-            Blog
+            Showcase
           </Link>
           <Link
             href="/community"
@@ -194,15 +220,40 @@ export function Header() {
           >
             Community
           </Link>
+          <Link
+            href="https://velog.io/@hanui/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-krds-gray-70 hover:text-krds-gray-95 transition-colors"
+          >
+            Blog <ExternalLinkIcon className="w-4 h-4 text-krds-gray-70" />
+          </Link>
         </nav>
 
-        {/* Right: Search + GitHub + Theme */}
+        {/* Right: Version + Sponsor + Search + GitHub + Theme */}
         <div className="flex items-center gap-2 ml-auto">
+          {/* Version */}
+          <button className="hidden lg:flex items-center gap-1.5 h-9 px-3 text-sm font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20">
+            <span>v0.1.0-beta</span>
+            <ChevronDownIcon />
+          </button>
+
+          {/* Sponsor */}
+          <Link
+            href="https://github.com/sponsors/hanui-o"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:flex items-center gap-1.5 h-9 px-3 text-sm font-medium text-red-600 hover:text-red-700 rounded-md hover:bg-red-50 transition-colors"
+          >
+            <HeartIcon />
+            <span>Sponsor</span>
+          </Link>
+
           {/* Search */}
-          <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20">
+          <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors bg-krds-gray-5">
             <SearchIcon />
             <span className="hidden lg:inline">Search...</span>
-            <kbd className="hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-5 px-1.5 font-mono text-xs font-medium text-krds-gray-70 ml-auto">
+            <kbd className="hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-0 px-1.5 font-mono text-xs font-medium text-krds-gray-70 ml-auto">
               <span className="text-xs">⌘</span>K
             </kbd>
           </button>
@@ -243,10 +294,10 @@ export function Header() {
                     <Link
                       key={item.key}
                       href={item.href}
-                      className={`px-4 py-2 whitespace-nowrap transition-colors ${
+                      className={`flex items-center h-11 px-4 py-2 whitespace-nowrap transition-colors ${
                         isActive
-                          ? 'text-krds-primary-base font-semibold border-b-2 border-krds-primary-base'
-                          : 'text-krds-gray-70 hover:text-krds-gray-95'
+                          ? 'text-krds-primary-base font-semibold border-b border-krds-primary-base'
+                          : 'text-krds-gray-70 hover:text-krds-gray-95 border-b border-transparent'
                       }`}
                     >
                       {item.label}

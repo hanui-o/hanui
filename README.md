@@ -2,11 +2,13 @@
 
 <div align="center">
 
-> **KRDS 기반 공공 웹사이트용 React 컴포넌트 라이브러리**
+> **🇰🇷 KRDS 준수 React 컴포넌트 라이브러리**
 
 [![npm version](https://img.shields.io/npm/v/@hanui/react.svg)](https://www.npmjs.com/package/@hanui/react)
 [![license](https://img.shields.io/npm/l/@hanui/react.svg)](./LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/hanui-o/hanui)](https://github.com/hanui-o/hanui/stargazers)
+
+[문서](https://hanui.io) · [컴포넌트](https://hanui.io/components) · [가이드](https://hanui.io/docs/introduction) · [블로그](https://velog.io/@hanui/)
 
 [한국어](#한국어) | [English](#english)
 
@@ -20,70 +22,97 @@
 
 HANUI는 [KRDS(Korea Republic Design System)](https://github.com/korea-design-system/krds)를 완벽히 준수하는 React 컴포넌트 라이브러리입니다. 공공기관 웹사이트 개발을 위한 접근성(WCAG 2.1 AA)과 사용성을 갖춘 컴포넌트를 제공합니다.
 
-> **🎉 v0.1.0 First Stable Release (2025-11-12)**
+> **🚧 개발 진행 중**
 >
-> HANUI의 첫 번째 안정 버전이 출시되었습니다! 9개의 핵심 컴포넌트, 완전한 KRDS 준수, 그리고 즉시 사용 가능한 템플릿을 제공합니다.
+> HANUI는 현재 활발히 개발 중입니다. 피드백과 기여를 환영합니다!
+> [이슈 남기기](https://github.com/hanui-o/hanui/issues) · [디스커션 참여](https://github.com/hanui-o/hanui/discussions)
 
-### 특징
+### ✨ 왜 HANUI인가?
+
+HANUI는 한국 공공기관 웹사이트 개발의 고질적인 문제를 해결합니다:
+
+- ❌ **문제**: KRDS 준수를 위해 매번 컴포넌트를 처음부터 개발
+- ❌ **문제**: 접근성 요구사항을 일일이 구현하는 번거로움
+- ❌ **문제**: 디자인 시스템과 코드의 불일치
+
+→ ✅ **HANUI 솔루션**: KRDS를 완벽히 준수하는 즉시 사용 가능한 컴포넌트 제공
+
+### 🎯 특징
 
 - 🎨 **KRDS 100% 준수**: 공공 웹 디자인 시스템 완벽 준수
 - ♿️ **접근성 AA 등급**: WCAG 2.1 AA 준수 및 스크린 리더 지원
-- ⚡️ **즉시 사용 가능**: 9개의 핵심 컴포넌트 제공
-- 🌙 **다크 모드**: 라이트/다크 테마 지원
-- 📦 **TypeScript**: 완전한 타입 지원
+- 🛠️ **CLI 도구**: shadcn/ui 스타일의 간편한 컴포넌트 설치
+- 📦 **TypeScript**: 완전한 타입 지원으로 안전한 개발
 - 🎯 **Tree-shaking**: ESM 지원으로 최적화된 번들 크기
+- 🎨 **커스터마이징**: Tailwind CSS 기반으로 쉬운 스타일 수정
 
-### 컴포넌트
+### 📦 컴포넌트
 
-현재 제공되는 9개 핵심 컴포넌트:
+#### 현재 제공 중 (13개)
 
-- **Button** - 다양한 variant와 size 지원
-- **Input** - 폼 입력 필드
-- **Card** - 콘텐츠 카드
-- **Table** - 데이터 테이블
-- **Pagination** - 페이지네이션
-- **Breadcrumb** - 네비게이션 경로
-- **Modal** - 모달 다이얼로그
-- **Select** - 드롭다운 선택
-- **FileUpload** - 파일 업로드
+- **Button, Input, Textarea** - 기본 폼 요소
+- **Select, Radio, Checkbox** - 선택 컴포넌트
+- **Card, Badge** - 콘텐츠 표시
+- **Table, Pagination** - 데이터 표시
+- **Modal, Tabs** - 인터랙션
+- **Breadcrumb** - 네비게이션
 
-### 빠른 시작
+#### 개발 예정
 
-#### 1. CLI로 새 프로젝트 생성
+- **Form** - 폼 검증 및 관리
+- **Toast** - 알림 메시지
+- **Dropdown** - 드롭다운 메뉴
+- **Accordion** - 접을 수 있는 콘텐츠
+- **더 많은 컴포넌트 추가 예정...**
+
+→ [전체 컴포넌트 보기](https://hanui.io/components)
+
+### 🚀 빠른 시작
+
+#### 방법 1: CLI로 새 프로젝트 생성 (권장)
 
 ```bash
-# Portal, Admin, 또는 Both 템플릿 중 선택
-pnpm create hanui-app my-project
+# CLI 도구로 프로젝트 초기화
+npx hanui init my-project
+
+# 프로젝트 디렉토리 이동
+cd my-project
+
+# 컴포넌트 추가
+npx hanui add button input
 
 # 개발 서버 실행
-cd my-project
-pnpm dev
+npm run dev
 ```
 
-#### 2. 기존 프로젝트에 설치
+#### 방법 2: 기존 프로젝트에 설치
 
 ```bash
-# pnpm
-pnpm add @hanui/react
-
-# npm
+# 패키지 설치
 npm install @hanui/react
 
-# yarn
-yarn add @hanui/react
-
-# bun
-bun add @hanui/react
+# Tailwind CSS 설정 (필수)
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
 ```
 
 ```tsx
-// 컴포넌트 사용
-import { Button } from '@hanui/react';
+// 컴포넌트 사용 예제
+import { Button, Input, Card } from '@hanui/react';
 
-function App() {
-  return <Button>클릭하세요</Button>;
+export default function MyPage() {
+  return (
+    <Card>
+      <h2>로그인</h2>
+      <Input placeholder="이메일" type="email" />
+      <Input placeholder="비밀번호" type="password" />
+      <Button>로그인</Button>
+    </Card>
+  );
 }
 ```
+
+→ [자세한 설치 가이드 보기](https://hanui.io/docs/installation)
 
 ### 📦 패키지
 
@@ -146,21 +175,62 @@ pnpm format
 
 ## 📚 문서
 
-전체 문서는 [https://hanui.io](https://hanui.io)에서 확인하세요.
+- **시작하기**: [설치 가이드](https://hanui.io/docs/installation) · [빠른 시작](https://hanui.io/docs/quick-start)
+- **컴포넌트**: [전체 목록](https://hanui.io/components) · [사용 예제](https://hanui.io/components)
+- **디자인 시스템**: [Typography](https://hanui.io/design-system/typography) · [Colors](https://hanui.io/design-system/colors) · [Spacing](https://hanui.io/design-system/spacing)
+- **개발 블로그**: [Velog @hanui](https://velog.io/@hanui/)
 
-## 🤝 기여
+## 🗺️ 로드맵
 
-이슈와 PR을 환영합니다! 기여하기 전에 이슈를 먼저 열어주세요.
+### v0.2.0 (진행 중)
+
+- [ ] 스타터 킷 (Portal/Admin 템플릿)
+- [ ] Form 컴포넌트 + 검증
+- [ ] Toast 알림
+- [ ] Dropdown 메뉴
+
+### v0.3.0 (계획)
+
+- [ ] DataGrid 고급 테이블
+- [ ] 차트 컴포넌트
+- [ ] 파일 업로드 고도화
+- [ ] 다국어 지원
+
+### v1.0.0 (목표)
+
+- [ ] 모든 KRDS 컴포넌트 완성
+- [ ] 프리미엄 템플릿
+- [ ] Figma 플러그인
+- [ ] Storybook 문서
+
+## 🤝 기여하기
+
+HANUI는 오픈소스 프로젝트입니다. 기여를 환영합니다!
+
+- 🐛 **버그 제보**: [이슈 생성하기](https://github.com/hanui-o/hanui/issues/new)
+- 💡 **기능 제안**: [디스커션 시작하기](https://github.com/hanui-o/hanui/discussions/new)
+- 📝 **문서 개선**: [PR 보내기](https://github.com/hanui-o/hanui/pulls)
+- ⭐ **프로젝트 응원**: [Star 주기](https://github.com/hanui-o/hanui)
+
+## 💬 커뮤니티
+
+- **GitHub Discussions**: [토론 참여하기](https://github.com/hanui-o/hanui/discussions)
+- **Blog**: [개발 과정 공유](https://velog.io/@hanui/)
+- **Email**: odada@oddodd.io
 
 ## 📄 라이선스
 
 MIT © [hanui-o](https://github.com/hanui-o)
 
-## 📮 문의
+---
 
-- GitHub Issues: https://github.com/hanui-o/hanui/issues
-- NPM: [@hanui/react](https://www.npmjs.com/package/@hanui/react)
-- Documentation: https://hanui.io
+<div align="center">
+
+**HANUI로 더 나은 공공 웹을 만들어가요 🇰🇷**
+
+[시작하기](https://hanui.io/docs/quick-start) · [컴포넌트 보기](https://hanui.io/components) · [Star 주기 ⭐](https://github.com/hanui-o/hanui)
+
+</div>
 
 ---
 
@@ -170,46 +240,77 @@ MIT © [hanui-o](https://github.com/hanui-o)
 
 HANUI is a React component library that fully complies with [KRDS (Korea Republic Design System)](https://github.com/korea-design-system/krds). It provides accessible (WCAG 2.1 AA) and user-friendly components for Korean government websites.
 
+> **🚧 Under Active Development**
+>
+> HANUI is currently in active development. Feedback and contributions are welcome!
+
+### ✨ Why HANUI?
+
+HANUI solves common pain points in Korean public website development:
+
+- ❌ **Problem**: Building KRDS-compliant components from scratch every time
+- ❌ **Problem**: Tedious accessibility implementation
+- ❌ **Problem**: Design system and code inconsistency
+
+→ ✅ **HANUI Solution**: Ready-to-use components with perfect KRDS compliance
+
 ### Features
 
 - 🎨 **100% KRDS Compliant**: Perfect adherence to Korean public web design system
 - ♿️ **AA Accessibility**: WCAG 2.1 AA compliant with screen reader support
-- ⚡️ **Ready to Use**: 9 essential components provided
-- 🌙 **Dark Mode**: Light/Dark theme support
-- 📦 **TypeScript**: Full type support
+- 🛠️ **CLI Tool**: shadcn/ui-style easy component installation
+- 📦 **TypeScript**: Full type support for safe development
 - 🎯 **Tree-shaking**: Optimized bundle size with ESM support
+- 🎨 **Customizable**: Easy styling with Tailwind CSS
 
 ### Quick Start
 
 ```bash
-# Create project
-pnpm create hanui-app my-project
+# Initialize project
+npx hanui init my-project
 
-# Start development
+# Navigate to project
 cd my-project
-pnpm dev
+
+# Add components
+npx hanui add button input
+
+# Start dev server
+npm run dev
 ```
 
 Or install in existing project:
 
 ```bash
-# pnpm
-pnpm add @hanui/react
-
-# npm
 npm install @hanui/react
 
-# yarn
-yarn add @hanui/react
-
-# bun
-bun add @hanui/react
+# Tailwind CSS setup (required)
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
 ```
 
 ### Documentation
 
-Visit [https://hanui.io](https://hanui.io) for full documentation.
+- **Getting Started**: [Installation Guide](https://hanui.io/docs/installation)
+- **Components**: [Full List](https://hanui.io/components)
+- **Design System**: [Typography](https://hanui.io/design-system/typography) · [Colors](https://hanui.io/design-system/colors)
+
+### Community
+
+- **GitHub Discussions**: [Join Discussion](https://github.com/hanui-o/hanui/discussions)
+- **Blog**: [Development Stories](https://velog.io/@hanui/)
+- **Email**: odada@oddodd.io
 
 ### License
 
 MIT © [hanui-o](https://github.com/hanui-o)
+
+---
+
+<div align="center">
+
+**Building better public web with HANUI 🇰🇷**
+
+[Get Started](https://hanui.io/docs/quick-start) · [View Components](https://hanui.io/components) · [Star ⭐](https://github.com/hanui-o/hanui)
+
+</div>

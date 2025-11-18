@@ -3,23 +3,22 @@
 import type { ReactNode } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { Sidebar } from './Sidebar';
 import { Container } from '@hanui/react';
 
-interface DocsLayoutProps {
+interface SimpleDocsLayoutProps {
   children: ReactNode;
 }
 
-export function DocsLayout({ children }: DocsLayoutProps) {
+/**
+ * Simple layout without sidebar for pages like Showcase and Community
+ */
+export function SimpleDocsLayout({ children }: SimpleDocsLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-krds-gray-0">
       <Header />
-      <div className="flex-1 flex pt-[100px]">
-        <Sidebar />
-        <main className="flex-1">
-          <Container>{children}</Container>
-        </main>
-      </div>
+      <main className="flex-1 pt-[100px]">
+        <Container>{children}</Container>
+      </main>
       <Footer />
     </div>
   );

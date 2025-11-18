@@ -22,9 +22,18 @@ export default function Home() {
         <Section padding="page-section" as="section">
           <Stack spacing="heading-loose" align="center" className="text-center">
             {/* Badge */}
-            <div className="inline-flex items-center rounded-full border border-krds-gray-20 px-3 py-1 text-xs font-medium">
-              <span className="mr-1.5">✨</span>
-              <span className="text-krds-gray-90">KRDS 디자인 시스템 기반</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-krds-primary-border bg-krds-primary-surface px-4 py-1.5 text-xs font-medium">
+              <span className="flex items-center gap-1.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-krds-primary-base opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-krds-primary-base"></span>
+                </span>
+                <span className="text-krds-primary-text font-semibold">
+                  v0.1.0 Beta
+                </span>
+              </span>
+              <span className="h-3 w-px bg-krds-gray-20"></span>
+              <span className="text-krds-gray-70">KRDS 2.2 준수</span>
             </div>
 
             {/* Title */}
