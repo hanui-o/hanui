@@ -11,3 +11,29 @@ export interface TemplateInfo {
   description: string;
   path: string;
 }
+
+export interface HanuiConfig {
+  $schema?: string;
+  style?: string;
+  tailwind: {
+    config: string;
+    css?: string;
+    baseColor?: string;
+    cssVariables?: boolean;
+  };
+  aliases: {
+    components: string;
+    utils: string;
+    ui?: string;
+    lib?: string;
+  };
+}
+
+export type ProjectType =
+  | 'next-app'
+  | 'next-app-src'
+  | 'next-pages'
+  | 'next-pages-src'
+  | 'vite'
+  | 'vite-src'
+  | 'unknown';

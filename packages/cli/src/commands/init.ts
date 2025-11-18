@@ -5,6 +5,13 @@ import ora from 'ora';
 import path from 'path';
 import fs from 'fs-extra';
 import { logger } from '../utils/logger.js';
+import {
+  getProjectInfo,
+  getDefaultPaths,
+  getTailwindConfigPath,
+  getDefaultCssPath,
+} from '../utils/get-project-info.js';
+import type { HanuiConfig } from '../types.js';
 
 /**
  * Init Command
@@ -31,10 +38,21 @@ export const init = new Command()
         process.exit(1);
       }
 
+      // Detect project structure (like shadcn/ui)
+      const projectInfo = await getProjectInfo(cwd);
+      const defaultPaths = getDefaultPaths(projectInfo);
+      const tailwindConfigPath = await getTailwindConfigPath(cwd);
+      const cssPath = await getDefaultCssPath(cwd, projectInfo);
+
+      logger.info(
+        `Detected: ${chalk.cyan(projectInfo.type)} ${projectInfo.srcDir ? chalk.dim('(with src/)') : ''}\n`
+      );
+
       // Prompt for configuration
       let config = {
-        componentsPath: 'components/hanui',
-        libPath: 'lib',
+        componentsPath: path.join(defaultPaths.components, 'hanui'),
+        utilsPath: defaultPaths.utils,
+        tailwindConfig: tailwindConfigPath,
         tailwindCss: true,
       };
 
@@ -44,13 +62,13 @@ export const init = new Command()
             type: 'text',
             name: 'componentsPath',
             message: 'Where would you like to install components?',
-            initial: 'components/hanui',
+            initial: config.componentsPath,
           },
           {
             type: 'text',
-            name: 'libPath',
-            message: 'Where would you like to install utility functions?',
-            initial: 'lib',
+            name: 'utilsPath',
+            message: 'Configure the import alias for utils:',
+            initial: config.utilsPath,
           },
           {
             type: 'confirm',
@@ -60,14 +78,24 @@ export const init = new Command()
           },
         ]);
 
-        config = { ...config, ...response };
+        if (response.componentsPath)
+          config.componentsPath = response.componentsPath;
+        if (response.utilsPath) config.utilsPath = response.utilsPath;
+        if (typeof response.tailwindCss === 'boolean')
+          config.tailwindCss = response.tailwindCss;
       }
 
       const spinner = ora('Setting up project...').start();
 
       // 1. Create directories
       const componentsDir = path.join(cwd, config.componentsPath);
-      const libDir = path.join(cwd, config.libPath);
+
+      // Extract lib path from utils alias (e.g., @/lib/utils -> lib)
+      const libPath = config.utilsPath.replace('@/', '').replace('/utils', '');
+      const libDir = path.join(
+        cwd,
+        projectInfo.srcDir ? `src/${libPath}` : libPath
+      );
 
       await fs.ensureDir(componentsDir);
       await fs.ensureDir(libDir);
@@ -103,12 +131,7 @@ export function cn(...inputs: ClassValue[]) {
 
       // 3. Configure Tailwind CSS
       if (config.tailwindCss) {
-        const tailwindConfigPath = path.join(cwd, 'tailwind.config.js');
-        const tailwindConfigTsPath = path.join(cwd, 'tailwind.config.ts');
-
-        const configPath = fs.existsSync(tailwindConfigTsPath)
-          ? tailwindConfigTsPath
-          : tailwindConfigPath;
+        const configPath = path.join(cwd, config.tailwindConfig);
 
         if (fs.existsSync(configPath)) {
           spinner.info(
@@ -116,7 +139,7 @@ export function cn(...inputs: ClassValue[]) {
           );
           console.log(
             chalk.dim(
-              `\n  './node_modules/@hanui/react/**/*.{js,ts,jsx,tsx}',\n`
+              `\n  './${config.componentsPath}/**/*.{js,ts,jsx,tsx}',\n`
             )
           );
         } else {
@@ -130,13 +153,21 @@ export function cn(...inputs: ClassValue[]) {
         }
       }
 
-      // 4. Create hanui.json config
-      const hanuiConfig = {
+      // 4. Create hanui.json config (like shadcn's components.json)
+      const hanuiConfig: HanuiConfig = {
         $schema: 'https://hanui.io/schema.json',
-        componentsPath: config.componentsPath,
-        libPath: config.libPath,
+        style: 'default',
         tailwind: {
-          config: config.tailwindCss ? 'tailwind.config.js' : undefined,
+          config: config.tailwindConfig,
+          css: cssPath,
+          baseColor: 'slate',
+          cssVariables: true,
+        },
+        aliases: {
+          components: `@/${config.componentsPath.replace(/^src\//, '')}`,
+          utils: config.utilsPath,
+          ui: `@/${config.componentsPath.replace(/^src\//, '')}`,
+          lib: `@/${libPath}`,
         },
       };
 
@@ -148,12 +179,13 @@ export function cn(...inputs: ClassValue[]) {
 
       // Success message
       logger.success('\n✓ HANUI initialized successfully!\n');
+      logger.info('Configuration saved to hanui.json\n');
       logger.info('Next steps:\n');
       console.log(
-        `  ${chalk.cyan('1.')} Add components: ${chalk.bold('npx hanui add button')}`
+        `  ${chalk.cyan('1.')} Install dependencies: ${chalk.bold('npm install clsx tailwind-merge')}`
       );
       console.log(
-        `  ${chalk.cyan('2.')} Install dependencies: ${chalk.bold('npm install')}`
+        `  ${chalk.cyan('2.')} Add components: ${chalk.bold('npx @hanui/cli add button')}`
       );
       console.log(
         `  ${chalk.cyan('3.')} Start building: ${chalk.bold('npm run dev')}\n`
