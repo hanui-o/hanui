@@ -160,8 +160,8 @@ export function StructuredList({
             {/* Tags */}
             {item.tags && item.tags.length > 0 && (
               <div className={styles['card-btm']}>
-                {item.tags.map((tag, index) => (
-                  <span key={index} className={styles['tag']}>
+                {item.tags.map((tag) => (
+                  <span key={tag} className={styles['tag']}>
                     {tag}
                   </span>
                 ))}

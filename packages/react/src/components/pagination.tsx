@@ -235,9 +235,11 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
 
         {paginationRange.map((pageNumber, index) => {
           if (pageNumber === 'ellipsis') {
+            // Use previous page number for unique key to avoid conflicts
+            const prevPage = index > 0 ? paginationRange[index - 1] : 0;
             return (
               <span
-                key={`ellipsis-${index}`}
+                key={`ellipsis-${prevPage}`}
                 className="inline-flex items-center justify-center w-10 h-10 text-gray-500"
                 aria-hidden="true"
               >

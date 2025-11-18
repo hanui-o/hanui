@@ -146,8 +146,8 @@ const FooterQuickLinks = React.forwardRef<
       {...props}
     >
       <div className="inner flex flex-col md:flex-row">
-        {links?.map((link, index) => (
-          <FooterQuickLink key={index} {...link} />
+        {links?.map((link) => (
+          <FooterQuickLink key={link.href || link.label} {...link} />
         ))}
         {children}
       </div>
@@ -470,8 +470,11 @@ const FooterInfo = React.forwardRef<HTMLDivElement, FooterInfoProps>(
         {address && <FooterAddress>{address}</FooterAddress>}
         {contacts && contacts.length > 0 && (
           <ul className="info-cs flex flex-col gap-3">
-            {contacts.map((contact, index) => (
-              <FooterContact key={index} {...contact} />
+            {contacts.map((contact) => (
+              <FooterContact
+                key={`${contact.label}-${contact.value}`}
+                {...contact}
+              />
             ))}
           </ul>
         )}
@@ -672,9 +675,9 @@ const FooterUtilityLinks = React.forwardRef<
       className={cn('link-go', 'flex flex-col gap-2', className)}
       {...props}
     >
-      {links?.map((link, index) => (
+      {links?.map((link) => (
         <a
-          key={index}
+          key={link.href}
           href={link.href}
           className={cn(
             'inline-flex items-center gap-2',
@@ -790,9 +793,9 @@ const FooterSocialLinks = React.forwardRef<
       className={cn('link-sns', 'flex flex-wrap gap-3 md:gap-2', className)}
       {...props}
     >
-      {links?.map((link, index) => (
+      {links?.map((link) => (
         <a
-          key={index}
+          key={link.href}
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
@@ -916,9 +919,9 @@ const FooterPolicyLinks = React.forwardRef<
       className={cn('f-menu', 'inline-flex flex-wrap gap-3', className)}
       {...props}
     >
-      {links?.map((link, index) => (
+      {links?.map((link) => (
         <a
-          key={index}
+          key={link.href}
           href={link.href}
           className={cn(
             'text-gray-700 dark:text-gray-300',

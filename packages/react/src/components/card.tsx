@@ -193,13 +193,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       ? (e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            // Create a synthetic mouse event from keyboard event
-            const syntheticEvent = {
-              ...e,
-              type: 'click',
-              button: 0,
-            } as unknown as React.MouseEvent<HTMLDivElement>;
-            onClick(syntheticEvent);
+            onClick();
           }
         }
       : undefined;

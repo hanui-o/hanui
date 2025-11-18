@@ -86,7 +86,7 @@ export const SkipLink = React.forwardRef<HTMLDivElement, SkipLinkProps>(
   ({ links, variant = 'hidden', className, ...props }, ref) => {
     // Validate max 3 links
     React.useEffect(() => {
-      if (links.length > 3) {
+      if (process.env.NODE_ENV === 'development' && links.length > 3) {
         console.warn(
           'SkipLink: Maximum 3 links recommended for optimal accessibility. Current count:',
           links.length
@@ -146,8 +146,8 @@ export const SkipLink = React.forwardRef<HTMLDivElement, SkipLinkProps>(
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ul className="flex items-center gap-4 min-h-[48px] py-2">
-            {links.map((link, index) => (
-              <li key={`${link.href}-${index}`}>
+            {links.map((link) => (
+              <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={(e) => handleClick(e, link.href)}
