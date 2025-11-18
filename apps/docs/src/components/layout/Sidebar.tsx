@@ -43,6 +43,7 @@ const navigation = [
       { title: 'Masthead', href: '/components/identity/masthead' },
       { title: 'Identifier', href: '/components/identity/identifier' },
       { title: 'Header', href: '/components/identity/header' },
+      { title: 'Footer', href: '/components/identity/footer' },
     ],
   },
   {

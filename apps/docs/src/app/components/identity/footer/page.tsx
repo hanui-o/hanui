@@ -457,6 +457,173 @@ interface FooterSocialLink {
           </div>
         </Stack>
       </PageSection>
+
+      {/* Technical Background */}
+      <PageSection>
+        <Heading level="h2" id="technical" className="text-2xl font-semibold">
+          기술 배경
+        </Heading>
+
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          <div>
+            <Heading level="h3">왜 CSS Module (SCSS)을 사용했나요?</Heading>
+            <Body>
+              Footer 컴포넌트는 HANUI의 다른 27개 컴포넌트와 달리 CSS Module
+              방식을 채택했습니다. 그 이유는 다음과 같습니다:
+            </Body>
+
+            <div className="mt-4 space-y-4">
+              <div className="border-l-4 border-blue-500 bg-blue-50 p-4">
+                <Heading level="h4" className="font-semibold mb-2">
+                  1. KRDS 공식 코드의 복잡성
+                </Heading>
+                <Body className="text-sm">
+                  KRDS 정부기관 Footer는{' '}
+                  <a
+                    href="https://github.com/KRDS-uiux/krds-uiux/blob/main/resources/scss/component/_footer.scss"
+                    className="text-blue-600 underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    공식 SCSS 파일
+                  </a>
+                  이 매우 복잡합니다. 수백 줄의 SCSS 코드에 다음과 같은 의존성이
+                  포함되어 있습니다:
+                </Body>
+                <ul className="mt-2 ml-6 text-sm list-disc space-y-1">
+                  <li>
+                    8개 이상의 커스텀 mixin (@include flex-layout, @include
+                    size-large-more 등)
+                  </li>
+                  <li>복잡한 반응형 미디어 쿼리 (Mobile/Tablet/Desktop)</li>
+                  <li>고대비 모드 (High Contrast Mode) 별도 스타일</li>
+                  <li>중첩된 그리드 레이아웃과 Flexbox 조합</li>
+                </ul>
+              </div>
+
+              <div className="border-l-4 border-green-500 bg-green-50 p-4">
+                <Heading level="h4" className="font-semibold mb-2">
+                  2. Tailwind 변환의 시간 비용
+                </Heading>
+                <Body className="text-sm">
+                  이 복잡한 SCSS를 Tailwind CSS로 완전히 변환하려면:
+                </Body>
+                <ul className="mt-2 ml-6 text-sm list-disc space-y-1">
+                  <li>
+                    모든 mixin을 수작업으로 인라인 CSS로 풀어야 함 (2-3일 소요
+                    예상)
+                  </li>
+                  <li>
+                    KRDS 공식 스타일 100% 재현 보장 어려움 (미묘한 차이 발생
+                    가능)
+                  </li>
+                  <li>
+                    반응형 레이아웃의 복잡한 브레이크포인트 로직 재구현 필요
+                  </li>
+                </ul>
+              </div>
+
+              <div className="border-l-4 border-purple-500 bg-purple-50 p-4">
+                <Heading level="h4" className="font-semibold mb-2">
+                  3. Self-Contained CSS Module 방식 채택
+                </Heading>
+                <Body className="text-sm">
+                  shadcn/ui 철학에 맞춰, 외부 의존성 없이 동작하는 방식을
+                  선택했습니다:
+                </Body>
+                <ul className="mt-2 ml-6 text-sm list-disc space-y-1">
+                  <li>
+                    <strong>Mixin 제거:</strong> KRDS의 모든 mixin을 실제 CSS로
+                    변환하여 인라인화
+                  </li>
+                  <li>
+                    <strong>CSS 변수 활용:</strong> globals.css의 KRDS 디자인
+                    토큰 (--krds-color-*, --krds-spacing-*) 사용
+                  </li>
+                  <li>
+                    <strong>단일 파일 설치:</strong> footer.tsx +
+                    footer.module.scss 2개 파일만으로 완결
+                  </li>
+                  <li>
+                    <strong>sass 의존성:</strong> Next.js SCSS 컴파일을 위해
+                    필요한 유일한 의존성
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <Heading level="h3">v2.0 로드맵: Tailwind 마이그레이션</Heading>
+            <Body>
+              장기적으로는 HANUI 전체 컴포넌트와의 일관성을 위해 Tailwind
+              버전으로 전환할 계획입니다:
+            </Body>
+            <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <strong>v1.0 (현재):</strong> CSS Module - 빠른 출시, KRDS
+                  100% 재현
+                </li>
+                <li>
+                  <strong>v2.0 (향후):</strong> Tailwind All-in-One - 디자인
+                  시스템 통합
+                </li>
+                <li>
+                  <strong>제공 방식:</strong> 두 버전 모두 registry에서 선택
+                  가능
+                  <CodeBlock
+                    language="bash"
+                    code={`# v1 (CSS Module - 기본)
+hanui add footer
+
+# v2 (Tailwind - 선택)
+hanui add footer@tailwind`}
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <Heading level="h3">파일 구조</Heading>
+            <Body>Footer 컴포넌트를 설치하면 다음 파일들이 추가됩니다:</Body>
+            <div className="mt-4">
+              <CodeBlock
+                language="bash"
+                code={`src/
+├── components/
+│   ├── footer.tsx              # React 컴포넌트
+│   ├── footer.module.scss      # KRDS 스타일 (self-contained)
+│   └── identifier.tsx          # 의존 컴포넌트 (자동 설치)`}
+              />
+            </div>
+          </div>
+
+          <div>
+            <Heading level="h3">설치 시 자동 추가되는 것</Heading>
+            <Body>
+              <code className="px-2 py-1 bg-gray-100 rounded">
+                hanui add footer
+              </code>{' '}
+              실행 시:
+            </Body>
+            <ul className="mt-2 ml-6 list-disc space-y-1 text-sm">
+              <li>
+                <strong>sass</strong> 패키지가 자동으로 설치됩니다 (SCSS 컴파일
+                필요)
+              </li>
+              <li>
+                <strong>identifier</strong> 컴포넌트가 자동으로 설치됩니다
+                (registryDependency)
+              </li>
+              <li>
+                Next.js가 SCSS 파일을 자동으로 처리합니다 (추가 설정 불필요)
+              </li>
+            </ul>
+          </div>
+        </Stack>
+      </PageSection>
     </>
   );
 }

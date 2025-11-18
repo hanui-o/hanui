@@ -53,7 +53,12 @@ const identityComponents = [
     href: '/components/identity/header',
     updated: true,
   },
-  // { name: 'Footer', description: '푸터', href: '/components/footer', updated: false },
+  {
+    name: 'Footer',
+    description: '푸터 (CSS Module)',
+    href: '/components/identity/footer',
+    updated: true,
+  },
 ];
 
 // 2. 탐색 (Navigation)
