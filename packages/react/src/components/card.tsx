@@ -189,18 +189,20 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     { variant, padding, interactive, className, onClick, children, ...props },
     ref
   ) => {
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (onClick && (e.key === 'Enter' || e.key === ' ')) {
-        e.preventDefault();
-        // Create a synthetic mouse event from keyboard event
-        const syntheticEvent = {
-          ...e,
-          type: 'click',
-          button: 0,
-        } as unknown as React.MouseEvent<HTMLDivElement>;
-        onClick(syntheticEvent);
-      }
-    };
+    const handleKeyDown = onClick
+      ? (e: React.KeyboardEvent<HTMLDivElement>) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            // Create a synthetic mouse event from keyboard event
+            const syntheticEvent = {
+              ...e,
+              type: 'click',
+              button: 0,
+            } as unknown as React.MouseEvent<HTMLDivElement>;
+            onClick(syntheticEvent);
+          }
+        }
+      : undefined;
 
     return (
       <div

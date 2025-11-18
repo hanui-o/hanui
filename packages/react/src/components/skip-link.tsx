@@ -119,7 +119,7 @@ export const SkipLink = React.forwardRef<HTMLDivElement, SkipLinkProps>(
         if (window.history.pushState) {
           window.history.pushState(null, '', href);
         } else {
-          // eslint-disable-next-line react-compiler/react-compiler
+          // eslint-disable-next-line
           window.location.hash = href;
         }
       }
