@@ -82,6 +82,7 @@ coverage/
 # Claude
 .claude/*
 !.claude/commands/
+!.claude/project-rules.md
 
 # Test projects
 apps/test-next/
