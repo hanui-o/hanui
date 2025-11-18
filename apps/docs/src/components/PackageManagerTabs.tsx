@@ -24,7 +24,7 @@ export function PackageManagerTabs() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-3 py-1.5 text-sm font-medium transition-colors relative ${
+            className={`px-3 py-1.5 font-medium transition-colors relative ${
               activeTab === tab
                 ? 'text-gray-900 dark:text-gray-100'
                 : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
@@ -40,7 +40,7 @@ export function PackageManagerTabs() {
 
       {/* Command Display */}
       <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-4">
-        <code className="text-sm font-mono text-gray-900 dark:text-gray-100">
+        <code className="font-mono text-gray-900 dark:text-gray-100">
           {commands[activeTab]}
         </code>
       </div>

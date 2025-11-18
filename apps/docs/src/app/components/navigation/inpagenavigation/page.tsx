@@ -83,7 +83,7 @@ export default function InPageNavigationPage() {
               code="npx hanui add in-page-navigation"
               language="bash"
             />
-            <Body className="text-sm text-krds-gray-70 mt-2">
+            <Body className="text-krds-gray-70 mt-2">
               이 명령은 컴포넌트 파일(TSX)과 스타일 파일(SCSS Module)을 자동으로
               설치합니다.
             </Body>
@@ -314,33 +314,33 @@ const links = [
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">caption</td>
-                    <td className="p-3 font-mono text-sm">string</td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">caption</td>
+                    <td className="p-3 font-mono">string</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">
                       Caption text (위 작은 텍스트). 예: "이 페이지의 구성"
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">title</td>
-                    <td className="p-3 font-mono text-sm">string</td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">title</td>
+                    <td className="p-3 font-mono">string</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">Title text (주요 제목)</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">links</td>
-                    <td className="p-3 font-mono text-sm">InPageNavLink[]</td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">links</td>
+                    <td className="p-3 font-mono">InPageNavLink[]</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">
                       Navigation links 배열. 각 링크는 label과 href를 포함합니다
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">action?</td>
-                    <td className="p-3 font-mono text-sm">
+                    <td className="p-3 font-mono">action?</td>
+                    <td className="p-3 font-mono">
                       {`{ label: string; onClick: () => void; info?: string }`}
                     </td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">
                       Optional action button 설정. label(버튼 텍스트),
                       onClick(클릭 핸들러), info(버튼 아래 설명 텍스트)를
@@ -348,9 +348,9 @@ const links = [
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">className?</td>
-                    <td className="p-3 font-mono text-sm">string</td>
-                    <td className="p-3 font-mono text-sm">''</td>
+                    <td className="p-3 font-mono">className?</td>
+                    <td className="p-3 font-mono">string</td>
+                    <td className="p-3 font-mono">''</td>
                     <td className="p-3">
                       Additional CSS classes for custom styling
                     </td>

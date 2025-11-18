@@ -36,7 +36,7 @@ export default function SideNavigationPage() {
                   code="npx hanui add side-navigation"
                   language="bash"
                 />
-                <p className="text-sm text-gray-600 mt-2">
+                <p className="text-gray-600 mt-2">
                   컴포넌트 파일과 SCSS 스타일이 자동으로 설치됩니다.
                 </p>
               </div>
@@ -359,46 +359,44 @@ export default function MyPage() {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       title *
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       string
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-gray-500">
                       네비게이션 제목 (1단계)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       sections *
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       SideNavSection[]
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-gray-500">
                       네비게이션 섹션 배열 (2단계)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       className
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       string
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       &apos;&apos;
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
-                      추가 CSS 클래스
-                    </td>
+                    <td className="px-6 py-4 text-gray-500">추가 CSS 클래스</td>
                   </tr>
                 </tbody>
               </table>
@@ -428,58 +426,54 @@ export default function MyPage() {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       label *
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       string
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
-                      섹션 라벨
-                    </td>
+                    <td className="px-6 py-4 text-gray-500">섹션 라벨</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       href
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       string
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-gray-500">
                       섹션 URL (children이 없는 경우 필수)
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       active
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       boolean
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
-                      활성 상태
-                    </td>
+                    <td className="px-6 py-4 text-gray-500">활성 상태</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       children
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       SideNavLink[]
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-gray-500">
                       하위 링크 배열 (3단계)
                     </td>
                   </tr>
@@ -511,58 +505,52 @@ export default function MyPage() {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       label *
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       string
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
-                      링크 라벨
-                    </td>
+                    <td className="px-6 py-4 text-gray-500">링크 라벨</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       href *
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       string
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
-                      링크 URL
-                    </td>
+                    <td className="px-6 py-4 text-gray-500">링크 URL</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       active
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       boolean
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
-                      활성 상태
-                    </td>
+                    <td className="px-6 py-4 text-gray-500">활성 상태</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
                       children
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       SideNavLink[]
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
                       -
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-gray-500">
                       하위 링크 배열 (4단계)
                     </td>
                   </tr>

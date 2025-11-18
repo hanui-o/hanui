@@ -43,7 +43,7 @@ export default function QuickStartPage() {
               <Body size="sm" className="text-krds-gray-70">
                 이 명령어는 다음을 생성합니다:
               </Body>
-              <ul className="space-y-1 text-sm text-krds-gray-70 ml-4">
+              <ul className="space-y-1 text-krds-gray-70 ml-4">
                 <li className="flex items-start gap-2">
                   <span>•</span>
                   <span>
@@ -137,7 +137,7 @@ export default function MyPage() {
             <Heading level="h3" className="mb-3">
               왜 소스 코드 복사 방식인가요?
             </Heading>
-            <ul className="space-y-2 text-sm text-krds-primary-text">
+            <ul className="space-y-2 text-krds-primary-text">
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
@@ -201,7 +201,7 @@ function LoginForm() {
   return (
     <form className="space-y-4 max-w-md">
       <div>
-        <label htmlFor="email" className="block mb-2 text-sm font-medium">
+        <label htmlFor="email" className="block mb-2 font-medium">
           이메일
         </label>
         <Input
@@ -212,7 +212,7 @@ function LoginForm() {
       </div>
 
       <div>
-        <label htmlFor="password" className="block mb-2 text-sm font-medium">
+        <label htmlFor="password" className="block mb-2 font-medium">
           비밀번호
         </label>
         <Input
@@ -471,7 +471,7 @@ const buttonVariants = cva(
           </Body>
 
           <div className="bg-krds-primary-surface rounded-lg p-6 border border-krds-primary-border">
-            <ul className="space-y-3 text-sm text-krds-primary-text">
+            <ul className="space-y-3 text-krds-primary-text">
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
@@ -589,25 +589,25 @@ const buttonVariants = cva(
               <div className="grid grid-cols-2 gap-2 mt-2">
                 <a
                   href="/components/button"
-                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center text-sm"
+                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center"
                 >
                   Button
                 </a>
                 <a
                   href="/components/input"
-                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center text-sm"
+                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center"
                 >
                   Input
                 </a>
                 <a
                   href="/components/select"
-                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center text-sm"
+                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center"
                 >
                   Select
                 </a>
                 <a
                   href="/layout/container"
-                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center text-sm"
+                  className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center"
                 >
                   Container
                 </a>

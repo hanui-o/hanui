@@ -359,7 +359,7 @@ export default function Example() {
               <Heading level="h3" className="text-lg font-semibold mb-2">
                 키보드 네비게이션 (hoverable 카드)
               </Heading>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
+              <ul className="list-disc list-inside space-y-1 text-krds-gray-90">
                 <li>
                   <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
                     Tab
@@ -389,7 +389,7 @@ export default function Example() {
               <Heading level="h3" className="text-lg font-semibold mb-2">
                 스크린 리더
               </Heading>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
+              <ul className="list-disc list-inside space-y-1 text-krds-gray-90">
                 <li>일반 카드는 article role로 인식됩니다</li>
                 <li>hoverable 카드는 button role로 인식됩니다</li>
                 <li>
@@ -470,7 +470,7 @@ export default function Example() {
                 카드 컨테이너 컴포넌트입니다.
               </Body>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full">
                   <thead>
                     <tr className="border-b border-krds-gray-20">
                       <th className="text-left py-2 px-4">Prop</th>
@@ -554,31 +554,31 @@ export default function Example() {
               </Heading>
               <div className="space-y-4">
                 <div>
-                  <code className="text-sm font-semibold">CardHeader</code>
+                  <code className="font-semibold">CardHeader</code>
                   <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 헤더 영역. CardTitle과 CardDescription을 포함합니다.
                   </Body>
                 </div>
                 <div>
-                  <code className="text-sm font-semibold">CardTitle</code>
+                  <code className="font-semibold">CardTitle</code>
                   <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 제목 (h3 요소, 24px, font-semibold).
                   </Body>
                 </div>
                 <div>
-                  <code className="text-sm font-semibold">CardDescription</code>
+                  <code className="font-semibold">CardDescription</code>
                   <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 설명 (p 요소, 15px, text-gray-600).
                   </Body>
                 </div>
                 <div>
-                  <code className="text-sm font-semibold">CardBody</code>
+                  <code className="font-semibold">CardBody</code>
                   <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 본문 콘텐츠 영역.
                   </Body>
                 </div>
                 <div>
-                  <code className="text-sm font-semibold">CardFooter</code>
+                  <code className="font-semibold">CardFooter</code>
                   <Body size="sm" className="text-krds-gray-70 mt-1">
                     카드 푸터 영역. 주로 버튼 등 액션을 배치합니다.
                   </Body>
@@ -601,7 +601,7 @@ export default function Example() {
 
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold">
                 1
               </div>
               <div>
@@ -616,7 +616,7 @@ export default function Example() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold">
                 2
               </div>
               <div>
@@ -631,7 +631,7 @@ export default function Example() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold">
                 3
               </div>
               <div>
@@ -646,7 +646,7 @@ export default function Example() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold">
                 4
               </div>
               <div>
@@ -661,7 +661,7 @@ export default function Example() {
             </div>
 
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold">
                 5
               </div>
               <div>

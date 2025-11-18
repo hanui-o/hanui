@@ -143,7 +143,7 @@ export default function ButtonPage() {
                       제출
                     </Button>
                   </div>
-                  <p className="text-sm text-krds-gray-70">
+                  <p className="text-krds-gray-70">
                     페이지당 하나만 사용 권장. 주요 목표 달성 액션 (제출, 저장,
                     구매 등)
                   </p>
@@ -158,7 +158,7 @@ export default function ButtonPage() {
                       취소
                     </Button>
                   </div>
-                  <p className="text-sm text-krds-gray-70">
+                  <p className="text-krds-gray-70">
                     Primary와 함께 사용. 취소, 이전 단계 등
                   </p>
                 </Stack>
@@ -172,7 +172,7 @@ export default function ButtonPage() {
                       옵션
                     </Button>
                   </div>
-                  <p className="text-sm text-krds-gray-70">
+                  <p className="text-krds-gray-70">
                     추가 옵션이나 덜 중요한 액션
                   </p>
                 </Stack>
@@ -186,9 +186,7 @@ export default function ButtonPage() {
                       닫기
                     </Button>
                   </div>
-                  <p className="text-sm text-krds-gray-70">
-                    인라인 액션, 닫기 버튼 등
-                  </p>
+                  <p className="text-krds-gray-70">인라인 액션, 닫기 버튼 등</p>
                 </Stack>
               </div>
             </Stack>
@@ -473,7 +471,7 @@ export default function ButtonPage() {
                 </thead>
                 <tbody className="text-[15px] leading-[150%]">
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         variant
                       </code>
@@ -490,7 +488,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">size</code>
                     </td>
                     <td className="py-3 px-4 text-gray-700">
@@ -500,7 +498,7 @@ export default function ButtonPage() {
                     <td className="py-3 px-4 text-gray-700">버튼 크기</td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         loading
                       </code>
@@ -514,7 +512,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         disabled
                       </code>
@@ -526,7 +524,7 @@ export default function ButtonPage() {
                     <td className="py-3 px-4 text-gray-700">버튼 비활성화</td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         iconLeft
                       </code>
@@ -540,7 +538,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         iconRight
                       </code>
@@ -554,7 +552,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">href</code>
                     </td>
                     <td className="py-3 px-4 text-gray-700">
@@ -570,7 +568,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         target
                       </code>
@@ -584,7 +582,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">rel</code>
                     </td>
                     <td className="py-3 px-4 text-gray-700">
@@ -596,7 +594,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         asChild
                       </code>
@@ -610,7 +608,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         className
                       </code>
@@ -624,7 +622,7 @@ export default function ButtonPage() {
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">
                       <code className="bg-krds-gray-5 px-1 rounded">
                         children
                       </code>
@@ -658,7 +656,7 @@ export default function ButtonPage() {
                   </thead>
                   <tbody className="text-[15px] leading-[150%]">
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">
                           primary
                         </code>
@@ -668,7 +666,7 @@ export default function ButtonPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">
                           secondary
                         </code>
@@ -678,7 +676,7 @@ export default function ButtonPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">
                           success
                         </code>
@@ -688,7 +686,7 @@ export default function ButtonPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">
                           danger
                         </code>
@@ -698,7 +696,7 @@ export default function ButtonPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">
                           outline
                         </code>
@@ -708,7 +706,7 @@ export default function ButtonPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">
                           ghost
                         </code>
@@ -718,7 +716,7 @@ export default function ButtonPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">
                           ghost-primary
                         </code>
@@ -728,7 +726,7 @@ export default function ButtonPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">
                           black
                         </code>
@@ -764,14 +762,14 @@ export default function ButtonPage() {
                   </thead>
                   <tbody className="text-[15px] leading-[150%]">
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">sm</code>
                       </td>
                       <td className="py-3 px-4 text-gray-700">32px</td>
                       <td className="py-3 px-4 text-gray-700">작은 크기</td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">md</code>
                       </td>
                       <td className="py-3 px-4 text-gray-700">40px</td>
@@ -780,7 +778,7 @@ export default function ButtonPage() {
                       </td>
                     </tr>
                     <tr className="border-b border-krds-gray-10">
-                      <td className="py-3 px-4 font-mono text-sm">
+                      <td className="py-3 px-4 font-mono">
                         <code className="bg-krds-gray-5 px-1 rounded">lg</code>
                       </td>
                       <td className="py-3 px-4 text-gray-700">48px</td>
@@ -817,7 +815,7 @@ export default function ButtonPage() {
               <Body size="sm" className="text-krds-gray-70">
                 <strong>주의사항:</strong>
               </Body>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-70 ml-4">
+              <ul className="list-disc list-inside space-y-1 text-krds-gray-70 ml-4">
                 <li>
                   <code className="bg-krds-gray-5 px-1 rounded text-xs">
                     href

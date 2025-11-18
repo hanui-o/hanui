@@ -252,7 +252,7 @@ export default function ColorsPage() {
                 <Body size="sm" className="text-krds-warning-80">
                   <strong>주의:</strong>
                 </Body>
-                <ul className="mt-2 space-y-2 text-sm">
+                <ul className="mt-2 space-y-2">
                   <li>
                     <strong>숫자 스케일도 자동 전환됨:</strong>{' '}
                     <code className="px-1 py-0.5 bg-krds-white rounded">
@@ -336,13 +336,13 @@ export default function ColorsPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div className="p-4 bg-krds-white text-krds-black rounded-lg border border-krds-gray-20">
-                <code className="text-sm block mb-2">bg-krds-white</code>
+                <code className="block mb-2">bg-krds-white</code>
                 <p className="text-sm">
                   기본 모드: 흰색, 다크 모드: 검은색 (자동 반전)
                 </p>
               </div>
               <div className="p-4 bg-krds-black text-krds-white rounded-lg border border-krds-gray-20">
-                <code className="text-sm block mb-2">bg-krds-black</code>
+                <code className="block mb-2">bg-krds-black</code>
                 <p className="text-sm">
                   기본 모드: 검은색, 다크 모드: 흰색 (자동 반전)
                 </p>
@@ -373,7 +373,7 @@ export default function ColorsPage() {
               <Body size="sm" className="text-krds-information-80">
                 <strong>차이점:</strong>
               </Body>
-              <ul className="mt-2 space-y-1 text-sm list-disc list-inside text-krds-information-80">
+              <ul className="mt-2 space-y-1 list-disc list-inside text-krds-information-80">
                 <li>
                   <code className="px-1 py-0.5 bg-krds-white rounded">
                     krds-white
@@ -403,13 +403,11 @@ export default function ColorsPage() {
             <Heading level="h3">Primary Colors</Heading>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div className="p-4 bg-krds-primary-50 text-krds-primary-10 rounded-lg">
-                <code className="text-sm block mb-2">bg-krds-primary-50</code>
+                <code className="block mb-2">bg-krds-primary-50</code>
                 <p className="text-sm">Primary - 주요 상호작용</p>
               </div>
               <div className="p-4 bg-krds-primary-60 text-krds-primary-10 rounded-lg">
-                <code className="text-sm block mb-2">
-                  hover:bg-krds-primary-60
-                </code>
+                <code className="block mb-2">hover:bg-krds-primary-60</code>
                 <p className="text-sm">Primary Hover</p>
               </div>
             </div>
@@ -470,36 +468,28 @@ export default function ColorsPage() {
               <div className="flex items-center gap-4 p-3 bg-krds-gray-50 rounded-lg border border-krds-gray-30">
                 <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
                 <div>
-                  <code className="text-sm text-krds-gray-10">
-                    bg-krds-gray-50
-                  </code>
+                  <code className="text-krds-gray-10">bg-krds-gray-50</code>
                   <p className="text-xs text-krds-gray-10">비활성화</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-3 bg-krds-gray-70 rounded-lg">
                 <div className="w-16 h-16 bg-krds-gray-60 rounded"></div>
                 <div>
-                  <code className="text-sm text-krds-gray-10">
-                    text-krds-gray-70
-                  </code>
+                  <code className="text-krds-gray-10">text-krds-gray-70</code>
                   <p className="text-xs text-krds-gray-30">보조 텍스트</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-3 bg-krds-gray-90 rounded-lg">
                 <div className="w-16 h-16 bg-krds-gray-90 rounded"></div>
                 <div>
-                  <code className="text-sm text-krds-gray-10">
-                    text-krds-gray-90
-                  </code>
+                  <code className="text-krds-gray-10">text-krds-gray-90</code>
                   <p className="text-xs text-krds-gray-30">본문 텍스트</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-3 bg-krds-gray-95 rounded-lg">
                 <div className="w-16 h-16 bg-krds-gray-90 rounded"></div>
                 <div>
-                  <code className="text-sm text-krds-gray-10">
-                    text-krds-gray-95
-                  </code>
+                  <code className="text-krds-gray-10">text-krds-gray-95</code>
                   <p className="text-xs text-krds-gray-30">굵은 텍스트</p>
                 </div>
               </div>
@@ -512,11 +502,11 @@ export default function ColorsPage() {
             <div className="grid grid-cols-1 gap-4 mb-4">
               {/* Danger */}
               <div className="p-4 bg-krds-danger-5 border border-krds-danger-10 rounded-lg">
-                <strong className="text-sm text-krds-danger-60 mb-2 flex items-center gap-2">
+                <strong className="text-krds-danger-60 mb-2 flex items-center gap-2">
                   <CircleX className="w-4 h-4 text-krds-danger-50" /> Danger -
                   오류, 삭제
                 </strong>
-                <code className="text-sm block">
+                <code className="block">
                   icon-krds-danger-50 (다크: 20) / text-krds-danger-60 (다크:
                   20) / <br />
                   bg-krds-danger-5 (다크: 95) / border-krds-danger-10 (다크: 90)
@@ -525,11 +515,11 @@ export default function ColorsPage() {
 
               {/* Warning */}
               <div className="p-4 bg-krds-warning-5 border border-krds-warning-10 rounded-lg">
-                <strong className="text-sm text-krds-warning-60 mb-2 flex items-center gap-2">
+                <strong className="text-krds-warning-60 mb-2 flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-krds-warning-50" />{' '}
                   Warning - 경고, 주의
                 </strong>
-                <code className="text-sm block">
+                <code className="block">
                   icon-krds-warning-50 (다크: 20) / text-krds-warning-60 (다크:
                   20) / <br /> bg-krds-warning-5 (다크: 95) /
                   border-krds-warning-10 (다크: 90)
@@ -538,11 +528,11 @@ export default function ColorsPage() {
 
               {/* Success */}
               <div className="p-4 bg-krds-success-5 border border-krds-success-10 rounded-lg">
-                <strong className="text-sm text-krds-success-60 mb-2 flex items-center gap-2">
+                <strong className="text-krds-success-60 mb-2 flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-krds-success-50" />{' '}
                   Success - 완료, 성공
                 </strong>
-                <code className="text-sm block">
+                <code className="block">
                   icon-krds-success-50 (다크: 20) / text-krds-success-60 (다크:
                   20) / <br /> bg-krds-success-5 (다크: 95) /
                   border-krds-success-10 (다크: 90)
@@ -551,11 +541,11 @@ export default function ColorsPage() {
 
               {/* Information */}
               <div className="p-4 bg-krds-information-5 border border-krds-information-10 rounded-lg">
-                <strong className="text-sm text-krds-information-60 mb-2 flex items-center gap-2">
+                <strong className="text-krds-information-60 mb-2 flex items-center gap-2">
                   <Info className="w-4 h-4 text-krds-information-50" /> Info -
                   정보, 안내
                 </strong>
-                <code className="text-sm block">
+                <code className="block">
                   icon-krds-information-50 (다크: 20) / text-krds-information-60
                   (다크: 20) / <br /> bg-krds-information-5 (다크: 95) /
                   border-krds-information-10 (다크: 90)
@@ -583,7 +573,7 @@ export default function ColorsPage() {
               <Heading level="h4" className="mb-2">
                 기본 모드
               </Heading>
-              <ul className="space-y-1 text-sm">
+              <ul className="space-y-1">
                 <li>
                   <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     base
@@ -608,7 +598,7 @@ export default function ColorsPage() {
               <Heading level="h4" className="mb-2">
                 다크 모드
               </Heading>
-              <ul className="space-y-1 text-sm">
+              <ul className="space-y-1">
                 <li>
                   <code className="px-1.5 py-0.5 bg-krds-white rounded">
                     base
@@ -706,7 +696,7 @@ export default function ColorsPage() {
                     text-krds-primary-text
                   </code>
                 </Body>
-                <ul className="space-y-2 text-sm list-disc list-inside">
+                <ul className="space-y-2 list-disc list-inside">
                   <li>의미 기반 이름(surface, text, base)</li>
                   <li>CSS 변수를 통해 자동 전환됨</li>
                   <li>모드에 따라 적절한 숫자 값 자동 선택</li>
@@ -727,7 +717,7 @@ export default function ColorsPage() {
                     text-krds-gray-90
                   </code>
                 </Body>
-                <ul className="space-y-2 text-sm list-disc list-inside">
+                <ul className="space-y-2 list-disc list-inside">
                   <li>구체적인 색상 값(5, 90 등)을 직접 지정</li>
                   <li>CSS 변수를 통해 자동 전환됨</li>
                   <li>항상 같은 숫자(5)를 참조</li>
@@ -740,7 +730,7 @@ export default function ColorsPage() {
               <Body size="sm" className="text-krds-information-80">
                 <strong>언제 무엇을 사용하나요?</strong>
               </Body>
-              <ul className="mt-2 space-y-1 text-sm list-disc list-inside text-krds-information-80">
+              <ul className="mt-2 space-y-1 list-disc list-inside text-krds-information-80">
                 <li>
                   <strong>Semantic 변수 권장:</strong> 일반적인 UI
                   컴포넌트(버튼, 카드, 알림 등)에서 의미에 맞는 색상을 사용할 때
@@ -763,7 +753,7 @@ export default function ColorsPage() {
                 <Heading level="h4" className="mb-3">
                   Primary
                 </Heading>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-2">
                   <li>
                     <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       text-krds-primary-text
@@ -786,7 +776,7 @@ export default function ColorsPage() {
                 <Heading level="h4" className="mb-3">
                   Secondary
                 </Heading>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-2">
                   <li>
                     <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       text-krds-secondary-text
@@ -809,7 +799,7 @@ export default function ColorsPage() {
                 <Heading level="h4" className="mb-3">
                   Accent (강조)
                 </Heading>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-2">
                   <li>
                     <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       text-krds-accent-text
@@ -832,7 +822,7 @@ export default function ColorsPage() {
                 <Heading level="h4" className="mb-3">
                   Danger (위험/에러)
                 </Heading>
-                <ul className="space-y-2 text-sm">
+                <ul className="space-y-2">
                   <li>
                     <code className="px-1.5 py-0.5 bg-krds-white rounded">
                       text-krds-danger-text
@@ -1167,9 +1157,7 @@ function App() {
             className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
           >
             <h4 className="font-semibold mb-1">KRDS 색상 시스템</h4>
-            <p className="text-sm text-krds-gray-70">
-              색상 팔레트, 접근성 기준
-            </p>
+            <p className="text-krds-gray-70">색상 팔레트, 접근성 기준</p>
           </a>
         </div>
       </PageSection>

@@ -343,7 +343,7 @@ export default function MainMenuPage() {
                 <tbody>
                   <tr>
                     <td className="px-4 py-2 border-b border-krds-gray-20 dark:border-krds-gray-80">
-                      <code className="text-sm bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
+                      <code className="bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
                         Tab
                       </code>
                     </td>
@@ -353,7 +353,7 @@ export default function MainMenuPage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-2 border-b border-krds-gray-20 dark:border-krds-gray-80">
-                      <code className="text-sm bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
+                      <code className="bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
                         Enter / Space
                       </code>
                     </td>
@@ -363,7 +363,7 @@ export default function MainMenuPage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-2 border-b border-krds-gray-20 dark:border-krds-gray-80">
-                      <code className="text-sm bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
+                      <code className="bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
                         Esc
                       </code>
                     </td>
@@ -373,7 +373,7 @@ export default function MainMenuPage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-2 border-b border-krds-gray-20 dark:border-krds-gray-80">
-                      <code className="text-sm bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
+                      <code className="bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
                         Arrow Down
                       </code>
                     </td>
@@ -383,7 +383,7 @@ export default function MainMenuPage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-2">
-                      <code className="text-sm bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
+                      <code className="bg-krds-gray-10 dark:bg-krds-gray-90 px-2 py-1 rounded">
                         Arrow Left/Right
                       </code>
                     </td>
@@ -598,7 +598,7 @@ export default function MainMenuPage() {
             <Heading level="h3" className="text-lg font-medium mb-2">
               필수 요구사항
             </Heading>
-            <ul className="list-disc list-inside space-y-1 text-sm">
+            <ul className="list-disc list-inside space-y-1">
               <li>
                 CSS 클래스:{' '}
                 <code className="bg-blue-100 dark:bg-blue-800 px-2 py-1 rounded">
@@ -615,7 +615,7 @@ export default function MainMenuPage() {
             <Heading level="h3" className="text-lg font-medium mb-2">
               드롭다운 설계 원칙
             </Heading>
-            <ul className="list-disc list-inside space-y-1 text-sm">
+            <ul className="list-disc list-inside space-y-1">
               <li>레이블 좌측 정렬로 일관된 스캔 가능</li>
               <li>뷰포트 초과 시 내부 스크롤 제공</li>
               <li>섹션 제목으로 사용자 오리엔테이션 지원</li>
@@ -627,7 +627,7 @@ export default function MainMenuPage() {
             <Heading level="h3" className="text-lg font-medium mb-2">
               접근성 표준
             </Heading>
-            <ul className="list-disc list-inside space-y-1 text-sm">
+            <ul className="list-disc list-inside space-y-1">
               <li>nav 요소 또는 role=&quot;navigation&quot; 사용</li>
               <li>계층적 리스트 구조 (ul, li)</li>
               <li>aria-current=&quot;page&quot; 활성 페이지 표시</li>

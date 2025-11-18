@@ -168,7 +168,7 @@ export const Identifier = React.forwardRef<HTMLElement, IdentifierProps>(
             )}
 
             {/* Text */}
-            <p className={cn('text-sm font-medium', textStyles[variant])}>
+            <p className={cn('font-medium', textStyles[variant])}>
               {displayText}
             </p>
           </div>

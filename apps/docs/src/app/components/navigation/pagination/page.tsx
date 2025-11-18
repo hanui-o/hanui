@@ -65,7 +65,7 @@ export default function PaginationPage() {
                       onPageChange={setCurrentPage}
                     />
                   </div>
-                  <p className="text-center text-sm text-krds-gray-70">
+                  <p className="text-center text-krds-gray-70">
                     현재 페이지: {currentPage}
                   </p>
 
@@ -245,7 +245,7 @@ export default function Example() {
                           onPageChange={setCurrentPage6}
                         />
                       </div>
-                      <p className="text-center text-sm text-krds-gray-70">
+                      <p className="text-center text-krds-gray-70">
                         총 100페이지 중 {currentPage6}페이지
                       </p>
 
@@ -285,7 +285,7 @@ export default function Example() {
                               <h4 className="font-semibold text-krds-gray-95">
                                 항목 {(currentPage7 - 1) * 5 + i + 1}
                               </h4>
-                              <p className="text-sm text-krds-gray-70 mt-1">
+                              <p className="text-krds-gray-70 mt-1">
                                 페이지 {currentPage7}의 항목입니다.
                               </p>
                             </div>
@@ -643,61 +643,55 @@ return (
                         </thead>
                         <tbody>
                           <tr className="border-b border-krds-gray-20">
-                            <td className="py-3 px-4 font-mono text-sm">
-                              currentPage
-                            </td>
-                            <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                            <td className="py-3 px-4 font-mono">currentPage</td>
+                            <td className="py-3 px-4 font-mono text-krds-gray-70">
                               number
                             </td>
-                            <td className="py-3 px-4 font-mono text-sm">-</td>
+                            <td className="py-3 px-4 font-mono">-</td>
                             <td className="py-3 px-4 text-krds-gray-70">
                               현재 페이지 번호 (1부터 시작)
                             </td>
                           </tr>
                           <tr className="border-b border-krds-gray-20">
-                            <td className="py-3 px-4 font-mono text-sm">
-                              totalPages
-                            </td>
-                            <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                            <td className="py-3 px-4 font-mono">totalPages</td>
+                            <td className="py-3 px-4 font-mono text-krds-gray-70">
                               number
                             </td>
-                            <td className="py-3 px-4 font-mono text-sm">-</td>
+                            <td className="py-3 px-4 font-mono">-</td>
                             <td className="py-3 px-4 text-krds-gray-70">
                               전체 페이지 수
                             </td>
                           </tr>
                           <tr className="border-b border-krds-gray-20">
-                            <td className="py-3 px-4 font-mono text-sm">
+                            <td className="py-3 px-4 font-mono">
                               onPageChange
                             </td>
-                            <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                            <td className="py-3 px-4 font-mono text-krds-gray-70">
                               (page: number) =&gt; void
                             </td>
-                            <td className="py-3 px-4 font-mono text-sm">-</td>
+                            <td className="py-3 px-4 font-mono">-</td>
                             <td className="py-3 px-4 text-krds-gray-70">
                               페이지 변경 시 호출되는 함수
                             </td>
                           </tr>
                           <tr className="border-b border-krds-gray-20">
-                            <td className="py-3 px-4 font-mono text-sm">
+                            <td className="py-3 px-4 font-mono">
                               siblingCount
                             </td>
-                            <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                            <td className="py-3 px-4 font-mono text-krds-gray-70">
                               number
                             </td>
-                            <td className="py-3 px-4 font-mono text-sm">1</td>
+                            <td className="py-3 px-4 font-mono">1</td>
                             <td className="py-3 px-4 text-krds-gray-70">
                               현재 페이지 양쪽에 표시할 페이지 수
                             </td>
                           </tr>
                           <tr className="border-b border-krds-gray-20">
-                            <td className="py-3 px-4 font-mono text-sm">
-                              className
-                            </td>
-                            <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                            <td className="py-3 px-4 font-mono">className</td>
+                            <td className="py-3 px-4 font-mono text-krds-gray-70">
                               string
                             </td>
-                            <td className="py-3 px-4 font-mono text-sm">-</td>
+                            <td className="py-3 px-4 font-mono">-</td>
                             <td className="py-3 px-4 text-krds-gray-70">
                               추가 CSS 클래스
                             </td>

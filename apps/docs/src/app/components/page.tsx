@@ -132,7 +132,14 @@ const presentationComponents = [
   {
     name: 'Section Heading System',
     description: 'KRDS Gap-layout 자동 간격 시스템',
-    href: '/docs/components/layout/section-heading-system',
+    href: '/layout/section-heading-system',
+    updated: true,
+  },
+  { name: 'List', description: '리스트', href: '/layout/list', updated: true },
+  {
+    name: 'Code',
+    description: '인라인/블록 코드',
+    href: '/layout/code',
     updated: true,
   },
   // Presentation 컴포넌트들
@@ -305,7 +312,7 @@ function ComponentSection({
                   )}
                 </div>
                 {component.description && (
-                  <span className="text-sm text-krds-gray-70">
+                  <span className="text-krds-gray-70">
                     {component.description}
                   </span>
                 )}

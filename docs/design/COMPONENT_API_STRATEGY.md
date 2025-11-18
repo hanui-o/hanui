@@ -50,7 +50,7 @@
 type ButtonSize = 'small' | 'medium' | 'large';
 
 const buttonSizes = {
-  small: 'h-8 px-3 text-sm', // 32px (최소 터치 영역)
+  small: 'h-8 px-3', // 32px (최소 터치 영역)
   medium: 'h-10 px-4 text-base', // 40px (KRDS 권장)
   large: 'h-12 px-6 text-lg', // 48px (강조용)
 };
@@ -67,7 +67,7 @@ const buttonSizes = {
 type InputSize = 'small' | 'medium' | 'large';
 
 const inputSizes = {
-  small: 'h-8 px-3 text-sm', // 32px (조밀한 폼)
+  small: 'h-8 px-3', // 32px (조밀한 폼)
   medium: 'h-10 px-4 text-base', // 40px (기본)
   large: 'h-12 px-4 text-lg', // 48px (강조)
 };
@@ -125,7 +125,7 @@ const buttonVariants = cva(
         // ...
       },
       size: {
-        small: 'h-8 px-3 text-sm',
+        small: 'h-8 px-3',
         medium: 'h-10 px-4 text-base',
         large: 'h-12 px-6 text-lg',
       },

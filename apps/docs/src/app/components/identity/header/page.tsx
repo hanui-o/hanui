@@ -464,9 +464,7 @@ npx @hanui/cli add header@tailwind`}
                 className="block p-4 border border-krds-gray-20 rounded-lg hover:border-krds-primary-60 hover:shadow-md transition-all"
               >
                 <h3 className="font-semibold text-krds-gray-90 mb-1">Footer</h3>
-                <p className="text-sm text-krds-gray-60">
-                  정부 서비스 푸터 레이아웃
-                </p>
+                <p className="text-krds-gray-60">정부 서비스 푸터 레이아웃</p>
               </a>
 
               <a
@@ -476,7 +474,7 @@ npx @hanui/cli add header@tailwind`}
                 <h3 className="font-semibold text-krds-gray-90 mb-1">
                   Masthead
                 </h3>
-                <p className="text-sm text-krds-gray-60">정부 공식 배너</p>
+                <p className="text-krds-gray-60">정부 공식 배너</p>
               </a>
             </div>
           </TabsContent>
@@ -505,94 +503,80 @@ npx @hanui/cli add header@tailwind`}
                 </thead>
                 <tbody className="divide-y divide-krds-gray-10">
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">serviceName</td>
-                    <td className="py-3 px-4 font-mono text-sm">string</td>
-                    <td className="py-3 px-4 text-sm">-</td>
-                    <td className="py-3 px-4 text-sm">서비스명 (필수)</td>
+                    <td className="py-3 px-4 font-mono">serviceName</td>
+                    <td className="py-3 px-4 font-mono">string</td>
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">서비스명 (필수)</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">logo</td>
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">logo</td>
+                    <td className="py-3 px-4 font-mono">
                       string | ReactElement
                     </td>
-                    <td className="py-3 px-4 text-sm">-</td>
-                    <td className="py-3 px-4 text-sm">
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">
                       로고 이미지 경로 또는 컴포넌트
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">logoAlt</td>
-                    <td className="py-3 px-4 font-mono text-sm">string</td>
-                    <td className="py-3 px-4 text-sm">-</td>
-                    <td className="py-3 px-4 text-sm">
+                    <td className="py-3 px-4 font-mono">logoAlt</td>
+                    <td className="py-3 px-4 font-mono">string</td>
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">
                       로고 대체 텍스트 (logo가 string일 때 필수)
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">homeHref</td>
-                    <td className="py-3 px-4 font-mono text-sm">string</td>
-                    <td className="py-3 px-4 text-sm">"/"</td>
-                    <td className="py-3 px-4 text-sm">홈 링크 URL</td>
+                    <td className="py-3 px-4 font-mono">homeHref</td>
+                    <td className="py-3 px-4 font-mono">string</td>
+                    <td className="py-3 px-4">"/"</td>
+                    <td className="py-3 px-4">홈 링크 URL</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      utilityLinks
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      HeaderUtilityLink[]
-                    </td>
-                    <td className="py-3 px-4 text-sm">[]</td>
-                    <td className="py-3 px-4 text-sm">
+                    <td className="py-3 px-4 font-mono">utilityLinks</td>
+                    <td className="py-3 px-4 font-mono">HeaderUtilityLink[]</td>
+                    <td className="py-3 px-4">[]</td>
+                    <td className="py-3 px-4">
                       유틸리티 링크 배열 (로그인, 회원가입 등)
                     </td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">navLinks</td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      HeaderNavLink[]
-                    </td>
-                    <td className="py-3 px-4 text-sm">[]</td>
-                    <td className="py-3 px-4 text-sm">
-                      메인 네비게이션 링크 배열
-                    </td>
+                    <td className="py-3 px-4 font-mono">navLinks</td>
+                    <td className="py-3 px-4 font-mono">HeaderNavLink[]</td>
+                    <td className="py-3 px-4">[]</td>
+                    <td className="py-3 px-4">메인 네비게이션 링크 배열</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">showSearch</td>
-                    <td className="py-3 px-4 font-mono text-sm">boolean</td>
-                    <td className="py-3 px-4 text-sm">false</td>
-                    <td className="py-3 px-4 text-sm">검색 기능 표시 여부</td>
+                    <td className="py-3 px-4 font-mono">showSearch</td>
+                    <td className="py-3 px-4 font-mono">boolean</td>
+                    <td className="py-3 px-4">false</td>
+                    <td className="py-3 px-4">검색 기능 표시 여부</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      searchPlaceholder
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm">string</td>
-                    <td className="py-3 px-4 text-sm">"검색어를 입력하세요"</td>
-                    <td className="py-3 px-4 text-sm">
-                      검색 입력창 placeholder
-                    </td>
+                    <td className="py-3 px-4 font-mono">searchPlaceholder</td>
+                    <td className="py-3 px-4 font-mono">string</td>
+                    <td className="py-3 px-4">"검색어를 입력하세요"</td>
+                    <td className="py-3 px-4">검색 입력창 placeholder</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">onSearch</td>
-                    <td className="py-3 px-4 font-mono text-sm">
+                    <td className="py-3 px-4 font-mono">onSearch</td>
+                    <td className="py-3 px-4 font-mono">
                       (query: string) ={'>'} void
                     </td>
-                    <td className="py-3 px-4 text-sm">-</td>
-                    <td className="py-3 px-4 text-sm">검색 제출 핸들러</td>
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">검색 제출 핸들러</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">sticky</td>
-                    <td className="py-3 px-4 font-mono text-sm">boolean</td>
-                    <td className="py-3 px-4 text-sm">true</td>
-                    <td className="py-3 px-4 text-sm">
-                      스크롤 시 상단 고정 여부
-                    </td>
+                    <td className="py-3 px-4 font-mono">sticky</td>
+                    <td className="py-3 px-4 font-mono">boolean</td>
+                    <td className="py-3 px-4">true</td>
+                    <td className="py-3 px-4">스크롤 시 상단 고정 여부</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-mono text-sm">className</td>
-                    <td className="py-3 px-4 font-mono text-sm">string</td>
-                    <td className="py-3 px-4 text-sm">-</td>
-                    <td className="py-3 px-4 text-sm">추가 CSS 클래스</td>
+                    <td className="py-3 px-4 font-mono">className</td>
+                    <td className="py-3 px-4 font-mono">string</td>
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">추가 CSS 클래스</td>
                   </tr>
                 </tbody>
               </table>

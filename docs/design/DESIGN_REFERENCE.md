@@ -362,11 +362,11 @@ const colors = {
           hover:bg-gray-50           // shadcn/ui
         "
         >
-          <td className="font-mono text-sm text-primary-600">size</td>
-          <td className="font-mono text-sm text-gray-600">
+          <td className="font-mono text-primary-600">size</td>
+          <td className="font-mono text-gray-600">
             "small" | "medium" | "large"
           </td>
-          <td className="text-sm text-gray-500">"medium"</td>
+          <td className="text-gray-500">"medium"</td>
         </tr>
       </tbody>
     </table>
@@ -400,7 +400,7 @@ const colors = {
     className="
     overflow-x-auto                  // shadcn/ui
     p-4                              // shadcn/ui
-    text-sm                          // shadcn/ui
+                             // shadcn/ui
   "
   >
     <code>{children}</code>

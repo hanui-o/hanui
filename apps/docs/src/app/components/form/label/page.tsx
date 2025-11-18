@@ -398,7 +398,7 @@ export default function LabelPage() {
           <TabsContent value="api">
             <SectionHeading level="h2" id="props" title="Props" />
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold">Name</th>
@@ -446,7 +446,7 @@ export default function LabelPage() {
 
             <SectionHeading level="h2" id="size-specs" title="크기 상세" />
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold">Size</th>

@@ -280,7 +280,7 @@ export const CardDescription = React.forwardRef<
   return (
     <p
       ref={ref}
-      className={cn('text-sm text-gray-600 dark:text-gray-400', className)}
+      className={cn('text-gray-600 dark:text-gray-400', className)}
       {...props}
     >
       {children}

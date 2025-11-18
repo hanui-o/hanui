@@ -372,7 +372,7 @@ export default () => {
                   onChange={handleChange}
                   onError={handleError}
                 />
-                <p className="mt-2 text-sm text-krds-gray-70">
+                <p className="mt-2 text-krds-gray-70">
                   이미지, PDF, 문서 파일만 업로드 가능합니다. (최대 10MB, 3개)
                 </p>
               </div>
@@ -389,7 +389,7 @@ export default () => {
   onChange={handleChange}
   onError={handleError}
 />
-<p className="mt-2 text-sm text-gray-500">
+<p className="mt-2 text-gray-500">
   이미지, PDF, 문서 파일만 업로드 가능합니다. (최대 10MB, 3개)
 </p>`}
               language="tsx"
@@ -527,7 +527,7 @@ export default () => {
                   id="keyboard-navigation"
                   title="1. 키보드 내비게이션 (Keyboard Navigation)"
                 >
-                  <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                  <ul className="list-disc list-inside space-y-1 ml-4">
                     <li>
                       <strong>Tab:</strong> 업로드 영역과 파일 삭제 버튼 간
                       포커스 이동
@@ -549,7 +549,7 @@ export default () => {
                   id="screen-reader"
                   title="2. 스크린 리더 지원 (Screen Reader Support)"
                 >
-                  <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                  <ul className="list-disc list-inside space-y-1 ml-4">
                     <li>
                       <strong>ARIA Labels:</strong> aria-label로 업로드 영역의
                       목적 설명
@@ -576,7 +576,7 @@ export default () => {
                   id="visual-feedback"
                   title="3. 시각적 피드백 (Visual Feedback)"
                 >
-                  <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                  <ul className="list-disc list-inside space-y-1 ml-4">
                     <li>
                       <strong>Drag State:</strong> 드래그 중일 때 테두리와
                       배경색 변경
@@ -603,7 +603,7 @@ export default () => {
                   id="error-handling"
                   title="4. 에러 처리 (Error Handling)"
                 >
-                  <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                  <ul className="list-disc list-inside space-y-1 ml-4">
                     <li>
                       <strong>Validation:</strong> 파일 유형, 크기, 개수를 즉시
                       검증
@@ -718,101 +718,99 @@ export default () => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">accept</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">accept</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       string
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       허용할 파일 유형
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">maxSize</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">maxSize</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       number
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       최대 파일 크기 (바이트)
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">maxFiles</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">maxFiles</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       number
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       최대 파일 개수
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">multiple</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">multiple</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       boolean
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">false</td>
+                    <td className="py-3 px-4 font-mono">false</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       다중 파일 업로드 허용
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">onUpload</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">onUpload</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       (files: File[]) =&gt; void
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       업로드 버튼 클릭 시 호출
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">onChange</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">onChange</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       (files: File[]) =&gt; void
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       파일 선택 시 호출
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">onError</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">onError</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       (error: string) =&gt; void
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       에러 발생 시 호출
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">disabled</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">disabled</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       boolean
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">false</td>
+                    <td className="py-3 px-4 font-mono">false</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       비활성화 상태
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">label</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">label</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       string
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">라벨 텍스트</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">
-                      showFileList
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">showFileList</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       boolean
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">true</td>
+                    <td className="py-3 px-4 font-mono">true</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       파일 목록 표시 여부
                     </td>

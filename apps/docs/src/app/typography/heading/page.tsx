@@ -59,7 +59,7 @@ export default function HeadingPage() {
               <div className="mb-4">
                 <Heading level="h1">h1 - Extra Large Heading</Heading>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 40px (PC) / 28px (Mobile) · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -77,7 +77,7 @@ export default function HeadingPage() {
                   h2 - Large Heading
                 </div>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 32px (PC) / 24px (Mobile) · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -93,7 +93,7 @@ export default function HeadingPage() {
               <div className="mb-4">
                 <Heading level="h3">h3 - Medium Heading</Heading>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 24px (PC) / 22px (Mobile) · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -109,7 +109,7 @@ export default function HeadingPage() {
               <div className="mb-4">
                 <Heading level="h4">h4 - Small Heading</Heading>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 19px · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -125,7 +125,7 @@ export default function HeadingPage() {
               <div className="mb-4">
                 <Heading level="h5">h5 - Extra Small Heading</Heading>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 17px · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -141,7 +141,7 @@ export default function HeadingPage() {
               <div className="mb-4">
                 <Heading level="h5">h6 - Extra Extra Small Heading</Heading>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 15px · 700 (Bold) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -251,7 +251,7 @@ export default function HeadingPage() {
             API 레퍼런스
           </Heading>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full">
               <thead>
                 <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>

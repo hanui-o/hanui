@@ -184,10 +184,7 @@ const options = [
               </p>
               <ComponentPreview>
                 <div className="max-w-md space-y-2">
-                  <label
-                    htmlFor="country"
-                    className="block text-sm font-medium"
-                  >
+                  <label htmlFor="country" className="block font-medium">
                     배송 국가
                   </label>
                   <Select
@@ -243,10 +240,7 @@ const options = [
             </div>
             <ComponentPreview>
               <div className="max-w-md space-y-2">
-                <label
-                  htmlFor="fruit-select"
-                  className="block text-sm font-medium"
-                >
+                <label htmlFor="fruit-select" className="block font-medium">
                   좋아하는 과일
                 </label>
                 <Select
@@ -258,7 +252,7 @@ const options = [
               </div>
             </ComponentPreview>
             <CodeBlock
-              code={`<label className="block text-sm font-medium">
+              code={`<label className="block font-medium">
   좋아하는 과일
 </label>
 <Select
@@ -354,9 +348,7 @@ const options = [
                   placeholder="과일을 선택하세요"
                   error
                 />
-                <p className="text-sm text-krds-danger-text">
-                  필수 선택 항목입니다.
-                </p>
+                <p className="text-krds-danger-text">필수 선택 항목입니다.</p>
               </div>
             </ComponentPreview>
             <CodeBlock
@@ -367,7 +359,7 @@ const options = [
   placeholder="과일을 선택하세요"
   error
 />
-<p className="text-sm text-krds-danger-text">필수 선택 항목입니다.</p>`}
+<p className="text-krds-danger-text">필수 선택 항목입니다.</p>`}
               language="tsx"
               showLineNumbers={false}
             />
@@ -377,7 +369,7 @@ const options = [
           <TabsContent value="api">
             <SectionHeading level="h2" id="props" title="Props" />
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold">Name</th>

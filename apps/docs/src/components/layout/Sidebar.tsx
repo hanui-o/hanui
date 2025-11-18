@@ -80,8 +80,10 @@ const componentsNavigation = [
       { title: 'Section', href: '/layout/section' },
       {
         title: 'Section Heading System',
-        href: '/docs/components/layout/section-heading-system',
+        href: '/layout/section-heading-system',
       },
+      { title: 'List', href: '/layout/list' },
+      { title: 'Code', href: '/layout/code' },
       { title: 'Modal', href: '/layout/modal' },
       { title: 'Accordion', href: '/layout/accordion' },
       { title: 'Tabs', href: '/layout/tabs' },
@@ -140,7 +142,7 @@ function SidebarSection({ section }: { section: NavigationSection }) {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`block text-sm py-1 px-2 rounded-md transition-colors ${
+                className={`block py-1 px-2 rounded-md transition-colors ${
                   isActive
                     ? 'bg-krds-primary-base text-white font-medium'
                     : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'

@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer id="footer" className="py-6 md:py-0">
       <Container className="flex flex-col items-center justify-center gap-4 md:h-24 md:flex-row">
-        <p className="text-center text-sm leading-loose text-krds-gray-70 md:text-left">
+        <p className="text-center leading-loose text-krds-gray-70 md:text-left">
           MIT License ·Built by{' '}
           <a
             href="https://www.linkedin.com/in/hanui/"

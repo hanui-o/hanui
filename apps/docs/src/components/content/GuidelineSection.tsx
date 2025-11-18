@@ -35,7 +35,7 @@ export function GuidelineSection({
         </div>
         <h4 className={`text-lg font-semibold ${textColor}`}>{title}</h4>
       </div>
-      <div className={`text-sm ${textColor}/90 space-y-2`}>{children}</div>
+      <div className={`${textColor}/90 space-y-2`}>{children}</div>
     </div>
   );
 }

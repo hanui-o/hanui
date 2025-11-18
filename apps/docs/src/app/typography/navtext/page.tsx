@@ -67,7 +67,7 @@ export default function NavTextPage() {
                     Title Large
                   </NavText>
                 </div>
-                <div className="text-sm text-krds-gray-70">
+                <div className="text-krds-gray-70">
                   24px (PC) / 22px (Mobile) · 700 (Bold) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
@@ -92,7 +92,7 @@ export default function NavTextPage() {
                     Title Small
                   </NavText>
                 </div>
-                <div className="text-sm text-krds-gray-70">
+                <div className="text-krds-gray-70">
                   19px (PC) / 17px (Mobile) · 700 (Bold) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
@@ -123,7 +123,7 @@ export default function NavTextPage() {
                     Depth Medium
                   </NavText>
                 </div>
-                <div className="text-sm text-krds-gray-70">
+                <div className="text-krds-gray-70">
                   17px · 400 (Regular) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
@@ -148,7 +148,7 @@ export default function NavTextPage() {
                     Depth Small
                   </NavText>
                 </div>
-                <div className="text-sm text-krds-gray-70">
+                <div className="text-krds-gray-70">
                   15px · 400 (Regular) · 150% 줄 간격
                 </div>
                 <div className="mt-4">
@@ -473,7 +473,7 @@ export default function NavTextPage() {
             API 레퍼런스
           </Heading>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full">
               <thead>
                 <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>

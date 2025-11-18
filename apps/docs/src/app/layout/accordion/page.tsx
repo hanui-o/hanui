@@ -513,7 +513,7 @@ export default function AccordionPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">Accordion Props</Heading>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
@@ -585,7 +585,7 @@ export default function AccordionPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">AccordionItem Props</Heading>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>
@@ -612,7 +612,7 @@ export default function AccordionPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">AccordionTrigger Props</Heading>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">Prop</th>

@@ -364,7 +364,7 @@ export default () => {
                       <div>
                         <label
                           htmlFor="project-name"
-                          className="block text-sm font-medium mb-1"
+                          className="block font-medium mb-1"
                         >
                           프로젝트 이름
                         </label>
@@ -378,7 +378,7 @@ export default () => {
                       <div>
                         <label
                           htmlFor="project-description"
-                          className="block text-sm font-medium mb-1"
+                          className="block font-medium mb-1"
                         >
                           설명
                         </label>
@@ -464,42 +464,40 @@ export default () => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">open</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">open</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       boolean
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       모달 표시 여부
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">onClose</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">onClose</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       () =&gt; void
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       모달 닫기 핸들러
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">size</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">size</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; |
                       &quot;xl&quot; | &quot;full&quot;
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &quot;md&quot;
-                    </td>
+                    <td className="py-3 px-4 font-mono">&quot;md&quot;</td>
                     <td className="py-3 px-4 text-krds-gray-70">모달 크기</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">children</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       React.ReactNode
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">모달 내용</td>
                   </tr>
                 </tbody>
@@ -512,25 +510,25 @@ export default () => {
             <Heading level="h3">Sub-components</Heading>
             <Stack spacing="content-tight">
               <div>
-                <p className="font-mono text-sm mb-2">ModalTitle</p>
+                <p className="font-mono mb-2">ModalTitle</p>
                 <Body size="sm">
                   모달의 제목을 표시합니다. children을 받습니다.
                 </Body>
               </div>
               <div>
-                <p className="font-mono text-sm mb-2">ModalBody</p>
+                <p className="font-mono mb-2">ModalBody</p>
                 <Body size="sm">
                   모달의 본문 내용을 표시합니다. children을 받습니다.
                 </Body>
               </div>
               <div>
-                <p className="font-mono text-sm mb-2">ModalFooter</p>
+                <p className="font-mono mb-2">ModalFooter</p>
                 <Body size="sm">
                   모달의 하단 액션 버튼 영역입니다. children을 받습니다.
                 </Body>
               </div>
               <div>
-                <p className="font-mono text-sm mb-2">ModalCloseButton</p>
+                <p className="font-mono mb-2">ModalCloseButton</p>
                 <Body size="sm">
                   오른쪽 상단에 표시되는 닫기 버튼입니다. props를 받지 않습니다.
                 </Body>
@@ -592,7 +590,7 @@ export default () => {
           <Stack spacing="heading-tight">
             <Heading level="h3">3. Keyboard Navigation</Heading>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-2 px-4">키</th>

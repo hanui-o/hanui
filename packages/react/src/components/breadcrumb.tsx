@@ -146,7 +146,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
 
     return (
       <nav ref={ref} aria-label={ariaLabel} className={cn('', className)}>
-        <ol className="flex items-center flex-wrap gap-2 text-sm">
+        <ol className="flex items-center flex-wrap gap-2">
           {displayedItems.map((item, index) => {
             const isLast = index === displayedItems.length - 1;
             const isCurrent = item.isCurrent || isLast;

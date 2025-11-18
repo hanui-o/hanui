@@ -36,7 +36,7 @@ export default function TypographyPage() {
         <Stack spacing="heading-tight" className="mt-2 md:mt-4">
           <div className="space-y-4">
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
-              <code className="text-sm text-krds-gray-70 mb-2 block">
+              <code className="text-krds-gray-70 mb-2 block">
                 text-heading-xl
               </code>
               <h1 className="text-4xl font-bold">
@@ -44,7 +44,7 @@ export default function TypographyPage() {
               </h1>
             </div>
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
-              <code className="text-sm text-krds-gray-70 mb-2 block">
+              <code className="text-krds-gray-70 mb-2 block">
                 text-heading-lg
               </code>
               <h2 className="text-3xl font-bold">
@@ -52,7 +52,7 @@ export default function TypographyPage() {
               </h2>
             </div>
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
-              <code className="text-sm text-krds-gray-70 mb-2 block">
+              <code className="text-krds-gray-70 mb-2 block">
                 text-heading-md
               </code>
               <h3 className="text-2xl font-bold">
@@ -60,7 +60,7 @@ export default function TypographyPage() {
               </h3>
             </div>
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
-              <code className="text-sm text-krds-gray-70 mb-2 block">
+              <code className="text-krds-gray-70 mb-2 block">
                 text-heading-sm
               </code>
               <h4 className="text-lg font-bold">19px / 700 - 카드 제목 (h4)</h4>
@@ -78,15 +78,13 @@ export default function TypographyPage() {
         <Stack spacing="heading-tight" className="mt-2 md:mt-4">
           <div className="space-y-4">
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
-              <code className="text-sm text-krds-gray-70 mb-2 block">
-                text-body-lg
-              </code>
+              <code className="text-krds-gray-70 mb-2 block">text-body-lg</code>
               <p className="text-lg">
                 19px / 400 - 큰 본문 텍스트 (강조된 문단)
               </p>
             </div>
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
-              <code className="text-sm text-krds-gray-70 mb-2 block">
+              <code className="text-krds-gray-70 mb-2 block">
                 text-body-md (기본값)
               </code>
               <p className="text-base">
@@ -94,17 +92,13 @@ export default function TypographyPage() {
               </p>
             </div>
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
-              <code className="text-sm text-krds-gray-70 mb-2 block">
-                text-body-sm
-              </code>
+              <code className="text-krds-gray-70 mb-2 block">text-body-sm</code>
               <p className="text-sm">
                 15px / 400 - 작은 본문 텍스트 (보조 정보)
               </p>
             </div>
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
-              <code className="text-sm text-krds-gray-70 mb-2 block">
-                text-body-xs
-              </code>
+              <code className="text-krds-gray-70 mb-2 block">text-body-xs</code>
               <p className="text-xs">
                 13px / 400 - 매우 작은 텍스트 (캡션, 라벨)
               </p>
@@ -127,7 +121,7 @@ export default function TypographyPage() {
                 이것은 기본 본문 텍스트입니다. KRDS 기준에 따라 17px 크기와 150%
                 line-height를 사용하여 최적의 가독성을 제공합니다.
               </p>
-              <p className="text-sm text-krds-gray-70">
+              <p className="text-krds-gray-70">
                 보조 정보는 작은 텍스트로 표시합니다. (15px)
               </p>
             </article>
@@ -139,7 +133,7 @@ export default function TypographyPage() {
   <p className="text-base text-krds-gray-90 leading-relaxed">
     기본 본문 텍스트 (17px)
   </p>
-  <p className="text-sm text-krds-gray-70">
+  <p className="text-krds-gray-70">
     보조 정보 (15px)
   </p>
 </article>`}
@@ -197,9 +191,7 @@ export default function TypographyPage() {
             className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
           >
             <h4 className="font-semibold mb-1">KRDS 타이포그래피 가이드</h4>
-            <p className="text-sm text-krds-gray-70">
-              폰트, 크기, line-height 기준
-            </p>
+            <p className="text-krds-gray-70">폰트, 크기, line-height 기준</p>
           </a>
         </div>
       </PageSection>

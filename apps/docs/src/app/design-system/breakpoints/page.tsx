@@ -365,7 +365,7 @@ export default function BreakpointsPage() {
             className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
           >
             <h4 className="font-semibold mb-1">KRDS 레이아웃 가이드</h4>
-            <p className="text-sm text-krds-gray-70">
+            <p className="text-krds-gray-70">
               간격, 그리드, 브레이크포인트 기준
             </p>
           </a>

@@ -142,7 +142,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
           disabled={currentPage === 1}
           className={cn(
             'inline-flex h-10 min-w-[80px] items-center justify-center rounded-md px-3',
-            'text-sm font-medium transition-colors',
+            'font-medium transition-colors',
             'text-gray-900 dark:text-gray-100',
             'hover:bg-gray-100 dark:hover:bg-gray-800',
             'focus-visible:outline-none focus-visible:ring-2',
@@ -162,7 +162,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
                 key={`ellipsis-${index}`}
                 className={cn(
                   'inline-flex h-10 w-10 items-center justify-center',
-                  'text-sm text-gray-600 dark:text-gray-400'
+                  'text-gray-600 dark:text-gray-400'
                 )}
                 aria-hidden="true"
               >
@@ -185,7 +185,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
               disabled={isActive}
               className={cn(
                 'inline-flex h-10 w-10 items-center justify-center rounded-md',
-                'text-sm font-medium transition-colors',
+                'font-medium transition-colors',
                 !isActive && [
                   'text-gray-900 dark:text-gray-100',
                   'hover:bg-gray-100 dark:hover:bg-gray-800',
@@ -216,7 +216,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
           disabled={currentPage === totalPages}
           className={cn(
             'inline-flex h-10 min-w-[80px] items-center justify-center rounded-md px-3',
-            'text-sm font-medium transition-colors',
+            'font-medium transition-colors',
             'text-gray-900 dark:text-gray-100',
             'hover:bg-gray-100 dark:hover:bg-gray-800',
             'focus-visible:outline-none focus-visible:ring-2',

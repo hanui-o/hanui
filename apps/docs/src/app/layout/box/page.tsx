@@ -160,13 +160,13 @@ export default function BoxPage() {
               <div>
                 <ComponentPreview>
                   <Box display="flex" direction="row" gap={3}>
-                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white text-sm">
+                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white">
                       1
                     </div>
-                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white text-sm">
+                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white">
                       2
                     </div>
-                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white text-sm">
+                    <div className="w-16 h-16 bg-krds-warning-base rounded flex items-center justify-center text-krds-white">
                       3
                     </div>
                   </Box>
@@ -520,7 +520,7 @@ export default function BoxPage() {
             API 레퍼런스
           </Heading>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full">
               <thead>
                 <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>

@@ -22,21 +22,19 @@ export default function InstallationPage() {
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body>HANUI를 사용하기 전에 다음 요구사항을 확인하세요:</Body>
           <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2">
               <li className="flex items-center gap-2">
-                <code className="bg-krds-gray-10 px-2 py-1 rounded text-sm">
-                  React
-                </code>
+                <code className="bg-krds-gray-10 px-2 py-1 rounded">React</code>
                 <span className="text-krds-gray-70">18.0.0 이상</span>
               </li>
               <li className="flex items-center gap-2">
-                <code className="bg-krds-gray-10 px-2 py-1 rounded text-sm">
+                <code className="bg-krds-gray-10 px-2 py-1 rounded">
                   Node.js
                 </code>
                 <span className="text-krds-gray-70">18.0.0 이상</span>
               </li>
               <li className="flex items-center gap-2">
-                <code className="bg-krds-gray-10 px-2 py-1 rounded text-sm">
+                <code className="bg-krds-gray-10 px-2 py-1 rounded">
                   Tailwind CSS
                 </code>
                 <span className="text-krds-gray-70">3.0.0 이상</span>
@@ -67,7 +65,7 @@ export default function InstallationPage() {
             <Body size="sm" weight="bold" className="mb-3">
               이 명령어가 수행하는 작업:
             </Body>
-            <ul className="space-y-2 text-sm text-krds-primary-text">
+            <ul className="space-y-2 text-krds-primary-text">
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
@@ -113,7 +111,7 @@ export default function InstallationPage() {
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>
             필요한 컴포넌트를{' '}
-            <code className="bg-krds-gray-5 px-1 rounded text-sm">
+            <code className="bg-krds-gray-5 px-1 rounded">
               npx @hanui/cli add
             </code>{' '}
             명령어로 추가합니다.

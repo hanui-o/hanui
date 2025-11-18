@@ -90,7 +90,7 @@ export default function StructuredListPage() {
 
             <SectionHeading level="h2" id="installation" title="설치" />
             <CodeBlock code="npx hanui add structured-list" language="bash" />
-            <Body className="text-sm text-krds-gray-70 mt-2">
+            <Body className="text-krds-gray-70 mt-2">
               이 명령은 컴포넌트 파일(TSX)과 스타일 파일(SCSS Module)을 자동으로
               설치합니다.
             </Body>
@@ -260,47 +260,41 @@ const items = [
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">items</td>
-                    <td className="p-3 font-mono text-sm">
-                      StructuredListItem[]
-                    </td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">items</td>
+                    <td className="p-3 font-mono">StructuredListItem[]</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">표시할 아이템 배열</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">variant?</td>
-                    <td className="p-3 font-mono text-sm">
-                      'default' | 'full'
-                    </td>
-                    <td className="p-3 font-mono text-sm">'default'</td>
+                    <td className="p-3 font-mono">variant?</td>
+                    <td className="p-3 font-mono">'default' | 'full'</td>
+                    <td className="p-3 font-mono">'default'</td>
                     <td className="p-3">
                       레이아웃 타입 (default: 세로형, full: 가로형)
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">size?</td>
-                    <td className="p-3 font-mono text-sm">
-                      'sm' | 'md' | 'lg'
-                    </td>
-                    <td className="p-3 font-mono text-sm">'md'</td>
+                    <td className="p-3 font-mono">size?</td>
+                    <td className="p-3 font-mono">'sm' | 'md' | 'lg'</td>
+                    <td className="p-3 font-mono">'md'</td>
                     <td className="p-3">카드 크기</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">onShare?</td>
-                    <td className="p-3 font-mono text-sm">(item) =&gt; void</td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">onShare?</td>
+                    <td className="p-3 font-mono">(item) =&gt; void</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">공유 버튼 클릭 핸들러</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">onLike?</td>
-                    <td className="p-3 font-mono text-sm">(item) =&gt; void</td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">onLike?</td>
+                    <td className="p-3 font-mono">(item) =&gt; void</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">찜 버튼 클릭 핸들러</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">className?</td>
-                    <td className="p-3 font-mono text-sm">string</td>
-                    <td className="p-3 font-mono text-sm">''</td>
+                    <td className="p-3 font-mono">className?</td>
+                    <td className="p-3 font-mono">string</td>
+                    <td className="p-3 font-mono">''</td>
                     <td className="p-3">추가 CSS 클래스</td>
                   </tr>
                 </tbody>

@@ -34,7 +34,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const isInline = !className;
       if (isInline) {
         return (
-          <code className="text-sm bg-gray-10 dark:bg-gray-90 px-1.5 py-0.5 rounded font-mono text-primary-60">
+          <code className="bg-gray-10 dark:bg-gray-90 px-1.5 py-0.5 rounded font-mono text-primary-60">
             {children}
           </code>
         );
@@ -42,7 +42,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       return <code className={className}>{children}</code>;
     },
     pre: ({ children }) => (
-      <pre className="p-4 bg-gray-5 dark:bg-gray-95 rounded-lg overflow-x-auto mb-4 text-sm">
+      <pre className="p-4 bg-gray-5 dark:bg-gray-95 rounded-lg overflow-x-auto mb-4">
         {children}
       </pre>
     ),

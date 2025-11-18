@@ -39,7 +39,7 @@ export function Installation({
       <div className="flex items-center gap-1 border-b border-gray-200 dark:border-gray-800">
         <button
           onClick={() => setMethod('cli')}
-          className={`px-4 py-2 text-sm font-medium transition-colors relative ${
+          className={`px-4 py-2 font-medium transition-colors relative ${
             method === 'cli'
               ? 'text-gray-900 dark:text-gray-100'
               : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
@@ -52,7 +52,7 @@ export function Installation({
         </button>
         <button
           onClick={() => setMethod('manual')}
-          className={`px-4 py-2 text-sm font-medium transition-colors relative ${
+          className={`px-4 py-2 font-medium transition-colors relative ${
             method === 'manual'
               ? 'text-gray-900 dark:text-gray-100'
               : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
@@ -84,7 +84,7 @@ export function Installation({
             ))}
           </div>
 
-          <div className="rounded-lg bg-gray-950 dark:bg-gray-900 p-4 font-mono text-sm">
+          <div className="rounded-lg bg-gray-950 dark:bg-gray-900 p-4 font-mono">
             <div className="text-gray-100">{getInstallCommand()}</div>
           </div>
         </div>
@@ -92,7 +92,7 @@ export function Installation({
 
       {method === 'manual' && manualCode && (
         <div className="space-y-4">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600 dark:text-gray-400">
             패키지 설치 후 아래 코드를 복사하여 사용하세요.
           </p>
           <CodeBlock code={manualCode} language="tsx" showLineNumbers={false} />

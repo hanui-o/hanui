@@ -171,7 +171,7 @@ export default function TabBarsPage() {
 
             <SectionHeading level="h2" id="installation" title="설치" />
             <CodeBlock code="npx hanui add tab-bars" language="bash" />
-            <Body className="text-sm text-krds-gray-70 mt-2">
+            <Body className="text-krds-gray-70 mt-2">
               이 명령은 컴포넌트 파일을 자동으로 설치합니다. Tab Bars는 Tailwind
               CSS를 사용합니다.
             </Body>
@@ -312,25 +312,23 @@ const items: TabBarItem[] = [
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">items</td>
-                    <td className="p-3 font-mono text-sm">TabBarItem[]</td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">items</td>
+                    <td className="p-3 font-mono">TabBarItem[]</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">
                       탭 바 메뉴 아이템 배열 (최대 5개 권장)
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">onItemClick?</td>
-                    <td className="p-3 font-mono text-sm">
-                      (item, index) =&gt; void
-                    </td>
-                    <td className="p-3 font-mono text-sm">-</td>
+                    <td className="p-3 font-mono">onItemClick?</td>
+                    <td className="p-3 font-mono">(item, index) =&gt; void</td>
+                    <td className="p-3 font-mono">-</td>
                     <td className="p-3">아이템 클릭 시 호출되는 핸들러</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono text-sm">className?</td>
-                    <td className="p-3 font-mono text-sm">string</td>
-                    <td className="p-3 font-mono text-sm">''</td>
+                    <td className="p-3 font-mono">className?</td>
+                    <td className="p-3 font-mono">string</td>
+                    <td className="p-3 font-mono">''</td>
                     <td className="p-3">
                       Additional CSS classes for custom styling
                     </td>

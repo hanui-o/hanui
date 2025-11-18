@@ -173,10 +173,7 @@ export default function InputPage() {
               </p>
               <ComponentPreview>
                 <div className="max-w-md space-y-2">
-                  <label
-                    htmlFor="username"
-                    className="block text-sm font-medium"
-                  >
+                  <label htmlFor="username" className="block font-medium">
                     사용자명
                   </label>
                   <Input id="username" placeholder="홍길동" />
@@ -222,7 +219,7 @@ export default function InputPage() {
               <ComponentPreview>
                 <div className="max-w-md space-y-2">
                   <Input error type="email" defaultValue="invalid" />
-                  <p className="text-sm text-krds-danger-text">
+                  <p className="text-krds-danger-text">
                     이메일 형식이 올바르지 않습니다. &apos;@&apos;를
                     포함해주세요.
                   </p>
@@ -349,7 +346,7 @@ export default function InputPage() {
                     placeholder="잘못된 입력"
                     defaultValue="invalid@"
                   />
-                  <p className="mt-1 text-sm text-krds-danger-text">
+                  <p className="mt-1 text-krds-danger-text">
                     이메일 형식이 올바르지 않습니다. &apos;@&apos;를
                     포함해주세요.
                   </p>
@@ -360,7 +357,7 @@ export default function InputPage() {
                     leftAddon={<EmailIcon />}
                     placeholder="example@email.com"
                   />
-                  <p className="mt-1 text-sm text-krds-danger-text">
+                  <p className="mt-1 text-krds-danger-text">
                     필수 입력 항목입니다.
                   </p>
                 </div>
@@ -368,7 +365,7 @@ export default function InputPage() {
             </ComponentPreview>
             <CodeBlock
               code={`<Input error placeholder="잘못된 입력" defaultValue="invalid@" />
-<p className="mt-1 text-sm text-krds-danger-text">
+<p className="mt-1 text-krds-danger-text">
   이메일 형식이 올바르지 않습니다. '@'를 포함해주세요.
 </p>`}
               language="tsx"
@@ -438,7 +435,7 @@ export default function InputPage() {
           <TabsContent value="api">
             <SectionHeading level="h2" id="props" title="Props" />
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b border-krds-gray-20">
                     <th className="text-left py-3 px-4 font-semibold">Name</th>

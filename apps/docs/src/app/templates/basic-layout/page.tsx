@@ -161,7 +161,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         공지사항 제목
       </h2>
 
-      <div className="flex gap-4 text-sm text-krds-gray-70 border-b border-krds-gray-20 pb-4 mb-6">
+      <div className="flex gap-4 text-krds-gray-70 border-b border-krds-gray-20 pb-4 mb-6">
         <span>작성자: 관리자</span>
         <span>작성일: 2024.01.15</span>
         <span>조회수: 123</span>
@@ -209,10 +209,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </SectionHeading>
 
         <div className="border border-krds-gray-20 rounded-lg p-4 bg-krds-gray-5 my-6">
-          <Body className="text-sm text-krds-gray-70">
+          <Body className="text-krds-gray-70">
             이 템플릿은 다음 컴포넌트를 사용합니다:
           </Body>
-          <ul className="list-disc pl-6 mt-2 text-sm text-krds-gray-90">
+          <ul className="list-disc pl-6 mt-2 text-krds-gray-90">
             <li>SkipLink - 접근성을 위한 건너뛰기 링크</li>
             <li>Header - 상단 헤더 (로고, 네비게이션, 검색)</li>
             <li>MainMenu - 주요 메뉴 (GNB)</li>
@@ -226,7 +226,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Body>필요한 컴포넌트를 한 번에 설치합니다:</Body>
         </SectionHeading>
         <CodeBlock code="npx hanui add layout" language="bash" />
-        <Body className="text-sm text-krds-gray-70 mt-2">
+        <Body className="text-krds-gray-70 mt-2">
           이 명령은 Header, Footer, SkipLink, MainMenu, Breadcrumb, Container를
           자동으로 설치합니다.
         </Body>

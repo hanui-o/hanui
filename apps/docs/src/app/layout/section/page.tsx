@@ -287,46 +287,46 @@ export default function SectionPage() {
               </thead>
               <tbody>
                 <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     padding
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     SectionPadding
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     &apos;page-section&apos;
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     패딩 프리셋
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     background
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     &apos;white&apos; | &apos;gray&apos; | &apos;primary&apos; |
                     &apos;transparent&apos;
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     &apos;transparent&apos;
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     배경색
                   </td>
                 </tr>
                 <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     as
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     &apos;section&apos; | &apos;div&apos; | &apos;header&apos; |
                     &apos;main&apos; | ...
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                     &apos;section&apos;
                   </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
                     렌더링할 HTML 요소
                   </td>
                 </tr>
@@ -353,57 +353,57 @@ export default function SectionPage() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       page-section
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       반응형 (모바일/PC)
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       메인 페이지 섹션
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       content-area
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       반응형 (모바일/PC)
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       일반 콘텐츠 영역
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       card-large
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       반응형 (24px/40px)
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       큰 카드
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       card-medium
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       반응형 (24px/32px)
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       중간 카드
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
                       card-small
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       반응형 (20px/24px)
                     </td>
-                    <td className="px-4 py-2 border-b border-krds-gray-20 text-sm">
+                    <td className="px-4 py-2 border-b border-krds-gray-20">
                       작은 카드
                     </td>
                   </tr>

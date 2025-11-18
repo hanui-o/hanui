@@ -135,7 +135,7 @@ const PaginationButton = React.forwardRef<
       className={cn(
         'inline-flex items-center justify-center',
         'min-w-[2.5rem] h-10 px-3',
-        'text-sm font-medium',
+        'font-medium',
         'rounded-md',
         'transition-colors',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',

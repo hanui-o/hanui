@@ -129,7 +129,7 @@ hanui.dev/
 - Sticky position (top-24)
 - 현재 섹션 하이라이트
 - Smooth scroll
-- Text-sm (14px)
+- (14px)
 ```
 
 ---
@@ -277,7 +277,7 @@ export default function HomePage() {
         {/* Badge (shadcn/ui 스타일) */}
         <a
           href="/docs"
-          className="inline-flex items-center rounded-lg bg-muted px-3 py-1 text-sm font-medium"
+          className="inline-flex items-center rounded-lg bg-muted px-3 py-1 font-medium"
         >
           🎉 <Separator className="mx-2 h-4" orientation="vertical" />{' '}
           <span className="sm:hidden">v0.1.0 출시</span>
@@ -330,7 +330,7 @@ pnpm dev`}</code>
               <svg className="h-12 w-12" /* ... */ />
               <div className="space-y-2">
                 <h3 className="font-bold">KRDS 100% 준수</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground">
                   한국 정부 표준 디자인 시스템 완벽 구현
                 </p>
               </div>
@@ -360,7 +360,7 @@ export default function ButtonPage() {
       {/* Main Content */}
       <div className="mx-auto w-full min-w-0">
         {/* Breadcrumb */}
-        <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
+        <div className="mb-4 flex items-center space-x-1 text-muted-foreground">
           <a href="/docs">Docs</a>
           <ChevronRight className="h-4 w-4" />
           <a href="/docs/components">Components</a>
@@ -473,18 +473,16 @@ export default function MyComponent() {
               </thead>
               <tbody>
                 <tr className="m-0 border-t p-0 even:bg-muted">
-                  <td className="border px-4 py-2 font-mono text-sm">
-                    variant
-                  </td>
-                  <td className="border px-4 py-2 font-mono text-sm">
+                  <td className="border px-4 py-2 font-mono">variant</td>
+                  <td className="border px-4 py-2 font-mono">
                     "default" | "secondary" | "outline" | "ghost"
                   </td>
                   <td className="border px-4 py-2">"default"</td>
                   <td className="border px-4 py-2">버튼 변형 스타일</td>
                 </tr>
                 <tr className="m-0 border-t p-0 even:bg-muted">
-                  <td className="border px-4 py-2 font-mono text-sm">size</td>
-                  <td className="border px-4 py-2 font-mono text-sm">
+                  <td className="border px-4 py-2 font-mono">size</td>
+                  <td className="border px-4 py-2 font-mono">
                     "sm" | "md" | "lg"
                   </td>
                   <td className="border px-4 py-2">"md"</td>
@@ -526,7 +524,7 @@ export default function MyComponent() {
 
           <div className="rounded-lg border bg-card p-6">
             <h3 className="font-semibold mb-3">키보드 네비게이션</h3>
-            <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground">
               <li>
                 <kbd className="px-2 py-1 rounded bg-muted">Tab</kbd> - 버튼으로
                 포커스 이동
@@ -539,7 +537,7 @@ export default function MyComponent() {
             </ul>
 
             <h3 className="font-semibold mt-6 mb-3">스크린 리더</h3>
-            <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground">
               <li>
                 <code className="text-xs">role="button"</code> 자동 설정
               </li>
@@ -550,7 +548,7 @@ export default function MyComponent() {
             </ul>
 
             <h3 className="font-semibold mt-6 mb-3">WCAG 준수</h3>
-            <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground">
               <li>명도 대비 4.5:1 이상 (WCAG AA)</li>
               <li>터치 영역 최소 44x44px (KRDS 기준 40px)</li>
               <li>포커스 인디케이터 명확</li>
@@ -560,7 +558,7 @@ export default function MyComponent() {
       </div>
 
       {/* On This Page (우측 사이드바) */}
-      <div className="hidden text-sm xl:block">
+      <div className="hidden xl:block">
         <div className="sticky top-16 -mt-10 pt-4">
           <div className="space-y-2">
             <p className="font-medium">On This Page</p>
@@ -646,7 +644,7 @@ export function CodeBlock({
     <div className="relative rounded-lg border bg-zinc-950 dark:bg-zinc-900">
       {filename && (
         <div className="flex items-center gap-2 border-b border-zinc-800 px-4 py-2">
-          <span className="text-sm text-zinc-400">{filename}</span>
+          <span className="text-zinc-400">{filename}</span>
         </div>
       )}
 
@@ -670,10 +668,7 @@ export function CodeBlock({
           language={language}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <pre
-              className={`${className} overflow-x-auto p-4 text-sm`}
-              style={style}
-            >
+            <pre className={`${className} overflow-x-auto p-4`} style={style}>
               {tokens.map((line, i) => (
                 <div key={i} {...getLineProps({ line })}>
                   <span className="mr-4 inline-block w-8 select-none text-right text-zinc-600">
@@ -781,11 +776,11 @@ export function SidebarNav({ items }: SidebarNavProps) {
     <div className="w-full">
       {items.map((item, index) => (
         <div key={index} className="pb-4">
-          <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">
+          <h4 className="mb-1 rounded-md px-2 py-1 font-semibold">
             {item.title}
           </h4>
           {item.items && (
-            <div className="grid grid-flow-row auto-rows-max text-sm">
+            <div className="grid grid-flow-row auto-rows-max">
               {item.items.map((subItem, subIndex) => (
                 <Link
                   key={subIndex}
@@ -902,7 +897,7 @@ screens: {
 {
   /* 큰 데스크탑: On This Page */
 }
-<div className="hidden text-sm xl:block">
+<div className="hidden xl:block">
   <OnThisPage />
 </div>;
 ```

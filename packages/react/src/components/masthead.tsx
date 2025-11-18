@@ -74,7 +74,7 @@ export const Masthead = React.forwardRef<HTMLDivElement, MastheadProps>(
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center min-h-[40px] py-2">
-            <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 font-medium">
+            <p className="text-xs sm:text-gray-700 dark:text-gray-300 font-medium">
               {text}
             </p>
           </div>

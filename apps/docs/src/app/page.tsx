@@ -99,7 +99,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-6 bg-krds-gray-95">
-                <pre className="text-sm text-krds-gray-10 font-mono leading-relaxed">
+                <pre className="text-krds-gray-10 font-mono leading-relaxed">
                   <code>
                     <span className="text-krds-gray-50">
                       # HANUI 프로젝트 생성

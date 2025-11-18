@@ -154,7 +154,7 @@ export const SkipLink = React.forwardRef<HTMLDivElement, SkipLinkProps>(
                   className={cn(
                     'inline-block',
                     'px-4 py-2',
-                    'text-sm font-medium',
+                    'font-medium',
                     'text-white',
                     'bg-blue-700',
                     'rounded',

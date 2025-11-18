@@ -209,7 +209,7 @@ const FooterQuickLink = React.forwardRef<
     'hover:bg-gray-200 dark:hover:bg-gray-700',
     'active:bg-gray-300 dark:active:bg-gray-600',
     'focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-400',
-    'text-sm md:text-base',
+    'text-base',
     className
   );
 
@@ -462,7 +462,7 @@ const FooterInfo = React.forwardRef<HTMLDivElement, FooterInfoProps>(
           'f-info',
           'flex flex-col gap-5',
           'flex-1 md:flex-3',
-          'text-sm md:text-base',
+          'text-base',
           className
         )}
         {...props}
@@ -681,7 +681,7 @@ const FooterUtilityLinks = React.forwardRef<
           href={link.href}
           className={cn(
             'inline-flex items-center gap-2',
-            'text-sm md:text-base',
+            'text-base',
             'text-gray-700 dark:text-gray-300',
             'hover:text-blue-600 dark:hover:text-blue-400',
             'hover:underline',
@@ -854,7 +854,7 @@ const FooterBottom = React.forwardRef<HTMLDivElement, FooterBottomProps>(
           'pt-6 md:pt-6',
           'gap-9 md:gap-9',
           'border-t border-gray-200 dark:border-gray-800',
-          'text-sm md:text-base',
+          'text-base',
           className
         )}
         {...props}
@@ -970,7 +970,7 @@ const FooterCopyright = React.forwardRef<
       ref={ref}
       className={cn(
         'f-copy',
-        'text-sm md:text-base',
+        'text-base',
         'text-gray-600 dark:text-gray-400',
         className
       )}

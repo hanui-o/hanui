@@ -236,7 +236,7 @@ const HeaderSlogan = React.forwardRef<HTMLSpanElement, HeaderSloganProps>(
       <span
         ref={ref}
         className={cn(
-          'text-sm text-gray-600 dark:text-gray-400',
+          'text-gray-600 dark:text-gray-400',
           'hidden md:inline-block',
           className
         )}
@@ -325,7 +325,7 @@ const HeaderUtilityLink = React.forwardRef<
       ref={ref}
       href={href}
       className={cn(
-        'text-sm text-gray-700 dark:text-gray-300',
+        'text-gray-700 dark:text-gray-300',
         'hover:text-blue-600 dark:hover:text-blue-400',
         'hover:underline',
         'transition-colors',

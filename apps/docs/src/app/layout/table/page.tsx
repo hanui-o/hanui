@@ -720,19 +720,19 @@ const handleSort = (column: string) => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">children</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       React.ReactNode
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">테이블 내용</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">className</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">className</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       string
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       추가 CSS 클래스
                     </td>
@@ -767,11 +767,11 @@ const handleSort = (column: string) => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">children</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       React.ReactNode
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">헤더 행</td>
                   </tr>
                 </tbody>
@@ -804,21 +804,21 @@ const handleSort = (column: string) => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">striped</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">striped</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       boolean
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">false</td>
+                    <td className="py-3 px-4 font-mono">false</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       교차 배경색 적용
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">children</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">children</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       React.ReactNode
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">데이터 행</td>
                   </tr>
                 </tbody>
@@ -851,43 +851,39 @@ const handleSort = (column: string) => {
                 </thead>
                 <tbody>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">sortable</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">sortable</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       boolean
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">false</td>
+                    <td className="py-3 px-4 font-mono">false</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       정렬 가능 여부
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">
-                      sortDirection
-                    </td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">sortDirection</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       &apos;asc&apos; | &apos;desc&apos; | null
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">null</td>
+                    <td className="py-3 px-4 font-mono">null</td>
                     <td className="py-3 px-4 text-krds-gray-70">
                       현재 정렬 방향
                     </td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">onSort</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">onSort</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       () =&gt; void
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">-</td>
+                    <td className="py-3 px-4 font-mono">-</td>
                     <td className="py-3 px-4 text-krds-gray-70">정렬 핸들러</td>
                   </tr>
                   <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono text-sm">scope</td>
-                    <td className="py-3 px-4 font-mono text-sm text-krds-gray-70">
+                    <td className="py-3 px-4 font-mono">scope</td>
+                    <td className="py-3 px-4 font-mono text-krds-gray-70">
                       string
                     </td>
-                    <td className="py-3 px-4 font-mono text-sm">
-                      &apos;col&apos;
-                    </td>
+                    <td className="py-3 px-4 font-mono">&apos;col&apos;</td>
                     <td className="py-3 px-4 text-krds-gray-70">헤더 범위</td>
                   </tr>
                 </tbody>

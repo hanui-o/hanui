@@ -454,7 +454,7 @@ export default function RootLayout({ children }) {
                       id="skiplink-props"
                     />
                     <div className="overflow-x-auto">
-                      <table className="w-full text-sm">
+                      <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-200 dark:border-gray-800">
                             <th className="text-left py-2 px-4">Prop</th>
@@ -509,7 +509,7 @@ export default function RootLayout({ children }) {
                       id="skiplinkitem-type"
                     />
                     <div className="overflow-x-auto">
-                      <table className="w-full text-sm">
+                      <table className="w-full">
                         <thead>
                           <tr className="border-b border-gray-200 dark:border-gray-800">
                             <th className="text-left py-2 px-4">Property</th>

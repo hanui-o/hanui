@@ -31,7 +31,7 @@ export default function TemplatesPage() {
           <Body>템플릿에 필요한 컴포넌트들을 한 번에 설치할 수 있습니다:</Body>
         </SectionHeading>
         <CodeBlock code="npx hanui add layout" language="bash" />
-        <Body className="text-sm text-krds-gray-70 mt-2">
+        <Body className="text-krds-gray-70 mt-2">
           이 명령은 Header, Footer, SkipLink, MainMenu, Breadcrumb 등 기본
           레이아웃에 필요한 모든 컴포넌트를 자동으로 설치합니다.
         </Body>
@@ -64,7 +64,7 @@ export default function TemplatesPage() {
             <h3 className="text-lg font-semibold text-krds-gray-90 mb-2">
               Basic Layout
             </h3>
-            <Body className="text-sm text-krds-gray-70">
+            <Body className="text-krds-gray-70">
               정부 웹사이트의 기본 레이아웃입니다. Header, Footer, MainMenu,
               Breadcrumb, SkipLink를 포함합니다.
             </Body>
@@ -74,7 +74,7 @@ export default function TemplatesPage() {
             <h3 className="text-lg font-semibold text-krds-gray-90 mb-2">
               Dashboard Layout
             </h3>
-            <Body className="text-sm text-krds-gray-70">
+            <Body className="text-krds-gray-70">
               관리자 대시보드 레이아웃입니다. SideNavigation과 함께 사용됩니다.
               (준비 중)
             </Body>

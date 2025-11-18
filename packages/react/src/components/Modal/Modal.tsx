@@ -165,7 +165,7 @@ export const ModalBody = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('mt-4 text-sm text-gray-700 dark:text-gray-300', className)}
+    className={cn('mt-4 text-gray-700 dark:text-gray-300', className)}
     {...props}
   />
 ));
@@ -195,7 +195,7 @@ export const ModalDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn('text-sm text-gray-600 dark:text-gray-400', className)}
+    className={cn('text-gray-600 dark:text-gray-400', className)}
     {...props}
   />
 ));

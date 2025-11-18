@@ -22,7 +22,7 @@ export default function Home() {
             <ul className="text-left space-y-3 text-gray-70 dark:text-gray-30">
               <li>
                 ✓{' '}
-                <code className="bg-gray-20 dark:bg-gray-80 px-2 py-1 rounded text-sm">
+                <code className="bg-gray-20 dark:bg-gray-80 px-2 py-1 rounded">
                   src/app/page.tsx
                 </code>{' '}
                 파일을 수정하여 페이지를 편집하세요

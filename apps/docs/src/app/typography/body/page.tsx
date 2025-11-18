@@ -55,7 +55,7 @@ export default function BodyPage() {
                   가독성이 높아 중요한 정보 전달에 적합합니다.
                 </Body>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 19px · 400 (Regular) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -74,7 +74,7 @@ export default function BodyPage() {
                   크기로 대부분의 콘텐츠에 적용됩니다.
                 </Body>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 17px · 400 (Regular) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -93,7 +93,7 @@ export default function BodyPage() {
                   읽기 편한 크기입니다.
                 </Body>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 15px · 400 (Regular) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -112,7 +112,7 @@ export default function BodyPage() {
                   크기입니다.
                 </Body>
               </div>
-              <div className="text-sm text-krds-gray-70">
+              <div className="text-krds-gray-70">
                 13px · 400 (Regular) · 150% 줄 간격
               </div>
               <div className="mt-4">
@@ -293,7 +293,7 @@ export default function BodyPage() {
             API 레퍼런스
           </Heading>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full">
               <thead>
                 <tr className="border-b border-krds-gray-20">
                   <th className="text-left py-3 px-4">Prop</th>

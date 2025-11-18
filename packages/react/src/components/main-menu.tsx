@@ -251,7 +251,7 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                     <button
                       className={cn(
                         'gnb-main-trigger',
-                        'px-4 py-2 text-sm font-medium rounded-md',
+                        'px-4 py-2 font-medium rounded-md',
                         'transition-colors duration-200',
                         'hover:bg-gray-100 dark:hover:bg-gray-800',
                         'focus:outline-none focus:ring-2 focus:ring-blue-500',
@@ -319,7 +319,7 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                                     href={link.href}
                                     className={cn(
                                       'block px-3 py-2 rounded-md',
-                                      'text-sm transition-colors',
+                                      'transition-colors',
                                       'hover:bg-gray-50 dark:hover:bg-gray-800',
                                       link.active &&
                                         'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
@@ -374,7 +374,7 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                                     href={child.href}
                                     className={cn(
                                       'block px-3 py-2 rounded-md',
-                                      'text-sm transition-colors',
+                                      'transition-colors',
                                       'hover:bg-gray-50 dark:hover:bg-gray-800',
                                       child.active &&
                                         'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
@@ -398,7 +398,7 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                   <a
                     href={item.href}
                     className={cn(
-                      'block px-4 py-2 text-sm font-medium rounded-md',
+                      'block px-4 py-2 font-medium rounded-md',
                       'transition-colors duration-200',
                       'hover:bg-gray-100 dark:hover:bg-gray-800',
                       'focus:outline-none focus:ring-2 focus:ring-blue-500',

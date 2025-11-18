@@ -417,7 +417,7 @@ export default function SpacingPage() {
                 </h3>
                 <p className="text-body-md text-krds-gray-70">
                   시맨틱 컴포넌트를 사용하면{' '}
-                  <code className="text-sm bg-krds-gray-10 px-2 py-1 rounded">
+                  <code className="bg-krds-gray-10 px-2 py-1 rounded">
                     spacing="form"
                   </code>
                   처럼 의미를 명시하면 자동으로 올바른 간격이 적용됩니다.
@@ -439,21 +439,15 @@ export default function SpacingPage() {
               <ComponentPreview>
                 <Stack spacing="form" className="max-w-md">
                   <div>
-                    <label className="block text-sm font-medium mb-1.5">
-                      이름
-                    </label>
+                    <label className="block font-medium mb-1.5">이름</label>
                     <Input placeholder="홍길동" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1.5">
-                      이메일
-                    </label>
+                    <label className="block font-medium mb-1.5">이메일</label>
                     <Input type="email" placeholder="hong@example.com" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1.5">
-                      비밀번호
-                    </label>
+                    <label className="block font-medium mb-1.5">비밀번호</label>
                     <Input type="password" placeholder="********" />
                   </div>
                   <Button className="w-full">제출</Button>
@@ -574,7 +568,7 @@ export default function SpacingPage() {
                 모든 간격은 반응형으로 모바일과 PC에서 자동으로 조정됩니다.
               </p>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full">
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4">프리셋</th>
@@ -963,7 +957,7 @@ export default function SpacingPage() {
                 시맨틱 프리셋이 없는 경우 제네릭 사이즈를 사용할 수 있습니다.
               </p>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full">
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4">사이즈</th>
@@ -1085,13 +1079,11 @@ export default function SpacingPage() {
                   <h3 className="text-heading-sm font-semibold mb-4">로그인</h3>
                   <Stack spacing="form">
                     <div>
-                      <label className="block text-sm font-medium mb-1.5">
-                        이메일
-                      </label>
+                      <label className="block font-medium mb-1.5">이메일</label>
                       <Input type="email" placeholder="email@example.com" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1.5">
+                      <label className="block font-medium mb-1.5">
                         비밀번호
                       </label>
                       <Input type="password" placeholder="********" />
@@ -1125,7 +1117,7 @@ export default function SpacingPage() {
                 모든 패딩은 반응형으로 모바일과 PC에서 자동으로 조정됩니다.
               </p>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full">
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4">프리셋</th>
@@ -1274,13 +1266,13 @@ export default function SpacingPage() {
                     >
                       <Stack spacing="form">
                         <div>
-                          <label className="block text-sm font-medium mb-1.5">
+                          <label className="block font-medium mb-1.5">
                             이름
                           </label>
                           <Input placeholder="홍길동" />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-1.5">
+                          <label className="block font-medium mb-1.5">
                             이메일
                           </label>
                           <Input type="email" placeholder="hong@example.com" />
@@ -1299,13 +1291,13 @@ export default function SpacingPage() {
                     >
                       <Stack spacing="form">
                         <div>
-                          <label className="block text-sm font-medium mb-1.5">
+                          <label className="block font-medium mb-1.5">
                             비밀번호
                           </label>
                           <Input type="password" placeholder="********" />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-1.5">
+                          <label className="block font-medium mb-1.5">
                             비밀번호 확인
                           </label>
                           <Input type="password" placeholder="********" />
@@ -1380,7 +1372,7 @@ export default function SpacingPage() {
           <Stack spacing="h3-content">
             <h3 className="text-heading-md font-bold">Stack Props</h3>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b">
                     <th className="text-left py-3 px-4">Prop</th>
@@ -1437,7 +1429,7 @@ export default function SpacingPage() {
           <Stack spacing="h3-content">
             <h3 className="text-heading-md font-bold">Section Props</h3>
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full">
                 <thead>
                   <tr className="border-b">
                     <th className="text-left py-3 px-4">Prop</th>
@@ -1500,7 +1492,7 @@ export default function SpacingPage() {
                 className="rounded-lg border max-w-2xl"
               >
                 <Stack spacing="breadcrumb">
-                  <div className="text-sm text-krds-primary-text">
+                  <div className="text-krds-primary-text">
                     홈 &gt; 블로그 &gt; 개발
                   </div>
                   <Stack spacing="h1-h2">

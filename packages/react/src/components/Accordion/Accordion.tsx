@@ -408,7 +408,7 @@ export const AccordionTrigger = React.forwardRef<
       onClick={() => onValueChange(value)}
       {...props}
     >
-      <span className="flex-1 text-sm font-medium text-gray-900 dark:text-gray-100">
+      <span className="flex-1 font-medium text-gray-900 dark:text-gray-100">
         {children}
       </span>
       <svg
@@ -464,7 +464,7 @@ export const AccordionContent = React.forwardRef<
       }}
       {...props}
     >
-      <div className="px-4 pb-3 pt-0 text-sm text-gray-700 dark:text-gray-300">
+      <div className="px-4 pb-3 pt-0 text-gray-700 dark:text-gray-300">
         {children}
       </div>
     </div>

@@ -58,10 +58,10 @@ export function PageNav() {
   return (
     <nav className="hidden xl:block w-48 flex-shrink-0">
       <div className="sticky top-24">
-        <h4 className="text-sm font-semibold text-krds-gray-95 mb-4">
+        <h4 className="font-semibold text-krds-gray-95 mb-4">
           이 페이지의 구성
         </h4>
-        <ul className="space-y-1.5 text-sm">
+        <ul className="space-y-1.5">
           {headings.map((heading) => {
             const isActive = activeId === heading.id;
             return (
