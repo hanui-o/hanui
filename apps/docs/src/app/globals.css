@@ -491,3 +491,165 @@ body {
     font-size: var(--base-font-size, 17px);
   }
 }
+
+/* CodeBlock Syntax Highlighting Styles */
+.code-with-line-numbers pre {
+  padding-left: 3.5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.code-with-line-numbers code {
+  counter-reset: line;
+}
+
+.code-with-line-numbers code .line {
+  line-height: 1.75;
+}
+
+.code-with-line-numbers code .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1.5rem;
+  margin-left: -3.5rem;
+  text-align: right;
+  color: #6b7280;
+}
+
+pre {
+  padding: 1.25rem 1rem;
+}
+
+code .line {
+  line-height: 1.75;
+}
+
+/* KRDS Section Spacing System v3 */
+/*
+ * 공식 KRDS Gap-layout 명세 기반:
+ * - 헤딩과 본문 사이 간격 (title-body): 컴포넌트 내부 gap으로 관리
+ * - 헤딩 간 간격 (heading-to-heading): CSS 인접 선택자로 관리
+ * - description은 모든 레벨에서 선택사항
+ *
+ * KRDS 공식 명세:
+ * - h1 → body: 24px (title-body-large)
+ * - h2 → body: 20px (title-body-medium)
+ * - h3 → body: 20px (title-body-medium)
+ * - h4 → body: 20px (title-body-medium)
+ * - h5 → body: 16px (title-body-small)
+ *
+ * - h1 → h2: 48px
+ * - h2 → h3: 40px
+ * - h3 → h4: 24px
+ * - h4 → h5: 16px
+ */
+
+/* ============================================
+   헤딩 → 본문 간격 (Heading-to-Body)
+   ============================================ */
+
+/* h1 → 본문: 24px */
+.krds-heading-h1 + * {
+  margin-top: 1.5rem; /* 24px */
+}
+
+/* h2 → 본문: 20px */
+.krds-heading-h2 + *:not(.krds-subsection):not(.krds-heading-h3) {
+  margin-top: 1.25rem; /* 20px */
+}
+
+/* h3 → 본문: 20px */
+.krds-heading-h3 + *:not(.krds-item):not(.krds-heading-h4) {
+  margin-top: 1.25rem; /* 20px */
+}
+
+/* h4 → 본문: 20px */
+.krds-heading-h4 + *:not(.krds-subitem):not(.krds-heading-h5) {
+  margin-top: 1.25rem; /* 20px */
+}
+
+/* h5 → 본문: 16px */
+.krds-heading-h5 + * {
+  margin-top: 1rem; /* 16px */
+}
+
+/* ============================================
+   헤딩 간 간격 (Heading-to-Heading)
+   ============================================ */
+
+/* h1 → h2: 48px */
+.krds-heading-h1 + .krds-heading-h2,
+.krds-heading-h1 + .krds-section {
+  margin-top: 3rem; /* 48px */
+}
+
+/* h2 → h3: 40px */
+.krds-heading-h2 + .krds-heading-h3 {
+  margin-top: 2.5rem; /* 40px */
+}
+
+/* h3 → h4: 24px */
+.krds-heading-h3 + .krds-heading-h4 {
+  margin-top: 1.5rem; /* 24px */
+}
+
+/* h4 → h5: 16px */
+.krds-heading-h4 + .krds-heading-h5 {
+  margin-top: 1rem; /* 16px */
+}
+
+/* ============================================
+   Subsection 간 간격 (h3 래퍼)
+   ============================================ */
+
+/* h2 헤딩 → 첫 Subsection: 40px */
+.krds-heading-h2 + .krds-subsection {
+  margin-top: 2.5rem; /* 40px */
+}
+
+/* Subsection 사이: 40px (h2 → h3 간격과 동일) */
+.krds-subsection + .krds-subsection {
+  margin-top: 2.5rem; /* 40px */
+}
+
+/* 본문 콘텐츠 → Subsection: 40px */
+.krds-section
+  > *:not(.krds-heading-h2):not(.krds-subsection)
+  + .krds-subsection {
+  margin-top: 2.5rem; /* 40px */
+}
+
+/* ============================================
+   Item 간 간격 (h4 래퍼)
+   ============================================ */
+
+/* Item 사이: 24px (h3 → h4 간격과 동일) */
+.krds-item + .krds-item {
+  margin-top: 1.5rem; /* 24px */
+}
+
+/* ============================================
+   SubItem 간 간격 (h5 래퍼)
+   ============================================ */
+
+/* SubItem 사이: 16px (h4 → h5 간격과 동일) */
+.krds-subitem + .krds-subitem {
+  margin-top: 1rem; /* 16px */
+}
+
+/* ============================================
+   Section 간 간격
+   ============================================ */
+
+/* Section 사이: 48px (데스크톱 기준, 모바일은 32px) */
+.krds-section + .krds-section {
+  margin-top: 2rem; /* 32px */
+}
+
+@media (min-width: 768px) {
+  .krds-section + .krds-section {
+    margin-top: 3rem; /* 48px */
+  }
+}

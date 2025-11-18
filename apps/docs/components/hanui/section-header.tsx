@@ -65,8 +65,8 @@ function getHeadingStyles(level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'): string {
  */
 function getSpacing(level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'): string {
   const spacing: Record<'h1' | 'h2' | 'h3' | 'h4' | 'h5', string> = {
-    h1: 'mb-3 md:mb-12 gap-2 md:gap-6',
-    h2: 'mt-6 md:mt-12 mb-4 md:mb-10 gap-2 md:gap-5',
+    h1: 'mb-8 md:mb-12 gap-2 md:gap-6',
+    h2: 'mb-4 md:mb-10 gap-2 md:gap-5', // mt-8 md:mt-12
     h3: 'mt-4 md:mt-10 mb-3 md:mb-6 gap-2 md:gap-4',
     h4: 'mt-3 md:mt-6 mb-2 md:mb-4 gap-1.5 md:gap-3',
     h5: 'mt-2 md:mt-4 mb-2 md:mb-4 gap-1 md:gap-2',
