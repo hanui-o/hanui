@@ -984,7 +984,7 @@ FooterCopyright.displayName = 'Footer.Copyright';
  *
  * Wraps the existing Identifier component for Footer usage
  */
-export interface FooterIdentifierProps extends IdentifierProps {}
+export type FooterIdentifierProps = IdentifierProps;
 
 /**
  * Footer.Identifier Component
