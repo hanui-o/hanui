@@ -1,6 +1,6 @@
 'use client';
 
-import { Dialog, Transition } from '@headlessui/react';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
 import * as React from 'react';
 import { cn } from '../../lib/utils';
 
@@ -90,49 +90,40 @@ export interface ModalProps {
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ open, onClose, size = 'md', children, className }, ref) => {
     return (
-      <Transition show={open} as={React.Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={onClose}>
+      <DialogPrimitive.Root open={open} onOpenChange={onClose}>
+        <DialogPrimitive.Portal>
           {/* Backdrop */}
-          <Transition.Child
-            as={React.Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-50" />
-          </Transition.Child>
+          <DialogPrimitive.Overlay
+            className={cn(
+              'fixed inset-0 z-50 bg-black/50',
+              'data-[state=open]:animate-in data-[state=closed]:animate-out',
+              'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0'
+            )}
+          />
 
           {/* Modal Container */}
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={React.Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel
-                  ref={ref}
-                  className={cn(
-                    'w-full',
-                    modalSizes[size],
-                    'transform overflow-hidden rounded-lg bg-white dark:bg-gray-900 p-6 text-left align-middle shadow-xl transition-all',
-                    className
-                  )}
-                >
-                  {children}
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <DialogPrimitive.Content
+              ref={ref}
+              className={cn(
+                'z-50 w-full',
+                modalSizes[size],
+                'bg-white dark:bg-gray-900',
+                'rounded-lg p-6 shadow-xl',
+                'data-[state=open]:animate-in data-[state=closed]:animate-out',
+                'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+                'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+                'data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]',
+                'data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]',
+                'duration-200',
+                className
+              )}
+            >
+              {children}
+            </DialogPrimitive.Content>
           </div>
-        </Dialog>
-      </Transition>
+        </DialogPrimitive.Portal>
+      </DialogPrimitive.Root>
     );
   }
 );
@@ -149,8 +140,7 @@ export const ModalTitle = React.forwardRef<
   HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, children, ...props }, ref) => (
-  <Dialog.Title
-    as="h3"
+  <DialogPrimitive.Title
     ref={ref}
     className={cn(
       'text-lg font-medium leading-6 text-gray-900 dark:text-gray-100',
@@ -159,7 +149,7 @@ export const ModalTitle = React.forwardRef<
     {...props}
   >
     {children}
-  </Dialog.Title>
+  </DialogPrimitive.Title>
 ));
 ModalTitle.displayName = 'ModalTitle';
 
@@ -197,6 +187,21 @@ export const ModalFooter = React.forwardRef<
 ModalFooter.displayName = 'ModalFooter';
 
 /**
+ * Modal Description Component
+ */
+export const ModalDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Description
+    ref={ref}
+    className={cn('text-sm text-gray-600 dark:text-gray-400', className)}
+    {...props}
+  />
+));
+ModalDescription.displayName = 'ModalDescription';
+
+/**
  * Modal Close Button Component
  *
  * **Foundation Layer:**
@@ -213,9 +218,8 @@ export const ModalCloseButton = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement>
 >(({ className, ...props }, ref) => (
-  <button
+  <DialogPrimitive.Close
     ref={ref}
-    type="button"
     className={cn(
       'absolute right-4 top-4 rounded-md p-1',
       'text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300',
@@ -239,6 +243,6 @@ export const ModalCloseButton = React.forwardRef<
         d="M6 18L18 6M6 6l12 12"
       />
     </svg>
-  </button>
+  </DialogPrimitive.Close>
 ));
 ModalCloseButton.displayName = 'ModalCloseButton';

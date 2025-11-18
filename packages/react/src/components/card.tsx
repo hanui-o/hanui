@@ -319,3 +319,6 @@ export const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
 );
 
 CardFooter.displayName = 'CardFooter';
+
+// Export cardVariants for external use
+export { cardVariants };

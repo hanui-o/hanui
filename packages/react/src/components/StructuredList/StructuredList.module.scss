@@ -1,0 +1,467 @@
+/* 구조화 목록 - Structured List Component */
+/* Based on KRDS Structured List Component */
+
+//사이즈 정의
+@mixin structured-list-size-variable() {
+	//변수 배열 생성
+	$structuredlist-settings: (
+		wrap:(
+			gap: var(--krds-gap-7),
+		),
+		list:(
+			gap: var(--krds-gap-5),
+			padding-small-size: var(--krds-padding-8),
+			padding-medium-size: var(--krds-padding-9),
+			padding-large-size: var(--krds-padding-10),
+			radius: var(--krds-radius-xlarge2),
+			inner-gap: var(--krds-gap-5),
+			column-gap: var(--krds-gap-7),
+			first-element-margin: var(--krds-gap-3),
+		),
+		card:(
+			body-gap: var(--krds-gap-7),
+			body-cont-gap: var(--krds-gap-5),
+			body-title-gap: var(--krds-gap-1),
+			body-title-pc-font-size: var(--krds-pc-font-size-heading-small),
+			body-title-mobile-font-size: var(--krds-mobile-font-size-heading-small),
+			body-title-pc-font-size-small: var(--krds-pc-font-size-heading-xsmall),
+			body-title-mobile-font-size-small: var(--krds-mobile-font-size-heading-xsmall),
+			body-title-icon-size : var(--krds-size-height-4),
+			body-txt-margin-bottom: var(--krds-gap-2),
+			body-date-gap: var(--krds-gap-3),
+			bottom-gap: var(--krds-gap-3),
+			bottom-padding-top: var(--krds-padding-6),
+			bottom-margin-top: var(--krds-padding-3),
+			buttons-position-top-small-size: var(--krds-gap-7),
+			buttons-position-right-small-size: var(--krds-gap-7),
+			buttons-position-right-medium-size: var(--krds-gap-8),
+			buttons-position-top-medium-size: var(--krds-gap-8),
+			buttons-position-right-large-size: var(--krds-gap-9),
+			buttons-position-top-large-size: var(--krds-gap-9),
+			buttons-gap: var(--krds-gap-5),
+			buttons-size-height: var(--krds-size-height-4),
+		),
+		tag:(
+			size-height: var(--krds-size-height-5),
+			pc-font-size: var(--krds-pc-font-size-label-small),
+			mobile-font-size: var(--krds-mobile-font-size-label-small),
+			padding-x: var(--krds-padding-4),
+			radius: var(--krds-radius-max),
+			),
+	) !default;
+
+	//css variable 생성
+	@each $target, $types in $structuredlist-settings {
+		@each $type, $value in $types {
+			--krds-structured-list--#{$target}-#{$type}: #{$value};
+		}
+	}
+	@media (max-width: 768px) {
+		--krds-structured-list--wrap-gap: var(--krds-gap-5);
+		--krds-structured-list--list-gap: var(--krds-gap-4);
+		--krds-structured-list--list-padding-medium-size: var(--krds-padding-8);
+		--krds-structured-list--list-inner-gap: var(--krds-gap-7);
+		--krds-structured-list--list-first-element-margin: var(--krds-gap-2);
+		--krds-structured-list--card-body-gap: var(--krds-gap-5);
+		--krds-structured-list--card-body-cont-gap : var(--krds-gap-4);
+		--krds-structured-list--card-bottom-margin-top: var(--krds-gap-2);
+	}
+}
+
+//structuredlist card size
+@mixin structured-list-card-size($unit) {
+	@if( $unit == small ){
+		.card-body {
+			.c-tit {
+				font-size: var(--krds-structured-list--card-body-title-pc-font-size-#{$unit});
+				@media (max-width: 768px) {
+					font-size: var(--krds-structured-list--card-body-title-mobile-font-size-#{$unit});
+				}
+			}
+		}
+	} @else {
+		.card-body {
+			.c-tit {
+				font-size: var(--krds-structured-list--card-body-title-pc-font-size);
+				@media (max-width: 768px) {
+					font-size: var(--krds-structured-list--card-body-title-mobile-font-size);
+				}
+			}
+		}
+	}
+
+	> li {
+		padding: var(--krds-structured-list--list-padding-#{$unit}-size);
+	}
+
+
+	.card-btn{
+		top: var(--krds-structured-list--card-buttons-position-top-#{$unit}-size);
+		right: var(--krds-structured-list--card-buttons-position-right-#{$unit}-size);
+	}
+}
+
+//컬러 정의
+@mixin structured-list-color-variable($mode: light) {
+	--krds-structured-list--tag-color-text: var(--krds-#{$mode}-color-text-basic);
+	--krds-structured-list--tag-color-text-visited: var(--krds-#{$mode}-color-link-visited);
+	--krds-structured-list--tag-color-border: var(--krds-#{$mode}-color-border-gray-light);
+	--krds-structured-list--tag-color-action :var(--krds-#{$mode}-color-action-white);
+	--krds-structured-list--list-color-surface: var(--krds-#{$mode}-color-surface-white-subtle);
+	--krds-structured-list--list-color-border: var(--krds-#{$mode}-color-border-gray);
+	--krds-structured-list--list-color-action-active: var(--krds-#{$mode}-color-link-default);
+	--krds-structured-list--list-action-outline-width: var(--krds-#{$mode}-border-width-variable-medium);
+	--krds-structured-list--card-bottom-color-border: var(--krds-#{$mode}-color-divider-gray-light);
+	--krds-structured-list--card-body-color-text: var(--krds-#{$mode}-color-text-subtle);
+	--krds-structured-list--card-body-divider-width: var(--krds-#{$mode}-border-width-variable-regular);
+	--krds-structured-list--card-body-divider-color-divider: var(--krds-#{$mode}-color-divider-gray-light);
+	--krds-structured-list--border-width: var(--krds-#{$mode}-border-width-variable-regular);
+	--krds-structured-list--full-card-body-meta-color-text:var(--krds-#{$mode}-color-text-subtle);
+}
+
+@mixin type-check-button-position($unit){
+	$btn-pos: calc(var(--krds-structured-list--list-gap) + var(--krds-structured-list--card-buttons-position-top-#{$unit}-size) + var(--krds-size-height-5));
+
+	.card-btn {
+		top: $btn-pos;
+	}
+}
+
+
+//모드 설정
+$mode-setting: light;
+.krds-structured-list {
+	@include structured-list-color-variable(#{$mode-setting});
+	@include structured-list-size-variable();
+
+	& {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: var(--krds-structured-list--wrap-gap);
+	}
+
+	//checkbox 형태시 하단 버튼 위치
+	&.type-check {
+		@include type-check-button-position(medium);
+	}
+
+	//카드기본 사이즈 md
+	@include structured-list-card-size(medium);
+
+	> li {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: normal;
+		gap: var(--krds-structured-list--list-gap) 0;
+		background: var(--krds-structured-list--list-color-surface);
+		border-radius: var(--krds-structured-list--list-radius);
+		border: var(--krds-structured-list--border-width) solid var(--krds-structured-list--list-color-border);
+		&.is-check {
+			border-color: transparent;
+			outline: var(--krds-structured-list--list-action-outline-width) solid var(--krds-structured-list--list-color-action-active);
+		}
+
+		.in {
+			display: flex;
+			flex-direction: column;
+			align-items: normal;
+			gap: var(--krds-structured-list--list-inner-gap);
+			width: 100%;
+		}
+	}
+
+	&:not(.type-full) {
+		.krds-check-area:first-child,
+		.card-top:first-child  {
+			margin-bottom: var(--krds-structured-list--list-first-element-margin);
+		}
+	}
+	//체크박스
+	.krds-check-area {
+		padding-top: 0.4rem;
+		font-size: 0;
+		.krds-form-check input[type=checkbox] ~ label {
+			&::before {
+				margin-top:0;
+			}
+			&::after {
+				margin-top:-.3rem;
+			}
+		}
+	}
+
+	.card-top {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.card-body {
+		display: flex;
+		flex-direction: column;
+		align-items: normal;
+		gap: var(--krds-structured-list--card-body-gap);
+		.c-text {
+			display: flex;
+			flex-direction: column;
+			align-items: normal;
+			gap: var(--krds-structured-list--card-body-cont-gap);
+			word-break: break-all;
+			&:hover {
+				.c-tit {
+					text-decoration: underline;
+					text-underline-offset: 0.5rem;
+				}
+			}
+			&:visited {
+				.c-tit {
+					color: var(--krds-structured-list--tag-color-text-visited);
+				}
+			}
+			.c-tit {
+				display: flex;
+				align-items: center;
+				gap: var(--krds-structured-list--card-body-title-gap);
+				position: relative;
+				font-weight:var(--krds-font-weight-bold);
+				.span {
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+				&::after {
+					content: '';
+					display: inline-flex;
+					flex-shrink: 0;
+					width: var(--krds-structured-list--card-body-title-icon-size);
+					height: var(--krds-structured-list--card-body-title-icon-size);
+					background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E");
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: center;
+					transform: rotate(-90deg);
+				}
+			}
+			.c-txt {
+				display: -webkit-box;
+				-webkit-line-clamp: 3;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				color: var(--krds-structured-list--card-body-color-text);
+			}
+
+			.c-date {
+				display:flex;
+				gap: var(--krds-structured-list--card-body-date-gap);
+				.key {
+					font-weight:var(--krds-font-weight-bold);
+				}
+			}
+		}
+		.c-btn {
+			text-align: right;
+		}
+	}
+	.card-btm {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--krds-structured-list--card-bottom-gap);
+		padding-top: var(--krds-structured-list--card-bottom-padding-top);
+		margin-top:var(--krds-structured-list--card-bottom-margin-top);
+		border-top: var(--krds-structured-list--border-width) solid var(--krds-structured-list--card-bottom-color-border);
+		.tag {
+			display: inline-flex;
+			align-items: center;
+			background-color: var(--krds-structured-list--tag-color-action);
+			height: var(--krds-structured-list--tag-size-height);
+			padding: 0 var(--krds-structured-list--tag-padding-x);
+			font-size: var(--krds-structured-list--tag-pc-font-size);
+			color: var(--krds-structured-list--tag-color-text);
+			border-radius: var(--krds-structured-list--tag-radius);
+			border: var(--krds-structured-list--border-width) solid var(--krds-structured-list--tag-color-border);
+			@media (max-width: 768px) {
+				font-size: var(--krds-structured-list--tag-mobile-font-size);
+			}
+			&::before {
+				content: "#";
+			}
+		}
+	}
+	.card-btn{
+		position: absolute;
+		top:var(--krds-structured-list--card-buttons-position-top-medium-size);
+		right:var(--krds-structured-list--card-buttons-position-right-medium-size);
+		display: inline-flex;
+		gap: var(--krds-structured-list--card-buttons-gap);
+		.krds-btn {
+			height: var(--krds-structured-list--card-buttons-size-height);
+		}
+	}
+
+
+	//카드 사이즈
+	&.sm {
+		@include structured-list-card-size(small);
+		&.type-check {
+			@include type-check-button-position(small);
+		}
+	}
+	&.md {
+		@include structured-list-card-size(medium);
+		&.type-check {
+			@include type-check-button-position(medium);
+		}
+	}
+	&.lg {
+		@include structured-list-card-size(large);
+		&.type-check {
+			@include type-check-button-position(large);
+		}
+	}
+
+	//type-full (horizontal layout)
+	&.type-full {
+		grid-template-columns: none;
+		--krds-structured-list--full-list-column-gap: var(--krds-gap-7);
+		--krds-structured-list--full-card-top-margin: var(--krds-gap-2);
+		--krds-structured-list--full-card-body-gap: var(--krds-gap-9);
+		--krds-structured-list--full-card-body-cont-gap: var(--krds-gap-5);
+		--krds-structured-list--full-card-btn-position-top: var(--krds-gap-2);
+		--krds-structured-list--full-card-body-meta-gap-y: var(--krds-gap-3);
+		--krds-structured-list--full-card-body-meta-gap-x: var(--krds-gap-4);
+		--krds-structured-list--full-card-body-divider-height: var(--krds-size-height-2);
+		--krds-structured-list--full-card-body-divider-margin-x: var(--krds-gap-3);
+		--krds-structured-list--card-body-title-pc-font-size: var(--krds-pc-font-size-heading-medium);
+		--krds-structured-list--card-body-title-mobile-font-size: var(--krds-mobile-font-size-heading-medium);
+
+		.structured-item {
+			flex-direction: row;
+			column-gap: var(--krds-structured-list--full-list-column-gap);
+			.in {
+				position: relative;
+			}
+			.krds-check-area {
+				margin:0;
+			}
+		}
+		.card-top {
+			margin: var(--krds-structured-list--full-card-top-margin) 0;
+		}
+		.card-body {
+			flex-direction: row;
+			justify-content: space-between;
+			.c-text {
+				flex: 1;
+				margin:0;
+				.key {
+					white-space: nowrap;
+				}
+			}
+			.c-txt{
+				display: -webkit-box;
+				-webkit-line-clamp: 1;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+			.c-tit {
+				font-size: var(--krds-structured-list--card-body-title-pc-font-size);
+			}
+		}
+		.card-btm {
+			margin-top:0;
+		}
+		.card-btn{
+			top: var(--krds-structured-list--full-card-btn-position-top);
+			right: 0;
+		}
+	}
+}
+
+//태블릿 전용 속성
+@media (min-width: 768px) and (max-width: 1024px) {
+	.krds-structured-list {
+		--krds-structured-list--card-buttons-gap: var(--krds-number-3);
+
+		grid-template-columns: 1fr 1fr;
+
+		.card-btn{
+			gap: var(--krds-structured-list--card-buttons-gap);
+		}
+	}
+}
+
+//모바일 전용
+@media (max-width: 768px) {
+	.krds-structured-list {
+		grid-template-columns: 1fr;
+
+		.krds-check-area:first-child,
+		.card-top:first-child  {
+			margin-bottom: var(--krds-structured-list--list-first-element-margin);
+		}
+
+		.structured-item{
+			flex-direction: row;
+			flex-wrap: wrap;
+			.in{
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
+			.krds-check-area{
+				order: -1;
+				width: 100%;
+			}
+		}
+		.card-top{
+			order: -1;
+			flex: 1;
+			flex-wrap: nowrap;
+			min-width: fit-content;
+		}
+		.card-body {
+			width: 100%;
+			.c-date{
+				flex-wrap: wrap;
+			}
+			.c-btn {
+				align-self: flex-end;
+				text-align: left;
+			}
+		}
+		.card-btm{
+			width: 100%;
+		}
+		.card-btn{
+			order: -1;
+			position: static;
+		}
+
+
+		//type full
+		&.type-full {
+			--krds-structured-list--full-card-body-gap: var(--krds-gap-7);
+			--krds-structured-list--full-card-body-cont-gap: var(--krds-gap-4);
+			--krds-structured-list--full-card-body-meta-gap-y: var(--krds-gap-3);
+
+			.in {
+				gap:1.6rem;
+			}
+			.card-top {
+				margin:0;
+			}
+			.card-body{
+				flex-direction: column;
+				align-items: flex-start;
+				gap: var(--krds-structured-list--full-card-body-gap);
+				.c-text {
+					gap: var(--krds-structured-list--full-card-body-cont-gap);
+				}
+				.c-tit {
+					font-size: var(--krds-structured-list--card-body-title-mobile-font-size);
+				}
+			}
+		}
+	}
+}

@@ -13,8 +13,8 @@
         },
         "type": {
           "type": "string",
-          "enum": ["component", "ui"],
-          "description": "Component type"
+          "enum": ["component", "ui", "layout", "bundle"],
+          "description": "Component type (bundle types have empty files arrays and use registryDependencies to install multiple components)"
         },
         "description": {
           "type": "string",
@@ -53,7 +53,7 @@
               },
               "type": {
                 "type": "string",
-                "enum": ["component", "lib", "hook"],
+                "enum": ["component", "lib", "hook", "style"],
                 "description": "File type"
               },
               "target": {

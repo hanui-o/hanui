@@ -541,6 +541,20 @@
       }
     ]
   },
+  "main-menu": {
+    "name": "main-menu",
+    "type": "component",
+    "description": "KRDS main navigation menu with dropdowns, sections, descriptions, and utility links",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/main-menu.tsx",
+        "type": "component",
+        "target": "components/hanui/main-menu.tsx"
+      }
+    ]
+  },
   "section": {
     "name": "section",
     "type": "component",
@@ -656,5 +670,111 @@
         "target": "components/hanui/header.module.scss"
       }
     ]
+  },
+  "side-navigation": {
+    "name": "side-navigation",
+    "type": "navigation",
+    "description": "KRDS side navigation with multi-level expandable menu (up to 4 depth)",
+    "dependencies": ["sass@^1.70.0"],
+    "devDependencies": [],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/side-navigation.tsx",
+        "type": "component",
+        "target": "components/hanui/side-navigation.tsx"
+      },
+      {
+        "path": "components/side-navigation.module.scss",
+        "type": "style",
+        "target": "components/hanui/side-navigation.module.scss"
+      }
+    ]
+  },
+  "in-page-navigation": {
+    "name": "in-page-navigation",
+    "type": "navigation",
+    "description": "KRDS in-page navigation with fixed sidebar, auto-tracking scroll position, and anchor links",
+    "dependencies": ["sass@^1.70.0"],
+    "devDependencies": [],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/in-page-navigation.tsx",
+        "type": "component",
+        "target": "components/hanui/in-page-navigation.tsx"
+      },
+      {
+        "path": "components/in-page-navigation.module.scss",
+        "type": "style",
+        "target": "components/hanui/in-page-navigation.module.scss"
+      }
+    ]
+  },
+  "tab-bars": {
+    "name": "tab-bars",
+    "type": "navigation",
+    "description": "KRDS bottom navigation tab bars for mobile/tablet with badge support (max 5 items)",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "devDependencies": [],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/tab-bars.tsx",
+        "type": "component",
+        "target": "components/hanui/tab-bars.tsx"
+      }
+    ],
+    "tailwind": {
+      "config": {
+        "theme": {
+          "extend": {
+            "colors": {
+              "krds-primary-base": "#3182f6",
+              "krds-gray-20": "#e5e5e5",
+              "krds-gray-60": "#767676",
+              "krds-gray-90": "#333333",
+              "krds-red-base": "#f04452"
+            }
+          }
+        }
+      }
+    }
+  },
+  "structured-list": {
+    "name": "structured-list",
+    "type": "layout",
+    "description": "KRDS structured list with card layout, badges, tags, and action buttons",
+    "dependencies": ["sass@^1.70.0"],
+    "devDependencies": [],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/structured-list.tsx",
+        "type": "component",
+        "target": "components/hanui/structured-list.tsx"
+      },
+      {
+        "path": "components/structured-list.module.scss",
+        "type": "style",
+        "target": "components/hanui/structured-list.module.scss"
+      }
+    ]
+  },
+  "layout": {
+    "name": "layout",
+    "type": "bundle",
+    "description": "Complete layout components bundle including Header, Footer, SkipLink, MainMenu, Breadcrumb, and Container",
+    "dependencies": [],
+    "devDependencies": [],
+    "registryDependencies": [
+      "header",
+      "footer",
+      "skip-link",
+      "main-menu",
+      "breadcrumb",
+      "container"
+    ],
+    "files": []
   }
 }

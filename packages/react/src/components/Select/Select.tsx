@@ -1,6 +1,7 @@
-import { Combobox, Listbox, Transition } from '@headlessui/react';
+import * as SelectPrimitive from '@radix-ui/react-select';
 import * as React from 'react';
 import { cn } from '../../lib/utils';
+import { ChevronDownIcon, CheckIcon } from 'lucide-react';
 
 /**
  * Select Option Interface
@@ -105,9 +106,10 @@ function removeValue<T>(values: T[], valueToRemove: T): T[] {
 }
 
 /**
- * Select Component (Basic - Listbox)
+ * Select Component (Basic - Radix UI Select)
  *
- * KRDS-compliant select using Headless UI Listbox with full accessibility
+ * KRDS-compliant select using Radix UI Select with full accessibility
+ * Note: Multiple selection and searchable are not supported by Radix UI Select
  */
 function BasicSelect<T = string>({
   options,
@@ -123,241 +125,124 @@ function BasicSelect<T = string>({
 }: Omit<SelectProps<T>, 'searchable'>) {
   const selectedValue = value ?? (multiple ? [] : undefined);
 
-  // Group options by group property
-  const groupedOptions = React.useMemo(() => {
-    const groups: Record<string, SelectOption<T>[]> = {};
-    const ungrouped: SelectOption<T>[] = [];
-
-    options.forEach((option) => {
-      if (option.group) {
-        if (!groups[option.group]) {
-          groups[option.group] = [];
-        }
-        groups[option.group].push(option);
-      } else {
-        ungrouped.push(option);
-      }
-    });
-
-    return { groups, ungrouped };
-  }, [options]);
-
-  const handleChange = (newValue: T | T[]) => {
-    onChange?.(newValue);
-  };
-
-  const handleRemoveTag = (valueToRemove: T) => {
-    if (multiple && Array.isArray(selectedValue)) {
-      const newValues = removeValue(selectedValue as T[], valueToRemove);
-      onChange?.(newValues as T[] & T);
+  // Warn if multiple is used (Radix UI Select doesn't support multiple)
+  React.useEffect(() => {
+    if (multiple) {
+      console.warn(
+        'Select: Radix UI Select does not support multiple selection. Please use a different approach or wait for future implementation.'
+      );
     }
+  }, [multiple]);
+
+  // For multiple, show warning and return placeholder
+  if (multiple) {
+    return (
+      <div className={cn('relative', className)}>
+        {label && (
+          <label className="block text-[15px] leading-[150%] font-medium text-gray-700 mb-1">
+            {label}
+          </label>
+        )}
+        <div className="relative w-full cursor-not-allowed rounded-md border border-gray-300 bg-gray-50 py-2 pl-3 pr-10 text-left text-gray-400">
+          <span className="block truncate">
+            {getDisplayValue(options, selectedValue, multiple, placeholder)}
+          </span>
+        </div>
+        <p className="mt-1 text-xs text-red-600">
+          Multiple selection is not yet supported with Radix UI Select
+        </p>
+      </div>
+    );
+  }
+
+  const handleValueChange = (newValue: string) => {
+    onChange?.(newValue as T);
   };
+
+  const currentValue = selectedValue as T | undefined;
+  const stringValue =
+    currentValue !== undefined ? String(currentValue) : undefined;
 
   return (
-    <Listbox
-      value={selectedValue}
-      onChange={handleChange}
+    <SelectPrimitive.Root
+      value={stringValue}
+      onValueChange={handleValueChange}
       disabled={disabled}
-      multiple={multiple as false}
     >
-      {({ open }) => (
-        <div className={cn('relative', className)}>
-          {label && (
-            <Listbox.Label className="block text-[15px] leading-[150%] font-medium text-gray-700 mb-1">
-              {label}
-            </Listbox.Label>
+      <div className={cn('relative', className)}>
+        {label && (
+          <label className="block text-[15px] leading-[150%] font-medium text-gray-700 mb-1">
+            {label}
+          </label>
+        )}
+
+        <SelectPrimitive.Trigger
+          className={cn(
+            'flex h-10 w-full items-center justify-between rounded-md border bg-white px-3 py-2 text-[17px] leading-[150%] shadow-sm transition-colors',
+            'focus:outline-none focus:ring-2 focus:ring-[#256ef4] focus:ring-offset-2',
+            error
+              ? 'border-red-300 focus:ring-red-500'
+              : 'border-gray-300 hover:border-gray-400',
+            disabled && 'cursor-not-allowed bg-gray-50 text-gray-400',
+            'data-[placeholder]:text-gray-500'
           )}
+        >
+          <SelectPrimitive.Value placeholder={placeholder || '선택하세요'}>
+            {currentValue !== undefined
+              ? options.find((opt) => opt.value === currentValue)?.label
+              : null}
+          </SelectPrimitive.Value>
+          <SelectPrimitive.Icon>
+            <ChevronDownIcon className="h-4 w-4 opacity-50" />
+          </SelectPrimitive.Icon>
+        </SelectPrimitive.Trigger>
 
-          {/* Selected tags for multiple selection */}
-          {multiple &&
-            Array.isArray(selectedValue) &&
-            selectedValue.length > 0 && (
-              <div className="flex flex-wrap gap-1 mb-2">
-                {selectedValue.map((val) => {
-                  const option = options.find((opt) => opt.value === val);
-                  if (!option) return null;
-                  return (
-                    <span
-                      key={String(val)}
-                      className="inline-flex items-center gap-1 px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded"
-                    >
-                      {option.label}
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleRemoveTag(val);
-                        }}
-                        className="hover:text-blue-900"
-                        aria-label={`${option.label} 제거`}
-                      >
-                        ×
-                      </button>
-                    </span>
-                  );
-                })}
-              </div>
-            )}
-
-          <Listbox.Button
+        <SelectPrimitive.Portal>
+          <SelectPrimitive.Content
             className={cn(
-              'relative w-full cursor-pointer rounded-md border bg-white py-2 pl-3 pr-10 text-left shadow-sm transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-[#256ef4] focus:border-transparent',
-              error
-                ? 'border-red-300 focus:ring-red-500'
-                : 'border-gray-300 hover:border-gray-400',
-              disabled && 'cursor-not-allowed bg-gray-50 text-gray-400'
+              'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-white text-[17px] leading-[150%] shadow-md',
+              'data-[state=open]:animate-in data-[state=closed]:animate-out',
+              'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+              'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+              'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
+              'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2'
             )}
+            position="popper"
           >
-            <span className="block truncate">
-              {getDisplayValue(options, selectedValue, multiple, placeholder)}
-            </span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <svg
-                className="h-5 w-5 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-          </Listbox.Button>
-
-          <Transition
-            show={open}
-            as={React.Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-[17px] leading-[150%] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              {/* Ungrouped options */}
-              {groupedOptions.ungrouped.map((option) => (
-                <Listbox.Option
+            <SelectPrimitive.Viewport className="p-1">
+              {options.map((option) => (
+                <SelectPrimitive.Item
                   key={String(option.value)}
-                  value={option.value}
+                  value={String(option.value)}
                   disabled={option.disabled}
-                  className={({ active }) =>
-                    cn(
-                      'relative cursor-pointer select-none py-2 pl-3 pr-9',
-                      active ? 'bg-[#256ef4] text-white' : 'text-gray-900',
-                      option.disabled && 'cursor-not-allowed opacity-50'
-                    )
-                  }
-                >
-                  {({ selected, active }) => (
-                    <>
-                      <span
-                        className={cn(
-                          'block truncate',
-                          selected && 'font-semibold'
-                        )}
-                      >
-                        {renderOption ? renderOption(option) : option.label}
-                      </span>
-                      {selected && (
-                        <span
-                          className={cn(
-                            'absolute inset-y-0 right-0 flex items-center pr-4',
-                            active ? 'text-white' : 'text-[#256ef4]'
-                          )}
-                        >
-                          <svg
-                            className="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                      )}
-                    </>
+                  className={cn(
+                    'relative flex cursor-pointer select-none items-center rounded-sm py-2 pl-8 pr-2 outline-none',
+                    'focus:bg-[#256ef4] focus:text-white',
+                    'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+                    option.disabled && 'cursor-not-allowed opacity-50'
                   )}
-                </Listbox.Option>
+                >
+                  <SelectPrimitive.ItemIndicator className="absolute left-2 flex w-4 items-center justify-center">
+                    <CheckIcon className="h-4 w-4" />
+                  </SelectPrimitive.ItemIndicator>
+                  <SelectPrimitive.ItemText>
+                    {renderOption ? renderOption(option) : option.label}
+                  </SelectPrimitive.ItemText>
+                </SelectPrimitive.Item>
               ))}
-
-              {/* Grouped options */}
-              {Object.entries(groupedOptions.groups).map(
-                ([groupName, groupOptions]) => (
-                  <React.Fragment key={groupName}>
-                    <div className="px-3 py-2 text-xs font-semibold text-gray-500 bg-gray-50">
-                      {groupName}
-                    </div>
-                    {groupOptions.map((option) => (
-                      <Listbox.Option
-                        key={String(option.value)}
-                        value={option.value}
-                        disabled={option.disabled}
-                        className={({ active }) =>
-                          cn(
-                            'relative cursor-pointer select-none py-2 pl-6 pr-9',
-                            active
-                              ? 'bg-[#256ef4] text-white'
-                              : 'text-gray-900',
-                            option.disabled && 'cursor-not-allowed opacity-50'
-                          )
-                        }
-                      >
-                        {({ selected, active }) => (
-                          <>
-                            <span
-                              className={cn(
-                                'block truncate',
-                                selected && 'font-semibold'
-                              )}
-                            >
-                              {renderOption
-                                ? renderOption(option)
-                                : option.label}
-                            </span>
-                            {selected && (
-                              <span
-                                className={cn(
-                                  'absolute inset-y-0 right-0 flex items-center pr-4',
-                                  active ? 'text-white' : 'text-[#256ef4]'
-                                )}
-                              >
-                                <svg
-                                  className="h-5 w-5"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </span>
-                            )}
-                          </>
-                        )}
-                      </Listbox.Option>
-                    ))}
-                  </React.Fragment>
-                )
-              )}
-            </Listbox.Options>
-          </Transition>
-        </div>
-      )}
-    </Listbox>
+            </SelectPrimitive.Viewport>
+          </SelectPrimitive.Content>
+        </SelectPrimitive.Portal>
+      </div>
+    </SelectPrimitive.Root>
   );
 }
 
 /**
- * Select Component (Searchable - Combobox)
+ * Select Component (Searchable)
  *
- * KRDS-compliant searchable select using Headless UI Combobox
+ * Note: Radix UI Select does not support searchable functionality natively.
+ * This is a placeholder that shows a warning and falls back to basic select.
  */
 function SearchableSelect<T = string>({
   options,
@@ -370,129 +255,25 @@ function SearchableSelect<T = string>({
   renderOption,
   label,
 }: Omit<SelectProps<T>, 'searchable' | 'multiple'>) {
-  const [query, setQuery] = React.useState('');
-
-  const filteredOptions = React.useMemo(() => {
-    if (query === '') return options;
-
-    return options.filter((option) =>
-      option.label.toLowerCase().includes(query.toLowerCase())
+  React.useEffect(() => {
+    console.warn(
+      'Select: Radix UI Select does not support searchable functionality. Using basic select instead.'
     );
-  }, [options, query]);
+  }, []);
 
-  const handleChange = (newValue: T | T[] | null) => {
-    if (newValue !== null && !Array.isArray(newValue)) {
-      onChange?.(newValue);
-    }
-  };
-
+  // Fallback to basic select
   return (
-    <Combobox value={value} onChange={handleChange} disabled={disabled}>
-      {({ open }) => (
-        <div className={cn('relative', className)}>
-          {label && (
-            <Combobox.Label className="block text-[15px] leading-[150%] font-medium text-gray-700 mb-1">
-              {label}
-            </Combobox.Label>
-          )}
-
-          <div className="relative">
-            <Combobox.Input
-              className={cn(
-                'w-full rounded-md border bg-white py-2 pl-3 pr-10 shadow-sm transition-colors',
-                'focus:outline-none focus:ring-2 focus:ring-[#256ef4] focus:border-transparent',
-                error ? 'border-red-300 focus:ring-red-500' : 'border-gray-300',
-                disabled && 'cursor-not-allowed bg-gray-50 text-gray-400'
-              )}
-              displayValue={(val: T) => {
-                const option = options.find((opt) => opt.value === val);
-                return option?.label || '';
-              }}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder={placeholder || '검색...'}
-            />
-            <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-              <svg
-                className="h-5 w-5 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </Combobox.Button>
-          </div>
-
-          <Transition
-            show={open}
-            as={React.Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-[17px] leading-[150%] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              {filteredOptions.length === 0 && query !== '' ? (
-                <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
-                  검색 결과가 없습니다.
-                </div>
-              ) : (
-                filteredOptions.map((option) => (
-                  <Combobox.Option
-                    key={String(option.value)}
-                    value={option.value}
-                    disabled={option.disabled}
-                    className={({ active }) =>
-                      cn(
-                        'relative cursor-pointer select-none py-2 pl-3 pr-9',
-                        active ? 'bg-[#256ef4] text-white' : 'text-gray-900',
-                        option.disabled && 'cursor-not-allowed opacity-50'
-                      )
-                    }
-                  >
-                    {({ selected, active }) => (
-                      <>
-                        <span
-                          className={cn(
-                            'block truncate',
-                            selected && 'font-semibold'
-                          )}
-                        >
-                          {renderOption ? renderOption(option) : option.label}
-                        </span>
-                        {selected && (
-                          <span
-                            className={cn(
-                              'absolute inset-y-0 right-0 flex items-center pr-4',
-                              active ? 'text-white' : 'text-[#256ef4]'
-                            )}
-                          >
-                            <svg
-                              className="h-5 w-5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </span>
-                        )}
-                      </>
-                    )}
-                  </Combobox.Option>
-                ))
-              )}
-            </Combobox.Options>
-          </Transition>
-        </div>
-      )}
-    </Combobox>
+    <BasicSelect
+      options={options}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      disabled={disabled}
+      error={error}
+      className={className}
+      renderOption={renderOption}
+      label={label}
+    />
   );
 }
 

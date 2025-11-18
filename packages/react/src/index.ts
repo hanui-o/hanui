@@ -49,11 +49,8 @@ export type { ModalProps } from './components/Modal';
 export { Pagination } from './components/Pagination';
 export type { PaginationProps } from './components/Pagination';
 
-export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb';
-export type {
-  BreadcrumbProps,
-  BreadcrumbItemProps,
-} from './components/Breadcrumb';
+export { Breadcrumb } from './components/Breadcrumb';
+export type { BreadcrumbProps, BreadcrumbItem } from './components/Breadcrumb';
 
 export { FileUpload } from './components/FileUpload';
 export type { FileUploadProps, UploadedFile } from './components/FileUpload';
@@ -116,6 +113,14 @@ export type {
 export { Masthead } from './components/Masthead';
 export type { MastheadProps } from './components/Masthead';
 
+export { MainMenu } from './components/main-menu';
+export type {
+  MainMenuProps,
+  MainMenuItem,
+  MainMenuLink,
+  MainMenuSection,
+} from './components/main-menu';
+
 export { Identifier } from './components/Identifier';
 export type {
   IdentifierProps,
@@ -132,31 +137,41 @@ export type {
 export { Header } from './components/Header';
 export type {
   HeaderProps,
-  HeaderBrandingProps,
-  HeaderLogoProps,
-  HeaderSloganProps,
-  HeaderUtilityProps,
-  HeaderUtilityLinkProps,
+  HeaderNavLink,
+  HeaderUtilityLink,
 } from './components/Header';
 
 export { Footer } from './components/Footer';
 export type {
   FooterProps,
-  FooterQuickLinksProps,
-  FooterQuickLinkProps,
-  FooterLogoProps,
-  FooterContentProps,
-  FooterInfoProps,
-  FooterAddressProps,
-  FooterContactProps,
-  FooterLinksProps,
-  FooterUtilityLinksProps,
-  FooterSocialLinksProps,
-  FooterBottomProps,
-  FooterPolicyLinksProps,
-  FooterCopyrightProps,
-  FooterIdentifierProps,
+  FooterQuickLink,
+  FooterInfoItem,
+  FooterLink,
+  FooterSocialLink,
 } from './components/Footer';
+
+export { SideNavigation } from './components/side-navigation';
+export type {
+  SideNavigationProps,
+  SideNavSection,
+  SideNavLink,
+} from './components/side-navigation';
+
+export { InPageNavigation } from './components/in-page-navigation';
+export type {
+  InPageNavigationProps,
+  InPageNavLink,
+} from './components/in-page-navigation';
+
+export { TabBars } from './components/TabBars';
+export type { TabBarsProps, TabBarItem } from './components/TabBars';
+
+export { StructuredList } from './components/StructuredList';
+export type {
+  StructuredListProps,
+  StructuredListItem,
+  StructuredListDate,
+} from './components/StructuredList';
 
 // Utils
 export { cn } from './lib/utils';

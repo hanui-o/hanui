@@ -187,11 +187,7 @@ function BasicSelect<T = string>({
             'data-[placeholder]:text-gray-500'
           )}
         >
-          <SelectPrimitive.Value placeholder={placeholder || '선택하세요'}>
-            {currentValue !== undefined
-              ? options.find((opt) => opt.value === currentValue)?.label
-              : null}
-          </SelectPrimitive.Value>
+          <SelectPrimitive.Value placeholder={placeholder || '선택하세요'} />
           <SelectPrimitive.Icon>
             <ChevronDownIcon className="h-4 w-4 opacity-50" />
           </SelectPrimitive.Icon>

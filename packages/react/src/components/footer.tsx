@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Identifier } from './identifier';
+import { Identifier } from './Identifier';
 import styles from './footer.module.scss';
 
 /**

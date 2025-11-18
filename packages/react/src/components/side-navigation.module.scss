@@ -1,0 +1,221 @@
+/**
+ * KRDS Side Navigation Component
+ * Self-contained SCSS Module (no external mixins required)
+ *
+ * Based on: KRDS official side_navigation.scss
+ * Design tokens: Uses CSS variables from globals.css
+ */
+
+.krds-side-navigation {
+  /* Title (1st Depth) */
+  .lnb-tit {
+    padding-bottom: var(--krds-spacing-10);
+    margin-bottom: var(--krds-spacing-10);
+    border-bottom: 1px solid var(--krds-color-divider-gray);
+    font-size: var(--krds-font-size-md);
+    font-weight: var(--krds-font-weight-bold);
+    line-height: var(--krds-line-height-md);
+    color: var(--krds-color-text-primary);
+  }
+
+  /* List container */
+  .lnb-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Menu item */
+  .lnb-item {
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: var(--krds-spacing-3);
+    }
+  }
+
+  /* Base button/link styles */
+  .lnb-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--krds-spacing-6) var(--krds-spacing-3);
+    border: 0;
+    background-color: var(--krds-color-action-secondary);
+    border-radius: var(--krds-border-radius-sm);
+    font-size: var(--krds-font-size-sm);
+    font-weight: var(--krds-font-weight-medium);
+    line-height: var(--krds-line-height-sm);
+    color: var(--krds-color-text-primary);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background-color: var(--krds-color-action-secondary-hover);
+    }
+
+    &:focus {
+      outline: 2px solid var(--krds-color-focus);
+      outline-offset: 2px;
+    }
+
+    &:active {
+      background-color: var(--krds-color-action-secondary-pressed);
+    }
+  }
+
+  /* Toggle button with icon */
+  .lnb-toggle {
+    position: relative;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-left: auto;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23333'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      transition: transform 0.2s ease;
+    }
+
+    &[aria-expanded='true']::after {
+      transform: rotate(180deg);
+    }
+  }
+
+  /* Link (non-toggle) */
+  .lnb-link {
+    font-weight: var(--krds-font-weight-regular);
+
+    &[aria-current='page'] {
+      background-color: var(--krds-color-action-secondary-selected);
+      color: var(--krds-color-action-secondary);
+      font-weight: var(--krds-font-weight-bold);
+      border: 1px solid var(--krds-color-action-secondary-active);
+    }
+  }
+
+  /* Submenu container (2nd/3rd depth) */
+  .lnb-submenu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+    overflow: hidden;
+
+    &[style*='display: grid'] {
+      grid-template-rows: 1fr;
+    }
+
+    > ul {
+      overflow: hidden;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      padding-top: var(--krds-spacing-3);
+    }
+  }
+
+  /* Submenu item */
+  .lnb-subitem {
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: var(--krds-spacing-3);
+    }
+
+    .lnb-btn {
+      padding-left: var(--krds-spacing-6);
+      background-color: transparent;
+      font-weight: var(--krds-font-weight-regular);
+
+      &:hover {
+        background-color: var(--krds-color-action-secondary-hover);
+      }
+
+      &[aria-current='page'] {
+        background-color: var(--krds-color-action-secondary-selected);
+        color: var(--krds-color-action-secondary);
+        font-weight: var(--krds-font-weight-bold);
+      }
+    }
+  }
+
+  /* Submenu title button (3rd depth with children) */
+  .lnb-btn-tit {
+    font-weight: var(--krds-font-weight-medium);
+  }
+
+  /* Level 2 submenu (4th depth) */
+  .lnb-submenu-lv2 {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+    overflow: hidden;
+
+    &[style*='display: grid'] {
+      grid-template-rows: 1fr;
+    }
+
+    > ul {
+      overflow: hidden;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      padding-top: var(--krds-spacing-3);
+    }
+
+    .lnb-subitem {
+      .lnb-btn {
+        padding-left: var(--krds-spacing-9);
+        font-size: var(--krds-font-size-xs);
+      }
+    }
+  }
+
+  /* Active state for parent items */
+  .lnb-item.active {
+    > .lnb-btn.lnb-toggle {
+      background-color: var(--krds-color-action-secondary-selected);
+      border: 1px solid var(--krds-color-action-secondary-active);
+    }
+  }
+
+  .lnb-subitem.active {
+    > .lnb-btn {
+      background-color: var(--krds-color-action-secondary-selected);
+      color: var(--krds-color-action-secondary);
+      font-weight: var(--krds-font-weight-bold);
+      border: 1px solid var(--krds-color-action-secondary-active);
+    }
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .krds-side-navigation {
+    .lnb-btn {
+      border: 1px solid var(--krds-color-border);
+    }
+
+    .lnb-toggle::after {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23000'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    }
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .krds-side-navigation {
+    .lnb-toggle::after {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23fff'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    }
+  }
+}
