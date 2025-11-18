@@ -619,15 +619,21 @@
   },
   "footer": {
     "name": "footer",
-    "type": "component",
-    "description": "KRDS footer compound component with 13 sub-components for comprehensive footer structure",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "type": "layout",
+    "description": "KRDS government footer layout with organization info, links, and identifier",
+    "dependencies": ["sass@^1.70.0"],
+    "devDependencies": [],
     "registryDependencies": ["utils", "identifier"],
     "files": [
       {
         "path": "components/footer.tsx",
         "type": "component",
         "target": "components/hanui/footer.tsx"
+      },
+      {
+        "path": "components/footer.module.scss",
+        "type": "style",
+        "target": "components/hanui/footer.module.scss"
       }
     ]
   }
