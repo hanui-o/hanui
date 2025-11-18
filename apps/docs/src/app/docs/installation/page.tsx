@@ -58,7 +58,7 @@ export default function InstallationPage() {
             수행하면 됩니다.
           </Body>
           <CodeBlock
-            code="npx hanui init"
+            code="npx @hanui/cli init"
             language="bash"
             showLineNumbers={false}
           />
@@ -114,7 +114,7 @@ export default function InstallationPage() {
           <Body>
             필요한 컴포넌트를{' '}
             <code className="bg-krds-gray-5 px-1 rounded text-sm">
-              npx hanui add
+              npx @hanui/cli add
             </code>{' '}
             명령어로 추가합니다.
           </Body>
@@ -122,7 +122,7 @@ export default function InstallationPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">단일 컴포넌트 추가</Heading>
             <CodeBlock
-              code="npx hanui add button"
+              code="npx @hanui/cli add button"
               language="bash"
               showLineNumbers={false}
             />
@@ -131,7 +131,7 @@ export default function InstallationPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">여러 컴포넌트 한 번에 추가</Heading>
             <CodeBlock
-              code="npx hanui add button modal select"
+              code="npx @hanui/cli add button modal select"
               language="bash"
               showLineNumbers={false}
             />
@@ -140,7 +140,7 @@ export default function InstallationPage() {
           <Stack spacing="heading-tight">
             <Heading level="h3">인터랙티브 선택</Heading>
             <CodeBlock
-              code="npx hanui add"
+              code="npx @hanui/cli add"
               language="bash"
               showLineNumbers={false}
             />
