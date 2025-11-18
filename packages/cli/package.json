@@ -1,6 +1,6 @@
 {
   "name": "@hanui/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "KRDS 기반 공공 웹 프로젝트 생성 CLI - Scaffolding tool for HANUI projects with KRDS design system",
   "keywords": [
     "cli",
