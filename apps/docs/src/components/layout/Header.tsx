@@ -232,12 +232,6 @@ export function Header() {
 
         {/* Right: Version + Sponsor + Search + GitHub + Theme */}
         <div className="flex items-center gap-2 ml-auto">
-          {/* Version */}
-          <button className="hidden lg:flex items-center gap-1.5 h-9 px-3 text-sm font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20">
-            <span>v0.1.0-beta</span>
-            <ChevronDownIcon />
-          </button>
-
           {/* Sponsor */}
           <Link
             href="https://github.com/sponsors/hanui-o"
@@ -248,6 +242,12 @@ export function Header() {
             <HeartIcon />
             <span>Sponsor</span>
           </Link>
+
+          {/* Version */}
+          <button className="hidden lg:flex items-center gap-1.5 h-9 px-3 text-sm font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20 whitespace-nowrap">
+            <span>v0.1.0-beta</span>
+            <ChevronDownIcon />
+          </button>
 
           {/* Search */}
           <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors bg-krds-gray-5">
