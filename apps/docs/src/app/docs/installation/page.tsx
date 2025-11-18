@@ -4,6 +4,7 @@ import { Stack, Heading, Body } from '@hanui/react';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { Code } from '@/components/hanui/code';
 
 export default function InstallationPage() {
   return (
@@ -24,19 +25,15 @@ export default function InstallationPage() {
           <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
             <ul className="space-y-2">
               <li className="flex items-center gap-2">
-                <code className="bg-krds-gray-10 px-2 py-1 rounded">React</code>
+                <Code>React</Code>
                 <span className="text-krds-gray-70">18.0.0 이상</span>
               </li>
               <li className="flex items-center gap-2">
-                <code className="bg-krds-gray-10 px-2 py-1 rounded">
-                  Node.js
-                </code>
+                <Code>Node.js</Code>
                 <span className="text-krds-gray-70">18.0.0 이상</span>
               </li>
               <li className="flex items-center gap-2">
-                <code className="bg-krds-gray-10 px-2 py-1 rounded">
-                  Tailwind CSS
-                </code>
+                <Code>Tailwind CSS</Code>
                 <span className="text-krds-gray-70">3.0.0 이상</span>
               </li>
             </ul>
@@ -69,28 +66,19 @@ export default function InstallationPage() {
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
-                  <code className="bg-krds-gray-10 px-1 rounded">
-                    components/hanui/
-                  </code>{' '}
-                  디렉토리 생성
+                  <Code>components/hanui/</Code> 디렉토리 생성
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
-                  <code className="bg-krds-gray-10 px-1 rounded">
-                    lib/utils.ts
-                  </code>{' '}
-                  생성 (cn 유틸리티 함수)
+                  <Code>lib/utils.ts</Code> 생성 (cn 유틸리티 함수)
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
-                  <code className="bg-krds-gray-10 px-1 rounded">
-                    hanui.json
-                  </code>{' '}
-                  설정 파일 생성
+                  <Code>hanui.json</Code> 설정 파일 생성
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -110,11 +98,8 @@ export default function InstallationPage() {
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>
-            필요한 컴포넌트를{' '}
-            <code className="bg-krds-gray-5 px-1 rounded">
-              npx @hanui/cli add
-            </code>{' '}
-            명령어로 추가합니다.
+            필요한 컴포넌트를 <Code>npx @hanui/cli add</Code> 명령어로
+            추가합니다.
           </Body>
 
           <Stack spacing="heading-tight">
@@ -218,11 +203,8 @@ module.exports = {
                 <div className="bg-krds-primary-surface rounded-lg p-4 border border-krds-primary-20">
                   <Body size="sm" className="text-krds-primary-text">
                     <strong>Tip:</strong> HANUI 컴포넌트는 Radix UI 기반으로
-                    이미{' '}
-                    <code className="bg-krds-gray-10 px-1 rounded text-xs">
-                      'use client'
-                    </code>{' '}
-                    지시어가 포함되어 있습니다.
+                    이미 <Code size="sm">'use client'</Code> 지시어가 포함되어
+                    있습니다.
                   </Body>
                 </div>
               </div>
@@ -293,9 +275,9 @@ export default App;`}
                   tailwind.config.js의 content 경로에 HANUI 컴포넌트 경로가
                   포함되어 있는지 확인하세요.
                 </Body>
-                <code className="text-xs bg-krds-gray-5 px-2 py-1 rounded">
+                <Code size="sm">
                   ./components/hanui/**/*.{'{'}js,ts,jsx,tsx{'}'}
-                </code>
+                </Code>
               </div>
             </Stack>
           </div>
