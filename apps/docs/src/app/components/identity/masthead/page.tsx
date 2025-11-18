@@ -1,9 +1,16 @@
-import { Masthead, Stack, Heading, Body } from '@hanui/react';
+import { Masthead, Body } from '@hanui/react';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { GuidelineSection } from '@/components/content/GuidelineSection';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { SectionHeading } from '@/components/hanui/section-header';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/components/hanui/tabs';
 
 export default function MastheadPage() {
   return (
@@ -14,20 +21,32 @@ export default function MastheadPage() {
         description="정부 디지털 서비스의 공식성을 나타내는 배너 컴포넌트입니다. 모든 정부 누리집 페이지 상단에 일관되게 표시되어 사용자 신뢰를 구축합니다."
       />
 
-      {/* Usage Examples */}
       <PageSection>
-        <Heading level="h2" id="examples" className="text-2xl font-semibold">
-          예제
-        </Heading>
+        <Tabs defaultValue="overview">
+          <TabsList>
+            <TabsTrigger value="overview">개요</TabsTrigger>
+            <TabsTrigger value="api">API</TabsTrigger>
+          </TabsList>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* Basic Example */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">기본 사용</Heading>
-            <Body>
-              기본 Masthead는 KRDS 표준 텍스트를 표시합니다. 반드시 페이지
-              최상단에 배치해야 하며, Skip Link보다는 뒤에 위치해야 합니다.
-            </Body>
+          <TabsContent value="overview">
+            {/* Installation */}
+            <SectionHeading level="h2" id="installation" title="설치" />
+            <CodeBlock
+              code={`npx @hanui/cli add masthead`}
+              language="bash"
+              showLineNumbers={false}
+            />
+
+            {/* Usage Examples */}
+            <SectionHeading level="h2" id="examples" title="예제" />
+
+            {/* Basic Example */}
+            <SectionHeading level="h3" id="basic-example" title="기본 사용">
+              <Body>
+                기본 Masthead는 KRDS 표준 텍스트를 표시합니다. 반드시 페이지
+                최상단에 배치해야 하며, Skip Link보다는 뒤에 위치해야 합니다.
+              </Body>
+            </SectionHeading>
             <div>
               <ComponentPreview>
                 <div className="w-full">
@@ -38,22 +57,25 @@ export default function MastheadPage() {
               <div className="mt-4">
                 <CodeBlock
                   language="tsx"
-                  code={`import { Masthead } from '@hanui/react';
+                  code={`import { Masthead } from '@/components/hanui/masthead';
 
 <Masthead />`}
                 />
               </div>
             </div>
-          </Stack>
 
-          {/* With Skip Link */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Skip Link와 함께 사용 (권장)</Heading>
-            <Body>
-              KRDS 접근성 기준에 따라 Skip Link는 Masthead 이전에 배치되어야
-              합니다. Skip Link는 화면에 보이지 않다가 포커스를 받으면
-              표시됩니다.
-            </Body>
+            {/* With Skip Link */}
+            <SectionHeading
+              level="h3"
+              id="with-skip-link"
+              title="Skip Link와 함께 사용 (권장)"
+            >
+              <Body>
+                KRDS 접근성 기준에 따라 Skip Link는 Masthead 이전에 배치되어야
+                합니다. Skip Link는 화면에 보이지 않다가 포커스를 받으면
+                표시됩니다.
+              </Body>
+            </SectionHeading>
             <div>
               <ComponentPreview>
                 <div className="w-full">
@@ -73,7 +95,7 @@ export default function MastheadPage() {
               <div className="mt-4">
                 <CodeBlock
                   language="tsx"
-                  code={`import { Masthead } from '@hanui/react';
+                  code={`import { Masthead } from '@/components/hanui/masthead';
 
 <>
   <a
@@ -90,15 +112,14 @@ export default function MastheadPage() {
                 />
               </div>
             </div>
-          </Stack>
 
-          {/* Custom Text */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">커스텀 텍스트</Heading>
-            <Body>
-              필요시 text prop으로 커스텀 텍스트를 사용할 수 있지만, KRDS 표준
-              텍스트 사용을 권장합니다.
-            </Body>
+            {/* Custom Text */}
+            <SectionHeading level="h3" id="custom-text" title="커스텀 텍스트">
+              <Body>
+                필요시 text prop으로 커스텀 텍스트를 사용할 수 있지만, KRDS 표준
+                텍스트 사용을 권장합니다.
+              </Body>
+            </SectionHeading>
             <div>
               <ComponentPreview>
                 <div className="w-full">
@@ -109,20 +130,23 @@ export default function MastheadPage() {
               <div className="mt-4">
                 <CodeBlock
                   language="tsx"
-                  code={`import { Masthead } from '@hanui/react';
+                  code={`import { Masthead } from '@/components/hanui/masthead';
 
 <Masthead text="이 누리집은 대한민국 공식 전자정부 누리집입니다" />`}
                 />
               </div>
             </div>
-          </Stack>
 
-          {/* Full Page Layout */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">전체 페이지 레이아웃 예시</Heading>
-            <Body>
-              실제 정부 누리집 페이지 구조에서 Masthead의 배치를 보여줍니다.
-            </Body>
+            {/* Full Page Layout */}
+            <SectionHeading
+              level="h3"
+              id="full-page-layout"
+              title="전체 페이지 레이아웃 예시"
+            >
+              <Body>
+                실제 정부 누리집 페이지 구조에서 Masthead의 배치를 보여줍니다.
+              </Body>
+            </SectionHeading>
             <div>
               <ComponentPreview>
                 <div className="w-full border border-krds-gray-20 rounded-lg overflow-hidden">
@@ -147,7 +171,7 @@ export default function MastheadPage() {
               <div className="mt-4">
                 <CodeBlock
                   language="tsx"
-                  code={`import { Masthead } from '@hanui/react';
+                  code={`import { Masthead } from '@/components/hanui/masthead';
 
 <>
   <Masthead />
@@ -167,20 +191,20 @@ export default function MastheadPage() {
                 />
               </div>
             </div>
-          </Stack>
-        </Stack>
-      </PageSection>
 
-      {/* Guidelines */}
-      <PageSection>
-        <Heading level="h2" id="guidelines" className="text-2xl font-semibold">
-          사용 가이드라인
-        </Heading>
+            {/* Guidelines */}
+            <SectionHeading
+              level="h2"
+              id="guidelines"
+              title="사용 가이드라인"
+            />
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* When to use */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">언제 사용해야 하나요?</Heading>
+            {/* When to use */}
+            <SectionHeading
+              level="h3"
+              id="when-to-use"
+              title="언제 사용해야 하나요?"
+            />
 
             <div className="grid grid-cols-1 gap-4">
               <GuidelineSection type="do" title="Masthead를 사용해야 하는 경우">
@@ -224,12 +248,13 @@ export default function MastheadPage() {
                 </ul>
               </GuidelineSection>
             </div>
-          </Stack>
 
-          {/* Accessibility */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">접근성</Heading>
-            <Body>KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:</Body>
+            {/* Accessibility */}
+            <SectionHeading level="h3" id="accessibility" title="접근성">
+              <Body>
+                KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:
+              </Body>
+            </SectionHeading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>Skip Link 선행</strong> - 공식 배너는 Skip Link 다음에
@@ -250,11 +275,13 @@ export default function MastheadPage() {
                 <strong>스크린 리더</strong> - 텍스트가 명확하게 읽힘
               </li>
             </ul>
-          </Stack>
 
-          {/* Design Principles */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">디자인 원칙</Heading>
+            {/* Design Principles */}
+            <SectionHeading
+              level="h3"
+              id="design-principles"
+              title="디자인 원칙"
+            />
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>시각적 절제</strong> - 배너가 지나치게 주의를 끌지
@@ -272,11 +299,9 @@ export default function MastheadPage() {
                 제외)
               </li>
             </ul>
-          </Stack>
 
-          {/* Usability */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">사용성 권장사항</Heading>
+            {/* Usability */}
+            <SectionHeading level="h3" id="usability" title="사용성 권장사항" />
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>반응형 디자인</strong> - 모바일/태블릿/데스크톱에서 모두
@@ -289,23 +314,103 @@ export default function MastheadPage() {
                 <strong>프린트 최적화</strong> - 인쇄 시에도 표시되도록 설정
               </li>
             </ul>
-          </Stack>
-        </Stack>
-      </PageSection>
 
-      {/* API Reference */}
-      <PageSection>
-        <Heading
-          level="h2"
-          id="api-reference"
-          className="text-2xl font-semibold"
-        >
-          API 레퍼런스
-        </Heading>
+            {/* Foundation Layer */}
+            <SectionHeading
+              level="h2"
+              id="foundation-layer"
+              title="기반 레이어"
+            >
+              <Body>
+                Masthead 컴포넌트는 Foundation Layer 아키텍처를 통해 KRDS 접근성
+                기준을 자동으로 충족합니다:
+              </Body>
+            </SectionHeading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Masthead Props</Heading>
+            <SectionHeading
+              level="h3"
+              id="fl-required-id"
+              title="1. 필수 식별자 자동 적용"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>#krds-masthead ID</strong>: KRDS 표준에 따른 필수 CSS
+                식별자 자동 설정
+              </li>
+              <li>개발자가 수동으로 ID를 관리할 필요 없음</li>
+              <li>정부 누리집 전체에서 일관된 식별자 사용</li>
+            </ul>
+
+            <SectionHeading
+              level="h3"
+              id="fl-skip-link"
+              title="2. Skip Link 호환성"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>Bypass Blocks 준수</strong>: WCAG 2.1 Level A / KWCAG
+                2.2 기준
+              </li>
+              <li>Skip Link가 Masthead를 우회하여 본문으로 바로 이동 가능</li>
+              <li>키보드 사용자의 반복 콘텐츠 우회 지원</li>
+            </ul>
+
+            <SectionHeading
+              level="h3"
+              id="fl-semantic"
+              title="3. 시맨틱 구조"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>의미있는 HTML</strong>: div 컨테이너 + p 텍스트 요소
+              </li>
+              <li>스크린 리더가 배너 내용을 명확하게 전달</li>
+              <li>검색 엔진 최적화 (SEO) 지원</li>
+            </ul>
+
+            <SectionHeading
+              level="h3"
+              id="fl-responsive"
+              title="4. 반응형 & 다크 모드"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>모바일 우선</strong>: 모든 화면 크기에서 최적화된 표시
+              </li>
+              <li>
+                <strong>다크 모드 자동 지원</strong>: 시스템 설정에 따라 자동
+                전환
+              </li>
+              <li>텍스트 크기 조절 가능 (xs/sm 반응형)</li>
+            </ul>
+
+            <SectionHeading
+              level="h3"
+              id="fl-standard-text"
+              title="5. 표준 텍스트 보장"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>기본값 제공</strong>: KRDS 표준 텍스트가 기본으로 설정됨
+              </li>
+              <li>모든 정부 누리집에서 일관된 메시지 표시</li>
+              <li>사용자 신뢰 구축을 위한 통일된 표현</li>
+            </ul>
+          </TabsContent>
+
+          <TabsContent value="api">
+            {/* API Reference */}
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API 레퍼런스"
+            />
+
+            <SectionHeading
+              level="h3"
+              id="masthead-props"
+              title="Masthead Props"
+            />
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -338,86 +443,8 @@ export default function MastheadPage() {
               <strong>중요:</strong> Masthead는 자동으로
               id=&quot;krds-masthead&quot;를 적용하여 KRDS 표준을 준수합니다.
             </Body>
-          </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* Foundation Layer */}
-      <PageSection>
-        <Heading
-          level="h2"
-          id="foundation-layer"
-          className="text-2xl font-semibold"
-        >
-          기반 레이어
-        </Heading>
-
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Body>
-            Masthead 컴포넌트는 Foundation Layer 아키텍처를 통해 KRDS 접근성
-            기준을 자동으로 충족합니다:
-          </Body>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">1. 필수 식별자 자동 적용</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>#krds-masthead ID</strong>: KRDS 표준에 따른 필수 CSS
-                식별자 자동 설정
-              </li>
-              <li>개발자가 수동으로 ID를 관리할 필요 없음</li>
-              <li>정부 누리집 전체에서 일관된 식별자 사용</li>
-            </ul>
-          </Stack>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">2. Skip Link 호환성</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>Bypass Blocks 준수</strong>: WCAG 2.1 Level A / KWCAG
-                2.2 기준
-              </li>
-              <li>Skip Link가 Masthead를 우회하여 본문으로 바로 이동 가능</li>
-              <li>키보드 사용자의 반복 콘텐츠 우회 지원</li>
-            </ul>
-          </Stack>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">3. 시맨틱 구조</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>의미있는 HTML</strong>: div 컨테이너 + p 텍스트 요소
-              </li>
-              <li>스크린 리더가 배너 내용을 명확하게 전달</li>
-              <li>검색 엔진 최적화 (SEO) 지원</li>
-            </ul>
-          </Stack>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">4. 반응형 & 다크 모드</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>모바일 우선</strong>: 모든 화면 크기에서 최적화된 표시
-              </li>
-              <li>
-                <strong>다크 모드 자동 지원</strong>: 시스템 설정에 따라 자동
-                전환
-              </li>
-              <li>텍스트 크기 조절 가능 (xs/sm 반응형)</li>
-            </ul>
-          </Stack>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">5. 표준 텍스트 보장</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>기본값 제공</strong>: KRDS 표준 텍스트가 기본으로 설정됨
-              </li>
-              <li>모든 정부 누리집에서 일관된 메시지 표시</li>
-              <li>사용자 신뢰 구축을 위한 통일된 표현</li>
-            </ul>
-          </Stack>
-        </Stack>
+          </TabsContent>
+        </Tabs>
       </PageSection>
     </>
   );

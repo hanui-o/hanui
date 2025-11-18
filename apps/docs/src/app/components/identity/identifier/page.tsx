@@ -1,9 +1,16 @@
-import { Identifier, Stack, Heading, Body } from '@hanui/react';
+import { Identifier, Body } from '@hanui/react';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { GuidelineSection } from '@/components/content/GuidelineSection';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { SectionHeading } from '@/components/hanui/section-header';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/components/hanui/tabs';
 
 export default function IdentifierPage() {
   return (
@@ -14,20 +21,36 @@ export default function IdentifierPage() {
         description="정부 디지털 서비스의 운영 기관을 식별하여 신뢰성을 구축하는 컴포넌트입니다. Footer 내 최종 콘텐츠 섹션으로 배치되어 서비스의 일관성과 브랜드를 확인할 수 있게 합니다."
       />
 
-      {/* Usage Examples */}
       <PageSection>
-        <Heading level="h2" id="examples" className="text-2xl font-semibold">
-          예제
-        </Heading>
+        <Tabs defaultValue="overview">
+          <TabsList>
+            <TabsTrigger value="overview">개요</TabsTrigger>
+            <TabsTrigger value="api">API</TabsTrigger>
+          </TabsList>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* Basic Example */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">기본 사용 (Light Variant)</Heading>
-            <Body>
-              기본 Identifier는 라이트 배경에 기관 이름을 표시합니다. Footer 내
-              최종 섹션으로 배치해야 합니다.
-            </Body>
+          <TabsContent value="overview">
+            {/* Installation */}
+            <SectionHeading level="h2" id="installation" title="설치" />
+            <CodeBlock
+              code={`npx @hanui/cli add identifier`}
+              language="bash"
+              showLineNumbers={false}
+            />
+
+            {/* Usage Examples */}
+            <SectionHeading level="h2" id="examples" title="예제" />
+
+            {/* Basic Example */}
+            <SectionHeading
+              level="h3"
+              id="basic-example"
+              title="기본 사용 (Light Variant)"
+            >
+              <Body>
+                기본 Identifier는 라이트 배경에 기관 이름을 표시합니다. Footer
+                내 최종 섹션으로 배치해야 합니다.
+              </Body>
+            </SectionHeading>
             <div>
               <ComponentPreview>
                 <div className="w-full">
@@ -38,21 +61,24 @@ export default function IdentifierPage() {
               <div className="mt-4">
                 <CodeBlock
                   language="tsx"
-                  code={`import { Identifier } from '@hanui/react';
+                  code={`import { Identifier } from '@/components/hanui/identifier';
 
 <Identifier organizationName="행정안전부" />`}
                 />
               </div>
             </div>
-          </Stack>
 
-          {/* With Logo */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">로고와 함께 사용 (권장)</Heading>
-            <Body>
-              운영 기관의 로고를 포함하여 시각적 식별성을 강화합니다. 로고
-              이미지는 반드시 alt 텍스트를 제공해야 합니다.
-            </Body>
+            {/* With Logo */}
+            <SectionHeading
+              level="h3"
+              id="with-logo"
+              title="로고와 함께 사용 (권장)"
+            >
+              <Body>
+                운영 기관의 로고를 포함하여 시각적 식별성을 강화합니다. 로고
+                이미지는 반드시 alt 텍스트를 제공해야 합니다.
+              </Body>
+            </SectionHeading>
             <div>
               <ComponentPreview>
                 <div className="w-full">
@@ -67,7 +93,7 @@ export default function IdentifierPage() {
               <div className="mt-4">
                 <CodeBlock
                   language="tsx"
-                  code={`import { Identifier } from '@hanui/react';
+                  code={`import { Identifier } from '@/components/hanui/identifier';
 
 <Identifier
   organizationName="행정안전부"
@@ -77,12 +103,11 @@ export default function IdentifierPage() {
                 />
               </div>
             </div>
-          </Stack>
 
-          {/* Dark Variant */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Dark Variant</Heading>
-            <Body>다크 배경 테마에 맞춘 variant를 사용할 수 있습니다.</Body>
+            {/* Dark Variant */}
+            <SectionHeading level="h3" id="dark-variant" title="Dark Variant">
+              <Body>다크 배경 테마에 맞춘 variant를 사용할 수 있습니다.</Body>
+            </SectionHeading>
             <div>
               <ComponentPreview>
                 <div className="w-full">
@@ -98,7 +123,7 @@ export default function IdentifierPage() {
               <div className="mt-4">
                 <CodeBlock
                   language="tsx"
-                  code={`import { Identifier } from '@hanui/react';
+                  code={`import { Identifier } from '@/components/hanui/identifier';
 
 <Identifier
   organizationName="행정안전부"
@@ -109,15 +134,18 @@ export default function IdentifierPage() {
                 />
               </div>
             </div>
-          </Stack>
 
-          {/* In Footer */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Footer 구조 내 배치 (권장)</Heading>
-            <Body>
-              실제 정부 누리집에서 Identifier를 Footer의 최종 섹션으로 배치하는
-              예시입니다.
-            </Body>
+            {/* In Footer */}
+            <SectionHeading
+              level="h3"
+              id="in-footer"
+              title="Footer 구조 내 배치 (권장)"
+            >
+              <Body>
+                실제 정부 누리집에서 Identifier를 Footer의 최종 섹션으로
+                배치하는 예시입니다.
+              </Body>
+            </SectionHeading>
             <div>
               <ComponentPreview>
                 <div className="w-full border border-krds-gray-20 rounded-lg overflow-hidden">
@@ -140,7 +168,7 @@ export default function IdentifierPage() {
               <div className="mt-4">
                 <CodeBlock
                   language="tsx"
-                  code={`import { Identifier } from '@hanui/react';
+                  code={`import { Identifier } from '@/components/hanui/identifier';
 
 <footer>
   <div>
@@ -157,20 +185,20 @@ export default function IdentifierPage() {
                 />
               </div>
             </div>
-          </Stack>
-        </Stack>
-      </PageSection>
 
-      {/* Guidelines */}
-      <PageSection>
-        <Heading level="h2" id="guidelines" className="text-2xl font-semibold">
-          사용 가이드라인
-        </Heading>
+            {/* Guidelines */}
+            <SectionHeading
+              level="h2"
+              id="guidelines"
+              title="사용 가이드라인"
+            />
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* When to use */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">언제 사용해야 하나요?</Heading>
+            {/* When to use */}
+            <SectionHeading
+              level="h3"
+              id="when-to-use"
+              title="언제 사용해야 하나요?"
+            />
 
             <div className="grid grid-cols-1 gap-4">
               <GuidelineSection
@@ -217,12 +245,13 @@ export default function IdentifierPage() {
                 </ul>
               </GuidelineSection>
             </div>
-          </Stack>
 
-          {/* Accessibility */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">접근성</Heading>
-            <Body>KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:</Body>
+            {/* Accessibility */}
+            <SectionHeading level="h3" id="accessibility" title="접근성">
+              <Body>
+                KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:
+              </Body>
+            </SectionHeading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>대체 텍스트</strong> - 로고 이미지에 alt 텍스트 필수
@@ -240,11 +269,13 @@ export default function IdentifierPage() {
                 <strong>스크린 리더</strong> - 로고와 텍스트가 명확하게 읽힘
               </li>
             </ul>
-          </Stack>
 
-          {/* Design Principles */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">디자인 원칙</Heading>
+            {/* Design Principles */}
+            <SectionHeading
+              level="h3"
+              id="design-principles"
+              title="디자인 원칙"
+            />
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
                 <strong>시각적 절제</strong> - 지나치게 주의를 끌지 않는
@@ -261,23 +292,110 @@ export default function IdentifierPage() {
                 <strong>두 가지 Variant</strong> - Light/Dark 배경 테마 지원
               </li>
             </ul>
-          </Stack>
-        </Stack>
-      </PageSection>
 
-      {/* API Reference */}
-      <PageSection>
-        <Heading
-          level="h2"
-          id="api-reference"
-          className="text-2xl font-semibold"
-        >
-          API 레퍼런스
-        </Heading>
+            {/* Foundation Layer */}
+            <SectionHeading
+              level="h2"
+              id="foundation-layer"
+              title="기반 레이어"
+            >
+              <Body>
+                Identifier 컴포넌트는 Foundation Layer 아키텍처를 통해 KRDS
+                접근성 기준을 자동으로 충족합니다:
+              </Body>
+            </SectionHeading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Identifier Props</Heading>
+            <SectionHeading
+              level="h3"
+              id="fl-required-class"
+              title="1. 필수 CSS 클래스 자동 적용"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>.krds-identifier</strong>: KRDS 표준에 따른 필수 CSS
+                클래스 자동 설정
+              </li>
+              <li>개발자가 수동으로 클래스를 관리할 필요 없음</li>
+              <li>정부 누리집 전체에서 일관된 식별자 사용</li>
+            </ul>
+
+            <SectionHeading
+              level="h3"
+              id="fl-semantic"
+              title="2. 시맨틱 구조 & 접근성"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>section 요소</strong>: Footer 내 구조화된 콘텐츠 영역
+              </li>
+              <li>
+                <strong>Alt 텍스트 자동 검증</strong>: logo가 string일 때
+                logoAlt 누락 경고
+              </li>
+              <li>스크린 리더가 운영 기관 정보를 명확하게 전달</li>
+            </ul>
+
+            <SectionHeading
+              level="h3"
+              id="fl-responsive"
+              title="3. 반응형 & 다크 모드"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>모바일 우선</strong>: 모든 화면 크기에서 최적화된 표시
+              </li>
+              <li>
+                <strong>Variant 지원</strong>: Light/Dark 배경 테마 선택 가능
+              </li>
+              <li>로고 크기 자동 조절 (h-8, w-auto)</li>
+            </ul>
+
+            <SectionHeading
+              level="h3"
+              id="fl-logo-support"
+              title="4. 유연한 로고 지원"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>이미지 URL</strong>: 일반 이미지 파일 경로 지원
+              </li>
+              <li>
+                <strong>React 엘리먼트</strong>: SVG 컴포넌트 등 커스텀 로고
+                지원
+              </li>
+              <li>Lazy loading 자동 적용으로 성능 최적화</li>
+            </ul>
+
+            <SectionHeading
+              level="h3"
+              id="fl-customization"
+              title="5. 커스터마이징 지원"
+            />
+            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
+              <li>
+                <strong>텍스트 커스터마이징</strong>: text prop으로 문구 변경
+                가능
+              </li>
+              <li>
+                <strong>플레이스홀더</strong>: {'{'}organization{'}'} 자동 치환
+              </li>
+              <li>KRDS 표준 텍스트가 기본값으로 제공됨</li>
+            </ul>
+          </TabsContent>
+
+          <TabsContent value="api">
+            {/* API Reference */}
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API 레퍼런스"
+            />
+
+            <SectionHeading
+              level="h3"
+              id="identifier-props"
+              title="Identifier Props"
+            />
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -342,89 +460,8 @@ export default function IdentifierPage() {
               <strong>중요:</strong> Identifier는 자동으로 .krds-identifier
               클래스를 적용하여 KRDS 표준을 준수합니다.
             </Body>
-          </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* Foundation Layer */}
-      <PageSection>
-        <Heading level="h2" className="text-2xl font-semibold">
-          기반 레이어
-        </Heading>
-
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Body>
-            Identifier 컴포넌트는 Foundation Layer 아키텍처를 통해 KRDS 접근성
-            기준을 자동으로 충족합니다:
-          </Body>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">1. 필수 CSS 클래스 자동 적용</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>.krds-identifier</strong>: KRDS 표준에 따른 필수 CSS
-                클래스 자동 설정
-              </li>
-              <li>개발자가 수동으로 클래스를 관리할 필요 없음</li>
-              <li>정부 누리집 전체에서 일관된 식별자 사용</li>
-            </ul>
-          </Stack>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">2. 시맨틱 구조 & 접근성</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>section 요소</strong>: Footer 내 구조화된 콘텐츠 영역
-              </li>
-              <li>
-                <strong>Alt 텍스트 자동 검증</strong>: logo가 string일 때
-                logoAlt 누락 경고
-              </li>
-              <li>스크린 리더가 운영 기관 정보를 명확하게 전달</li>
-            </ul>
-          </Stack>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">3. 반응형 & 다크 모드</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>모바일 우선</strong>: 모든 화면 크기에서 최적화된 표시
-              </li>
-              <li>
-                <strong>Variant 지원</strong>: Light/Dark 배경 테마 선택 가능
-              </li>
-              <li>로고 크기 자동 조절 (h-8, w-auto)</li>
-            </ul>
-          </Stack>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">4. 유연한 로고 지원</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>이미지 URL</strong>: 일반 이미지 파일 경로 지원
-              </li>
-              <li>
-                <strong>React 엘리먼트</strong>: SVG 컴포넌트 등 커스텀 로고
-                지원
-              </li>
-              <li>Lazy loading 자동 적용으로 성능 최적화</li>
-            </ul>
-          </Stack>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3">5. 커스터마이징 지원</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>텍스트 커스터마이징</strong>: text prop으로 문구 변경
-                가능
-              </li>
-              <li>
-                <strong>플레이스홀더</strong>: {'{'}organization{'}'} 자동 치환
-              </li>
-              <li>KRDS 표준 텍스트가 기본값으로 제공됨</li>
-            </ul>
-          </Stack>
-        </Stack>
+          </TabsContent>
+        </Tabs>
       </PageSection>
     </>
   );

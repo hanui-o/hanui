@@ -1,12 +1,18 @@
 'use client';
 
-import { Input, Heading, Body, Stack } from '@hanui/react';
+import { Input, Body } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
-import { Installation } from '@/components/content/Installation';
 import { GuidelineSection } from '@/components/content/GuidelineSection';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
+import { SectionHeading } from '@/components/hanui/section-header';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/components/hanui/tabs';
 
 // Example icons using SVG
 const SearchIcon = () => (
@@ -63,41 +69,74 @@ export default function InputPage() {
       />
 
       <PageSection>
-        <ComponentPreview>
-          <div className="flex flex-col gap-4 max-w-md">
-            <Input placeholder="기본 입력 필드" />
-            <Input leftAddon={<SearchIcon />} placeholder="검색어 입력" />
-          </div>
-        </ComponentPreview>
-      </PageSection>
+        <Tabs defaultValue="overview">
+          <TabsList>
+            <TabsTrigger value="overview">개요</TabsTrigger>
+            <TabsTrigger value="api">API</TabsTrigger>
+          </TabsList>
 
-      {/* Overview */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="overview">
-            개요
-          </Heading>
-          <Body className="leading-relaxed">
-            입력 필드는 사용자로부터 정보를 받는 가장 기본적인 인터랙션
-            요소입니다. HANUI Input은{' '}
-            <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여
-            레이블 연결, 에러 처리, 키보드 네비게이션 등 웹 접근성을 보장합니다.
-          </Body>
-        </Stack>
-      </PageSection>
+          {/* 개요 탭 */}
+          <TabsContent value="overview">
+            <PageSection>
+              <ComponentPreview>
+                <div className="flex flex-col gap-4 max-w-md">
+                  <Input placeholder="기본 입력 필드" />
+                  <Input leftAddon={<SearchIcon />} placeholder="검색어 입력" />
+                </div>
+              </ComponentPreview>
+            </PageSection>
 
-      {/* Usage Guidelines */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="guidelines">
-            사용 가이드라인
-          </Heading>
-        </Stack>
+            {/* Overview */}
+            <SectionHeading level="h2" id="overview" title="개요">
+              <Body className="leading-relaxed">
+                입력 필드는 사용자로부터 정보를 받는 가장 기본적인 인터랙션
+                요소입니다. HANUI Input은{' '}
+                <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여
+                레이블 연결, 에러 처리, 키보드 네비게이션 등 웹 접근성을
+                보장합니다.
+              </Body>
+            </SectionHeading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* When to use */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">언제 사용해야 하나요?</Heading>
+            <SectionHeading
+              level="h2"
+              id="installation"
+              title="설치"
+              description="CLI 명령어로 Input 컴포넌트를 프로젝트에 추가합니다."
+            />
+            <CodeBlock
+              code={`npx @hanui/cli add input`}
+              language="bash"
+              showLineNumbers={false}
+            />
+            <Body size="sm" className="text-krds-gray-70">
+              의존성 설치, 사용 방법, 커스터마이징 등 자세한 내용은{' '}
+              <a
+                href="/docs/quick-start"
+                className="text-gray-900 hover:text-gray-700 underline"
+              >
+                Quick Start 가이드
+              </a>
+              를 참고하세요.
+            </Body>
+
+            <SectionHeading level="h2" id="usage" title="사용법" />
+            <CodeBlock
+              code={`import { Input } from '@/components/hanui/input'
+
+<Input placeholder="내용을 입력하세요" />`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+
+            {/* 가이드라인 섹션 */}
+            <SectionHeading
+              level="h2"
+              id="guidelines"
+              title="사용 가이드라인"
+            />
+
+            {/* When to use */}
+            <SectionHeading level="h3" title="언제 사용해야 하나요?" />
             <div className="grid grid-cols-1 gap-4">
               <GuidelineSection
                 type="do"
@@ -124,11 +163,9 @@ export default function InputPage() {
                 </ul>
               </GuidelineSection>
             </div>
-          </Stack>
 
-          {/* Label Guidelines */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">레이블 가이드</Heading>
+            {/* Label Guidelines */}
+            <SectionHeading level="h3" title="레이블 가이드" />
             <GuidelineSection type="do" title="레이블은 항상 제공">
               <p className="mb-3">
                 모든 입력 필드에는 명확한 레이블이 필요합니다. 시각적으로 숨겨진
@@ -147,23 +184,19 @@ export default function InputPage() {
               </ComponentPreview>
             </GuidelineSection>
 
-            <div className="mt-4">
-              <GuidelineSection
-                type="dont"
-                title="플레이스홀더만 사용하지 마세요"
-              >
-                <p>
-                  플레이스홀더는 입력 예시를 보여주는 보조 수단일 뿐, 레이블을
-                  대체할 수 없습니다. 입력을 시작하면 플레이스홀더가 사라지므로
-                  별도 레이블이 필요합니다.
-                </p>
-              </GuidelineSection>
-            </div>
-          </Stack>
+            <GuidelineSection
+              type="dont"
+              title="플레이스홀더만 사용하지 마세요"
+            >
+              <p>
+                플레이스홀더는 입력 예시를 보여주는 보조 수단일 뿐, 레이블을
+                대체할 수 없습니다. 입력을 시작하면 플레이스홀더가 사라지므로
+                별도 레이블이 필요합니다.
+              </p>
+            </GuidelineSection>
 
-          {/* Input Type */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">적절한 Input Type 사용</Heading>
+            {/* Input Type */}
+            <SectionHeading level="h3" title="적절한 Input Type 사용" />
             <GuidelineSection type="do" title="HTML5 input type 활용">
               <p className="mb-3">
                 email, tel, url, number, date 등을 사용하여 모바일 환경에서
@@ -177,11 +210,9 @@ export default function InputPage() {
                 </div>
               </ComponentPreview>
             </GuidelineSection>
-          </Stack>
 
-          {/* Error Messages */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">에러 메시지</Heading>
+            {/* Error Messages */}
+            <SectionHeading level="h3" title="에러 메시지" />
             <GuidelineSection type="do" title="명확하고 구체적인 에러 메시지">
               <p className="mb-3">
                 &quot;잘못된 입력&quot;이 아닌 &quot;이메일 형식이 올바르지
@@ -198,151 +229,93 @@ export default function InputPage() {
                 </div>
               </ComponentPreview>
             </GuidelineSection>
-          </Stack>
-        </Stack>
-      </PageSection>
 
-      <PageSection>
-        <Installation componentName="input" />
-      </PageSection>
+            {/* 예제 섹션 */}
+            <SectionHeading level="h2" id="examples" title="예제" />
 
-      {/* Usage */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="usage">
-            사용법
-          </Heading>
-          <CodeBlock
-            code={`import { Input } from '@hanui/react'
-
-<Input placeholder="내용을 입력하세요" />`}
-            language="tsx"
-            showLineNumbers={false}
-          />
-        </Stack>
-      </PageSection>
-
-      {/* Examples */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="examples">
-            예제
-          </Heading>
-        </Stack>
-
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* Default */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3" id="default">
-              기본
-            </Heading>
-            <div>
-              <ComponentPreview>
-                <div className="max-w-md">
-                  <Input placeholder="내용을 입력하세요" />
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Input placeholder="내용을 입력하세요" />`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
+            {/* Default */}
+            <SectionHeading level="h3" id="default" title="기본" />
+            <ComponentPreview>
+              <div className="max-w-md">
+                <Input placeholder="내용을 입력하세요" />
               </div>
+            </ComponentPreview>
+            <CodeBlock
+              code={`<Input placeholder="내용을 입력하세요" />`}
+              language="tsx"
+              showLineNumbers={false}
+            />
+
+            {/* Sizes */}
+            <SectionHeading level="h3" id="sizes" title="Size (크기)" />
+            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+              <Body size="sm" className="text-krds-primary-text">
+                <strong>언제 사용하나요?</strong> 입력 필드 크기는 예상 입력
+                길이와 일치시킵니다. Small은 우편번호 등 짧은 입력, Large는
+                제목이나 주소 등 긴 입력에 적합합니다.
+              </Body>
             </div>
-          </Stack>
-
-          {/* Sizes */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3" id="sizes">
-              Size (크기)
-            </Heading>
-            <div>
-              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-                <Body size="sm" className="text-krds-primary-text">
-                  <strong>언제 사용하나요?</strong> 입력 필드 크기는 예상 입력
-                  길이와 일치시킵니다. Small은 우편번호 등 짧은 입력, Large는
-                  제목이나 주소 등 긴 입력에 적합합니다.
-                </Body>
+            <ComponentPreview>
+              <div className="max-w-md space-y-4">
+                <Input size="sm" placeholder="Small (32px)" />
+                <Input size="md" placeholder="Medium (40px)" />
+                <Input size="lg" placeholder="Large (48px)" />
               </div>
-              <ComponentPreview>
-                <div className="max-w-md space-y-4">
-                  <Input size="sm" placeholder="Small (32px)" />
-                  <Input size="md" placeholder="Medium (40px)" />
-                  <Input size="lg" placeholder="Large (48px)" />
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Input size="sm" placeholder="Small (32px)" />
+            </ComponentPreview>
+            <CodeBlock
+              code={`<Input size="sm" placeholder="Small (32px)" />
 <Input size="md" placeholder="Medium (40px)" />
 <Input size="lg" placeholder="Large (48px)" />`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
+              language="tsx"
+              showLineNumbers={false}
+            />
 
-          {/* Variant */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3" id="variant">
-              Variant
-            </Heading>
-            <div>
-              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-                <Body size="sm" className="text-krds-primary-text">
-                  <strong>언제 사용하나요?</strong> Default는 일반적인 경우,
-                  Filled는 배경이 있는 디자인에 적합합니다.
-                </Body>
+            {/* Variant */}
+            <SectionHeading level="h3" id="variant" title="Variant" />
+            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+              <Body size="sm" className="text-krds-primary-text">
+                <strong>언제 사용하나요?</strong> Default는 일반적인 경우,
+                Filled는 배경이 있는 디자인에 적합합니다.
+              </Body>
+            </div>
+            <ComponentPreview>
+              <div className="max-w-md space-y-4">
+                <Input variant="default" placeholder="Default (테두리)" />
+                <Input variant="filled" placeholder="Filled (배경)" />
               </div>
-              <ComponentPreview>
-                <div className="max-w-md space-y-4">
-                  <Input variant="default" placeholder="Default (테두리)" />
-                  <Input variant="filled" placeholder="Filled (배경)" />
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Input variant="default" placeholder="Default (테두리)" />
+            </ComponentPreview>
+            <CodeBlock
+              code={`<Input variant="default" placeholder="Default (테두리)" />
 <Input variant="filled" placeholder="Filled (배경)" />`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
+              language="tsx"
+              showLineNumbers={false}
+            />
 
-          {/* With Icons */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3" id="with-icons">
-              With Icons
-            </Heading>
-            <div>
-              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-                <Body size="sm" className="text-krds-primary-text">
-                  <strong>언제 사용하나요?</strong> 입력 필드의 용도를
-                  시각적으로 명확히 하고 싶을 때 사용합니다. 예: 검색(돋보기),
-                  이메일(편지), 비밀번호(자물쇠)
-                </Body>
+            {/* With Icons */}
+            <SectionHeading level="h3" id="with-icons" title="With Icons" />
+            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+              <Body size="sm" className="text-krds-primary-text">
+                <strong>언제 사용하나요?</strong> 입력 필드의 용도를 시각적으로
+                명확히 하고 싶을 때 사용합니다. 예: 검색(돋보기), 이메일(편지),
+                비밀번호(자물쇠)
+              </Body>
+            </div>
+            <ComponentPreview>
+              <div className="max-w-md space-y-4">
+                <Input
+                  leftAddon={<SearchIcon />}
+                  placeholder="검색어를 입력하세요"
+                />
+                <Input
+                  leftAddon={<EmailIcon />}
+                  type="email"
+                  placeholder="example@email.com"
+                />
+                <Input rightAddon={<CheckIcon />} placeholder="확인 완료" />
               </div>
-              <ComponentPreview>
-                <div className="max-w-md space-y-4">
-                  <Input
-                    leftAddon={<SearchIcon />}
-                    placeholder="검색어를 입력하세요"
-                  />
-                  <Input
-                    leftAddon={<EmailIcon />}
-                    type="email"
-                    placeholder="example@email.com"
-                  />
-                  <Input rightAddon={<CheckIcon />} placeholder="확인 완료" />
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Input
+            </ComponentPreview>
+            <CodeBlock
+              code={`<Input
   leftAddon={<SearchIcon />}
   placeholder="검색어를 입력하세요"
 />
@@ -355,138 +328,197 @@ export default function InputPage() {
   rightAddon={<CheckIcon />}
   placeholder="확인 완료"
 />`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
+              language="tsx"
+              showLineNumbers={false}
+            />
 
-          {/* Error State */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3" id="error">
-              에러 상태
-            </Heading>
-            <div>
-              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-                <Body size="sm" className="text-krds-primary-text">
-                  <strong>언제 사용하나요?</strong> 입력값이 유효하지 않을 때
-                  사용자에게 즉각적인 피드백을 제공합니다. 에러 메시지는
-                  구체적인 해결 방법을 포함해야 합니다.
-                </Body>
-              </div>
-              <ComponentPreview>
-                <div className="max-w-md space-y-4">
-                  <div>
-                    <Input
-                      error
-                      placeholder="잘못된 입력"
-                      defaultValue="invalid@"
-                    />
-                    <p className="mt-1 text-sm text-krds-danger-text">
-                      이메일 형식이 올바르지 않습니다. &apos;@&apos;를
-                      포함해주세요.
-                    </p>
-                  </div>
-                  <div>
-                    <Input
-                      error
-                      leftAddon={<EmailIcon />}
-                      placeholder="example@email.com"
-                    />
-                    <p className="mt-1 text-sm text-krds-danger-text">
-                      필수 입력 항목입니다.
-                    </p>
-                  </div>
+            {/* Error State */}
+            <SectionHeading level="h3" id="error" title="에러 상태" />
+            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+              <Body size="sm" className="text-krds-primary-text">
+                <strong>언제 사용하나요?</strong> 입력값이 유효하지 않을 때
+                사용자에게 즉각적인 피드백을 제공합니다. 에러 메시지는 구체적인
+                해결 방법을 포함해야 합니다.
+              </Body>
+            </div>
+            <ComponentPreview>
+              <div className="max-w-md space-y-4">
+                <div>
+                  <Input
+                    error
+                    placeholder="잘못된 입력"
+                    defaultValue="invalid@"
+                  />
+                  <p className="mt-1 text-sm text-krds-danger-text">
+                    이메일 형식이 올바르지 않습니다. &apos;@&apos;를
+                    포함해주세요.
+                  </p>
                 </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Input error placeholder="잘못된 입력" defaultValue="invalid@" />
+                <div>
+                  <Input
+                    error
+                    leftAddon={<EmailIcon />}
+                    placeholder="example@email.com"
+                  />
+                  <p className="mt-1 text-sm text-krds-danger-text">
+                    필수 입력 항목입니다.
+                  </p>
+                </div>
+              </div>
+            </ComponentPreview>
+            <CodeBlock
+              code={`<Input error placeholder="잘못된 입력" defaultValue="invalid@" />
 <p className="mt-1 text-sm text-krds-danger-text">
   이메일 형식이 올바르지 않습니다. '@'를 포함해주세요.
 </p>`}
-                  language="tsx"
-                  showLineNumbers={false}
+              language="tsx"
+              showLineNumbers={false}
+            />
+
+            {/* Disabled */}
+            <SectionHeading level="h3" id="disabled" title="비활성화" />
+            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+              <Body size="sm" className="text-krds-primary-text">
+                <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아
+                입력을 받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한
+                없음
+              </Body>
+            </div>
+            <ComponentPreview>
+              <div className="max-w-md space-y-4">
+                <Input disabled placeholder="비활성화된 입력 필드" />
+                <Input
+                  disabled
+                  variant="filled"
+                  placeholder="비활성화된 Filled"
                 />
               </div>
-            </div>
-          </Stack>
-
-          {/* Disabled */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3" id="disabled">
-              비활성화
-            </Heading>
-            <div>
-              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-                <Body size="sm" className="text-krds-primary-text">
-                  <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아
-                  입력을 받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한
-                  없음
-                </Body>
-              </div>
-              <ComponentPreview>
-                <div className="max-w-md space-y-4">
-                  <Input disabled placeholder="비활성화된 입력 필드" />
-                  <Input
-                    disabled
-                    variant="filled"
-                    placeholder="비활성화된 Filled"
-                  />
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Input disabled placeholder="비활성화된 입력 필드" />
+            </ComponentPreview>
+            <CodeBlock
+              code={`<Input disabled placeholder="비활성화된 입력 필드" />
 <Input disabled variant="filled" placeholder="비활성화된 Filled" />`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
+              language="tsx"
+              showLineNumbers={false}
+            />
 
-          {/* Types */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3" id="types">
-              Input Types
-            </Heading>
-            <div>
-              <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-                <Body size="sm" className="text-krds-primary-text">
-                  <strong>언제 사용하나요?</strong> 각 데이터 타입에 맞는 type을
-                  사용하면 모바일에서 적절한 키보드가 표시되고, 브라우저의 자동
-                  검증 기능을 활용할 수 있습니다.
-                </Body>
+            {/* Types */}
+            <SectionHeading level="h3" id="types" title="Input Types" />
+            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
+              <Body size="sm" className="text-krds-primary-text">
+                <strong>언제 사용하나요?</strong> 각 데이터 타입에 맞는 type을
+                사용하면 모바일에서 적절한 키보드가 표시되고, 브라우저의 자동
+                검증 기능을 활용할 수 있습니다.
+              </Body>
+            </div>
+            <ComponentPreview>
+              <div className="max-w-md space-y-4">
+                <Input type="text" placeholder="텍스트" />
+                <Input type="email" placeholder="이메일" />
+                <Input type="password" placeholder="비밀번호" />
+                <Input type="number" placeholder="숫자" />
+                <Input type="tel" placeholder="전화번호" />
+                <Input type="url" placeholder="URL" />
+                <Input type="date" />
               </div>
-              <ComponentPreview>
-                <div className="max-w-md space-y-4">
-                  <Input type="text" placeholder="텍스트" />
-                  <Input type="email" placeholder="이메일" />
-                  <Input type="password" placeholder="비밀번호" />
-                  <Input type="number" placeholder="숫자" />
-                  <Input type="tel" placeholder="전화번호" />
-                  <Input type="url" placeholder="URL" />
-                  <Input type="date" />
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Input type="text" placeholder="텍스트" />
+            </ComponentPreview>
+            <CodeBlock
+              code={`<Input type="text" placeholder="텍스트" />
 <Input type="email" placeholder="이메일" />
 <Input type="password" placeholder="비밀번호" />
 <Input type="number" placeholder="숫자" />
 <Input type="tel" placeholder="전화번호" />
 <Input type="url" placeholder="URL" />
 <Input type="date" />`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
+              language="tsx"
+              showLineNumbers={false}
+            />
+          </TabsContent>
+
+          {/* API 탭 */}
+          <TabsContent value="api">
+            <SectionHeading level="h2" id="props" title="Props" />
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-krds-gray-20">
+                    <th className="text-left py-3 px-4 font-semibold">Name</th>
+                    <th className="text-left py-3 px-4 font-semibold">Type</th>
+                    <th className="text-left py-3 px-4 font-semibold">
+                      Default
+                    </th>
+                    <th className="text-left py-3 px-4 font-semibold">
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">type</td>
+                    <td className="py-3 px-4 font-mono text-xs">
+                      text | email | password | number | tel | url | date
+                    </td>
+                    <td className="py-3 px-4">text</td>
+                    <td className="py-3 px-4">입력 필드 타입</td>
+                  </tr>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">size</td>
+                    <td className="py-3 px-4 font-mono text-xs">
+                      sm | md | lg
+                    </td>
+                    <td className="py-3 px-4">md</td>
+                    <td className="py-3 px-4">
+                      입력 필드 크기 (32px / 40px / 48px)
+                    </td>
+                  </tr>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">variant</td>
+                    <td className="py-3 px-4 font-mono text-xs">
+                      default | filled
+                    </td>
+                    <td className="py-3 px-4">default</td>
+                    <td className="py-3 px-4">입력 필드 스타일</td>
+                  </tr>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">placeholder</td>
+                    <td className="py-3 px-4 font-mono text-xs">string</td>
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">플레이스홀더 텍스트</td>
+                  </tr>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">disabled</td>
+                    <td className="py-3 px-4 font-mono text-xs">boolean</td>
+                    <td className="py-3 px-4">false</td>
+                    <td className="py-3 px-4">비활성화 상태</td>
+                  </tr>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">error</td>
+                    <td className="py-3 px-4 font-mono text-xs">boolean</td>
+                    <td className="py-3 px-4">false</td>
+                    <td className="py-3 px-4">에러 상태 표시</td>
+                  </tr>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">leftAddon</td>
+                    <td className="py-3 px-4 font-mono text-xs">ReactNode</td>
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">왼쪽에 표시할 아이콘/요소</td>
+                  </tr>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">rightAddon</td>
+                    <td className="py-3 px-4 font-mono text-xs">ReactNode</td>
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">오른쪽에 표시할 아이콘/요소</td>
+                  </tr>
+                  <tr className="border-b border-krds-gray-10">
+                    <td className="py-3 px-4 font-mono text-xs">className</td>
+                    <td className="py-3 px-4 font-mono text-xs">string</td>
+                    <td className="py-3 px-4">-</td>
+                    <td className="py-3 px-4">추가 CSS 클래스</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </Stack>
-        </Stack>
+          </TabsContent>
+        </Tabs>
       </PageSection>
     </>
   );

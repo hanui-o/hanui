@@ -139,7 +139,7 @@ export default function HeadingPage() {
 
             <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
-                <Heading level="h6">h6 - Extra Extra Small Heading</Heading>
+                <Heading level="h5">h6 - Extra Extra Small Heading</Heading>
               </div>
               <div className="text-sm text-krds-gray-70">
                 15px · 700 (Bold) · 150% 줄 간격

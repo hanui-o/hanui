@@ -69,22 +69,42 @@ const navigationComponents = [
     href: '/components/navigation/skiplink',
     updated: true,
   },
-  // { name: 'Main Menu', description: '메인 메뉴', href: '/components/main-menu', updated: false },
+  {
+    name: 'Main Menu',
+    description: '주 메뉴',
+    href: '/components/navigation/mainmenu',
+    updated: true,
+  },
   {
     name: 'Breadcrumb',
     description: '브레드크럼',
     href: '/components/navigation/breadcrumb',
     updated: true,
   },
-  // { name: 'Side Navigation', description: '사이드 메뉴', href: '/components/side-navigation', updated: false },
-  // { name: 'In-page Navigation', description: '콘텐츠 내 탐색', href: '/components/in-page-navigation', updated: false },
+  {
+    name: 'Side Navigation',
+    description: '사이드 메뉴',
+    href: '/components/navigation/sidenavigation',
+    updated: true,
+  },
+  {
+    name: 'In-page Navigation',
+    description: '콘텐츠 내 탐색',
+    href: '/components/navigation/inpagenavigation',
+    updated: true,
+  },
   {
     name: 'Pagination',
     description: '페이지네이션',
     href: '/components/navigation/pagination',
     updated: true,
   },
-  // { name: 'Tab Bars', description: '탭바', href: '/components/tab-bars', updated: false },
+  {
+    name: 'Tab Bars',
+    description: '하단 고정 탭바',
+    href: '/components/navigation/tabbars',
+    updated: true,
+  },
 ];
 
 // 3. 레이아웃 및 표현 (Layout & Presentation)
@@ -110,7 +130,12 @@ const presentationComponents = [
     updated: true,
   },
   // Presentation 컴포넌트들
-  // { name: 'Structured List', description: '구조화 목록', href: '/components/structured-list', updated: false },
+  {
+    name: 'Structured List',
+    description: '구조화 목록',
+    href: '/layout/structured-list',
+    updated: true,
+  },
   // { name: 'Critical Alerts', description: '긴급 공지', href: '/components/critical-alerts', updated: false },
   // { name: 'Calendar', description: '달력', href: '/components/calendar', updated: false },
   // { name: 'Disclosure', description: '디스클로저', href: '/components/disclosure', updated: false },

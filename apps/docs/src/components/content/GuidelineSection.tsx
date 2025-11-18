@@ -15,21 +15,13 @@ export function GuidelineSection({
 }: GuidelineSectionProps) {
   const isDo = type === 'do';
 
-  const borderColor = isDo
-    ? 'border-green-200 dark:border-green-900'
-    : 'border-red-200 dark:border-red-900';
+  const borderColor = 'border-gray-200 dark:border-gray-700';
 
-  const bgColor = isDo
-    ? 'bg-green-50 dark:bg-green-950/30'
-    : 'bg-red-50 dark:bg-red-950/30';
+  const bgColor = 'bg-gray-50 dark:bg-gray-900/30';
 
-  const iconBgColor = isDo
-    ? 'bg-green-500 dark:bg-green-600'
-    : 'bg-red-500 dark:bg-red-600';
+  const iconBgColor = 'bg-gray-400 dark:bg-gray-600';
 
-  const textColor = isDo
-    ? 'text-green-900 dark:text-green-100'
-    : 'text-red-900 dark:text-red-100';
+  const textColor = 'text-gray-900 dark:text-gray-100';
 
   const Icon = isDo ? CheckIcon : XIcon;
 
@@ -38,8 +30,8 @@ export function GuidelineSection({
       className={`rounded-lg border-2 ${borderColor} ${bgColor} p-6 ${className}`}
     >
       <div className="flex items-center gap-3 mb-4">
-        <div className={`rounded-full ${iconBgColor} p-1.5`}>
-          <Icon className="w-4 h-4 text-white" />
+        <div className={`rounded-full ${iconBgColor} p-0.5`}>
+          <Icon className="w-2.5 h-2.5 text-white" />
         </div>
         <h4 className={`text-lg font-semibold ${textColor}`}>{title}</h4>
       </div>

@@ -10,7 +10,7 @@ export default function InstallationPage() {
     <>
       <PageHeader
         title="Installation"
-        description="HANUI를 프로젝트에 설치하고 설정하는 방법을 안내합니다."
+        description="HANUI는 소스 코드 복사 방식으로 배포됩니다. CLI 도구를 사용하여 필요한 컴포넌트만 프로젝트에 추가하세요."
       />
 
       {/* Prerequisites */}
@@ -46,53 +46,116 @@ export default function InstallationPage() {
         </Stack>
       </PageSection>
 
-      {/* Package Installation */}
+      {/* Step 1: Initialize */}
       <PageSection>
-        <Heading level="h2" id="package-installation">
-          1. 패키지 설치
+        <Heading level="h2" id="initialize">
+          1. 프로젝트 초기화
         </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
-          <Body>원하는 패키지 매니저를 사용하여 HANUI를 설치하세요:</Body>
-          <div className="space-y-4">
-            <div>
-              <Body size="sm" weight="bold" className="mb-2">
-                npm
-              </Body>
-              <CodeBlock
-                code="npm install @hanui/react"
-                language="bash"
-                showLineNumbers={false}
-              />
-            </div>
-            <div>
-              <Body size="sm" weight="bold" className="mb-2">
-                yarn
-              </Body>
-              <CodeBlock
-                code="yarn add @hanui/react"
-                language="bash"
-                showLineNumbers={false}
-              />
-            </div>
-            <div>
-              <Body size="sm" weight="bold" className="mb-2">
-                pnpm
-              </Body>
-              <CodeBlock
-                code="pnpm add @hanui/react"
-                language="bash"
-                showLineNumbers={false}
-              />
-            </div>
+          <Body>
+            HANUI CLI를 사용하여 프로젝트를 초기화합니다. 이 과정은 한 번만
+            수행하면 됩니다.
+          </Body>
+          <CodeBlock
+            code="npx hanui init"
+            language="bash"
+            showLineNumbers={false}
+          />
+
+          <div className="bg-krds-primary-surface rounded-lg p-6 border border-krds-primary-border mt-4">
+            <Body size="sm" weight="bold" className="mb-3">
+              이 명령어가 수행하는 작업:
+            </Body>
+            <ul className="space-y-2 text-sm text-krds-primary-text">
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>
+                  <code className="bg-krds-gray-10 px-1 rounded">
+                    components/hanui/
+                  </code>{' '}
+                  디렉토리 생성
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>
+                  <code className="bg-krds-gray-10 px-1 rounded">
+                    lib/utils.ts
+                  </code>{' '}
+                  생성 (cn 유틸리티 함수)
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>
+                  <code className="bg-krds-gray-10 px-1 rounded">
+                    hanui.json
+                  </code>{' '}
+                  설정 파일 생성
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>Tailwind CSS 설정 안내</span>
+              </li>
+            </ul>
           </div>
+        </Stack>
+      </PageSection>
+
+      {/* Step 2: Add Components */}
+      <PageSection>
+        <Heading level="h2" id="add-components">
+          2. 컴포넌트 추가
+        </Heading>
+
+        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+          <Body>
+            필요한 컴포넌트를{' '}
+            <code className="bg-krds-gray-5 px-1 rounded text-sm">
+              npx hanui add
+            </code>{' '}
+            명령어로 추가합니다.
+          </Body>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">단일 컴포넌트 추가</Heading>
+            <CodeBlock
+              code="npx hanui add button"
+              language="bash"
+              showLineNumbers={false}
+            />
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">여러 컴포넌트 한 번에 추가</Heading>
+            <CodeBlock
+              code="npx hanui add button modal select"
+              language="bash"
+              showLineNumbers={false}
+            />
+          </Stack>
+
+          <Stack spacing="heading-tight">
+            <Heading level="h3">인터랙티브 선택</Heading>
+            <CodeBlock
+              code="npx hanui add"
+              language="bash"
+              showLineNumbers={false}
+            />
+            <Body size="sm" className="text-krds-gray-70">
+              명령어만 실행하면 사용 가능한 컴포넌트 목록이 표시되어 선택할 수
+              있습니다.
+            </Body>
+          </Stack>
         </Stack>
       </PageSection>
 
       {/* Tailwind CSS Setup */}
       <PageSection>
         <Heading level="h2" id="tailwind-setup">
-          2. Tailwind CSS 설정
+          3. Tailwind CSS 설정
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
@@ -123,41 +186,10 @@ module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
     // HANUI 컴포넌트 경로 추가
-    './node_modules/@hanui/react/**/*.{js,ts,jsx,tsx}',
+    './components/hanui/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {
-      colors: {
-        // KRDS Primary Colors
-        primary: {
-          5: '#f0f5ff',
-          10: '#e0ebff',
-          20: '#c2d7ff',
-          30: '#a3c3ff',
-          40: '#85afff',
-          50: '#669bff',
-          60: '#256ef4',
-          70: '#0b50d0',
-          80: '#0040a8',
-          90: '#003080',
-          95: '#002058',
-        },
-        // KRDS Gray Scale
-        gray: {
-          5: '#f9fafb',
-          10: '#f3f4f6',
-          20: '#e5e7eb',
-          30: '#d1d5db',
-          40: '#9ca3af',
-          50: '#6b7280',
-          60: '#4b5563',
-          70: '#374151',
-          80: '#1f2937',
-          90: '#111827',
-          95: '#030712',
-        },
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };`}
@@ -166,25 +198,6 @@ module.exports = {
               />
             </div>
           </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* CSS Import */}
-      <PageSection>
-        <Heading level="h2" id="css-import">
-          3. CSS 파일 import
-        </Heading>
-
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
-          <Body>메인 CSS 파일에 Tailwind directives를 추가하세요:</Body>
-          <CodeBlock
-            code={`@tailwind base;
-@tailwind components;
-@tailwind utilities;`}
-            language="css"
-            fileName="app/globals.css 또는 src/index.css"
-            showLineNumbers={false}
-          />
         </Stack>
       </PageSection>
 
@@ -206,8 +219,12 @@ module.exports = {
                 </Body>
                 <div className="bg-krds-primary-surface rounded-lg p-4 border border-krds-primary-20">
                   <Body size="sm" className="text-krds-primary-text">
-                    <strong>Tip:</strong> 클라이언트 컴포넌트가 필요한 HANUI
-                    컴포넌트는 자동으로 'use client' 지시어가 포함되어 있습니다.
+                    <strong>Tip:</strong> HANUI 컴포넌트는 Radix UI 기반으로
+                    이미{' '}
+                    <code className="bg-krds-gray-10 px-1 rounded text-xs">
+                      'use client'
+                    </code>{' '}
+                    지시어가 포함되어 있습니다.
                   </Body>
                 </div>
               </div>
@@ -225,25 +242,8 @@ module.exports = {
                 <CodeBlock
                   code={`// main.tsx
 import './index.css';
-import { Button } from '@hanui/react';`}
+import { Button } from '@/components/hanui/button';`}
                   language="typescript"
-                  showLineNumbers={false}
-                />
-              </div>
-            </Stack>
-          </div>
-
-          {/* Create React App */}
-          <div className="border border-krds-gray-20 rounded-lg p-6">
-            <Stack spacing="heading-tight">
-              <Heading level="h3">Create React App</Heading>
-              <div>
-                <Body size="sm" className="text-krds-gray-70 mb-3">
-                  CRA에서 Tailwind CSS를 사용하려면 CRACO를 설치해야 합니다:
-                </Body>
-                <CodeBlock
-                  code="npm install -D @craco/craco"
-                  language="bash"
                   showLineNumbers={false}
                 />
               </div>
@@ -264,7 +264,7 @@ import { Button } from '@hanui/react';`}
             확인하세요:
           </Body>
           <CodeBlock
-            code={`import { Button } from '@hanui/react';
+            code={`import { Button } from '@/components/hanui/button';
 
 function App() {
   return (
@@ -292,11 +292,11 @@ export default App;`}
               <Heading level="h3">스타일이 적용되지 않는 경우</Heading>
               <div>
                 <Body size="sm" className="text-krds-gray-70 mb-2">
-                  tailwind.config.js의 content 경로에 HANUI 경로가 포함되어
-                  있는지 확인하세요.
+                  tailwind.config.js의 content 경로에 HANUI 컴포넌트 경로가
+                  포함되어 있는지 확인하세요.
                 </Body>
                 <code className="text-xs bg-krds-gray-5 px-2 py-1 rounded">
-                  ./node_modules/@hanui/react/**/*.{'{'}js,ts,jsx,tsx{'}'}
+                  ./components/hanui/**/*.{'{'}js,ts,jsx,tsx{'}'}
                 </code>
               </div>
             </Stack>
@@ -322,15 +322,23 @@ export default App;`}
 
           <div className="border-l-4 border-krds-warning-base pl-4 py-2">
             <Stack spacing="heading-tight">
-              <Heading level="h3">모듈을 찾을 수 없는 경우</Heading>
+              <Heading level="h3">import 경로 에러</Heading>
               <div>
                 <Body size="sm" className="text-krds-gray-70">
-                  node_modules를 삭제하고 다시 설치해보세요:
+                  tsconfig.json에 경로 alias가 설정되어 있는지 확인하세요:
                 </Body>
                 <div className="mt-2">
                   <CodeBlock
-                    code="rm -rf node_modules package-lock.json && npm install"
-                    language="bash"
+                    code={`{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}`}
+                    language="json"
+                    fileName="tsconfig.json"
                     showLineNumbers={false}
                   />
                 </div>

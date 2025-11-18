@@ -2,6 +2,7 @@
 
 import { Stack, Heading, Body } from '@hanui/react';
 import { CodeBlock } from '@/components/content/CodeBlock';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
 
@@ -13,62 +14,159 @@ export default function QuickStartPage() {
         description="HANUI의 기본 사용법을 빠르게 익혀보세요. 5분이면 충분합니다!"
       />
 
-      {/* First Component */}
+      {/* Getting Started */}
       <PageSection>
-        <Heading level="h2" id="first-component">
-          첫 번째 컴포넌트 사용하기
+        <Heading level="h2" id="getting-started">
+          시작하기
         </Heading>
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Body>가장 기본적인 Button 컴포넌트부터 시작해보겠습니다.</Body>
+          <Body>
+            HANUI는 <strong>소스 코드 복사 방식</strong>으로 배포됩니다. CLI
+            명령어로 컴포넌트 소스 코드를 프로젝트에 직접 복사하여 완전히
+            소유하고 자유롭게 커스터마이징할 수 있습니다.
+          </Body>
 
-          <div className="space-y-4">
-            <div>
-              <Body size="sm" weight="bold" className="mb-2">
-                1. 컴포넌트 import
+          {/* Step 1: Init */}
+          <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
+            <Stack spacing="heading-tight">
+              <Heading level="h3">1. 프로젝트 초기화</Heading>
+              <Body size="sm" className="text-krds-gray-70">
+                프로젝트에 HANUI를 처음 설치하는 경우, 먼저 초기화 명령을
+                실행하세요:
               </Body>
               <CodeBlock
-                code="import { Button } from '@hanui/react';"
-                language="typescript"
+                code={`npx hanui init`}
+                language="bash"
                 showLineNumbers={false}
               />
-            </div>
+              <Body size="sm" className="text-krds-gray-70">
+                이 명령어는 다음을 생성합니다:
+              </Body>
+              <ul className="space-y-1 text-sm text-krds-gray-70 ml-4">
+                <li className="flex items-start gap-2">
+                  <span>•</span>
+                  <span>
+                    <code className="bg-krds-gray-10 px-1 rounded text-xs">
+                      components/hanui/
+                    </code>{' '}
+                    디렉토리
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>•</span>
+                  <span>
+                    <code className="bg-krds-gray-10 px-1 rounded text-xs">
+                      lib/utils.ts
+                    </code>{' '}
+                    유틸리티 파일
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span>•</span>
+                  <span>
+                    <code className="bg-krds-gray-10 px-1 rounded text-xs">
+                      hanui.json
+                    </code>{' '}
+                    설정 파일
+                  </span>
+                </li>
+              </ul>
+            </Stack>
+          </div>
 
-            <div>
-              <Body size="sm" weight="bold" className="mb-2">
-                2. 컴포넌트 사용
+          {/* Step 2: Add Components */}
+          <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
+            <Stack spacing="heading-tight">
+              <Heading level="h3">2. 컴포넌트 추가</Heading>
+              <Body size="sm" className="text-krds-gray-70">
+                필요한 컴포넌트를 프로젝트에 추가합니다:
               </Body>
               <CodeBlock
-                code={`function App() {
+                code={`npx hanui add button`}
+                language="bash"
+                showLineNumbers={false}
+              />
+              <Body size="sm" className="text-krds-gray-70">
+                이 명령어는 Button 컴포넌트의 소스 코드를{' '}
+                <code className="bg-krds-gray-10 px-1 rounded text-xs">
+                  components/hanui/button.tsx
+                </code>{' '}
+                경로에 복사하고, 필요한 npm 패키지를 자동으로 설치합니다.
+              </Body>
+            </Stack>
+          </div>
+
+          {/* Step 3: Use Components */}
+          <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
+            <Stack spacing="heading-tight">
+              <Heading level="h3">3. 컴포넌트 사용</Heading>
+              <Body size="sm" className="text-krds-gray-70 mb-2">
+                이제 프로젝트 어디서든 컴포넌트를 import하여 사용할 수 있습니다:
+              </Body>
+              <CodeBlock
+                code={`import { Button } from '@/components/hanui/button';
+
+export default function MyPage() {
   return (
-    <div className="p-8">
-      <Button>클릭하세요</Button>
+    <div className="flex gap-3">
+      <Button variant="primary">주요 버튼</Button>
+      <Button variant="secondary">부차 버튼</Button>
+      <Button variant="outline">아웃라인</Button>
     </div>
   );
 }`}
-                language="tsx"
+                language="typescript"
+                fileName="app/my-page.tsx"
               />
-            </div>
-
-            <div>
-              <Body size="sm" weight="bold" className="mb-2">
-                3. Props로 커스터마이징
+              <Body size="sm" className="text-krds-gray-70 mt-3">
+                위 코드를 실행하면 다음과 같이 렌더링됩니다. 자세한 예제는{' '}
+                <a
+                  href="/components/action/button"
+                  className="text-krds-primary-base hover:underline"
+                >
+                  Button 컴포넌트 페이지
+                </a>
+                를 참고하세요.
               </Body>
-              <CodeBlock
-                code={`<Button variant="primary" size="lg">
-  주요 버튼
-</Button>
+            </Stack>
+          </div>
 
-<Button variant="secondary" size="md">
-  부차 버튼
-</Button>
-
-<Button variant="outline" size="sm">
-  외곽선 버튼
-</Button>`}
-                language="tsx"
-              />
-            </div>
+          {/* Why Source Code? */}
+          <div className="bg-krds-primary-surface rounded-lg p-6 border border-krds-primary-border">
+            <Heading level="h3" className="mb-3">
+              왜 소스 코드 복사 방식인가요?
+            </Heading>
+            <ul className="space-y-2 text-sm text-krds-primary-text">
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>
+                  <strong>완전한 소유권:</strong> 컴포넌트 코드가 프로젝트 안에
+                  있어 자유롭게 수정 가능
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>
+                  <strong>버전 의존성 없음:</strong> 패키지 업데이트로 인한
+                  Breaking Change 걱정 불필요
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>
+                  <strong>번들 최적화:</strong> 사용하는 컴포넌트만 포함되어
+                  번들 크기 최소화
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>
+                  <strong>프로젝트 맞춤 커스터마이징:</strong> 디자인 시스템에
+                  맞게 자유롭게 변경
+                </span>
+              </li>
+            </ul>
           </div>
         </Stack>
       </PageSection>
@@ -85,10 +183,19 @@ export default function QuickStartPage() {
             <Heading level="h3">폼 만들기</Heading>
             <div>
               <Body size="sm" className="text-krds-gray-70 mb-3">
-                Input과 Button을 조합하여 간단한 로그인 폼을 만들어보세요:
+                먼저 필요한 컴포넌트를 추가합니다:
               </Body>
               <CodeBlock
-                code={`import { Input, Button } from '@hanui/react';
+                code={`npx hanui add button input`}
+                language="bash"
+                showLineNumbers={false}
+              />
+              <Body size="sm" className="text-krds-gray-70 mt-3 mb-3">
+                그 다음 간단한 로그인 폼을 만들 수 있습니다:
+              </Body>
+              <CodeBlock
+                code={`import { Input } from '@/components/hanui/input';
+import { Button } from '@/components/hanui/button';
 
 function LoginForm() {
   return (
@@ -131,10 +238,20 @@ function LoginForm() {
             <Heading level="h3">카드 레이아웃</Heading>
             <div>
               <Body size="sm" className="text-krds-gray-70 mb-3">
-                Container와 Card를 사용하여 깔끔한 레이아웃을 구성하세요:
+                Container와 Card 컴포넌트를 추가하고 깔끔한 레이아웃을
+                구성하세요:
               </Body>
               <CodeBlock
-                code={`import { Container, Card, Button } from '@hanui/react';
+                code={`npx hanui add container card`}
+                language="bash"
+                showLineNumbers={false}
+              />
+              <Body size="sm" className="text-krds-gray-70 mt-3 mb-3">
+                대시보드 UI 예제:
+              </Body>
+              <CodeBlock
+                code={`import { Container } from '@/components/hanui/container';
+import { Card } from '@/components/hanui/card';
 
 function Dashboard() {
   return (
@@ -170,11 +287,20 @@ function Dashboard() {
             <Heading level="h3">모달 사용하기</Heading>
             <div>
               <Body size="sm" className="text-krds-gray-70 mb-3">
-                Modal 컴포넌트로 사용자 인터랙션을 추가하세요:
+                Modal과 Button 컴포넌트로 사용자 인터랙션을 추가합니다:
+              </Body>
+              <CodeBlock
+                code={`npx hanui add modal button`}
+                language="bash"
+                showLineNumbers={false}
+              />
+              <Body size="sm" className="text-krds-gray-70 mt-3 mb-3">
+                확인 다이얼로그 예제:
               </Body>
               <CodeBlock
                 code={`import { useState } from 'react';
-import { Modal, Button } from '@hanui/react';
+import { Modal } from '@/components/hanui/modal';
+import { Button } from '@/components/hanui/button';
 
 function ConfirmDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -229,10 +355,12 @@ function ConfirmDialog() {
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
           <Body>
-            HANUI는 TypeScript로 작성되어 완벽한 타입 지원을 제공합니다:
+            HANUI 컴포넌트는 TypeScript로 작성되어 완벽한 타입 지원을
+            제공합니다. 복사된 소스 코드에는 모든 타입 정의가 포함되어 있어 즉시
+            사용 가능합니다:
           </Body>
           <CodeBlock
-            code={`import { Button, type ButtonProps } from '@hanui/react';
+            code={`import { Button, type ButtonProps } from '@/components/hanui/button';
 
 // Props의 타입이 자동으로 추론됩니다
 function CustomButton(props: ButtonProps) {
@@ -253,6 +381,12 @@ function CustomButton(props: ButtonProps) {
 </Button>`}
             language="tsx"
           />
+          <div className="bg-krds-primary-surface rounded-lg p-4 border border-krds-primary-20 mt-4">
+            <Body size="sm" className="text-krds-primary-text">
+              <strong>장점:</strong> 소스 코드가 프로젝트 안에 있어 타입 정의를
+              직접 수정하여 프로젝트 요구사항에 맞게 확장할 수 있습니다.
+            </Body>
+          </div>
         </Stack>
       </PageSection>
 
@@ -264,35 +398,62 @@ function CustomButton(props: ButtonProps) {
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Body>
-            Tailwind CSS 클래스를 사용하여 컴포넌트를 쉽게 커스터마이징할 수
-            있습니다:
+            소스 코드를 직접 소유하므로 자유롭게 커스터마이징할 수 있습니다.
+            Tailwind CSS 클래스나 컴포넌트 소스 코드를 직접 수정하세요:
           </Body>
 
           <Stack spacing="heading-tight">
-            <Heading level="h3">className prop 사용</Heading>
+            <Heading level="h3">방법 1: className prop으로 간단히 수정</Heading>
             <CodeBlock
-              code={`<Button className="w-full rounded-full shadow-lg">
+              code={`import { Button } from '@/components/hanui/button';
+
+<Button className="w-full rounded-full shadow-lg">
   전체 너비 둥근 버튼
 </Button>
 
-<Input className="border-2 border-blue-500 focus:ring-4" />
-
-<Card className="hover:shadow-xl transition-shadow duration-300">
-  호버 시 그림자 효과
-</Card>`}
+<Button className="bg-gradient-to-r from-purple-500 to-pink-500">
+  그라데이션 버튼
+</Button>`}
               language="tsx"
             />
           </Stack>
 
           <Stack spacing="heading-tight">
-            <Heading level="h3">다크 모드 지원</Heading>
-            <CodeBlock
-              code={`// HANUI 컴포넌트는 기본적으로 다크 모드를 지원합니다
-<div className="bg-krds-white">
-  <Button>자동으로 다크 모드 적용</Button>
-</div>`}
-              language="tsx"
-            />
+            <Heading level="h3">방법 2: 소스 코드를 직접 수정</Heading>
+            <div>
+              <Body size="sm" className="text-krds-gray-70 mb-2">
+                <code className="bg-krds-gray-5 px-1 rounded text-xs">
+                  components/hanui/button.tsx
+                </code>{' '}
+                파일을 열어 variant를 추가하거나 수정하세요:
+              </Body>
+              <CodeBlock
+                code={`// components/hanui/button.tsx
+const buttonVariants = cva(
+  'inline-flex items-center justify-center gap-2 ...',
+  {
+    variants: {
+      variant: {
+        primary: 'bg-[#256ef4] text-white hover:bg-[#0b50d0]',
+        // 새로운 variant 추가! 🎨
+        gradient: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white',
+        // 기존 variant 수정도 자유롭게
+      },
+    },
+  }
+);`}
+                language="typescript"
+                fileName="components/hanui/button.tsx"
+              />
+              <Body size="sm" className="text-krds-gray-70 mt-2">
+                이제 프로젝트에서 새로운 variant를 사용할 수 있습니다:
+              </Body>
+              <CodeBlock
+                code={`<Button variant="gradient">그라데이션 버튼</Button>`}
+                language="tsx"
+                showLineNumbers={false}
+              />
+            </div>
           </Stack>
         </Stack>
       </PageSection>
@@ -304,37 +465,56 @@ function CustomButton(props: ButtonProps) {
         </Heading>
 
         <Stack spacing="heading-content" className="mt-2 md:mt-4">
-          <Body>HANUI는 웹 접근성을 기본으로 제공합니다:</Body>
+          <Body>
+            HANUI는 Radix UI Primitives 기반으로 구축되어 웹 접근성을 기본으로
+            제공합니다:
+          </Body>
 
           <div className="bg-krds-primary-surface rounded-lg p-6 border border-krds-primary-border">
             <ul className="space-y-3 text-sm text-krds-primary-text">
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
-                  <strong>키보드 네비게이션:</strong> Tab, Enter, Space 키로
-                  모든 컴포넌트 조작 가능
+                  <strong>Radix UI 기반:</strong> WAI-ARIA 표준을 준수하는
+                  Headless UI 컴포넌트 사용
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-krds-primary-base">✓</span>
+                <span>
+                  <strong>키보드 네비게이션:</strong> Tab, Enter, Space, Escape
+                  키로 모든 컴포넌트 조작 가능
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
                   <strong>스크린 리더:</strong> ARIA 레이블과 역할이 자동으로
-                  적용
+                  적용되어 스크린 리더 호환
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
-                  <strong>포커스 관리:</strong> 명확한 포커스 표시 및 순서
+                  <strong>포커스 관리:</strong> 명확한 포커스 표시 및 논리적인
+                  포커스 순서
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-krds-primary-base">✓</span>
                 <span>
-                  <strong>색상 대비:</strong> WCAG 2.1 AA 수준의 명암비 준수
+                  <strong>WCAG 2.1 AA 준수:</strong> KRDS 디자인 시스템의 색상
+                  대비 기준 적용
                 </span>
               </li>
             </ul>
+          </div>
+
+          <div className="bg-krds-gray-5 rounded-lg p-4 border border-krds-gray-20 mt-4">
+            <Body size="sm">
+              <strong>참고:</strong> 복사된 소스 코드에 모든 접근성 기능이
+              포함되어 있으며, 코드 내 주석으로 자세한 설명이 제공됩니다.
+            </Body>
           </div>
         </Stack>
       </PageSection>

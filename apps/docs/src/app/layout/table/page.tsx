@@ -292,7 +292,7 @@ export default function TablePage() {
                       <TableHead>직급</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <TableBody striped>
+                  <TableBody>
                     <TableRow>
                       <TableCell>1</TableCell>
                       <TableCell>김철수</TableCell>
@@ -332,7 +332,7 @@ export default function TablePage() {
   <TableHeader>
     {/* ... */}
   </TableHeader>
-  <TableBody striped>
+  <TableBody>
     <TableRow>
       <TableCell>1</TableCell>
       <TableCell>김철수</TableCell>
@@ -478,7 +478,7 @@ const handleSort = (column: string) => {
                       <TableHead>집행률</TableHead>
                     </TableRow>
                   </TableHeader>
-                  <TableBody striped>
+                  <TableBody>
                     <TableRow>
                       <TableCell>개발팀</TableCell>
                       <TableCell>5,000</TableCell>
@@ -532,7 +532,7 @@ const handleSort = (column: string) => {
       <TableHead>집행률</TableHead>
     </TableRow>
   </TableHeader>
-  <TableBody striped>
+  <TableBody>
     <TableRow>
       <TableCell>개발팀</TableCell>
       <TableCell>5,000</TableCell>
