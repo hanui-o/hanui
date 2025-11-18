@@ -14,12 +14,12 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
 import { PageSection } from '@/components/content/PageSection';
-import { SectionHeader } from '@/components/content/SectionHeader';
+import { SectionHeading } from '@/components/hanui/section-header';
 
 export default function SpacingPage() {
   return (
     <>
-      <SectionHeader
+      <SectionHeading
         level="h1"
         id="overview"
         title="Spacing"
@@ -27,7 +27,7 @@ export default function SpacingPage() {
       />
 
       <PageSection>
-        <SectionHeader
+        <SectionHeading
           level="h2"
           id="overview"
           title="개요"
@@ -35,13 +35,13 @@ export default function SpacingPage() {
         />
       </PageSection>
 
-      {/* SectionHeader 사용 예시 */}
+      {/* SectionHeading 사용 예시 */}
       <PageSection>
-        <SectionHeader
+        <SectionHeading
           level="h2"
           id="section-header-usage"
-          title="SectionHeader 컴포넌트 사용법"
-          description="SectionHeader는 PageSection 내부에서 사용하는 제목과 설명을 일관되게 표시하는 컴포넌트입니다. 레벨별로 자동으로 적절한 간격과 margin-bottom이 적용됩니다."
+          title="SectionHeading 컴포넌트 사용법"
+          description="SectionHeading는 PageSection 내부에서 사용하는 제목과 설명을 일관되게 표시하는 컴포넌트입니다. 레벨별로 자동으로 적절한 간격과 margin-bottom이 적용됩니다."
         />
 
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
@@ -64,27 +64,27 @@ export default function SpacingPage() {
             </Heading>
             <ComponentPreview>
               <Stack spacing="h2-h3">
-                <SectionHeader
+                <SectionHeading
                   level="h1"
                   title="h1 제목"
                   description="페이지의 주요 섹션을 나타내는 최상위 제목입니다. 가장 큰 간격(48px)이 적용됩니다."
                 />
-                <SectionHeader
+                <SectionHeading
                   level="h2"
                   title="h2 제목"
                   description="주요 섹션의 하위 제목으로, 40px의 간격이 적용됩니다."
                 />
-                <SectionHeader
+                <SectionHeading
                   level="h3"
                   title="h3 제목"
                   description="세부 섹션 제목으로, 24px의 간격이 적용됩니다."
                 />
-                <SectionHeader
+                <SectionHeading
                   level="h4"
                   title="h4 제목"
                   description="소제목으로, 16px의 간격이 적용됩니다."
                 />
-                <SectionHeader
+                <SectionHeading
                   level="h5"
                   title="h5 제목"
                   description="최소 단위 제목으로, 16px의 간격이 적용됩니다."
@@ -92,10 +92,10 @@ export default function SpacingPage() {
               </Stack>
             </ComponentPreview>
             <CodeBlock
-              code={`import { SectionHeader } from '@/components/content/SectionHeader';
+              code={`import { SectionHeading } from '@/components/hanui/section-header';
 
 // 설명과 함께 사용
-<SectionHeader
+<SectionHeading
   level="h2"
   id="overview"
   title="개요"
@@ -103,17 +103,17 @@ export default function SpacingPage() {
 />
 
 // 설명 없이 사용 (레벨별 margin-bottom만 적용)
-<SectionHeader
+<SectionHeading
   level="h3"
   title="서브 섹션"
 />
 
 // 커스텀 설명 콘텐츠
-<SectionHeader level="h2" title="고급 기능">
+<SectionHeading level="h2" title="고급 기능">
   <Body className="text-krds-gray-70">
     커스텀 내용 <strong>강조</strong> 가능
   </Body>
-</SectionHeader>`}
+</SectionHeading>`}
               language="tsx"
             />
           </div>
@@ -121,7 +121,7 @@ export default function SpacingPage() {
           <div className="bg-krds-primary-5 border border-krds-primary-20 rounded-lg p-4">
             <Body size="sm">
               <strong>💡 팁:</strong> PageSection 내부에서 제목과 설명이 필요한
-              경우 항상 SectionHeader를 사용하세요. 레벨별로 자동으로 적절한
+              경우 항상 SectionHeading를 사용하세요. 레벨별로 자동으로 적절한
               간격이 적용되므로 별도로 margin이나 spacing을 신경 쓸 필요가
               없습니다.
             </Body>
@@ -131,7 +131,7 @@ export default function SpacingPage() {
 
       {/* 컴포넌트 간격 */}
       <PageSection>
-        <SectionHeader
+        <SectionHeading
           level="h2"
           id="component-spacing"
           title="컴포넌트 간격"
@@ -146,7 +146,7 @@ export default function SpacingPage() {
 
           <Stack spacing="h3-h3">
             <div>
-              <SectionHeader
+              <SectionHeading
                 level="h3"
                 title="카드 리스트"
                 description="카드 세로형, 가로형, 모듈형 간격은 모두 gap-7(24px)을 사용합니다. 대체로 세로형 카드 리스트의 간격은 gutter 값으로 적용합니다."
@@ -192,7 +192,7 @@ export default function SpacingPage() {
             </div>
 
             <div>
-              <SectionHeader
+              <SectionHeading
                 level="h3"
                 title="인풋 (Input)"
                 description="인풋 컴포넌트 간 간격은 'form' 프리셋을 사용합니다. 가로형은 'md', 세로형은 'form' spacing을 사용합니다."
@@ -242,7 +242,7 @@ export default function SpacingPage() {
             </div>
 
             <div>
-              <SectionHeader
+              <SectionHeading
                 level="h3"
                 title="체크박스, 라디오 버튼"
                 description="체크박스나 라디오 버튼 리스트는 'form' spacing을 사용합니다. 가로형은 'lg' spacing을 사용하여 충분한 간격을 유지합니다."
@@ -298,7 +298,7 @@ export default function SpacingPage() {
 
       {/* 컴포넌트 내 패딩 */}
       <PageSection>
-        <SectionHeader
+        <SectionHeading
           level="h2"
           id="component-padding"
           title="컴포넌트 내 패딩"
@@ -308,7 +308,7 @@ export default function SpacingPage() {
         <Stack spacing="content-loose" className="mt-2 md:mt-4">
           <Stack spacing="h3-h3">
             <div>
-              <SectionHeader
+              <SectionHeading
                 level="h3"
                 title="카드"
                 description="카드 패딩은 'card-md', 'card-lg', 'card-sm' 등의 프리셋을 사용합니다. 반응형으로 모바일과 PC에서 자동으로 조정됩니다."
@@ -357,7 +357,7 @@ export default function SpacingPage() {
             </div>
 
             <div>
-              <SectionHeader
+              <SectionHeading
                 level="h3"
                 title="텍스트 입력 필드"
                 description="입력 필드 그룹은 'input-group' spacing을 사용합니다. 레이블, 입력 박스, 설명 사이의 간격이 자동으로 적용됩니다."
@@ -427,7 +427,7 @@ export default function SpacingPage() {
           </Stack>
 
           <Stack spacing="h2-h3">
-            <SectionHeader
+            <SectionHeading
               level="h2"
               id="stack-gap-layout"
               title="Stack - Gap Layout"
@@ -435,7 +435,7 @@ export default function SpacingPage() {
             />
 
             <Stack spacing="h3-content">
-              <SectionHeader level="h3" title="폼 레이아웃" />
+              <SectionHeading level="h3" title="폼 레이아웃" />
               <ComponentPreview>
                 <Stack spacing="form" className="max-w-md">
                   <div>
@@ -1020,7 +1020,7 @@ export default function SpacingPage() {
           </Stack>
 
           <Stack spacing="h2-h3">
-            <SectionHeader
+            <SectionHeading
               level="h2"
               id="section-padding-layout"
               title="Section - Padding Layout"
