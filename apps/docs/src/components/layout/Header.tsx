@@ -184,7 +184,7 @@ export function Header() {
         position: isFixed ? 'fixed' : 'absolute',
         top: isFixed ? '-56px' : '0',
       }}
-      className={`z-50 w-full bg-krds-white/95 backdrop-blur supports-[backdrop-filter]:bg-krds-white/60 ${isMainPage ? '' : 'border-b border-krds-gray-20'}`}
+      className={`z-50 w-full bg-krds-white/95 backdrop-blur supports-[backdrop-filter]:bg-krds-white/60 ${isMainPage ? '' : 'border-b border-krds-gray-10'}`}
     >
       {/* Main Header */}
       <Container maxWidth="full" className="h-14 flex items-center gap-4">
@@ -285,7 +285,7 @@ export function Header() {
 
       {/* Sub Navigation - Only show when in Docs section */}
       {isInDocs && (
-        <div className="border-t border-krds-gray-10">
+        <div>
           <Container maxWidth="full" className="h-11">
             <nav className="flex items-center h-full overflow-x-auto scrollbar-hide">
               <div className="flex items-center space-x-1 text-sm">

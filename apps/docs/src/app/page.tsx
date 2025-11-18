@@ -20,7 +20,11 @@ export default function Home() {
       <Container>
         {/* Hero Section */}
         <Section padding="page-section" as="section">
-          <Stack spacing="heading-loose" align="center" className="text-center">
+          <Stack
+            spacing="heading-loose"
+            align="center"
+            className="text-center pt-20 pb-10"
+          >
             {/* Badge */}
             <div className="inline-flex items-center gap-2 rounded-full border border-krds-primary-border bg-krds-primary-surface px-4 py-1.5 text-xs font-medium">
               <span className="flex items-center gap-1.5">
@@ -33,7 +37,9 @@ export default function Home() {
                 </span>
               </span>
               <span className="h-3 w-px bg-krds-gray-20"></span>
-              <span className="text-krds-gray-70">KRDS 2.2 준수</span>
+              <span className="text-krds-gray-70">
+                KRDS 2.2 · WCAG 2.1 AA · KWCAG 2.2
+              </span>
             </div>
 
             {/* Title */}

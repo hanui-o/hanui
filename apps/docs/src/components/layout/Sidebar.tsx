@@ -78,6 +78,10 @@ const componentsNavigation = [
       { title: 'Box', href: '/layout/box' },
       { title: 'Stack', href: '/layout/stack' },
       { title: 'Section', href: '/layout/section' },
+      {
+        title: 'Section Heading System',
+        href: '/docs/components/layout/section-heading-system',
+      },
       { title: 'Modal', href: '/layout/modal' },
       { title: 'Accordion', href: '/layout/accordion' },
       { title: 'Tabs', href: '/layout/tabs' },

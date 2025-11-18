@@ -129,6 +129,12 @@ const presentationComponents = [
     href: '/layout/section',
     updated: true,
   },
+  {
+    name: 'Section Heading System',
+    description: 'KRDS Gap-layout 자동 간격 시스템',
+    href: '/docs/components/layout/section-heading-system',
+    updated: true,
+  },
   // Presentation 컴포넌트들
   {
     name: 'Structured List',
