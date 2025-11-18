@@ -8,6 +8,23 @@ import { fetchRegistry } from '../utils/registry.js';
 import { installDependencies } from '../utils/installer.js';
 import { logger } from '../utils/logger.js';
 
+const GITHUB_RAW_BASE_URL =
+  'https://raw.githubusercontent.com/hanui-o/hanui/main/packages/react/src';
+
+/**
+ * Fetch file content from GitHub
+ */
+async function fetchFileFromGitHub(filePath: string): Promise<string> {
+  const url = `${GITHUB_RAW_BASE_URL}/${filePath}`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: ${response.statusText}`);
+  }
+
+  return response.text();
+}
+
 /**
  * Add Command
  *
@@ -134,20 +151,42 @@ export const add = new Command()
         const component = registry[componentName];
 
         for (const file of component.files) {
-          // Resolve source path from packages/react/src/
-          const reactPackagePath = path.resolve(
-            cwd,
-            '../../packages/react/src'
-          );
-          const sourcePath = path.join(reactPackagePath, file.path);
+          // Try to resolve source path from local development environment
+          // Look for hanui monorepo structure
+          let sourcePath: string | null = null;
 
-          // Check if source file exists
-          if (!fs.existsSync(sourcePath)) {
-            spinner.fail(
-              `Source file not found: ${chalk.red(sourcePath)}\n` +
-                `This is likely a development environment issue. In production, files will be fetched from the registry.`
+          // Strategy 1: Check if we're in the hanui monorepo (development)
+          const monorepoPath = path.resolve(cwd, '../../packages/react/src');
+          const devSourcePath = path.join(monorepoPath, file.path);
+
+          if (fs.existsSync(devSourcePath)) {
+            sourcePath = devSourcePath;
+          } else {
+            // Strategy 2: Check sibling directories (e.g., hanui-test and hanui are siblings)
+            const parentDir = path.dirname(cwd);
+            const siblingHanuiPath = path.join(
+              parentDir,
+              'hanui/packages/react/src',
+              file.path
             );
-            continue;
+            if (fs.existsSync(siblingHanuiPath)) {
+              sourcePath = siblingHanuiPath;
+            } else {
+              // Strategy 3: Check parent directories for hanui monorepo
+              let currentDir = cwd;
+              for (let i = 0; i < 5; i++) {
+                const testPath = path.join(
+                  currentDir,
+                  'packages/react/src',
+                  file.path
+                );
+                if (fs.existsSync(testPath)) {
+                  sourcePath = testPath;
+                  break;
+                }
+                currentDir = path.dirname(currentDir);
+              }
+            }
           }
 
           const targetPath = path.join(
@@ -166,8 +205,28 @@ export const add = new Command()
           // Create directory if needed
           await fs.ensureDir(path.dirname(targetPath));
 
-          // Copy file
-          await fs.copy(sourcePath, targetPath);
+          // Get file content (local or remote)
+          let content: string;
+
+          if (sourcePath && fs.existsSync(sourcePath)) {
+            // Local development: copy from monorepo
+            content = await fs.readFile(sourcePath, 'utf-8');
+            spinner.text = `Copying ${chalk.cyan(componentName)} from local source...`;
+          } else {
+            // Production: fetch from GitHub
+            try {
+              spinner.text = `Downloading ${chalk.cyan(componentName)} from registry...`;
+              content = await fetchFileFromGitHub(file.path);
+            } catch (error) {
+              spinner.fail(
+                `Failed to download ${chalk.red(file.path)}: ${error instanceof Error ? error.message : 'Unknown error'}`
+              );
+              continue;
+            }
+          }
+
+          // Write file
+          await fs.writeFile(targetPath, content, 'utf-8');
         }
 
         spinner.succeed(`Installed ${chalk.green(componentName)}`);
