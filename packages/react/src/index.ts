@@ -163,11 +163,5 @@ export type {
   StructuredListDate,
 } from './components/StructuredList';
 
-export { List, ListItem } from './components/List';
-export type { ListProps, ListItemProps } from './components/List';
-
-export { Code } from './components/Code';
-export type { CodeProps } from './components/Code';
-
 // Utils
 export { cn } from './lib/utils';
