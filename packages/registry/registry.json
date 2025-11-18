@@ -348,5 +348,155 @@
         }
       }
     }
+  },
+  "label": {
+    "name": "label",
+    "type": "component",
+    "description": "KRDS-compliant form label component with semantic HTML and typography variants",
+    "dependencies": [
+      "class-variance-authority@^0.7.0",
+      "clsx@^2.1.0",
+      "tailwind-merge@^2.2.0"
+    ],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/label.tsx",
+        "type": "component",
+        "target": "components/hanui/label.tsx"
+      }
+    ],
+    "tailwind": {
+      "config": {
+        "theme": {
+          "extend": {
+            "colors": {
+              "krds-gray-90": "#1e1e1e"
+            }
+          }
+        }
+      }
+    }
+  },
+  "card": {
+    "name": "card",
+    "type": "component",
+    "description": "KRDS-compliant card component with elevation, interactive states, and compound component pattern (Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter)",
+    "dependencies": [
+      "class-variance-authority@^0.7.0",
+      "clsx@^2.1.0",
+      "tailwind-merge@^2.2.0"
+    ],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/card.tsx",
+        "type": "component",
+        "target": "components/hanui/card.tsx"
+      }
+    ]
+  },
+  "table": {
+    "name": "table",
+    "type": "component",
+    "description": "KRDS-compliant table component with semantic structure, sortable headers, and accessibility (Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption)",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/table.tsx",
+        "type": "component",
+        "target": "components/hanui/table.tsx"
+      }
+    ]
+  },
+  "pagination": {
+    "name": "pagination",
+    "type": "component",
+    "description": "KRDS-compliant pagination component with smart ellipsis, accessibility, and customizable navigation controls",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/pagination.tsx",
+        "type": "component",
+        "target": "components/hanui/pagination.tsx"
+      }
+    ]
+  },
+  "breadcrumb": {
+    "name": "breadcrumb",
+    "type": "component",
+    "description": "KRDS-compliant breadcrumb navigation with semantic structure, overflow handling, customizable separator, and accessibility",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/breadcrumb.tsx",
+        "type": "component",
+        "target": "components/hanui/breadcrumb.tsx"
+      }
+    ]
+  },
+  "box": {
+    "name": "box",
+    "type": "component",
+    "description": "Versatile layout container component with easy access to Flexbox and Grid through props",
+    "dependencies": [
+      "class-variance-authority@^0.7.0",
+      "clsx@^2.1.0",
+      "tailwind-merge@^2.2.0"
+    ],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/box.tsx",
+        "type": "component",
+        "target": "components/hanui/box.tsx"
+      }
+    ]
+  },
+  "display": {
+    "name": "display",
+    "type": "component",
+    "description": "KRDS Typography - Large text component for banners/marketing with responsive sizing",
+    "dependencies": [
+      "class-variance-authority@^0.7.0",
+      "clsx@^2.1.0",
+      "tailwind-merge@^2.2.0"
+    ],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/display.tsx",
+        "type": "component",
+        "target": "components/hanui/display.tsx"
+      }
+    ],
+    "tailwind": {
+      "config": {
+        "theme": {
+          "extend": {
+            "colors": {
+              "krds-gray-95": "#0a0a0a"
+            }
+          }
+        }
+      }
+    }
+  },
+  "file-upload": {
+    "name": "file-upload",
+    "type": "component",
+    "description": "WCAG 2.1 / KWCAG 2.2 compliant file upload with drag & drop, validation, preview, and progress tracking",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/file-upload.tsx",
+        "type": "component",
+        "target": "components/hanui/file-upload.tsx"
+      }
+    ]
   }
 }
