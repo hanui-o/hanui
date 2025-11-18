@@ -49,7 +49,7 @@ const identityComponents = [
   },
   {
     name: 'Header',
-    description: '헤더',
+    description: '헤더 (CSS Module)',
     href: '/components/identity/header',
     updated: true,
   },

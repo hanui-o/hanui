@@ -1,38 +1,89 @@
 'use client';
 
 import * as React from 'react';
-import { cn } from '@/lib/utils';
+import styles from './header.module.scss';
 
 /**
- * Header Context
+ * Header Navigation Link
  */
-interface HeaderContextValue {
-  variant?: 'default' | 'compact';
+export interface HeaderNavLink {
+  label: string;
+  href: string;
+  active?: boolean;
+  children?: HeaderNavLink[];
 }
 
-const HeaderContext = React.createContext<HeaderContextValue>({
-  variant: 'default',
-});
+/**
+ * Header Utility Link
+ */
+export interface HeaderUtilityLink {
+  label: string;
+  href: string;
+  icon?: React.ReactElement;
+}
 
 /**
- * Header Props Interface
+ * Header Props
  */
-export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
+export interface HeaderProps {
   /**
-   * Header variant
-   * @default "default"
+   * Service name
    */
-  variant?: 'default' | 'compact';
+  serviceName: string;
 
   /**
-   * Additional className for header element
+   * Service logo
+   */
+  logo?: string | React.ReactElement;
+
+  /**
+   * Logo alt text (required if logo is string)
+   */
+  logoAlt?: string;
+
+  /**
+   * Home link href
+   * @default "/"
+   */
+  homeHref?: string;
+
+  /**
+   * Utility navigation links (login, signup, etc.)
+   */
+  utilityLinks?: HeaderUtilityLink[];
+
+  /**
+   * Main navigation links
+   */
+  navLinks?: HeaderNavLink[];
+
+  /**
+   * Show search
+   * @default false
+   */
+  showSearch?: boolean;
+
+  /**
+   * Search placeholder
+   * @default "검색어를 입력하세요"
+   */
+  searchPlaceholder?: string;
+
+  /**
+   * Search submit handler
+   */
+  onSearch?: (query: string) => void;
+
+  /**
+   * Additional className
    */
   className?: string;
 
   /**
-   * Header content (compound components)
+   * Sticky header
+   * @default true
    */
-  children: React.ReactNode;
+  sticky?: boolean;
 }
 
 /**
@@ -40,322 +91,356 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
  *
  * **Foundation Layer Features:**
  * - Required ID: #krds-header (KRDS mandatory)
- * - Semantic HTML: header element with proper ARIA attributes
- * - WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
- * - Screen Reader Support: Proper ARIA labels and semantic structure
- * - Visual Hierarchy: Consistent spacing and color system
+ * - KRDS Layout Structure: Utility Nav + Branding + Main Nav + Mobile Menu
+ * - WCAG 2.1 / KWCAG 2.2 Compliance
+ * - Responsive Design: Desktop/Tablet/Mobile
+ * - Keyboard Navigation & Focus Management
  *
  * **KRDS Standards:**
- * - Provides consistent navigation and branding across government websites
- * - Contains service branding, utility links, search, and main navigation
- * - Responsive design for desktop and mobile
- * - Required positioning at top of page
+ * - Government website header with official branding
+ * - Contains service identity, utility links, and main navigation
  * - Supports multi-level navigation menus
+ * - Mobile-responsive with hamburger menu
+ * - Sticky positioning on scroll
  *
  * @example
  * ```tsx
- * <Header>
- *   <Header.Branding>
- *     <Header.Logo src="/logo.svg" alt="Service Logo" href="/" />
- *     <Header.Slogan>Service for the people</Header.Slogan>
- *   </Header.Branding>
- *   <Header.Utility>
- *     <Header.UtilityLink href="/login">Login</Header.UtilityLink>
- *     <Header.UtilityLink href="/signup">Sign Up</Header.UtilityLink>
- *   </Header.Utility>
- * </Header>
+ * <Header
+ *   serviceName="국민건강보험공단"
+ *   logo="/logo.svg"
+ *   logoAlt="국민건강보험공단 로고"
+ *   utilityLinks={[
+ *     { label: '로그인', href: '/login' },
+ *     { label: '회원가입', href: '/signup' }
+ *   ]}
+ *   navLinks={[
+ *     { label: '소개', href: '/about' },
+ *     {
+ *       label: '서비스',
+ *       href: '/services',
+ *       children: [
+ *         { label: '건강검진', href: '/services/checkup' },
+ *         { label: '보험료 조회', href: '/services/premium' }
+ *       ]
+ *     }
+ *   ]}
+ *   showSearch
+ * />
  * ```
  */
 export const Header = React.forwardRef<HTMLElement, HeaderProps>(
-  ({ variant = 'default', className, children, ...props }, ref) => {
-    return (
-      <HeaderContext.Provider value={{ variant }}>
-        <header
-          id="krds-header"
-          ref={ref}
-          className={cn(
-            'w-full bg-white dark:bg-gray-900',
-            'border-b border-gray-200 dark:border-gray-800',
-            'transition-colors duration-200',
-            className
-          )}
-          {...props}
-        >
-          <div className="container mx-auto px-4">{children}</div>
-        </header>
-      </HeaderContext.Provider>
-    );
-  }
-);
-Header.displayName = 'Header';
-
-/**
- * Header.Branding Props Interface
- */
-export interface HeaderBrandingProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Additional className
-   */
-  className?: string;
-
-  /**
-   * Branding content (Logo, Slogan)
-   */
-  children: React.ReactNode;
-}
-
-/**
- * Header.Branding Component
- *
- * Contains logo and optional slogan for service branding.
- * Automatically applies .header-branding class for KRDS compliance.
- */
-const HeaderBranding = React.forwardRef<HTMLDivElement, HeaderBrandingProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          'header-branding',
-          'flex items-center gap-4 py-4',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-HeaderBranding.displayName = 'Header.Branding';
-
-/**
- * Header.Logo Props Interface
- */
-export interface HeaderLogoProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  /**
-   * Logo image source
-   */
-  src: string;
-
-  /**
-   * Logo alt text (required for accessibility)
-   */
-  alt: string;
-
-  /**
-   * Logo link href
-   * @default "/"
-   */
-  href?: string;
-
-  /**
-   * Logo image width
-   * @default 120
-   */
-  width?: number;
-
-  /**
-   * Logo image height
-   * @default 40
-   */
-  height?: number;
-
-  /**
-   * Additional className
-   */
-  className?: string;
-}
-
-/**
- * Header.Logo Component
- *
- * Service logo with link to home page.
- * Ensures proper accessibility with required alt text.
- */
-const HeaderLogo = React.forwardRef<HTMLAnchorElement, HeaderLogoProps>(
   (
-    { src, alt, href = '/', width = 120, height = 40, className, ...props },
+    {
+      serviceName,
+      logo,
+      logoAlt,
+      homeHref = '/',
+      utilityLinks = [],
+      navLinks = [],
+      showSearch = false,
+      searchPlaceholder = '검색어를 입력하세요',
+      onSearch,
+      className,
+      sticky = true,
+    },
     ref
   ) => {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const [searchQuery, setSearchQuery] = React.useState('');
+    const [activeSubMenu, setActiveSubMenu] = React.useState<number | null>(
+      null
+    );
+    const [isScrolled, setIsScrolled] = React.useState(false);
+
+    // Handle scroll for sticky header
+    React.useEffect(() => {
+      if (!sticky) return;
+
+      const handleScroll = () => {
+        setIsScrolled(window.scrollY > 0);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }, [sticky]);
+
+    // Handle search submit
+    const handleSearchSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      if (onSearch && searchQuery.trim()) {
+        onSearch(searchQuery);
+      }
+    };
+
+    // Toggle mobile menu
+    const toggleMobileMenu = () => {
+      setIsMobileMenuOpen(!isMobileMenuOpen);
+      if (!isMobileMenuOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    };
+
+    // Close mobile menu
+    React.useEffect(() => {
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }, []);
+
     return (
-      <a
+      <header
+        id="krds-header"
         ref={ref}
-        href={href}
-        className={cn(
-          'flex items-center',
-          'focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-400 rounded',
-          className
-        )}
-        {...props}
+        className={`${styles.krdsHeader} ${sticky ? styles.sticky : ''} ${
+          isScrolled ? styles.scrolled : ''
+        } ${className || ''}`}
       >
-        <img
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className="object-contain"
-        />
-      </a>
+        {/* Utility Navigation */}
+        {utilityLinks.length > 0 && (
+          <div className={styles.headerUtil}>
+            <div className={styles.inner}>
+              <nav className={styles.utilNav}>
+                <ul>
+                  {utilityLinks.map((link, index) => (
+                    <li key={index}>
+                      <a href={link.href}>
+                        {link.icon}
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        )}
+
+        {/* Main Header */}
+        <div className={styles.headerMain}>
+          <div className={styles.inner}>
+            {/* Branding */}
+            <div className={styles.headerBrand}>
+              <a href={homeHref} className={styles.logo}>
+                <span className="sr-only">{serviceName}</span>
+                {typeof logo === 'string' ? (
+                  <img src={logo} alt={logoAlt || serviceName} />
+                ) : (
+                  logo
+                )}
+              </a>
+            </div>
+
+            {/* Desktop Navigation */}
+            {navLinks.length > 0 && (
+              <nav className={styles.headerNav} aria-label="주 메뉴">
+                <ul className={styles.gnb}>
+                  {navLinks.map((link, index) => (
+                    <li
+                      key={index}
+                      className={link.children ? styles.hasSubmenu : ''}
+                      onMouseEnter={() =>
+                        link.children && setActiveSubMenu(index)
+                      }
+                      onMouseLeave={() => setActiveSubMenu(null)}
+                    >
+                      <a
+                        href={link.href}
+                        className={link.active ? styles.active : ''}
+                        aria-expanded={
+                          link.children ? activeSubMenu === index : undefined
+                        }
+                      >
+                        {link.label}
+                      </a>
+
+                      {/* Sub Menu */}
+                      {link.children && (
+                        <ul
+                          className={`${styles.subMenu} ${
+                            activeSubMenu === index ? styles.show : ''
+                          }`}
+                        >
+                          {link.children.map((subLink, subIndex) => (
+                            <li key={subIndex}>
+                              <a
+                                href={subLink.href}
+                                className={subLink.active ? styles.active : ''}
+                              >
+                                {subLink.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
+
+            {/* Search */}
+            {showSearch && (
+              <div className={styles.headerSearch}>
+                <form onSubmit={handleSearchSubmit}>
+                  <input
+                    type="search"
+                    placeholder={searchPlaceholder}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    aria-label="검색"
+                  />
+                  <button type="submit" aria-label="검색 실행">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            )}
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className={styles.mobileMenuToggle}
+              onClick={toggleMobileMenu}
+              aria-label="메뉴 열기"
+              aria-expanded={isMobileMenuOpen}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className={styles.mobileMenu}>
+            <div className={styles.mobileMenuHeader}>
+              <h2>{serviceName}</h2>
+              <button
+                onClick={toggleMobileMenu}
+                aria-label="메뉴 닫기"
+                className={styles.closeBtn}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <nav className={styles.mobileNav}>
+              {/* Utility Links */}
+              {utilityLinks.length > 0 && (
+                <div className={styles.mobileUtil}>
+                  <ul>
+                    {utilityLinks.map((link, index) => (
+                      <li key={index}>
+                        <a href={link.href}>
+                          {link.icon}
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Main Nav */}
+              {navLinks.length > 0 && (
+                <ul className={styles.mobileMainNav}>
+                  {navLinks.map((link, index) => (
+                    <li key={index}>
+                      <a
+                        href={link.href}
+                        className={link.active ? styles.active : ''}
+                      >
+                        {link.label}
+                      </a>
+                      {link.children && (
+                        <ul className={styles.mobileSubNav}>
+                          {link.children.map((subLink, subIndex) => (
+                            <li key={subIndex}>
+                              <a
+                                href={subLink.href}
+                                className={subLink.active ? styles.active : ''}
+                              >
+                                {subLink.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Mobile Search */}
+              {showSearch && (
+                <div className={styles.mobileSearchWrap}>
+                  <form onSubmit={handleSearchSubmit}>
+                    <input
+                      type="search"
+                      placeholder={searchPlaceholder}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      aria-label="검색"
+                    />
+                    <button type="submit" aria-label="검색 실행">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </button>
+                  </form>
+                </div>
+              )}
+            </nav>
+          </div>
+        )}
+
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div
+            className={styles.mobileOverlay}
+            onClick={toggleMobileMenu}
+            aria-hidden="true"
+          />
+        )}
+      </header>
     );
   }
 );
-HeaderLogo.displayName = 'Header.Logo';
 
-/**
- * Header.Slogan Props Interface
- */
-export interface HeaderSloganProps
-  extends React.HTMLAttributes<HTMLSpanElement> {
-  /**
-   * Additional className
-   */
-  className?: string;
-
-  /**
-   * Slogan text
-   */
-  children: React.ReactNode;
-}
-
-/**
- * Header.Slogan Component
- *
- * Optional service slogan or description text.
- */
-const HeaderSlogan = React.forwardRef<HTMLSpanElement, HeaderSloganProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <span
-        ref={ref}
-        className={cn(
-          'text-sm text-gray-600 dark:text-gray-400',
-          'hidden md:inline-block',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </span>
-    );
-  }
-);
-HeaderSlogan.displayName = 'Header.Slogan';
-
-/**
- * Header.Utility Props Interface
- */
-export interface HeaderUtilityProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Additional className
-   */
-  className?: string;
-
-  /**
-   * Utility links
-   */
-  children: React.ReactNode;
-}
-
-/**
- * Header.Utility Component
- *
- * Container for utility links (login, signup, language selection, etc.).
- * Automatically applies .header-utility class for KRDS compliance.
- */
-const HeaderUtility = React.forwardRef<HTMLDivElement, HeaderUtilityProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          'header-utility',
-          'flex items-center gap-4 ml-auto',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-HeaderUtility.displayName = 'Header.Utility';
-
-/**
- * Header.UtilityLink Props Interface
- */
-export interface HeaderUtilityLinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  /**
-   * Link href
-   */
-  href: string;
-
-  /**
-   * Additional className
-   */
-  className?: string;
-
-  /**
-   * Link text
-   */
-  children: React.ReactNode;
-}
-
-/**
- * Header.UtilityLink Component
- *
- * Individual utility link with consistent styling and accessibility.
- */
-const HeaderUtilityLink = React.forwardRef<
-  HTMLAnchorElement,
-  HeaderUtilityLinkProps
->(({ href, className, children, ...props }, ref) => {
-  return (
-    <a
-      ref={ref}
-      href={href}
-      className={cn(
-        'text-sm text-gray-700 dark:text-gray-300',
-        'hover:text-blue-600 dark:hover:text-blue-400',
-        'hover:underline',
-        'transition-colors',
-        'focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-400 rounded px-1',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </a>
-  );
-});
-HeaderUtilityLink.displayName = 'Header.UtilityLink';
-
-/**
- * Compound component type
- */
-interface HeaderComponent
-  extends React.ForwardRefExoticComponent<
-    HeaderProps & React.RefAttributes<HTMLElement>
-  > {
-  Branding: typeof HeaderBranding;
-  Logo: typeof HeaderLogo;
-  Slogan: typeof HeaderSlogan;
-  Utility: typeof HeaderUtility;
-  UtilityLink: typeof HeaderUtilityLink;
-}
-
-/**
- * Compound exports
- */
-(Header as HeaderComponent).Branding = HeaderBranding;
-(Header as HeaderComponent).Logo = HeaderLogo;
-(Header as HeaderComponent).Slogan = HeaderSlogan;
-(Header as HeaderComponent).Utility = HeaderUtility;
-(Header as HeaderComponent).UtilityLink = HeaderUtilityLink;
-
-export default Header as HeaderComponent;
+Header.displayName = 'Header';

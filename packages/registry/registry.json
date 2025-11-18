@@ -636,5 +636,25 @@
         "target": "components/hanui/footer.module.scss"
       }
     ]
+  },
+  "header": {
+    "name": "header",
+    "type": "layout",
+    "description": "KRDS government header layout with navigation, search, and mobile menu",
+    "dependencies": ["sass@^1.70.0"],
+    "devDependencies": [],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/header.tsx",
+        "type": "component",
+        "target": "components/hanui/header.tsx"
+      },
+      {
+        "path": "components/header.module.scss",
+        "type": "style",
+        "target": "components/hanui/header.module.scss"
+      }
+    ]
   }
 }

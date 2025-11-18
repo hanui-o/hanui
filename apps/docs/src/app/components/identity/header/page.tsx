@@ -9,7 +9,7 @@ export default function HeaderPage() {
     <>
       <PageHeader
         title="Header"
-        description="정부 서비스의 일관된 브랜딩과 네비게이션을 제공하는 헤더 컴포넌트입니다. KRDS 표준을 준수하며, 로고, 유틸리티 링크, 검색, 메인 메뉴 등을 포함할 수 있습니다. [Phase 1: 기본 구조 완료]"
+        description="정부 서비스의 일관된 브랜딩과 네비게이션을 제공하는 헤더 레이아웃 컴포넌트입니다. KRDS 표준을 준수하며, 로고, 유틸리티 링크, 검색, 메인 메뉴, 모바일 메뉴를 포함합니다."
       />
 
       {/* 기본 사용법 */}
@@ -19,8 +19,9 @@ export default function HeaderPage() {
             기본 사용법
           </Heading>
           <Body size="md" className="text-krds-gray-70">
-            Header는 Compound Component 패턴을 사용하여 유연하게 구성할 수
-            있습니다. 필요한 부분만 선택적으로 사용할 수 있습니다.
+            Header는 Props 기반 API를 사용하여 간편하게 구성할 수 있습니다.
+            네비게이션 링크, 검색, 모바일 메뉴 등을 선택적으로 활성화할 수
+            있습니다.
           </Body>
 
           <Stack spacing="heading-tight">
@@ -36,26 +37,22 @@ export default function HeaderPage() {
 
 export default function Example() {
   return (
-    <Header>
-      <Header.Branding>
-        <Header.Logo
-          src="/logo.svg"
-          alt="정부24"
-          href="/"
-        />
-        <Header.Slogan>
-          국민을 위한 전자정부 서비스
-        </Header.Slogan>
-      </Header.Branding>
-      <Header.Utility>
-        <Header.UtilityLink href="/login">
-          로그인
-        </Header.UtilityLink>
-        <Header.UtilityLink href="/signup">
-          회원가입
-        </Header.UtilityLink>
-      </Header.Utility>
-    </Header>
+    <Header
+      serviceName="국민건강보험공단"
+      logo="/logo.svg"
+      logoAlt="국민건강보험공단 로고"
+      utilityLinks={[
+        { label: '로그인', href: '/login' },
+        { label: '회원가입', href: '/signup' },
+        { label: '마이페이지', href: '/mypage' }
+      ]}
+      navLinks={[
+        { label: '소개', href: '/about' },
+        { label: '민원서비스', href: '/services' },
+        { label: '정보공개', href: '/info' },
+        { label: '알림·소식', href: '/news' }
+      ]}
+    />
   );
 }`}
               language="tsx"
@@ -64,783 +61,602 @@ export default function Example() {
         </Stack>
       </PageSection>
 
-      {/* 브랜딩만 */}
+      {/* 검색 기능 */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="branding-only">
-            브랜딩만 사용
+          <Heading level="h2" id="with-search">
+            검색 기능 추가
           </Heading>
           <Body size="md" className="text-krds-gray-70">
-            로고만 표시하는 간단한 헤더입니다.
-          </Body>
-
-          <Stack spacing="heading-tight">
-            <Heading level="h3" id="logo-only" className="text-lg font-medium">
-              로고만
-            </Heading>
-            <CodeBlock
-              code={`import { Header } from '@hanui/react';
-
-export default function Example() {
-  return (
-    <Header>
-      <Header.Branding>
-        <Header.Logo
-          src="/logo.svg"
-          alt="행정안전부"
-          href="/"
-        />
-      </Header.Branding>
-    </Header>
-  );
-}`}
-              language="tsx"
-            />
-          </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* 여러 유틸리티 링크 */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="multiple-utility">
-            여러 유틸리티 링크
-          </Heading>
-          <Body size="md" className="text-krds-gray-70">
-            로그인, 회원가입 외에도 언어 선택, 고객센터 등 다양한 유틸리티
-            링크를 추가할 수 있습니다.
-          </Body>
-
-          <Stack spacing="heading-tight">
-            <Heading
-              level="h3"
-              id="multiple-links"
-              className="text-lg font-medium"
-            >
-              다양한 유틸리티
-            </Heading>
-            <CodeBlock
-              code={`import { Header } from '@hanui/react';
-
-export default function Example() {
-  return (
-    <Header>
-      <Header.Branding>
-        <Header.Logo
-          src="/logo.svg"
-          alt="정부24"
-          href="/"
-        />
-      </Header.Branding>
-      <Header.Utility>
-        <Header.UtilityLink href="/support">
-          고객센터
-        </Header.UtilityLink>
-        <Header.UtilityLink href="/faq">
-          자주 묻는 질문
-        </Header.UtilityLink>
-        <Header.UtilityLink href="/sitemap">
-          사이트맵
-        </Header.UtilityLink>
-        <Header.UtilityLink href="/login">
-          로그인
-        </Header.UtilityLink>
-      </Header.Utility>
-    </Header>
-  );
-}`}
-              language="tsx"
-            />
-          </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* Compact 변형 */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="compact-variant">
-            Compact 변형
-          </Heading>
-          <Body size="md" className="text-krds-gray-70">
-            더 작은 높이의 헤더가 필요한 경우 compact variant를 사용할 수
+            <code>showSearch</code> prop을 사용하여 검색 기능을 활성화할 수
             있습니다.
           </Body>
 
-          <Stack spacing="heading-tight">
-            <Heading
-              level="h3"
-              id="compact-example"
-              className="text-lg font-medium"
-            >
-              Compact 헤더
-            </Heading>
-            <CodeBlock
-              code={`import { Header } from '@hanui/react';
+          <CodeBlock
+            code={`import { Header } from '@hanui/react';
 
 export default function Example() {
+  const handleSearch = (query: string) => {
+    console.log('검색어:', query);
+    // 검색 로직 구현
+  };
+
   return (
-    <Header variant="compact">
-      <Header.Branding>
-        <Header.Logo
-          src="/logo.svg"
-          alt="정부24"
-          href="/"
-          width={80}
-          height={28}
-        />
-      </Header.Branding>
-      <Header.Utility>
-        <Header.UtilityLink href="/login">
-          로그인
-        </Header.UtilityLink>
-      </Header.Utility>
-    </Header>
+    <Header
+      serviceName="정부24"
+      logo="/logo.svg"
+      navLinks={[
+        { label: '민원서비스', href: '/services' },
+        { label: '생활정보', href: '/info' }
+      ]}
+      showSearch
+      searchPlaceholder="서비스, 민원 검색"
+      onSearch={handleSearch}
+    />
   );
 }`}
-              language="tsx"
-            />
-          </Stack>
+            language="tsx"
+          />
         </Stack>
       </PageSection>
 
-      {/* 가이드라인 */}
+      {/* 다단계 메뉴 */}
       <PageSection>
         <Stack spacing="heading-content">
-          <Heading level="h2" id="guidelines">
-            사용 가이드라인
+          <Heading level="h2" id="multi-level-menu">
+            다단계 메뉴 (Submenu)
           </Heading>
+          <Body size="md" className="text-krds-gray-70">
+            <code>children</code> 속성을 사용하여 2단계 메뉴를 구성할 수
+            있습니다. 마우스 호버 시 서브메뉴가 표시됩니다.
+          </Body>
 
-          <GuidelineSection title="언제 사용하나요?" type="do">
-            <ul className="list-disc list-inside space-y-2">
-              <li>모든 정부 웹사이트의 최상단에 일관된 헤더 제공</li>
-              <li>서비스 브랜딩과 주요 네비게이션 표시</li>
-              <li>로그인, 회원가입 등 주요 기능 접근 제공</li>
-              <li>사이트 전체에서 동일한 헤더 유지 필요</li>
-            </ul>
-          </GuidelineSection>
+          <CodeBlock
+            code={`import { Header } from '@hanui/react';
 
-          <GuidelineSection title="언제 사용하지 말아야 하나요?" type="dont">
-            <ul className="list-disc list-inside space-y-2">
-              <li>페이지 중간이나 하단에 헤더 배치</li>
-              <li>페이지마다 다른 헤더 스타일 적용</li>
-              <li>너무 많은 유틸리티 링크로 복잡하게 만들기</li>
-              <li>비표준 색상이나 레이아웃으로 KRDS 표준 무시</li>
-            </ul>
-          </GuidelineSection>
+export default function Example() {
+  return (
+    <Header
+      serviceName="행정안전부"
+      logo="/logo.svg"
+      navLinks={[
+        {
+          label: '민원·정보',
+          href: '/services',
+          children: [
+            { label: '민원서비스', href: '/services/civil' },
+            { label: '정보공개', href: '/services/info' },
+            { label: '열린정부', href: '/services/open' }
+          ]
+        },
+        {
+          label: '정책·사업',
+          href: '/policy',
+          active: true, // 현재 페이지
+          children: [
+            { label: '주요정책', href: '/policy/main' },
+            { label: '주요사업', href: '/policy/projects', active: true },
+            { label: '법령·지침', href: '/policy/laws' }
+          ]
+        },
+        {
+          label: '알림·소식',
+          href: '/news',
+          children: [
+            { label: '공지사항', href: '/news/notice' },
+            { label: '보도자료', href: '/news/press' },
+            { label: '행사·일정', href: '/news/events' }
+          ]
+        }
+      ]}
+    />
+  );
+}`}
+            language="tsx"
+          />
         </Stack>
+      </PageSection>
+
+      {/* 전체 기능 */}
+      <PageSection>
+        <Stack spacing="heading-content">
+          <Heading level="h2" id="full-features">
+            전체 기능 활용
+          </Heading>
+          <Body size="md" className="text-krds-gray-70">
+            유틸리티 링크, 검색, 다단계 메뉴를 모두 활용한 종합 예제입니다.
+          </Body>
+
+          <CodeBlock
+            code={`import { Header } from '@hanui/react';
+
+export default function Example() {
+  return (
+    <Header
+      serviceName="국민건강보험공단"
+      logo="/logo.svg"
+      logoAlt="국민건강보험공단"
+      homeHref="/"
+
+      // Utility Navigation
+      utilityLinks={[
+        { label: '로그인', href: '/login' },
+        { label: '회원가입', href: '/signup' },
+        { label: '마이페이지', href: '/mypage' },
+        { label: 'English', href: '/en' }
+      ]}
+
+      // Main Navigation
+      navLinks={[
+        { label: '공단소개', href: '/about' },
+        {
+          label: '민원·업무',
+          href: '/services',
+          children: [
+            { label: '건강검진', href: '/services/checkup' },
+            { label: '보험료 조회·납부', href: '/services/premium' },
+            { label: '요양급여', href: '/services/medical' }
+          ]
+        },
+        {
+          label: '건강정보',
+          href: '/health',
+          children: [
+            { label: '건강iN', href: '/health/in' },
+            { label: '건강검진정보', href: '/health/checkup' },
+            { label: '질병정보', href: '/health/disease' }
+          ]
+        },
+        { label: '알림·소식', href: '/news' },
+        { label: '참여·소통', href: '/communication' }
+      ]}
+
+      // Search
+      showSearch
+      searchPlaceholder="검색어를 입력하세요"
+      onSearch={(query) => console.log('검색:', query)}
+
+      // Sticky Header
+      sticky
+    />
+  );
+}`}
+            language="tsx"
+          />
+        </Stack>
+      </PageSection>
+
+      {/* Props */}
+      <PageSection>
+        <Heading level="h2" id="props">
+          Props
+        </Heading>
+
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b border-krds-gray-20">
+                <th className="text-left py-3 px-4 font-semibold text-krds-gray-90">
+                  Prop
+                </th>
+                <th className="text-left py-3 px-4 font-semibold text-krds-gray-90">
+                  Type
+                </th>
+                <th className="text-left py-3 px-4 font-semibold text-krds-gray-90">
+                  Default
+                </th>
+                <th className="text-left py-3 px-4 font-semibold text-krds-gray-90">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-krds-gray-10">
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">serviceName</td>
+                <td className="py-3 px-4 font-mono text-sm">string</td>
+                <td className="py-3 px-4 text-sm">-</td>
+                <td className="py-3 px-4 text-sm">서비스명 (필수)</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">logo</td>
+                <td className="py-3 px-4 font-mono text-sm">
+                  string | ReactElement
+                </td>
+                <td className="py-3 px-4 text-sm">-</td>
+                <td className="py-3 px-4 text-sm">
+                  로고 이미지 경로 또는 컴포넌트
+                </td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">logoAlt</td>
+                <td className="py-3 px-4 font-mono text-sm">string</td>
+                <td className="py-3 px-4 text-sm">-</td>
+                <td className="py-3 px-4 text-sm">
+                  로고 대체 텍스트 (logo가 string일 때 필수)
+                </td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">homeHref</td>
+                <td className="py-3 px-4 font-mono text-sm">string</td>
+                <td className="py-3 px-4 text-sm">"/"</td>
+                <td className="py-3 px-4 text-sm">홈 링크 URL</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">utilityLinks</td>
+                <td className="py-3 px-4 font-mono text-sm">
+                  HeaderUtilityLink[]
+                </td>
+                <td className="py-3 px-4 text-sm">[]</td>
+                <td className="py-3 px-4 text-sm">
+                  유틸리티 링크 배열 (로그인, 회원가입 등)
+                </td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">navLinks</td>
+                <td className="py-3 px-4 font-mono text-sm">HeaderNavLink[]</td>
+                <td className="py-3 px-4 text-sm">[]</td>
+                <td className="py-3 px-4 text-sm">메인 네비게이션 링크 배열</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">showSearch</td>
+                <td className="py-3 px-4 font-mono text-sm">boolean</td>
+                <td className="py-3 px-4 text-sm">false</td>
+                <td className="py-3 px-4 text-sm">검색 기능 표시 여부</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">
+                  searchPlaceholder
+                </td>
+                <td className="py-3 px-4 font-mono text-sm">string</td>
+                <td className="py-3 px-4 text-sm">"검색어를 입력하세요"</td>
+                <td className="py-3 px-4 text-sm">검색 입력창 placeholder</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">onSearch</td>
+                <td className="py-3 px-4 font-mono text-sm">
+                  (query: string) ={'>'} void
+                </td>
+                <td className="py-3 px-4 text-sm">-</td>
+                <td className="py-3 px-4 text-sm">검색 제출 핸들러</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">sticky</td>
+                <td className="py-3 px-4 font-mono text-sm">boolean</td>
+                <td className="py-3 px-4 text-sm">true</td>
+                <td className="py-3 px-4 text-sm">스크롤 시 상단 고정 여부</td>
+              </tr>
+              <tr>
+                <td className="py-3 px-4 font-mono text-sm">className</td>
+                <td className="py-3 px-4 font-mono text-sm">string</td>
+                <td className="py-3 px-4 text-sm">-</td>
+                <td className="py-3 px-4 text-sm">추가 CSS 클래스</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </PageSection>
+
+      {/* Types */}
+      <PageSection>
+        <Heading level="h2" id="types">
+          Types
+        </Heading>
+
+        <Stack spacing="heading-tight">
+          <Heading
+            level="h3"
+            id="header-utility-link"
+            className="text-lg font-medium"
+          >
+            HeaderUtilityLink
+          </Heading>
+          <CodeBlock
+            code={`interface HeaderUtilityLink {
+  label: string;        // 링크 텍스트
+  href: string;         // 링크 URL
+  icon?: ReactElement;  // 선택: 아이콘
+}`}
+            language="typescript"
+          />
+        </Stack>
+
+        <Stack spacing="heading-tight">
+          <Heading
+            level="h3"
+            id="header-nav-link"
+            className="text-lg font-medium"
+          >
+            HeaderNavLink
+          </Heading>
+          <CodeBlock
+            code={`interface HeaderNavLink {
+  label: string;             // 메뉴명
+  href: string;              // 링크 URL
+  active?: boolean;          // 선택: 현재 페이지 여부
+  children?: HeaderNavLink[]; // 선택: 서브메뉴
+}`}
+            language="typescript"
+          />
+        </Stack>
+      </PageSection>
+
+      {/* 기술 배경 */}
+      <PageSection>
+        <Heading level="h2" id="technical">
+          기술 배경
+        </Heading>
+
+        <Stack spacing="content-loose">
+          <div>
+            <Heading level="h3">왜 CSS Module (SCSS)을 사용했나요?</Heading>
+
+            {/* 1. KRDS 공식 코드의 복잡성 */}
+            <div className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-950 p-4 my-4 rounded-r">
+              <h4 className="font-bold text-blue-900 dark:text-blue-100 mb-2">
+                1. KRDS 공식 코드의 복잡성
+              </h4>
+              <ul className="list-disc pl-5 space-y-1 text-blue-800 dark:text-blue-200">
+                <li>
+                  10개 이상의 커스텀 SCSS mixin 사용 (flex-layout,
+                  size-large-more, hide-text 등)
+                </li>
+                <li>
+                  복잡한 반응형 레이아웃 (Desktop/Tablet/Mobile 각각 다른 구조)
+                </li>
+                <li>
+                  다단계 메뉴, 모바일 메뉴, 검색, 스크롤 동작 등 다양한 인터랙션
+                </li>
+                <li>고대비 모드 (High Contrast Mode) 및 다크 모드 지원</li>
+              </ul>
+            </div>
+
+            {/* 2. Tailwind 변환의 시간 비용 */}
+            <div className="border-l-4 border-green-500 bg-green-50 dark:bg-green-950 p-4 my-4 rounded-r">
+              <h4 className="font-bold text-green-900 dark:text-green-100 mb-2">
+                2. Tailwind 변환의 시간 비용
+              </h4>
+              <ul className="list-disc pl-5 space-y-1 text-green-800 dark:text-green-200">
+                <li>복잡한 SCSS 구조를 Tailwind로 변환 시 3-4일 소요 예상</li>
+                <li>hover, focus, active 등 다양한 상태별 스타일 관리</li>
+                <li>애니메이션 및 트랜지션 효과 재현</li>
+                <li>KRDS 공식 디자인 100% 재현 보장 어려움</li>
+              </ul>
+            </div>
+
+            {/* 3. Self-Contained CSS Module 방식 채택 */}
+            <div className="border-l-4 border-purple-500 bg-purple-50 dark:bg-purple-950 p-4 my-4 rounded-r">
+              <h4 className="font-bold text-purple-900 dark:text-purple-100 mb-2">
+                3. Self-Contained CSS Module 방식 채택
+              </h4>
+              <ul className="list-disc pl-5 space-y-1 text-purple-800 dark:text-purple-200">
+                <li>
+                  <strong>Mixin 제거:</strong> KRDS의 모든 SCSS mixin을 실제
+                  CSS로 인라인 변환
+                </li>
+                <li>
+                  <strong>CSS 변수 활용:</strong> <code>globals.css</code>의
+                  KRDS 디자인 토큰 (color, spacing) 사용
+                </li>
+                <li>
+                  <strong>단일 파일 설치:</strong> <code>header.tsx</code> +{' '}
+                  <code>header.module.scss</code> 2개 파일만으로 완결
+                </li>
+                <li>
+                  <strong>외부 의존성 제로:</strong> sass 패키지 외에 추가 mixin
+                  파일 불필요
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* v2.0 로드맵 */}
+          <div>
+            <Heading level="h3">v2.0 로드맵: Tailwind 마이그레이션</Heading>
+            <Body size="md" className="text-krds-gray-70 mb-4">
+              향후 v2.0에서는 Tailwind로 완전히 변환된 버전을 제공할 예정입니다.
+              사용자는 버전 선택을 통해 CSS Module 또는 Tailwind 버전을 선택할
+              수 있습니다.
+            </Body>
+
+            <CodeBlock
+              code={`# v1 (CSS Module - 기본)
+hanui add header
+
+# v2 (Tailwind - 선택)
+hanui add header@tailwind`}
+              language="bash"
+            />
+          </div>
+        </Stack>
+      </PageSection>
+
+      {/* 설치 */}
+      <PageSection>
+        <Heading level="h2" id="installation">
+          설치
+        </Heading>
+
+        <Stack spacing="heading-tight">
+          <Heading level="h3" id="cli-install" className="text-lg font-medium">
+            CLI를 통한 설치
+          </Heading>
+          <CodeBlock code={`npx hanui add header`} language="bash" />
+          <Body size="sm" className="text-krds-gray-60">
+            설치 시 자동으로 <code>sass</code> 패키지가 devDependencies에
+            추가됩니다.
+          </Body>
+        </Stack>
+
+        <Stack spacing="heading-tight">
+          <Heading
+            level="h3"
+            id="manual-install"
+            className="text-lg font-medium"
+          >
+            수동 설치
+          </Heading>
+          <Body size="md" className="text-krds-gray-70 mb-4">
+            CLI 없이 수동으로 설치하는 경우:
+          </Body>
+
+          <ol className="list-decimal pl-6 space-y-2 text-krds-gray-70">
+            <li>
+              <strong>sass 패키지 설치:</strong>
+              <CodeBlock
+                code={`npm install -D sass
+# or
+yarn add -D sass
+# or
+pnpm add -D sass`}
+                language="bash"
+              />
+            </li>
+            <li>
+              <strong>파일 복사:</strong>
+              <ul className="list-disc pl-5 mt-2 space-y-1">
+                <li>
+                  <code>components/hanui/header.tsx</code>
+                </li>
+                <li>
+                  <code>components/hanui/header.module.scss</code>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </Stack>
+      </PageSection>
+
+      {/* 파일 구조 */}
+      <PageSection>
+        <Heading level="h2" id="file-structure">
+          파일 구조
+        </Heading>
+
+        <CodeBlock
+          code={`components/hanui/
+├── header.tsx              # Header 컴포넌트 (Props-based API)
+└── header.module.scss      # Self-contained SCSS styles`}
+          language="plaintext"
+        />
       </PageSection>
 
       {/* 접근성 */}
       <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="accessibility">
-            접근성
-          </Heading>
+        <Heading level="h2" id="accessibility">
+          접근성
+        </Heading>
+
+        <Stack spacing="content-base">
           <Body size="md" className="text-krds-gray-70">
-            Header 컴포넌트는 WCAG 2.1 및 KWCAG 2.2 표준을 준수합니다.
+            Header 컴포넌트는 WCAG 2.1 및 KWCAG 2.2 지침을 준수합니다:
           </Body>
 
-          <div className="space-y-4">
-            <div>
-              <Heading level="h3" className="text-lg font-semibold mb-2">
-                키보드 네비게이션
-              </Heading>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
-                <li>
-                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
-                    Tab
-                  </code>
-                  : 다음 링크로 포커스 이동
-                </li>
-                <li>
-                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
-                    Shift + Tab
-                  </code>
-                  : 이전 링크로 포커스 이동
-                </li>
-                <li>
-                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
-                    Enter
-                  </code>
-                  : 링크 활성화
-                </li>
+          <ul className="list-disc pl-6 space-y-2 text-krds-gray-70">
+            <li>
+              <strong>시맨틱 HTML:</strong> <code>&lt;header&gt;</code>,{' '}
+              <code>&lt;nav&gt;</code> 태그 사용
+            </li>
+            <li>
+              <strong>ARIA 속성:</strong> <code>aria-label</code>,{' '}
+              <code>aria-expanded</code> 제공
+            </li>
+            <li>
+              <strong>키보드 네비게이션:</strong> Tab, Enter 키로 모든 메뉴 접근
+              가능
+            </li>
+            <li>
+              <strong>포커스 관리:</strong> 명확한 포커스 인디케이터 제공
+              (outline)
+            </li>
+            <li>
+              <strong>스크린 리더 지원:</strong> <code>.sr-only</code> 클래스로
+              숨김 텍스트 제공
+            </li>
+            <li>
+              <strong>고대비 모드:</strong> 다크 모드 및 고대비 모드 스타일 지원
+            </li>
+          </ul>
+        </Stack>
+      </PageSection>
+
+      {/* KRDS 준수사항 */}
+      <GuidelineSection>
+        <Stack spacing="content-base">
+          <Heading level="h3">KRDS 준수사항</Heading>
+
+          <ul className="list-disc pl-6 space-y-2 text-krds-gray-70">
+            <li>
+              <strong>필수 ID:</strong> Header 요소에{' '}
+              <code>id="krds-header"</code> 자동 적용
+            </li>
+            <li>
+              <strong>레이아웃 구조:</strong> Utility Nav + Branding + Main Nav
+              + Mobile Menu
+            </li>
+            <li>
+              <strong>반응형 디자인:</strong>
+              <ul className="list-circle pl-6 mt-1">
+                <li>Desktop (1024px+): 전체 메뉴 표시</li>
+                <li>Tablet (768px-1023px): 검색 표시, 햄버거 메뉴</li>
+                <li>Mobile (~767px): 햄버거 메뉴만 표시</li>
               </ul>
-            </div>
-
-            <div>
-              <Heading level="h3" className="text-lg font-semibold mb-2">
-                스크린 리더
-              </Heading>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
-                <li>header 요소로 랜드마크 영역 정의</li>
-                <li>로고 이미지에 필수 alt 텍스트 제공</li>
-                <li>모든 링크에 명확한 텍스트 레이블</li>
-                <li>포커스 시각적 표시 (focus ring)</li>
-              </ul>
-            </div>
-          </div>
+            </li>
+            <li>
+              <strong>색상 시스템:</strong> KRDS 디자인 토큰 사용 (CSS 변수)
+            </li>
+            <li>
+              <strong>타이포그래피:</strong> KRDS 폰트 크기 및 행간 준수
+            </li>
+          </ul>
         </Stack>
-      </PageSection>
+      </GuidelineSection>
 
-      {/* 디자인 원칙 */}
+      {/* 모바일 메뉴 */}
       <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="design-principles">
-            디자인 원칙
-          </Heading>
+        <Heading level="h2" id="mobile-menu">
+          모바일 메뉴
+        </Heading>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Heading level="h3" className="text-lg font-semibold">
-                일관성 (Consistency)
-              </Heading>
-              <Body size="sm" className="text-krds-gray-70">
-                모든 정부 웹사이트에서 동일한 헤더 구조와 스타일을 유지하여
-                사용자가 친숙하게 느낄 수 있도록 합니다.
-              </Body>
-            </div>
-
-            <div className="space-y-2">
-              <Heading level="h3" className="text-lg font-semibold">
-                명확성 (Clarity)
-              </Heading>
-              <Body size="sm" className="text-krds-gray-70">
-                로고와 서비스 이름을 명확히 표시하여 사용자가 현재 어떤 서비스를
-                이용하고 있는지 즉시 파악할 수 있도록 합니다.
-              </Body>
-            </div>
-
-            <div className="space-y-2">
-              <Heading level="h3" className="text-lg font-semibold">
-                접근성 (Accessibility)
-              </Heading>
-              <Body size="sm" className="text-krds-gray-70">
-                키보드 네비게이션, 스크린 리더 지원 등 모든 사용자가 쉽게 이용할
-                수 있는 인터페이스를 제공합니다.
-              </Body>
-            </div>
-
-            <div className="space-y-2">
-              <Heading level="h3" className="text-lg font-semibold">
-                반응형 (Responsive)
-              </Heading>
-              <Body size="sm" className="text-krds-gray-70">
-                데스크톱, 태블릿, 모바일 등 다양한 화면 크기에서 최적화된
-                레이아웃을 제공합니다.
-              </Body>
-            </div>
-          </div>
-        </Stack>
-      </PageSection>
-
-      {/* API Reference */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="api-reference">
-            API Reference
-          </Heading>
-
-          <div className="space-y-8">
-            {/* Header Props */}
-            <div>
-              <Heading level="h3" className="text-xl font-semibold mb-4">
-                Header
-              </Heading>
-              <Body size="md" className="text-krds-gray-70 mb-4">
-                헤더 컨테이너 컴포넌트입니다. 모든 헤더 하위 컴포넌트를 감싸는
-                최상위 요소입니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-krds-gray-20">
-                      <th className="text-left py-2 px-4">Prop</th>
-                      <th className="text-left py-2 px-4">Type</th>
-                      <th className="text-left py-2 px-4">Default</th>
-                      <th className="text-left py-2 px-4">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-krds-gray-90">
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>variant</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>&quot;default&quot; | &quot;compact&quot;</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>&quot;default&quot;</code>
-                      </td>
-                      <td className="py-2 px-4">헤더 변형</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>className</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">추가 CSS 클래스</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>children</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>ReactNode</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">헤더 내용 (하위 컴포넌트)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Header.Branding Props */}
-            <div>
-              <Heading level="h3" className="text-xl font-semibold mb-4">
-                Header.Branding
-              </Heading>
-              <Body size="md" className="text-krds-gray-70 mb-4">
-                로고와 슬로건을 포함하는 브랜딩 영역입니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-krds-gray-20">
-                      <th className="text-left py-2 px-4">Prop</th>
-                      <th className="text-left py-2 px-4">Type</th>
-                      <th className="text-left py-2 px-4">Default</th>
-                      <th className="text-left py-2 px-4">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-krds-gray-90">
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>className</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">추가 CSS 클래스</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>children</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>ReactNode</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">브랜딩 내용 (로고, 슬로건)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Header.Logo Props */}
-            <div>
-              <Heading level="h3" className="text-xl font-semibold mb-4">
-                Header.Logo
-              </Heading>
-              <Body size="md" className="text-krds-gray-70 mb-4">
-                서비스 로고 이미지입니다. 클릭 시 홈페이지로 이동합니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-krds-gray-20">
-                      <th className="text-left py-2 px-4">Prop</th>
-                      <th className="text-left py-2 px-4">Type</th>
-                      <th className="text-left py-2 px-4">Default</th>
-                      <th className="text-left py-2 px-4">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-krds-gray-90">
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>src</code>
-                        <span className="text-red-500">*</span>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">로고 이미지 경로</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>alt</code>
-                        <span className="text-red-500">*</span>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">로고 대체 텍스트 (필수)</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>href</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>&quot;/&quot;</code>
-                      </td>
-                      <td className="py-2 px-4">로고 링크 경로</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>width</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>number</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>120</code>
-                      </td>
-                      <td className="py-2 px-4">로고 너비 (px)</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>height</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>number</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>40</code>
-                      </td>
-                      <td className="py-2 px-4">로고 높이 (px)</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>className</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">추가 CSS 클래스</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Header.Slogan Props */}
-            <div>
-              <Heading level="h3" className="text-xl font-semibold mb-4">
-                Header.Slogan
-              </Heading>
-              <Body size="md" className="text-krds-gray-70 mb-4">
-                선택적 서비스 슬로건 또는 설명 텍스트입니다. 모바일에서는
-                숨겨집니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-krds-gray-20">
-                      <th className="text-left py-2 px-4">Prop</th>
-                      <th className="text-left py-2 px-4">Type</th>
-                      <th className="text-left py-2 px-4">Default</th>
-                      <th className="text-left py-2 px-4">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-krds-gray-90">
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>className</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">추가 CSS 클래스</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>children</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>ReactNode</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">슬로건 텍스트</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Header.Utility Props */}
-            <div>
-              <Heading level="h3" className="text-xl font-semibold mb-4">
-                Header.Utility
-              </Heading>
-              <Body size="md" className="text-krds-gray-70 mb-4">
-                유틸리티 링크를 포함하는 컨테이너입니다. 헤더 오른쪽에 자동으로
-                정렬됩니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-krds-gray-20">
-                      <th className="text-left py-2 px-4">Prop</th>
-                      <th className="text-left py-2 px-4">Type</th>
-                      <th className="text-left py-2 px-4">Default</th>
-                      <th className="text-left py-2 px-4">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-krds-gray-90">
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>className</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">추가 CSS 클래스</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>children</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>ReactNode</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">유틸리티 링크들</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            {/* Header.UtilityLink Props */}
-            <div>
-              <Heading level="h3" className="text-xl font-semibold mb-4">
-                Header.UtilityLink
-              </Heading>
-              <Body size="md" className="text-krds-gray-70 mb-4">
-                개별 유틸리티 링크입니다. 일관된 스타일과 접근성을 제공합니다.
-              </Body>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-krds-gray-20">
-                      <th className="text-left py-2 px-4">Prop</th>
-                      <th className="text-left py-2 px-4">Type</th>
-                      <th className="text-left py-2 px-4">Default</th>
-                      <th className="text-left py-2 px-4">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-krds-gray-90">
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>href</code>
-                        <span className="text-red-500">*</span>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">링크 경로</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>className</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>string</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">추가 CSS 클래스</td>
-                    </tr>
-                    <tr className="border-b border-krds-gray-20">
-                      <td className="py-2 px-4">
-                        <code>children</code>
-                      </td>
-                      <td className="py-2 px-4">
-                        <code>ReactNode</code>
-                      </td>
-                      <td className="py-2 px-4">-</td>
-                      <td className="py-2 px-4">링크 텍스트</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </Stack>
-      </PageSection>
-
-      {/* Foundation Layer */}
-      <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="foundation-layer">
-            기반 레이어
-          </Heading>
+        <Stack spacing="content-base">
           <Body size="md" className="text-krds-gray-70">
-            Header 컴포넌트는 다음과 같은 기능을 자동으로 적용합니다:
+            1024px 미만 화면에서는 자동으로 햄버거 메뉴로 전환됩니다:
           </Body>
 
-          <div className="space-y-4">
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
-                1
-              </div>
-              <div>
-                <Body size="md" weight="bold" className="text-krds-gray-95">
-                  KRDS 필수 ID 자동 적용
-                </Body>
-                <Body size="sm" className="text-krds-gray-70">
-                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
-                    #krds-header
-                  </code>{' '}
-                  ID가 자동으로 적용되어 KRDS 표준을 준수합니다.
-                </Body>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
-                2
-              </div>
-              <div>
-                <Body size="md" weight="bold" className="text-krds-gray-95">
-                  KRDS 필수 클래스 자동 적용
-                </Body>
-                <Body size="sm" className="text-krds-gray-70">
-                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
-                    .header-branding
-                  </code>
-                  ,{' '}
-                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
-                    .header-utility
-                  </code>{' '}
-                  클래스가 자동으로 적용됩니다.
-                </Body>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
-                3
-              </div>
-              <div>
-                <Body size="md" weight="bold" className="text-krds-gray-95">
-                  시맨틱 HTML 자동 적용
-                </Body>
-                <Body size="sm" className="text-krds-gray-70">
-                  <code className="text-xs bg-krds-gray-5 px-1 py-0.5 rounded">
-                    &lt;header&gt;
-                  </code>{' '}
-                  요소를 사용하여 시맨틱한 구조를 제공합니다.
-                </Body>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
-                4
-              </div>
-              <div>
-                <Body size="md" weight="bold" className="text-krds-gray-95">
-                  키보드 접근성 자동 지원
-                </Body>
-                <Body size="sm" className="text-krds-gray-70">
-                  Tab 키로 모든 링크에 접근 가능하며, focus ring이 자동으로
-                  표시됩니다.
-                </Body>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-krds-primary-surface flex items-center justify-center text-krds-primary-base font-semibold text-sm">
-                5
-              </div>
-              <div>
-                <Body size="md" weight="bold" className="text-krds-gray-95">
-                  다크 모드 자동 지원
-                </Body>
-                <Body size="sm" className="text-krds-gray-70">
-                  시스템 설정에 따라 다크 모드가 자동으로 적용되며, 모든 색상이
-                  최적화됩니다.
-                </Body>
-              </div>
-            </div>
-          </div>
+          <ul className="list-disc pl-6 space-y-2 text-krds-gray-70">
+            <li>햄버거 아이콘 클릭 시 우측에서 슬라이드 메뉴 표시</li>
+            <li>백드롭 오버레이로 포커스 유도</li>
+            <li>메뉴 열림 시 body 스크롤 방지</li>
+            <li>닫기 버튼 또는 오버레이 클릭으로 닫기</li>
+            <li>Utility 링크, Main 메뉴, 검색 모두 포함</li>
+          </ul>
         </Stack>
       </PageSection>
 
-      {/* Phase Information */}
+      {/* 관련 컴포넌트 */}
       <PageSection>
-        <Stack spacing="heading-content">
-          <Heading level="h2" id="phase-info">
-            개발 단계
-          </Heading>
-          <Body size="md" className="text-krds-gray-70">
-            현재 Header 컴포넌트는 Phase 1 (기본) 단계입니다.
-          </Body>
+        <Heading level="h2" id="related">
+          관련 컴포넌트
+        </Heading>
 
-          <div className="space-y-4">
-            <div className="rounded-lg border-2 border-krds-primary-border bg-krds-primary-surface p-4">
-              <Body
-                size="md"
-                weight="bold"
-                className="text-krds-primary-text mb-2"
-              >
-                Phase 1 (기본) - 완료
-              </Body>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-primary-text">
-                <li>컨테이너 구조</li>
-                <li>브랜딩 영역 (로고 + 슬로건)</li>
-                <li>유틸리티 링크</li>
-              </ul>
-            </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <a
+            href="/components/identity/footer"
+            className="block p-4 border border-krds-gray-20 rounded-lg hover:border-krds-primary-60 hover:shadow-md transition-all"
+          >
+            <h3 className="font-semibold text-krds-gray-90 mb-1">Footer</h3>
+            <p className="text-sm text-krds-gray-60">
+              정부 서비스 푸터 레이아웃
+            </p>
+          </a>
 
-            <div className="rounded-lg border border-krds-gray-20 bg-krds-gray-5 p-4">
-              <Body size="md" weight="bold" className="text-krds-gray-95 mb-2">
-                🔄 Phase 2 (검색) - 예정
-              </Body>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
-                <li>검색 입력 필드</li>
-                <li>검색 버튼</li>
-                <li>자동완성 기능</li>
-              </ul>
-            </div>
-
-            <div className="rounded-lg border border-krds-gray-20 bg-krds-gray-5 p-4">
-              <Body size="md" weight="bold" className="text-krds-gray-95 mb-2">
-                🔄 Phase 3 (메인 네비게이션) - 예정
-              </Body>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
-                <li>데스크톱 메인 메뉴</li>
-                <li>다단계 드롭다운 메뉴</li>
-                <li>메뉴 항목 관리</li>
-              </ul>
-            </div>
-
-            <div className="rounded-lg border border-krds-gray-20 bg-krds-gray-5 p-4">
-              <Body size="md" weight="bold" className="text-krds-gray-95 mb-2">
-                🔄 Phase 4 (모바일) - 예정
-              </Body>
-              <ul className="list-disc list-inside space-y-1 text-sm text-krds-gray-90">
-                <li>모바일 네비게이션</li>
-                <li>햄버거 메뉴</li>
-                <li>반응형 레이아웃</li>
-              </ul>
-            </div>
-          </div>
-        </Stack>
+          <a
+            href="/components/identity/masthead"
+            className="block p-4 border border-krds-gray-20 rounded-lg hover:border-krds-primary-60 hover:shadow-md transition-all"
+          >
+            <h3 className="font-semibold text-krds-gray-90 mb-1">Masthead</h3>
+            <p className="text-sm text-krds-gray-60">정부 공식 배너</p>
+          </a>
+        </div>
       </PageSection>
     </>
   );
