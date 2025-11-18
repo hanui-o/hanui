@@ -90,6 +90,34 @@
       }
     }
   },
+  "section-heading-system": {
+    "name": "section-heading-system",
+    "type": "component",
+    "description": "KRDS Section Heading System with automatic spacing, semantic structure, and Gap-layout compliance (includes SectionHeading, Section, Subsection, Item, SubItem)",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "devDependencies": [],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/section-heading-system.tsx",
+        "type": "component",
+        "target": "components/hanui/section-heading-system.tsx"
+      }
+    ],
+    "tailwind": {
+      "config": {
+        "theme": {
+          "extend": {
+            "colors": {
+              "krds-gray-95": "#1a1a1a",
+              "krds-gray-70": "#666666"
+            }
+          }
+        }
+      }
+    },
+    "cssRequired": true
+  },
   "body": {
     "name": "body",
     "type": "component",
