@@ -18,14 +18,28 @@ export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
    * @default 'default'
    */
   spacing?: 'tight' | 'default' | 'loose';
+
+  /**
+   * Nested level (for nested lists)
+   * @default 1
+   */
+  level?: 1 | 2;
 }
 
 /**
- * List Context - variant를 ListItem에 전달
+ * List Context - variant와 level을 ListItem에 전달
  */
-const ListContext = React.createContext<
-  'unordered' | 'ordered' | 'dash' | 'check'
->('unordered');
+interface ListContextValue {
+  variant: 'unordered' | 'ordered' | 'dash' | 'check';
+  level: 1 | 2;
+  isNested: boolean;
+}
+
+const ListContext = React.createContext<ListContextValue>({
+  variant: 'unordered',
+  level: 1,
+  isNested: false,
+});
 
 /**
  * List Item Props
@@ -61,6 +75,22 @@ const spacingStyles = {
  *   <ListItem>두 번째 항목</ListItem>
  * </List>
  *
+ * // Nested List (자동으로 level=2, variant=dash 적용)
+ * <List>
+ *   <ListItem>
+ *     사용자가 한 개의 항목을 선택할 수 있는 경우
+ *     <List>
+ *       <ListItem>라디오 버튼을 사용합니다</ListItem>
+ *     </List>
+ *   </ListItem>
+ *   <ListItem>
+ *     옵션을 선택하지마세요
+ *     <List>
+ *       <ListItem>토글 스위치를 사용합니다</ListItem>
+ *     </List>
+ *   </ListItem>
+ * </List>
+ *
  * // Ordered List
  * <List variant="ordered">
  *   <ListItem>단계 1</ListItem>
@@ -92,22 +122,31 @@ export const List = React.forwardRef<
 >(
   (
     {
-      variant = 'unordered',
+      variant: userVariant,
       spacing = 'default',
+      level: userLevel,
       className,
       children,
       ...props
     },
     ref
   ) => {
+    const parentContext = React.useContext(ListContext);
+
+    // ListItem 내부에 중첩된 경우 자동으로 level=2, variant=dash 적용
+    const isNested = parentContext.isNested;
+    const level = userLevel ?? (isNested ? 2 : 1);
+    const variant = userVariant ?? (isNested ? 'dash' : 'unordered');
+
     const Component = variant === 'ordered' ? 'ol' : 'ul';
 
     return (
-      <ListContext.Provider value={variant}>
+      <ListContext.Provider value={{ variant, level, isNested: false }}>
         <Component
           ref={ref as any}
           className={cn(
             'text-krds-gray-90',
+            level === 2 && 'ml-6 mt-2',
             variant === 'ordered' && 'list-decimal list-inside',
             spacingStyles[spacing],
             className
@@ -138,7 +177,7 @@ List.displayName = 'List';
  */
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   ({ showIndicator = true, className, children, ...props }, ref) => {
-    const variant = React.useContext(ListContext);
+    const { variant, level } = React.useContext(ListContext);
     const isOrdered = variant === 'ordered';
     const isDash = variant === 'dash';
     const isCheck = variant === 'check';
@@ -151,6 +190,21 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
         </li>
       );
     }
+
+    // 2depth의 경우 다른 아이콘 사용
+    const getIndicator = () => {
+      if (level === 2) {
+        return isDash ? '−' : '−'; // 2depth는 항상 dash
+      }
+      return isCheck ? '✓' : isDash ? '−' : '•';
+    };
+
+    // ListItem의 children을 Context로 감싸서 내부 List가 중첩임을 알림
+    const wrappedChildren = (
+      <ListContext.Provider value={{ variant, level, isNested: true }}>
+        {children}
+      </ListContext.Provider>
+    );
 
     // unordered, dash, check list 또는 showIndicator=false인 경우
     return (
@@ -165,13 +219,16 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
       >
         {showIndicator && !isOrdered && (
           <span
-            className="text-krds-gray-70 font-bold w-3 flex-shrink-0"
+            className={cn(
+              'font-bold w-3 flex-shrink-0',
+              level === 2 ? 'text-krds-gray-60' : 'text-krds-gray-70'
+            )}
             aria-hidden="true"
           >
-            {isCheck ? '✓' : isDash ? '−' : '•'}
+            {getIndicator()}
           </span>
         )}
-        <span className="flex-1">{children}</span>
+        <span className="flex-1">{wrappedChildren}</span>
       </li>
     );
   }

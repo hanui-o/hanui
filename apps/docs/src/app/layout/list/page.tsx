@@ -48,6 +48,12 @@ export default function ListPage() {
             </ListItem>
             <ListItem>
               <div>
+                <strong>2depth 중첩 리스트:</strong> ListItem 안에 List를 넣으면
+                자동으로 2depth 중첩 리스트가 됩니다.
+              </div>
+            </ListItem>
+            <ListItem>
+              <div>
                 <strong>간격 옵션:</strong> tight, default, loose 3가지 간격을
                 제공합니다.
               </div>
@@ -174,6 +180,62 @@ export default function ListPage() {
               <ListItem>완료된 항목 1</ListItem>
               <ListItem>완료된 항목 2</ListItem>
               <ListItem>완료된 항목 3</ListItem>
+            </List>
+          </div>
+        </Subsection>
+
+        <Subsection level="h3">
+          <SectionHeading level="h3" title="2depth 중첩 리스트">
+            <Body className="leading-relaxed">
+              <Code>ListItem</Code> 안에 <Code>List</Code>를 넣으면 자동으로
+              2depth 중첩 리스트가 됩니다. <Code>level={2}</Code>나{' '}
+              <Code>variant="dash"</Code>를 지정하지 않아도 자동으로
+              들여쓰기되고 dash(−) 아이콘을 사용합니다:
+            </Body>
+          </SectionHeading>
+
+          <div className="bg-krds-gray-5 rounded-lg p-4 border border-krds-gray-20 mb-4">
+            <pre className="overflow-x-auto">
+              <code>{`<List>
+  <ListItem>
+    사용자가 한 개의 항목을 선택할 수 있는 경우
+    <List>
+      <ListItem>라디오 버튼을 사용합니다</ListItem>
+    </List>
+  </ListItem>
+  <ListItem>
+    옵션을 선택하지마세요
+    <List>
+      <ListItem>토글 스위치를 사용합니다</ListItem>
+      <ListItem>부분적으로 옵션을 활성화할 수 있습니다</ListItem>
+    </List>
+  </ListItem>
+</List>`}</code>
+            </pre>
+          </div>
+
+          <div className="p-6 border border-krds-gray-20 rounded-lg">
+            <List>
+              <ListItem>
+                사용자가 한 개의 항목을 선택할 수 있는 경우
+                <List>
+                  <ListItem>라디오 버튼을 사용합니다</ListItem>
+                </List>
+              </ListItem>
+              <ListItem>
+                옵션을 선택하지마세요
+                <List>
+                  <ListItem>토글 스위치를 사용합니다</ListItem>
+                  <ListItem>부분적으로 옵션을 활성화할 수 있습니다</ListItem>
+                </List>
+              </ListItem>
+              <ListItem>
+                여러 개의 항목을 선택할 수 있는 경우
+                <List>
+                  <ListItem>체크박스를 사용합니다</ListItem>
+                  <ListItem>선택된 항목의 개수를 표시할 수 있습니다</ListItem>
+                </List>
+              </ListItem>
             </List>
           </div>
         </Subsection>
@@ -316,6 +378,20 @@ export default function ListPage() {
                   </td>
                   <td className="px-4 py-2 border-b border-krds-gray-20">
                     항목 간 간격
+                  </td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
+                    level
+                  </td>
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
+                    1 | 2
+                  </td>
+                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
+                    1 (ListItem 안에서는 자동으로 2)
+                  </td>
+                  <td className="px-4 py-2 border-b border-krds-gray-20">
+                    리스트 중첩 깊이 (ListItem 안에 넣으면 자동으로 2depth 적용)
                   </td>
                 </tr>
               </tbody>
