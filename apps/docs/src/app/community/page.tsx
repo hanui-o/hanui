@@ -206,6 +206,53 @@ export default function CommunityPage() {
             </a>
 
             <a
+              href="https://velog.io/@hanui/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-4 p-4 border border-krds-gray-20 rounded-lg hover:border-krds-gray-30 hover:bg-krds-gray-5 transition-colors group"
+            >
+              <div className="flex-shrink-0 w-10 h-10 rounded-md bg-krds-gray-10 flex items-center justify-center group-hover:bg-krds-gray-20 transition-colors">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-krds-gray-70"
+                >
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <Heading level="h4" className="text-krds-gray-90 mb-1">
+                  Velog 블로그
+                </Heading>
+                <Body size="sm" className="text-krds-gray-70">
+                  HANUI 개발 과정과 팁을 공유합니다
+                </Body>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-krds-gray-50 group-hover:text-krds-gray-70 transition-colors mt-1"
+              >
+                <path d="M7 17L17 7" />
+                <path d="M7 7h10v10" />
+              </svg>
+            </a>
+
+            <a
               href="mailto:odada@oddodd.io"
               className="flex items-start gap-4 p-4 border border-krds-gray-20 rounded-lg hover:border-krds-gray-30 hover:bg-krds-gray-5 transition-colors group"
             >

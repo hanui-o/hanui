@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 
-const navigation = [
+// Navigation by section
+const getStartedNavigation = [
   {
     title: 'Getting Started',
     items: [
@@ -13,6 +14,9 @@ const navigation = [
       { title: 'Quick Start', href: '/docs/quick-start' },
     ],
   },
+];
+
+const designSystemNavigation = [
   {
     title: 'Design System',
     items: [
@@ -24,6 +28,9 @@ const navigation = [
       { title: 'Breakpoints', href: '/design-system/breakpoints' },
     ],
   },
+];
+
+const componentsNavigation = [
   {
     title: 'Components',
     items: [{ title: 'Overview', href: '/components' }],
@@ -50,8 +57,18 @@ const navigation = [
     title: 'Navigation',
     items: [
       { title: 'SkipLink', href: '/components/navigation/skiplink' },
+      { title: 'Main Menu', href: '/components/navigation/mainmenu' },
+      {
+        title: 'Side Navigation',
+        href: '/components/navigation/sidenavigation',
+      },
+      {
+        title: 'In-page Navigation',
+        href: '/components/navigation/inpagenavigation',
+      },
       { title: 'Breadcrumb', href: '/components/navigation/breadcrumb' },
       { title: 'Pagination', href: '/components/navigation/pagination' },
+      { title: 'Tab Bars', href: '/components/navigation/tabbars' },
     ],
   },
   {
@@ -66,6 +83,7 @@ const navigation = [
       { title: 'Tabs', href: '/layout/tabs' },
       { title: 'Table', href: '/layout/table' },
       { title: 'Card', href: '/layout/card' },
+      { title: 'Structured List', href: '/layout/structured-list' },
     ],
   },
   {
@@ -90,7 +108,22 @@ const navigation = [
   },
 ];
 
-function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
+const templatesNavigation = [
+  {
+    title: 'Templates',
+    items: [
+      { title: 'Overview', href: '/templates' },
+      { title: 'Basic Layout', href: '/templates/basic-layout' },
+    ],
+  },
+];
+
+type NavigationSection = {
+  title: string;
+  items: { title: string; href: string }[];
+};
+
+function SidebarSection({ section }: { section: NavigationSection }) {
   const pathname = usePathname();
 
   return (
@@ -122,6 +155,30 @@ function SidebarSection({ section }: { section: (typeof navigation)[0] }) {
 export function Sidebar() {
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+
+  // Determine which navigation to show based on current path
+  const getNavigation = () => {
+    if (pathname?.startsWith('/docs')) {
+      return getStartedNavigation;
+    } else if (
+      pathname?.startsWith('/design-system') ||
+      pathname?.startsWith('/design-tokens')
+    ) {
+      return designSystemNavigation;
+    } else if (
+      pathname?.startsWith('/components') ||
+      pathname?.startsWith('/typography') ||
+      pathname?.startsWith('/layout')
+    ) {
+      return componentsNavigation;
+    } else if (pathname?.startsWith('/templates')) {
+      return templatesNavigation;
+    }
+    // Default to components navigation for home page
+    return componentsNavigation;
+  };
+
+  const navigation = getNavigation();
 
   // Save scroll position before navigation
   useEffect(() => {

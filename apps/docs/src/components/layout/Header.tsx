@@ -79,6 +79,7 @@ const MoonIcon = () => (
 export function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isFixed, setIsFixed] = useState(false);
   const pathname = usePathname();
   const isMainPage = pathname === '/';
 
@@ -87,46 +88,120 @@ export function Header() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setIsFixed(scrollY > 56);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Check if we're in docs section (any docs-related page)
+  const isInDocs =
+    pathname?.startsWith('/docs') ||
+    pathname?.startsWith('/design-system') ||
+    pathname?.startsWith('/design-tokens') ||
+    pathname?.startsWith('/components') ||
+    pathname?.startsWith('/typography') ||
+    pathname?.startsWith('/layout') ||
+    pathname?.startsWith('/templates');
+
+  // Get current subsection within docs
+  const getCurrentSubSection = () => {
+    if (pathname?.startsWith('/docs')) return 'get-started';
+    if (
+      pathname?.startsWith('/design-system') ||
+      pathname?.startsWith('/design-tokens')
+    )
+      return 'design-system';
+    if (
+      pathname?.startsWith('/components') ||
+      pathname?.startsWith('/typography') ||
+      pathname?.startsWith('/layout')
+    )
+      return 'components';
+    if (pathname?.startsWith('/templates')) return 'templates';
+    return null;
+  };
+
+  const currentSubSection = getCurrentSubSection();
+
+  // Sub-navigation items for Docs section
+  const docsSubNavItems = [
+    { label: 'Get Started', href: '/docs/introduction', key: 'get-started' },
+    {
+      label: 'Design System',
+      href: '/design-system/colors',
+      key: 'design-system',
+    },
+    { label: 'Components', href: '/components', key: 'components' },
+    { label: 'Templates', href: '/templates', key: 'templates' },
+  ];
+
   return (
     <header
       id="header"
-      className={`sticky top-0 z-50 w-full bg-krds-white/95 backdrop-blur supports-[backdrop-filter]:bg-krds-white/60 ${isMainPage ? '' : 'shadow-[0_1px_#00002d17]'}`}
+      style={{
+        position: isFixed ? 'fixed' : 'absolute',
+        top: isFixed ? '-56px' : '0',
+      }}
+      className={`z-50 w-full bg-krds-white/95 backdrop-blur supports-[backdrop-filter]:bg-krds-white/60 ${isMainPage ? '' : 'border-b border-krds-gray-20'}`}
     >
-      <Container maxWidth="full" className="h-12 flex items-center gap-4">
-        {/* Left: Logo + Navigation */}
-        <div className="flex items-center gap-6">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center space-x-2 flex-shrink-0 text-krds-gray-95"
-          >
-            <Logo />
-            <span className="text-lg font-bold font-krona">HANUI</span>
-          </Link>
+      {/* Main Header */}
+      <Container maxWidth="full" className="h-14 flex items-center gap-4">
+        {/* Left: Logo */}
+        <Link
+          href="/"
+          className="flex items-center space-x-2 flex-shrink-0 text-krds-gray-95"
+        >
+          <Logo />
+          <span className="text-lg font-bold font-krona">HANUI</span>
+        </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-            <Link
-              href="/components"
-              className="px-3 py-2 text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95 rounded-md transition-colors"
-            >
-              Components
-            </Link>
-            <Link
-              href="/examples"
-              className="px-3 py-2 text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95 rounded-md transition-colors"
-            >
-              Examples
-            </Link>
-          </nav>
-        </div>
+        {/* Center: Main Navigation */}
+        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium ml-8">
+          <Link
+            href="/docs/introduction"
+            className={`transition-colors ${
+              isInDocs
+                ? 'text-krds-gray-95 font-semibold'
+                : 'text-krds-gray-70 hover:text-krds-gray-95'
+            }`}
+          >
+            Docs
+          </Link>
+          <span className="text-krds-gray-70">Showcase</span>
+          <Link
+            href="https://velog.io/@hanui/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-krds-gray-70 hover:text-krds-gray-95 transition-colors"
+          >
+            Blog
+          </Link>
+          <Link
+            href="/community"
+            className="text-krds-gray-70 hover:text-krds-gray-95 transition-colors"
+          >
+            Community
+          </Link>
+        </nav>
 
         {/* Right: Search + GitHub + Theme */}
         <div className="flex items-center gap-2 ml-auto">
           {/* Search */}
-          <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors">
+          <button className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-sm text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20">
             <SearchIcon />
-            <span className="hidden lg:inline">Search documentation...</span>
+            <span className="hidden lg:inline">Search...</span>
             <kbd className="hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-5 px-1.5 font-mono text-xs font-medium text-krds-gray-70 ml-auto">
               <span className="text-xs">⌘</span>K
             </kbd>
@@ -155,6 +230,34 @@ export function Header() {
           )}
         </div>
       </Container>
+
+      {/* Sub Navigation - Only show when in Docs section */}
+      {isInDocs && (
+        <div className="border-t border-krds-gray-10">
+          <Container maxWidth="full" className="h-11">
+            <nav className="flex items-center h-full overflow-x-auto scrollbar-hide">
+              <div className="flex items-center space-x-1 text-sm">
+                {docsSubNavItems.map((item) => {
+                  const isActive = currentSubSection === item.key;
+                  return (
+                    <Link
+                      key={item.key}
+                      href={item.href}
+                      className={`px-4 py-2 whitespace-nowrap transition-colors ${
+                        isActive
+                          ? 'text-krds-primary-base font-semibold border-b-2 border-krds-primary-base'
+                          : 'text-krds-gray-70 hover:text-krds-gray-95'
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
+          </Container>
+        </div>
+      )}
     </header>
   );
 }
