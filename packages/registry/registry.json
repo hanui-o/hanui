@@ -498,5 +498,137 @@
         "target": "components/hanui/file-upload.tsx"
       }
     ]
+  },
+  "form": {
+    "name": "form",
+    "type": "component",
+    "description": "Form field context system with automatic accessibility connections (FormField, FormLabel, FormDescription, FormError, FormMessage)",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/form.tsx",
+        "type": "component",
+        "target": "components/hanui/form.tsx"
+      }
+    ]
+  },
+  "identifier": {
+    "name": "identifier",
+    "type": "component",
+    "description": "KRDS organization identifier component for government digital services",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/identifier.tsx",
+        "type": "component",
+        "target": "components/hanui/identifier.tsx"
+      }
+    ]
+  },
+  "masthead": {
+    "name": "masthead",
+    "type": "component",
+    "description": "KRDS official banner for government digital services",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/masthead.tsx",
+        "type": "component",
+        "target": "components/hanui/masthead.tsx"
+      }
+    ]
+  },
+  "section": {
+    "name": "section",
+    "type": "component",
+    "description": "KRDS-compliant padding component with semantic presets for layout sections",
+    "dependencies": [
+      "class-variance-authority@^0.7.0",
+      "clsx@^2.1.0",
+      "tailwind-merge@^2.2.0"
+    ],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/section.tsx",
+        "type": "component",
+        "target": "components/hanui/section.tsx"
+      }
+    ]
+  },
+  "skip-link": {
+    "name": "skip-link",
+    "type": "component",
+    "description": "WCAG 2.1 / KWCAG 2.2 compliant skip navigation links for keyboard and screen reader users",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/skip-link.tsx",
+        "type": "component",
+        "target": "components/hanui/skip-link.tsx"
+      }
+    ]
+  },
+  "nav-text": {
+    "name": "nav-text",
+    "type": "component",
+    "description": "KRDS Typography - Navigation text component for menus, tabs, and breadcrumbs",
+    "dependencies": [
+      "class-variance-authority@^0.7.0",
+      "clsx@^2.1.0",
+      "tailwind-merge@^2.2.0"
+    ],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/nav-text.tsx",
+        "type": "component",
+        "target": "components/hanui/nav-text.tsx"
+      }
+    ],
+    "tailwind": {
+      "config": {
+        "theme": {
+          "extend": {
+            "colors": {
+              "krds-gray-90": "#1e1e1e",
+              "krds-gray-95": "#0a0a0a"
+            }
+          }
+        }
+      }
+    }
+  },
+  "header": {
+    "name": "header",
+    "type": "component",
+    "description": "KRDS header compound component with branding, logo, slogan, and utility links",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils"],
+    "files": [
+      {
+        "path": "components/header.tsx",
+        "type": "component",
+        "target": "components/hanui/header.tsx"
+      }
+    ]
+  },
+  "footer": {
+    "name": "footer",
+    "type": "component",
+    "description": "KRDS footer compound component with 13 sub-components for comprehensive footer structure",
+    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
+    "registryDependencies": ["utils", "identifier"],
+    "files": [
+      {
+        "path": "components/footer.tsx",
+        "type": "component",
+        "target": "components/hanui/footer.tsx"
+      }
+    ]
   }
 }
