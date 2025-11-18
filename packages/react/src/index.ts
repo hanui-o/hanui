@@ -135,20 +135,10 @@ export type {
 } from './components/SkipLink';
 
 export { Header } from './components/Header';
-export type {
-  HeaderProps,
-  HeaderNavLink,
-  HeaderUtilityLink,
-} from './components/Header';
+export type { HeaderProps } from './components/Header';
 
 export { Footer } from './components/Footer';
-export type {
-  FooterProps,
-  FooterQuickLink,
-  FooterInfoItem,
-  FooterLink,
-  FooterSocialLink,
-} from './components/Footer';
+export type { FooterProps } from './components/Footer';
 
 export { SideNavigation } from './components/side-navigation';
 export type {
