@@ -1,11 +1,19 @@
-import { Body } from '@hanui/react';
 import {
   Section,
   SectionHeading,
   Subsection,
-} from '@/components/hanui/section';
-import { List, ListItem } from '@/components/hanui/list';
-import { Code } from '@/components/hanui/code';
+  List,
+  ListItem,
+  Code,
+  Body,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  Card,
+} from '@/components/hanui';
 
 export default function CodePage() {
   return (
@@ -24,9 +32,9 @@ export default function CodePage() {
           </Body>
         </SectionHeading>
 
-        <div className="bg-krds-gray-5 rounded-lg p-4 border border-krds-gray-20">
-          <Code>npx @hanui/cli add code</Code>
-        </div>
+        <Code variant="block" language="bash" showLineNumbers={false}>
+          npx @hanui/cli add code
+        </Code>
       </Section>
 
       {/* What is it */}
@@ -41,28 +49,20 @@ export default function CodePage() {
         <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
           <List variant="check" className="text-krds-gray-90">
             <ListItem>
-              <div>
-                <strong>Inline/Block 지원:</strong> 인라인 코드와 코드 블록 모두
-                지원합니다.
-              </div>
+              <strong>Inline/Block 지원:</strong> 인라인 코드와 코드 블록 모두
+              지원합니다.
             </ListItem>
             <ListItem>
-              <div>
-                <strong>크기 옵션:</strong> sm, default, lg 3가지 크기를
-                제공합니다.
-              </div>
+              <strong>크기 옵션:</strong> sm, default, lg 3가지 크기를
+              제공합니다.
             </ListItem>
             <ListItem>
-              <div>
-                <strong>KRDS 색상:</strong> KRDS 디자인 시스템의 색상을
-                준수합니다.
-              </div>
+              <strong>KRDS 색상:</strong> KRDS 디자인 시스템의 색상을
+              준수합니다.
             </ListItem>
             <ListItem>
-              <div>
-                <strong>모노스페이스 폰트:</strong> 코드 가독성을 위한 고정폭
-                폰트를 사용합니다.
-              </div>
+              <strong>모노스페이스 폰트:</strong> 코드 가독성을 위한 고정폭
+              폰트를 사용합니다.
             </ListItem>
           </List>
         </div>
@@ -79,21 +79,19 @@ export default function CodePage() {
             </Body>
           </SectionHeading>
 
-          <div className="bg-krds-gray-5 rounded-lg p-4 border border-krds-gray-20 mb-4">
-            <pre className="overflow-x-auto">
-              <code>{`import { Code } from '@/components/hanui/code';
+          <Code variant="block" language="tsx" showLineNumbers={false}>
+            {`import { Code } from '@/components/hanui';
 
 <Body>
   파일을 저장하려면 <Code>Ctrl+S</Code>를 누르세요.
-</Body>`}</code>
-            </pre>
-          </div>
+</Body>`}
+          </Code>
 
-          <div className="p-6 border border-krds-gray-20 rounded-lg">
+          <Card variant="outlined" className="mt-3">
             <Body>
               파일을 저장하려면 <Code>Ctrl+S</Code>를 누르세요.
             </Body>
-          </div>
+          </Card>
         </Subsection>
 
         <Subsection level="h3">
@@ -103,26 +101,38 @@ export default function CodePage() {
             </Body>
           </SectionHeading>
 
-          <div className="space-y-4">
-            <div className="p-6 border border-krds-gray-20 rounded-lg">
-              <Body className="mb-2 font-medium">Small</Body>
-              <Body>
-                작은 크기: <Code size="sm">npm install</Code>
-              </Body>
+          <div className="space-y-6">
+            <div>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Code size="sm">npm install</Code>`}
+              </Code>
+              <Card variant="outlined" className="mt-3">
+                <Body>
+                  작은 크기: <Code size="sm">npm install</Code>
+                </Body>
+              </Card>
             </div>
 
-            <div className="p-6 border border-krds-gray-20 rounded-lg">
-              <Body className="mb-2 font-medium">Default</Body>
-              <Body>
-                기본 크기: <Code>npm install</Code>
-              </Body>
+            <div>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Code>npm install</Code>`}
+              </Code>
+              <Card variant="outlined" className="mt-3">
+                <Body>
+                  기본 크기: <Code>npm install</Code>
+                </Body>
+              </Card>
             </div>
 
-            <div className="p-6 border border-krds-gray-20 rounded-lg">
-              <Body className="mb-2 font-medium">Large</Body>
-              <Body>
-                큰 크기: <Code size="lg">npm install</Code>
-              </Body>
+            <div>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Code size="lg">npm install</Code>`}
+              </Code>
+              <Card variant="outlined" className="mt-3">
+                <Body>
+                  큰 크기: <Code size="lg">npm install</Code>
+                </Body>
+              </Card>
             </div>
           </div>
         </Subsection>
@@ -134,23 +144,19 @@ export default function CodePage() {
             </Body>
           </SectionHeading>
 
-          <div className="bg-krds-gray-5 rounded-lg p-4 border border-krds-gray-20 mb-4">
-            <pre className="overflow-x-auto">
-              <code>{`<Code variant="block">
+          <Code variant="block" language="tsx" showLineNumbers={false}>
+            {`<Code variant="block">
   {\`function hello() {
     console.log("Hello, World!");
   }\`}
-</Code>`}</code>
-            </pre>
-          </div>
+</Code>`}
+          </Code>
 
-          <div className="p-6 border border-krds-gray-20 rounded-lg">
-            <Code variant="block">
-              {`function hello() {
+          <Card variant="outlined" className="mt-3">
+            {`function hello() {
   console.log("Hello, World!");
 }`}
-            </Code>
-          </div>
+          </Card>
         </Subsection>
 
         <Subsection level="h3">
@@ -160,7 +166,7 @@ export default function CodePage() {
             </Body>
           </SectionHeading>
 
-          <div className="p-6 border border-krds-gray-20 rounded-lg space-y-3">
+          <Card variant="outlined" className="space-y-3">
             <Body>
               React에서 상태를 관리하려면 <Code>useState</Code> 훅을 사용하세요.
             </Body>
@@ -173,7 +179,7 @@ export default function CodePage() {
               환경 변수는 <Code>process.env.NODE_ENV</Code>로 접근할 수
               있습니다.
             </Body>
-          </div>
+          </Card>
         </Subsection>
 
         <Subsection level="h3">
@@ -184,22 +190,20 @@ export default function CodePage() {
             </Body>
           </SectionHeading>
 
-          <div className="bg-krds-gray-5 rounded-lg p-4 border border-krds-gray-20 mb-4">
-            <pre className="overflow-x-auto">
-              <code>{`<Code className="text-krds-primary-text bg-krds-primary-surface">
+          <Code variant="block" language="tsx" showLineNumbers={false}>
+            {`<Code className="text-krds-primary-text bg-krds-primary-surface">
   primary color code
-</Code>`}</code>
-            </pre>
-          </div>
+</Code>`}
+          </Code>
 
-          <div className="p-6 border border-krds-gray-20 rounded-lg">
+          <Card variant="outlined" className="mt-3">
             <Body>
               Primary 색상:{' '}
               <Code className="text-krds-primary-text bg-krds-primary-surface">
                 primary color code
               </Code>
             </Body>
-          </div>
+          </Card>
         </Subsection>
       </Section>
 
@@ -210,56 +214,34 @@ export default function CodePage() {
         <Subsection level="h3">
           <SectionHeading level="h3" title="Code Props" />
 
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-krds-gray-5">
-                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                    Prop
-                  </th>
-                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                    Type
-                  </th>
-                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                    Default
-                  </th>
-                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    variant
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    &apos;inline&apos; | &apos;block&apos;
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    &apos;inline&apos;
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    코드 표시 방식
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    size
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    &apos;sm&apos; | &apos;default&apos; | &apos;lg&apos;
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    &apos;default&apos;
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    크기 (inline만 적용)
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Prop</TableHead>
+                <TableHead>Type</TableHead>
+                <TableHead>Default</TableHead>
+                <TableHead>Description</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell className="font-mono">variant</TableCell>
+                <TableCell className="font-mono">
+                  &apos;inline&apos; | &apos;block&apos;
+                </TableCell>
+                <TableCell className="font-mono">&apos;inline&apos;</TableCell>
+                <TableCell>코드 표시 방식</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-mono">size</TableCell>
+                <TableCell className="font-mono">
+                  &apos;sm&apos; | &apos;default&apos; | &apos;lg&apos;
+                </TableCell>
+                <TableCell className="font-mono">&apos;default&apos;</TableCell>
+                <TableCell>크기 (inline만 적용)</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </Subsection>
       </Section>
 
@@ -269,27 +251,18 @@ export default function CodePage() {
 
         <List>
           <ListItem>
-            <Body>
-              <strong>인라인 코드</strong>는 짧은 명령어, 변수명, 파일명 등에
-              사용하세요.
-            </Body>
+            <strong>인라인 코드</strong>는 짧은 명령어, 변수명, 파일명 등에
+            사용하세요.
           </ListItem>
           <ListItem>
-            <Body>
-              <strong>블록 코드</strong>는 여러 줄의 코드 예제에 사용하세요.
-            </Body>
+            <strong>블록 코드</strong>는 여러 줄의 코드 예제에 사용하세요.
           </ListItem>
           <ListItem>
-            <Body>
-              구문 강조가 필요한 경우 별도의 <Code>CodeBlock</Code> 컴포넌트를
-              사용하세요.
-            </Body>
+            구문 강조가 필요한 경우 별도의 <Code>CodeBlock</Code> 컴포넌트를
+            사용하세요.
           </ListItem>
           <ListItem>
-            <Body>
-              과도한 인라인 코드 사용은 가독성을 해칠 수 있으니 적절히
-              사용하세요.
-            </Body>
+            과도한 인라인 코드 사용은 가독성을 해칠 수 있으니 적절히 사용하세요.
           </ListItem>
         </List>
       </Section>
