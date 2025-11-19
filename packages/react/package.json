@@ -75,6 +75,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.553.0",
+    "shiki": "^1.26.0",
     "tailwind-merge": "^3.4.0"
   }
 }
