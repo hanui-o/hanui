@@ -130,7 +130,7 @@ export default function ColorsPage() {
             </Body>
           </SectionHeading>
 
-          <div className="space-y-4">
+          <Stack gap="md">
             <div>
               <Body size="sm" className="font-semibold mb-2">
                 1. globals.css - CSS 변수 정의
@@ -175,7 +175,7 @@ export default function ColorsPage() {
 }`}
               </Code>
             </div>
-          </div>
+          </Stack>
         </Subsection>
 
         <Subsection level="h3">
@@ -185,7 +185,7 @@ export default function ColorsPage() {
             </Body>
           </SectionHeading>
 
-          <div className="space-y-4">
+          <Stack gap="md">
             <div>
               <Body size="sm" className="font-semibold mb-2">
                 KRDS 색상 사용 예시
@@ -216,7 +216,7 @@ export default function ColorsPage() {
               </Code>
             </div>
 
-            <Card variant="outlined" className="mt-4">
+            <Card variant="outlined">
               <Body size="sm">
                 <strong>주의:</strong>
               </Body>
@@ -246,7 +246,7 @@ export default function ColorsPage() {
                 접두사가 붙은 것만 사용하면 됩니다.
               </Body>
             </Card>
-          </div>
+          </Stack>
         </Subsection>
       </Section>
 
@@ -346,7 +346,7 @@ export default function ColorsPage() {
               사용합니다.
             </Body>
           </SectionHeading>
-          <div className="space-y-2 mb-4">
+          <Stack gap="sm" className="mb-4">
             <div className="flex items-center gap-4 p-3 bg-krds-white rounded-lg border border-krds-gray-20">
               <div className="w-16 h-16 bg-krds-white border border-krds-gray-20 rounded"></div>
               <div>
@@ -410,7 +410,7 @@ export default function ColorsPage() {
                 <p className="text-xs text-krds-gray-30">굵은 텍스트</p>
               </div>
             </div>
-          </div>
+          </Stack>
         </Subsection>
 
         <Subsection level="h3">
@@ -520,7 +520,7 @@ export default function ColorsPage() {
           따라 자동으로 올바른 색상이 적용되도록 설정했습니다.
         </Body>
 
-        <div className="space-y-4 mt-4">
+        <Stack gap="md" className="mt-4">
           <div>
             <Body size="sm" className="font-semibold mb-2">
               1. globals.css - Semantic 변수 정의
@@ -563,7 +563,7 @@ export default function ColorsPage() {
 }`}
             </Code>
           </div>
-        </div>
+        </Stack>
 
         <Subsection level="h3">
           <SectionHeading level="h3" title="Semantic 변수 vs 숫자 스케일">
@@ -712,7 +712,7 @@ export default function ColorsPage() {
             </Body>
           </SectionHeading>
 
-          <div className="space-y-4">
+          <Stack gap="md">
             <div>
               <Body size="sm" className="font-semibold mb-2">
                 1. globals.css - CSS 변수 정의
@@ -770,7 +770,7 @@ export default function ColorsPage() {
 </html>`}
               </Code>
             </div>
-          </div>
+          </Stack>
         </Subsection>
 
         <Subsection level="h3">
@@ -781,7 +781,7 @@ export default function ColorsPage() {
             </Body>
           </SectionHeading>
 
-          <div className="space-y-4">
+          <Stack gap="md">
             <div>
               <Body size="sm" className="font-semibold mb-2">
                 숫자 스케일 - 자동 전환
@@ -846,7 +846,7 @@ export default function ColorsPage() {
 </div>`}
               </Code>
             </div>
-          </div>
+          </Stack>
         </Subsection>
 
         <Subsection level="h3">
@@ -890,7 +890,7 @@ function App() {
 
         <Subsection level="h3">
           <SectionHeading level="h3" title="주의사항" />
-          <div className="space-y-3">
+          <Stack gap="sm">
             <Card variant="outlined">
               <Body>
                 <strong>text-white 사용:</strong> <Code>text-white</Code>는 순수
@@ -910,7 +910,7 @@ function App() {
                 됩니다.
               </Body>
             </Card>
-          </div>
+          </Stack>
         </Subsection>
       </Section>
 
