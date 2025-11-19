@@ -11,6 +11,8 @@ import {
   Card,
   Link,
   Stack,
+  Wrap,
+  WrapItem,
   PageNavigation,
 } from '@/components/hanui';
 import { CircleX, AlertTriangle, CheckCircle, Info } from 'lucide-react';
@@ -268,20 +270,24 @@ export default function ColorsPage() {
             </Body>
           </SectionHeading>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-            <div className="p-4 bg-krds-white text-krds-black rounded-lg border border-krds-gray-20">
-              <code className="block mb-2">bg-krds-white</code>
-              <p className="text-sm">
-                기본 모드: 흰색, 다크 모드: 검은색 (자동 반전)
-              </p>
-            </div>
-            <div className="p-4 bg-krds-black text-krds-white rounded-lg border border-krds-gray-20">
-              <code className="block mb-2">bg-krds-black</code>
-              <p className="text-sm">
-                기본 모드: 검은색, 다크 모드: 흰색 (자동 반전)
-              </p>
-            </div>
-          </div>
+          <Wrap gap="md" className="mb-4">
+            <WrapItem className="flex-1 min-w-[300px]">
+              <div className="p-4 bg-krds-white text-krds-black rounded-lg border border-krds-gray-20 w-full">
+                <code className="block mb-2">bg-krds-white</code>
+                <p className="text-sm">
+                  기본 모드: 흰색, 다크 모드: 검은색 (자동 반전)
+                </p>
+              </div>
+            </WrapItem>
+            <WrapItem className="flex-1 min-w-[300px]">
+              <div className="p-4 bg-krds-black text-krds-white rounded-lg border border-krds-gray-20 w-full">
+                <code className="block mb-2">bg-krds-black</code>
+                <p className="text-sm">
+                  기본 모드: 검은색, 다크 모드: 흰색 (자동 반전)
+                </p>
+              </div>
+            </WrapItem>
+          </Wrap>
 
           <Code variant="block" language="tsx">
             {`// KRDS 흰색/검은색 - 모드에 따라 자동 반전
@@ -320,16 +326,20 @@ export default function ColorsPage() {
 
         <Subsection level="h3">
           <SectionHeading level="h3" title="Primary Colors" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-            <div className="p-4 bg-krds-primary-50 text-krds-primary-10 rounded-lg">
-              <code className="block mb-2">bg-krds-primary-50</code>
-              <p className="text-sm">Primary - 주요 상호작용</p>
-            </div>
-            <div className="p-4 bg-krds-primary-60 text-krds-primary-10 rounded-lg">
-              <code className="block mb-2">hover:bg-krds-primary-60</code>
-              <p className="text-sm">Primary Hover</p>
-            </div>
-          </div>
+          <Wrap gap="md" className="mb-4">
+            <WrapItem className="flex-1 min-w-[300px]">
+              <div className="p-4 bg-krds-primary-50 text-krds-primary-10 rounded-lg w-full">
+                <code className="block mb-2">bg-krds-primary-50</code>
+                <p className="text-sm">Primary - 주요 상호작용</p>
+              </div>
+            </WrapItem>
+            <WrapItem className="flex-1 min-w-[300px]">
+              <div className="p-4 bg-krds-primary-60 text-krds-primary-10 rounded-lg w-full">
+                <code className="block mb-2">hover:bg-krds-primary-60</code>
+                <p className="text-sm">Primary Hover</p>
+              </div>
+            </WrapItem>
+          </Wrap>
           <Code variant="block" language="tsx">
             {`<Button variant="primary">확인</Button>
 // 또는
@@ -415,7 +425,7 @@ export default function ColorsPage() {
 
         <Subsection level="h3">
           <SectionHeading level="h3" title="System Colors" />
-          <div className="grid grid-cols-1 gap-4 mb-4">
+          <Stack gap="md" className="mb-4">
             {/* Danger */}
             <div className="p-4 bg-krds-danger-5 border border-krds-danger-10 rounded-lg">
               <strong className="text-krds-danger-60 mb-2 flex items-center gap-2">
@@ -467,7 +477,7 @@ export default function ColorsPage() {
                 border-krds-information-10 (다크: 90)
               </code>
             </div>
-          </div>
+          </Stack>
         </Subsection>
       </Section>
 
@@ -628,67 +638,75 @@ export default function ColorsPage() {
             <Body>다음 컬러들이 Semantic 변수를 지원합니다:</Body>
           </SectionHeading>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <Card variant="outlined">
-              <SectionHeading level="h4" title="Primary" />
-              <List>
-                <ListItem>
-                  <Code>text-krds-primary-text</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>bg-krds-primary-surface</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>bg-krds-primary-base</Code>
-                </ListItem>
-              </List>
-            </Card>
+          <Wrap gap="md">
+            <WrapItem className="flex-1 min-w-[300px]">
+              <Card variant="outlined" className="w-full">
+                <SectionHeading level="h4" title="Primary" />
+                <List>
+                  <ListItem>
+                    <Code>text-krds-primary-text</Code>
+                  </ListItem>
+                  <ListItem>
+                    <Code>bg-krds-primary-surface</Code>
+                  </ListItem>
+                  <ListItem>
+                    <Code>bg-krds-primary-base</Code>
+                  </ListItem>
+                </List>
+              </Card>
+            </WrapItem>
 
-            <Card variant="outlined">
-              <SectionHeading level="h4" title="Secondary" />
-              <List>
-                <ListItem>
-                  <Code>text-krds-secondary-text</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>bg-krds-secondary-surface</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>bg-krds-secondary-base</Code>
-                </ListItem>
-              </List>
-            </Card>
+            <WrapItem className="flex-1 min-w-[300px]">
+              <Card variant="outlined" className="w-full">
+                <SectionHeading level="h4" title="Secondary" />
+                <List>
+                  <ListItem>
+                    <Code>text-krds-secondary-text</Code>
+                  </ListItem>
+                  <ListItem>
+                    <Code>bg-krds-secondary-surface</Code>
+                  </ListItem>
+                  <ListItem>
+                    <Code>bg-krds-secondary-base</Code>
+                  </ListItem>
+                </List>
+              </Card>
+            </WrapItem>
 
-            <Card variant="outlined">
-              <SectionHeading level="h4" title="Accent (강조)" />
-              <List>
-                <ListItem>
-                  <Code>text-krds-accent-text</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>bg-krds-accent-surface</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>bg-krds-accent-base</Code>
-                </ListItem>
-              </List>
-            </Card>
+            <WrapItem className="flex-1 min-w-[300px]">
+              <Card variant="outlined" className="w-full">
+                <SectionHeading level="h4" title="Accent (강조)" />
+                <List>
+                  <ListItem>
+                    <Code>text-krds-accent-text</Code>
+                  </ListItem>
+                  <ListItem>
+                    <Code>bg-krds-accent-surface</Code>
+                  </ListItem>
+                  <ListItem>
+                    <Code>bg-krds-accent-base</Code>
+                  </ListItem>
+                </List>
+              </Card>
+            </WrapItem>
 
-            <Card variant="outlined">
-              <SectionHeading level="h4" title="Danger (위험/에러)" />
-              <List>
-                <ListItem>
-                  <Code>text-krds-danger-text</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>bg-krds-danger-surface</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>border-krds-danger-border</Code>
-                </ListItem>
-              </List>
-            </Card>
-          </div>
+            <WrapItem className="flex-1 min-w-[300px]">
+              <Card variant="outlined" className="w-full">
+                <SectionHeading level="h4" title="Danger (위험/에러)" />
+                <List>
+                  <ListItem>
+                    <Code>text-krds-danger-text</Code>
+                  </ListItem>
+                  <ListItem>
+                    <Code>bg-krds-danger-surface</Code>
+                  </ListItem>
+                  <ListItem>
+                    <Code>border-krds-danger-border</Code>
+                  </ListItem>
+                </List>
+              </Card>
+            </WrapItem>
+          </Wrap>
         </Subsection>
       </Section>
 
