@@ -10,6 +10,10 @@ import {
   Body,
   Card,
   CardBody,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
 } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
@@ -27,79 +31,91 @@ export default function AccordionPage() {
         description="관련된 여러 콘텐츠 섹션을 하나의 페이지에서 확인하고, 헤더를 선택하여 하위 콘텐츠를 표시하거나 숨길 수 있는 컴포넌트입니다."
       />
 
-      {/* Installation */}
-      <PageSection>
-        <Installation componentName="Accordion" />
-      </PageSection>
+      {/* Tabs */}
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="api">API Reference</TabsTrigger>
+        </TabsList>
 
-      {/* Usage Examples */}
-      <PageSection>
-        <Heading level="h2" className="text-2xl font-semibold">
-          사용 예제
-        </Heading>
+        <TabsContent value="overview">
+          {/* Installation */}
+          <PageSection>
+            <Installation componentName="Accordion" />
+          </PageSection>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* Basic Example */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">기본 사용</Heading>
-            <Body>
-              기본 Accordion은 한 번에 하나의 패널만 열 수
-              있으며(type=&quot;single&quot;), collapsible을 true로 설정하면
-              열린 패널을 다시 닫을 수 있습니다.
-            </Body>
-            <div>
-              <ComponentPreview>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="item-1">
-                    <h3>
-                      <AccordionTrigger>
-                        접근성이란 무엇인가요?
-                      </AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>
-                        접근성은 모든 사람이 웹 콘텐츠와 서비스를 동등하게
-                        이용할 수 있도록 보장하는 것입니다. 이는 장애가 있는
-                        사람뿐만 아니라 노인, 일시적 장애가 있는 사람 등 모든
-                        사용자에게 중요합니다.
-                      </Body>
-                    </AccordionContent>
-                  </AccordionItem>
+          {/* Usage Examples */}
+          <PageSection>
+            <Heading level="h2" className="text-2xl font-semibold">
+              사용 예제
+            </Heading>
 
-                  <AccordionItem value="item-2">
-                    <h3>
-                      <AccordionTrigger>KRDS는 무엇인가요?</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>
-                        KRDS(Korean Government Design System)는 대한민국 정부
-                        웹사이트의 일관된 사용자 경험을 제공하기 위한 디자인
-                        시스템입니다. WCAG 2.1과 KWCAG 2.2 표준을 준수합니다.
-                      </Body>
-                    </AccordionContent>
-                  </AccordionItem>
+            <Stack spacing="content-loose" className="mt-2 md:mt-4">
+              {/* Basic Example */}
+              <Stack spacing="heading-tight">
+                <Heading level="h3">기본 사용</Heading>
+                <Body>
+                  기본 Accordion은 한 번에 하나의 패널만 열 수
+                  있으며(type=&quot;single&quot;), collapsible을 true로 설정하면
+                  열린 패널을 다시 닫을 수 있습니다.
+                </Body>
+                <div>
+                  <ComponentPreview>
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="item-1">
+                        <h3>
+                          <AccordionTrigger>
+                            접근성이란 무엇인가요?
+                          </AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>
+                            접근성은 모든 사람이 웹 콘텐츠와 서비스를 동등하게
+                            이용할 수 있도록 보장하는 것입니다. 이는 장애가 있는
+                            사람뿐만 아니라 노인, 일시적 장애가 있는 사람 등
+                            모든 사용자에게 중요합니다.
+                          </Body>
+                        </AccordionContent>
+                      </AccordionItem>
 
-                  <AccordionItem value="item-3">
-                    <h3>
-                      <AccordionTrigger>
-                        시맨틱 HTML이 왜 중요한가요?
-                      </AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>
-                        시맨틱 HTML은 스크린 리더 사용자가 페이지 구조를 빠르게
-                        파악하고 원하는 섹션으로 쉽게 이동할 수 있게 합니다.
-                        제목 태그(h1-h6)는 문서 계층 구조를 나타냅니다.
-                      </Body>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </ComponentPreview>
+                      <AccordionItem value="item-2">
+                        <h3>
+                          <AccordionTrigger>
+                            KRDS는 무엇인가요?
+                          </AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>
+                            KRDS(Korean Government Design System)는 대한민국
+                            정부 웹사이트의 일관된 사용자 경험을 제공하기 위한
+                            디자인 시스템입니다. WCAG 2.1과 KWCAG 2.2 표준을
+                            준수합니다.
+                          </Body>
+                        </AccordionContent>
+                      </AccordionItem>
 
-              <div className="mt-4">
-                <CodeBlock
-                  language="tsx"
-                  code={`<Accordion type="single" collapsible>
+                      <AccordionItem value="item-3">
+                        <h3>
+                          <AccordionTrigger>
+                            시맨틱 HTML이 왜 중요한가요?
+                          </AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>
+                            시맨틱 HTML은 스크린 리더 사용자가 페이지 구조를
+                            빠르게 파악하고 원하는 섹션으로 쉽게 이동할 수 있게
+                            합니다. 제목 태그(h1-h6)는 문서 계층 구조를
+                            나타냅니다.
+                          </Body>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </ComponentPreview>
+
+                  <div className="mt-4">
+                    <CodeBlock
+                      language="tsx"
+                      code={`<Accordion type="single" collapsible>
   <AccordionItem value="item-1">
     <h3>
       <AccordionTrigger>접근성이란 무엇인가요?</AccordionTrigger>
@@ -109,54 +125,58 @@ export default function AccordionPage() {
     </AccordionContent>
   </AccordionItem>
 </Accordion>`}
-                />
-              </div>
-            </div>
-          </Stack>
+                    />
+                  </div>
+                </div>
+              </Stack>
 
-          {/* Multiple Open */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Multiple Open</Heading>
-            <Body>
-              type=&quot;multiple&quot;로 설정하면 여러 패널을 동시에 열 수
-              있습니다.
-            </Body>
-            <div>
-              <ComponentPreview>
-                <Accordion type="multiple" className="w-full">
-                  <AccordionItem value="item-1">
-                    <h3>
-                      <AccordionTrigger>개인정보</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>이름, 이메일, 전화번호 등을 관리합니다.</Body>
-                    </AccordionContent>
-                  </AccordionItem>
+              {/* Multiple Open */}
+              <Stack spacing="heading-tight">
+                <Heading level="h3">Multiple Open</Heading>
+                <Body>
+                  type=&quot;multiple&quot;로 설정하면 여러 패널을 동시에 열 수
+                  있습니다.
+                </Body>
+                <div>
+                  <ComponentPreview>
+                    <Accordion type="multiple" className="w-full">
+                      <AccordionItem value="item-1">
+                        <h3>
+                          <AccordionTrigger>개인정보</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>이름, 이메일, 전화번호 등을 관리합니다.</Body>
+                        </AccordionContent>
+                      </AccordionItem>
 
-                  <AccordionItem value="item-2">
-                    <h3>
-                      <AccordionTrigger>보안 설정</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>비밀번호 변경, 2단계 인증 등을 설정합니다.</Body>
-                    </AccordionContent>
-                  </AccordionItem>
+                      <AccordionItem value="item-2">
+                        <h3>
+                          <AccordionTrigger>보안 설정</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>
+                            비밀번호 변경, 2단계 인증 등을 설정합니다.
+                          </Body>
+                        </AccordionContent>
+                      </AccordionItem>
 
-                  <AccordionItem value="item-3">
-                    <h3>
-                      <AccordionTrigger>알림 설정</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>이메일 및 푸시 알림 수신 여부를 관리합니다.</Body>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </ComponentPreview>
+                      <AccordionItem value="item-3">
+                        <h3>
+                          <AccordionTrigger>알림 설정</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>
+                            이메일 및 푸시 알림 수신 여부를 관리합니다.
+                          </Body>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </ComponentPreview>
 
-              <div className="mt-4">
-                <CodeBlock
-                  language="tsx"
-                  code={`<Accordion type="multiple">
+                  <div className="mt-4">
+                    <CodeBlock
+                      language="tsx"
+                      code={`<Accordion type="multiple">
   <AccordionItem value="item-1">
     <h3>
       <AccordionTrigger>개인정보</AccordionTrigger>
@@ -166,66 +186,68 @@ export default function AccordionPage() {
     </AccordionContent>
   </AccordionItem>
 </Accordion>`}
-                />
-              </div>
-            </div>
-          </Stack>
+                    />
+                  </div>
+                </div>
+              </Stack>
 
-          {/* Line Variant */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Line Variant</Heading>
-            <Body>
-              variant=&quot;line&quot;으로 설정하면 구분선 스타일로 표시됩니다.
-            </Body>
-            <div>
-              <ComponentPreview>
-                <Accordion
-                  type="single"
-                  collapsible
-                  variant="line"
-                  className="w-full"
-                >
-                  <AccordionItem value="item-1">
-                    <h3>
-                      <AccordionTrigger>배송 정책</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>
-                        국내 배송은 주문 후 2-3일 소요되며, 50,000원 이상 구매
-                        시 무료배송입니다.
-                      </Body>
-                    </AccordionContent>
-                  </AccordionItem>
+              {/* Line Variant */}
+              <Stack spacing="heading-tight">
+                <Heading level="h3">Line Variant</Heading>
+                <Body>
+                  variant=&quot;line&quot;으로 설정하면 구분선 스타일로
+                  표시됩니다.
+                </Body>
+                <div>
+                  <ComponentPreview>
+                    <Accordion
+                      type="single"
+                      collapsible
+                      variant="line"
+                      className="w-full"
+                    >
+                      <AccordionItem value="item-1">
+                        <h3>
+                          <AccordionTrigger>배송 정책</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>
+                            국내 배송은 주문 후 2-3일 소요되며, 50,000원 이상
+                            구매 시 무료배송입니다.
+                          </Body>
+                        </AccordionContent>
+                      </AccordionItem>
 
-                  <AccordionItem value="item-2">
-                    <h3>
-                      <AccordionTrigger>환불 정책</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>
-                        제품 수령 후 7일 이내 미개봉 상태에서 환불이 가능합니다.
-                      </Body>
-                    </AccordionContent>
-                  </AccordionItem>
+                      <AccordionItem value="item-2">
+                        <h3>
+                          <AccordionTrigger>환불 정책</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>
+                            제품 수령 후 7일 이내 미개봉 상태에서 환불이
+                            가능합니다.
+                          </Body>
+                        </AccordionContent>
+                      </AccordionItem>
 
-                  <AccordionItem value="item-3">
-                    <h3>
-                      <AccordionTrigger>교환 정책</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>
-                        불량 제품인 경우 무상으로 교환해드리며, 단순 변심인 경우
-                        배송비가 발생할 수 있습니다.
-                      </Body>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </ComponentPreview>
+                      <AccordionItem value="item-3">
+                        <h3>
+                          <AccordionTrigger>교환 정책</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>
+                            불량 제품인 경우 무상으로 교환해드리며, 단순 변심인
+                            경우 배송비가 발생할 수 있습니다.
+                          </Body>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </ComponentPreview>
 
-              <div className="mt-4">
-                <CodeBlock
-                  language="tsx"
-                  code={`<Accordion type="single" collapsible variant="line">
+                  <div className="mt-4">
+                    <CodeBlock
+                      language="tsx"
+                      code={`<Accordion type="single" collapsible variant="line">
   <AccordionItem value="item-1">
     <h3>
       <AccordionTrigger>배송 정책</AccordionTrigger>
@@ -235,56 +257,60 @@ export default function AccordionPage() {
     </AccordionContent>
   </AccordionItem>
 </Accordion>`}
-                />
-              </div>
-            </div>
-          </Stack>
+                    />
+                  </div>
+                </div>
+              </Stack>
 
-          {/* Default Value */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">기본값</Heading>
-            <Body>defaultValue로 초기에 열릴 패널을 지정할 수 있습니다.</Body>
-            <div>
-              <ComponentPreview>
-                <Accordion
-                  type="single"
-                  collapsible
-                  defaultValue="item-2"
-                  className="w-full"
-                >
-                  <AccordionItem value="item-1">
-                    <h3>
-                      <AccordionTrigger>Step 1: 회원가입</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>이메일과 비밀번호로 계정을 생성합니다.</Body>
-                    </AccordionContent>
-                  </AccordionItem>
+              {/* Default Value */}
+              <Stack spacing="heading-tight">
+                <Heading level="h3">기본값</Heading>
+                <Body>
+                  defaultValue로 초기에 열릴 패널을 지정할 수 있습니다.
+                </Body>
+                <div>
+                  <ComponentPreview>
+                    <Accordion
+                      type="single"
+                      collapsible
+                      defaultValue="item-2"
+                      className="w-full"
+                    >
+                      <AccordionItem value="item-1">
+                        <h3>
+                          <AccordionTrigger>Step 1: 회원가입</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>이메일과 비밀번호로 계정을 생성합니다.</Body>
+                        </AccordionContent>
+                      </AccordionItem>
 
-                  <AccordionItem value="item-2">
-                    <h3>
-                      <AccordionTrigger>Step 2: 프로필 작성</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>이름, 프로필 사진, 자기소개를 입력합니다.</Body>
-                    </AccordionContent>
-                  </AccordionItem>
+                      <AccordionItem value="item-2">
+                        <h3>
+                          <AccordionTrigger>
+                            Step 2: 프로필 작성
+                          </AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>이름, 프로필 사진, 자기소개를 입력합니다.</Body>
+                        </AccordionContent>
+                      </AccordionItem>
 
-                  <AccordionItem value="item-3">
-                    <h3>
-                      <AccordionTrigger>Step 3: 이용 시작</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Body>모든 기능을 자유롭게 이용할 수 있습니다.</Body>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </ComponentPreview>
+                      <AccordionItem value="item-3">
+                        <h3>
+                          <AccordionTrigger>Step 3: 이용 시작</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Body>모든 기능을 자유롭게 이용할 수 있습니다.</Body>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </ComponentPreview>
 
-              <div className="mt-4">
-                <CodeBlock
-                  language="tsx"
-                  code={`<Accordion type="single" collapsible defaultValue="item-2">
+                  <div className="mt-4">
+                    <CodeBlock
+                      language="tsx"
+                      code={`<Accordion type="single" collapsible defaultValue="item-2">
   <AccordionItem value="item-2">
     <h3>
       <AccordionTrigger>Step 2: 프로필 작성</AccordionTrigger>
@@ -294,73 +320,73 @@ export default function AccordionPage() {
     </AccordionContent>
   </AccordionItem>
 </Accordion>`}
-                />
-              </div>
-            </div>
-          </Stack>
+                    />
+                  </div>
+                </div>
+              </Stack>
 
-          {/* With Cards */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">카드와 함께 사용</Heading>
-            <Body>
-              AccordionContent 내부에 Card를 사용하여 구조화된 콘텐츠를 표시할
-              수 있습니다.
-            </Body>
-            <div>
-              <ComponentPreview>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="item-1">
-                    <h3>
-                      <AccordionTrigger>Basic Plan</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Card>
-                        <CardBody>
-                          <Stack spacing="content-tight">
-                            <Heading level="h4">월 9,900원</Heading>
-                            <Body>
-                              • 개인 사용자 1명
-                              <br />
-                              • 스토리지 10GB
-                              <br />
-                              • 이메일 지원
-                              <br />
-                            </Body>
-                          </Stack>
-                        </CardBody>
-                      </Card>
-                    </AccordionContent>
-                  </AccordionItem>
+              {/* With Cards */}
+              <Stack spacing="heading-tight">
+                <Heading level="h3">카드와 함께 사용</Heading>
+                <Body>
+                  AccordionContent 내부에 Card를 사용하여 구조화된 콘텐츠를
+                  표시할 수 있습니다.
+                </Body>
+                <div>
+                  <ComponentPreview>
+                    <Accordion type="single" collapsible className="w-full">
+                      <AccordionItem value="item-1">
+                        <h3>
+                          <AccordionTrigger>Basic Plan</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Card>
+                            <CardBody>
+                              <Stack spacing="content-tight">
+                                <Heading level="h4">월 9,900원</Heading>
+                                <Body>
+                                  • 개인 사용자 1명
+                                  <br />
+                                  • 스토리지 10GB
+                                  <br />
+                                  • 이메일 지원
+                                  <br />
+                                </Body>
+                              </Stack>
+                            </CardBody>
+                          </Card>
+                        </AccordionContent>
+                      </AccordionItem>
 
-                  <AccordionItem value="item-2">
-                    <h3>
-                      <AccordionTrigger>Pro Plan</AccordionTrigger>
-                    </h3>
-                    <AccordionContent>
-                      <Card>
-                        <CardBody>
-                          <Stack spacing="content-tight">
-                            <Heading level="h4">월 29,900원</Heading>
-                            <Body>
-                              • 팀원 10명
-                              <br />
-                              • 스토리지 100GB
-                              <br />
-                              • 우선 지원
-                              <br />
-                            </Body>
-                          </Stack>
-                        </CardBody>
-                      </Card>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </ComponentPreview>
+                      <AccordionItem value="item-2">
+                        <h3>
+                          <AccordionTrigger>Pro Plan</AccordionTrigger>
+                        </h3>
+                        <AccordionContent>
+                          <Card>
+                            <CardBody>
+                              <Stack spacing="content-tight">
+                                <Heading level="h4">월 29,900원</Heading>
+                                <Body>
+                                  • 팀원 10명
+                                  <br />
+                                  • 스토리지 100GB
+                                  <br />
+                                  • 우선 지원
+                                  <br />
+                                </Body>
+                              </Stack>
+                            </CardBody>
+                          </Card>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </ComponentPreview>
 
-              <div className="mt-4">
-                <CodeBlock
-                  language="tsx"
-                  code={`<Accordion type="single" collapsible>
+                  <div className="mt-4">
+                    <CodeBlock
+                      language="tsx"
+                      code={`<Accordion type="single" collapsible>
   <AccordionItem value="item-1">
     <h3>
       <AccordionTrigger>Basic Plan</AccordionTrigger>
@@ -377,275 +403,299 @@ export default function AccordionPage() {
     </AccordionContent>
   </AccordionItem>
 </Accordion>`}
-                />
-              </div>
-            </div>
-          </Stack>
-        </Stack>
-      </PageSection>
+                    />
+                  </div>
+                </div>
+              </Stack>
+            </Stack>
+          </PageSection>
 
-      {/* Guidelines */}
-      <PageSection>
-        <Heading level="h2" className="text-2xl font-semibold">
-          사용 가이드
-        </Heading>
+          {/* Guidelines */}
+          <PageSection>
+            <Heading level="h2" className="text-2xl font-semibold">
+              사용 가이드
+            </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* When to use */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">언제 사용해야 하나요?</Heading>
+            <Stack spacing="content-loose" className="mt-2 md:mt-4">
+              {/* When to use */}
+              <Stack spacing="heading-tight">
+                <Heading level="h3">언제 사용해야 하나요?</Heading>
 
-            <div className="grid grid-cols-1 gap-4">
-              <GuidelineSection
-                type="do"
-                title="Accordion을 사용하기 적합한 경우"
-              >
-                <ul className="list-disc list-inside space-y-2">
+                <div className="grid grid-cols-1 gap-4">
+                  <GuidelineSection
+                    type="do"
+                    title="Accordion을 사용하기 적합한 경우"
+                  >
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>
+                        <strong>모바일 화면이나 사이드 패널</strong> - 제한된
+                        공간에서 여러 섹션을 표시할 때
+                      </li>
+                      <li>
+                        <strong>부분적인 정보 확인</strong> - 사용자가 여러 섹션
+                        중 필요한 부분만 확인하면 될 때
+                      </li>
+                      <li>
+                        <strong>개요 비교</strong> - 관련된 여러 섹션의 개요를
+                        빠르게 비교해야 할 때
+                      </li>
+                      <li>
+                        <strong>FAQ, 정책 문서</strong> - 여러 질문이나 항목을
+                        카테고리별로 정리할 때
+                      </li>
+                    </ul>
+                  </GuidelineSection>
+
+                  <GuidelineSection
+                    type="dont"
+                    title="Accordion을 사용하지 말아야 하는 경우"
+                  >
+                    <ul className="list-disc list-inside space-y-2">
+                      <li>
+                        <strong>중요한 정보</strong> - 사용자가 반드시 검토해야
+                        하는 중요 콘텐츠는 직접 표시
+                      </li>
+                      <li>
+                        <strong>중첩 구조</strong> - 이미 아코디언이나 탭이 있는
+                        곳에 추가하면 인지 부하 증가
+                      </li>
+                      <li>
+                        <strong>복잡하고 긴 콘텐츠</strong> - 로딩 지연이
+                        발생하는 무거운 콘텐츠
+                      </li>
+                      <li>
+                        <strong>매우 간단한 콘텐츠</strong> - 일반 제목만으로도
+                        충분히 구조화할 수 있는 경우
+                      </li>
+                    </ul>
+                  </GuidelineSection>
+                </div>
+              </Stack>
+
+              {/* Accessibility */}
+              <Stack spacing="heading-tight">
+                <Heading level="h3">접근성</Heading>
+                <Body>KRDS 및 WCAG 2.1 접근성 기준을 준수합니다:</Body>
+                <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
                   <li>
-                    <strong>모바일 화면이나 사이드 패널</strong> - 제한된
-                    공간에서 여러 섹션을 표시할 때
+                    <strong>시맨틱 제목 구조</strong> - AccordionTrigger를
+                    h1-h6로 감싸서 스크린 리더 사용자가 빠르게 탐색 가능
                   </li>
                   <li>
-                    <strong>부분적인 정보 확인</strong> - 사용자가 여러 섹션 중
-                    필요한 부분만 확인하면 될 때
+                    <strong>버튼 역할</strong> - 헤더에 button 요소 사용으로
+                    상호작용 목적 명확화
                   </li>
                   <li>
-                    <strong>개요 비교</strong> - 관련된 여러 섹션의 개요를
-                    빠르게 비교해야 할 때
+                    <strong>상태 정보</strong> - aria-expanded로 펼침/접힘 상태
+                    전달
                   </li>
                   <li>
-                    <strong>FAQ, 정책 문서</strong> - 여러 질문이나 항목을
-                    카테고리별로 정리할 때
+                    <strong>키보드 네비게이션</strong> - Tab/Shift+Tab으로 헤더
+                    간 이동, Enter/Space로 토글
+                  </li>
+                  <li>
+                    <strong>시각적 방향성</strong> - 아이콘으로 펼침(∨)/접힘(∧)
+                    방향 표시
+                  </li>
+                  <li>
+                    <strong>포커스 가시성</strong> - focus-visible로 키보드
+                    포커스 링 표시
                   </li>
                 </ul>
-              </GuidelineSection>
+              </Stack>
 
-              <GuidelineSection
-                type="dont"
-                title="Accordion을 사용하지 말아야 하는 경우"
-              >
-                <ul className="list-disc list-inside space-y-2">
+              {/* Usability */}
+              <Stack spacing="heading-tight">
+                <Heading level="h3">사용성 권장사항</Heading>
+                <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
                   <li>
-                    <strong>중요한 정보</strong> - 사용자가 반드시 검토해야 하는
-                    중요 콘텐츠는 직접 표시
+                    <strong>아이콘 위치 일관성</strong> - 아이콘을 헤더 끝에
+                    일관되게 배치하여 시선 피로 감소
                   </li>
                   <li>
-                    <strong>중첩 구조</strong> - 이미 아코디언이나 탭이 있는
-                    곳에 추가하면 인지 부하 증가
+                    <strong>전체 헤더 클릭</strong> - 헤더 전체 영역을 클릭
+                    가능하게 만들어 상호작용 난이도 감소
                   </li>
                   <li>
-                    <strong>복잡하고 긴 콘텐츠</strong> - 로딩 지연이 발생하는
-                    무거운 콘텐츠
+                    <strong>시각적 연관성</strong> - 간격, 색상, 그림자,
+                    테두리로 헤더-패널 관계 명확화
                   </li>
                   <li>
-                    <strong>매우 간단한 콘텐츠</strong> - 일반 제목만으로도
-                    충분히 구조화할 수 있는 경우
+                    <strong>패널 스크롤 방지</strong> - 패널 내부에 별도
+                    스크롤바를 만들지 말고 페이지 스크롤 사용
                   </li>
                 </ul>
-              </GuidelineSection>
-            </div>
-          </Stack>
+              </Stack>
+            </Stack>
+          </PageSection>
+        </TabsContent>
 
-          {/* Accessibility */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">접근성</Heading>
-            <Body>KRDS 및 WCAG 2.1 접근성 기준을 준수합니다:</Body>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>시맨틱 제목 구조</strong> - AccordionTrigger를 h1-h6로
-                감싸서 스크린 리더 사용자가 빠르게 탐색 가능
-              </li>
-              <li>
-                <strong>버튼 역할</strong> - 헤더에 button 요소 사용으로
-                상호작용 목적 명확화
-              </li>
-              <li>
-                <strong>상태 정보</strong> - aria-expanded로 펼침/접힘 상태 전달
-              </li>
-              <li>
-                <strong>키보드 네비게이션</strong> - Tab/Shift+Tab으로 헤더 간
-                이동, Enter/Space로 토글
-              </li>
-              <li>
-                <strong>시각적 방향성</strong> - 아이콘으로 펼침(∨)/접힘(∧) 방향
-                표시
-              </li>
-              <li>
-                <strong>포커스 가시성</strong> - focus-visible로 키보드 포커스
-                링 표시
-              </li>
-            </ul>
-          </Stack>
+        <TabsContent value="api">
+          {/* API Reference */}
+          <PageSection>
+            <Heading level="h2" className="text-2xl font-semibold">
+              API 레퍼런스
+            </Heading>
 
-          {/* Usability */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">사용성 권장사항</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>아이콘 위치 일관성</strong> - 아이콘을 헤더 끝에
-                일관되게 배치하여 시선 피로 감소
-              </li>
-              <li>
-                <strong>전체 헤더 클릭</strong> - 헤더 전체 영역을 클릭 가능하게
-                만들어 상호작용 난이도 감소
-              </li>
-              <li>
-                <strong>시각적 연관성</strong> - 간격, 색상, 그림자, 테두리로
-                헤더-패널 관계 명확화
-              </li>
-              <li>
-                <strong>패널 스크롤 방지</strong> - 패널 내부에 별도 스크롤바를
-                만들지 말고 페이지 스크롤 사용
-              </li>
-            </ul>
-          </Stack>
-        </Stack>
-      </PageSection>
+            <Tabs defaultValue="accordion" className="mt-0">
+              <TabsList>
+                <TabsTrigger value="accordion">Accordion</TabsTrigger>
+                <TabsTrigger value="accordionitem">AccordionItem</TabsTrigger>
+                <TabsTrigger value="accordiontrigger">
+                  AccordionTrigger
+                </TabsTrigger>
+              </TabsList>
 
-      {/* API Reference */}
-      <PageSection>
-        <Heading level="h2" className="text-2xl font-semibold">
-          API 레퍼런스
-        </Heading>
+              <TabsContent value="accordion">
+                <Stack spacing="heading-tight">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-krds-gray-20">
+                          <th className="text-left py-2 px-4">Prop</th>
+                          <th className="text-left py-2 px-4">Type</th>
+                          <th className="text-left py-2 px-4">Default</th>
+                          <th className="text-left py-2 px-4">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-krds-gray-90">
+                        <tr className="border-b border-krds-gray-20">
+                          <td className="py-2 px-4 font-mono">type</td>
+                          <td className="py-2 px-4 font-mono">
+                            &quot;single&quot; | &quot;multiple&quot;
+                          </td>
+                          <td className="py-2 px-4 font-mono">
+                            &quot;single&quot;
+                          </td>
+                          <td className="py-2 px-4">
+                            한 번에 하나만 열기(single) 또는 여러 개
+                            열기(multiple)
+                          </td>
+                        </tr>
+                        <tr className="border-b border-krds-gray-20">
+                          <td className="py-2 px-4 font-mono">collapsible</td>
+                          <td className="py-2 px-4 font-mono">boolean</td>
+                          <td className="py-2 px-4 font-mono">false</td>
+                          <td className="py-2 px-4">
+                            열린 패널을 다시 닫을 수 있는지
+                            (type=&quot;single&quot;일 때만)
+                          </td>
+                        </tr>
+                        <tr className="border-b border-krds-gray-20">
+                          <td className="py-2 px-4 font-mono">defaultValue</td>
+                          <td className="py-2 px-4 font-mono">
+                            string | string[]
+                          </td>
+                          <td className="py-2 px-4">-</td>
+                          <td className="py-2 px-4">
+                            기본으로 열릴 패널의 value
+                          </td>
+                        </tr>
+                        <tr className="border-b border-krds-gray-20">
+                          <td className="py-2 px-4 font-mono">value</td>
+                          <td className="py-2 px-4 font-mono">
+                            string | string[]
+                          </td>
+                          <td className="py-2 px-4">-</td>
+                          <td className="py-2 px-4">
+                            제어 모드: 열린 패널의 value (controlled)
+                          </td>
+                        </tr>
+                        <tr className="border-b border-krds-gray-20">
+                          <td className="py-2 px-4 font-mono">onValueChange</td>
+                          <td className="py-2 px-4 font-mono">
+                            (value: string | string[]) =&gt; void
+                          </td>
+                          <td className="py-2 px-4">-</td>
+                          <td className="py-2 px-4">
+                            패널이 열리거나 닫힐 때 호출되는 콜백
+                          </td>
+                        </tr>
+                        <tr className="border-b border-krds-gray-20">
+                          <td className="py-2 px-4 font-mono">variant</td>
+                          <td className="py-2 px-4 font-mono">
+                            &quot;default&quot; | &quot;line&quot;
+                          </td>
+                          <td className="py-2 px-4 font-mono">
+                            &quot;default&quot;
+                          </td>
+                          <td className="py-2 px-4">
+                            스타일 변형 (default: 박스형, line: 구분선)
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </Stack>
+              </TabsContent>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          {/* Accordion Props */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">Accordion Props</Heading>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-krds-gray-20">
-                    <th className="text-left py-2 px-4">Prop</th>
-                    <th className="text-left py-2 px-4">Type</th>
-                    <th className="text-left py-2 px-4">Default</th>
-                    <th className="text-left py-2 px-4">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="text-krds-gray-90">
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">type</td>
-                    <td className="py-2 px-4 font-mono">
-                      &quot;single&quot; | &quot;multiple&quot;
-                    </td>
-                    <td className="py-2 px-4 font-mono">&quot;single&quot;</td>
-                    <td className="py-2 px-4">
-                      한 번에 하나만 열기(single) 또는 여러 개 열기(multiple)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">collapsible</td>
-                    <td className="py-2 px-4 font-mono">boolean</td>
-                    <td className="py-2 px-4 font-mono">false</td>
-                    <td className="py-2 px-4">
-                      열린 패널을 다시 닫을 수 있는지 (type=&quot;single&quot;일
-                      때만)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">defaultValue</td>
-                    <td className="py-2 px-4 font-mono">string | string[]</td>
-                    <td className="py-2 px-4">-</td>
-                    <td className="py-2 px-4">기본으로 열릴 패널의 value</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">value</td>
-                    <td className="py-2 px-4 font-mono">string | string[]</td>
-                    <td className="py-2 px-4">-</td>
-                    <td className="py-2 px-4">
-                      제어 모드: 열린 패널의 value (controlled)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">onValueChange</td>
-                    <td className="py-2 px-4 font-mono">
-                      (value: string | string[]) =&gt; void
-                    </td>
-                    <td className="py-2 px-4">-</td>
-                    <td className="py-2 px-4">
-                      패널이 열리거나 닫힐 때 호출되는 콜백
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">variant</td>
-                    <td className="py-2 px-4 font-mono">
-                      &quot;default&quot; | &quot;line&quot;
-                    </td>
-                    <td className="py-2 px-4 font-mono">&quot;default&quot;</td>
-                    <td className="py-2 px-4">
-                      스타일 변형 (default: 박스형, line: 구분선)
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </Stack>
+              <TabsContent value="accordionitem">
+                <Stack spacing="heading-tight">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-krds-gray-20">
+                          <th className="text-left py-2 px-4">Prop</th>
+                          <th className="text-left py-2 px-4">Type</th>
+                          <th className="text-left py-2 px-4">Default</th>
+                          <th className="text-left py-2 px-4">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-krds-gray-90">
+                        <tr className="border-b border-krds-gray-20">
+                          <td className="py-2 px-4 font-mono">value</td>
+                          <td className="py-2 px-4 font-mono">string</td>
+                          <td className="py-2 px-4">-</td>
+                          <td className="py-2 px-4">
+                            패널을 식별하는 고유 값 (required)
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </Stack>
+              </TabsContent>
 
-          {/* AccordionItem Props */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">AccordionItem Props</Heading>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-krds-gray-20">
-                    <th className="text-left py-2 px-4">Prop</th>
-                    <th className="text-left py-2 px-4">Type</th>
-                    <th className="text-left py-2 px-4">Default</th>
-                    <th className="text-left py-2 px-4">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="text-krds-gray-90">
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">value</td>
-                    <td className="py-2 px-4 font-mono">string</td>
-                    <td className="py-2 px-4">-</td>
-                    <td className="py-2 px-4">
-                      패널을 식별하는 고유 값 (required)
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </Stack>
-
-          {/* AccordionTrigger Props */}
-          <Stack spacing="heading-tight">
-            <Heading level="h3">AccordionTrigger Props</Heading>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-krds-gray-20">
-                    <th className="text-left py-2 px-4">Prop</th>
-                    <th className="text-left py-2 px-4">Type</th>
-                    <th className="text-left py-2 px-4">Default</th>
-                    <th className="text-left py-2 px-4">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="text-krds-gray-90">
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">disabled</td>
-                    <td className="py-2 px-4 font-mono">boolean</td>
-                    <td className="py-2 px-4">-</td>
-                    <td className="py-2 px-4">비활성화 여부</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <Body className="mt-2">
-              <strong>중요:</strong> KRDS 접근성을 위해 AccordionTrigger는
-              반드시 시맨틱 제목 태그(h1-h6)로 감싸야 합니다.
-            </Body>
-            <div className="mt-2">
-              <CodeBlock
-                language="tsx"
-                code={`<h3>
+              <TabsContent value="accordiontrigger">
+                <Stack spacing="heading-tight">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-krds-gray-20">
+                          <th className="text-left py-2 px-4">Prop</th>
+                          <th className="text-left py-2 px-4">Type</th>
+                          <th className="text-left py-2 px-4">Default</th>
+                          <th className="text-left py-2 px-4">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-krds-gray-90">
+                        <tr className="border-b border-krds-gray-20">
+                          <td className="py-2 px-4 font-mono">disabled</td>
+                          <td className="py-2 px-4 font-mono">boolean</td>
+                          <td className="py-2 px-4">-</td>
+                          <td className="py-2 px-4">비활성화 여부</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <Body className="mt-2">
+                    <strong>중요:</strong> KRDS 접근성을 위해 AccordionTrigger는
+                    반드시 시맨틱 제목 태그(h1-h6)로 감싸야 합니다.
+                  </Body>
+                  <div className="mt-2">
+                    <CodeBlock
+                      language="tsx"
+                      code={`<h3>
   <AccordionTrigger>제목</AccordionTrigger>
 </h3>`}
-              />
-            </div>
-          </Stack>
-        </Stack>
-      </PageSection>
+                    />
+                  </div>
+                </Stack>
+              </TabsContent>
+            </Tabs>
+          </PageSection>
+        </TabsContent>
+      </Tabs>
 
       {/* Foundation Layer */}
       <PageSection>

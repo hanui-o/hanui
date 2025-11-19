@@ -30,6 +30,22 @@ const cardVariants = cva(
           'shadow-lg dark:shadow-gray-900/50',
           'border-0',
         ].join(' '),
+        info: [
+          'bg-blue-50 dark:bg-blue-950',
+          'border border-blue-200 dark:border-blue-800',
+        ].join(' '),
+        success: [
+          'bg-green-50 dark:bg-green-950',
+          'border border-green-200 dark:border-green-800',
+        ].join(' '),
+        warning: [
+          'bg-yellow-50 dark:bg-yellow-950',
+          'border border-yellow-200 dark:border-yellow-800',
+        ].join(' '),
+        error: [
+          'bg-red-50 dark:bg-red-950',
+          'border border-red-200 dark:border-red-800',
+        ].join(' '),
       },
       padding: {
         none: 'p-0',
@@ -65,7 +81,15 @@ export interface CardProps
    * Card variant (visual style)
    * @default "outlined"
    */
-  variant?: 'outlined' | 'shadow' | 'filled' | 'elevated';
+  variant?:
+    | 'outlined'
+    | 'shadow'
+    | 'filled'
+    | 'elevated'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'error';
 
   /**
    * Padding size
@@ -127,6 +151,10 @@ export interface CardProps
  * <Card variant="shadow">그림자 + 테두리</Card>
  * <Card variant="filled">배경색</Card>
  * <Card variant="elevated">강한 그림자</Card>
+ * <Card variant="info">정보 카드</Card>
+ * <Card variant="success">성공 카드</Card>
+ * <Card variant="warning">경고 카드</Card>
+ * <Card variant="error">오류 카드</Card>
  *
  * // Hoverable (clickable)
  * <Card hoverable onClick={handleClick}>

@@ -11,7 +11,9 @@ import { cn } from '@/lib/utils';
  * Foundation Layer: ARIA automation + Keyboard navigation + Focus management
  */
 const tabsListVariants = cva(
-  ['flex', 'border-b', 'border-gray-200', 'dark:border-gray-800'].join(' '),
+  ['flex', 'border-b', 'border-gray-200', 'dark:border-gray-800', 'mb-10'].join(
+    ' '
+  ),
   {
     variants: {
       variant: {
@@ -224,7 +226,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       <TabsContext.Provider
         value={{ value, onValueChange: handleValueChange, variant }}
       >
-        <div ref={ref} className={cn('w-full', className)} {...props}>
+        <div ref={ref} className={cn('w-full mt-8', className)} {...props}>
           {children}
         </div>
       </TabsContext.Provider>

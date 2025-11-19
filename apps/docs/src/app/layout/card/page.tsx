@@ -60,8 +60,9 @@ export default function CardPage() {
               Description, Body, Footer로 구조화된 콘텐츠를 작성할 수 있습니다.
             </ListItem>
             <ListItem>
-              <strong>4가지 변형:</strong> outlined (기본), shadow, filled,
-              elevated 스타일을 제공합니다.
+              <strong>8가지 변형:</strong> outlined (기본), shadow, filled,
+              elevated + semantic variants (info, success, warning, error)
+              스타일을 제공합니다.
             </ListItem>
             <ListItem>
               <strong>패딩 옵션:</strong> none, sm, md, lg 4가지 패딩 크기를
@@ -128,9 +129,9 @@ export default function Example() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="변형 (Variants)">
+          <SectionHeading level="h3" title="기본 변형 (Variants)">
             <Body className="leading-relaxed">
-              Card는 4가지 시각적 변형을 제공합니다:
+              Card는 4가지 기본 시각적 변형을 제공합니다:
             </Body>
           </SectionHeading>
 
@@ -176,6 +177,61 @@ export default function Example() {
               </Code>
               <Card variant="elevated" className="mt-3">
                 <CardBody>강조된 그림자 카드</CardBody>
+              </Card>
+            </div>
+          </div>
+        </Subsection>
+
+        <Subsection level="h3">
+          <SectionHeading level="h3" title="시맨틱 변형 (Semantic Variants)">
+            <Body className="leading-relaxed">
+              의미에 따른 4가지 색상 변형을 제공합니다. 알림, 상태 표시 등에
+              적합합니다:
+            </Body>
+          </SectionHeading>
+
+          <div className="space-y-6">
+            <div>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Card variant="info">
+  <CardBody>정보 카드 - 일반적인 정보나 도움말에 사용</CardBody>
+</Card>`}
+              </Code>
+              <Card variant="info" className="mt-3">
+                <CardBody>정보 카드 - 일반적인 정보나 도움말에 사용</CardBody>
+              </Card>
+            </div>
+
+            <div>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Card variant="success">
+  <CardBody>성공 카드 - 성공적인 작업 완료 표시</CardBody>
+</Card>`}
+              </Code>
+              <Card variant="success" className="mt-3">
+                <CardBody>성공 카드 - 성공적인 작업 완료 표시</CardBody>
+              </Card>
+            </div>
+
+            <div>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Card variant="warning">
+  <CardBody>경고 카드 - 주의가 필요한 정보</CardBody>
+</Card>`}
+              </Code>
+              <Card variant="warning" className="mt-3">
+                <CardBody>경고 카드 - 주의가 필요한 정보</CardBody>
+              </Card>
+            </div>
+
+            <div>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Card variant="error">
+  <CardBody>오류 카드 - 오류나 실패 상태 표시</CardBody>
+</Card>`}
+              </Code>
+              <Card variant="error" className="mt-3">
+                <CardBody>오류 카드 - 오류나 실패 상태 표시</CardBody>
               </Card>
             </div>
           </div>
@@ -331,7 +387,8 @@ export default function Example() {
                 <TableCell className="font-mono">variant</TableCell>
                 <TableCell className="font-mono">
                   &apos;outlined&apos; | &apos;shadow&apos; | &apos;filled&apos;
-                  | &apos;elevated&apos;
+                  | &apos;elevated&apos; | &apos;info&apos; |
+                  &apos;success&apos; | &apos;warning&apos; | &apos;error&apos;
                 </TableCell>
                 <TableCell className="font-mono">
                   &apos;outlined&apos;

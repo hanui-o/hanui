@@ -23,70 +23,64 @@ const cardVariants = cva(
   {
     variants: {
       variant: {
-        default: '',
-        outlined: 'shadow-none',
-        elevated: 'shadow-md hover:shadow-lg',
+        outlined: [
+          'bg-white dark:bg-gray-800',
+          'border border-gray-300 dark:border-gray-600',
+        ].join(' '),
+        shadow: [
+          'bg-white dark:bg-gray-800',
+          'shadow-md dark:shadow-gray-900/50',
+          'border border-gray-200 dark:border-gray-700',
+        ].join(' '),
+        filled: [
+          'bg-gray-50 dark:bg-gray-900',
+          'border border-gray-200 dark:border-gray-800',
+        ].join(' '),
+        elevated: [
+          'bg-white dark:bg-gray-800',
+          'shadow-lg dark:shadow-gray-900/50',
+          'border-0',
+        ].join(' '),
+        info: [
+          'bg-blue-50 dark:bg-blue-950',
+          'border border-blue-200 dark:border-blue-800',
+        ].join(' '),
+        success: [
+          'bg-green-50 dark:bg-green-950',
+          'border border-green-200 dark:border-green-800',
+        ].join(' '),
+        warning: [
+          'bg-yellow-50 dark:bg-yellow-950',
+          'border border-yellow-200 dark:border-yellow-800',
+        ].join(' '),
+        error: [
+          'bg-red-50 dark:bg-red-950',
+          'border border-red-200 dark:border-red-800',
+        ].join(' '),
       },
       padding: {
         none: 'p-0',
-        sm: 'p-3',
-        md: 'p-4',
-        lg: 'p-6',
+        sm: 'p-4', // 16px
+        md: 'p-6', // 24px
+        lg: 'p-8', // 32px
       },
-      interactive: {
-        true: 'cursor-pointer hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-700',
+      hoverable: {
+        true: [
+          'hover:shadow-xl dark:hover:shadow-gray-900/70',
+          'hover:-translate-y-0.5',
+          'cursor-pointer',
+          'focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-400',
+        ].join(' '),
         false: '',
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'outlined',
       padding: 'md',
-      interactive: false,
+      hoverable: false,
     },
   }
 );
-
-const cardHeaderVariants = cva(['flex', 'flex-col', 'space-y-1.5'].join(' '), {
-  variants: {
-    padding: {
-      none: 'p-0',
-      sm: 'p-3',
-      md: 'p-4',
-      lg: 'p-6',
-    },
-  },
-  defaultVariants: {
-    padding: 'md',
-  },
-});
-
-const cardBodyVariants = cva('', {
-  variants: {
-    padding: {
-      none: 'p-0',
-      sm: 'p-3',
-      md: 'p-4',
-      lg: 'p-6',
-    },
-  },
-  defaultVariants: {
-    padding: 'md',
-  },
-});
-
-const cardFooterVariants = cva(['flex', 'items-center'].join(' '), {
-  variants: {
-    padding: {
-      none: 'p-0',
-      sm: 'p-3',
-      md: 'p-4',
-      lg: 'p-6',
-    },
-  },
-  defaultVariants: {
-    padding: 'md',
-  },
-});
 
 /**
  * Card Props
@@ -113,9 +107,7 @@ export interface CardProps
 /**
  * CardHeader Props
  */
-export interface CardHeaderProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardHeaderVariants> {
+export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   children: React.ReactNode;
 }
@@ -146,9 +138,7 @@ export interface CardDescriptionProps
 /**
  * CardBody Props
  */
-export interface CardBodyProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardBodyVariants> {
+export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   children: React.ReactNode;
 }
@@ -156,9 +146,7 @@ export interface CardBodyProps
 /**
  * CardFooter Props
  */
-export interface CardFooterProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardFooterVariants> {
+export interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   children: React.ReactNode;
 }
@@ -186,7 +174,7 @@ export interface CardFooterProps
  */
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   (
-    { variant, padding, interactive, className, onClick, children, ...props },
+    { variant, padding, hoverable, className, onClick, children, ...props },
     ref
   ) => {
     const handleKeyDown = onClick
@@ -205,7 +193,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
           cardVariants({
             variant,
             padding,
-            interactive: onClick ? true : interactive,
+            hoverable: onClick ? true : hoverable,
           }),
           className
         )}
@@ -229,11 +217,11 @@ Card.displayName = 'Card';
  * Container for card title and description
  */
 export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
-  ({ padding, className, children, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn(cardHeaderVariants({ padding }), className)}
+        className={cn('flex', 'flex-col', 'space-y-1.5', className)}
         {...props}
       >
         {children}
@@ -255,7 +243,10 @@ export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
       <Component
         ref={ref as any}
         className={cn(
-          'text-lg font-semibold leading-none tracking-tight text-gray-900 dark:text-gray-100',
+          'text-[24px]',
+          'font-semibold',
+          'leading-[150%]',
+          'tracking-tight',
           className
         )}
         {...props}
@@ -280,7 +271,12 @@ export const CardDescription = React.forwardRef<
   return (
     <p
       ref={ref}
-      className={cn('text-gray-600 dark:text-gray-400', className)}
+      className={cn(
+        'text-[15px]',
+        'leading-[150%]',
+        'text-gray-600 dark:text-gray-400',
+        className
+      )}
       {...props}
     >
       {children}
@@ -296,13 +292,9 @@ CardDescription.displayName = 'CardDescription';
  * Main content area of card
  */
 export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
-  ({ padding, className, children, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
-      <div
-        ref={ref}
-        className={cn(cardBodyVariants({ padding }), className)}
-        {...props}
-      >
+      <div ref={ref} className={cn(className)} {...props}>
         {children}
       </div>
     );
@@ -317,11 +309,11 @@ CardBody.displayName = 'CardBody';
  * Footer area for actions or additional info
  */
 export const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
-  ({ padding, className, children, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn(cardFooterVariants({ padding }), className)}
+        className={cn('flex', 'items-center', 'gap-2', 'pt-4', className)}
         {...props}
       >
         {children}
