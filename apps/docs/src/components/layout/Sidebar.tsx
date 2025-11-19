@@ -54,6 +54,7 @@ const componentsNavigation = [
         href: '/components/navigation/inpagenavigation',
       },
       { title: 'Label', href: '/components/form/label' },
+      { title: 'Link', href: '/components/navigation/link' },
       { title: 'List', href: '/layout/list' },
       { title: 'Main Menu', href: '/components/navigation/mainmenu' },
       { title: 'Masthead', href: '/components/identity/masthead' },

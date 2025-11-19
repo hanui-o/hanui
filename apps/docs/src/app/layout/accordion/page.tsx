@@ -50,7 +50,7 @@ export default function AccordionPage() {
               사용 예제
             </Heading>
 
-            <Stack gap="lg" className="mt-2 md:mt-4">
+            <Stack gap="lg">
               {/* Basic Example */}
               <Stack gap="sm">
                 <Heading level="h3">기본 사용</Heading>
