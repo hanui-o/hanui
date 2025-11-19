@@ -70,6 +70,9 @@ export type { SectionProps } from './components/Section';
 export { Wrap, wrapVariants } from './components/Wrap';
 export type { WrapProps } from './components/Wrap';
 
+export { SimpleGrid, simpleGridVariants } from './components/SimpleGrid';
+export type { SimpleGridProps } from './components/SimpleGrid';
+
 // Typography Components
 export { Display } from './components/Display';
 export type { DisplayProps } from './components/Display';

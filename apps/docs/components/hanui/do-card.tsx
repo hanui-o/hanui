@@ -7,7 +7,7 @@ interface DoCardProps {
 }
 
 export function DoCard({
-  title = '이럴 때 사용하세요',
+  title = '✓ 이럴 때 사용하세요',
   children,
 }: DoCardProps) {
   return (

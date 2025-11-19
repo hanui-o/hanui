@@ -6,7 +6,9 @@ import { cn } from '../../lib/utils';
  * Card Variants Definition
  */
 const cardVariants = cva(
-  ['rounded-lg', 'transition-all', 'duration-200'].join(' '),
+  ['rounded-lg', 'transition-all', 'duration-200', 'flex', 'flex-col'].join(
+    ' '
+  ),
   {
     variants: {
       variant: {
@@ -35,6 +37,12 @@ const cardVariants = cva(
         md: 'p-6', // 24px
         lg: 'p-8', // 32px
       },
+      gap: {
+        none: 'gap-0',
+        sm: 'gap-4', // 16px
+        md: 'gap-6', // 24px
+        lg: 'gap-8', // 32px
+      },
       hoverable: {
         true: [
           'hover:shadow-xl dark:hover:shadow-gray-900/70',
@@ -48,6 +56,7 @@ const cardVariants = cva(
     defaultVariants: {
       variant: 'outlined',
       padding: 'md',
+      gap: 'none',
       hoverable: false,
     },
   }
@@ -70,6 +79,12 @@ export interface CardProps
    * @default "md"
    */
   padding?: 'none' | 'sm' | 'md' | 'lg';
+
+  /**
+   * Gap size between child elements
+   * @default "none"
+   */
+  gap?: 'none' | 'sm' | 'md' | 'lg';
 
   /**
    * Enable hover effect
@@ -126,6 +141,11 @@ export interface CardProps
  * <Card variant="filled">배경색</Card>
  * <Card variant="elevated">강한 그림자</Card>
  *
+ * // With gap (spacing between children)
+ * <Card gap="sm">16px gap</Card>
+ * <Card gap="md">24px gap</Card>
+ * <Card gap="lg">32px gap</Card>
+ *
  * // Hoverable (clickable)
  * <Card hoverable onClick={handleClick}>
  *   클릭 가능한 카드
@@ -133,7 +153,7 @@ export interface CardProps
  * ```
  */
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, padding, hoverable, ...props }, ref) => {
+  ({ className, variant, padding, gap, hoverable, ...props }, ref) => {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (hoverable && (e.key === 'Enter' || e.key === ' ')) {
         e.preventDefault();
@@ -145,7 +165,10 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     return (
       <div
         ref={ref}
-        className={cn(cardVariants({ variant, padding, hoverable }), className)}
+        className={cn(
+          cardVariants({ variant, padding, gap, hoverable }),
+          className
+        )}
         role={hoverable ? 'button' : 'article'}
         tabIndex={hoverable ? 0 : undefined}
         onKeyDown={handleKeyDown}

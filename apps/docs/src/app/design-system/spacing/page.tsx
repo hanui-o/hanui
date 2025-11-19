@@ -1,15 +1,7 @@
 'use client';
 
-import {
-  Stack,
-  HStack,
-  Section,
-  Button,
-  Input,
-  Heading,
-  Body,
-  Footer,
-} from '@hanui/react';
+import { Stack, HStack } from '@/components/hanui';
+import { Section, Button, Input, Heading, Body, Footer } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';
@@ -400,7 +392,7 @@ export default function SpacingPage() {
             </h2>
 
             <div className="bg-krds-gray-5 p-6 rounded-lg">
-              <Stack gap="h3-content">
+              <Stack gap="content-loose">
                 <h3 className="text-heading-sm font-semibold text-krds-primary-text">
                   문제점
                 </h3>
@@ -411,7 +403,7 @@ export default function SpacingPage() {
                 </p>
               </Stack>
 
-              <Stack gap="h3-content" className="mt-6">
+              <Stack gap="content-loose" className="mt-6">
                 <h3 className="text-heading-sm font-semibold text-krds-primary-text">
                   해결책
                 </h3>
@@ -434,7 +426,7 @@ export default function SpacingPage() {
               description="Stack은 수직/수평 방향으로 요소를 배치하고 간격을 관리하는 컴포넌트입니다. 시맨틱한 spacing prop을 사용하여 일관된 간격을 적용할 수 있습니다."
             />
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <SectionHeading level="h3" title="폼 레이아웃" />
               <ComponentPreview>
                 <Stack gap="md" className="max-w-md">
@@ -469,7 +461,7 @@ export default function SpacingPage() {
               />
             </Stack>
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">카드 리스트</h3>
               <ComponentPreview>
                 <Stack gap="md">
@@ -509,14 +501,14 @@ export default function SpacingPage() {
               />
             </Stack>
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">제목 계층</h3>
               <ComponentPreview>
                 <Stack gap="lg">
                   <h1 className="text-heading-xl font-bold">메인 제목</h1>
                   <Stack gap="sm">
                     <h2 className="text-heading-lg font-bold">서브 제목 1</h2>
-                    <Stack gap="h3-content">
+                    <Stack gap="content-loose">
                       <h3 className="text-heading-md font-bold">소제목</h3>
                       <p className="text-body-md text-krds-gray-70">
                         콘텐츠 내용입니다. 타이포그래피 계층에 맞춰 자동으로
@@ -531,7 +523,7 @@ export default function SpacingPage() {
   <h1>메인 제목</h1>
   <Stack gap="sm">
     <h2>서브 제목</h2>
-    <Stack gap="h3-content">
+    <Stack gap="content-loose">
       <h3>소제목</h3>
       <p>콘텐츠 내용</p>
     </Stack>
@@ -541,7 +533,7 @@ export default function SpacingPage() {
               />
             </Stack>
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">가로 방향 레이아웃</h3>
               <ComponentPreview>
                 <HStack gap="md" align="center">
@@ -560,7 +552,7 @@ export default function SpacingPage() {
               />
             </Stack>
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">
                 전체 스페이싱 프리셋
               </h3>
@@ -951,7 +943,7 @@ export default function SpacingPage() {
               </div>
             </Stack>
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">제네릭 스페이싱</h3>
               <p className="text-body-md text-krds-gray-70">
                 시맨틱 프리셋이 없는 경우 제네릭 사이즈를 사용할 수 있습니다.
@@ -1021,7 +1013,7 @@ export default function SpacingPage() {
               description="Section은 페이지 섹션, 카드, 폼 등에 패딩을 적용하는 컴포넌트입니다. 시맨틱한 padding prop을 사용하여 일관된 패딩을 적용할 수 있습니다."
             />
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">페이지 섹션</h3>
               <ComponentPreview>
                 <Section padding="page-section" background="gray">
@@ -1043,7 +1035,7 @@ export default function SpacingPage() {
               />
             </Stack>
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">카드</h3>
               <ComponentPreview>
                 <Section
@@ -1068,7 +1060,7 @@ export default function SpacingPage() {
               />
             </Stack>
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">폼 섹션</h3>
               <ComponentPreview>
                 <Section
@@ -1111,7 +1103,7 @@ export default function SpacingPage() {
               />
             </Stack>
 
-            <Stack gap="h3-content">
+            <Stack gap="content-loose">
               <h3 className="text-heading-md font-bold">전체 패딩 프리셋</h3>
               <p className="text-body-md text-krds-gray-70">
                 모든 패딩은 반응형으로 모바일과 PC에서 자동으로 조정됩니다.
@@ -1369,7 +1361,7 @@ export default function SpacingPage() {
             API 레퍼런스
           </h2>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">Stack Props</h3>
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -1426,7 +1418,7 @@ export default function SpacingPage() {
             </div>
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">Section Props</h3>
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -1481,7 +1473,7 @@ export default function SpacingPage() {
             Stack과 Section 컴포넌트를 실제로 사용하는 다양한 예제입니다.
           </p>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">
               블로그 포스트 레이아웃
             </h3>
@@ -1533,7 +1525,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">이미지 갤러리</h3>
             <ComponentPreview>
               <Stack gap="md">
@@ -1560,7 +1552,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">다단계 제목 구조</h3>
             <ComponentPreview>
               <Section
@@ -1617,7 +1609,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">텍스트 목록</h3>
             <ComponentPreview>
               <Stack gap="md">
@@ -1644,7 +1636,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">2단 레이아웃</h3>
             <ComponentPreview>
               <HStack gap="lg" align="start" className="w-full">
@@ -1687,7 +1679,7 @@ export default function SpacingPage() {
             Section (Padding-Layout) 실전 예제
           </h2>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">
               대형 카드 (card-large)
             </h3>
@@ -1725,7 +1717,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">
               중형 카드 (card-medium)
             </h3>
@@ -1780,7 +1772,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">
               소형 카드 (card-small)
             </h3>
@@ -1872,7 +1864,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">
               초소형 카드 (card-xsmall)
             </h3>
@@ -1945,7 +1937,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">
               폼 섹션 (form-section)
             </h3>
@@ -2003,7 +1995,7 @@ export default function SpacingPage() {
             />
           </Stack>
 
-          <Stack gap="h3-content">
+          <Stack gap="content-loose">
             <h3 className="text-heading-md font-bold">
               대시보드 레이아웃 (복합 예제)
             </h3>
@@ -2084,7 +2076,7 @@ export default function SpacingPage() {
                   background="white"
                   className="rounded-lg border"
                 >
-                  <Stack gap="h3-content">
+                  <Stack gap="content-loose">
                     <h3 className="text-heading-md font-bold">최근 활동</h3>
                     <Stack gap="md">
                       <Section
@@ -2133,7 +2125,7 @@ export default function SpacingPage() {
 
   {/* Main Content */}
   <Section padding="content-area" background="white">
-    <Stack gap="h3-content">
+    <Stack gap="content-loose">
       <h3>최근 활동</h3>
       <Stack gap="md">
         <Section padding="card-small" background="gray">

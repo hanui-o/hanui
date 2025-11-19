@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Body, Heading, Stack } from '@hanui/react';
+import { Box } from '@/components/hanui';
+import { Body, Heading, Stack } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { PageHeader } from '@/components/content/PageHeader';

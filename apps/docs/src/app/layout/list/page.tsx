@@ -251,7 +251,7 @@ export default function ListPage() {
             <div>
               <Body className="font-medium mb-2">Tight (space-y-1)</Body>
               <div className="p-6 border border-krds-gray-20 rounded-lg">
-                <List gap="tight">
+                <List spacing="tight">
                   <ListItem>항목 1</ListItem>
                   <ListItem>항목 2</ListItem>
                   <ListItem>항목 3</ListItem>
@@ -262,7 +262,7 @@ export default function ListPage() {
             <div>
               <Body className="font-medium mb-2">Default (space-y-3)</Body>
               <div className="p-6 border border-krds-gray-20 rounded-lg">
-                <List gap="default">
+                <List spacing="default">
                   <ListItem>항목 1</ListItem>
                   <ListItem>항목 2</ListItem>
                   <ListItem>항목 3</ListItem>
@@ -273,7 +273,7 @@ export default function ListPage() {
             <div>
               <Body className="font-medium mb-2">Loose (space-y-4)</Body>
               <div className="p-6 border border-krds-gray-20 rounded-lg">
-                <List gap="loose">
+                <List spacing="loose">
                   <ListItem>항목 1</ListItem>
                   <ListItem>항목 2</ListItem>
                   <ListItem>항목 3</ListItem>

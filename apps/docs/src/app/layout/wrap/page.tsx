@@ -7,7 +7,6 @@ import {
   Body,
   Stack,
   Wrap,
-  WrapItem,
   Button,
   Card,
   Code,
@@ -35,21 +34,11 @@ export default function WrapPage() {
 
         <ComponentPreview>
           <Wrap gap="md">
-            <WrapItem>
-              <Button>Item 1</Button>
-            </WrapItem>
-            <WrapItem>
-              <Button>Item 2</Button>
-            </WrapItem>
-            <WrapItem>
-              <Button>Item 3</Button>
-            </WrapItem>
-            <WrapItem>
-              <Button>Item 4</Button>
-            </WrapItem>
-            <WrapItem>
-              <Button>Item 5</Button>
-            </WrapItem>
+            <Button>Item 1</Button>
+            <Button>Item 2</Button>
+            <Button>Item 3</Button>
+            <Button>Item 4</Button>
+            <Button>Item 5</Button>
           </Wrap>
         </ComponentPreview>
       </Section>
@@ -71,34 +60,18 @@ export default function WrapPage() {
           <SectionHeading level="h3" title="기본 사용" />
           <ComponentPreview>
             <Wrap gap="md">
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 1</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 2</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 3</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 4</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 5</div>
-              </WrapItem>
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 1</div>
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 2</div>
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 3</div>
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 4</div>
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 5</div>
             </Wrap>
           </ComponentPreview>
           <Code variant="block">
             {`<Wrap gap="md">
-  <WrapItem>
-    <div>Item 1</div>
-  </WrapItem>
-  <WrapItem>
-    <div>Item 2</div>
-  </WrapItem>
-  <WrapItem>
-    <div>Item 3</div>
-  </WrapItem>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
 </Wrap>`}
           </Code>
         </Subsection>
@@ -140,15 +113,11 @@ export default function WrapPage() {
           <SectionHeading level="h3" title="간격 없음 (none)" />
           <ComponentPreview>
             <Wrap gap="none">
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10">Item 1</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10">Item 2</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10">Item 3</div>
-              </WrapItem>
+              <div className="px-4 py-2 bg-krds-gray-10">Item 1</div>
+
+              <div className="px-4 py-2 bg-krds-gray-10">Item 2</div>
+
+              <div className="px-4 py-2 bg-krds-gray-10">Item 3</div>
             </Wrap>
           </ComponentPreview>
           <Code variant="block">{`<Wrap gap="none">...</Wrap>`}</Code>
@@ -158,15 +127,11 @@ export default function WrapPage() {
           <SectionHeading level="h3" title="작은 간격 (sm)" />
           <ComponentPreview>
             <Wrap gap="sm">
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 1</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 2</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 3</div>
-              </WrapItem>
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 1</div>
+
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 2</div>
+
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 3</div>
             </Wrap>
           </ComponentPreview>
           <Code variant="block">{`<Wrap gap="sm">...</Wrap>`}</Code>
@@ -176,15 +141,11 @@ export default function WrapPage() {
           <SectionHeading level="h3" title="큰 간격 (lg)" />
           <ComponentPreview>
             <Wrap gap="lg">
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 1</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 2</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 3</div>
-              </WrapItem>
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 1</div>
+
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 2</div>
+
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Item 3</div>
             </Wrap>
           </ComponentPreview>
           <Code variant="block">{`<Wrap gap="lg">...</Wrap>`}</Code>
@@ -199,28 +160,24 @@ export default function WrapPage() {
           <SectionHeading level="h3" title="가운데 정렬" />
           <ComponentPreview>
             <Wrap gap="md" justify="center" align="center">
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-primary-base text-white rounded">
-                  Center 1
-                </div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-primary-base text-white rounded">
-                  Center 2
-                </div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-primary-base text-white rounded">
-                  Center 3
-                </div>
-              </WrapItem>
+              <div className="px-4 py-2 bg-krds-primary-base text-white rounded">
+                Center 1
+              </div>
+
+              <div className="px-4 py-2 bg-krds-primary-base text-white rounded">
+                Center 2
+              </div>
+
+              <div className="px-4 py-2 bg-krds-primary-base text-white rounded">
+                Center 3
+              </div>
             </Wrap>
           </ComponentPreview>
           <Code variant="block" language="tsx">
             {`<Wrap gap="md" justify="center" align="center">
-  <WrapItem>Center 1</WrapItem>
-  <WrapItem>Center 2</WrapItem>
-  <WrapItem>Center 3</WrapItem>
+  Center 1
+  Center 2
+  Center 3
 </Wrap>`}
           </Code>
         </Subsection>
@@ -229,15 +186,11 @@ export default function WrapPage() {
           <SectionHeading level="h3" title="균등 분배 (space-between)" />
           <ComponentPreview>
             <Wrap gap="md" justify="between">
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Start</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">Middle</div>
-              </WrapItem>
-              <WrapItem>
-                <div className="px-4 py-2 bg-krds-gray-10 rounded">End</div>
-              </WrapItem>
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Start</div>
+
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">Middle</div>
+
+              <div className="px-4 py-2 bg-krds-gray-10 rounded">End</div>
             </Wrap>
           </ComponentPreview>
           <Code variant="block" language="tsx">
@@ -261,22 +214,21 @@ export default function WrapPage() {
                 'Next.js',
                 'Radix UI',
               ].map((tag) => (
-                <WrapItem key={tag}>
-                  <span className="px-3 py-1 text-sm bg-krds-primary-10 text-krds-primary-base rounded-full">
-                    {tag}
-                  </span>
-                </WrapItem>
+                <span
+                  key={tag}
+                  className="px-3 py-1 text-sm bg-krds-primary-10 text-krds-primary-base rounded-full"
+                >
+                  {tag}
+                </span>
               ))}
             </Wrap>
           </ComponentPreview>
           <Code variant="block" language="tsx">
             {`<Wrap gap="sm">
   {tags.map(tag => (
-    <WrapItem key={tag}>
-      <span className="px-3 py-1 text-sm bg-krds-primary-10 text-krds-primary-base rounded-full">
-        {tag}
-      </span>
-    </WrapItem>
+    <span key={tag} className="px-3 py-1 text-sm bg-krds-primary-10 text-krds-primary-base rounded-full">
+      {tag}
+    </span>
   ))}
 </Wrap>`}
           </Code>
@@ -286,26 +238,21 @@ export default function WrapPage() {
           <SectionHeading level="h3" title="버튼 그룹" />
           <ComponentPreview>
             <Wrap gap="md">
-              <WrapItem>
-                <Button variant="primary">저장</Button>
-              </WrapItem>
-              <WrapItem>
-                <Button variant="secondary">취소</Button>
-              </WrapItem>
-              <WrapItem>
-                <Button variant="outlined">삭제</Button>
-              </WrapItem>
-              <WrapItem>
-                <Button variant="ghost">더보기</Button>
-              </WrapItem>
+              <Button variant="primary">저장</Button>
+
+              <Button variant="secondary">취소</Button>
+
+              <Button variant="outline">삭제</Button>
+
+              <Button variant="ghost">더보기</Button>
             </Wrap>
           </ComponentPreview>
           <Code variant="block" language="tsx">
             {`<Wrap gap="md">
-  <WrapItem><Button variant="primary">저장</Button></WrapItem>
-  <WrapItem><Button variant="secondary">취소</Button></WrapItem>
-  <WrapItem><Button variant="outlined">삭제</Button></WrapItem>
-  <WrapItem><Button variant="ghost">더보기</Button></WrapItem>
+  <Button variant="primary">저장</Button>
+  <Button variant="secondary">취소</Button>
+  <Button variant="outline">삭제</Button>
+  <Button variant="ghost">더보기</Button>
 </Wrap>`}
           </Code>
         </Subsection>
@@ -406,49 +353,11 @@ export default function WrapPage() {
             </table>
           </div>
         </Subsection>
-
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="WrapItem Props" />
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-krds-gray-20">
-                  <th className="text-left py-3 px-4">Prop</th>
-                  <th className="text-left py-3 px-4">Type</th>
-                  <th className="text-left py-3 px-4">Default</th>
-                  <th className="text-left py-3 px-4">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-krds-gray-10">
-                  <td className="py-3 px-4">
-                    <Code>className</Code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <Code>string</Code>
-                  </td>
-                  <td className="py-3 px-4">-</td>
-                  <td className="py-3 px-4">추가 CSS 클래스</td>
-                </tr>
-                <tr className="border-b border-krds-gray-10">
-                  <td className="py-3 px-4">
-                    <Code>children</Code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <Code>ReactNode</Code>
-                  </td>
-                  <td className="py-3 px-4">-</td>
-                  <td className="py-3 px-4">자식 요소</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </Subsection>
       </Section>
 
       <PageNavigation
         prev={{ title: 'Stack', href: '/layout/stack' }}
-        next={{ title: 'Card', href: '/layout/card' }}
+        next={{ title: 'SimpleGrid', href: '/layout/simple-grid' }}
       />
     </>
   );

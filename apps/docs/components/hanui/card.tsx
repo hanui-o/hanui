@@ -8,7 +8,9 @@ import { cn } from '@/lib/utils';
  * Card Variants Definition
  */
 const cardVariants = cva(
-  ['rounded-lg', 'transition-all', 'duration-200'].join(' '),
+  ['rounded-lg', 'transition-all', 'duration-200', 'flex', 'flex-col'].join(
+    ' '
+  ),
   {
     variants: {
       variant: {
@@ -42,6 +44,11 @@ const cardVariants = cva(
           'bg-yellow-50 dark:bg-yellow-950',
           'border border-yellow-200 dark:border-yellow-800',
         ].join(' '),
+        danger: [
+          'bg-red-50 dark:bg-red-950',
+          'border border-red-200 dark:border-red-800',
+        ].join(' '),
+        // Deprecated: use 'danger' instead
         error: [
           'bg-red-50 dark:bg-red-950',
           'border border-red-200 dark:border-red-800',
@@ -52,6 +59,12 @@ const cardVariants = cva(
         sm: 'p-4', // 16px
         md: 'p-6', // 24px
         lg: 'p-8', // 32px
+      },
+      gap: {
+        none: 'gap-0',
+        sm: 'gap-4', // 16px
+        md: 'gap-6', // 24px
+        lg: 'gap-8', // 32px
       },
       hoverable: {
         true: [
@@ -66,6 +79,7 @@ const cardVariants = cva(
     defaultVariants: {
       variant: 'outlined',
       padding: 'md',
+      gap: 'none',
       hoverable: false,
     },
   }
@@ -89,13 +103,20 @@ export interface CardProps
     | 'info'
     | 'success'
     | 'warning'
-    | 'error';
+    | 'danger'
+    | 'error'; // deprecated: use 'danger' instead
 
   /**
    * Padding size
    * @default "md"
    */
   padding?: 'none' | 'sm' | 'md' | 'lg';
+
+  /**
+   * Gap size between child elements
+   * @default "none"
+   */
+  gap?: 'none' | 'sm' | 'md' | 'lg';
 
   /**
    * Enable hover effect
@@ -154,7 +175,12 @@ export interface CardProps
  * <Card variant="info">정보 카드</Card>
  * <Card variant="success">성공 카드</Card>
  * <Card variant="warning">경고 카드</Card>
- * <Card variant="error">오류 카드</Card>
+ * <Card variant="danger">위험 카드</Card>
+ *
+ * // With gap (spacing between children)
+ * <Card gap="sm">16px gap</Card>
+ * <Card gap="md">24px gap</Card>
+ * <Card gap="lg">32px gap</Card>
  *
  * // Hoverable (clickable)
  * <Card hoverable onClick={handleClick}>
@@ -163,7 +189,7 @@ export interface CardProps
  * ```
  */
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, padding, hoverable, ...props }, ref) => {
+  ({ className, variant, padding, gap, hoverable, ...props }, ref) => {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (hoverable && (e.key === 'Enter' || e.key === ' ')) {
         e.preventDefault();
@@ -175,7 +201,10 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
     return (
       <div
         ref={ref}
-        className={cn(cardVariants({ variant, padding, hoverable }), className)}
+        className={cn(
+          cardVariants({ variant, padding, gap, hoverable }),
+          className
+        )}
         role={hoverable ? 'button' : 'article'}
         tabIndex={hoverable ? 0 : undefined}
         onKeyDown={handleKeyDown}

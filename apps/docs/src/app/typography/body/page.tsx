@@ -318,7 +318,7 @@ export default function BodyPage() {
             />
 
             <Stack gap="lg">
-              <DoCard title="Body를 사용하기 적합한 경우">
+              <DoCard>
                 <ListItem>일반 문단과 본문 콘텐츠</ListItem>
                 <ListItem>설명 텍스트</ListItem>
                 <ListItem>리스트 항목</ListItem>
@@ -326,7 +326,7 @@ export default function BodyPage() {
                 <ListItem>캡션 및 메타 정보</ListItem>
               </DoCard>
 
-              <DontCard title="Body를 사용하지 말아야 하는 경우">
+              <DontCard>
                 <ListItem>페이지 제목 (Heading 사용 권장)</ListItem>
                 <ListItem>배너 텍스트 (Display 사용 권장)</ListItem>
                 <ListItem>폼 라벨 (Label 사용 권장)</ListItem>

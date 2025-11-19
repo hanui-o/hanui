@@ -184,7 +184,7 @@ export function Header() {
         position: isFixed ? 'fixed' : 'absolute',
         top: isFixed ? '-56px' : '0',
       }}
-      className={`z-50 w-full bg-krds-white/95 backdrop-blur supports-[backdrop-filter]:bg-krds-white/60 ${isMainPage ? '' : 'border-b border-krds-gray-10'}`}
+      className={`z-50 w-full bg-krds-white supports-[backdrop-filter]:bg-krds-white/95 ${isMainPage ? '' : 'border-b border-krds-gray-10'}`}
     >
       {/* Main Header */}
       <Container maxWidth="full" className="h-14 flex items-center gap-4">

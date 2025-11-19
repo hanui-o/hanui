@@ -1,12 +1,16 @@
 import Link from 'next/link';
-import { Stack, Heading, Body } from '@hanui/react';
-import { PageHeader } from '@/components/content/PageHeader';
-import { PageSection } from '@/components/content/PageSection';
+import { Section, SectionHeading, Body, Wrap } from '@/components/hanui';
 
 // KRDS 분류 체계에 따른 컴포넌트 정리
 
-// 타이포그래피 (HANUI 독자 분류)
+// 타이포그래피 (HANUI 독자 분류) - 알파벳 순
 const typographyComponents = [
+  {
+    name: 'Body',
+    description: '본문 텍스트',
+    href: '/typography/body',
+    updated: true,
+  },
   {
     name: 'Display',
     description: '대형 텍스트',
@@ -20,12 +24,6 @@ const typographyComponents = [
     updated: true,
   },
   {
-    name: 'Body',
-    description: '본문 텍스트',
-    href: '/typography/body',
-    updated: true,
-  },
-  {
     name: 'NavText',
     description: '네비게이션 텍스트',
     href: '/typography/navtext',
@@ -33,18 +31,12 @@ const typographyComponents = [
   },
 ];
 
-// 1. 아이덴티티 (Identity)
+// 1. 아이덴티티 (Identity) - 알파벳 순
 const identityComponents = [
   {
-    name: 'Masthead',
-    description: '공식 배너',
-    href: '/components/identity/masthead',
-    updated: true,
-  },
-  {
-    name: 'Identifier',
-    description: '운영기관 식별자',
-    href: '/components/identity/identifier',
+    name: 'Footer',
+    description: '푸터 (CSS Module)',
+    href: '/components/identity/footer',
     updated: true,
   },
   {
@@ -54,21 +46,21 @@ const identityComponents = [
     updated: true,
   },
   {
-    name: 'Footer',
-    description: '푸터 (CSS Module)',
-    href: '/components/identity/footer',
+    name: 'Identifier',
+    description: '운영기관 식별자',
+    href: '/components/identity/identifier',
+    updated: true,
+  },
+  {
+    name: 'Masthead',
+    description: '공식 배너',
+    href: '/components/identity/masthead',
     updated: true,
   },
 ];
 
-// 2. 탐색 (Navigation)
-const navigationComponents = [
-  {
-    name: 'SkipLink',
-    description: '건너뛰기 링크',
-    href: '/components/navigation/skiplink',
-    updated: true,
-  },
+// 2. 탐색 (Navigation) - 하위 분류
+const navigationMainComponents = [
   {
     name: 'Main Menu',
     description: '주 메뉴',
@@ -76,21 +68,24 @@ const navigationComponents = [
     updated: true,
   },
   {
-    name: 'Breadcrumb',
-    description: '브레드크럼',
-    href: '/components/navigation/breadcrumb',
-    updated: true,
-  },
-  {
-    name: 'Link',
-    description: 'Next.js 통합 링크',
-    href: '/components/navigation/link',
-    updated: true,
-  },
-  {
     name: 'Side Navigation',
     description: '사이드 메뉴',
     href: '/components/navigation/sidenavigation',
+    updated: true,
+  },
+  {
+    name: 'Tab Bars',
+    description: '하단 고정 탭바',
+    href: '/components/navigation/tabbars',
+    updated: true,
+  },
+];
+
+const navigationContentComponents = [
+  {
+    name: 'Breadcrumb',
+    description: '브레드크럼',
+    href: '/components/navigation/breadcrumb',
     updated: true,
   },
   {
@@ -105,10 +100,19 @@ const navigationComponents = [
     href: '/components/navigation/pagination',
     updated: true,
   },
+];
+
+const navigationLinkComponents = [
   {
-    name: 'Tab Bars',
-    description: '하단 고정 탭바',
-    href: '/components/navigation/tabbars',
+    name: 'Link',
+    description: 'Next.js 통합 링크',
+    href: '/components/navigation/link',
+    updated: true,
+  },
+  {
+    name: 'SkipLink',
+    description: '건너뛰기 링크 (접근성)',
+    href: '/components/navigation/skiplink',
     updated: true,
   },
 ];
@@ -122,7 +126,6 @@ const presentationComponents = [
     href: '/layout/container',
     updated: true,
   },
-  { name: 'Box', description: '박스', href: '/layout/box', updated: true },
   {
     name: 'Stack',
     description: '스택 레이아웃',
@@ -133,6 +136,12 @@ const presentationComponents = [
     name: 'Wrap',
     description: '자동 줄바꿈 레이아웃',
     href: '/layout/wrap',
+    updated: true,
+  },
+  {
+    name: 'SimpleGrid',
+    description: '간단한 그리드 레이아웃',
+    href: '/layout/simple-grid',
     updated: true,
   },
   {
@@ -161,24 +170,18 @@ const presentationComponents = [
     href: '/layout/structured-list',
     updated: true,
   },
-  // { name: 'Critical Alerts', description: '긴급 공지', href: '/components/critical-alerts', updated: false },
-  // { name: 'Calendar', description: '달력', href: '/components/calendar', updated: false },
-  // { name: 'Disclosure', description: '디스클로저', href: '/components/disclosure', updated: false },
   {
     name: 'Modal',
     description: '모달',
     href: '/layout/modal',
     updated: true,
   },
-  // { name: 'Badge', description: '배지', href: '/components/badge', updated: false },
   {
     name: 'Accordion',
     description: '아코디언',
     href: '/layout/accordion',
     updated: true,
   },
-  // { name: 'Image', description: '이미지', href: '/components/image', updated: false },
-  // { name: 'Carousel', description: '캐러셀', href: '/components/carousel', updated: false },
   { name: 'Tab', description: '탭', href: '/layout/tabs', updated: true },
   {
     name: 'Table',
@@ -186,8 +189,6 @@ const presentationComponents = [
     href: '/layout/table',
     updated: true,
   },
-  // { name: 'Splash Screen', description: '스플래시 스크린', href: '/components/splash-screen', updated: false },
-  // { name: 'Text List', description: '텍스트 목록', href: '/components/text-list', updated: false },
   {
     name: 'Card',
     description: '카드',
@@ -198,7 +199,6 @@ const presentationComponents = [
 
 // 4. 액션 (Action)
 const actionComponents = [
-  // { name: 'Link', description: '링크', href: '/components/link', updated: false },
   {
     name: 'Button',
     description: '버튼',
@@ -209,30 +209,24 @@ const actionComponents = [
 
 // 5. 선택 (Selection)
 const selectionComponents = [
-  // { name: 'Radio Button', description: '라디오 버튼', href: '/components/radio-button', updated: false },
-  // { name: 'Checkbox', description: '체크박스', href: '/components/checkbox', updated: false },
   {
     name: 'Select',
     description: '셀렉트',
     href: '/components/selection/select',
     updated: true,
   },
-  // { name: 'Tag', description: '태그', href: '/components/tag', updated: false },
-  // { name: 'Toggle Switch', description: '토글 스위치', href: '/components/toggle-switch', updated: false },
 ];
 
 // 6. 피드백 (Feedback)
-const feedbackComponents = [
-  // { name: 'Step Indicator', description: '단계 표시기', href: '/components/step-indicator', updated: false },
-  // { name: 'Spinner', description: '스피너', href: '/components/spinner', updated: false },
-];
+const feedbackComponents: Array<{
+  name: string;
+  description?: string;
+  href: string;
+  updated: boolean;
+}> = [];
 
 // 7. 도움 (Help)
 const helpComponents = [
-  // { name: 'Help Panel', description: '도움 패널', href: '/components/help-panel', updated: false },
-  // { name: 'Tutorial Panel', description: '따라하기 패널', href: '/components/tutorial-panel', updated: false },
-  // { name: 'Contextual Help', description: '맥락적 도움말', href: '/components/contextual-help', updated: false },
-  // { name: 'Coach Mark', description: '코치마크', href: '/components/coach-mark', updated: false },
   {
     name: 'Tooltip',
     description: '툴팁',
@@ -243,8 +237,6 @@ const helpComponents = [
 
 // 8. 입력 (Input)
 const inputComponents = [
-  // { name: 'Date Input', description: '날짜 입력 필드', href: '/components/date-input', updated: false },
-  // { name: 'Textarea', description: '텍스트 영역', href: '/components/textarea', updated: false },
   {
     name: 'Label',
     description: '라벨',
@@ -266,16 +258,20 @@ const inputComponents = [
 ];
 
 // 9. 설정 (Settings)
-const settingsComponents = [
-  // { name: 'Language Switcher', description: '언어 변경', href: '/components/language-switcher', updated: false },
-  // { name: 'Resize', description: '화면 크기 조정', href: '/components/resize', updated: false },
-];
+const settingsComponents: Array<{
+  name: string;
+  description?: string;
+  href: string;
+  updated: boolean;
+}> = [];
 
 // 10. 콘텐츠 (Content)
-const contentComponents = [
-  // { name: 'Accessible Multimedia', description: '접근 가능한 미디어', href: '/components/accessible-multimedia', updated: false },
-  // { name: 'Visually Hidden', description: '숨긴 콘텐츠', href: '/components/visually-hidden', updated: false },
-];
+const contentComponents: Array<{
+  name: string;
+  description?: string;
+  href: string;
+  updated: boolean;
+}> = [];
 
 // 컴포넌트 섹션 렌더링 함수
 function ComponentSection({
@@ -297,50 +293,47 @@ function ComponentSection({
   if (components.length === 0) return null;
 
   return (
-    <PageSection>
-      <Stack gap="md">
-        <div>
-          <Heading level="h2" id={id} className="text-2xl font-semibold">
-            {title}
-          </Heading>
-          {description && (
-            <Body className="text-krds-gray-70 mt-2">{description}</Body>
-          )}
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-          {components.map((component) => (
-            <Link
-              key={component.name}
-              href={component.href}
-              className="relative rounded-lg transition-all group flex items-center gap-2"
-            >
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-medium text-krds-gray-95 group-hover:underline transition-all">
-                    {component.name}
-                  </span>
-                  {component.updated && (
-                    <span className="w-2 h-2 rounded-full bg-krds-primary-base" />
-                  )}
-                </div>
-                {component.description && (
-                  <span className="text-krds-gray-70">
-                    {component.description}
-                  </span>
+    <Section level="h2">
+      <SectionHeading level="h2" id={id} title={title}>
+        {description && (
+          <Body className="text-krds-gray-70">{description}</Body>
+        )}
+      </SectionHeading>
+
+      <Wrap gap="lg">
+        {components.map((component) => (
+          <Link
+            key={component.name}
+            href={component.href}
+            className="relative rounded-lg transition-all group flex items-center gap-2 min-w-[200px]"
+          >
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <span className="text-base font-medium text-krds-gray-95 group-hover:underline transition-all">
+                  {component.name}
+                </span>
+                {component.updated && (
+                  <span className="w-2 h-2 rounded-full bg-krds-primary-base" />
                 )}
               </div>
-            </Link>
-          ))}
-        </div>
-      </Stack>
-    </PageSection>
+              {component.description && (
+                <span className="text-sm text-krds-gray-70">
+                  {component.description}
+                </span>
+              )}
+            </div>
+          </Link>
+        ))}
+      </Wrap>
+    </Section>
   );
 }
 
 export default function ComponentsPage() {
   return (
     <>
-      <PageHeader
+      <SectionHeading
+        level="h1"
         title="Components"
         description="HANUI 라이브러리에서 제공하는 모든 컴포넌트를 KRDS(Korean Design System) 분류 체계에 따라 정리했습니다."
       />
@@ -361,12 +354,44 @@ export default function ComponentsPage() {
         id="identity"
       />
 
-      <ComponentSection
-        title="탐색"
-        description="사용자가 콘텐츠를 탐색하고 이동하는 데 사용하는 컴포넌트"
-        components={navigationComponents}
-        id="navigation"
-      />
+      <Section level="h2">
+        <SectionHeading
+          level="h2"
+          id="navigation"
+          title="탐색"
+          description="사용자가 콘텐츠를 탐색하고 이동하는 데 사용하는 컴포넌트"
+        />
+
+        <Wrap gap="lg">
+          {[
+            ...navigationMainComponents,
+            ...navigationContentComponents,
+            ...navigationLinkComponents,
+          ].map((component) => (
+            <Link
+              key={component.name}
+              href={component.href}
+              className="relative rounded-lg transition-all group flex items-center gap-2 min-w-[200px]"
+            >
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-medium text-krds-gray-95 group-hover:underline transition-all">
+                    {component.name}
+                  </span>
+                  {component.updated && (
+                    <span className="w-2 h-2 rounded-full bg-krds-primary-base" />
+                  )}
+                </div>
+                {component.description && (
+                  <span className="text-sm text-krds-gray-70">
+                    {component.description}
+                  </span>
+                )}
+              </div>
+            </Link>
+          ))}
+        </Wrap>
+      </Section>
 
       <ComponentSection
         title="레이아웃 및 표현"
