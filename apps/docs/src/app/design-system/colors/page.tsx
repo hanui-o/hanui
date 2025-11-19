@@ -12,7 +12,6 @@ import {
   Link,
   Stack,
   Wrap,
-  WrapItem,
   PageNavigation,
 } from '@/components/hanui';
 import { CircleX, AlertTriangle, CheckCircle, Info } from 'lucide-react';
@@ -271,22 +270,22 @@ export default function ColorsPage() {
           </SectionHeading>
 
           <Wrap gap="md" className="mb-4">
-            <WrapItem className="flex-1 min-w-[300px]">
+            <div className="flex-1 min-w-[300px]">
               <div className="p-4 bg-krds-white text-krds-black rounded-lg border border-krds-gray-20 w-full">
                 <code className="block mb-2">bg-krds-white</code>
                 <p className="text-sm">
                   기본 모드: 흰색, 다크 모드: 검은색 (자동 반전)
                 </p>
               </div>
-            </WrapItem>
-            <WrapItem className="flex-1 min-w-[300px]">
+            </div>
+            <div className="flex-1 min-w-[300px]">
               <div className="p-4 bg-krds-black text-krds-white rounded-lg border border-krds-gray-20 w-full">
                 <code className="block mb-2">bg-krds-black</code>
                 <p className="text-sm">
                   기본 모드: 검은색, 다크 모드: 흰색 (자동 반전)
                 </p>
               </div>
-            </WrapItem>
+            </div>
           </Wrap>
 
           <Code variant="block" language="tsx">
@@ -327,18 +326,18 @@ export default function ColorsPage() {
         <Subsection level="h3">
           <SectionHeading level="h3" title="Primary Colors" />
           <Wrap gap="md" className="mb-4">
-            <WrapItem className="flex-1 min-w-[300px]">
+            <div className="flex-1 min-w-[300px]">
               <div className="p-4 bg-krds-primary-50 text-krds-primary-10 rounded-lg w-full">
                 <code className="block mb-2">bg-krds-primary-50</code>
                 <p className="text-sm">Primary - 주요 상호작용</p>
               </div>
-            </WrapItem>
-            <WrapItem className="flex-1 min-w-[300px]">
+            </div>
+            <div className="flex-1 min-w-[300px]">
               <div className="p-4 bg-krds-primary-60 text-krds-primary-10 rounded-lg w-full">
                 <code className="block mb-2">hover:bg-krds-primary-60</code>
                 <p className="text-sm">Primary Hover</p>
               </div>
-            </WrapItem>
+            </div>
           </Wrap>
           <Code variant="block" language="tsx">
             {`<Button variant="primary">확인</Button>
@@ -639,7 +638,7 @@ export default function ColorsPage() {
           </SectionHeading>
 
           <Wrap gap="md">
-            <WrapItem className="flex-1 min-w-[300px]">
+            <div className="flex-1 min-w-[300px]">
               <Card variant="outlined" className="w-full">
                 <SectionHeading level="h4" title="Primary" />
                 <List>
@@ -654,9 +653,9 @@ export default function ColorsPage() {
                   </ListItem>
                 </List>
               </Card>
-            </WrapItem>
+            </div>
 
-            <WrapItem className="flex-1 min-w-[300px]">
+            <div className="flex-1 min-w-[300px]">
               <Card variant="outlined" className="w-full">
                 <SectionHeading level="h4" title="Secondary" />
                 <List>
@@ -671,9 +670,9 @@ export default function ColorsPage() {
                   </ListItem>
                 </List>
               </Card>
-            </WrapItem>
+            </div>
 
-            <WrapItem className="flex-1 min-w-[300px]">
+            <div className="flex-1 min-w-[300px]">
               <Card variant="outlined" className="w-full">
                 <SectionHeading level="h4" title="Accent (강조)" />
                 <List>
@@ -688,9 +687,9 @@ export default function ColorsPage() {
                   </ListItem>
                 </List>
               </Card>
-            </WrapItem>
+            </div>
 
-            <WrapItem className="flex-1 min-w-[300px]">
+            <div className="flex-1 min-w-[300px]">
               <Card variant="outlined" className="w-full">
                 <SectionHeading level="h4" title="Danger (위험/에러)" />
                 <List>
@@ -705,7 +704,7 @@ export default function ColorsPage() {
                   </ListItem>
                 </List>
               </Card>
-            </WrapItem>
+            </div>
           </Wrap>
         </Subsection>
       </Section>
