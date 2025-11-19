@@ -10,6 +10,7 @@ import {
   Body,
   Card,
   Link,
+  PageNavigation,
 } from '@/components/hanui';
 
 export default function QuickStartPage() {
@@ -467,55 +468,10 @@ const buttonVariants = cva(
         </Subsection>
       </Section>
 
-      {/* Next Steps */}
-      <Section level="h2">
-        <SectionHeading
-          level="h2"
-          id="next-steps"
-          title="다음 단계"
-          description="이제 HANUI의 기본 사용법을 익혔습니다! 더 많은 컴포넌트를 살펴보세요:"
-        />
-
-        <Card variant="outlined">
-          <Link
-            href="/components"
-            variant="none"
-            className="block px-4 py-2 bg-krds-primary-base text-krds-white rounded-md hover:bg-krds-primary-60 transition-colors text-center mb-3"
-          >
-            전체 컴포넌트 보기 →
-          </Link>
-          <div className="grid grid-cols-2 gap-2">
-            <Link
-              href="/components/button"
-              variant="none"
-              className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center"
-            >
-              Button
-            </Link>
-            <Link
-              href="/components/input"
-              variant="none"
-              className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center"
-            >
-              Input
-            </Link>
-            <Link
-              href="/components/select"
-              variant="none"
-              className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center"
-            >
-              Select
-            </Link>
-            <Link
-              href="/layout/container"
-              variant="none"
-              className="block px-4 py-2 border border-krds-gray-20 rounded-md hover:bg-krds-gray-5 transition-colors text-center"
-            >
-              Container
-            </Link>
-          </div>
-        </Card>
-      </Section>
+      {/* Page Navigation */}
+      <PageNavigation
+        prev={{ title: 'Installation', href: '/docs/installation' }}
+      />
     </>
   );
 }
