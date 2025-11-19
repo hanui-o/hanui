@@ -17,6 +17,7 @@ export { Select } from './select';
 // Layout Components
 export { Container } from './container';
 export { Stack, VStack, HStack } from './stack';
+export { Wrap } from './wrap';
 export {
   Card,
   CardHeader,

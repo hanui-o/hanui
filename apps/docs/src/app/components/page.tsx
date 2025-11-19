@@ -130,6 +130,12 @@ const presentationComponents = [
     updated: true,
   },
   {
+    name: 'Wrap',
+    description: '자동 줄바꿈 레이아웃',
+    href: '/layout/wrap',
+    updated: true,
+  },
+  {
     name: 'Section',
     description: '섹션',
     href: '/layout/section',

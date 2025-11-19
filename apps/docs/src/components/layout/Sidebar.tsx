@@ -20,7 +20,7 @@ const designSystemNavigation = [
   {
     title: 'Design System',
     items: [
-      { title: 'Design Tokens', href: '/design-tokens' },
+      // { title: 'Design Tokens', href: '/design-tokens' },
       { title: 'Colors', href: '/design-system/colors' },
       { title: 'Typography', href: '/design-system/typography' },
       { title: 'Border Radius', href: '/design-system/border-radius' },
@@ -77,6 +77,7 @@ const componentsNavigation = [
       { title: 'Tab Bars', href: '/components/navigation/tabbars' },
       { title: 'Table', href: '/layout/table' },
       { title: 'Tabs', href: '/layout/tabs' },
+      { title: 'Wrap', href: '/layout/wrap' },
       { title: 'Text Input', href: '/components/form/input' },
       { title: 'Tooltip', href: '/components/help/tooltip' },
     ],
