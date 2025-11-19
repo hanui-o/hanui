@@ -10,6 +10,7 @@ import {
   Body,
   Card,
   Link,
+  Stack,
   PageNavigation,
 } from '@/components/hanui';
 import { CircleX, AlertTriangle, CheckCircle, Info } from 'lucide-react';
@@ -32,22 +33,22 @@ export default function ColorsPage() {
             </Body>
           </SectionHeading>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <Card variant="outlined">
+          <Stack direction="row" gap="md" className="flex-col md:flex-row">
+            <Card variant="outlined" className="flex-1">
               <SectionHeading level="h4" title="Tailwind 기본 색상">
                 <Body size="sm" className="mt-2">
                   예: <Code>bg-gray-50</Code>
                 </Body>
               </SectionHeading>
             </Card>
-            <Card variant="outlined">
+            <Card variant="outlined" className="flex-1">
               <SectionHeading level="h4" title="KRDS 색상 (krds- 접두사)">
                 <Body size="sm" className="mt-2">
                   예: <Code>bg-krds-gray-50</Code>
                 </Body>
               </SectionHeading>
             </Card>
-          </div>
+          </Stack>
         </Subsection>
       </Section>
 
@@ -88,8 +89,8 @@ export default function ColorsPage() {
             </Body>
           </SectionHeading>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <Card variant="outlined">
+          <Stack direction="row" gap="md" className="flex-col md:flex-row">
+            <Card variant="outlined" className="flex-1">
               <SectionHeading level="h4" title="Tailwind 기본 색상">
                 <Body size="sm" className="text-krds-gray-70">
                   gray-50, gray-100, gray-200...
@@ -99,7 +100,7 @@ export default function ColorsPage() {
                 </Body>
               </SectionHeading>
             </Card>
-            <Card variant="outlined">
+            <Card variant="outlined" className="flex-1">
               <SectionHeading level="h4" title="KRDS 색상 (krds- 접두사)">
                 <Body size="sm" className="text-krds-gray-70">
                   krds-gray-50, krds-primary-60...
@@ -109,7 +110,7 @@ export default function ColorsPage() {
                 </Body>
               </SectionHeading>
             </Card>
-          </div>
+          </Stack>
 
           <Card variant="info" className="mt-4">
             <Body>
@@ -483,8 +484,8 @@ export default function ColorsPage() {
           </Body>
         </SectionHeading>
 
-        <div className="grid md:grid-cols-2 gap-4 mb-4">
-          <Card variant="outlined">
+        <Stack direction="row" gap="md" className="flex-col md:flex-row mb-4">
+          <Card variant="outlined" className="flex-1">
             <SectionHeading level="h4" title="기본 모드" />
             <List>
               <ListItem>
@@ -498,7 +499,7 @@ export default function ColorsPage() {
               </ListItem>
             </List>
           </Card>
-          <Card variant="outlined">
+          <Card variant="outlined" className="flex-1">
             <SectionHeading level="h4" title="다크 모드" />
             <List>
               <ListItem>
@@ -512,7 +513,7 @@ export default function ColorsPage() {
               </ListItem>
             </List>
           </Card>
-        </div>
+        </Stack>
 
         <Body>
           이를 해결하기 위해 <strong>Semantic 변수</strong>를 사용하여 모드에
@@ -572,8 +573,8 @@ export default function ColorsPage() {
             </Body>
           </SectionHeading>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <Card variant="outlined">
+          <Stack direction="row" gap="md" className="flex-col md:flex-row">
+            <Card variant="outlined" className="flex-1">
               <SectionHeading level="h4" title="Semantic 변수 (권장)">
                 <Body size="sm" className="mb-3">
                   <Code>bg-krds-primary-surface</Code>,{' '}
@@ -590,7 +591,7 @@ export default function ColorsPage() {
               </List>
             </Card>
 
-            <Card variant="outlined">
+            <Card variant="outlined" className="flex-1">
               <SectionHeading level="h4" title="숫자 스케일">
                 <Body size="sm" className="mb-3">
                   <Code>bg-krds-gray-5</Code>, <Code>text-krds-gray-90</Code>
@@ -603,7 +604,7 @@ export default function ColorsPage() {
                 <ListItem>라이트 모드: 밝은 색, 다크 모드: 어두운 색</ListItem>
               </List>
             </Card>
-          </div>
+          </Stack>
 
           <Card variant="info" className="mt-4">
             <Body>
