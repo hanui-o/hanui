@@ -83,6 +83,9 @@ export type { LabelProps } from './components/Label';
 export { NavText } from './components/NavText';
 export type { NavTextProps } from './components/NavText';
 
+export { Link, linkVariants } from './components/Link';
+export type { LinkProps } from './components/Link';
+
 export { Box } from './components/Box';
 export type { BoxProps } from './components/Box';
 

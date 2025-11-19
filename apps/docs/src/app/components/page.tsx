@@ -82,6 +82,12 @@ const navigationComponents = [
     updated: true,
   },
   {
+    name: 'Link',
+    description: 'Next.js 통합 링크',
+    href: '/components/navigation/link',
+    updated: true,
+  },
+  {
     name: 'Side Navigation',
     description: '사이드 메뉴',
     href: '/components/navigation/sidenavigation',

@@ -28,6 +28,12 @@ export {
 
 // Navigation
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
+export { Link } from './link';
+export { PageNavigation } from './page-navigation';
+export type {
+  PageNavigationProps,
+  PageNavigationItem,
+} from './page-navigation';
 
 // Content Components
 export { List, ListItem } from './list';
