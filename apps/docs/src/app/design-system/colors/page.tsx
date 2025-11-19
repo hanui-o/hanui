@@ -938,15 +938,14 @@ function App() {
       <Section level="h2">
         <SectionHeading level="h2" id="reference" title="참고 자료" />
 
-        <a
+        <Link
           href="https://www.krds.go.kr/html/site/style/style_02.html"
-          target="_blank"
-          rel="noopener noreferrer"
+          external
           className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
         >
           <h4 className="font-semibold mb-1">KRDS 색상 시스템</h4>
           <p className="text-krds-gray-70">색상 팔레트, 접근성 기준</p>
-        </a>
+        </Link>
       </Section>
 
       {/* Page Navigation */}

@@ -8,6 +8,7 @@ import {
   Body,
   Card,
   Stack,
+  Link,
   PageNavigation,
 } from '@/components/hanui';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
@@ -156,15 +157,14 @@ export default function TypographyPage() {
         <SectionHeading level="h2" id="reference" title="참고 자료" />
 
         <Stack gap="sm" className="mt-4">
-          <a
+          <Link
             href="https://www.krds.go.kr/html/site/style/style_03.html"
-            target="_blank"
-            rel="noopener noreferrer"
+            external
             className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
           >
             <h4 className="font-semibold mb-1">KRDS 타이포그래피 가이드</h4>
             <p className="text-krds-gray-70">폰트, 크기, line-height 기준</p>
-          </a>
+          </Link>
         </Stack>
       </Section>
 
