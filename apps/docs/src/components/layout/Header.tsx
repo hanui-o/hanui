@@ -198,7 +198,7 @@ export function Header() {
         </Link>
 
         {/* Center: Main Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 font-medium ml-8">
+        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium ml-8">
           <Link
             href="/docs/introduction"
             className={`transition-colors px-4 py-2 whitespace-nowrap ${
@@ -245,7 +245,7 @@ export function Header() {
           </Link> */}
 
           {/* Version */}
-          <button className="hidden lg:flex items-center gap-1.5 h-9 px-3 font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20 whitespace-nowrap">
+          <button className="hidden lg:flex items-center gap-1.5 h-9 px-3 text-sm font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20 whitespace-nowrap">
             <span>v0.1.0-beta</span>
             <ChevronDownIcon />
           </button>
@@ -264,7 +264,7 @@ export function Header() {
             href="https://github.com/hanui-o/hanui"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 h-9 px-3 font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors"
+            className="flex items-center gap-2 h-9 px-3 text-sm font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors"
           >
             <GitHubIcon />
             <span className="hidden">GitHub</span>
@@ -288,7 +288,7 @@ export function Header() {
         <div>
           <Container maxWidth="full" className="h-11">
             <nav className="flex items-center h-full overflow-x-auto scrollbar-hide">
-              <div className="flex items-center space-x-1">
+              <div className="flex items-center space-x-1 text-sm">
                 {docsSubNavItems.map((item) => {
                   const isActive = currentSubSection === item.key;
                   return (
