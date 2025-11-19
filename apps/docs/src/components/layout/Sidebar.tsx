@@ -142,7 +142,7 @@ function SidebarSection({ section }: { section: NavigationSection }) {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`block py-1 px-2 rounded-md transition-colors ${
+                className={`block py-1 px-2 rounded-md transition-colors text-sm ${
                   isActive
                     ? 'bg-krds-primary-base text-white font-medium'
                     : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'
