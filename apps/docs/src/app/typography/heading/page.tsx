@@ -32,7 +32,7 @@ export default function HeadingPage() {
 
       {/* Overview */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="overview">
             개요
           </Heading>
@@ -50,11 +50,11 @@ export default function HeadingPage() {
 
       {/* Levels */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="levels">
             레벨 (Levels)
           </Heading>
-          <Stack spacing="content-loose">
+          <Stack gap="lg">
             <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Heading level="h1">h1 - Extra Large Heading</Heading>
@@ -158,15 +158,15 @@ export default function HeadingPage() {
 
       {/* Usage */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="usage">
             예제
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Page Structure */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">페이지 구조</Heading>
             <ComponentPreview>
               <div className="space-y-4">
@@ -188,7 +188,7 @@ export default function HeadingPage() {
           </Stack>
 
           {/* Custom Styling */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">커스텀 스타일</Heading>
             <ComponentPreview>
               <div className="text-heading-lg font-bold text-krds-primary-base">
@@ -209,13 +209,13 @@ export default function HeadingPage() {
 
       {/* Guidelines */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="guidelines">
             사용 가이드라인
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <GuidelineBox title="Heading을 사용하기 적합한 경우">
             <ul className="list-disc list-inside space-y-2">
               <li>페이지의 메인 제목 (h1)</li>
@@ -246,7 +246,7 @@ export default function HeadingPage() {
 
       {/* API */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>
@@ -304,7 +304,7 @@ export default function HeadingPage() {
 
       {/* Accessibility */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="accessibility">
             접근성
           </Heading>
@@ -321,7 +321,7 @@ export default function HeadingPage() {
 
       {/* KRDS Compliance */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>

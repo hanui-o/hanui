@@ -88,15 +88,15 @@ export default () => {
 
       {/* Examples */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="examples">
             예제
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Sizes */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Size</Heading>
             <Body className="mb-4">
               다섯 가지 크기를 지원합니다: sm, md, lg, xl, full
@@ -231,7 +231,7 @@ export default () => {
           </Stack>
 
           {/* With Close Button */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">닫기 버튼 포함</Heading>
             <Body className="mb-4">상단에 닫기 버튼을 추가할 수 있습니다.</Body>
             <div>
@@ -279,7 +279,7 @@ export default () => {
           </Stack>
 
           {/* Confirmation Modal */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Confirmation Modal</Heading>
             <Body className="mb-4">
               사용자의 확인이 필요한 작업에 사용하는 패턴입니다.
@@ -348,7 +348,7 @@ export default () => {
           </Stack>
 
           {/* Form Modal */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Form Modal</Heading>
             <Body className="mb-4">폼을 포함하는 모달 예제입니다.</Body>
             <div>
@@ -434,15 +434,15 @@ export default () => {
 
       {/* API Reference */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Modal */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Modal</Heading>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
@@ -506,9 +506,9 @@ export default () => {
           </Stack>
 
           {/* Sub-components */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Sub-components</Heading>
-            <Stack spacing="content-tight">
+            <Stack gap="sm">
               <div>
                 <p className="font-mono mb-2">ModalTitle</p>
                 <Body size="sm">
@@ -548,10 +548,10 @@ export default () => {
           접근성
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:</Body>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">1. Focus Management</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -569,7 +569,7 @@ export default () => {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">2. Close Button Positioning</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -587,7 +587,7 @@ export default () => {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">3. Keyboard Navigation</Heading>
             <div className="overflow-x-auto">
               <table className="w-full">
@@ -625,7 +625,7 @@ export default () => {
             </div>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">4. ARIA Attributes</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -642,7 +642,7 @@ export default () => {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">5. Usability Standards</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -675,14 +675,14 @@ export default () => {
           기반 레이어
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             Modal 컴포넌트는 Headless UI Dialog를 기반으로 Foundation Layer
             아키텍처를 통해 개발자가 직접 관리하지 않아도 KRDS 접근성 기준을
             자동으로 충족합니다:
           </Body>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">1. Focus Management Automation</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -696,7 +696,7 @@ export default () => {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">2. ARIA Automation</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -713,7 +713,7 @@ export default () => {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">3. Keyboard Navigation</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -730,7 +730,7 @@ export default () => {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">4. Background Interaction Prevention</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>Overlay로 배경 윈도우 시각적 분리</li>
@@ -739,7 +739,7 @@ export default () => {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">5. Smooth Animations</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>Transition 컴포넌트로 부드러운 열기/닫기 애니메이션</li>

@@ -20,7 +20,7 @@ export default function QuickStartPage() {
           시작하기
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             HANUI는 <strong>소스 코드 복사 방식</strong>으로 배포됩니다. CLI
             명령어로 컴포넌트 소스 코드를 프로젝트에 직접 복사하여 완전히
@@ -29,7 +29,7 @@ export default function QuickStartPage() {
 
           {/* Step 1: Init */}
           <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">1. 프로젝트 초기화</Heading>
               <Body size="sm" className="text-krds-gray-70">
                 프로젝트에 HANUI를 처음 설치하는 경우, 먼저 초기화 명령을
@@ -77,7 +77,7 @@ export default function QuickStartPage() {
 
           {/* Step 2: Add Components */}
           <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">2. 컴포넌트 추가</Heading>
               <Body size="sm" className="text-krds-gray-70">
                 필요한 컴포넌트를 프로젝트에 추가합니다:
@@ -99,7 +99,7 @@ export default function QuickStartPage() {
 
           {/* Step 3: Use Components */}
           <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">3. 컴포넌트 사용</Heading>
               <Body size="sm" className="text-krds-gray-70 mb-2">
                 이제 프로젝트 어디서든 컴포넌트를 import하여 사용할 수 있습니다:
@@ -177,9 +177,9 @@ export default function MyPage() {
           자주 사용하는 패턴
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Form Example */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">폼 만들기</Heading>
             <div>
               <Body size="sm" className="text-krds-gray-70 mb-3">
@@ -234,7 +234,7 @@ function LoginForm() {
           </Stack>
 
           {/* Card Layout */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">카드 레이아웃</Heading>
             <div>
               <Body size="sm" className="text-krds-gray-70 mb-3">
@@ -283,7 +283,7 @@ function Dashboard() {
           </Stack>
 
           {/* Modal Usage */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">모달 사용하기</Heading>
             <div>
               <Body size="sm" className="text-krds-gray-70 mb-3">
@@ -353,7 +353,7 @@ function ConfirmDialog() {
           TypeScript 지원
         </Heading>
 
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body>
             HANUI 컴포넌트는 TypeScript로 작성되어 완벽한 타입 지원을
             제공합니다. 복사된 소스 코드에는 모든 타입 정의가 포함되어 있어 즉시
@@ -396,13 +396,13 @@ function CustomButton(props: ButtonProps) {
           스타일 커스터마이징
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             소스 코드를 직접 소유하므로 자유롭게 커스터마이징할 수 있습니다.
             Tailwind CSS 클래스나 컴포넌트 소스 코드를 직접 수정하세요:
           </Body>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">방법 1: className prop으로 간단히 수정</Heading>
             <CodeBlock
               code={`import { Button } from '@/components/hanui/button';
@@ -418,7 +418,7 @@ function CustomButton(props: ButtonProps) {
             />
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">방법 2: 소스 코드를 직접 수정</Heading>
             <div>
               <Body size="sm" className="text-krds-gray-70 mb-2">
@@ -464,7 +464,7 @@ const buttonVariants = cva(
           접근성 (Accessibility)
         </Heading>
 
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body>
             HANUI는 Radix UI Primitives 기반으로 구축되어 웹 접근성을 기본으로
             제공합니다:
@@ -525,7 +525,7 @@ const buttonVariants = cva(
           모범 사례
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="border-l-4 border-krds-success-base pl-4 py-2">
             <Heading level="h3" className="text-krds-success-text mb-1">
               ✓ Do: 시맨틱 HTML 사용
@@ -573,7 +573,7 @@ const buttonVariants = cva(
           다음 단계
         </Heading>
 
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
             <Body className="mb-4">
               이제 HANUI의 기본 사용법을 익혔습니다! 더 많은 컴포넌트를

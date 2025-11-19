@@ -28,7 +28,7 @@ export default function NavTextPage() {
 
       {/* Overview */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="overview">
             개요
           </Heading>
@@ -45,17 +45,17 @@ export default function NavTextPage() {
 
       {/* Variants */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="variants">
             변형
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Title Variant */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Title (메뉴 제목)</Heading>
-            <Stack spacing="content-loose">
+            <Stack gap="lg">
               <div className="rounded-lg border border-krds-gray-20 p-6">
                 <div className="mb-4">
                   <NavText
@@ -109,9 +109,9 @@ export default function NavTextPage() {
           </Stack>
 
           {/* Depth Variant */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Depth (메뉴 항목)</Heading>
-            <Stack spacing="content-loose">
+            <Stack gap="lg">
               <div className="rounded-lg border border-krds-gray-20 p-6">
                 <div className="mb-4">
                   <NavText
@@ -168,15 +168,15 @@ export default function NavTextPage() {
 
       {/* Usage */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="usage">
             예제
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Main Navigation */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">메인 네비게이션</Heading>
             <ComponentPreview>
               <nav className="bg-krds-gray-5 p-6 rounded">
@@ -241,7 +241,7 @@ export default function NavTextPage() {
           </Stack>
 
           {/* Hierarchical Navigation */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">계층형 네비게이션</Heading>
             <ComponentPreview>
               <nav className="bg-krds-gray-5 p-6 rounded">
@@ -321,7 +321,7 @@ export default function NavTextPage() {
           </Stack>
 
           {/* Polymorphic */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">다양한 HTML 태그</Heading>
             <ComponentPreview>
               <div className="space-y-3">
@@ -371,7 +371,7 @@ export default function NavTextPage() {
           </Stack>
 
           {/* Active State */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">활성 상태 스타일링</Heading>
             <ComponentPreview>
               <nav className="bg-krds-gray-5 p-6 rounded">
@@ -429,13 +429,13 @@ export default function NavTextPage() {
 
       {/* Guidelines */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="guidelines">
             사용 가이드라인
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <GuidelineBox title="NavText를 사용하기 적합한 경우">
             <ul className="list-disc list-inside space-y-2">
               <li>헤더 네비게이션 메뉴</li>
@@ -468,7 +468,7 @@ export default function NavTextPage() {
 
       {/* API */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>
@@ -549,7 +549,7 @@ export default function NavTextPage() {
 
       {/* Accessibility */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="accessibility">
             접근성
           </Heading>
@@ -569,7 +569,7 @@ export default function NavTextPage() {
 
       {/* KRDS Compliance */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>

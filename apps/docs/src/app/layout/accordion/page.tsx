@@ -50,9 +50,9 @@ export default function AccordionPage() {
               사용 예제
             </Heading>
 
-            <Stack spacing="content-loose" className="mt-2 md:mt-4">
+            <Stack gap="lg" className="mt-2 md:mt-4">
               {/* Basic Example */}
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">기본 사용</Heading>
                 <Body>
                   기본 Accordion은 한 번에 하나의 패널만 열 수
@@ -131,7 +131,7 @@ export default function AccordionPage() {
               </Stack>
 
               {/* Multiple Open */}
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">Multiple Open</Heading>
                 <Body>
                   type=&quot;multiple&quot;로 설정하면 여러 패널을 동시에 열 수
@@ -192,7 +192,7 @@ export default function AccordionPage() {
               </Stack>
 
               {/* Line Variant */}
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">Line Variant</Heading>
                 <Body>
                   variant=&quot;line&quot;으로 설정하면 구분선 스타일로
@@ -263,7 +263,7 @@ export default function AccordionPage() {
               </Stack>
 
               {/* Default Value */}
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">기본값</Heading>
                 <Body>
                   defaultValue로 초기에 열릴 패널을 지정할 수 있습니다.
@@ -326,7 +326,7 @@ export default function AccordionPage() {
               </Stack>
 
               {/* With Cards */}
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">카드와 함께 사용</Heading>
                 <Body>
                   AccordionContent 내부에 Card를 사용하여 구조화된 콘텐츠를
@@ -342,7 +342,7 @@ export default function AccordionPage() {
                         <AccordionContent>
                           <Card>
                             <CardBody>
-                              <Stack spacing="content-tight">
+                              <Stack gap="sm">
                                 <Heading level="h4">월 9,900원</Heading>
                                 <Body>
                                   • 개인 사용자 1명
@@ -365,7 +365,7 @@ export default function AccordionPage() {
                         <AccordionContent>
                           <Card>
                             <CardBody>
-                              <Stack spacing="content-tight">
+                              <Stack gap="sm">
                                 <Heading level="h4">월 29,900원</Heading>
                                 <Body>
                                   • 팀원 10명
@@ -394,7 +394,7 @@ export default function AccordionPage() {
     <AccordionContent>
       <Card>
         <CardBody>
-          <Stack spacing="content-tight">
+          <Stack gap="sm">
             <Heading level="h4">월 9,900원</Heading>
             <Body>• 개인 사용자 1명...</Body>
           </Stack>
@@ -416,9 +416,9 @@ export default function AccordionPage() {
               사용 가이드
             </Heading>
 
-            <Stack spacing="content-loose" className="mt-2 md:mt-4">
+            <Stack gap="lg" className="mt-2 md:mt-4">
               {/* When to use */}
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">언제 사용해야 하나요?</Heading>
 
                 <div className="grid grid-cols-1 gap-4">
@@ -473,7 +473,7 @@ export default function AccordionPage() {
               </Stack>
 
               {/* Accessibility */}
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">접근성</Heading>
                 <Body>KRDS 및 WCAG 2.1 접근성 기준을 준수합니다:</Body>
                 <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
@@ -505,7 +505,7 @@ export default function AccordionPage() {
               </Stack>
 
               {/* Usability */}
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">사용성 권장사항</Heading>
                 <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
                   <li>
@@ -547,7 +547,7 @@ export default function AccordionPage() {
               </TabsList>
 
               <TabsContent value="accordion">
-                <Stack spacing="heading-tight">
+                <Stack gap="sm">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
@@ -630,7 +630,7 @@ export default function AccordionPage() {
               </TabsContent>
 
               <TabsContent value="accordionitem">
-                <Stack spacing="heading-tight">
+                <Stack gap="sm">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
@@ -657,7 +657,7 @@ export default function AccordionPage() {
               </TabsContent>
 
               <TabsContent value="accordiontrigger">
-                <Stack spacing="heading-tight">
+                <Stack gap="sm">
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
@@ -703,13 +703,13 @@ export default function AccordionPage() {
           기반 레이어
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             Accordion 컴포넌트는 Foundation Layer 아키텍처를 통해 개발자가 직접
             관리하지 않아도 KRDS 접근성 기준을 자동으로 충족합니다:
           </Body>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">1. ARIA Automation</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -727,7 +727,7 @@ export default function AccordionPage() {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">2. Keyboard Navigation</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -740,7 +740,7 @@ export default function AccordionPage() {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">3. Semantic Heading Structure</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>AccordionTrigger를 h1-h6로 감싸서 문서 계층 구조 표현</li>
@@ -751,7 +751,7 @@ export default function AccordionPage() {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">4. Visual Direction</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>아이콘이 펼침/접힘 상태에 따라 자동 회전 (∨ ↔ ∧)</li>

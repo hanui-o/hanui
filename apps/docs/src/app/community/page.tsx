@@ -12,7 +12,7 @@ export default function CommunityPage() {
           description="HANUI는 오픈소스 프로젝트입니다. 버그 리포트, 기능 제안, 질문 등은 GitHub을 통해 참여해주세요."
         />
 
-        <Stack spacing="content-loose">
+        <Stack gap="lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <a
               href="https://github.com/hanui-o/hanui/issues"

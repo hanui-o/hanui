@@ -22,7 +22,7 @@ export default function DesignTokensPage() {
           개요
         </Heading>
 
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body className="leading-relaxed">
             디자인 토큰은 색상, 간격, 타이포그래피 등 디자인 시스템의 기본
             단위입니다. HANUI는{' '}
@@ -62,7 +62,7 @@ export default function DesignTokensPage() {
           KRDS 색상 시스템 통합
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS에서
             사용할 수 있도록 통합했습니다. Tailwind의 기본 색상(gray, red, blue
@@ -93,7 +93,7 @@ export default function DesignTokensPage() {
           간격 (Spacing)
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             KRDS는 8-point grid system을 기반으로 합니다. 일관된 간격 사용으로
             시각적 리듬과 정렬을 유지할 수 있습니다.
@@ -120,7 +120,7 @@ export default function DesignTokensPage() {
           타이포그래피 (Typography)
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             KRDS는 Pretendard GOV 폰트를 기본으로 하며, 최소 16px 크기와 150%
             line-height를 권장합니다.
@@ -147,7 +147,7 @@ export default function DesignTokensPage() {
           모서리 둥글기 (Border Radius)
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             KRDS는 5단계의 border-radius를 제공하며, 최대 12px를 권장합니다.
           </Body>
@@ -173,7 +173,7 @@ export default function DesignTokensPage() {
           반응형 (Breakpoints)
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>KRDS는 모바일 우선(Mobile First) 접근 방식을 따릅니다.</Body>
 
           <div className="p-4 bg-krds-information-surface rounded-lg border border-krds-information-border">

@@ -20,7 +20,7 @@ export default function InstallationPage() {
           필수 요구사항
         </Heading>
 
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body>HANUI를 사용하기 전에 다음 요구사항을 확인하세요:</Body>
           <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
             <ul className="space-y-2">
@@ -47,7 +47,7 @@ export default function InstallationPage() {
           1. 프로젝트 초기화
         </Heading>
 
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body>
             HANUI CLI를 사용하여 프로젝트를 초기화합니다. 이 과정은 한 번만
             수행하면 됩니다.
@@ -96,13 +96,13 @@ export default function InstallationPage() {
           2. 컴포넌트 추가
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             필요한 컴포넌트를 <Code>npx @hanui/cli add</Code> 명령어로
             추가합니다.
           </Body>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">단일 컴포넌트 추가</Heading>
             <CodeBlock
               code="npx @hanui/cli add button"
@@ -111,7 +111,7 @@ export default function InstallationPage() {
             />
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">여러 컴포넌트 한 번에 추가</Heading>
             <CodeBlock
               code="npx @hanui/cli add button modal select"
@@ -120,7 +120,7 @@ export default function InstallationPage() {
             />
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">인터랙티브 선택</Heading>
             <CodeBlock
               code="npx @hanui/cli add"
@@ -141,13 +141,13 @@ export default function InstallationPage() {
           3. Tailwind CSS 설정
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             HANUI는 Tailwind CSS를 사용합니다. 프로젝트에 Tailwind CSS가
             설치되어 있지 않다면 먼저 설치하세요.
           </Body>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Tailwind CSS 설치</Heading>
             <CodeBlock
               code={`npm install -D tailwindcss postcss autoprefixer
@@ -157,7 +157,7 @@ npx tailwindcss init -p`}
             />
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">tailwind.config.js 설정</Heading>
             <div>
               <Body size="sm" className="text-krds-gray-70 mb-3">
@@ -190,10 +190,10 @@ module.exports = {
           4. 프레임워크별 추가 설정
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Next.js */}
           <div className="border border-krds-gray-20 rounded-lg p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Next.js</Heading>
               <div>
                 <Body size="sm" className="text-krds-gray-70 mb-3">
@@ -213,7 +213,7 @@ module.exports = {
 
           {/* Vite */}
           <div className="border border-krds-gray-20 rounded-lg p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Vite</Heading>
               <div>
                 <Body size="sm" className="text-krds-gray-70 mb-3">
@@ -238,7 +238,7 @@ import { Button } from '@/components/hanui/button';`}
           5. 설치 확인
         </Heading>
 
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body>
             간단한 컴포넌트를 import하여 설치가 정상적으로 완료되었는지
             확인하세요:
@@ -266,9 +266,9 @@ export default App;`}
           문제 해결
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="border-l-4 border-krds-warning-base pl-4 py-2">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">스타일이 적용되지 않는 경우</Heading>
               <div>
                 <Body size="sm" className="text-krds-gray-70 mb-2">
@@ -283,7 +283,7 @@ export default App;`}
           </div>
 
           <div className="border-l-4 border-krds-warning-base pl-4 py-2">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">TypeScript 타입 에러</Heading>
               <div>
                 <Body size="sm" className="text-krds-gray-70">
@@ -301,7 +301,7 @@ export default App;`}
           </div>
 
           <div className="border-l-4 border-krds-warning-base pl-4 py-2">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">import 경로 에러</Heading>
               <div>
                 <Body size="sm" className="text-krds-gray-70">
@@ -334,7 +334,7 @@ export default App;`}
           다음 단계
         </Heading>
 
-        <Stack spacing="heading-content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
             <Body className="mb-4">
               설치가 완료되었습니다! 이제 HANUI를 사용할 준비가 되었습니다.

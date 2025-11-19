@@ -70,7 +70,7 @@ export default function TabsPage() {
 
       {/* Overview */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="tabs-content">
             개요
           </Heading>
@@ -89,9 +89,9 @@ export default function TabsPage() {
           사용 가이드라인
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* When to use */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">언제 사용해야 하나요?</Heading>
 
             <div className="grid grid-cols-1 gap-4">
@@ -142,7 +142,7 @@ export default function TabsPage() {
           </Stack>
 
           {/* Accessibility */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">접근성</Heading>
             <Body>HANUI Tabs는 KRDS 접근성 가이드라인을 준수합니다:</Body>
 
@@ -171,7 +171,7 @@ export default function TabsPage() {
           </Stack>
 
           {/* Keyboard Navigation */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">키보드 네비게이션</Heading>
             <Body>KRDS에서 정의한 탭 키보드 상호작용:</Body>
 
@@ -250,7 +250,7 @@ export default function TabsPage() {
 
       {/* Usage */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="usage">
             사용법
           </Heading>
@@ -279,9 +279,9 @@ export default function MyComponent() {
           예제
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Default */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">기본 (밑줄)</Heading>
             <Body>기본 스타일은 밑줄로 선택된 탭을 표시합니다.</Body>
             <div>
@@ -327,7 +327,7 @@ export default function MyComponent() {
           </Stack>
 
           {/* Pills Variant */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Pills Variant</Heading>
             <Body>Pills 스타일은 둥근 배경으로 선택된 탭을 강조합니다.</Body>
             <div>
@@ -375,7 +375,7 @@ export default function MyComponent() {
           </Stack>
 
           {/* Controlled */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Controlled Mode</Heading>
             <Body>
               <code>value</code>와 <code>onValueChange</code> props로 탭 상태를
@@ -425,7 +425,7 @@ export default function MyComponent() {
           </Stack>
 
           {/* Disabled Tab */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">비활성화된 탭</Heading>
             <Body>
               <code>disabled</code> prop으로 특정 탭을 비활성화할 수 있습니다.
@@ -471,7 +471,7 @@ export default function MyComponent() {
           </Stack>
 
           {/* With Cards */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">카드와 함께 사용</Heading>
             <Body>
               탭 콘텐츠를 Card로 감싸서 시각적 구분을 강화할 수 있습니다.
@@ -545,12 +545,12 @@ export default function MyComponent() {
 
       {/* API Reference */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Tabs</Heading>
             <div className="overflow-x-auto">
               <table className="min-w-full border border-krds-gray-20">
@@ -632,7 +632,7 @@ export default function MyComponent() {
             </div>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">TabsTrigger</Heading>
             <div className="overflow-x-auto">
               <table className="min-w-full border border-krds-gray-20">
@@ -686,7 +686,7 @@ export default function MyComponent() {
             </div>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">TabsContent</Heading>
             <div className="overflow-x-auto">
               <table className="min-w-full border border-krds-gray-20">
@@ -730,7 +730,7 @@ export default function MyComponent() {
 
       {/* Foundation Layer Features */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="foundation-layer">
             KRDS 준수사항
           </Heading>
@@ -741,8 +741,8 @@ export default function MyComponent() {
           </Body>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Stack spacing="heading-tight">
+        <Stack gap="lg" className="mt-2 md:mt-4">
+          <Stack gap="sm">
             <Heading level="h3">1. ARIA Automation</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -766,7 +766,7 @@ export default function MyComponent() {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">2. Keyboard Navigation</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>
@@ -789,7 +789,7 @@ export default function MyComponent() {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">3. Focus Management</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>키보드 포커스 시 명확한 시각적 표시 (ring)</li>
@@ -799,7 +799,7 @@ export default function MyComponent() {
             </ul>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">4. Color Independence</Heading>
             <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
               <li>

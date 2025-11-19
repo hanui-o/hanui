@@ -40,7 +40,7 @@ export default function TestComponentsPage() {
 
   return (
     <Container maxWidth="xl" className="py-10">
-      <Stack spacing="section">
+      <Stack gap="2xl">
         {/* Header */}
         <div>
           <Heading level="h1">컴포넌트 테스트 페이지</Heading>
@@ -50,7 +50,7 @@ export default function TestComponentsPage() {
         </div>
 
         {/* Modal Test */}
-        <Stack spacing="content">
+        <Stack gap="md">
           <Heading level="h2">Modal 테스트</Heading>
           <div>
             <Button onClick={() => setIsModalOpen(true)}>모달 열기</Button>
@@ -73,7 +73,7 @@ export default function TestComponentsPage() {
         </Stack>
 
         {/* Select Test */}
-        <Stack spacing="content">
+        <Stack gap="md">
           <Heading level="h2">Select 테스트</Heading>
           <div className="max-w-xs">
             <Select
@@ -90,7 +90,7 @@ export default function TestComponentsPage() {
         </Stack>
 
         {/* Tabs Test */}
-        <Stack spacing="content">
+        <Stack gap="md">
           <Heading level="h2">Tabs 테스트</Heading>
           <Tabs defaultValue="tab1">
             <TabsList>
@@ -111,7 +111,7 @@ export default function TestComponentsPage() {
         </Stack>
 
         {/* Accordion Test */}
-        <Stack spacing="content">
+        <Stack gap="md">
           <Heading level="h2">Accordion 테스트</Heading>
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
@@ -136,9 +136,9 @@ export default function TestComponentsPage() {
         </Stack>
 
         {/* Input Test */}
-        <Stack spacing="content">
+        <Stack gap="md">
           <Heading level="h2">Input 테스트</Heading>
-          <Stack spacing="form" className="max-w-md">
+          <Stack gap="md" className="max-w-md">
             <Input placeholder="기본 입력" />
             <Input placeholder="Filled 스타일" variant="filled" />
             <Input placeholder="에러 상태" error />
@@ -148,9 +148,9 @@ export default function TestComponentsPage() {
         </Stack>
 
         {/* Button Test */}
-        <Stack spacing="content">
+        <Stack gap="md">
           <Heading level="h2">Button 테스트</Heading>
-          <Stack direction="row" spacing="inline">
+          <Stack direction="row" gap="sm">
             <Button>Primary</Button>
             <Button variant="outline">Outline</Button>
             <Button variant="ghost">Ghost</Button>

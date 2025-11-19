@@ -28,7 +28,7 @@ export default function DisplayPage() {
 
       {/* Overview */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="overview">
             개요
           </Heading>
@@ -46,15 +46,15 @@ export default function DisplayPage() {
 
       {/* Sizes */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="sizes">
             크기 (Size)
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Display size="lg">Large Display</Display>
               <Body size="sm" className="text-krds-gray-70">
                 60px (PC) / 44px (Mobile) · 700 (Bold) · 150% 줄 간격
@@ -70,7 +70,7 @@ export default function DisplayPage() {
           </div>
 
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Display size="md">Medium Display</Display>
               <Body size="sm" className="text-krds-gray-70">
                 44px (PC) / 32px (Mobile) · 700 (Bold) · 150% 줄 간격
@@ -86,7 +86,7 @@ export default function DisplayPage() {
           </div>
 
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Display size="sm">Small Display</Display>
               <Body size="sm" className="text-krds-gray-70">
                 36px (PC) / 28px (Mobile) · 700 (Bold) · 150% 줄 간격
@@ -105,15 +105,15 @@ export default function DisplayPage() {
 
       {/* Usage */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="usage">
             예제
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Polymorphic */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">다양한 HTML 태그</Heading>
             <div>
               <ComponentPreview>
@@ -141,7 +141,7 @@ export default function DisplayPage() {
           </Stack>
 
           {/* Custom Styling */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">커스텀 스타일</Heading>
             <div>
               <ComponentPreview>
@@ -164,13 +164,13 @@ export default function DisplayPage() {
 
       {/* Guidelines */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="guidelines">
             사용 가이드라인
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <GuidelineBox title="Display를 사용하기 적합한 경우">
             <ul className="list-disc list-inside space-y-2">
               <li>랜딩 페이지의 히어로 섹션</li>
@@ -193,7 +193,7 @@ export default function DisplayPage() {
 
       {/* API */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>
@@ -260,7 +260,7 @@ export default function DisplayPage() {
 
       {/* KRDS Compliance */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>

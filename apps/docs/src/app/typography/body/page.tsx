@@ -25,7 +25,7 @@ export default function BodyPage() {
 
       {/* Overview */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="overview">
             개요
           </Heading>
@@ -43,11 +43,11 @@ export default function BodyPage() {
 
       {/* Sizes */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="sizes">
             크기 (Size)
           </Heading>
-          <Stack spacing="content-loose">
+          <Stack gap="lg">
             <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Body size="lg">
@@ -129,11 +129,11 @@ export default function BodyPage() {
 
       {/* Weights */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="weights">
             굵기 (Weight)
           </Heading>
-          <Stack spacing="content-loose">
+          <Stack gap="lg">
             <div className="rounded-lg border border-krds-gray-20 p-6">
               <div className="mb-4">
                 <Body size="md" weight="regular">
@@ -170,15 +170,15 @@ export default function BodyPage() {
 
       {/* Usage */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="usage">
             예제
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Article Content */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">문서 콘텐츠</Heading>
             <ComponentPreview>
               <div className="space-y-4">
@@ -211,7 +211,7 @@ export default function BodyPage() {
           </Stack>
 
           {/* Polymorphic */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">다양한 HTML 태그</Heading>
             <ComponentPreview>
               <div className="space-y-2">
@@ -237,7 +237,7 @@ export default function BodyPage() {
           </Stack>
 
           {/* Custom Styling */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">커스텀 스타일</Heading>
             <ComponentPreview>
               <Body size="md" className="text-krds-primary-base">
@@ -258,13 +258,13 @@ export default function BodyPage() {
 
       {/* Guidelines */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="guidelines">
             사용 가이드라인
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <GuidelineBox title="Body를 사용하기 적합한 경우">
             <ul className="list-disc list-inside space-y-2">
               <li>일반 문단과 본문 콘텐츠</li>
@@ -288,7 +288,7 @@ export default function BodyPage() {
 
       {/* API */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>
@@ -372,7 +372,7 @@ export default function BodyPage() {
 
       {/* KRDS Compliance */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>

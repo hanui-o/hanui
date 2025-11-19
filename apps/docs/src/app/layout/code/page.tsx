@@ -13,6 +13,7 @@ import {
   TableHead,
   TableCell,
   Card,
+  Stack,
 } from '@/components/hanui';
 
 export default function CodePage() {
@@ -46,7 +47,7 @@ export default function CodePage() {
           description="Code는 인라인 코드와 블록 코드를 표시하기 위한 컴포넌트입니다."
         />
 
-        <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
+        <Card variant="info">
           <List variant="check" className="text-krds-gray-90">
             <ListItem>
               <strong>Inline/Block 지원:</strong> 인라인 코드와 코드 블록 모두
@@ -65,7 +66,7 @@ export default function CodePage() {
               폰트를 사용합니다.
             </ListItem>
           </List>
-        </div>
+        </Card>
       </Section>
 
       {/* Usage */}
@@ -101,7 +102,7 @@ export default function CodePage() {
             </Body>
           </SectionHeading>
 
-          <div className="space-y-6">
+          <Stack gap="md">
             <div>
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<Code size="sm">npm install</Code>`}
@@ -134,7 +135,7 @@ export default function CodePage() {
                 </Body>
               </Card>
             </div>
-          </div>
+          </Stack>
         </Subsection>
 
         <Subsection level="h3">

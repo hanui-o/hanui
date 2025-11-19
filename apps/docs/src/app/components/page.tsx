@@ -286,7 +286,7 @@ function ComponentSection({
 
   return (
     <PageSection>
-      <Stack spacing="heading-content">
+      <Stack gap="md">
         <div>
           <Heading level="h2" id={id} className="text-2xl font-semibold">
             {title}

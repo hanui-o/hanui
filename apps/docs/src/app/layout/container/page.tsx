@@ -33,7 +33,7 @@ export default function ContainerPage() {
 
       {/* Overview */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="overview">
             개요
           </Heading>
@@ -49,15 +49,15 @@ export default function ContainerPage() {
 
       {/* Usage Guidelines */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="guidelines">
             사용 가이드라인
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* When to use */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">언제 사용해야 하나요?</Heading>
             <div className="grid grid-cols-1 gap-4">
               <GuidelineSection
@@ -89,7 +89,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* Max Width Guidelines */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">최대 너비 선택</Heading>
             <GuidelineSection type="do" title="콘텐츠에 맞는 너비 사용">
               <ul className="list-disc list-inside space-y-2">
@@ -117,7 +117,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* Semantic HTML */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">시맨틱 HTML (선택사항)</Heading>
             <div className="mb-4 p-4 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
               <p className="text-krds-gray-90">
@@ -194,7 +194,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* KRDS Layout System */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">KRDS 레이아웃 시스템</Heading>
             <div className="bg-krds-primary-surface rounded-lg p-6 border border-krds-primary-border">
               <h4 className="font-semibold mb-3 text-krds-primary-text">
@@ -224,7 +224,7 @@ export default function ContainerPage() {
 
       {/* Usage */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="usage">
             사용법
           </Heading>
@@ -247,9 +247,9 @@ export default function ContainerPage() {
           예제
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Default */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="default">
               Default (xl)
             </Heading>
@@ -284,7 +284,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* Small Width */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="small">
               Small Width
             </Heading>
@@ -323,7 +323,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* Extra Large Width */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="extra-large">
               Extra Large Width
             </Heading>
@@ -360,7 +360,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* Full Width */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="full-width">
               Full Width
             </Heading>
@@ -397,7 +397,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* No Gutters */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="no-gutters">
               No Gutters (disableGutters)
             </Heading>
@@ -434,7 +434,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* Semantic HTML */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="semantic">
               Semantic HTML (as prop)
             </Heading>
@@ -498,7 +498,7 @@ export default function ContainerPage() {
           </Stack>
 
           {/* Nested Sections */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="nested-sections">
               Multiple Sections
             </Heading>
@@ -570,7 +570,7 @@ export default function ContainerPage() {
 
       {/* API Reference */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API Reference
           </Heading>

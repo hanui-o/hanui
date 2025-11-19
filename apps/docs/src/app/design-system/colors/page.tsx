@@ -16,7 +16,7 @@ export default function ColorsPage() {
 
       <PageSection>
         {/* Quick Summary */}
-        <Stack spacing="heading-tight">
+        <Stack gap="sm">
           <Heading level="h3">빠른 요약</Heading>
           <Body>
             <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">krds-</code>{' '}
@@ -56,7 +56,7 @@ export default function ColorsPage() {
           개요
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS에서
             사용할 수 있도록 통합했습니다. Tailwind의 기본 색상(gray, red, blue
@@ -82,7 +82,7 @@ export default function ColorsPage() {
           KRDS 색상 시스템 통합
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             Tailwind의 기본 색상(gray, red, blue 등)과 충돌을 피하기 위해{' '}
             <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">krds-</code>{' '}
@@ -90,7 +90,7 @@ export default function ColorsPage() {
           </Body>
 
           {/* Why krds- prefix */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">왜 krds- 접두사를 사용하나요?</Heading>
             <Body>
               Tailwind CSS는 기본적으로 gray, red, blue 등의 색상을 제공합니다.
@@ -139,7 +139,7 @@ export default function ColorsPage() {
           </Stack>
 
           {/* Implementation */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">구현 방법</Heading>
             <Body>
               <code className="px-1.5 py-0.5 mx-1 bg-krds-gray-10 rounded">
@@ -207,7 +207,7 @@ export default function ColorsPage() {
           </Stack>
 
           {/* Usage */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">사용 방법</Heading>
             <Body>
               <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
@@ -312,14 +312,14 @@ export default function ColorsPage() {
           색상 (Colors)
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             KRDS 색상 시스템은 접근성을 최우선으로 하며, WCAG 2.1 AA 기준을
             준수합니다.
           </Body>
 
           {/* Base Colors */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Base Colors (기본 색상)</Heading>
             <Body>
               흰색과 검은색은 모드에 따라 자동으로 반전됩니다. 순수
@@ -399,7 +399,7 @@ export default function ColorsPage() {
           </Stack>
 
           {/* Primary Colors */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Primary Colors</Heading>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div className="p-4 bg-krds-primary-50 text-krds-primary-10 rounded-lg">
@@ -423,7 +423,7 @@ export default function ColorsPage() {
           </Stack>
 
           {/* Gray Scale */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Gray Scale</Heading>
             <Body>
               Gray는 Surface(배경/표면)로 <strong>0, 5, 10</strong> 세 가지를
@@ -497,7 +497,7 @@ export default function ColorsPage() {
           </Stack>
 
           {/* System Colors */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">System Colors</Heading>
             <div className="grid grid-cols-1 gap-4 mb-4">
               {/* Danger */}
@@ -562,7 +562,7 @@ export default function ColorsPage() {
           의미 기반 색상 (Semantic Color Tokens)
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             기본 모드와 다크 모드에서 <strong>text, base, surface</strong>의
             기준이 다릅니다. 예를 들어 Primary 색상의 경우:
@@ -674,7 +674,7 @@ export default function ColorsPage() {
           </div>
 
           {/* Numeric vs Semantic */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Semantic 변수 vs 숫자 스케일</Heading>
             <Body>
               둘 다 자동 전환되지만, 사용 목적이 다릅니다. 언제 무엇을 사용해야
@@ -744,7 +744,7 @@ export default function ColorsPage() {
           </Stack>
 
           {/* Available Semantic Tokens */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">사용 가능한 Semantic 변수</Heading>
             <Body>다음 컬러들이 Semantic 변수를 지원합니다:</Body>
 
@@ -851,7 +851,7 @@ export default function ColorsPage() {
           다크 모드
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             HANUI는 CSS 변수를 활용하여 다크 모드를 자동으로 지원합니다.{' '}
             <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">html</code>
@@ -861,7 +861,7 @@ export default function ColorsPage() {
           </Body>
 
           {/* How it works */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">작동 원리</Heading>
             <Body>
               CSS 변수는 상위 요소의 값을 상속받습니다.{' '}
@@ -945,7 +945,7 @@ export default function ColorsPage() {
           </Stack>
 
           {/* Automatic switching */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">자동 전환 예시</Heading>
             <Body>
               모든 KRDS 색상(숫자 스케일, semantic 변수,
@@ -1024,7 +1024,7 @@ export default function ColorsPage() {
           </Stack>
 
           {/* How to enable dark mode */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">다크 모드 활성화 방법</Heading>
             <Body>
               <code className="px-1.5 py-0.5 bg-krds-gray-10 rounded">
@@ -1070,7 +1070,7 @@ function App() {
           </Stack>
 
           {/* Important Notes */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">주의사항</Heading>
             <div className="space-y-3">
               <div className="p-4 bg-krds-warning-5 rounded-lg border border-krds-warning-20">
@@ -1120,7 +1120,7 @@ function App() {
           모범 사례
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="space-y-6">
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <h3 className="text-heading-sm font-semibold mb-2">

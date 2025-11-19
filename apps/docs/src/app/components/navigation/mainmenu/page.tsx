@@ -20,9 +20,9 @@ export default function MainMenuPage() {
           예제
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Basic Horizontal Menu */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">기본 수평 메뉴</Heading>
             <Body>
               간단한 링크들로 구성된 수평 메뉴입니다. 드롭다운 없이 직접 링크만
@@ -59,7 +59,7 @@ export default function MainMenuPage() {
           </Stack>
 
           {/* Dropdown with Simple Children */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">드롭다운 메뉴 (간단한 서브메뉴)</Heading>
             <Body>
               <code>children</code> 속성을 사용하여 간단한 드롭다운 메뉴를 만들
@@ -111,7 +111,7 @@ export default function MainMenuPage() {
           </Stack>
 
           {/* Dropdown with Sections and Descriptions */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">
               섹션별 드롭다운 (설명 및 유틸리티 링크 포함)
             </Heading>
@@ -197,7 +197,7 @@ export default function MainMenuPage() {
           </Stack>
 
           {/* Multiple Sections */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">다중 섹션 드롭다운</Heading>
             <Body>
               하나의 드롭다운에 여러 섹션을 포함할 수 있습니다. 섹션 간 구분선이
@@ -246,7 +246,7 @@ export default function MainMenuPage() {
           디자인 가이드라인
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <GuidelineSection title="메뉴 구조" type="do">
             <ul className="list-disc pl-5 space-y-2">
               <li>최대 3단계까지 메뉴 깊이 제한</li>
@@ -294,12 +294,12 @@ export default function MainMenuPage() {
           접근성
         </Heading>
 
-        <Stack spacing="content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body>
             MainMenu는 KRDS 접근성 표준을 준수하며 다음 기준을 충족합니다:
           </Body>
 
-          <Stack spacing="content-tight">
+          <Stack gap="sm">
             <Heading level="h3" className="text-lg font-medium">
               WCAG 2.1 / KWCAG 2.2 준수
             </Heading>
@@ -324,7 +324,7 @@ export default function MainMenuPage() {
             </ul>
           </Stack>
 
-          <Stack spacing="content-tight">
+          <Stack gap="sm">
             <Heading level="h3" className="text-lg font-medium">
               키보드 네비게이션
             </Heading>
@@ -475,7 +475,7 @@ export default function MainMenuPage() {
           </table>
         </div>
 
-        <Stack spacing="content-tight" className="mt-4">
+        <Stack gap="sm" className="mt-4">
           <Heading level="h3" className="text-lg font-medium">
             MainMenuItem
           </Heading>
@@ -553,7 +553,7 @@ export default function MainMenuPage() {
           </div>
         </Stack>
 
-        <Stack spacing="content-tight" className="mt-4">
+        <Stack gap="sm" className="mt-4">
           <Heading level="h3" className="text-lg font-medium">
             MainMenuSection
           </Heading>
@@ -567,7 +567,7 @@ export default function MainMenuPage() {
           />
         </Stack>
 
-        <Stack spacing="content-tight" className="mt-4">
+        <Stack gap="sm" className="mt-4">
           <Heading level="h3" className="text-lg font-medium">
             MainMenuLink
           </Heading>
@@ -593,7 +593,7 @@ export default function MainMenuPage() {
           KRDS 표준
         </Heading>
 
-        <Stack spacing="content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <div className="border-l-4 border-blue-500 bg-blue-50 dark:bg-blue-900/20 p-4 rounded">
             <Heading level="h3" className="text-lg font-medium mb-2">
               필수 요구사항
@@ -648,7 +648,7 @@ export default function MainMenuPage() {
           설치
         </Heading>
 
-        <Stack spacing="content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body>
             HANUI CLI를 사용하여 MainMenu 컴포넌트를 프로젝트에 추가할 수
             있습니다:

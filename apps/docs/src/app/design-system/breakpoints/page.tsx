@@ -19,7 +19,7 @@ export default function BreakpointsPage() {
           개요
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             브레이크포인트는 화면 크기에 따라 레이아웃이 변경되는 지점으로,
             인터페이스가 다양한 화면 크기에 맞춰 자연스럽게 적응할 수 있게
@@ -50,7 +50,7 @@ export default function BreakpointsPage() {
           브레이크포인트 스케일
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             KRDS는 모바일 우선(Mobile First) 접근 방식을 따릅니다. 각
             브레이크포인트는 그리드 시스템과 함께 사용되어 일관된 레이아웃을
@@ -322,7 +322,7 @@ export default function BreakpointsPage() {
           반응형 그리드 예시
         </Heading>
 
-        <Stack spacing="heading-tight" className="mt-2 md:mt-4">
+        <Stack gap="sm" className="mt-2 md:mt-4">
           <ComponentPreview>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="p-4 bg-krds-primary-surface rounded-lg text-center">

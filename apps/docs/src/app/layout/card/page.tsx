@@ -599,7 +599,7 @@ export default function Example() {
           description="Card 컴포넌트는 다음과 같은 기능을 자동으로 적용합니다:"
         />
 
-        <List spacing="loose">
+        <List gap="loose">
           <ListItem>
             <strong>시맨틱 HTML 자동 적용</strong>
             <br />

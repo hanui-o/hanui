@@ -26,7 +26,7 @@ export default function BoxPage() {
 
       {/* Overview */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="overview">
             개요
           </Heading>
@@ -44,15 +44,15 @@ export default function BoxPage() {
 
       {/* Display Types */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="display">
             디스플레이 (Display)
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Flex</Heading>
               <div>
                 <ComponentPreview>
@@ -84,7 +84,7 @@ export default function BoxPage() {
           </div>
 
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Grid</Heading>
               <div>
                 <ComponentPreview>
@@ -116,7 +116,7 @@ export default function BoxPage() {
           </div>
 
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Block</Heading>
               <div>
                 <ComponentPreview>
@@ -147,15 +147,15 @@ export default function BoxPage() {
 
       {/* Flex Direction */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="direction">
             방향 (Direction)
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Row (가로)</Heading>
               <div>
                 <ComponentPreview>
@@ -187,7 +187,7 @@ export default function BoxPage() {
           </div>
 
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Column (세로)</Heading>
               <div>
                 <ComponentPreview>
@@ -222,15 +222,15 @@ export default function BoxPage() {
 
       {/* Alignment */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="alignment">
             정렬 (Alignment)
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Align Items</Heading>
               <div className="space-y-4">
                 <div>
@@ -294,7 +294,7 @@ export default function BoxPage() {
           </div>
 
           <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack spacing="heading-tight">
+            <Stack gap="sm">
               <Heading level="h3">Justify Content</Heading>
               <div className="space-y-4">
                 <div>
@@ -350,19 +350,19 @@ export default function BoxPage() {
 
       {/* Gap */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="gap">
             간격 (Gap)
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {['xs', 'sm', 'md', 'lg', 'xl'].map((size) => (
             <div
               key={size}
               className="rounded-lg border border-krds-gray-20 p-6"
             >
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <Heading level="h3">gap=&quot;{size}&quot;</Heading>
                 <div>
                   <ComponentPreview>
@@ -392,15 +392,15 @@ export default function BoxPage() {
 
       {/* Usage */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="usage">
             예제
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Card Layout */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">카드 레이아웃</Heading>
             <div>
               <ComponentPreview>
@@ -448,7 +448,7 @@ export default function BoxPage() {
           </Stack>
 
           {/* Centered Content */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">중앙 정렬 콘텐츠</Heading>
             <div>
               <ComponentPreview>
@@ -484,7 +484,7 @@ export default function BoxPage() {
           </Stack>
 
           {/* Polymorphic */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">다양한 HTML 태그</Heading>
             <div>
               <ComponentPreview>
@@ -515,7 +515,7 @@ export default function BoxPage() {
 
       {/* API */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>
@@ -640,13 +640,13 @@ export default function BoxPage() {
 
       {/* Guidelines */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="guidelines">
             사용 가이드라인
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="rounded-lg border border-krds-success-border bg-krds-success-surface p-6">
             <Heading level="h3" className="text-krds-success-text mb-3">
               ✓ Box를 사용하기 적합한 경우
@@ -674,7 +674,7 @@ export default function BoxPage() {
 
       {/* KRDS Compliance */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="krds">
             KRDS 준수사항
           </Heading>

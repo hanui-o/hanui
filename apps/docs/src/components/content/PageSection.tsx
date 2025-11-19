@@ -11,14 +11,14 @@ interface PageSectionProps {
  * - section 간 간격: 40px/80px (mb-10 md:mb-20)
  *
  * 내부 간격은 Stack 컴포넌트 사용 권장:
- * - 제목→본문: Stack spacing="heading-content" (12px/20px)
- * - 제목→가까운 내용: Stack spacing="heading-tight" (8px/16px)
- * - 콘텐츠 블록: Stack spacing="content-loose" (24px/40px)
+ * - 제목→본문: Stack gap="md" (12px/20px)
+ * - 제목→가까운 내용: Stack gap="sm" (8px/16px)
+ * - 콘텐츠 블록: Stack gap="lg" (24px/40px)
  *
  * @example
  * ```tsx
  * <PageSection>
- *   <Stack spacing="heading-content">
+ *   <Stack gap="md">
  *     <Heading level="h2">개요</Heading>
  *     <Body>...</Body>
  *   </Stack>

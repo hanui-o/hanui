@@ -20,11 +20,7 @@ export default function Home() {
       <Container>
         {/* Hero Section */}
         <Section padding="page-section" as="section">
-          <Stack
-            spacing="heading-loose"
-            align="center"
-            className="text-center pt-20 pb-10"
-          >
+          <Stack gap="lg" align="center" className="text-center pt-20 pb-10">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 rounded-full border border-krds-primary-border bg-krds-primary-surface px-4 py-1.5 text-xs font-medium">
               <span className="flex items-center gap-1.5">
@@ -55,7 +51,7 @@ export default function Home() {
             </Body>
 
             {/* CTA Buttons */}
-            <HStack spacing="md" justify="center" className="flex-wrap">
+            <HStack gap="md" justify="center" className="flex-wrap">
               <Link href="/docs/quick-start">
                 <Button variant="black" size="md">
                   Get Started
@@ -77,8 +73,8 @@ export default function Home() {
 
         {/* Code Example Section */}
         <Section padding="content-area" as="section">
-          <Stack spacing="content-loose" align="center">
-            <Stack spacing="heading-tight" align="center">
+          <Stack gap="lg" align="center">
+            <Stack gap="sm" align="center">
               <Heading level="h2">30초 만에 시작하기</Heading>
               <Body size="md">
                 CLI로 프로젝트를 생성하고 바로 개발을 시작하세요

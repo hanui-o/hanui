@@ -48,7 +48,7 @@ export default function TablePage() {
 
       {/* Quick Start */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="table-content">
             개요
           </Heading>
@@ -128,15 +128,15 @@ export default function TablePage() {
 
       {/* Examples */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="examples">
             예제
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* With Caption */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="with-caption">
               With Caption
             </Heading>
@@ -202,7 +202,7 @@ export default function TablePage() {
           </Stack>
 
           {/* With Footer */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="with-footer">
               With Footer
             </Heading>
@@ -272,7 +272,7 @@ export default function TablePage() {
           </Stack>
 
           {/* Striped Rows */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="striped-rows">
               Striped Rows
             </Heading>
@@ -349,7 +349,7 @@ export default function TablePage() {
           </Stack>
 
           {/* Sortable Headers */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="sortable-headers">
               Sortable Headers
             </Heading>
@@ -455,7 +455,7 @@ const handleSort = (column: string) => {
           </Stack>
 
           {/* Complex Example */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3" id="complex-example">
               Complex Example
             </Heading>
@@ -562,13 +562,13 @@ const handleSort = (column: string) => {
 
       {/* Guidelines */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="guidelines">
             가이드라인
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <GuidelineSection title="언제 사용하나요?" type="do">
             <ul className="list-disc list-inside space-y-2">
               <li>정형화된 데이터를 행과 열로 표시할 때</li>
@@ -592,7 +592,7 @@ const handleSort = (column: string) => {
 
       {/* Accessibility */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="accessibility">
             접근성
           </Heading>
@@ -601,7 +601,7 @@ const handleSort = (column: string) => {
           </Body>
         </Stack>
 
-        <Stack spacing="content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body weight="bold">시맨틱 HTML</Body>
           <ul className="list-disc list-inside space-y-2 ml-4">
             <li>
@@ -644,14 +644,14 @@ const handleSort = (column: string) => {
 
       {/* Design Principles */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="design-principles">
             디자인 원칙
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
-          <Stack spacing="heading-tight">
+        <Stack gap="lg" className="mt-2 md:mt-4">
+          <Stack gap="sm">
             <Heading level="h3">1. 명확한 구조 (Clear Structure)</Heading>
             <Body>
               테이블은 명확한 헤더, 본문, 푸터 구조를 가집니다. 각 섹션의 역할이
@@ -659,7 +659,7 @@ const handleSort = (column: string) => {
             </Body>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">2. 가독성 우선 (Readability First)</Heading>
             <Body>
               적절한 여백, 테두리, 교차 배경색을 사용하여 많은 데이터도 쉽게
@@ -667,7 +667,7 @@ const handleSort = (column: string) => {
             </Body>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">3. 상호작용성 (Interactivity)</Heading>
             <Body>
               정렬, 선택, 호버 효과를 통해 사용자가 데이터를 능동적으로 탐색할
@@ -675,7 +675,7 @@ const handleSort = (column: string) => {
             </Body>
           </Stack>
 
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">4. 유연한 구성 (Flexible Composition)</Heading>
             <Body>
               Compound pattern을 사용하여 다양한 테이블 구조를 자유롭게 구성할
@@ -688,15 +688,15 @@ const handleSort = (column: string) => {
 
       {/* API Reference */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Table */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Table</Heading>
             <Body>테이블의 루트 컴포넌트입니다.</Body>
 
@@ -743,7 +743,7 @@ const handleSort = (column: string) => {
           </Stack>
 
           {/* TableHeader */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">TableHeader</Heading>
             <Body>테이블 헤더 섹션 컴포넌트입니다.</Body>
 
@@ -780,7 +780,7 @@ const handleSort = (column: string) => {
           </Stack>
 
           {/* TableBody */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">TableBody</Heading>
             <Body>테이블 본문 섹션 컴포넌트입니다.</Body>
 
@@ -827,7 +827,7 @@ const handleSort = (column: string) => {
           </Stack>
 
           {/* TableHead */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">TableHead</Heading>
             <Body>테이블 헤더 셀 컴포넌트입니다.</Body>
 
@@ -892,7 +892,7 @@ const handleSort = (column: string) => {
           </Stack>
 
           {/* Other Components */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Other Components</Heading>
             <Body>
               TableFooter, TableRow, TableCell, TableCaption은 기본 HTML 속성과
@@ -904,7 +904,7 @@ const handleSort = (column: string) => {
 
       {/* Foundation Layer */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="foundation-layer">
             KRDS 준수사항
           </Heading>
@@ -914,7 +914,7 @@ const handleSort = (column: string) => {
           </Body>
         </Stack>
 
-        <Stack spacing="content" className="mt-2 md:mt-4">
+        <Stack gap="md" className="mt-2 md:mt-4">
           <Body weight="bold">1. 시맨틱 HTML 구조</Body>
           <Body>
             적절한 table 요소(table, thead, tbody, tfoot, tr, th, td)를 사용하여

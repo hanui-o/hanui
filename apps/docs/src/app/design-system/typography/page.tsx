@@ -19,7 +19,7 @@ export default function TypographyPage() {
           개요
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             KRDS는 Pretendard GOV 폰트를 기본으로 하며, 최소 16px 크기와 150%
             line-height를 권장합니다.
@@ -33,7 +33,7 @@ export default function TypographyPage() {
           Heading Scale
         </Heading>
 
-        <Stack spacing="heading-tight" className="mt-2 md:mt-4">
+        <Stack gap="sm" className="mt-2 md:mt-4">
           <div className="space-y-4">
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <code className="text-krds-gray-70 mb-2 block">
@@ -75,7 +75,7 @@ export default function TypographyPage() {
           Body Text
         </Heading>
 
-        <Stack spacing="heading-tight" className="mt-2 md:mt-4">
+        <Stack gap="sm" className="mt-2 md:mt-4">
           <div className="space-y-4">
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <code className="text-krds-gray-70 mb-2 block">text-body-lg</code>
@@ -113,7 +113,7 @@ export default function TypographyPage() {
           실제 사용 예시
         </Heading>
 
-        <Stack spacing="heading-tight" className="mt-2 md:mt-4">
+        <Stack gap="sm" className="mt-2 md:mt-4">
           <ComponentPreview>
             <article className="space-y-4">
               <h2 className="text-3xl font-bold">섹션 제목</h2>
@@ -150,7 +150,7 @@ export default function TypographyPage() {
           모범 사례
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="space-y-6">
             <div className="p-4 bg-krds-white border border-krds-gray-20 rounded-lg">
               <h3 className="text-heading-sm font-semibold mb-2">

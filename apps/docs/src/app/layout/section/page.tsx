@@ -30,7 +30,7 @@ export default function SectionPage() {
 
       {/* Overview */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="overview">
             개요
           </Heading>
@@ -48,7 +48,7 @@ export default function SectionPage() {
 
       {/* Usage */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="usage">
             사용법
           </Heading>
@@ -67,15 +67,15 @@ export default function SectionPage() {
 
       {/* Examples */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="examples">
             예제
           </Heading>
         </Stack>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           {/* Default */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">기본</Heading>
             <div>
               <ComponentPreview>
@@ -104,7 +104,7 @@ export default function SectionPage() {
           </Stack>
 
           {/* Page Section */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Page Section</Heading>
             <div>
               <ComponentPreview>
@@ -129,7 +129,7 @@ export default function SectionPage() {
           </Stack>
 
           {/* Content Area */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Content Area</Heading>
             <div>
               <ComponentPreview>
@@ -154,7 +154,7 @@ export default function SectionPage() {
           </Stack>
 
           {/* Card Medium */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Card Section</Heading>
             <div>
               <ComponentPreview>
@@ -177,7 +177,7 @@ export default function SectionPage() {
           </Stack>
 
           {/* Background Variants */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Background Variants</Heading>
             <div>
               <ComponentPreview>
@@ -216,7 +216,7 @@ export default function SectionPage() {
           </Stack>
 
           {/* Multiple Sections */}
-          <Stack spacing="heading-tight">
+          <Stack gap="sm">
             <Heading level="h3">Multiple Sections</Heading>
             <div>
               <ComponentPreview>
@@ -262,7 +262,7 @@ export default function SectionPage() {
 
       {/* API Reference */}
       <PageSection>
-        <Stack spacing="heading-content">
+        <Stack gap="md">
           <Heading level="h2" id="api-reference">
             API 레퍼런스
           </Heading>

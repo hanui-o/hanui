@@ -19,7 +19,7 @@ export default function BorderRadiusPage() {
           개요
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             형태는 브랜드의 시각적 아이덴티티를 표현하는 중요한 요소로, UI
             요소에 적용되는 둥글기 값인 radius를 통해 버튼, 카드, 컨테이너,
@@ -50,7 +50,7 @@ export default function BorderRadiusPage() {
           표준형 스타일
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             표준형 스타일은 Xsmall-Small-Medium-Large-Xlarge 5단계로 구성되며,
             각 레벨은 컴포넌트의 사이즈로 구분됩니다. 각 레벨은 함께 사용할
@@ -256,7 +256,7 @@ export default function BorderRadiusPage() {
           표준형 스타일 radius 계산법
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             표준형 스타일의 radius는 컨테이너 높이에 비율을 적용하여 계산합니다.
           </Body>
@@ -419,7 +419,7 @@ export default function BorderRadiusPage() {
           확장형 스타일
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>
             각 기관의 아이덴티티에 맞게 커스터마이즈된 radius 값을 설정할 수
             있습니다. 1px 이상의 radius 값을 사용할 때는 표준형 스타일의 계층
@@ -471,7 +471,7 @@ export default function BorderRadiusPage() {
           표현 방법
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <Body>radius 값은 px와 % 단위로 설정할 수 있습니다.</Body>
 
           <div className="grid md:grid-cols-2 gap-4">
@@ -538,7 +538,7 @@ export default function BorderRadiusPage() {
           사용 가이드
         </Heading>
 
-        <Stack spacing="content-loose" className="mt-2 md:mt-4">
+        <Stack gap="lg" className="mt-2 md:mt-4">
           <div className="space-y-6">
             <div>
               <Heading level="h3" className="mb-3">

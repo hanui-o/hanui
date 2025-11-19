@@ -132,9 +132,9 @@ export default function ButtonPage() {
               title="버튼 위계"
               description="버튼의 시각적 강조도는 액션의 중요도와 일치해야 합니다."
             />
-            <Stack spacing="compact">
+            <Stack gap="xs">
               <div className="rounded-lg border border-krds-gray-20 bg-krds-white p-4">
-                <Stack spacing="compact">
+                <Stack gap="xs">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold">
                       Primary - 가장 중요한 액션
@@ -151,7 +151,7 @@ export default function ButtonPage() {
               </div>
 
               <div className="rounded-lg border border-krds-gray-20 bg-krds-white p-4">
-                <Stack spacing="compact">
+                <Stack gap="xs">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold">Secondary - 보조 액션</h4>
                     <Button variant="secondary" size="sm">
@@ -165,7 +165,7 @@ export default function ButtonPage() {
               </div>
 
               <div className="rounded-lg border border-krds-gray-20 bg-krds-white p-4">
-                <Stack spacing="compact">
+                <Stack gap="xs">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold">Outline - 낮은 강조</h4>
                     <Button variant="outline" size="sm">
@@ -179,7 +179,7 @@ export default function ButtonPage() {
               </div>
 
               <div className="rounded-lg border border-krds-gray-20 bg-krds-white p-4">
-                <Stack spacing="compact">
+                <Stack gap="xs">
                   <div className="flex items-center justify-between">
                     <h4 className="font-semibold">Ghost - 최소 강조</h4>
                     <Button variant="ghost" size="sm">
@@ -193,9 +193,9 @@ export default function ButtonPage() {
 
             {/* Button Placement */}
             <SectionHeading level="h3" title="버튼 배치" />
-            <Stack spacing="compact">
+            <Stack gap="xs">
               <GuidelineSection type="do" title="올바른 배치">
-                <Stack spacing="heading-tight">
+                <Stack gap="sm">
                   <p>가장 중요한 버튼을 오른쪽에 배치 (수평 배치 시)</p>
                   <ComponentPreview>
                     <div className="flex items-center gap-3">
@@ -210,7 +210,7 @@ export default function ButtonPage() {
                 type="do"
                 title="Primary 버튼이 여러 개 필요할 때"
               >
-                <Stack spacing="heading-tight">
+                <Stack gap="sm">
                   <p>
                     한 페이지에 Primary 버튼이 여러 개 필요한 경우, 하나는
                     Primary로, 나머지는 Secondary나 Outline로 사용하세요
@@ -228,7 +228,7 @@ export default function ButtonPage() {
             {/* Accessibility */}
             <SectionHeading level="h3" title="접근성" />
             <GuidelineSection type="do" title="중복 클릭 방지">
-              <Stack spacing="heading-tight">
+              <Stack gap="sm">
                 <p>
                   네트워크 지연 시 사용자가 버튼을 여러 번 클릭할 수 있습니다.
                   loading 상태를 활용하세요.
