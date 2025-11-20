@@ -8,10 +8,13 @@ export {
 // Typography
 export { Body } from './body';
 export { Heading } from './heading';
+export { Display } from './display';
+export { NavText } from './navtext';
 
 // Form Components
 export { Button } from './button';
 export { Input } from './input';
+export { Label } from './label';
 export { Select } from './select';
 
 // Layout Components
@@ -40,6 +43,7 @@ export type {
 
 // Content Components
 export { List, ListItem } from './list';
+export { StructuredList } from './structured-list';
 export { Code } from './code';
 export { DoCard } from './do-card';
 export { DontCard } from './dont-card';
