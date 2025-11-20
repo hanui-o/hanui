@@ -21,6 +21,7 @@ import {
   TabsTrigger,
   TabsContent,
   Link,
+  PageNavigation,
 } from '@/components/hanui';
 import { DoCard, DontCard } from '@/components/hanui';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
@@ -138,7 +139,8 @@ export default function BreadcrumbPage() {
               </ComponentPreview>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Breadcrumb } from '@/components/hanui';
+                {`import { Breadcrumb   PageNavigation,
+} from '@/components/hanui';
 
 <Breadcrumb>
   <BreadcrumbItem href="/">홈</BreadcrumbItem>
@@ -503,6 +505,11 @@ export default function BreadcrumbPage() {
           </Section>
         </TabsContent>
       </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'Border Radius', href: '/components/border-radius' }}
+        next={{ title: 'Breakpoints', href: '/components/breakpoints' }}
+      />
     </>
   );
 }

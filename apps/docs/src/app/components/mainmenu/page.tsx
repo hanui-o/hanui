@@ -701,14 +701,8 @@ export default function Layout() {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'SideNavigation',
-          href: '/components/sidenavigation',
-        }}
-        next={{
-          title: 'Identifier',
-          href: '/components/identifier',
-        }}
+        prev={{ title: 'List', href: '/components/list' }}
+        next={{ title: 'Masthead', href: '/components/masthead' }}
       />
     </Section>
   );

@@ -550,8 +550,8 @@ export default function SectionHeadingSystemPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Container', href: '/components/container' }}
-        next={{ title: 'Table', href: '/components/table' }}
+        prev={{ title: 'Section', href: '/components/section' }}
+        next={{ title: 'Select', href: '/components/select' }}
       />
     </>
   );

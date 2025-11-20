@@ -333,14 +333,8 @@ export default function Layout() {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'Identifier',
-          href: '/components/identifier',
-        }}
-        next={{
-          title: 'Masthead',
-          href: '/components/masthead',
-        }}
+        prev={{ title: 'File Upload', href: '/components/file-upload' }}
+        next={{ title: 'Heading', href: '/components/heading' }}
       />
     </Section>
   );

@@ -571,7 +571,7 @@ export default function StackPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'SimpleGrid', href: '/components/simple-grid' }}
+        prev={{ title: 'Spacing', href: '/components/spacing' }}
         next={{ title: 'Structured List', href: '/components/structured-list' }}
       />
     </>

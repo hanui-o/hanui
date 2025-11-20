@@ -393,8 +393,8 @@ export default function DisplayPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Colors', href: '/components/colors' }}
-        next={{ title: 'Heading', href: '/components/heading' }}
+        prev={{ title: 'Container', href: '/components/container' }}
+        next={{ title: 'File Upload', href: '/components/file-upload' }}
       />
     </>
   );

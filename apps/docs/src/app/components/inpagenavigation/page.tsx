@@ -17,6 +17,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@/components/hanui/tabs';
+import { PageNavigation } from '@/components/hanui';
 
 export default function InPageNavigationPage() {
   const [activeExample, setActiveExample] = useState('basic');
@@ -405,6 +406,11 @@ const links = [
           </TabsContent>
         </Tabs>
       </PageSection>
+
+      <PageNavigation
+        prev={{ title: 'Identifier', href: '/components/identifier' }}
+        next={{ title: 'Input', href: '/components/input' }}
+      />
     </>
   );
 }

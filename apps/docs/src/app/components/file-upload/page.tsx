@@ -827,14 +827,8 @@ export default function MyComponent() {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'Input',
-          href: '/components/input',
-        }}
-        next={{
-          title: 'Select',
-          href: '/components/select',
-        }}
+        prev={{ title: 'Display', href: '/components/display' }}
+        next={{ title: 'Header', href: '/components/header' }}
       />
     </Section>
   );

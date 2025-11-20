@@ -626,7 +626,7 @@ export default function AccordionPage() {
         </TabsContent>
       </Tabs>
 
-      <PageNavigation next={{ title: 'Card', href: '/components/card' }} />
+      <PageNavigation next={{ title: 'Body', href: '/components/body' }} />
     </>
   );
 }

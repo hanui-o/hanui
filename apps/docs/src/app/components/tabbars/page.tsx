@@ -11,6 +11,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@/components/hanui/tabs';
+import { PageNavigation } from '@/components/hanui';
 
 // Simple icon components for example
 const HomeIcon = () => (
@@ -378,6 +379,11 @@ const items: TabBarItem[] = [
           </TabsContent>
         </Tabs>
       </PageSection>
+
+      <PageNavigation
+        prev={{ title: 'Structured List', href: '/components/structured-list' }}
+        next={{ title: 'Table', href: '/components/table' }}
+      />
     </>
   );
 }

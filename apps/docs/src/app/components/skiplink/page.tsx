@@ -392,14 +392,8 @@ export default function RootLayout({ children }) {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'Pagination',
-          href: '/components/pagination',
-        }}
-        next={{
-          title: 'SideNavigation',
-          href: '/components/sidenavigation',
-        }}
+        prev={{ title: 'SimpleGrid', href: '/components/simple-grid' }}
+        next={{ title: 'Spacing', href: '/components/spacing' }}
       />
     </Section>
   );

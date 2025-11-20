@@ -491,10 +491,7 @@ export default function BodyPage() {
       {/* Page Navigation */}
       <PageNavigation
         prev={{ title: 'Accordion', href: '/components/accordion' }}
-        next={{
-          title: 'Border Radius',
-          href: '/components/border-radius',
-        }}
+        next={{ title: 'Border Radius', href: '/components/border-radius' }}
       />
     </>
   );

@@ -476,8 +476,8 @@ export default function HeadingPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Display', href: '/components/display' }}
-        next={{ title: 'NavText', href: '/components/navtext' }}
+        prev={{ title: 'Header', href: '/components/header' }}
+        next={{ title: 'Identifier', href: '/components/identifier' }}
       />
     </>
   );

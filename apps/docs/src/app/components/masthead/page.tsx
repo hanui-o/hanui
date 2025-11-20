@@ -408,10 +408,8 @@ export default function Layout({ children }) {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'Header',
-          href: '/components/header',
-        }}
+        prev={{ title: 'Main Menu', href: '/components/mainmenu' }}
+        next={{ title: 'Modal', href: '/components/modal' }}
       />
     </Section>
   );

@@ -652,14 +652,8 @@ export default function MyComponent() {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'FileUpload',
-          href: '/components/file-upload',
-        }}
-        next={{
-          title: 'Pagination',
-          href: '/components/pagination',
-        }}
+        prev={{ title: 'Tabs', href: '/components/tabs' }}
+        next={{ title: 'Typography', href: '/components/typography' }}
       />
     </Section>
   );

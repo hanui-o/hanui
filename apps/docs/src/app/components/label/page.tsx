@@ -553,7 +553,7 @@ export default function LabelPage() {
 
       <PageNavigation
         prev={{ title: 'Input', href: '/components/input' }}
-        next={{ title: 'File Upload', href: '/components/file-upload' }}
+        next={{ title: 'Link', href: '/components/link' }}
       />
     </>
   );

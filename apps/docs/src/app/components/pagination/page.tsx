@@ -586,14 +586,8 @@ export default function MyComponent() {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'Tooltip',
-          href: '/components/tooltip',
-        }}
-        next={{
-          title: 'SkipLink',
-          href: '/components/skiplink',
-        }}
+        prev={{ title: 'NavText', href: '/components/navtext' }}
+        next={{ title: 'Section', href: '/components/section' }}
       />
     </Section>
   );

@@ -626,7 +626,10 @@ export default function InputPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Spacing', href: '/components/spacing' }}
+        prev={{
+          title: 'In-page Navigation',
+          href: '/components/inpagenavigation',
+        }}
         next={{ title: 'Label', href: '/components/label' }}
       />
     </>

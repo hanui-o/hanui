@@ -507,8 +507,7 @@ export default function WrapPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Table', href: '/components/table' }}
-        next={{ title: 'Components', href: '/components' }}
+        prev={{ title: 'Typography', href: '/components/typography' }}
       />
     </>
   );

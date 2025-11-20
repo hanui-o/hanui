@@ -642,8 +642,8 @@ const handleSort = (column: string) => {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Modal', href: '/components/modal' }}
-        next={{ title: 'Wrap', href: '/components/wrap' }}
+        prev={{ title: 'Tab Bars', href: '/components/tabbars' }}
+        next={{ title: 'Tabs', href: '/components/tabs' }}
       />
     </>
   );

@@ -698,8 +698,8 @@ export default function NavTextPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Heading', href: '/components/heading' }}
-        next={{ title: 'Spacing', href: '/components/spacing' }}
+        prev={{ title: 'Modal', href: '/components/modal' }}
+        next={{ title: 'Pagination', href: '/components/pagination' }}
       />
     </>
   );

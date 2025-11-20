@@ -519,8 +519,8 @@ export default function ListPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Container', href: '/components/container' }}
-        next={{ title: 'Modal', href: '/components/modal' }}
+        prev={{ title: 'Link', href: '/components/link' }}
+        next={{ title: 'Main Menu', href: '/components/mainmenu' }}
       />
     </>
   );

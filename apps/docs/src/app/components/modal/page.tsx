@@ -718,11 +718,8 @@ export default () => {
       </Tabs>
 
       <PageNavigation
-        prev={{
-          title: 'Section Heading System',
-          href: '/components/section-heading-system',
-        }}
-        next={{ title: 'Simple Grid', href: '/components/simple-grid' }}
+        prev={{ title: 'Masthead', href: '/components/masthead' }}
+        next={{ title: 'NavText', href: '/components/navtext' }}
       />
     </>
   );

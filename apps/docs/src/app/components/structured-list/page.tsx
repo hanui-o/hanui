@@ -473,8 +473,8 @@ const items = [
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'List', href: '/components/list' }}
-        next={{ title: 'Table', href: '/components/table' }}
+        prev={{ title: 'Stack', href: '/components/stack' }}
+        next={{ title: 'Tab Bars', href: '/components/tabbars' }}
       />
     </>
   );

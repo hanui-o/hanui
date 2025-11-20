@@ -729,8 +729,8 @@ export default function BorderRadiusPage() {
 
       {/* Page Navigation */}
       <PageNavigation
-        prev={{ title: 'Typography', href: '/components/typography' }}
-        next={{ title: 'Spacing', href: '/components/spacing' }}
+        prev={{ title: 'Body', href: '/components/body' }}
+        next={{ title: 'Breadcrumb', href: '/components/breadcrumb' }}
       />
     </>
   );

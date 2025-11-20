@@ -648,14 +648,8 @@ export default function MyPage() {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'SkipLink',
-          href: '/components/skiplink',
-        }}
-        next={{
-          title: 'MainMenu',
-          href: '/components/mainmenu',
-        }}
+        prev={{ title: 'Select', href: '/components/select' }}
+        next={{ title: 'SimpleGrid', href: '/components/simple-grid' }}
       />
     </Section>
   );

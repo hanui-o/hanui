@@ -537,8 +537,11 @@ export default function SelectPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'File Upload', href: '/components/file-upload' }}
-        next={{ title: 'Tooltip', href: '/components/tooltip' }}
+        prev={{
+          title: 'Section Heading System',
+          href: '/components/section-heading-system',
+        }}
+        next={{ title: 'Side Navigation', href: '/components/sidenavigation' }}
       />
     </>
   );

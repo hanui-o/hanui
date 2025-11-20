@@ -424,7 +424,7 @@ export default function SectionPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Modal', href: '/components/modal' }}
+        prev={{ title: 'Pagination', href: '/components/pagination' }}
         next={{
           title: 'Section Heading System',
           href: '/components/section-heading-system',

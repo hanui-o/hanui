@@ -18,6 +18,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
+  PageNavigation,
 } from '@/components/hanui';
 
 export default function CodePage() {
@@ -93,7 +94,8 @@ export default function CodePage() {
               />
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Code } from '@/components/hanui';
+                {`import { Code   PageNavigation,
+} from '@/components/hanui';
 
 <Body>
   파일을 저장하려면 <Code>Ctrl+S</Code>를 누르세요.
@@ -293,6 +295,11 @@ export default function CodePage() {
           </Section>
         </TabsContent>
       </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'Card', href: '/components/card' }}
+        next={{ title: 'Colors', href: '/components/colors' }}
+      />
     </>
   );
 }

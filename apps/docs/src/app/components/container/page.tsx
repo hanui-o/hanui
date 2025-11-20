@@ -566,11 +566,8 @@ export default function ContainerPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Box', href: '/layout/box' }}
-        next={{
-          title: 'Section Heading System',
-          href: '/components/section-heading-system',
-        }}
+        prev={{ title: 'Colors', href: '/components/colors' }}
+        next={{ title: 'Display', href: '/components/display' }}
       />
     </>
   );

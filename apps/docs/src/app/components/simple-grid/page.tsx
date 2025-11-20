@@ -582,8 +582,8 @@ export default function SimpleGridPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Wrap', href: '/components/wrap' }}
-        next={{ title: 'Card', href: '/components/card' }}
+        prev={{ title: 'Side Navigation', href: '/components/sidenavigation' }}
+        next={{ title: 'SkipLink', href: '/components/skiplink' }}
       />
     </>
   );

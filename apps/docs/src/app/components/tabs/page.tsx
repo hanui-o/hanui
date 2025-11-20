@@ -506,7 +506,7 @@ export default function TabsPage() {
 
       <PageNavigation
         prev={{ title: 'Table', href: '/components/table' }}
-        next={{ title: 'Wrap', href: '/components/wrap' }}
+        next={{ title: 'Tooltip', href: '/components/tooltip' }}
       />
     </>
   );

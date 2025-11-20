@@ -763,8 +763,8 @@ export default function ButtonPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Components', href: '/components' }}
-        next={{ title: 'Main Menu', href: '/components/mainmenu' }}
+        prev={{ title: 'Breakpoints', href: '/components/breakpoints' }}
+        next={{ title: 'Card', href: '/components/card' }}
       />
     </>
   );

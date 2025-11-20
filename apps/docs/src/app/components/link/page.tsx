@@ -12,6 +12,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@/components/hanui/tabs';
+import { PageNavigation } from '@/components/hanui';
 
 export default function LinkPage() {
   return (
@@ -402,6 +403,11 @@ function CustomLink() {
           </TabsContent>
         </Tabs>
       </PageSection>
+
+      <PageNavigation
+        prev={{ title: 'Label', href: '/components/label' }}
+        next={{ title: 'List', href: '/components/list' }}
+      />
     </>
   );
 }

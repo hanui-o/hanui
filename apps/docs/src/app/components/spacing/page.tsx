@@ -1,6 +1,6 @@
 'use client';
 
-import { Stack, HStack } from '@/components/hanui';
+import { Stack, HStack, PageNavigation } from '@/components/hanui';
 import { Section, Button, Input, Heading, Body, Footer } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
@@ -2204,6 +2204,11 @@ export default function SpacingPage() {
           </Stack>
         </Stack>
       </PageSection>
+
+      <PageNavigation
+        prev={{ title: 'SkipLink', href: '/components/skiplink' }}
+        next={{ title: 'Stack', href: '/components/stack' }}
+      />
     </>
   );
 }

@@ -522,7 +522,7 @@ export default function Example() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Box', href: '/layout/box' }}
+        prev={{ title: 'Button', href: '/components/button' }}
         next={{ title: 'Code', href: '/components/code' }}
       />
     </>

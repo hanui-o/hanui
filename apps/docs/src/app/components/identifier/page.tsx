@@ -521,13 +521,10 @@ export default function IdentifierPage() {
       </Tabs>
 
       <PageNavigation
-        previous={{
-          title: 'MainMenu',
-          href: '/components/mainmenu',
-        }}
+        prev={{ title: 'Heading', href: '/components/heading' }}
         next={{
-          title: 'Header',
-          href: '/components/header',
+          title: 'In-page Navigation',
+          href: '/components/inpagenavigation',
         }}
       />
     </Section>
