@@ -626,7 +626,7 @@ export default function InputPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Spacing', href: '/design-system/spacing' }}
+        prev={{ title: 'Spacing', href: '/components/spacing' }}
         next={{ title: 'Label', href: '/components/form/label' }}
       />
     </>
