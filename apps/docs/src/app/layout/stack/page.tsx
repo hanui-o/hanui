@@ -1,1260 +1,579 @@
 'use client';
 
-import { Heading, Body } from '@hanui/react';
-
-import { Stack, VStack, HStack } from '@hanui/react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { Installation } from '@/components/content/Installation';
-import { PageHeader } from '@/components/content/PageHeader';
-import { PageSection } from '@/components/content/PageSection';
+import {
+  Section,
+  SectionHeading,
+  Subsection,
+  Stack as StackComponent,
+  VStack,
+  HStack,
+  Code,
+  Card,
+  List,
+  ListItem,
+  Body,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  PageNavigation,
+  DoCard,
+  DontCard,
+} from '@/components/hanui';
 
 export default function StackPage() {
   return (
     <>
-      <PageHeader
+      <SectionHeading
+        level="h1"
         title="Stack, VStack, HStack"
-        description="KRDS 간격 시스템을 준수하는 유연한 레이아웃 컴포넌트. 수직(VStack), 수평(HStack) 스택을 제공합니다."
+        description="요소들을 수직 또는 수평으로 정렬하고 간격을 관리하는 간단한 레이아웃 컴포넌트입니다."
       />
 
-      <PageSection>
-        <ComponentPreview>
-          <div className="w-full">
-            <Stack gap="md">
-              <div className="bg-krds-primary-surface p-4 rounded">
-                첫 번째 아이템
-              </div>
-              <div className="bg-krds-primary-surface p-4 rounded">
-                두 번째 아이템
-              </div>
-              <div className="bg-krds-primary-surface p-4 rounded">
-                세 번째 아이템
-              </div>
-            </Stack>
-          </div>
-        </ComponentPreview>
-      </PageSection>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API</TabsTrigger>
+        </TabsList>
 
-      {/* Overview */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="overview">
-            개요
-          </Heading>
-          <Body className="text-krds-gray-90 leading-relaxed">
-            Stack 계열 컴포넌트는 요소들을 수직 또는 수평으로 정렬하고{' '}
-            <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>의 간격 기준을
-            준수하는 레이아웃 컴포넌트입니다.
-          </Body>
-          <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-            <li>
-              <strong>Stack</strong>: 기본 수직 레이아웃 (
-              <code>direction="row"</code>로 수평 방향 변경 가능)
-            </li>
-            <li>
-              <strong>VStack</strong>: Stack의 별칭 (항상 수직 방향)
-            </li>
-            <li>
-              <strong>HStack</strong>: 수평 레이아웃 (항상 수평 방향)
-            </li>
-          </ul>
-        </Stack>
-      </PageSection>
+        <TabsContent value="overview">
+          {/* Installation */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="installation" title="설치">
+              <Body className="leading-relaxed">
+                다음 명령어로 Stack 컴포넌트를 설치합니다:
+              </Body>
+            </SectionHeading>
 
-      {/* Installation */}
-      <PageSection>
-        <Installation componentName="stack" />
-      </PageSection>
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              npx @hanui/cli add stack
+            </Code>
+          </Section>
 
-      {/* Why Context-Based Spacing */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="why-context-based">
-            왜 맥락 기반 간격 시스템인가?
-          </Heading>
-          <Body>
-            KRDS Gap-layout 가이드는 매우 세밀한 간격 체계를 제공합니다 (h1-h2,
-            h2-h2, h2-h3, h3-h3, h3-h4, h4-h4, h4-h5, h5-h5, title-body-small,
-            title-body-medium, title-body-large 등). 하지만 이 모든 간격을 개별
-            컴포넌트로 제공하면 <strong>오히려 사용이 어려워집니다</strong>.
-          </Body>
-        </Stack>
-
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          <Stack gap="sm">
-            <Heading level="h3">문제점: HTML 구조에 종속</Heading>
-            <Body>
-              기존 KRDS 간격 이름(h2-h3, h3-h4 등)은 특정 HTML 태그에
-              종속되어있어:
-            </Body>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90 ml-4">
-              <li>HTML 구조가 바뀌면 spacing도 변경해야 함</li>
-              <li>
-                같은 관계(제목→내용)여도 태그에 따라 다른 spacing을 찾아야 함
-              </li>
-              <li>개발자가 12가지 이상의 간격 이름을 외워야 함</li>
-              <li>잘못된 spacing을 선택할 가능성이 높음</li>
-            </ul>
-          </Stack>
-
-          <Stack gap="sm">
-            <Heading level="h3">해결책: 관계 중심 패턴 발견</Heading>
-            <Body>
-              KRDS의 모든 간격을 분석한 결과, 실제로는{' '}
-              <strong>4가지 관계 패턴</strong>으로 단순화할 수 있습니다:
-            </Body>
-            <div className="bg-krds-primary-surface p-6 rounded-lg">
-              <Stack gap="sm">
-                <div>
-                  <strong className="text-krds-primary-text">
-                    1. Section Level
-                  </strong>{' '}
-                  - 큰 블록 간 구분 (40px/80px, 32px/64px)
-                </div>
-                <div>
-                  <strong className="text-krds-primary-text">
-                    2. Heading-Content
-                  </strong>{' '}
-                  - 제목과 내용의 긴밀한 관계 (8px/16px ~ 20px/24px)
-                </div>
-                <div>
-                  <strong className="text-krds-primary-text">
-                    3. Content Level
-                  </strong>{' '}
-                  - 동등한 콘텐츠 요소 간격 (12px/16px ~ 24px/40px)
-                </div>
-                <div>
-                  <strong className="text-krds-primary-text">
-                    4. Inline/Compact
-                  </strong>{' '}
-                  - 작은 요소 나열 (4px/8px, 8px/12px)
-                </div>
-              </Stack>
-            </div>
-          </Stack>
-
-          <Stack gap="sm">
-            <Heading level="h3">실무적 이점</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90 ml-4">
-              <li>
-                <strong>배우기 쉬움:</strong> 7개 핵심 이름만 기억 (vs 12개
-                이상)
-              </li>
-              <li>
-                <strong>HTML 독립적:</strong> 구조 변경해도 spacing 유지
-              </li>
-              <li>
-                <strong>의미 명확:</strong> 관계로 생각하니 실수가 적음
-              </li>
-              <li>
-                <strong>KRDS 준수:</strong> 실제 간격 값은 모두 KRDS 기준 유지
-              </li>
-              <li>
-                <strong>GS 인증 대비:</strong> KRDS의 의도(관계 기반 간격)를
-                정확히 반영하면서도 실용적
-              </li>
-            </ul>
-          </Stack>
-
-          <Stack gap="sm">
-            <Heading level="h3">하위 호환성</Heading>
-            <Body>
-              기존 KRDS 이름(h1-h2, h2-h3, title-body-medium 등)도{' '}
-              <strong>모두 지원</strong>합니다. 레거시 코드는 그대로 작동하며,
-              새 코드에서는 맥락 기반 이름 사용을 권장합니다.
-            </Body>
-          </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* Spacing Guide */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="spacing-guide">
-            Spacing 선택 가이드
-          </Heading>
-          <Body>
-            요소 간 <strong>관계</strong>에 따라 spacing을 선택하세요. HTML
-            태그가 아닌 맥락으로 생각하면 쉽습니다.
-          </Body>
-        </Stack>
-
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          <Stack gap="sm">
-            <Heading level="h3">
-              1. Section Level - 큰 블록 구분 (40px/80px, 32px/64px)
-            </Heading>
-            <Body>
-              주요 섹션을 구분할 때 사용합니다. KRDS의 h2-h2, h3-h3 간격에
-              해당합니다.
-            </Body>
-            <div className="bg-krds-primary-surface p-4 rounded-lg">
-              <Stack gap="xs">
-                <div>
-                  <code className="font-mono">gap="2xl"</code> →{' '}
-                  <strong>40px (Mobile) / 80px (PC)</strong> - KRDS h2-h2 간격
-                </div>
-                <div>
-                  <code className="font-mono">gap="xl"</code> →{' '}
-                  <strong>32px (Mobile) / 64px (PC)</strong> - KRDS h3-h3 간격
-                </div>
-              </Stack>
-            </div>
-            <ComponentPreview>
-              <div className="w-full">
-                <Stack gap="2xl" className="w-full">
-                  <div className="bg-krds-primary-surface p-6 rounded">
-                    <h2 className="font-bold text-lg mb-2">첫 번째 섹션</h2>
-                    <p>주요 내용...</p>
-                  </div>
-                  <div className="bg-krds-primary-surface p-6 rounded">
-                    <h2 className="font-bold text-lg mb-2">두 번째 섹션</h2>
-                    <p>주요 내용...</p>
-                  </div>
-                </Stack>
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Stack gap="2xl">  {/* 40px/80px - h2-h2 간격 */}
-  <Section1 />
-  <Section2 />
-</Stack>
-
-<Stack gap="xl">  {/* 32px/64px - h3-h3 간격 */}
-  <SubSection1 />
-  <SubSection2 />
-</Stack>`}
-              language="tsx"
-              showLineNumbers={false}
+          {/* What is it */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="what-is-it"
+              title="무엇인가요?"
+              description="Stack은 요소들을 수직 또는 수평으로 정렬하는 단순하고 직관적인 레이아웃 컴포넌트입니다."
             />
-          </Stack>
 
-          <Stack gap="sm">
-            <Heading level="h3">
-              2. Heading-Content - 제목과 설명 (8px/16px ~ 20px/24px)
-            </Heading>
-            <Body>
-              제목과 바로 아래 설명/내용이 긴밀할 때 사용합니다. KRDS의
-              title-body-* 간격에 해당합니다.
-            </Body>
-            <div className="bg-krds-success-surface p-4 rounded-lg">
-              <Stack gap="xs">
-                <div>
-                  <code className="font-mono">gap="sm"</code> →{' '}
-                  <strong>8px (Mobile) / 16px (PC)</strong> - KRDS h2-h3,
-                  title-body-small
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>Stack:</strong> 기본 수직 레이아웃 (direction="row"로
+                  수평 변경 가능)
+                </ListItem>
+                <ListItem>
+                  <strong>VStack:</strong> 항상 수직 방향
+                </ListItem>
+                <ListItem>
+                  <strong>HStack:</strong> 항상 수평 방향 (기본 align="center")
+                </ListItem>
+                <ListItem>
+                  <strong>간격 조절:</strong> gap prop으로 8px ~ 64px 간격 설정
+                </ListItem>
+                <ListItem>
+                  <strong>정렬 옵션:</strong> align, justify로 자유로운 정렬
+                  가능
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
+
+          {/* Preview */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Card variant="outlined">
+              <StackComponent gap="md">
+                <div className="bg-krds-primary-10 p-4 rounded">
+                  첫 번째 아이템
                 </div>
-                <div>
-                  <code className="font-mono">gap="md"</code> →{' '}
-                  <strong>12px (Mobile) / 20px (PC)</strong> - KRDS
-                  title-body-medium
+                <div className="bg-krds-primary-10 p-4 rounded">
+                  두 번째 아이템
                 </div>
-                <div>
-                  <code className="font-mono">gap="lg"</code> →{' '}
-                  <strong>20px (Mobile) / 24px (PC)</strong> - KRDS h1-h2,
-                  title-body-large
+                <div className="bg-krds-primary-10 p-4 rounded">
+                  세 번째 아이템
                 </div>
-              </Stack>
-            </div>
-            <ComponentPreview>
-              <div className="w-full">
-                <Stack gap="md">
-                  <h3 className="font-bold text-lg">제품 소개</h3>
-                  <p className="text-krds-gray-70">
-                    이 제품은 KRDS 기반으로 설계된 디자인 시스템입니다.
-                  </p>
-                </Stack>
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Stack gap="sm">  {/* 8px/16px - 제목→매우 가까운 내용 */}
-  <Heading>제목</Heading>
-  <Body>바로 붙는 설명...</Body>
-</Stack>
+              </StackComponent>
+            </Card>
+          </Section>
 
-<Stack gap="md">  {/* 12px/20px - 제목→설명 (기본) */}
-  <Heading>제목</Heading>
-  <Body>설명...</Body>
-</Stack>
+          {/* Usage */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="usage" title="사용 방법" />
 
-<Stack gap="lg">  {/* 20px/24px - 제목→여유있는 내용 */}
-  <Heading level="h1">메인 제목</Heading>
-  <Heading level="h2">서브 제목</Heading>
-</Stack>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </Stack>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="VStack - 수직 레이아웃">
+                <Body className="leading-relaxed">
+                  요소를 수직으로 쌓아 올립니다:
+                </Body>
+              </SectionHeading>
 
-          <Stack gap="sm">
-            <Heading level="h3">
-              3. Content Level - 같은 레벨 요소 (12px/16px ~ 24px/40px)
-            </Heading>
-            <Body>
-              문단, 카드, 리스트 아이템 등 동등한 요소들 사이에 사용합니다.
-              KRDS의 h3-h4, h3-content 간격에 해당합니다.
-            </Body>
-            <div className="bg-krds-accent-surface p-4 rounded-lg">
-              <Stack gap="xs">
-                <div>
-                  <code className="font-mono">gap="sm"</code> →{' '}
-                  <strong>12px (Mobile) / 16px (PC)</strong> - 가까운 콘텐츠
-                  블록
-                </div>
-                <div>
-                  <code className="font-mono">gap="md"</code> →{' '}
-                  <strong>16px (Mobile) / 24px (PC)</strong> - KRDS h3-h4, 카드
-                  리스트
-                </div>
-                <div>
-                  <code className="font-mono">gap="lg"</code> →{' '}
-                  <strong>24px (Mobile) / 40px (PC)</strong> - KRDS h3-content,
-                  여유있는 콘텐츠
-                </div>
-              </Stack>
-            </div>
-            <ComponentPreview>
-              <div className="w-full">
-                <Stack gap="md">
-                  <div className="bg-krds-accent-surface p-4 rounded">
-                    카드 1
-                  </div>
-                  <div className="bg-krds-accent-surface p-4 rounded">
-                    카드 2
-                  </div>
-                  <div className="bg-krds-accent-surface p-4 rounded">
-                    카드 3
-                  </div>
-                </Stack>
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Stack gap="sm">  {/* 12px/16px - 가까운 블록 */}
-  <Paragraph>...</Paragraph>
-  <Paragraph>...</Paragraph>
-</Stack>
-
-<Stack gap="md">  {/* 16px/24px - 카드, 리스트 (기본) */}
-  <Card>...</Card>
-  <Card>...</Card>
-  <Card>...</Card>
-</Stack>
-
-<Stack gap="lg">  {/* 24px/40px - 여유있는 콘텐츠 */}
-  <Article>...</Article>
-  <Article>...</Article>
-</Stack>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </Stack>
-
-          <Stack gap="sm">
-            <Heading level="h3">
-              4. Inline/Compact - 작은 요소 (4px/8px, 8px/12px)
-            </Heading>
-            <Body>
-              태그, 칩, 배지 같은 작은 요소들을 나열할 때 사용합니다. KRDS의
-              input-group 등 조밀한 레이아웃에 해당합니다.
-            </Body>
-            <div className="bg-krds-warning-surface p-4 rounded-lg">
-              <Stack gap="xs">
-                <div>
-                  <code className="font-mono">gap="xs"</code> →{' '}
-                  <strong>4px (Mobile) / 8px (PC)</strong> - KRDS input-group,
-                  매우 조밀한 요소
-                </div>
-                <div>
-                  <code className="font-mono">gap="sm"</code> →{' '}
-                  <strong>8px (Mobile) / 12px (PC)</strong> - 태그, 칩, 배지
-                </div>
-              </Stack>
-            </div>
-            <ComponentPreview>
-              <div className="w-full">
-                <HStack gap="sm" className="flex-wrap">
-                  <span className="bg-krds-warning-surface px-3 py-1 rounded-full">
-                    React
-                  </span>
-                  <span className="bg-krds-warning-surface px-3 py-1 rounded-full">
-                    TypeScript
-                  </span>
-                  <span className="bg-krds-warning-surface px-3 py-1 rounded-full">
-                    Tailwind
-                  </span>
-                </HStack>
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<HStack gap="xs">  {/* 4px/8px - 폼 필드 그룹 */}
-  <Input />
-  <Button>확인</Button>
-</HStack>
-
-<HStack gap="sm">  {/* 8px/12px - 태그, 칩, 배지 */}
-  <Tag>React</Tag>
-  <Tag>TypeScript</Tag>
-  <Tag>Tailwind</Tag>
-</HStack>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* Usage */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="usage">
-            사용법
-          </Heading>
-          <Body>Stack, VStack, HStack 세 가지 컴포넌트를 제공합니다:</Body>
-        </Stack>
-
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          <Stack gap="sm">
-            <Heading level="h3">Stack - 기본 수직 레이아웃</Heading>
-            <CodeBlock
-              code={`import { Stack } from '@hanui/react'
-
-// 기본값: 수직
-<Stack gap="md">
-  <div>첫 번째</div>
-  <div>두 번째</div>
-</Stack>
-
-// direction="row"로 수평 방향
-<Stack direction="row" gap="md">
-  <div>왼쪽</div>
-  <div>오른쪽</div>
-</Stack>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </Stack>
-
-          <Stack gap="sm">
-            <Heading level="h3">VStack - 명시적 수직 레이아웃</Heading>
-            <CodeBlock
-              code={`import { VStack } from '@hanui/react'
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`import { VStack } from '@/components/hanui';
 
 <VStack gap="md">
   <div>위</div>
+  <div>중간</div>
   <div>아래</div>
 </VStack>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </Stack>
+              </Code>
 
-          <Stack gap="sm">
-            <Heading level="h3">HStack - 수평 레이아웃</Heading>
-            <CodeBlock
-              code={`import { HStack } from '@hanui/react'
+              <Card variant="outlined" className="mt-3">
+                <VStack gap="md">
+                  <div className="bg-krds-success-10 p-4 rounded w-full text-center">
+                    첫 번째
+                  </div>
+                  <div className="bg-krds-success-10 p-4 rounded w-full text-center">
+                    두 번째
+                  </div>
+                  <div className="bg-krds-success-10 p-4 rounded w-full text-center">
+                    세 번째
+                  </div>
+                </VStack>
+              </Card>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="HStack - 수평 레이아웃">
+                <Body className="leading-relaxed">
+                  요소를 수평으로 나란히 배치합니다:
+                </Body>
+              </SectionHeading>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`import { HStack } from '@/components/hanui';
 
 <HStack gap="sm">
-  <div>왼쪽</div>
-  <div>오른쪽</div>
-</HStack>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </Stack>
-        </Stack>
-      </PageSection>
-
-      {/* Examples */}
-      <PageSection>
-        <Heading level="h2" id="examples">
-          예제
-        </Heading>
-
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          {/* VStack */}
-          <Stack gap="sm">
-            <Heading level="h3">VStack - 수직 스택</Heading>
-            <div>
-              <ComponentPreview>
-                <div className="w-full">
-                  <VStack gap="md">
-                    <div className="bg-krds-success-surface p-4 rounded w-full">
-                      첫 번째 아이템
-                    </div>
-                    <div className="bg-krds-success-surface p-4 rounded w-full">
-                      두 번째 아이템
-                    </div>
-                    <div className="bg-krds-success-surface p-4 rounded w-full">
-                      세 번째 아이템
-                    </div>
-                  </VStack>
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<VStack gap="md">
-  <div>첫 번째 아이템</div>
-  <div>두 번째 아이템</div>
-  <div>세 번째 아이템</div>
-</VStack>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-
-          {/* HStack */}
-          <Stack gap="sm">
-            <Heading level="h3">HStack - 수평 스택</Heading>
-            <div>
-              <ComponentPreview>
-                <div className="w-full">
-                  <HStack gap="md">
-                    <div className="bg-krds-primary-surface px-4 py-2 rounded">
-                      왼쪽
-                    </div>
-                    <div className="bg-krds-primary-surface px-4 py-2 rounded">
-                      중앙
-                    </div>
-                    <div className="bg-krds-primary-surface px-4 py-2 rounded">
-                      오른쪽
-                    </div>
-                  </HStack>
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<HStack gap="md">
   <div>왼쪽</div>
   <div>중앙</div>
   <div>오른쪽</div>
 </HStack>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
+              </Code>
 
-          {/* Stack with direction="row" */}
-          <Stack gap="sm">
-            <Heading level="h3">Stack direction="row" - 수평 방향</Heading>
-            <div>
-              <ComponentPreview>
-                <div className="w-full">
-                  <Stack direction="row" gap="md" justify="center">
-                    <div className="bg-krds-success-surface px-4 py-2 rounded">
-                      버튼 1
-                    </div>
-                    <div className="bg-krds-success-surface px-4 py-2 rounded">
-                      버튼 2
-                    </div>
-                    <div className="bg-krds-success-surface px-4 py-2 rounded">
-                      버튼 3
-                    </div>
-                  </Stack>
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Stack direction="row" gap="md" justify="center">
-  <div>버튼 1</div>
-  <div>버튼 2</div>
-  <div>버튼 3</div>
-</Stack>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-
-          {/* Heading Spacing */}
-          <Stack gap="sm">
-            <Heading level="h3">Heading Spacing (heading-loose)</Heading>
-            <div>
-              <ComponentPreview>
-                <div className="w-full">
-                  <Stack gap="lg">
-                    <h1 className="text-3xl font-bold">메인 제목</h1>
-                    <h2 className="text-2xl font-semibold text-krds-gray-70">
-                      부제목
-                    </h2>
-                  </Stack>
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Stack gap="lg">  {/* 20px/24px */}
-  <h1>메인 제목</h1>
-  <h2>부제목</h2>
-</Stack>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-
-          {/* Form */}
-          <Stack gap="sm">
-            <Heading level="h3">Form</Heading>
-            <div>
-              <ComponentPreview>
-                <div className="w-full">
-                  <Stack gap="md">
-                    <HStack>
-                      <label className="block font-medium mb-1">이름</label>
-                      <div className="border border-krds-gray-20 rounded px-3 py-2">
-                        Input
-                      </div>
-                    </HStack>
-                    <HStack>
-                      <label className="block font-medium mb-1">이메일</label>
-                      <div className="border border-krds-gray-20 rounded px-3 py-2">
-                        Input
-                      </div>
-                    </HStack>
-                  </Stack>
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Stack gap="md">
-  <div>
-    <label>이름</label>
-    <input type="text" />
-  </div>
-  <div>
-    <label>이메일</label>
-    <input type="email" />
-  </div>
-</Stack>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-
-          {/* Alignment */}
-          <Stack gap="sm">
-            <Heading level="h3">Alignment</Heading>
-            <div>
-              <ComponentPreview>
-                <div className="w-full space-y-6">
-                  <div>
-                    <p className="font-semibold mb-2">Center Alignment</p>
-                    <Stack
-                      gap="sm"
-                      align="center"
-                      className="border border-krds-gray-20 rounded p-4"
-                    >
-                      <div className="bg-krds-accent-surface px-4 py-2 rounded">
-                        중앙 정렬
-                      </div>
-                      <div className="bg-krds-accent-surface px-4 py-2 rounded">
-                        아이템
-                      </div>
-                    </Stack>
+              <Card variant="outlined" className="mt-3">
+                <HStack gap="md">
+                  <div className="bg-krds-primary-10 px-4 py-2 rounded">
+                    왼쪽
                   </div>
-
-                  <div>
-                    <p className="font-semibold mb-2">Space Between (HStack)</p>
-                    <HStack
-                      justify="between"
-                      className="border border-krds-gray-20 rounded p-4"
-                    >
-                      <div className="bg-krds-warning-surface px-4 py-2 rounded">
-                        왼쪽
-                      </div>
-                      <div className="bg-krds-warning-surface px-4 py-2 rounded">
-                        오른쪽
-                      </div>
-                    </HStack>
+                  <div className="bg-krds-primary-10 px-4 py-2 rounded">
+                    중앙
                   </div>
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`// 중앙 정렬
-<VStack align="center">
+                  <div className="bg-krds-primary-10 px-4 py-2 rounded">
+                    오른쪽
+                  </div>
+                </HStack>
+              </Card>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Stack - 방향 전환 가능">
+                <Body className="leading-relaxed">
+                  Stack은 기본 수직이지만 direction="row"로 수평으로 변경할 수
+                  있습니다:
+                </Body>
+              </SectionHeading>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`import { Stack } from '@/components/hanui';
+
+// 수직 (기본)
+<Stack gap="md">
+  <div>위</div>
+  <div>아래</div>
+</Stack>
+
+// 수평
+<Stack direction="row" gap="md">
+  <div>왼쪽</div>
+  <div>오른쪽</div>
+</Stack>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="간격 조절 (Gap)">
+                <Body className="leading-relaxed">
+                  gap prop으로 요소 간 간격을 조절합니다:
+                </Body>
+              </SectionHeading>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`// 간격 옵션
+<VStack gap="xs">  {/* 8px */}
+<VStack gap="sm">  {/* 12px */}
+<VStack gap="md">  {/* 16px - 기본값 */}
+<VStack gap="lg">  {/* 24px */}
+<VStack gap="xl">  {/* 32px */}
+<VStack gap="2xl"> {/* 40px */}
+<VStack gap="3xl"> {/* 64px */}
+
+// 간격 없음
+<VStack gap="none"> {/* 0px */}`}
+              </Code>
+
+              <StackComponent gap="md" className="mt-3">
+                <Card variant="outlined">
+                  <Body className="font-medium mb-2">
+                    Small Gap (sm - 12px)
+                  </Body>
+                  <VStack gap="sm">
+                    <div className="bg-krds-accent-10 p-3 rounded w-full">
+                      Item 1
+                    </div>
+                    <div className="bg-krds-accent-10 p-3 rounded w-full">
+                      Item 2
+                    </div>
+                  </VStack>
+                </Card>
+
+                <Card variant="outlined">
+                  <Body className="font-medium mb-2">
+                    Large Gap (lg - 24px)
+                  </Body>
+                  <VStack gap="lg">
+                    <div className="bg-krds-warning-10 p-3 rounded w-full">
+                      Item 1
+                    </div>
+                    <div className="bg-krds-warning-10 p-3 rounded w-full">
+                      Item 2
+                    </div>
+                  </VStack>
+                </Card>
+              </StackComponent>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="정렬 (Align & Justify)">
+                <Body className="leading-relaxed">
+                  align과 justify로 요소를 정렬합니다:
+                </Body>
+              </SectionHeading>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`// 가운데 정렬
+<VStack align="center" gap="sm">
   <div>중앙 정렬</div>
-  <div>아이템</div>
 </VStack>
 
-// Space Between (수평)
+// 양 끝 정렬
 <HStack justify="between">
   <div>왼쪽</div>
   <div>오른쪽</div>
+</HStack>
+
+// 가운데 정렬 + 중앙 배치
+<HStack justify="center" align="center" gap="md">
+  <Button>취소</Button>
+  <Button>확인</Button>
 </HStack>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-        </Stack>
-      </PageSection>
+              </Code>
 
-      {/* API Reference */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="api-reference">
-            API 레퍼런스
-          </Heading>
+              <StackComponent gap="md" className="mt-3">
+                <Card variant="outlined">
+                  <Body className="font-medium mb-2">
+                    VStack - Center Align
+                  </Body>
+                  <VStack
+                    align="center"
+                    gap="sm"
+                    className="border border-krds-gray-20 rounded p-4"
+                  >
+                    <div className="bg-krds-accent-10 px-4 py-2 rounded">
+                      중앙 정렬
+                    </div>
+                    <div className="bg-krds-accent-10 px-4 py-2 rounded">
+                      아이템
+                    </div>
+                  </VStack>
+                </Card>
 
-          <Body>
-            <strong>Stack</strong>은 기본적으로 수직 방향이며,{' '}
-            <code>direction="row"</code> prop으로 수평 방향으로 변경할 수
-            있습니다. <strong>VStack</strong>은 Stack의 별칭으로 항상 수직
-            방향입니다. <strong>HStack</strong>은 항상 수평 방향이며{' '}
-            <code>direction</code> prop을 사용하지 않습니다.
-          </Body>
-        </Stack>
+                <Card variant="outlined">
+                  <Body className="font-medium mb-2">
+                    HStack - Space Between
+                  </Body>
+                  <HStack
+                    justify="between"
+                    className="border border-krds-gray-20 rounded p-4"
+                  >
+                    <div className="bg-krds-warning-10 px-4 py-2 rounded">
+                      왼쪽
+                    </div>
+                    <div className="bg-krds-warning-10 px-4 py-2 rounded">
+                      오른쪽
+                    </div>
+                  </HStack>
+                </Card>
+              </StackComponent>
+            </Subsection>
 
-        <div className="overflow-x-auto mt-2 md:mt-4">
-          <table className="min-w-full border border-krds-gray-20">
-            <thead className="bg-krds-gray-5">
-              <tr>
-                <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                  Prop
-                </th>
-                <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                  Type
-                </th>
-                <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                  Default
-                </th>
-                <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  spacing
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  StackSpacing
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  &apos;md&apos;
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20">
-                  간격 프리셋
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  direction
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  &apos;row&apos;
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  undefined (수직)
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20">
-                  스택 방향 (Stack만 사용 가능). <code>direction="row"</code>일
-                  때 수평 방향. VStack/HStack은 이 prop을 사용하지 않습니다.
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  align
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  &apos;start&apos; | &apos;center&apos; | &apos;end&apos; |
-                  &apos;stretch&apos;
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  - (HStack: &apos;center&apos;)
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20">
-                  교차축 정렬
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  justify
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  &apos;start&apos; | &apos;center&apos; | &apos;end&apos; |
-                  &apos;between&apos; | &apos;around&apos;
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  -
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20">
-                  주축 정렬
-                </td>
-              </tr>
-              <tr>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  as
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  &apos;div&apos; | &apos;section&apos; | &apos;nav&apos; |
-                  &apos;ul&apos; | ...
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                  &apos;div&apos;
-                </td>
-                <td className="px-4 py-2 border-b border-krds-gray-20">
-                  렌더링할 HTML 요소
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="실제 사용 예시">
+                <Body className="leading-relaxed">
+                  폼 레이아웃과 버튼 그룹 예시입니다:
+                </Body>
+              </SectionHeading>
 
-        <div className="mt-8 md:mt-16">
-          <Stack gap="md">
-            <Heading level="h3">Spacing Options</Heading>
-            <Body className="text-krds-gray-90">
-              맥락 기반 KRDS 간격 시스템 (Context-based Spacing)
-            </Body>
-          </Stack>
-          <div className="overflow-x-auto">
-            <table className="min-w-full border border-krds-gray-20">
-              <thead className="bg-krds-gray-5">
-                <tr>
-                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                    값
-                  </th>
-                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                    간격
-                  </th>
-                  <th className="px-4 py-2 text-left border-b border-krds-gray-20">
-                    용도
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="bg-krds-gray-5">
-                  <td
-                    colSpan={3}
-                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold"
-                  >
-                    Header & Navigation
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    header-breadcrumb
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    16px (Mobile) / 24px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    헤더와 브레드크럼 간격
-                  </td>
-                </tr>
-                <tr className="bg-krds-gray-5">
-                  <td
-                    colSpan={3}
-                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold"
-                  >
-                    Layout Spacing
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    left-contents
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    0px (Mobile) / 64px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    왼쪽 사이드바와 콘텐츠
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    contents-right
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    0px (Mobile) / 40px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    콘텐츠와 오른쪽 사이드바
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    contents-footer
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    40px (Mobile) / 64px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    콘텐츠와 푸터
-                  </td>
-                </tr>
-                <tr className="bg-krds-gray-5">
-                  <td
-                    colSpan={3}
-                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold"
-                  >
-                    Heading Hierarchy
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    h1-h2
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    32px (Mobile) / 48px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    H1과 H2 사이
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    h2-h2
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    40px (Mobile) / 80px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    H2와 H2 사이
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    h2-h3
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    24px (Mobile) / 40px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    H2와 H3 사이
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    h3-h3
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    32px (Mobile) / 64px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    H3과 H3 사이
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    h3-h4
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    16px (Mobile) / 24px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    H3과 H4 사이
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    h4-h4
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    24px (Mobile) / 40px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    H4와 H4 사이
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    h4-h5
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    12px (Mobile) / 16px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    H4와 H5 사이
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    h5-h5
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    16px (Mobile) / 32px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    H5와 H5 사이
-                  </td>
-                </tr>
-                <tr className="bg-krds-gray-5">
-                  <td
-                    colSpan={3}
-                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold"
-                  >
-                    Title to Body Spacing
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    title-body-small
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    8px (Mobile) / 16px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    제목과 본문 (작은 간격)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    title-body-medium
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    12px (Mobile) / 20px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    제목과 본문 (중간 간격)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    title-body-large
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    20px (Mobile) / 24px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    제목과 본문 (큰 간격)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    breadcrumb
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    32px (Mobile) / 40px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    브레드크럼과 H1
-                  </td>
-                </tr>
-                <tr className="bg-krds-gray-5">
-                  <td
-                    colSpan={3}
-                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold"
-                  >
-                    Text Spacing
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    text-text-large
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    16px (Mobile) / 20px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    텍스트 단락 (큰 간격)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    text-text-medium
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    12px (Mobile) / 16px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    텍스트 단락 (중간 간격)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    text-text-small
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    10px (Mobile) / 12px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    텍스트 단락 (작은 간격)
-                  </td>
-                </tr>
-                <tr className="bg-krds-gray-5">
-                  <td
-                    colSpan={3}
-                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold"
-                  >
-                    Image to Text Spacing
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    image-text-small
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    16px (Mobile) / 20px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    이미지와 텍스트 (작은 간격)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    image-text-medium
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    20px (Mobile) / 24px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    이미지와 텍스트 (중간 간격)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    image-text-large
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    24px (Mobile) / 32px (PC)
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    이미지와 텍스트 (큰 간격)
-                  </td>
-                </tr>
-                <tr className="bg-krds-gray-5">
-                  <td
-                    colSpan={3}
-                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold"
-                  >
-                    Component Spacing
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    form
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    16px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    폼 필드 간격
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    card-list
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    24px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    카드 리스트
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    input-group
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    8px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    인풋 그룹 (라벨-입력)
-                  </td>
-                </tr>
-                <tr className="bg-krds-gray-5">
-                  <td
-                    colSpan={3}
-                    className="px-4 py-2 border-b border-krds-gray-20 font-semibold"
-                  >
-                    Generic Spacing
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    xs
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    8px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    매우 작은 간격
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    sm
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    12px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    작은 간격
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    md
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    16px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    중간 간격 (기본값)
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    lg
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    24px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    큰 간격
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    xl
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    32px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    매우 큰 간격
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    2xl
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    40px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    2배 큰 간격
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2 border-b border-krds-gray-20 font-mono">
-                    3xl
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    64px
-                  </td>
-                  <td className="px-4 py-2 border-b border-krds-gray-20">
-                    3배 큰 간격
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </PageSection>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`// 폼 레이아웃
+<VStack gap="md">
+  <Input label="이름" />
+  <Input label="이메일" />
+  <Input label="비밀번호" type="password" />
+
+  <HStack justify="end" gap="sm">
+    <Button variant="outline">취소</Button>
+    <Button>제출</Button>
+  </HStack>
+</VStack>
+
+// 카드 리스트
+<VStack gap="lg">
+  <Card>카드 1</Card>
+  <Card>카드 2</Card>
+  <Card>카드 3</Card>
+</VStack>`}
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* Best Practices */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="best-practices"
+              title="Best Practices"
+            />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="언제 사용하나요?" />
+              <DoCard title="Stack을 사용하기 적합한 경우">
+                <List variant="check">
+                  <ListItem>여러 요소를 수직 또는 수평으로 나열할 때</ListItem>
+                  <ListItem>요소 간 일관된 간격이 필요할 때</ListItem>
+                  <ListItem>폼 레이아웃을 구성할 때</ListItem>
+                  <ListItem>버튼 그룹을 정렬할 때</ListItem>
+                  <ListItem>카드나 리스트 아이템을 배치할 때</ListItem>
+                </List>
+              </DoCard>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <DontCard title="Stack 사용을 피해야 하는 경우">
+                <List variant="dash">
+                  <ListItem>
+                    그리드 레이아웃이 필요할 때 (<Code>SimpleGrid</Code> 사용)
+                  </ListItem>
+                  <ListItem>
+                    자동 줄바꿈이 필요할 때 (<Code>Wrap</Code> 사용)
+                  </ListItem>
+                  <ListItem>
+                    복잡한 2차원 레이아웃일 때 (CSS Grid 직접 사용)
+                  </ListItem>
+                </List>
+              </DontCard>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="사용 가이드라인" />
+              <List>
+                <ListItem>
+                  VStack과 HStack은 명확한 의도 표현에 좋습니다
+                </ListItem>
+                <ListItem>
+                  HStack은 기본적으로 align="center"가 적용되어 수평 정렬이
+                  자연스럽습니다
+                </ListItem>
+                <ListItem>
+                  복잡한 레이아웃은 Stack을 중첩하여 구성할 수 있습니다
+                </ListItem>
+                <ListItem>
+                  간격은 콘텐츠의 밀도에 따라 sm, md, lg 중 선택하세요
+                </ListItem>
+              </List>
+            </Subsection>
+          </Section>
+        </TabsContent>
+
+        <TabsContent value="api">
+          <Section level="h2">
+            <SectionHeading level="h2" id="api" title="API Reference" />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Stack Props" />
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">gap</TableCell>
+                    <TableCell className="font-mono">
+                      StackGap | number
+                    </TableCell>
+                    <TableCell className="font-mono">
+                      &apos;none&apos;
+                    </TableCell>
+                    <TableCell>요소 간 간격</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">direction</TableCell>
+                    <TableCell className="font-mono">
+                      &apos;row&apos; | undefined
+                    </TableCell>
+                    <TableCell className="font-mono">
+                      undefined (수직)
+                    </TableCell>
+                    <TableCell>
+                      스택 방향 (Stack만 사용 가능, VStack/HStack은 고정)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">align</TableCell>
+                    <TableCell className="font-mono">
+                      &apos;start&apos; | &apos;center&apos; | &apos;end&apos; |
+                      &apos;stretch&apos;
+                    </TableCell>
+                    <TableCell className="font-mono">
+                      - (HStack: &apos;center&apos;)
+                    </TableCell>
+                    <TableCell>교차축 정렬</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">justify</TableCell>
+                    <TableCell className="font-mono">
+                      &apos;start&apos; | &apos;center&apos; | &apos;end&apos; |
+                      &apos;between&apos; | &apos;around&apos;
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>주축 정렬</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">as</TableCell>
+                    <TableCell className="font-mono">
+                      &apos;div&apos; | &apos;section&apos; |
+                      &apos;article&apos; | ...
+                    </TableCell>
+                    <TableCell className="font-mono">&apos;div&apos;</TableCell>
+                    <TableCell>렌더링할 HTML 요소</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Gap Options" />
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>값</TableHead>
+                    <TableHead>간격</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">none</TableCell>
+                    <TableCell>0px</TableCell>
+                    <TableCell>간격 없음</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">xs</TableCell>
+                    <TableCell>8px</TableCell>
+                    <TableCell>매우 작은 간격</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">sm</TableCell>
+                    <TableCell>12px</TableCell>
+                    <TableCell>작은 간격</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">md</TableCell>
+                    <TableCell>16px</TableCell>
+                    <TableCell>중간 간격 (권장)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">lg</TableCell>
+                    <TableCell>24px</TableCell>
+                    <TableCell>큰 간격</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">xl</TableCell>
+                    <TableCell>32px</TableCell>
+                    <TableCell>매우 큰 간격</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">2xl</TableCell>
+                    <TableCell>40px</TableCell>
+                    <TableCell>2배 큰 간격</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">3xl</TableCell>
+                    <TableCell>64px</TableCell>
+                    <TableCell>3배 큰 간격</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Component 비교" />
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Component</TableHead>
+                    <TableHead>Direction</TableHead>
+                    <TableHead>Default Align</TableHead>
+                    <TableHead>사용 시점</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">Stack</TableCell>
+                    <TableCell>수직 (direction="row"로 변경 가능)</TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>방향이 동적으로 변경되어야 할 때</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">VStack</TableCell>
+                    <TableCell>항상 수직</TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>명확하게 수직 레이아웃임을 표현</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">HStack</TableCell>
+                    <TableCell>항상 수평</TableCell>
+                    <TableCell>center</TableCell>
+                    <TableCell>버튼 그룹 등 수평 정렬</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'SimpleGrid', href: '/layout/simple-grid' }}
+        next={{ title: 'Structured List', href: '/layout/structured-list' }}
+      />
     </>
   );
 }

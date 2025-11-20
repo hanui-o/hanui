@@ -7,15 +7,30 @@ import {
   ModalFooter,
   ModalCloseButton,
   Button,
-  Heading,
+  Section,
+  SectionHeading,
+  Subsection,
   Body,
   Stack,
-} from '@hanui/react';
+  Card,
+  Code,
+  List,
+  ListItem,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  PageNavigation,
+  DoCard,
+  DontCard,
+} from '@/components/hanui';
 import { useState } from 'react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageHeader } from '@/components/content/PageHeader';
-import { PageSection } from '@/components/content/PageSection';
 
 export default function ModalPage() {
   const [isBasicOpen, setIsBasicOpen] = useState(false);
@@ -30,32 +45,93 @@ export default function ModalPage() {
 
   return (
     <>
-      <PageHeader
+      <SectionHeading
+        level="h1"
         title="Modal"
-        description="Headless UI Dialog 기반의 접근성 높은 모달 컴포넌트"
+        description="Radix UI Dialog 기반의 접근성 높은 모달 컴포넌트입니다."
       />
 
-      {/* Quick Start */}
-      <PageSection>
-        <ComponentPreview>
-          <Button onClick={() => setIsBasicOpen(true)}>모달 열기</Button>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API</TabsTrigger>
+        </TabsList>
 
-          <Modal open={isBasicOpen} onClose={() => setIsBasicOpen(false)}>
-            <ModalTitle>기본 모달</ModalTitle>
-            <ModalBody>
-              <p>모달 컨텐츠가 여기에 표시됩니다.</p>
-            </ModalBody>
-            <ModalFooter>
-              <Button variant="outline" onClick={() => setIsBasicOpen(false)}>
-                취소
-              </Button>
-              <Button onClick={() => setIsBasicOpen(false)}>확인</Button>
-            </ModalFooter>
-          </Modal>
-        </ComponentPreview>
-        <div className="mt-4">
-          <CodeBlock
-            code={`import { Modal, Button } from '@hanui/react';
+        <TabsContent value="overview">
+          {/* Installation */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="installation" title="설치">
+              <Body className="leading-relaxed">
+                다음 명령어로 Modal 컴포넌트를 설치합니다:
+              </Body>
+            </SectionHeading>
+
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              npx @hanui/cli add modal
+            </Code>
+          </Section>
+
+          {/* What is it */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="what-is-it"
+              title="무엇인가요?"
+              description="Modal은 사용자의 주의를 집중시키고 중요한 정보를 표시하거나 액션을 수행하는 오버레이 다이얼로그입니다."
+            />
+
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>Radix UI 기반:</strong> Radix UI Dialog Primitive를
+                  사용하여 접근성이 자동으로 보장됩니다.
+                </ListItem>
+                <ListItem>
+                  <strong>Focus Management:</strong> 모달 열기/닫기 시 포커스가
+                  자동으로 관리됩니다.
+                </ListItem>
+                <ListItem>
+                  <strong>키보드 네비게이션:</strong> ESC 키로 닫기, Tab으로
+                  요소 순환 등 완전한 키보드 지원을 제공합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>다양한 크기:</strong> sm, md, lg, xl, full 5가지 크기
+                  옵션을 제공합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>KRDS 준수:</strong> 한국형 웹 콘텐츠 접근성 지침을
+                  준수합니다.
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
+
+          {/* Preview */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="preview" title="미리보기" />
+
+            <Card variant="outlined">
+              <Button onClick={() => setIsBasicOpen(true)}>모달 열기</Button>
+
+              <Modal open={isBasicOpen} onClose={() => setIsBasicOpen(false)}>
+                <ModalTitle>기본 모달</ModalTitle>
+                <ModalBody>
+                  <p>모달 컨텐츠가 여기에 표시됩니다.</p>
+                </ModalBody>
+                <ModalFooter>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsBasicOpen(false)}
+                  >
+                    취소
+                  </Button>
+                  <Button onClick={() => setIsBasicOpen(false)}>확인</Button>
+                </ModalFooter>
+              </Modal>
+            </Card>
+
+            <Code variant="block" language="tsx" showLineNumbers={false}>
+              {`import { Modal, ModalTitle, ModalBody, ModalFooter, Button } from '@hanui/react';
 import { useState } from 'react';
 
 export default () => {
@@ -80,29 +156,21 @@ export default () => {
     </>
   );
 };`}
-            language="tsx"
-            showLineNumbers={false}
-          />
-        </div>
-      </PageSection>
+            </Code>
+          </Section>
 
-      {/* Examples */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="examples">
-            예제
-          </Heading>
-        </Stack>
+          {/* Usage */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="usage" title="사용법" />
 
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          {/* Sizes */}
-          <Stack gap="sm">
-            <Heading level="h3">Size</Heading>
-            <Body className="mb-4">
-              다섯 가지 크기를 지원합니다: sm, md, lg, xl, full
-            </Body>
-            <div>
-              <ComponentPreview>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="크기 옵션">
+                <Body className="leading-relaxed">
+                  다섯 가지 크기를 지원합니다: sm, md (기본), lg, xl, full
+                </Body>
+              </SectionHeading>
+
+              <Card variant="outlined">
                 <div className="flex flex-wrap gap-4">
                   <Button onClick={() => setIsSmallOpen(true)} size="sm">
                     Small
@@ -124,7 +192,6 @@ export default () => {
                   </Button>
                 </div>
 
-                {/* Small Modal */}
                 <Modal
                   open={isSmallOpen}
                   onClose={() => setIsSmallOpen(false)}
@@ -139,7 +206,6 @@ export default () => {
                   </ModalFooter>
                 </Modal>
 
-                {/* Medium Modal */}
                 <Modal
                   open={isMediumOpen}
                   onClose={() => setIsMediumOpen(false)}
@@ -154,7 +220,6 @@ export default () => {
                   </ModalFooter>
                 </Modal>
 
-                {/* Large Modal */}
                 <Modal
                   open={isLargeOpen}
                   onClose={() => setIsLargeOpen(false)}
@@ -170,7 +235,6 @@ export default () => {
                   </ModalFooter>
                 </Modal>
 
-                {/* XL Modal */}
                 <Modal
                   open={isXlOpen}
                   onClose={() => setIsXlOpen(false)}
@@ -188,7 +252,6 @@ export default () => {
                   </ModalFooter>
                 </Modal>
 
-                {/* Full Modal */}
                 <Modal
                   open={isFullOpen}
                   onClose={() => setIsFullOpen(false)}
@@ -205,10 +268,10 @@ export default () => {
                     <Button onClick={() => setIsFullOpen(false)}>닫기</Button>
                   </ModalFooter>
                 </Modal>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Modal open={isOpen} onClose={onClose} size="sm">
+              </Card>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Modal open={isOpen} onClose={onClose} size="sm">
   <ModalTitle>Small 모달</ModalTitle>
   <ModalBody>작은 크기의 모달입니다.</ModalBody>
   <ModalFooter>
@@ -223,19 +286,17 @@ export default () => {
     <Button onClick={onClose}>닫기</Button>
   </ModalFooter>
 </Modal>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
+              </Code>
+            </Subsection>
 
-          {/* With Close Button */}
-          <Stack gap="sm">
-            <Heading level="h3">닫기 버튼 포함</Heading>
-            <Body className="mb-4">상단에 닫기 버튼을 추가할 수 있습니다.</Body>
-            <div>
-              <ComponentPreview>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="닫기 버튼 포함">
+                <Body className="leading-relaxed">
+                  상단에 닫기 버튼을 추가할 수 있습니다:
+                </Body>
+              </SectionHeading>
+
+              <Card variant="outlined">
                 <Button onClick={() => setIsCloseButtonOpen(true)}>
                   닫기 버튼 있는 모달
                 </Button>
@@ -258,10 +319,10 @@ export default () => {
                     </Button>
                   </ModalFooter>
                 </Modal>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Modal open={isOpen} onClose={onClose}>
+              </Card>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Modal open={isOpen} onClose={onClose}>
   <ModalCloseButton />
   <ModalTitle>닫기 버튼이 있는 모달</ModalTitle>
   <ModalBody>
@@ -271,21 +332,17 @@ export default () => {
     <Button onClick={onClose}>확인</Button>
   </ModalFooter>
 </Modal>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
+              </Code>
+            </Subsection>
 
-          {/* Confirmation Modal */}
-          <Stack gap="sm">
-            <Heading level="h3">Confirmation Modal</Heading>
-            <Body className="mb-4">
-              사용자의 확인이 필요한 작업에 사용하는 패턴입니다.
-            </Body>
-            <div>
-              <ComponentPreview>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Confirmation Modal">
+                <Body className="leading-relaxed">
+                  사용자의 확인이 필요한 작업에 사용하는 패턴입니다:
+                </Body>
+              </SectionHeading>
+
+              <Card variant="outlined">
                 <Button
                   variant="danger"
                   onClick={() => setIsConfirmationOpen(true)}
@@ -314,19 +371,16 @@ export default () => {
                     </Button>
                     <Button
                       variant="danger"
-                      onClick={() => {
-                        // 삭제 로직
-                        setIsConfirmationOpen(false);
-                      }}
+                      onClick={() => setIsConfirmationOpen(false)}
                     >
                       삭제
                     </Button>
                   </ModalFooter>
                 </Modal>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Modal open={isOpen} onClose={onClose} size="sm">
+              </Card>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Modal open={isOpen} onClose={onClose} size="sm">
   <ModalTitle>계정을 삭제하시겠습니까?</ModalTitle>
   <ModalBody>
     <p>이 작업은 되돌릴 수 없습니다.</p>
@@ -340,19 +394,17 @@ export default () => {
     </Button>
   </ModalFooter>
 </Modal>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
+              </Code>
+            </Subsection>
 
-          {/* Form Modal */}
-          <Stack gap="sm">
-            <Heading level="h3">Form Modal</Heading>
-            <Body className="mb-4">폼을 포함하는 모달 예제입니다.</Body>
-            <div>
-              <ComponentPreview>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Form Modal">
+                <Body className="leading-relaxed">
+                  폼을 포함하는 모달 예제입니다:
+                </Body>
+              </SectionHeading>
+
+              <Card variant="outlined">
                 <Button onClick={() => setIsFormOpen(true)}>
                   새 프로젝트 만들기
                 </Button>
@@ -401,10 +453,10 @@ export default () => {
                     <Button onClick={() => setIsFormOpen(false)}>만들기</Button>
                   </ModalFooter>
                 </Modal>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Modal open={isOpen} onClose={onClose}>
+              </Card>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Modal open={isOpen} onClose={onClose}>
   <ModalTitle>새 프로젝트 만들기</ModalTitle>
   <ModalBody>
     <form className="space-y-4">
@@ -423,332 +475,255 @@ export default () => {
     <Button onClick={handleSubmit}>만들기</Button>
   </ModalFooter>
 </Modal>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </div>
-          </Stack>
-        </Stack>
-      </PageSection>
+              </Code>
+            </Subsection>
+          </Section>
 
-      {/* API Reference */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="api-reference">
-            API 레퍼런스
-          </Heading>
-        </Stack>
+          {/* Best Practices */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="best-practices"
+              title="Best Practices"
+            />
 
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          {/* Modal */}
-          <Stack gap="sm">
-            <Heading level="h3">Modal</Heading>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b border-krds-gray-20">
-                    <th className="text-left py-3 px-4 font-semibold w-1/5">
-                      Prop
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-2/5">
-                      Type
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-1/6">
-                      Default
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold w-1/4">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono">open</td>
-                    <td className="py-3 px-4 font-mono text-krds-gray-70">
-                      boolean
-                    </td>
-                    <td className="py-3 px-4 font-mono">-</td>
-                    <td className="py-3 px-4 text-krds-gray-70">
-                      모달 표시 여부
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono">onClose</td>
-                    <td className="py-3 px-4 font-mono text-krds-gray-70">
-                      () =&gt; void
-                    </td>
-                    <td className="py-3 px-4 font-mono">-</td>
-                    <td className="py-3 px-4 text-krds-gray-70">
-                      모달 닫기 핸들러
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono">size</td>
-                    <td className="py-3 px-4 font-mono text-krds-gray-70">
-                      &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; |
-                      &quot;xl&quot; | &quot;full&quot;
-                    </td>
-                    <td className="py-3 px-4 font-mono">&quot;md&quot;</td>
-                    <td className="py-3 px-4 text-krds-gray-70">모달 크기</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-3 px-4 font-mono">children</td>
-                    <td className="py-3 px-4 font-mono text-krds-gray-70">
-                      React.ReactNode
-                    </td>
-                    <td className="py-3 px-4 font-mono">-</td>
-                    <td className="py-3 px-4 text-krds-gray-70">모달 내용</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </Stack>
+            <Stack gap="content">
+              <DoCard
+                title="콘텐츠 최소화"
+                description="모달 내 상호작용과 콘텐츠를 최소화하여 사용자가 쉽게 작업을 완료할 수 있도록 하세요."
+              />
 
-          {/* Sub-components */}
-          <Stack gap="sm">
-            <Heading level="h3">Sub-components</Heading>
-            <Stack gap="sm">
-              <div>
-                <p className="font-mono mb-2">ModalTitle</p>
-                <Body size="sm">
-                  모달의 제목을 표시합니다. children을 받습니다.
-                </Body>
-              </div>
-              <div>
-                <p className="font-mono mb-2">ModalBody</p>
-                <Body size="sm">
-                  모달의 본문 내용을 표시합니다. children을 받습니다.
-                </Body>
-              </div>
-              <div>
-                <p className="font-mono mb-2">ModalFooter</p>
-                <Body size="sm">
-                  모달의 하단 액션 버튼 영역입니다. children을 받습니다.
-                </Body>
-              </div>
-              <div>
-                <p className="font-mono mb-2">ModalCloseButton</p>
-                <Body size="sm">
-                  오른쪽 상단에 표시되는 닫기 버튼입니다. props를 받지 않습니다.
-                </Body>
-              </div>
+              <DoCard
+                title="명확한 액션 버튼"
+                description="Footer의 버튼은 취소/확인, 삭제/취소 등 명확한 레이블을 사용하세요."
+              />
+
+              <DoCard
+                title="적절한 크기 선택"
+                description="간단한 확인은 sm, 폼은 md/lg, 복잡한 데이터는 xl/full을 사용하세요."
+              />
+
+              <DontCard
+                title="모달 안에 모달 중첩하지 않기"
+                description="모달 위에 모달을 띄우면 사용자가 혼란스러워합니다. 다른 UI 패턴을 고려하세요."
+              />
+
+              <DontCard
+                title="중요하지 않은 정보에 모달 사용하지 않기"
+                description="간단한 알림이나 도움말은 Toast, Tooltip 등 다른 컴포넌트를 사용하세요."
+              />
             </Stack>
-          </Stack>
-        </Stack>
-      </PageSection>
+          </Section>
 
-      {/* Accessibility */}
-      <PageSection>
-        <Heading
-          level="h2"
-          id="accessibility"
-          className="text-2xl font-semibold"
-        >
-          접근성
-        </Heading>
+          {/* Accessibility */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="accessibility" title="접근성" />
 
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          <Body>KRDS 및 WCAG 2.1 / KWCAG 2.2 접근성 기준을 준수합니다:</Body>
+            <Card variant="info">
+              <List variant="check">
+                <ListItem>
+                  <strong>Focus Management:</strong> 모달이 열리면 포커스가
+                  자동으로 모달로 이동하고, 닫히면 원래 요소로 복원됩니다.
+                </ListItem>
+                <ListItem>
+                  <strong>키보드 네비게이션:</strong> Tab/Shift+Tab으로 요소
+                  순환, ESC 키로 닫기가 지원됩니다.
+                </ListItem>
+                <ListItem>
+                  <strong>ARIA 속성:</strong> role="dialog", aria-modal="true"
+                  등 필요한 ARIA 속성이 자동으로 적용됩니다.
+                </ListItem>
+                <ListItem>
+                  <strong>스크린 리더:</strong> ModalTitle이 자동으로 모달의
+                  레이블로 연결됩니다.
+                </ListItem>
+                <ListItem>
+                  <strong>포커스 트랩:</strong> 모달이 열린 동안 포커스가 모달
+                  내부에만 유지됩니다.
+                </ListItem>
+              </List>
+            </Card>
 
-          <Stack gap="sm">
-            <Heading level="h3">1. Focus Management</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>모달 열림 시</strong>: 키보드 포커스가 모달 자체 또는 첫
-                번째 상호작용 요소로 자동 이동
-              </li>
-              <li>
-                <strong>모달 닫힘 시</strong>: 포커스가 모달을 연 버튼으로 자동
-                복원
-              </li>
-              <li>
-                <strong>포커스 트랩</strong>: 모달이 활성화된 동안 포커스는 모달
-                내부에만 유지
-              </li>
-            </ul>
-          </Stack>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="키보드 단축키" />
 
-          <Stack gap="sm">
-            <Heading level="h3">2. Close Button Positioning</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>KRDS 요구사항</strong>: 닫기 버튼은 모달의 마지막 요소로
-                마크업되어야 함
-              </li>
-              <li>
-                <strong>이유</strong>: 순차 네비게이션 시 사용자가 본문 콘텐츠를
-                놓치지 않도록 방지
-              </li>
-              <li>
-                <strong>구현</strong>: ModalCloseButton을 컴포넌트 트리의
-                마지막에 배치
-              </li>
-            </ul>
-          </Stack>
-
-          <Stack gap="sm">
-            <Heading level="h3">3. Keyboard Navigation</Heading>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-krds-gray-20">
-                    <th className="text-left py-2 px-4">키</th>
-                    <th className="text-left py-2 px-4">동작</th>
-                  </tr>
-                </thead>
-                <tbody className="text-krds-gray-90">
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">Tab</td>
-                    <td className="py-2 px-4">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>키</TableHead>
+                    <TableHead>동작</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">Tab</TableCell>
+                    <TableCell>
                       다음 상호작용 요소로 이동 (마지막에서 첫 번째로 순환)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">Shift+Tab</td>
-                    <td className="py-2 px-4">
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Shift+Tab</TableCell>
+                    <TableCell>
                       이전 상호작용 요소로 이동 (첫 번째에서 마지막으로 순환)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">ESC</td>
-                    <td className="py-2 px-4">
-                      닫기 버튼이 있는 경우 모달 닫기
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="py-2 px-4 font-mono">Arrow ↑/↓</td>
-                    <td className="py-2 px-4">본문 콘텐츠 세로 스크롤</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </Stack>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">ESC</TableCell>
+                    <TableCell>모달 닫기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Arrow ↑/↓</TableCell>
+                    <TableCell>본문 콘텐츠 세로 스크롤</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
+        </TabsContent>
 
-          <Stack gap="sm">
-            <Heading level="h3">4. ARIA Attributes</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>role=&quot;dialog&quot;</strong>: Headless UI Dialog가
-                자동 설정
-              </li>
-              <li>
-                <strong>aria-modal=&quot;true&quot;</strong>: 배경 윈도우
-                비활성화 표시
-              </li>
-              <li>
-                <strong>Dialog.Title</strong>: 모달 제목에 자동 ARIA 레이블링
-              </li>
-            </ul>
-          </Stack>
+        <TabsContent value="api">
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API Reference"
+            />
 
-          <Stack gap="sm">
-            <Heading level="h3">5. Usability Standards</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>콘텐츠 최소화</strong>: 모달 내 상호작용을 최소화
-              </li>
-              <li>
-                <strong>스크롤 시각화</strong>: 스크롤이 필요한 경우 스크롤바,
-                블러 효과 등으로 시각적 단서 제공
-              </li>
-              <li>
-                <strong>Footer 고정</strong>: 액션 버튼이 항상 보이도록 Footer
-                영구 표시
-              </li>
-              <li>
-                <strong>명확한 레이블</strong>: 헤더, 콘텐츠, 버튼 레이블이
-                목적과 액션을 명확히 전달
-              </li>
-            </ul>
-          </Stack>
-        </Stack>
-      </PageSection>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Modal Props" />
 
-      {/* Foundation Layer */}
-      <PageSection>
-        <Heading
-          level="h2"
-          id="foundation-layer"
-          className="text-2xl font-semibold"
-        >
-          기반 레이어
-        </Heading>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">open</TableCell>
+                    <TableCell className="text-krds-gray-70">boolean</TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>모달 표시 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">onClose</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      () =&gt; void
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>모달 닫기 핸들러</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">size</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos; |
+                      &apos;xl&apos; | &apos;full&apos;
+                    </TableCell>
+                    <TableCell className="font-mono">&apos;md&apos;</TableCell>
+                    <TableCell>모달 크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">children</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      React.ReactNode
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>모달 내용</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          <Body>
-            Modal 컴포넌트는 Headless UI Dialog를 기반으로 Foundation Layer
-            아키텍처를 통해 개발자가 직접 관리하지 않아도 KRDS 접근성 기준을
-            자동으로 충족합니다:
-          </Body>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Sub-components" />
 
-          <Stack gap="sm">
-            <Heading level="h3">1. Focus Management Automation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                모달 열림 시 자동 포커스 이동 (모달 또는 첫 상호작용 요소)
-              </li>
-              <li>모달 닫힘 시 자동 포커스 복원 (트리거 버튼)</li>
-              <li>
-                포커스 트랩 자동 활성화 (Tab/Shift+Tab 순환, 모달 외부 포커스
-                방지)
-              </li>
-            </ul>
-          </Stack>
+              <Stack gap="md">
+                <div>
+                  <Body className="font-mono font-medium mb-2">ModalTitle</Body>
+                  <Body size="sm" className="text-krds-gray-70">
+                    모달의 제목을 표시합니다. children을 받습니다.
+                  </Body>
+                </div>
+                <div>
+                  <Body className="font-mono font-medium mb-2">ModalBody</Body>
+                  <Body size="sm" className="text-krds-gray-70">
+                    모달의 본문 내용을 표시합니다. children을 받습니다.
+                  </Body>
+                </div>
+                <div>
+                  <Body className="font-mono font-medium mb-2">
+                    ModalFooter
+                  </Body>
+                  <Body size="sm" className="text-krds-gray-70">
+                    모달의 하단 액션 버튼 영역입니다. children을 받습니다.
+                  </Body>
+                </div>
+                <div>
+                  <Body className="font-mono font-medium mb-2">
+                    ModalCloseButton
+                  </Body>
+                  <Body size="sm" className="text-krds-gray-70">
+                    오른쪽 상단에 표시되는 닫기 버튼입니다. props를 받지
+                    않습니다.
+                  </Body>
+                </div>
+              </Stack>
+            </Subsection>
 
-          <Stack gap="sm">
-            <Heading level="h3">2. ARIA Automation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>role=&quot;dialog&quot;</strong>: Dialog 역할 자동 설정
-              </li>
-              <li>
-                <strong>aria-modal=&quot;true&quot;</strong>: 배경 윈도우
-                비활성화 자동 표시
-              </li>
-              <li>
-                <strong>Dialog.Title 연결</strong>: ModalTitle이 자동으로 모달
-                레이블로 연결
-              </li>
-            </ul>
-          </Stack>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Size 옵션" />
 
-          <Stack gap="sm">
-            <Heading level="h3">3. Keyboard Navigation</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>
-                <strong>ESC 키</strong>: onClose 콜백 자동 호출로 모달 닫기
-              </li>
-              <li>
-                <strong>Tab 순환</strong>: 첫 번째 ↔ 마지막 요소 자동 순환
-                네비게이션
-              </li>
-              <li>
-                <strong>포커스 가시성</strong>: focus:ring 스타일로 키보드
-                포커스 명확화
-              </li>
-            </ul>
-          </Stack>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Size</TableHead>
+                    <TableHead>최대 너비</TableHead>
+                    <TableHead>용도</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">sm</TableCell>
+                    <TableCell>max-w-md (28rem)</TableCell>
+                    <TableCell>간단한 확인, 경고</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">md</TableCell>
+                    <TableCell>max-w-lg (32rem)</TableCell>
+                    <TableCell>일반 모달 (기본값)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">lg</TableCell>
+                    <TableCell>max-w-2xl (42rem)</TableCell>
+                    <TableCell>폼, 상세 정보</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">xl</TableCell>
+                    <TableCell>max-w-4xl (56rem)</TableCell>
+                    <TableCell>복잡한 폼, 데이터</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">full</TableCell>
+                    <TableCell>max-w-full</TableCell>
+                    <TableCell>전체 화면, 대량 데이터</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
 
-          <Stack gap="sm">
-            <Heading level="h3">4. Background Interaction Prevention</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>Overlay로 배경 윈도우 시각적 분리</li>
-              <li>배경 스크롤 자동 방지</li>
-              <li>배경 클릭 시 onClose 콜백 호출 (선택적)</li>
-            </ul>
-          </Stack>
-
-          <Stack gap="sm">
-            <Heading level="h3">5. Smooth Animations</Heading>
-            <ul className="list-disc list-inside space-y-2 text-krds-gray-90">
-              <li>Transition 컴포넌트로 부드러운 열기/닫기 애니메이션</li>
-              <li>Overlay와 Panel의 독립적인 애니메이션 타이밍</li>
-              <li>prefers-reduced-motion 존중</li>
-            </ul>
-          </Stack>
-        </Stack>
-      </PageSection>
+      <PageNavigation
+        prev={{
+          title: 'Section Heading System',
+          href: '/layout/section-heading-system',
+        }}
+        next={{ title: 'Simple Grid', href: '/layout/simple-grid' }}
+      />
     </>
   );
 }
