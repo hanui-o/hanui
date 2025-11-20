@@ -1,96 +1,85 @@
-import React from 'react';
-import { Metadata } from 'next';
-import { PageHeader } from '@/components/content/PageHeader';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@hanui/react';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { SideNavigation } from '@hanui/react';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Side Navigation - HANUI',
-  description:
-    'KRDS 기반의 사이드 네비게이션 컴포넌트입니다. 최대 4단계 깊이의 계층 구조를 지원하며, 확장 가능한 메뉴와 활성 상태 표시를 제공합니다.',
-};
+import { SideNavigation } from '@hanui/react';
+import {
+  Section,
+  Subsection,
+  SectionHeading,
+  Body,
+  Card,
+  Code,
+  List,
+  ListItem,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  PageNavigation,
+  DoCard,
+} from '@/components/hanui';
 
 export default function SideNavigationPage() {
   return (
-    <div className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-5xl">
-      <PageHeader
-        title="Side Navigation"
-        description="KRDS 기반의 사이드 네비게이션 컴포넌트입니다. 최대 4단계 깊이의 계층 구조를 지원하며, 확장 가능한 메뉴와 활성 상태 표시를 제공합니다."
+    <Section>
+      <SectionHeading
+        level="h1"
+        id="sidenavigation"
+        title="SideNavigation"
+        description="최대 4단계 깊이의 계층 구조를 지원하는 사이드 네비게이션 컴포넌트입니다. 확장 가능한 메뉴와 활성 상태 표시를 제공합니다."
       />
 
-      <Tabs defaultValue="overview" className="mt-8">
+      <Tabs defaultValue="overview">
         <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="api">API</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="overview" className="space-y-8">
+        <TabsContent value="overview">
           {/* Installation */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">설치</h2>
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">CLI 사용 (권장)</h3>
-                <CodeBlock
-                  code="npx hanui add side-navigation"
-                  language="bash"
-                />
-                <p className="text-gray-600 mt-2">
-                  컴포넌트 파일과 SCSS 스타일이 자동으로 설치됩니다.
-                </p>
-              </div>
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="installation" title="설치" />
+            <Body>
+              CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
+            </Body>
+            <Card>
+              <Code language="bash">npx @hanui/cli add sidenavigation</Code>
+            </Card>
+          </Subsection>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2">수동 설치</h3>
-                <CodeBlock
-                  code={`// 1. 패키지 설치
-pnpm add sass
+          {/* What is it */}
+          <Subsection level="h2">
+            <SectionHeading
+              level="h2"
+              id="what-is-it"
+              title="SideNavigation이란?"
+            />
+            <Body>
+              SideNavigation은 웹사이트나 애플리케이션의 측면에 배치되어
+              콘텐츠의 계층 구조를 보여주는 네비게이션 컴포넌트입니다.
+            </Body>
+            <Body>
+              정부 기관 웹사이트에서 많이 사용하는 LNB(Left Navigation Bar)
+              패턴으로, 복잡한 정보 구조를 효과적으로 탐색할 수 있도록 돕습니다.
+            </Body>
+          </Subsection>
 
-// 2. 컴포넌트 파일 복사
-// - components/hanui/side-navigation.tsx
-// - components/hanui/side-navigation.module.scss`}
-                  language="bash"
-                />
-              </div>
-            </div>
-          </section>
+          {/* Preview */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="preview" title="미리보기" />
 
-          {/* Basic Usage */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">기본 사용법</h2>
-            <div className="space-y-4">
-              <CodeBlock
-                code={`import { SideNavigation } from '@hanui/react';
-
-export default function MyPage() {
-  return (
-    <SideNavigation
-      title="주요 서비스"
-      sections={[
-        {
-          label: '건강보험',
-          children: [
-            { label: '보험료 조회', href: '/insurance/fee', active: true },
-            { label: '자격 득실 확인', href: '/insurance/status' }
-          ]
-        },
-        {
-          label: '국민연금',
-          children: [
-            { label: '연금 조회', href: '/pension/check' },
-            { label: '납부 내역', href: '/pension/payment' }
-          ]
-        }
-      ]}
-    />
-  );
-}`}
-                language="tsx"
-              />
-
-              <div className="border rounded-lg p-6 bg-gray-50">
-                <h3 className="text-lg font-semibold mb-4">미리보기</h3>
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="basic" title="기본 사용" />
+              <Body>
+                2단계 구조의 기본적인 사이드 네비게이션입니다. 활성 페이지가
+                포함된 섹션은 자동으로 확장됩니다.
+              </Body>
+              <Card>
                 <div className="max-w-xs">
                   <SideNavigation
                     title="주요 서비스"
@@ -116,18 +105,78 @@ export default function MyPage() {
                     ]}
                   />
                 </div>
-              </div>
-            </div>
-          </section>
+              </Card>
+              <Card>
+                <Code language="tsx">
+                  {`<SideNavigation
+  title="주요 서비스"
+  sections={[
+    {
+      label: '건강보험',
+      children: [
+        { label: '보험료 조회', href: '/insurance/fee', active: true },
+        { label: '자격 득실 확인', href: '/insurance/status' }
+      ]
+    },
+    {
+      label: '국민연금',
+      children: [
+        { label: '연금 조회', href: '/pension/check' },
+        { label: '납부 내역', href: '/pension/payment' }
+      ]
+    }
+  ]}
+/>`}
+                </Code>
+              </Card>
+            </Subsection>
 
-          {/* 3-Depth Navigation */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">3단계 네비게이션</h2>
-            <p className="text-gray-600 mb-4">
-              하위 링크에 children을 추가하여 3단계 구조를 만들 수 있습니다.
-            </p>
-            <CodeBlock
-              code={`<SideNavigation
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="3-depth"
+                title="3단계 네비게이션"
+              />
+              <Body>
+                하위 링크에 children을 추가하여 3단계 구조를 만들 수 있습니다.
+              </Body>
+              <Card>
+                <div className="max-w-xs">
+                  <SideNavigation
+                    title="행정 서비스"
+                    sections={[
+                      {
+                        label: '민원 서비스',
+                        children: [
+                          {
+                            label: '증명서 발급',
+                            href: '#certificate',
+                            children: [
+                              {
+                                label: '주민등록등본',
+                                href: '#resident',
+                                active: true,
+                              },
+                              {
+                                label: '가족관계증명서',
+                                href: '#family',
+                              },
+                              { label: '병적증명서', href: '#military' },
+                            ],
+                          },
+                          {
+                            label: '신청/접수',
+                            href: '#application',
+                          },
+                        ],
+                      },
+                    ]}
+                  />
+                </div>
+              </Card>
+              <Card>
+                <Code language="tsx">
+                  {`<SideNavigation
   title="행정 서비스"
   sections={[
     {
@@ -150,54 +199,32 @@ export default function MyPage() {
     }
   ]}
 />`}
-              language="tsx"
-            />
+                </Code>
+              </Card>
+            </Subsection>
 
-            <div className="border rounded-lg p-6 bg-gray-50 mt-4">
-              <h3 className="text-lg font-semibold mb-4">미리보기</h3>
-              <div className="max-w-xs">
-                <SideNavigation
-                  title="행정 서비스"
-                  sections={[
-                    {
-                      label: '민원 서비스',
-                      children: [
-                        {
-                          label: '증명서 발급',
-                          href: '#certificate',
-                          children: [
-                            {
-                              label: '주민등록등본',
-                              href: '#resident',
-                              active: true,
-                            },
-                            {
-                              label: '가족관계증명서',
-                              href: '#family',
-                            },
-                            { label: '병적증명서', href: '#military' },
-                          ],
-                        },
-                        {
-                          label: '신청/접수',
-                          href: '#application',
-                        },
-                      ],
-                    },
-                  ]}
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Without Children */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">단순 링크 섹션</h2>
-            <p className="text-gray-600 mb-4">
-              children이 없는 섹션은 단순 링크로 표시됩니다.
-            </p>
-            <CodeBlock
-              code={`<SideNavigation
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="simple-links"
+                title="단순 링크 섹션"
+              />
+              <Body>children이 없는 섹션은 단순 링크로 표시됩니다.</Body>
+              <Card>
+                <div className="max-w-xs">
+                  <SideNavigation
+                    title="퀵 링크"
+                    sections={[
+                      { label: '홈으로', href: '#home', active: true },
+                      { label: '공지사항', href: '#notice' },
+                      { label: '문의하기', href: '#contact' },
+                    ]}
+                  />
+                </div>
+              </Card>
+              <Card>
+                <Code language="tsx">
+                  {`<SideNavigation
   title="퀵 링크"
   sections={[
     { label: '홈으로', href: '/', active: true },
@@ -205,389 +232,317 @@ export default function MyPage() {
     { label: '문의하기', href: '/contact' }
   ]}
 />`}
-              language="tsx"
-            />
+                </Code>
+              </Card>
+            </Subsection>
+          </Subsection>
 
-            <div className="border rounded-lg p-6 bg-gray-50 mt-4">
-              <h3 className="text-lg font-semibold mb-4">미리보기</h3>
-              <div className="max-w-xs">
-                <SideNavigation
-                  title="퀵 링크"
-                  sections={[
-                    { label: '홈으로', href: '#home', active: true },
-                    { label: '공지사항', href: '#notice' },
-                    { label: '문의하기', href: '#contact' },
-                  ]}
-                />
-              </div>
-            </div>
-          </section>
+          {/* Usage */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Body>
+              SideNavigation은 일반적으로 페이지 레이아웃의 왼쪽 영역에
+              배치합니다.
+            </Body>
+            <Card>
+              <Code language="tsx">
+                {`import { SideNavigation } from '@hanui/react';
 
-          {/* Technical Background */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">기술적 배경</h2>
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">
-                  CSS Module 방식 선택 이유
-                </h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-700">
-                  <li>
-                    <strong>복잡한 계층 구조:</strong> 4단계 깊이의 중첩된 메뉴
-                    구조
-                  </li>
-                  <li>
-                    <strong>Grid 애니메이션:</strong> grid-template-rows를
-                    활용한 부드러운 확장/축소
-                  </li>
-                  <li>
-                    <strong>토글 아이콘:</strong> ::after 가상 요소로 회전
-                    애니메이션
-                  </li>
-                  <li>
-                    <strong>KRDS 원본 유지:</strong> 공식 SCSS 스타일과 동일한
-                    클래스명 (.lnb-*)
-                  </li>
-                  <li>
-                    <strong>Self-contained:</strong> 외부 mixin 의존성 없이
-                    독립적 동작
-                  </li>
-                </ul>
-              </div>
+export default function MyPage() {
+  return (
+    <div className="flex">
+      {/* 왼쪽: 사이드 네비게이션 */}
+      <aside className="w-64 flex-shrink-0">
+        <SideNavigation
+          title="주요 서비스"
+          sections={[
+            {
+              label: '건강보험',
+              children: [
+                { label: '보험료 조회', href: '/insurance/fee', active: true },
+                { label: '자격 득실 확인', href: '/insurance/status' }
+              ]
+            }
+          ]}
+        />
+      </aside>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2">파일 구조</h3>
-                <CodeBlock
-                  code={`components/hanui/
-├── side-navigation.tsx           # React 컴포넌트 (Props API)
-└── side-navigation.module.scss   # SCSS 스타일 (self-contained)`}
-                  language="plaintext"
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Accessibility */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">접근성</h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>
-                <strong>ARIA Roles:</strong> role="menubar", role="menu",
-                role="menuitem"
-              </li>
-              <li>
-                <strong>ARIA States:</strong> aria-expanded, aria-controls,
-                aria-haspopup
-              </li>
-              <li>
-                <strong>현재 페이지 표시:</strong> aria-current="page" 속성
-              </li>
-              <li>
-                <strong>키보드 네비게이션:</strong> Enter와 Space 키로 토글 가능
-              </li>
-              <li>
-                <strong>포커스 관리:</strong> :focus 상태에 outline 표시
-              </li>
-              <li>
-                <strong>고대비 모드:</strong> prefers-contrast: high 지원
-              </li>
-            </ul>
-          </section>
-
-          {/* KRDS Compliance */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">KRDS 준수사항</h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>
-                최대 4단계 깊이 지원 (1st: 제목, 2nd: 섹션, 3rd: 링크, 4th:
-                서브링크)
-              </li>
-              <li>확장 가능한 섹션은 토글 버튼 사용</li>
-              <li>활성 페이지는 배경색과 테두리로 강조</li>
-              <li>KRDS 디자인 토큰 사용 (--krds-spacing-*, --krds-color-*)</li>
-              <li>부드러운 애니메이션 (0.2s ~ 0.3s transition)</li>
-              <li>다크 모드 지원 (prefers-color-scheme: dark)</li>
-            </ul>
-          </section>
+      {/* 오른쪽: 메인 콘텐츠 */}
+      <main className="flex-1">
+        {/* 콘텐츠 */}
+      </main>
+    </div>
+  );
+}`}
+              </Code>
+            </Card>
+          </Subsection>
 
           {/* Best Practices */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">권장사항</h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>
-                <strong>활성 상태 관리:</strong> active 속성으로 현재 페이지
-                자동 표시
-              </li>
-              <li>
-                <strong>자동 확장:</strong> 활성 페이지가 포함된 섹션은 자동으로
-                확장됨
-              </li>
-              <li>
-                <strong>href 속성:</strong> 모든 링크에 유효한 href 제공
-              </li>
-              <li>
-                <strong>라벨 명확성:</strong> 사용자가 이해하기 쉬운 라벨 사용
-              </li>
-              <li>
-                <strong>깊이 제한:</strong> 4단계를 넘지 않도록 구조 설계
-              </li>
-            </ul>
-          </section>
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="when-to-use"
+                title="언제 사용하나요?"
+              />
+              <DoCard>
+                <List variant="check">
+                  <ListItem>
+                    복잡한 콘텐츠 계층 구조를 가진 웹사이트 (정부 기관, 문서
+                    사이트 등)
+                  </ListItem>
+                  <ListItem>
+                    사용자가 현재 위치를 파악하고 관련 페이지로 쉽게 이동해야
+                    하는 경우
+                  </ListItem>
+                  <ListItem>
+                    3-4단계의 깊은 콘텐츠 구조를 효과적으로 보여줘야 하는 경우
+                  </ListItem>
+                  <ListItem>
+                    페이지 새로고침 없이 클라이언트 사이드 네비게이션이 필요한
+                    경우
+                  </ListItem>
+                </List>
+              </DoCard>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="implementation-tips"
+                title="구현 팁"
+              />
+              <List variant="disc">
+                <ListItem>
+                  <strong>활성 상태 자동 관리:</strong> active 속성을 설정하면
+                  해당 항목이 포함된 섹션이 자동으로 확장됩니다
+                </ListItem>
+                <ListItem>
+                  <strong>깊이 제한:</strong> 최대 4단계까지 지원하지만,
+                  실제로는 3단계 이내로 유지하는 것이 좋습니다
+                </ListItem>
+                <ListItem>
+                  <strong>명확한 라벨:</strong> 각 링크의 라벨은 사용자가
+                  이해하기 쉬운 명확한 텍스트를 사용하세요
+                </ListItem>
+                <ListItem>
+                  <strong>유효한 href:</strong> 모든 링크에는 유효한 href 속성을
+                  제공해야 합니다
+                </ListItem>
+                <ListItem>
+                  <strong>반응형 고려:</strong> 모바일 화면에서는 토글 버튼이나
+                  드로어로 대체하는 것을 고려하세요
+                </ListItem>
+              </List>
+            </Subsection>
+          </Subsection>
+
+          {/* Accessibility */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Body>
+              이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다.
+            </Body>
+
+            <List variant="disc">
+              <ListItem>
+                <strong>ARIA Roles:</strong> role="menubar", role="menu",
+                role="menuitem" 속성을 사용하여 네비게이션 구조를 명확히 합니다
+              </ListItem>
+              <ListItem>
+                <strong>ARIA States:</strong> aria-expanded, aria-controls,
+                aria-haspopup 속성으로 확장 가능한 섹션의 상태를 전달합니다
+              </ListItem>
+              <ListItem>
+                <strong>현재 페이지 표시:</strong> aria-current="page" 속성으로
+                스크린 리더 사용자에게 현재 위치를 알립니다
+              </ListItem>
+              <ListItem>
+                <strong>키보드 내비게이션:</strong> Enter와 Space 키로 섹션을
+                토글할 수 있습니다
+              </ListItem>
+              <ListItem>
+                <strong>포커스 관리:</strong> 명확한 포커스 아웃라인을 제공하여
+                키보드 사용자가 현재 위치를 파악할 수 있습니다
+              </ListItem>
+              <ListItem>
+                <strong>고대비 모드:</strong> prefers-contrast: high 미디어
+                쿼리를 지원합니다
+              </ListItem>
+            </List>
+          </Subsection>
+
+          {/* Foundation Layer */}
+          <Subsection level="h2">
+            <SectionHeading
+              level="h2"
+              id="foundation-layer"
+              title="Foundation Layer"
+            />
+            <Body>
+              SideNavigation 컴포넌트는 다음 기능들을 자동으로 처리합니다:
+            </Body>
+
+            <Card variant="info">
+              <List variant="check">
+                <ListItem>
+                  <strong>자동 확장:</strong> 활성 페이지가 포함된 섹션은
+                  자동으로 확장되어 사용자가 현재 위치를 쉽게 파악할 수 있습니다
+                </ListItem>
+                <ListItem>
+                  <strong>부드러운 애니메이션:</strong> Grid 애니메이션을
+                  활용하여 섹션 확장/축소 시 부드러운 전환 효과를 제공합니다
+                </ListItem>
+                <ListItem>
+                  <strong>상태 관리:</strong> useState를 사용하여 확장된 섹션의
+                  상태를 자동으로 관리합니다
+                </ListItem>
+                <ListItem>
+                  <strong>다크 모드:</strong> prefers-color-scheme: dark 미디어
+                  쿼리를 통해 다크 모드를 자동으로 지원합니다
+                </ListItem>
+                <ListItem>
+                  <strong>KRDS 디자인 토큰:</strong> KRDS 디자인 시스템의
+                  spacing, color 토큰을 사용하여 일관된 디자인을 유지합니다
+                </ListItem>
+              </List>
+            </Card>
+          </Subsection>
+
+          {/* Technical Background */}
+          <Subsection level="h2">
+            <SectionHeading
+              level="h2"
+              id="technical-background"
+              title="기술적 배경"
+            />
+
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="css-module"
+                title="CSS Module 방식 선택"
+              />
+              <Body>
+                이 컴포넌트는 CSS Module (SCSS) 방식을 사용합니다. 그 이유는:
+              </Body>
+              <List variant="disc">
+                <ListItem>
+                  <strong>복잡한 계층 구조:</strong> 4단계 깊이의 중첩된 메뉴
+                  구조를 효과적으로 스타일링하기 위해
+                </ListItem>
+                <ListItem>
+                  <strong>Grid 애니메이션:</strong> grid-template-rows를 활용한
+                  부드러운 확장/축소 애니메이션 구현
+                </ListItem>
+                <ListItem>
+                  <strong>토글 아이콘:</strong> ::after 가상 요소를 사용한 회전
+                  애니메이션
+                </ListItem>
+                <ListItem>
+                  <strong>KRDS 원본 유지:</strong> 공식 SCSS 스타일과 동일한
+                  클래스명 (.lnb-*) 사용
+                </ListItem>
+                <ListItem>
+                  <strong>Self-contained:</strong> 외부 mixin 의존성 없이
+                  독립적으로 동작
+                </ListItem>
+              </List>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="file-structure"
+                title="파일 구조"
+              />
+              <Card>
+                <Code language="plaintext">
+                  {`components/hanui/
+├── side-navigation.tsx           # React 컴포넌트 (Props API)
+└── side-navigation.module.scss   # SCSS 스타일 (self-contained)`}
+                </Code>
+              </Card>
+            </Subsection>
+          </Subsection>
         </TabsContent>
 
-        <TabsContent value="api" className="space-y-8">
-          {/* Props Table */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">Props</h2>
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Prop
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Type
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Default
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      title *
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      string
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">
-                      네비게이션 제목 (1단계)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      sections *
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      SideNavSection[]
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">
-                      네비게이션 섹션 배열 (2단계)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      className
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      string
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      &apos;&apos;
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">추가 CSS 클래스</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+        <TabsContent value="api">
+          {/* API Reference */}
+          <Subsection level="h2">
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API Reference"
+            />
 
-          {/* SideNavSection */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">SideNavSection</h2>
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Prop
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Type
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Default
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      label *
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      string
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">섹션 라벨</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      href
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      string
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">
-                      섹션 URL (children이 없는 경우 필수)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      active
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      boolean
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">활성 상태</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      children
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      SideNavLink[]
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">
-                      하위 링크 배열 (3단계)
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="props" title="Props" />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>title</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>네비게이션 제목 (1단계, 필수)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>sections</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>SideNavSection[]</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>네비게이션 섹션 배열 (2단계, 필수)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&apos;&apos;</Code>
+                    </TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-          {/* SideNavLink */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">SideNavLink</h2>
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Prop
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Type
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Default
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      label *
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      string
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">링크 라벨</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      href *
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      string
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">링크 URL</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      active
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      boolean
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">활성 상태</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                      children
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      SideNavLink[]
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                      -
-                    </td>
-                    <td className="px-6 py-4 text-gray-500">
-                      하위 링크 배열 (4단계)
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* Type Definitions */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">타입 정의</h2>
-            <CodeBlock
-              code={`export interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
-  /**
-   * 네비게이션 제목 (1st depth)
-   */
-  title: string;
-
-  /**
-   * 네비게이션 섹션 (2nd depth)
-   */
-  sections: SideNavSection[];
-
-  /**
-   * 추가 CSS 클래스
-   */
-  className?: string;
-}
-
-export interface SideNavSection {
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="sidenavSection"
+                title="SideNavSection Type"
+              />
+              <Card>
+                <Code language="tsx">
+                  {`export interface SideNavSection {
   /**
    * 섹션 라벨
    */
   label: string;
 
   /**
-   * 섹션 URL (optional, for toggle buttons)
+   * 섹션 URL (children이 없는 경우 필수)
    */
   href?: string;
 
@@ -597,12 +552,23 @@ export interface SideNavSection {
   active?: boolean;
 
   /**
-   * 하위 링크 또는 중첩 섹션
+   * 하위 링크 배열 (3단계)
    */
   children?: SideNavLink[];
-}
+}`}
+                </Code>
+              </Card>
+            </Subsection>
 
-export interface SideNavLink {
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="sidenavlink"
+                title="SideNavLink Type"
+              />
+              <Card>
+                <Code language="tsx">
+                  {`export interface SideNavLink {
   /**
    * 링크 라벨
    */
@@ -619,20 +585,20 @@ export interface SideNavLink {
   active?: boolean;
 
   /**
-   * 하위 링크 (3rd depth)
+   * 하위 링크 (4단계)
    */
   children?: SideNavLink[];
 }`}
-              language="typescript"
-            />
-          </section>
+                </Code>
+              </Card>
+            </Subsection>
 
-          {/* Examples */}
-          <section>
-            <h2 className="text-2xl font-bold mb-4">고급 사용 예제</h2>
-            <CodeBlock
-              code={`// 최대 4단계 깊이 활용
-<SideNavigation
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="example" title="고급 사용 예제" />
+              <Body>최대 4단계 깊이를 활용한 복잡한 네비게이션 예제:</Body>
+              <Card>
+                <Code language="tsx">
+                  {`<SideNavigation
   title="복지 서비스"
   sections={[
     {
@@ -674,11 +640,23 @@ export interface SideNavLink {
     }
   ]}
 />`}
-              language="tsx"
-            />
-          </section>
+                </Code>
+              </Card>
+            </Subsection>
+          </Subsection>
         </TabsContent>
       </Tabs>
-    </div>
+
+      <PageNavigation
+        previous={{
+          title: 'SkipLink',
+          href: '/components/navigation/skiplink',
+        }}
+        next={{
+          title: 'MainMenu',
+          href: '/components/navigation/mainmenu',
+        }}
+      />
+    </Section>
   );
 }
