@@ -20,6 +20,9 @@ import {
   CardDescription,
   CardBody,
   CardFooter,
+  DoCard,
+  DontCard,
+  PageNavigation,
 } from '@/components/hanui';
 
 export default function CardPage() {
@@ -457,39 +460,33 @@ export default function Example() {
         <SectionHeading level="h2" id="best-practices" title="Best Practices" />
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="언제 사용하나요?">
-            <Body className="leading-relaxed">
-              다음과 같은 경우에 Card를 사용하세요:
-            </Body>
-          </SectionHeading>
-
-          <List variant="check">
-            <ListItem>관련 정보를 시각적으로 그룹화할 때</ListItem>
-            <ListItem>여러 콘텐츠 항목을 구별해서 표시할 때</ListItem>
-            <ListItem>클릭 가능한 콘텐츠 블록이 필요할 때</ListItem>
-            <ListItem>계층적 정보를 구조화할 때</ListItem>
-          </List>
+          <SectionHeading level="h3" title="언제 사용하나요?" />
+          <DoCard title="Card를 사용하기 적합한 경우">
+            <List variant="check">
+              <ListItem>관련 정보를 시각적으로 그룹화할 때</ListItem>
+              <ListItem>여러 콘텐츠 항목을 구별해서 표시할 때</ListItem>
+              <ListItem>클릭 가능한 콘텐츠 블록이 필요할 때</ListItem>
+              <ListItem>계층적 정보를 구조화할 때</ListItem>
+            </List>
+          </DoCard>
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?">
-            <Body className="leading-relaxed">
-              다음과 같은 경우에는 Card를 사용하지 마세요:
-            </Body>
-          </SectionHeading>
-
-          <List variant="dash">
-            <ListItem>
-              단일 텍스트 블록만 표시할 때 (<Code>Body</Code> 컴포넌트 사용)
-            </ListItem>
-            <ListItem>
-              복잡한 폼을 담을 때 (<Code>Form</Code> 컴포넌트 사용)
-            </ListItem>
-            <ListItem>
-              데이터 테이블을 표시할 때 (<Code>Table</Code> 컴포넌트 사용)
-            </ListItem>
-            <ListItem>너무 많은 카드를 한 화면에 배치할 때</ListItem>
-          </List>
+          <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+          <DontCard title="Card 사용을 피해야 하는 경우">
+            <List variant="dash">
+              <ListItem>
+                단일 텍스트 블록만 표시할 때 (<Code>Body</Code> 컴포넌트 사용)
+              </ListItem>
+              <ListItem>
+                복잡한 폼을 담을 때 (<Code>Form</Code> 컴포넌트 사용)
+              </ListItem>
+              <ListItem>
+                데이터 테이블을 표시할 때 (<Code>Table</Code> 컴포넌트 사용)
+              </ListItem>
+              <ListItem>너무 많은 카드를 한 화면에 배치할 때</ListItem>
+            </List>
+          </DontCard>
         </Subsection>
       </Section>
 
@@ -642,6 +639,11 @@ export default function Example() {
           </ListItem>
         </List>
       </Section>
+
+      <PageNavigation
+        prev={{ title: 'Box', href: '/layout/box' }}
+        next={{ title: 'Code', href: '/layout/code' }}
+      />
     </>
   );
 }
