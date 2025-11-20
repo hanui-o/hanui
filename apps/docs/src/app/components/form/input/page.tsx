@@ -1,20 +1,32 @@
 'use client';
 
-import { Input, Body } from '@hanui/react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { GuidelineSection } from '@/components/content/GuidelineSection';
-import { PageHeader } from '@/components/content/PageHeader';
-import { PageSection } from '@/components/content/PageSection';
-import { SectionHeading } from '@/components/hanui/section-header';
 import {
+  Input as InputComponent,
+  Section,
+  SectionHeading,
+  Subsection,
+  Body,
+  Stack,
+  Card,
+  Code,
+  List,
+  ListItem,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@/components/hanui/tabs';
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  PageNavigation,
+  DoCard,
+  DontCard,
+} from '@/components/hanui';
 
-// Example icons using SVG
+// Example icons
 const SearchIcon = () => (
   <svg
     width="16"
@@ -63,256 +75,158 @@ const CheckIcon = () => (
 export default function InputPage() {
   return (
     <>
-      <PageHeader
+      <SectionHeading
+        level="h1"
         title="Input"
-        description="다양한 스타일과 크기를 지원하는 입력 필드 컴포넌트"
+        description="다양한 스타일과 크기를 지원하는 입력 필드 컴포넌트입니다."
       />
 
-      <PageSection>
-        <Tabs defaultValue="overview">
-          <TabsList>
-            <TabsTrigger value="overview">개요</TabsTrigger>
-            <TabsTrigger value="api">API</TabsTrigger>
-          </TabsList>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API</TabsTrigger>
+        </TabsList>
 
-          {/* 개요 탭 */}
-          <TabsContent value="overview">
-            <PageSection>
-              <ComponentPreview>
-                <div className="flex flex-col gap-4 max-w-md">
-                  <Input placeholder="기본 입력 필드" />
-                  <Input leftAddon={<SearchIcon />} placeholder="검색어 입력" />
-                </div>
-              </ComponentPreview>
-            </PageSection>
-
-            {/* Overview */}
-            <SectionHeading level="h2" id="overview" title="개요">
+        <TabsContent value="overview">
+          {/* Installation */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
-                입력 필드는 사용자로부터 정보를 받는 가장 기본적인 인터랙션
-                요소입니다. HANUI Input은{' '}
-                <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여
-                레이블 연결, 에러 처리, 키보드 네비게이션 등 웹 접근성을
-                보장합니다.
+                다음 명령어로 Input 컴포넌트를 설치합니다:
               </Body>
             </SectionHeading>
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              npx @hanui/cli add input
+            </Code>
+          </Section>
 
+          {/* What is it */}
+          <Section level="h2">
             <SectionHeading
               level="h2"
-              id="installation"
-              title="설치"
-              description="CLI 명령어로 Input 컴포넌트를 프로젝트에 추가합니다."
+              id="what-is-it"
+              title="무엇인가요?"
+              description="Input은 사용자로부터 정보를 받는 가장 기본적인 인터랙션 요소입니다. KRDS(한국형 웹 콘텐츠 접근성 지침)를 준수하여 레이블 연결, 에러 처리, 키보드 네비게이션 등 웹 접근성을 보장합니다."
             />
-            <CodeBlock
-              code={`npx @hanui/cli add input`}
-              language="bash"
-              showLineNumbers={false}
-            />
-            <Body size="sm" className="text-krds-gray-70">
-              의존성 설치, 사용 방법, 커스터마이징 등 자세한 내용은{' '}
-              <a
-                href="/docs/quick-start"
-                className="text-gray-900 hover:text-gray-700 underline"
-              >
-                Quick Start 가이드
-              </a>
-              를 참고하세요.
-            </Body>
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>Props-based API:</strong> size와 variant prop으로
+                  일관된 스타일을 적용합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>Error State:</strong> error prop과 aria-invalid로 에러
+                  상태를 표시합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>Addon Support:</strong> leftAddon과 rightAddon으로
+                  아이콘을 추가할 수 있습니다.
+                </ListItem>
+                <ListItem>
+                  <strong>HTML5 Types:</strong> email, tel, number 등 다양한
+                  input type을 지원합니다.
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
 
-            <SectionHeading level="h2" id="usage" title="사용법" />
-            <CodeBlock
-              code={`import { Input } from '@/components/hanui/input'
+          {/* Preview */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Card>
+              <Stack gap="md" className="max-w-md">
+                <InputComponent placeholder="기본 입력 필드" />
+                <InputComponent
+                  leftAddon={<SearchIcon />}
+                  placeholder="검색어 입력"
+                />
+              </Stack>
+            </Card>
+            <Code variant="block" language="tsx">
+              {`<Input placeholder="기본 입력 필드" />
+<Input leftAddon={<SearchIcon />} placeholder="검색어 입력" />`}
+            </Code>
+          </Section>
 
-<Input placeholder="내용을 입력하세요" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-
-            {/* 가이드라인 섹션 */}
-            <SectionHeading
-              level="h2"
-              id="guidelines"
-              title="사용 가이드라인"
-            />
-
-            {/* When to use */}
-            <SectionHeading level="h3" title="언제 사용해야 하나요?" />
-            <div className="grid grid-cols-1 gap-4">
-              <GuidelineSection
-                type="do"
-                title="입력 필드를 사용하기 적합한 경우"
-              >
-                <ul className="list-disc list-inside space-y-2">
-                  <li>이름, 주소, 이메일 등 자유 형식의 텍스트 수집</li>
-                  <li>검색어를 입력받을 때</li>
-                  <li>비밀번호, 전화번호 등 특수 형식의 데이터</li>
-                  <li>숫자나 날짜 등 구조화된 데이터 입력</li>
-                </ul>
-              </GuidelineSection>
-
-              <GuidelineSection
-                type="dont"
-                title="입력 필드를 사용하지 말아야 하는 경우"
-              >
-                <ul className="list-disc list-inside space-y-2">
-                  <li>선택지가 5개 이하로 제한적인 경우 → Radio 사용</li>
-                  <li>
-                    여러 옵션 중 선택하는 경우 → Select 또는 Checkbox 사용
-                  </li>
-                  <li>Yes/No 이진 선택인 경우 → Checkbox 또는 Toggle 사용</li>
-                </ul>
-              </GuidelineSection>
-            </div>
-
-            {/* Label Guidelines */}
-            <SectionHeading level="h3" title="레이블 가이드" />
-            <GuidelineSection type="do" title="레이블은 항상 제공">
-              <p className="mb-3">
-                모든 입력 필드에는 명확한 레이블이 필요합니다. 시각적으로 숨겨진
-                경우에도 스크린 리더를 위한 레이블은 반드시 제공해야 합니다.
-              </p>
-              <ComponentPreview>
-                <div className="max-w-md space-y-2">
-                  <label htmlFor="username" className="block font-medium">
-                    사용자명
-                  </label>
-                  <Input id="username" placeholder="홍길동" />
-                </div>
-              </ComponentPreview>
-            </GuidelineSection>
-
-            <GuidelineSection
-              type="dont"
-              title="플레이스홀더만 사용하지 마세요"
-            >
-              <p>
-                플레이스홀더는 입력 예시를 보여주는 보조 수단일 뿐, 레이블을
-                대체할 수 없습니다. 입력을 시작하면 플레이스홀더가 사라지므로
-                별도 레이블이 필요합니다.
-              </p>
-            </GuidelineSection>
-
-            {/* Input Type */}
-            <SectionHeading level="h3" title="적절한 Input Type 사용" />
-            <GuidelineSection type="do" title="HTML5 input type 활용">
-              <p className="mb-3">
-                email, tel, url, number, date 등을 사용하여 모바일 환경에서
-                최적화된 키보드를 제공하고 브라우저 자동 검증을 활용하세요.
-              </p>
-              <ComponentPreview>
-                <div className="max-w-md space-y-3">
-                  <Input type="email" placeholder="example@email.com" />
-                  <Input type="tel" placeholder="010-1234-5678" />
-                  <Input type="number" placeholder="100" />
-                </div>
-              </ComponentPreview>
-            </GuidelineSection>
-
-            {/* Error Messages */}
-            <SectionHeading level="h3" title="에러 메시지" />
-            <GuidelineSection type="do" title="명확하고 구체적인 에러 메시지">
-              <p className="mb-3">
-                &quot;잘못된 입력&quot;이 아닌 &quot;이메일 형식이 올바르지
-                않습니다. &apos;@&apos;를 포함해주세요&quot;와 같이 해결 방법을
-                제시합니다.
-              </p>
-              <ComponentPreview>
-                <div className="max-w-md space-y-2">
-                  <Input error type="email" defaultValue="invalid" />
-                  <p className="text-krds-danger-text">
-                    이메일 형식이 올바르지 않습니다. &apos;@&apos;를
-                    포함해주세요.
-                  </p>
-                </div>
-              </ComponentPreview>
-            </GuidelineSection>
-
-            {/* 예제 섹션 */}
-            <SectionHeading level="h2" id="examples" title="예제" />
-
-            {/* Default */}
-            <SectionHeading level="h3" id="default" title="기본" />
-            <ComponentPreview>
-              <div className="max-w-md">
-                <Input placeholder="내용을 입력하세요" />
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Input placeholder="내용을 입력하세요" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
+          {/* Usage */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             {/* Sizes */}
-            <SectionHeading level="h3" id="sizes" title="Size (크기)" />
-            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-              <Body size="sm" className="text-krds-primary-text">
-                <strong>언제 사용하나요?</strong> 입력 필드 크기는 예상 입력
-                길이와 일치시킵니다. Small은 우편번호 등 짧은 입력, Large는
-                제목이나 주소 등 긴 입력에 적합합니다.
-              </Body>
-            </div>
-            <ComponentPreview>
-              <div className="max-w-md space-y-4">
-                <Input size="sm" placeholder="Small (32px)" />
-                <Input size="md" placeholder="Medium (40px)" />
-                <Input size="lg" placeholder="Large (48px)" />
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Input size="sm" placeholder="Small (32px)" />
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="sizes"
+                title="크기 (Size)"
+                description="입력 필드 크기는 예상 입력 길이와 일치시킵니다. Small은 우편번호 등 짧은 입력, Large는 제목이나 주소 등 긴 입력에 적합합니다."
+              />
+              <Card>
+                <Stack gap="md" className="max-w-md">
+                  <InputComponent size="sm" placeholder="Small (32px)" />
+                  <InputComponent size="md" placeholder="Medium (40px)" />
+                  <InputComponent size="lg" placeholder="Large (48px)" />
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Input size="sm" placeholder="Small (32px)" />
 <Input size="md" placeholder="Medium (40px)" />
 <Input size="lg" placeholder="Large (48px)" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
+              </Code>
+            </Subsection>
 
-            {/* Variant */}
-            <SectionHeading level="h3" id="variant" title="Variant" />
-            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-              <Body size="sm" className="text-krds-primary-text">
-                <strong>언제 사용하나요?</strong> Default는 일반적인 경우,
-                Filled는 배경이 있는 디자인에 적합합니다.
-              </Body>
-            </div>
-            <ComponentPreview>
-              <div className="max-w-md space-y-4">
-                <Input variant="default" placeholder="Default (테두리)" />
-                <Input variant="filled" placeholder="Filled (배경)" />
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Input variant="default" placeholder="Default (테두리)" />
+            {/* Variants */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="variants"
+                title="변형 (Variant)"
+                description="Default는 일반적인 경우, Filled는 배경이 있는 디자인에 적합합니다."
+              />
+              <Card>
+                <Stack gap="md" className="max-w-md">
+                  <InputComponent
+                    variant="default"
+                    placeholder="Default (테두리)"
+                  />
+                  <InputComponent
+                    variant="filled"
+                    placeholder="Filled (배경)"
+                  />
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Input variant="default" placeholder="Default (테두리)" />
 <Input variant="filled" placeholder="Filled (배경)" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
+              </Code>
+            </Subsection>
 
             {/* With Icons */}
-            <SectionHeading level="h3" id="with-icons" title="With Icons" />
-            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-              <Body size="sm" className="text-krds-primary-text">
-                <strong>언제 사용하나요?</strong> 입력 필드의 용도를 시각적으로
-                명확히 하고 싶을 때 사용합니다. 예: 검색(돋보기), 이메일(편지),
-                비밀번호(자물쇠)
-              </Body>
-            </div>
-            <ComponentPreview>
-              <div className="max-w-md space-y-4">
-                <Input
-                  leftAddon={<SearchIcon />}
-                  placeholder="검색어를 입력하세요"
-                />
-                <Input
-                  leftAddon={<EmailIcon />}
-                  type="email"
-                  placeholder="example@email.com"
-                />
-                <Input rightAddon={<CheckIcon />} placeholder="확인 완료" />
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Input
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="with-icons"
+                title="아이콘 추가"
+                description="leftAddon과 rightAddon으로 입력 필드의 용도를 시각적으로 명확히 할 수 있습니다."
+              />
+              <Card>
+                <Stack gap="md" className="max-w-md">
+                  <InputComponent
+                    leftAddon={<SearchIcon />}
+                    placeholder="검색어를 입력하세요"
+                  />
+                  <InputComponent
+                    leftAddon={<EmailIcon />}
+                    type="email"
+                    placeholder="example@email.com"
+                  />
+                  <InputComponent
+                    rightAddon={<CheckIcon />}
+                    placeholder="확인 완료"
+                  />
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Input
   leftAddon={<SearchIcon />}
   placeholder="검색어를 입력하세요"
 />
@@ -325,198 +239,396 @@ export default function InputPage() {
   rightAddon={<CheckIcon />}
   placeholder="확인 완료"
 />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
+              </Code>
+            </Subsection>
 
             {/* Error State */}
-            <SectionHeading level="h3" id="error" title="에러 상태" />
-            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-              <Body size="sm" className="text-krds-primary-text">
-                <strong>언제 사용하나요?</strong> 입력값이 유효하지 않을 때
-                사용자에게 즉각적인 피드백을 제공합니다. 에러 메시지는 구체적인
-                해결 방법을 포함해야 합니다.
-              </Body>
-            </div>
-            <ComponentPreview>
-              <div className="max-w-md space-y-4">
-                <div>
-                  <Input
-                    error
-                    placeholder="잘못된 입력"
-                    defaultValue="invalid@"
-                  />
-                  <p className="mt-1 text-krds-danger-text">
-                    이메일 형식이 올바르지 않습니다. &apos;@&apos;를
-                    포함해주세요.
-                  </p>
-                </div>
-                <div>
-                  <Input
-                    error
-                    leftAddon={<EmailIcon />}
-                    placeholder="example@email.com"
-                  />
-                  <p className="mt-1 text-krds-danger-text">
-                    필수 입력 항목입니다.
-                  </p>
-                </div>
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Input error placeholder="잘못된 입력" defaultValue="invalid@" />
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="error-state"
+                title="에러 상태"
+                description="입력값이 유효하지 않을 때 error prop으로 즉각적인 피드백을 제공합니다."
+              />
+              <Card>
+                <Stack gap="md" className="max-w-md">
+                  <div>
+                    <InputComponent
+                      error
+                      type="email"
+                      defaultValue="invalid@"
+                    />
+                    <Body size="sm" className="mt-1 text-krds-danger-text">
+                      이메일 형식이 올바르지 않습니다. &apos;@&apos;를
+                      포함해주세요.
+                    </Body>
+                  </div>
+                  <div>
+                    <InputComponent
+                      error
+                      leftAddon={<EmailIcon />}
+                      placeholder="example@email.com"
+                    />
+                    <Body size="sm" className="mt-1 text-krds-danger-text">
+                      필수 입력 항목입니다.
+                    </Body>
+                  </div>
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Input error type="email" defaultValue="invalid@" />
 <p className="mt-1 text-krds-danger-text">
   이메일 형식이 올바르지 않습니다. '@'를 포함해주세요.
 </p>`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-
-            {/* Disabled */}
-            <SectionHeading level="h3" id="disabled" title="비활성화" />
-            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-              <Body size="sm" className="text-krds-primary-text">
-                <strong>언제 사용하나요?</strong> 특정 조건이 충족되지 않아
-                입력을 받을 수 없을 때 사용합니다. 예: 이전 단계 미완료, 권한
-                없음
-              </Body>
-            </div>
-            <ComponentPreview>
-              <div className="max-w-md space-y-4">
-                <Input disabled placeholder="비활성화된 입력 필드" />
-                <Input
-                  disabled
-                  variant="filled"
-                  placeholder="비활성화된 Filled"
-                />
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Input disabled placeholder="비활성화된 입력 필드" />
-<Input disabled variant="filled" placeholder="비활성화된 Filled" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
+              </Code>
+            </Subsection>
 
             {/* Types */}
-            <SectionHeading level="h3" id="types" title="Input Types" />
-            <div className="mb-3 p-3 bg-krds-primary-surface rounded-md border border-krds-primary-border">
-              <Body size="sm" className="text-krds-primary-text">
-                <strong>언제 사용하나요?</strong> 각 데이터 타입에 맞는 type을
-                사용하면 모바일에서 적절한 키보드가 표시되고, 브라우저의 자동
-                검증 기능을 활용할 수 있습니다.
-              </Body>
-            </div>
-            <ComponentPreview>
-              <div className="max-w-md space-y-4">
-                <Input type="text" placeholder="텍스트" />
-                <Input type="email" placeholder="이메일" />
-                <Input type="password" placeholder="비밀번호" />
-                <Input type="number" placeholder="숫자" />
-                <Input type="tel" placeholder="전화번호" />
-                <Input type="url" placeholder="URL" />
-                <Input type="date" />
-              </div>
-            </ComponentPreview>
-            <CodeBlock
-              code={`<Input type="text" placeholder="텍스트" />
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="types"
+                title="Input Types"
+                description="각 데이터 타입에 맞는 type을 사용하면 모바일에서 적절한 키보드가 표시되고, 브라우저의 자동 검증 기능을 활용할 수 있습니다."
+              />
+              <Card>
+                <Stack gap="sm" className="max-w-md">
+                  <InputComponent type="text" placeholder="텍스트" />
+                  <InputComponent type="email" placeholder="이메일" />
+                  <InputComponent type="password" placeholder="비밀번호" />
+                  <InputComponent type="number" placeholder="숫자" />
+                  <InputComponent type="tel" placeholder="전화번호" />
+                  <InputComponent type="url" placeholder="URL" />
+                  <InputComponent type="date" />
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Input type="text" placeholder="텍스트" />
 <Input type="email" placeholder="이메일" />
 <Input type="password" placeholder="비밀번호" />
 <Input type="number" placeholder="숫자" />
 <Input type="tel" placeholder="전화번호" />
 <Input type="url" placeholder="URL" />
 <Input type="date" />`}
-              language="tsx"
-              showLineNumbers={false}
-            />
-          </TabsContent>
+              </Code>
+            </Subsection>
 
-          {/* API 탭 */}
-          <TabsContent value="api">
-            <SectionHeading level="h2" id="props" title="Props" />
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-krds-gray-20">
-                    <th className="text-left py-3 px-4 font-semibold">Name</th>
-                    <th className="text-left py-3 px-4 font-semibold">Type</th>
-                    <th className="text-left py-3 px-4 font-semibold">
-                      Default
-                    </th>
-                    <th className="text-left py-3 px-4 font-semibold">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">type</td>
-                    <td className="py-3 px-4 font-mono text-xs">
-                      text | email | password | number | tel | url | date
-                    </td>
-                    <td className="py-3 px-4">text</td>
-                    <td className="py-3 px-4">입력 필드 타입</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">size</td>
-                    <td className="py-3 px-4 font-mono text-xs">
-                      sm | md | lg
-                    </td>
-                    <td className="py-3 px-4">md</td>
-                    <td className="py-3 px-4">
-                      입력 필드 크기 (32px / 40px / 48px)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">variant</td>
-                    <td className="py-3 px-4 font-mono text-xs">
-                      default | filled
-                    </td>
-                    <td className="py-3 px-4">default</td>
-                    <td className="py-3 px-4">입력 필드 스타일</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">placeholder</td>
-                    <td className="py-3 px-4 font-mono text-xs">string</td>
-                    <td className="py-3 px-4">-</td>
-                    <td className="py-3 px-4">플레이스홀더 텍스트</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">disabled</td>
-                    <td className="py-3 px-4 font-mono text-xs">boolean</td>
-                    <td className="py-3 px-4">false</td>
-                    <td className="py-3 px-4">비활성화 상태</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">error</td>
-                    <td className="py-3 px-4 font-mono text-xs">boolean</td>
-                    <td className="py-3 px-4">false</td>
-                    <td className="py-3 px-4">에러 상태 표시</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">leftAddon</td>
-                    <td className="py-3 px-4 font-mono text-xs">ReactNode</td>
-                    <td className="py-3 px-4">-</td>
-                    <td className="py-3 px-4">왼쪽에 표시할 아이콘/요소</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">rightAddon</td>
-                    <td className="py-3 px-4 font-mono text-xs">ReactNode</td>
-                    <td className="py-3 px-4">-</td>
-                    <td className="py-3 px-4">오른쪽에 표시할 아이콘/요소</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-10">
-                    <td className="py-3 px-4 font-mono text-xs">className</td>
-                    <td className="py-3 px-4 font-mono text-xs">string</td>
-                    <td className="py-3 px-4">-</td>
-                    <td className="py-3 px-4">추가 CSS 클래스</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </TabsContent>
-        </Tabs>
-      </PageSection>
+            {/* Disabled */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="disabled"
+                title="비활성화"
+                description="특정 조건이 충족되지 않아 입력을 받을 수 없을 때 사용합니다."
+              />
+              <Card>
+                <Stack gap="md" className="max-w-md">
+                  <InputComponent disabled placeholder="비활성화된 입력 필드" />
+                  <InputComponent
+                    disabled
+                    variant="filled"
+                    placeholder="비활성화된 Filled"
+                  />
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Input disabled placeholder="비활성화된 입력 필드" />
+<Input disabled variant="filled" placeholder="비활성화된 Filled" />`}
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* Best Practices */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Stack gap="md">
+              <DoCard title="Input을 사용하기 적합한 경우">
+                <List variant="check">
+                  <ListItem>
+                    이름, 주소, 이메일 등 자유 형식의 텍스트 수집
+                  </ListItem>
+                  <ListItem>검색어를 입력받을 때</ListItem>
+                  <ListItem>비밀번호, 전화번호 등 특수 형식의 데이터</ListItem>
+                  <ListItem>숫자나 날짜 등 구조화된 데이터 입력</ListItem>
+                </List>
+              </DoCard>
+
+              <Card variant="warning">
+                <SectionHeading level="h3" id="caution" title="주의사항" />
+                <List variant="check" className="text-krds-gray-90">
+                  <ListItem>
+                    <strong>레이블 필수:</strong> 모든 입력 필드에는 명확한
+                    레이블이 필요합니다.
+                  </ListItem>
+                  <ListItem>
+                    <strong>플레이스홀더 제한:</strong> 플레이스홀더만으로
+                    레이블을 대체하지 마세요.
+                  </ListItem>
+                  <ListItem>
+                    <strong>적절한 Type:</strong> email, tel, number 등을
+                    사용하여 모바일 최적화된 키보드를 제공하세요.
+                  </ListItem>
+                  <ListItem>
+                    <strong>명확한 에러 메시지:</strong> &quot;잘못된
+                    입력&quot;이 아닌 구체적인 해결 방법을 제시하세요.
+                  </ListItem>
+                </List>
+              </Card>
+
+              <DontCard title="Input을 사용하지 말아야 하는 경우">
+                <List variant="cross">
+                  <ListItem>
+                    선택지가 5개 이하로 제한적인 경우 (Radio 사용)
+                  </ListItem>
+                  <ListItem>
+                    여러 옵션 중 선택하는 경우 (Select 또는 Checkbox 사용)
+                  </ListItem>
+                  <ListItem>
+                    Yes/No 이진 선택인 경우 (Checkbox 또는 Toggle 사용)
+                  </ListItem>
+                </List>
+              </DontCard>
+            </Stack>
+          </Section>
+
+          {/* Accessibility */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="Input은 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>레이블 연결:</strong> htmlFor와 id로 레이블과 입력
+                  필드를 연결합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>에러 상태:</strong> error prop이 aria-invalid를
+                  자동으로 설정합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>에러 메시지:</strong> aria-describedby로 에러 메시지를
+                  연결하세요.
+                </ListItem>
+                <ListItem>
+                  <strong>키보드 네비게이션:</strong> Tab, Enter 키로 탐색할 수
+                  있습니다.
+                </ListItem>
+                <ListItem>
+                  <strong>Focus Indicator:</strong> focus-visible로 포커스 링이
+                  표시됩니다.
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
+        </TabsContent>
+
+        <TabsContent value="api">
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API 레퍼런스"
+            />
+
+            {/* Props */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="props" title="Props" />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>type</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>
+                        &quot;text&quot; | &quot;email&quot; |
+                        &quot;password&quot; | &quot;number&quot; |
+                        &quot;tel&quot; | &quot;url&quot; | &quot;date&quot;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;text&quot;</Code>
+                    </TableCell>
+                    <TableCell>입력 필드 타입</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>
+                        &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;md&quot;</Code>
+                    </TableCell>
+                    <TableCell>입력 필드 크기 (32px / 40px / 48px)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;default&quot; | &quot;filled&quot;</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;default&quot;</Code>
+                    </TableCell>
+                    <TableCell>입력 필드 스타일</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>error</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>boolean</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>false</Code>
+                    </TableCell>
+                    <TableCell>에러 상태 표시</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>boolean</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>false</Code>
+                    </TableCell>
+                    <TableCell>비활성화 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>leftAddon</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>왼쪽에 표시할 아이콘/요소</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>rightAddon</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>오른쪽에 표시할 아이콘/요소</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>placeholder</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>플레이스홀더 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>추가 CSS 클래스 (layout only)</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            {/* Size Variants */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="size-variants"
+                title="Size Variants"
+              />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Size</TableHead>
+                    <TableHead>Height</TableHead>
+                    <TableHead>Font Size</TableHead>
+                    <TableHead>Padding</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>sm</Code>
+                    </TableCell>
+                    <TableCell>32px</TableCell>
+                    <TableCell>15px (body-sm)</TableCell>
+                    <TableCell>16px (horizontal)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>md</Code>
+                    </TableCell>
+                    <TableCell>40px</TableCell>
+                    <TableCell>17px (body-md)</TableCell>
+                    <TableCell>16px (horizontal)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>lg</Code>
+                    </TableCell>
+                    <TableCell>48px</TableCell>
+                    <TableCell>19px (body-lg)</TableCell>
+                    <TableCell>16px (horizontal)</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            {/* KRDS Compliance */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="krds-compliance"
+                title="KRDS 준수사항"
+              />
+              <Card variant="info">
+                <List variant="check" className="text-krds-gray-90">
+                  <ListItem>
+                    KRDS 타이포그래피 (body-sm, body-md, body-lg) 사용
+                  </ListItem>
+                  <ListItem>150% 줄 간격으로 가독성 확보</ListItem>
+                  <ListItem>Focus indicator로 키보드 네비게이션 지원</ListItem>
+                  <ListItem>에러 상태 자동 aria-invalid 설정</ListItem>
+                  <ListItem>Disabled 상태 60% 투명도로 명확히 구분</ListItem>
+                </List>
+              </Card>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'Spacing', href: '/design-system/spacing' }}
+        next={{ title: 'Label', href: '/components/form/label' }}
+      />
     </>
   );
 }

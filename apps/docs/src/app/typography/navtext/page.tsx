@@ -1,222 +1,266 @@
 'use client';
 
-import { NavText, Heading, Stack, Body } from '@hanui/react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageHeader } from '@/components/content/PageHeader';
-import { PageSection } from '@/components/content/PageSection';
-import { GuidelineBox } from '@/components/content/GuidelineBox';
+import {
+  NavText as NavTextComponent,
+  Section,
+  SectionHeading,
+  Subsection,
+  Body,
+  Stack,
+  Card,
+  Code,
+  List,
+  ListItem,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  PageNavigation,
+  DoCard,
+  DontCard,
+} from '@/components/hanui';
 
 export default function NavTextPage() {
   return (
     <>
-      <PageHeader
+      <SectionHeading
+        level="h1"
         title="NavText"
-        description="네비게이션 메뉴를 위한 텍스트 컴포넌트"
+        description="네비게이션 메뉴를 위한 텍스트 컴포넌트입니다."
       />
 
-      <PageSection>
-        <ComponentPreview>
-          <div className="flex flex-col gap-4 bg-krds-gray-5 p-6 rounded">
-            <NavText variant="tit-lg">Title Large</NavText>
-            <NavText variant="tit-sm">Title Small</NavText>
-            <NavText variant="depth-md">Depth Medium</NavText>
-            <NavText variant="depth-sm">Depth Small</NavText>
-          </div>
-        </ComponentPreview>
-      </PageSection>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API</TabsTrigger>
+        </TabsList>
 
-      {/* Overview */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="overview">
-            개요
-          </Heading>
-          <Body className="leading-relaxed">
-            NavText는 <strong>KRDS 타이포그래피 시스템</strong>의 네비게이션
-            전용 스타일입니다. 메뉴 제목과 하위 메뉴 항목을 구분하여 계층적인
-            네비게이션 구조를 명확히 표현합니다.
-          </Body>
-          <Body className="leading-relaxed">
-            tit 변형은 메뉴 제목에, depth 변형은 하위 메뉴 항목에 사용됩니다.
-          </Body>
-        </Stack>
-      </PageSection>
+        <TabsContent value="overview">
+          {/* Installation */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="installation" title="설치">
+              <Body className="leading-relaxed">
+                다음 명령어로 NavText 컴포넌트를 설치합니다:
+              </Body>
+            </SectionHeading>
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              npx @hanui/cli add navtext
+            </Code>
+          </Section>
 
-      {/* Variants */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="variants">
-            변형
-          </Heading>
-        </Stack>
+          {/* What is it */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="what-is-it"
+              title="무엇인가요?"
+              description="NavText는 KRDS 타이포그래피 시스템의 네비게이션 전용 스타일입니다. 메뉴 제목과 하위 메뉴 항목을 구분하여 계층적인 네비게이션 구조를 명확히 표현합니다."
+            />
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>Title 변형:</strong> tit-lg, tit-sm으로 메뉴 제목을
+                  표현합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>Depth 변형:</strong> depth-md, depth-sm으로 하위 메뉴
+                  항목을 표현합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>Polymorphic:</strong> as prop으로 다양한 HTML 태그로
+                  렌더링할 수 있습니다.
+                </ListItem>
+                <ListItem>
+                  <strong>반응형:</strong> Title 변형은 PC와 모바일에서 최적의
+                  크기로 조정됩니다.
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
 
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          {/* Title Variant */}
-          <Stack gap="sm">
-            <Heading level="h3">Title (메뉴 제목)</Heading>
-            <Stack gap="lg">
-              <div className="rounded-lg border border-krds-gray-20 p-6">
-                <div className="mb-4">
-                  <NavText
-                    as="a"
-                    href="#"
-                    variant="tit-lg"
-                    className="hover:text-krds-primary-base transition-colors"
-                  >
-                    Title Large
-                  </NavText>
-                </div>
-                <div className="text-krds-gray-70">
-                  24px (PC) / 22px (Mobile) · 700 (Bold) · 150% 줄 간격
-                </div>
-                <div className="mt-4">
-                  <CodeBlock
-                    code={`<NavText as="a" href="/menu" variant="tit-lg">
+          {/* Preview */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Card className="bg-krds-gray-5">
+              <Stack gap="md">
+                <NavTextComponent variant="tit-lg">
+                  Title Large
+                </NavTextComponent>
+                <NavTextComponent variant="tit-sm">
+                  Title Small
+                </NavTextComponent>
+                <NavTextComponent variant="depth-md">
+                  Depth Medium
+                </NavTextComponent>
+                <NavTextComponent variant="depth-sm">
+                  Depth Small
+                </NavTextComponent>
+              </Stack>
+            </Card>
+            <Code variant="block" language="tsx">
+              {`<NavText variant="tit-lg">Title Large</NavText>
+<NavText variant="tit-sm">Title Small</NavText>
+<NavText variant="depth-md">Depth Medium</NavText>
+<NavText variant="depth-sm">Depth Small</NavText>`}
+            </Code>
+          </Section>
+
+          {/* Usage */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="usage" title="사용 방법" />
+
+            {/* Title Variants */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="title-variants"
+                title="Title (메뉴 제목)"
+                description="메뉴 제목이나 그룹명에 사용하는 Bold 스타일입니다."
+              />
+              <Card className="bg-krds-gray-5">
+                <Stack gap="lg">
+                  <Stack gap="sm">
+                    <NavTextComponent
+                      as="a"
+                      href="#"
+                      variant="tit-lg"
+                      className="hover:text-krds-primary-base transition-colors"
+                    >
+                      Title Large
+                    </NavTextComponent>
+                    <Body size="sm" className="text-krds-gray-70">
+                      24px (PC) / 22px (Mobile) · 700 (Bold) · 150% 줄 간격
+                    </Body>
+                  </Stack>
+
+                  <Stack gap="sm">
+                    <NavTextComponent
+                      as="a"
+                      href="#"
+                      variant="tit-sm"
+                      className="hover:text-krds-primary-base transition-colors"
+                    >
+                      Title Small
+                    </NavTextComponent>
+                    <Body size="sm" className="text-krds-gray-70">
+                      19px (PC) / 17px (Mobile) · 700 (Bold) · 150% 줄 간격
+                    </Body>
+                  </Stack>
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<NavText as="a" href="/menu" variant="tit-lg">
   메인 메뉴
-</NavText>`}
-                    language="tsx"
-                    showLineNumbers={false}
-                  />
-                </div>
-              </div>
+</NavText>
 
-              <div className="rounded-lg border border-krds-gray-20 p-6">
-                <div className="mb-4">
-                  <NavText
-                    as="a"
-                    href="#"
-                    variant="tit-sm"
-                    className="hover:text-krds-primary-base transition-colors"
-                  >
-                    Title Small
-                  </NavText>
-                </div>
-                <div className="text-krds-gray-70">
-                  19px (PC) / 17px (Mobile) · 700 (Bold) · 150% 줄 간격
-                </div>
-                <div className="mt-4">
-                  <CodeBlock
-                    code={`<NavText as="a" href="/submenu" variant="tit-sm">
+<NavText as="a" href="/submenu" variant="tit-sm">
   서브 메뉴
 </NavText>`}
-                    language="tsx"
-                    showLineNumbers={false}
-                  />
-                </div>
-              </div>
-            </Stack>
-          </Stack>
+              </Code>
+            </Subsection>
 
-          {/* Depth Variant */}
-          <Stack gap="sm">
-            <Heading level="h3">Depth (메뉴 항목)</Heading>
-            <Stack gap="lg">
-              <div className="rounded-lg border border-krds-gray-20 p-6">
-                <div className="mb-4">
-                  <NavText
-                    as="a"
-                    href="#"
-                    variant="depth-md"
-                    className="hover:text-krds-primary-base transition-colors"
-                  >
-                    Depth Medium
-                  </NavText>
-                </div>
-                <div className="text-krds-gray-70">
-                  17px · 400 (Regular) · 150% 줄 간격
-                </div>
-                <div className="mt-4">
-                  <CodeBlock
-                    code={`<NavText as="a" href="/item" variant="depth-md">
+            {/* Depth Variants */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="depth-variants"
+                title="Depth (메뉴 항목)"
+                description="실제 링크 항목에 사용하는 Regular 스타일입니다."
+              />
+              <Card className="bg-krds-gray-5">
+                <Stack gap="lg">
+                  <Stack gap="sm">
+                    <NavTextComponent
+                      as="a"
+                      href="#"
+                      variant="depth-md"
+                      className="hover:text-krds-primary-base transition-colors"
+                    >
+                      Depth Medium
+                    </NavTextComponent>
+                    <Body size="sm" className="text-krds-gray-70">
+                      17px · 400 (Regular) · 150% 줄 간격
+                    </Body>
+                  </Stack>
+
+                  <Stack gap="sm">
+                    <NavTextComponent
+                      as="a"
+                      href="#"
+                      variant="depth-sm"
+                      className="hover:text-krds-primary-base transition-colors"
+                    >
+                      Depth Small
+                    </NavTextComponent>
+                    <Body size="sm" className="text-krds-gray-70">
+                      15px · 400 (Regular) · 150% 줄 간격
+                    </Body>
+                  </Stack>
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<NavText as="a" href="/item" variant="depth-md">
   메뉴 항목
-</NavText>`}
-                    language="tsx"
-                    showLineNumbers={false}
-                  />
-                </div>
-              </div>
+</NavText>
 
-              <div className="rounded-lg border border-krds-gray-20 p-6">
-                <div className="mb-4">
-                  <NavText
-                    as="a"
-                    href="#"
-                    variant="depth-sm"
-                    className="hover:text-krds-primary-base transition-colors"
-                  >
-                    Depth Small
-                  </NavText>
-                </div>
-                <div className="text-krds-gray-70">
-                  15px · 400 (Regular) · 150% 줄 간격
-                </div>
-                <div className="mt-4">
-                  <CodeBlock
-                    code={`<NavText as="a" href="/subitem" variant="depth-sm">
+<NavText as="a" href="/subitem" variant="depth-sm">
   하위 항목
 </NavText>`}
-                    language="tsx"
-                    showLineNumbers={false}
-                  />
-                </div>
-              </div>
-            </Stack>
-          </Stack>
-        </Stack>
-      </PageSection>
+              </Code>
+            </Subsection>
 
-      {/* Usage */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="usage">
-            예제
-          </Heading>
-        </Stack>
-
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          {/* Main Navigation */}
-          <Stack gap="sm">
-            <Heading level="h3">메인 네비게이션</Heading>
-            <ComponentPreview>
-              <nav className="bg-krds-gray-5 p-6 rounded">
-                <ul className="space-y-4">
-                  <li>
-                    <NavText
-                      as="a"
-                      href="#"
-                      variant="tit-lg"
-                      className="hover:text-krds-primary-base transition-colors"
-                    >
-                      서비스 소개
-                    </NavText>
-                  </li>
-                  <li>
-                    <NavText
-                      as="a"
-                      href="#"
-                      variant="tit-lg"
-                      className="hover:text-krds-primary-base transition-colors"
-                    >
-                      이용 안내
-                    </NavText>
-                  </li>
-                  <li>
-                    <NavText
-                      as="a"
-                      href="#"
-                      variant="tit-lg"
-                      className="hover:text-krds-primary-base transition-colors"
-                    >
-                      고객 지원
-                    </NavText>
-                  </li>
-                </ul>
-              </nav>
-            </ComponentPreview>
-            <div className="mt-4">
-              <CodeBlock
-                code={`<nav>
+            {/* Main Navigation */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="main-navigation"
+                title="메인 네비게이션"
+                description="Title 변형으로 메인 네비게이션을 구성합니다."
+              />
+              <Card className="bg-krds-gray-5">
+                <nav>
+                  <Stack as="ul" gap="md">
+                    <li>
+                      <NavTextComponent
+                        as="a"
+                        href="#"
+                        variant="tit-lg"
+                        className="hover:text-krds-primary-base transition-colors"
+                      >
+                        서비스 소개
+                      </NavTextComponent>
+                    </li>
+                    <li>
+                      <NavTextComponent
+                        as="a"
+                        href="#"
+                        variant="tit-lg"
+                        className="hover:text-krds-primary-base transition-colors"
+                      >
+                        이용 안내
+                      </NavTextComponent>
+                    </li>
+                    <li>
+                      <NavTextComponent
+                        as="a"
+                        href="#"
+                        variant="tit-lg"
+                        className="hover:text-krds-primary-base transition-colors"
+                      >
+                        고객 지원
+                      </NavTextComponent>
+                    </li>
+                  </Stack>
+                </nav>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<nav>
   <ul>
     <li>
       <NavText as="a" href="/about" variant="tit-lg">
@@ -235,65 +279,65 @@ export default function NavTextPage() {
     </li>
   </ul>
 </nav>`}
-                language="tsx"
-              />
-            </div>
-          </Stack>
+              </Code>
+            </Subsection>
 
-          {/* Hierarchical Navigation */}
-          <Stack gap="sm">
-            <Heading level="h3">계층형 네비게이션</Heading>
-            <ComponentPreview>
-              <nav className="bg-krds-gray-5 p-6 rounded">
-                <div className="space-y-4">
-                  <div>
-                    <NavText
+            {/* Hierarchical Navigation */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="hierarchical"
+                title="계층형 네비게이션"
+                description="Title과 Depth 변형을 조합하여 계층 구조를 표현합니다."
+              />
+              <Card className="bg-krds-gray-5">
+                <nav>
+                  <Stack gap="md">
+                    <NavTextComponent
                       as="a"
                       href="#"
                       variant="tit-sm"
                       className="hover:text-krds-primary-base transition-colors"
                     >
                       공지사항
-                    </NavText>
-                    <ul className="mt-2 ml-4 space-y-2">
+                    </NavTextComponent>
+                    <Stack as="ul" gap="sm" className="ml-4">
                       <li>
-                        <NavText
+                        <NavTextComponent
                           as="a"
                           href="#"
                           variant="depth-md"
                           className="hover:text-krds-primary-base transition-colors"
                         >
                           시스템 공지
-                        </NavText>
+                        </NavTextComponent>
                       </li>
                       <li>
-                        <NavText
+                        <NavTextComponent
                           as="a"
                           href="#"
                           variant="depth-md"
                           className="hover:text-krds-primary-base transition-colors"
                         >
                           이벤트 소식
-                        </NavText>
+                        </NavTextComponent>
                       </li>
                       <li>
-                        <NavText
+                        <NavTextComponent
                           as="a"
                           href="#"
                           variant="depth-md"
                           className="hover:text-krds-primary-base transition-colors"
                         >
                           업데이트 내역
-                        </NavText>
+                        </NavTextComponent>
                       </li>
-                    </ul>
-                  </div>
-                </div>
-              </nav>
-            </ComponentPreview>
-            <div className="mt-4">
-              <CodeBlock
-                code={`<nav>
+                    </Stack>
+                  </Stack>
+                </nav>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<nav>
   <NavText as="a" href="/notice" variant="tit-sm">
     공지사항
   </NavText>
@@ -315,98 +359,52 @@ export default function NavTextPage() {
     </li>
   </ul>
 </nav>`}
-                language="tsx"
+              </Code>
+            </Subsection>
+
+            {/* Active State */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="active-state"
+                title="활성 상태 스타일링"
+                description="현재 페이지는 색상으로 명확히 표시합니다."
               />
-            </div>
-          </Stack>
-
-          {/* Polymorphic */}
-          <Stack gap="sm">
-            <Heading level="h3">다양한 HTML 태그</Heading>
-            <ComponentPreview>
-              <div className="space-y-3">
-                <div>
-                  <NavText
-                    as="a"
-                    href="#"
-                    variant="tit-lg"
-                    className="text-krds-primary-base hover:underline"
-                  >
-                    링크로 렌더링 (a 태그)
-                  </NavText>
-                </div>
-                <div>
-                  <NavText
-                    as="button"
-                    variant="depth-md"
-                    onClick={() => alert('클릭!')}
-                    className="hover:text-krds-primary-base"
-                  >
-                    버튼으로 렌더링 (button 태그)
-                  </NavText>
-                </div>
-                <div>
-                  <NavText as="span" variant="depth-sm">
-                    span으로 렌더링 (기본)
-                  </NavText>
-                </div>
-              </div>
-            </ComponentPreview>
-            <div className="mt-4">
-              <CodeBlock
-                code={`<NavText as="a" href="/page" variant="tit-lg">
-  링크로 렌더링 (a 태그)
-</NavText>
-
-<NavText as="button" variant="depth-md" onClick={handleClick}>
-  버튼으로 렌더링 (button 태그)
-</NavText>
-
-<NavText as="span" variant="depth-sm">
-  span으로 렌더링 (기본)
-</NavText>`}
-                language="tsx"
-              />
-            </div>
-          </Stack>
-
-          {/* Active State */}
-          <Stack gap="sm">
-            <Heading level="h3">활성 상태 스타일링</Heading>
-            <ComponentPreview>
-              <nav className="bg-krds-gray-5 p-6 rounded">
-                <ul className="space-y-2">
-                  <li>
-                    <NavText
-                      as="a"
-                      href="#"
-                      variant="depth-md"
-                      className="text-krds-primary-base"
-                    >
-                      현재 페이지
-                    </NavText>
-                  </li>
-                  <li>
-                    <NavText
-                      as="a"
-                      href="#"
-                      variant="depth-md"
-                      className="hover:text-krds-primary-base transition-colors"
-                    >
-                      다른 페이지
-                    </NavText>
-                  </li>
-                </ul>
-              </nav>
-            </ComponentPreview>
-            <div className="mt-4">
-              <CodeBlock
-                code={`{/* 현재 페이지 */}
+              <Card className="bg-krds-gray-5">
+                <nav>
+                  <Stack as="ul" gap="sm">
+                    <li>
+                      <NavTextComponent
+                        as="a"
+                        href="#"
+                        variant="depth-md"
+                        className="text-krds-primary-base"
+                        aria-current="page"
+                      >
+                        현재 페이지
+                      </NavTextComponent>
+                    </li>
+                    <li>
+                      <NavTextComponent
+                        as="a"
+                        href="#"
+                        variant="depth-md"
+                        className="hover:text-krds-primary-base transition-colors"
+                      >
+                        다른 페이지
+                      </NavTextComponent>
+                    </li>
+                  </Stack>
+                </nav>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`{/* 현재 페이지 */}
 <NavText
   as="a"
   href="/current"
   variant="depth-md"
   className="text-krds-primary-base"
+  aria-current="page"
 >
   현재 페이지
 </NavText>
@@ -420,170 +418,289 @@ export default function NavTextPage() {
 >
   다른 페이지
 </NavText>`}
-                language="tsx"
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* Best Practices */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Stack gap="md">
+              <DoCard title="NavText를 사용하기 적합한 경우">
+                <List variant="check">
+                  <ListItem>헤더 네비게이션 메뉴</ListItem>
+                  <ListItem>사이드바 메뉴</ListItem>
+                  <ListItem>드롭다운 메뉴</ListItem>
+                  <ListItem>탭 메뉴</ListItem>
+                  <ListItem>브레드크럼(breadcrumb) 네비게이션</ListItem>
+                </List>
+              </DoCard>
+
+              <Card variant="warning">
+                <SectionHeading level="h3" id="caution" title="주의사항" />
+                <List variant="check" className="text-krds-gray-90">
+                  <ListItem>tit 변형은 메뉴 제목/그룹명에 사용</ListItem>
+                  <ListItem>depth 변형은 실제 링크 항목에 사용</ListItem>
+                  <ListItem>계층 구조가 명확히 드러나도록 구성</ListItem>
+                  <ListItem>활성 상태는 색상이나 굵기로 명확히 표시</ListItem>
+                </List>
+              </Card>
+
+              <DontCard title="NavText를 사용하지 말아야 하는 경우">
+                <List variant="cross">
+                  <ListItem>일반 본문 텍스트 (Body 사용 권장)</ListItem>
+                  <ListItem>페이지 제목 (Heading 사용 권장)</ListItem>
+                  <ListItem>버튼 텍스트 (Button 컴포넌트 사용)</ListItem>
+                  <ListItem>폼 라벨 (Label 사용 권장)</ListItem>
+                </List>
+              </DontCard>
+            </Stack>
+          </Section>
+
+          {/* Accessibility */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="NavText는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>시맨틱 HTML:</strong> nav 태그와 함께 사용하여 구조를
+                  명확히 합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>적절한 태그:</strong> 링크는 a 태그로, 동작 트리거는
+                  button 태그로 렌더링합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>현재 페이지 표시:</strong>{' '}
+                  aria-current=&quot;page&quot; 속성으로 현재 페이지를
+                  표시합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>키보드 네비게이션:</strong> Tab, Enter 키로 탐색할 수
+                  있습니다.
+                </ListItem>
+                <ListItem>
+                  <strong>명확한 계층:</strong> 계층 구조로 스크린 리더 탐색을
+                  지원합니다.
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
+        </TabsContent>
+
+        <TabsContent value="api">
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API 레퍼런스"
+            />
+
+            {/* Props */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="props" title="Props" />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>
+                        &quot;tit-lg&quot; | &quot;tit-sm&quot; |
+                        &quot;depth-md&quot; | &quot;depth-sm&quot;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;depth-md&quot;</Code>
+                    </TableCell>
+                    <TableCell>네비게이션 텍스트 스타일</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>weight</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;regular&quot; | &quot;bold&quot;</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;regular&quot;</Code>
+                    </TableCell>
+                    <TableCell>
+                      글자 굵기 (tit-* 변형에는 자동으로 bold 적용)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>as</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>
+                        &quot;span&quot; | &quot;a&quot; | &quot;button&quot; |
+                        &quot;div&quot;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;span&quot;</Code>
+                    </TableCell>
+                    <TableCell>렌더링할 HTML 태그</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>href</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>링크 URL (as=&quot;a&quot;일 때)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>target</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>링크 타겟 (as=&quot;a&quot;일 때)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>rel</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>링크 관계 (as=&quot;a&quot;일 때)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>children</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>텍스트 내용</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            {/* Variant Styles */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="variant-styles"
+                title="Variant Styles"
               />
-            </div>
-          </Stack>
-        </Stack>
-      </PageSection>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Variant</TableHead>
+                    <TableHead>PC</TableHead>
+                    <TableHead>Mobile</TableHead>
+                    <TableHead>Font Weight</TableHead>
+                    <TableHead>Color</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>tit-lg</Code>
+                    </TableCell>
+                    <TableCell>24px</TableCell>
+                    <TableCell>22px</TableCell>
+                    <TableCell>700 (Bold)</TableCell>
+                    <TableCell>gray-95</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>tit-sm</Code>
+                    </TableCell>
+                    <TableCell>19px</TableCell>
+                    <TableCell>17px</TableCell>
+                    <TableCell>700 (Bold)</TableCell>
+                    <TableCell>gray-95</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>depth-md</Code>
+                    </TableCell>
+                    <TableCell>17px</TableCell>
+                    <TableCell>17px</TableCell>
+                    <TableCell>400 (Regular)</TableCell>
+                    <TableCell>gray-90</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>depth-sm</Code>
+                    </TableCell>
+                    <TableCell>15px</TableCell>
+                    <TableCell>15px</TableCell>
+                    <TableCell>400 (Regular)</TableCell>
+                    <TableCell>gray-90</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-      {/* Guidelines */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="guidelines">
-            사용 가이드라인
-          </Heading>
-        </Stack>
+            {/* KRDS Compliance */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="krds-compliance"
+                title="KRDS 준수사항"
+              />
+              <Card variant="info">
+                <List variant="check" className="text-krds-gray-90">
+                  <ListItem>tit 변형은 Bold (700) 폰트 굵기</ListItem>
+                  <ListItem>depth 변형은 Regular (400) 폰트 굵기</ListItem>
+                  <ListItem>150% 줄 간격으로 가독성 확보</ListItem>
+                  <ListItem>
+                    반응형 크기 (tit 변형은 PC/모바일 최적화, depth 변형은 고정
+                    크기)
+                  </ListItem>
+                  <ListItem>Pretendard GOV 폰트 적용</ListItem>
+                  <ListItem>
+                    명도 대비 4.5:1 이상 (WCAG 2.1 / KWCAG 2.2 Level AA)
+                  </ListItem>
+                </List>
+              </Card>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
 
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          <GuidelineBox title="NavText를 사용하기 적합한 경우">
-            <ul className="list-disc list-inside space-y-2">
-              <li>헤더 네비게이션 메뉴</li>
-              <li>사이드바 메뉴</li>
-              <li>드롭다운 메뉴</li>
-              <li>탭 메뉴</li>
-              <li>브레드크럼(breadcrumb) 네비게이션</li>
-            </ul>
-          </GuidelineBox>
-
-          <GuidelineBox title="주의사항">
-            <ul className="list-disc list-inside space-y-2">
-              <li>tit 변형은 메뉴 제목/그룹명에 사용</li>
-              <li>depth 변형은 실제 링크 항목에 사용</li>
-              <li>계층 구조가 명확히 드러나도록 구성</li>
-              <li>활성 상태는 색상이나 굵기로 명확히 표시</li>
-            </ul>
-          </GuidelineBox>
-
-          <GuidelineBox title="NavText를 사용하지 말아야 하는 경우">
-            <ul className="list-disc list-inside space-y-2">
-              <li>일반 본문 텍스트 (Body 사용 권장)</li>
-              <li>페이지 제목 (Heading 사용 권장)</li>
-              <li>버튼 텍스트 (Button 컴포넌트 사용)</li>
-              <li>폼 라벨 (Label 사용 권장)</li>
-            </ul>
-          </GuidelineBox>
-        </Stack>
-      </PageSection>
-
-      {/* API */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="api-reference">
-            API 레퍼런스
-          </Heading>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-krds-gray-20">
-                  <th className="text-left py-3 px-4">Prop</th>
-                  <th className="text-left py-3 px-4">Type</th>
-                  <th className="text-left py-3 px-4">Default</th>
-                  <th className="text-left py-3 px-4">Description</th>
-                </tr>
-              </thead>
-              <tbody className="text-krds-gray-90">
-                <tr className="border-b border-krds-gray-20">
-                  <td className="py-3 px-4">
-                    <code>variant</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"tit-lg" | "tit-sm" | "depth-md" | "depth-sm"</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"depth-md"</code>
-                  </td>
-                  <td className="py-3 px-4">네비게이션 텍스트 스타일</td>
-                </tr>
-                <tr className="border-b border-krds-gray-20">
-                  <td className="py-3 px-4">
-                    <code>weight</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"regular" | "bold"</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"regular"</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    글자 굵기 (tit-* 에는 자동 적용)
-                  </td>
-                </tr>
-                <tr className="border-b border-krds-gray-20">
-                  <td className="py-3 px-4">
-                    <code>as</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"span" | "div" | "a" | "button"</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"span"</code>
-                  </td>
-                  <td className="py-3 px-4">렌더링할 HTML 태그</td>
-                </tr>
-                <tr className="border-b border-krds-gray-20">
-                  <td className="py-3 px-4">
-                    <code>className</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>string</code>
-                  </td>
-                  <td className="py-3 px-4">-</td>
-                  <td className="py-3 px-4">추가 CSS 클래스</td>
-                </tr>
-                <tr>
-                  <td className="py-3 px-4">
-                    <code>children</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>ReactNode</code>
-                  </td>
-                  <td className="py-3 px-4">-</td>
-                  <td className="py-3 px-4">텍스트 내용</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </Stack>
-      </PageSection>
-
-      {/* Accessibility */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="accessibility">
-            접근성
-          </Heading>
-          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
-            <ul className="space-y-2 text-krds-primary-text">
-              <li>✓ 시맨틱 nav 태그와 함께 사용</li>
-              <li>✓ 링크는 a 태그로, 동작 트리거는 button 태그로 렌더링</li>
-              <li>
-                ✓ 현재 페이지는 aria-current=&quot;page&quot; 속성 추가 권장
-              </li>
-              <li>✓ 키보드 네비게이션 지원 (Tab, Enter)</li>
-              <li>✓ 명확한 계층 구조로 스크린 리더 탐색 지원</li>
-            </ul>
-          </div>
-        </Stack>
-      </PageSection>
-
-      {/* KRDS Compliance */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="krds">
-            KRDS 준수사항
-          </Heading>
-          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
-            <ul className="space-y-2 text-krds-primary-text">
-              <li>✓ tit 변형은 Bold (700) 폰트 굵기</li>
-              <li>✓ depth 변형은 Regular (400) 폰트 굵기</li>
-              <li>✓ 150% 줄 간격으로 가독성 확보</li>
-              <li>✓ 반응형 크기 (tit 변형은 PC/모바일 최적화)</li>
-              <li>✓ Pretendard GOV 폰트 적용</li>
-            </ul>
-          </div>
-        </Stack>
-      </PageSection>
+      <PageNavigation
+        prev={{ title: 'Heading', href: '/typography/heading' }}
+        next={{ title: 'Spacing', href: '/design-system/spacing' }}
+      />
     </>
   );
 }

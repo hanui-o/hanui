@@ -1,548 +1,406 @@
-import { Body } from '@hanui/react';
-import { PageHeader } from '@/components/content/PageHeader';
-import { PageSection } from '@/components/content/PageSection';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { GuidelineSection } from '@/components/content/GuidelineSection';
-import { SectionHeading } from '@/components/hanui/section-header';
+'use client';
+
+import { SkipLink } from '@hanui/react';
 import {
+  Section,
+  Subsection,
+  SectionHeading,
+  Body,
+  Card,
+  Code,
+  List,
+  ListItem,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@/components/hanui/tabs';
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  PageNavigation,
+  DoCard,
+  DontCard,
+} from '@/components/hanui';
 
 export default function SkipLinkPage() {
   return (
-    <>
-      {/* Header */}
-      <PageHeader
-        title="SkipLink (건너뛰기 링크)"
+    <Section>
+      <SectionHeading
+        level="h1"
+        id="skiplink"
+        title="SkipLink"
         description="키보드 및 스크린 리더 사용자가 반복적인 콘텐츠를 건너뛰고 주요 콘텐츠로 바로 이동할 수 있도록 돕는 내부 페이지 탐색 도구입니다."
       />
 
-      <PageSection>
-        <Tabs defaultValue="overview">
-          <TabsList>
-            <TabsTrigger value="overview">개요</TabsTrigger>
-            <TabsTrigger value="api">API</TabsTrigger>
-          </TabsList>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="api">API</TabsTrigger>
+        </TabsList>
 
-          <TabsContent value="overview">
-            {/* Usage Examples */}
-            <div className="space-y-8">
-              <div>
-                <SectionHeading level="h2" title="사용 예제" id="usage" />
+        <TabsContent value="overview">
+          {/* Installation */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="installation" title="설치" />
+            <Body>
+              CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
+            </Body>
+            <Card>
+              <Code language="bash">npx @hanui/cli add skiplink</Code>
+            </Card>
+          </Subsection>
 
-                <div className="mt-2 md:mt-4 space-y-6">
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="기본 사용 (Hidden Variant)"
-                      id="usage-basic"
-                    />
-                    <Body color="secondary">
-                      기본적으로 숨겨진 상태로, Tab 키를 눌러 포커스를 받으면
-                      화면에 나타납니다.
-                    </Body>
-                    <CodeBlock
-                      code={`import { SkipLink } from '@hanui/react';
+          {/* What is it */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="what-is-it" title="SkipLink란?" />
+            <Body>
+              SkipLink(건너뛰기 링크)는 키보드 사용자와 스크린 리더 사용자가
+              헤더, 네비게이션 등 반복적인 콘텐츠를 건너뛰고 페이지의 주요
+              콘텐츠로 바로 이동할 수 있도록 돕는 접근성 필수 컴포넌트입니다.
+            </Body>
+            <Body>
+              WCAG 2.1 / KWCAG 2.2 Level A 기준 "Bypass Blocks (2.4.1)"을
+              충족하기 위해 반드시 구현해야 하는 컴포넌트입니다.
+            </Body>
+          </Subsection>
 
-export default function Page() {
-  return (
-    <SkipLink
-      links={[
-        { href: '#main-content', label: '본문 바로가기' },
-        { href: '#main-navigation', label: '주 메뉴 바로가기' },
-      ]}
-    />
-  );
-}`}
-                      language="tsx"
-                    />
-                  </div>
+          {/* Preview */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="preview" title="미리보기" />
 
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="항상 표시 (Visible Variant)"
-                      id="usage-visible"
-                    />
-                    <Body color="secondary">
-                      variant를 &quot;visible&quot;로 설정하면 항상 화면에
-                      표시됩니다.
-                    </Body>
-                    <CodeBlock
-                      code={`import { SkipLink } from '@hanui/react';
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="hidden" title="숨김 (기본)" />
+              <Body>
+                기본적으로 숨겨진 상태이며, Tab 키를 눌러 포커스를 받으면 화면에
+                나타납니다. 가장 일반적으로 사용하는 방식입니다.
+              </Body>
+              <Card>
+                <SkipLink
+                  links={[
+                    { href: '#main-content', label: '본문 바로가기' },
+                    { href: '#main-navigation', label: '주 메뉴 바로가기' },
+                  ]}
+                />
+                <Body className="text-krds-gray-70 text-center mt-4">
+                  Tab 키를 눌러 포커스를 확인하세요
+                </Body>
+              </Card>
+              <Card>
+                <Code language="tsx">
+                  {`<SkipLink
+  links={[
+    { href: '#main-content', label: '본문 바로가기' },
+    { href: '#main-navigation', label: '주 메뉴 바로가기' },
+  ]}
+/>`}
+                </Code>
+              </Card>
+            </Subsection>
 
-export default function Page() {
-  return (
-    <SkipLink
-      variant="visible"
-      links={[
-        { href: '#main-content', label: '본문 바로가기' },
-        { href: '#main-navigation', label: '주 메뉴 바로가기' },
-        { href: '#footer', label: '하단 메뉴 바로가기' },
-      ]}
-    />
-  );
-}`}
-                      language="tsx"
-                    />
-                  </div>
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="visible" title="항상 표시" />
+              <Body>
+                variant를 "visible"로 설정하면 항상 화면에 표시됩니다.
+              </Body>
+              <Card>
+                <SkipLink
+                  variant="visible"
+                  links={[
+                    { href: '#main-content', label: '본문 바로가기' },
+                    { href: '#main-navigation', label: '주 메뉴 바로가기' },
+                    { href: '#footer', label: '하단 메뉴 바로가기' },
+                  ]}
+                />
+              </Card>
+              <Card>
+                <Code language="tsx">
+                  {`<SkipLink
+  variant="visible"
+  links={[
+    { href: '#main-content', label: '본문 바로가기' },
+    { href: '#main-navigation', label: '주 메뉴 바로가기' },
+    { href: '#footer', label: '하단 메뉴 바로가기' },
+  ]}
+/>`}
+                </Code>
+              </Card>
+            </Subsection>
 
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="단일 링크 (권장)"
-                      id="usage-single-link"
-                    />
-                    <Body color="secondary">
-                      대부분의 경우 본문으로 바로가기 링크 하나만 제공하는 것이
-                      권장됩니다.
-                    </Body>
-                    <CodeBlock
-                      code={`import { SkipLink } from '@hanui/react';
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="single" title="단일 링크 (권장)" />
+              <Body>
+                대부분의 경우 본문으로 바로가기 링크 하나만 제공하는 것이
+                충분합니다.
+              </Body>
+              <Card>
+                <SkipLink
+                  links={[{ href: '#main-content', label: '본문 바로가기' }]}
+                />
+              </Card>
+              <Card>
+                <Code language="tsx">
+                  {`<SkipLink
+  links={[
+    { href: '#main-content', label: '본문 바로가기' }
+  ]}
+/>`}
+                </Code>
+              </Card>
+            </Subsection>
+          </Subsection>
 
-export default function Page() {
-  return (
-    <SkipLink
-      links={[{ href: '#main-content', label: '본문 바로가기' }]}
-    />
-  );
-}`}
-                      language="tsx"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="페이지 구조 내 위치 (권장)"
-                      id="usage-page-structure"
-                    />
-                    <Body color="secondary">
-                      SkipLink는 페이지의 첫 번째 요소로 배치되어야 합니다 (쿠키
-                      배너/모달 제외). 대상 요소에는 tabIndex=-1을 설정해야
-                      합니다.
-                    </Body>
-                    <CodeBlock
-                      code={`import { SkipLink, Masthead } from '@hanui/react';
+          {/* Usage */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Body>
+              SkipLink는 페이지의 가장 첫 번째 요소로 배치해야 합니다 (쿠키
+              배너/모달 제외).
+            </Body>
+            <Card>
+              <Code language="tsx">
+                {`import { SkipLink } from '@hanui/react';
 
 export default function RootLayout({ children }) {
   return (
-    <html>
-      <body>
-        <SkipLink
-          links={[
-            { href: '#main-content', label: '본문 바로가기' },
-            { href: '#main-navigation', label: '주 메뉴 바로가기' },
-          ]}
-        />
-        <Masthead />
-        <header id="main-navigation" tabIndex={-1}>
-          <!-- Navigation content -->
-        </header>
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
-        <footer>
-          <!-- Footer content -->
-        </footer>
-      </body>
-    </html>
+    <body>
+      {/* SkipLink는 가장 먼저 배치 */}
+      <SkipLink
+        links={[
+          { href: '#main-content', label: '본문 바로가기' },
+        ]}
+      />
+
+      <Masthead />
+      <Header />
+
+      {/* main 요소에 id와 tabIndex 설정 */}
+      <main id="main-content" tabIndex={-1}>
+        {children}
+      </main>
+
+      <Footer />
+    </body>
   );
 }`}
-                      language="tsx"
-                    />
-                  </div>
-                </div>
-              </div>
+              </Code>
+            </Card>
+          </Subsection>
 
-              {/* Installation */}
-              <div>
-                <SectionHeading level="h2" title="설치" id="installation" />
-                <div className="mt-2 md:mt-4">
-                  <CodeBlock language="bash" code={`hanui add skiplink`} />
-                </div>
-              </div>
+          {/* Best Practices */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
 
-              {/* Guidelines */}
-              <div>
-                <SectionHeading
-                  level="h2"
-                  title="사용 가이드라인"
-                  id="guidelines"
-                />
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="when-to-use"
+                title="언제 사용하나요?"
+              />
+              <DoCard>
+                <List variant="check">
+                  <ListItem>
+                    모든 페이지에서 반드시 사용 (WCAG Level A 필수 요구사항)
+                  </ListItem>
+                  <ListItem>
+                    헤더, 네비게이션 등 반복적인 콘텐츠가 있는 페이지
+                  </ListItem>
+                  <ListItem>
+                    키보드 사용자와 스크린 리더 사용자를 위한 필수 기능
+                  </ListItem>
+                  <ListItem>
+                    정부 및 공공기관 웹사이트 (KRDS 필수 적용)
+                  </ListItem>
+                </List>
+              </DoCard>
+            </Subsection>
 
-                <div className="mt-2 md:mt-4 space-y-4">
-                  <GuidelineSection title="언제 사용하나요?" type="do">
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>모든 정부 디지털 서비스의 첫 번째 요소로 사용</li>
-                      <li>키보드 사용자의 접근성을 개선하고자 할 때</li>
-                      <li>
-                        스크린 리더 사용자가 반복 콘텐츠를 건너뛸 수 있도록 할
-                        때
-                      </li>
-                      <li>
-                        헤더, 네비게이션, 사이드바 등 반복적인 영역이 있을 때
-                      </li>
-                    </ul>
-                  </GuidelineSection>
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="implementation-tips"
+                title="구현 팁"
+              />
+              <List variant="disc">
+                <ListItem>
+                  <strong>페이지 최상단 배치:</strong> body 요소의 첫 번째 자식
+                  요소로 배치하세요 (쿠키 배너/모달 제외)
+                </ListItem>
+                <ListItem>
+                  <strong>단순하게 유지:</strong> 링크는 최대 3개까지만
+                  권장합니다. 대부분의 경우 "본문 바로가기" 하나면 충분합니다
+                </ListItem>
+                <ListItem>
+                  <strong>명확한 라벨:</strong> "본문 바로가기", "주 메뉴
+                  바로가기" 등 명확한 한글 라벨을 사용하세요
+                </ListItem>
+                <ListItem>
+                  <strong>대상 요소 설정:</strong> 대상 요소(main, nav 등)에{' '}
+                  <Code>id</Code>와 <Code>tabIndex={'{-1}'}</Code>을 설정하세요
+                </ListItem>
+                <ListItem>
+                  <strong>KRDS ID 필수:</strong> 컴포넌트는 자동으로{' '}
+                  <Code>id="krds-skip-link"</Code>를 가집니다 (KRDS 필수)
+                </ListItem>
+              </List>
+            </Subsection>
+          </Subsection>
 
-                  <GuidelineSection title="언제 사용하지 않나요?" type="dont">
-                    <ul className="list-disc list-inside space-y-2">
-                      <li>페이지에 반복적인 콘텐츠가 없을 때</li>
-                      <li>
-                        단일 페이지 앱에서 콘텐츠가 동적으로 변경될 때 (대체
-                        방법 필요)
-                      </li>
-                      <li>외부 링크로 이동할 때 (내부 앵커 링크만 사용)</li>
-                      <li>3개 이상의 링크를 제공할 때 (최대 3개 권장)</li>
-                    </ul>
-                  </GuidelineSection>
-                </div>
-              </div>
+          {/* Accessibility */}
+          <Subsection level="h2">
+            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Body>
+              이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level A 기준을 준수합니다.
+            </Body>
 
-              {/* Accessibility */}
-              <div>
-                <SectionHeading level="h2" title="접근성" id="accessibility" />
+            <List variant="disc">
+              <ListItem>
+                <strong>Bypass Blocks (2.4.1):</strong> Level A 필수 기준으로,
+                반복되는 콘텐츠 블록을 건너뛸 수 있는 메커니즘 제공
+              </ListItem>
+              <ListItem>
+                <strong>키보드 접근성:</strong> Tab 키로 포커스, Enter 키로 이동
+              </ListItem>
+              <ListItem>
+                <strong>포커스 관리:</strong> 링크 클릭 시 대상 요소로 자동
+                스크롤 및 포커스 이동
+              </ListItem>
+              <ListItem>
+                <strong>시각적 피드백:</strong> 포커스 시 명확한 시각적 표시
+                (파란색 포커스 링)
+              </ListItem>
+              <ListItem>
+                <strong>Semantic HTML:</strong> <Code>nav</Code> 요소와 적절한
+                ARIA 속성 사용
+              </ListItem>
+            </List>
+          </Subsection>
 
-                <div className="mt-2 md:mt-4 space-y-4">
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="WCAG 2.1 / KWCAG 2.2 준수"
-                      id="wcag-compliance"
-                    />
-                    <Body>
-                      이 컴포넌트는 다음 접근성 기준을 준수합니다:
-                      <br />
-                      <br />
-                      <strong>Bypass Blocks (Level A):</strong> 키보드 사용자가
-                      반복 콘텐츠를 건너뛸 수 있는 메커니즘을 제공합니다.
-                      <br />
-                      <br />
-                      <strong>Focus Visible (Level AA):</strong> 포커스를 받은
-                      링크는 시각적으로 명확하게 구분됩니다.
-                      <br />
-                      <br />
-                      <strong>Keyboard Accessible (Level A):</strong> Tab 키로
-                      이동하고 Enter 키로 활성화할 수 있습니다.
-                    </Body>
-                  </div>
+          {/* Foundation Layer */}
+          <Subsection level="h2">
+            <SectionHeading
+              level="h2"
+              id="foundation-layer"
+              title="Foundation Layer"
+            />
+            <Body>SkipLink 컴포넌트는 다음 기능들을 자동으로 처리합니다:</Body>
 
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="키보드 내비게이션"
-                      id="keyboard-navigation"
-                    />
-                    <Body>
-                      <strong>Tab:</strong> SkipLink로 포커스 이동 (hidden
-                      variant의 경우 포커스를 받으면 화면에 나타남)
-                      <br />
-                      <strong>Enter:</strong> 링크 활성화 및 대상 위치로 스크롤
-                      <br />
-                      <strong>Shift + Tab:</strong> 이전 포커스 가능 요소로 이동
-                    </Body>
-                  </div>
+            <Card variant="info">
+              <List variant="check">
+                <ListItem>
+                  <strong>KRDS ID 자동 적용:</strong>{' '}
+                  <Code>id="krds-skip-link"</Code>가 자동으로 설정됩니다 (KRDS
+                  필수 요구사항)
+                </ListItem>
+                <ListItem>
+                  <strong>포커스 관리:</strong> 링크 클릭 시 대상 요소로
+                  자동으로 스크롤하고 포커스를 이동합니다
+                </ListItem>
+                <ListItem>
+                  <strong>키보드 내비게이션:</strong> Tab과 Enter 키를 완벽하게
+                  지원합니다
+                </ListItem>
+                <ListItem>
+                  <strong>다크 모드:</strong> 라이트/다크 모드를 자동으로
+                  지원하며 충분한 대비율을 유지합니다
+                </ListItem>
+              </List>
+            </Card>
+          </Subsection>
+        </TabsContent>
 
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="스크린 리더 지원"
-                      id="screen-reader"
-                    />
-                    <Body>
-                      - 스크린 리더는 &quot;Skip navigation&quot; 내비게이션
-                      랜드마크로 인식합니다
-                      <br />
-                      - 각 링크의 label이 명확하게 읽힙니다
-                      <br />- 대상 요소로 이동 시 포커스가 자동으로 설정됩니다
-                    </Body>
-                  </div>
+        <TabsContent value="api">
+          {/* API Reference */}
+          <Subsection level="h2">
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API Reference"
+            />
 
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="대상 요소 설정"
-                      id="target-element-setup"
-                    />
-                    <Body>
-                      SkipLink의 대상 요소는 다음 요구사항을 만족해야 합니다:
-                      <br />
-                      <br />
-                      1. <strong>ID 속성:</strong> href에 지정된 ID를 가져야
-                      합니다 (예: id=&quot;main-content&quot;)
-                      <br />
-                      2. <strong>tabIndex:</strong> tabIndex=-1을 설정하여
-                      프로그래밍 방식의 포커스를 받을 수 있어야 합니다
-                      <br />
-                      3. <strong>의미 있는 요소:</strong> main, nav, header,
-                      footer 등 시맨틱 HTML 요소를 사용하는 것이 권장됩니다
-                    </Body>
-                  </div>
-                </div>
-              </div>
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="props" title="Props" />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>links</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>SkipLinkItem[]</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>
+                      건너뛰기 링크 배열 (최대 3개 권장, 필수)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>"visible" | "hidden"</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>"hidden"</Code>
+                    </TableCell>
+                    <TableCell>표시 방식 (숨김/항상 표시)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>undefined</Code>
+                    </TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-              {/* Design Principles */}
-              <div>
-                <SectionHeading
-                  level="h2"
-                  title="디자인 원칙"
-                  id="design-principles"
-                />
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="skiplink-item"
+                title="SkipLinkItem Type"
+              />
+              <Card>
+                <Code language="tsx">
+                  {`interface SkipLinkItem {
+  href: string;   // 링크 목적지 (예: '#main-content')
+  label: string;  // 링크 라벨 텍스트 (예: '본문 바로가기')
+}`}
+                </Code>
+              </Card>
+            </Subsection>
+          </Subsection>
+        </TabsContent>
+      </Tabs>
 
-                <div className="mt-2 md:mt-4 space-y-4">
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="1. 첫 번째 요소 배치"
-                      id="first-element"
-                    />
-                    <Body>
-                      SkipLink는 페이지의 첫 번째 요소로 배치되어야 합니다. 쿠키
-                      배너나 모달과 같은 임시 요소를 제외하고, body 태그의 첫
-                      번째 자식으로 위치해야 합니다.
-                    </Body>
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="2. 링크 개수 제한"
-                      id="link-limit"
-                    />
-                    <Body>
-                      최대 3개의 링크를 제공하는 것이 권장됩니다. 너무 많은
-                      링크는 오히려 사용성을 저하시킬 수 있습니다. 가장 중요한
-                      영역(일반적으로 본문)으로의 링크를 우선적으로 제공하세요.
-                    </Body>
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="3. 명확한 포커스 표시"
-                      id="focus-indicator"
-                    />
-                    <Body>
-                      포커스를 받은 링크는 시각적으로 명확하게 구분되어야
-                      합니다. 기본적으로 흰색 링 스타일의 포커스 인디케이터가
-                      제공되며, 파란색 배경 위에서 잘 보입니다.
-                    </Body>
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="4. 부드러운 스크롤"
-                      id="smooth-scroll"
-                    />
-                    <Body>
-                      링크 클릭 시 대상 위치로 부드럽게 스크롤되며, 대상 요소에
-                      자동으로 포커스가 설정됩니다. 이는 사용자가 현재 위치를
-                      명확하게 인식할 수 있도록 돕습니다.
-                    </Body>
-                  </div>
-                </div>
-              </div>
-
-              {/* Foundation Layer */}
-              <div>
-                <SectionHeading
-                  level="h2"
-                  title="기반 레이어"
-                  id="foundation-layer"
-                />
-
-                <Body>
-                  SkipLink 컴포넌트는 HANUI의 Foundation Layer를 통해 다음 5가지
-                  핵심 기능을 자동으로 제공합니다:
-                </Body>
-
-                <div className="mt-2 md:mt-4 space-y-4">
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="1. Required CSS ID (#krds-skip-link)"
-                      id="fl-required-id"
-                    />
-                    <Body>
-                      KRDS 표준에서 요구하는 #krds-skip-link ID가 자동으로
-                      적용됩니다. 개발자가 수동으로 ID를 추가할 필요가 없습니다.
-                    </Body>
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="2. Keyboard Navigation"
-                      id="fl-keyboard"
-                    />
-                    <Body>
-                      Tab 키로 링크 간 이동, Enter 키로 링크 활성화가 자동으로
-                      처리됩니다. 별도의 키보드 이벤트 핸들러를 구현할 필요가
-                      없습니다.
-                    </Body>
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="3. WCAG 2.1 / KWCAG 2.2 Compliance"
-                      id="fl-wcag"
-                    />
-                    <Body>
-                      Bypass Blocks (Level A)와 Focus Visible (Level AA) 기준이
-                      자동으로 충족됩니다. 포커스 스타일과 키보드 접근성이
-                      내장되어 있습니다.
-                    </Body>
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="4. Focus Management"
-                      id="fl-focus-management"
-                    />
-                    <Body>
-                      링크 클릭 시 대상 요소로 자동 스크롤되며, 대상 요소에
-                      포커스가 설정됩니다. tabIndex 설정과 스크롤 동작이
-                      자동으로 처리됩니다.
-                    </Body>
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="5. Screen Reader Support"
-                      id="fl-screen-reader"
-                    />
-                    <Body>
-                      aria-label=&quot;Skip navigation&quot;을 통해 스크린
-                      리더가 내비게이션 랜드마크로 인식합니다. 시맨틱 nav 요소를
-                      사용하여 보조기술과의 호환성을 보장합니다.
-                    </Body>
-                  </div>
-
-                  <Body color="secondary" className="mt-4">
-                    이러한 자동화된 기능들은 개발자가 접근성 구현에 대한 깊은
-                    지식 없이도 KRDS 표준을 준수하는 컴포넌트를 쉽게 사용할 수
-                    있도록 돕습니다.
-                  </Body>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="api">
-            {/* API Reference */}
-            <div className="space-y-8">
-              <div>
-                <SectionHeading
-                  level="h2"
-                  title="API Reference"
-                  id="api-reference"
-                />
-
-                <div className="mt-2 md:mt-4 space-y-6">
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="SkipLink Props"
-                      id="skiplink-props"
-                    />
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead>
-                          <tr className="border-b border-gray-200 dark:border-gray-800">
-                            <th className="text-left py-2 px-4">Prop</th>
-                            <th className="text-left py-2 px-4">Type</th>
-                            <th className="text-left py-2 px-4">Default</th>
-                            <th className="text-left py-2 px-4">Description</th>
-                          </tr>
-                        </thead>
-                        <tbody className="text-gray-700 dark:text-gray-300">
-                          <tr className="border-b border-gray-100 dark:border-gray-900">
-                            <td className="py-2 px-4 font-mono">links</td>
-                            <td className="py-2 px-4 font-mono">
-                              SkipLinkItem[]
-                            </td>
-                            <td className="py-2 px-4">-</td>
-                            <td className="py-2 px-4">
-                              Skip link 항목 배열 (최대 3개 권장, 필수)
-                            </td>
-                          </tr>
-                          <tr className="border-b border-gray-100 dark:border-gray-900">
-                            <td className="py-2 px-4 font-mono">variant</td>
-                            <td className="py-2 px-4 font-mono">
-                              &quot;visible&quot; | &quot;hidden&quot;
-                            </td>
-                            <td className="py-2 px-4 font-mono">
-                              &quot;hidden&quot;
-                            </td>
-                            <td className="py-2 px-4">
-                              시각적 변형. &quot;hidden&quot;은 포커스 시에만
-                              표시, &quot;visible&quot;은 항상 표시
-                            </td>
-                          </tr>
-                          <tr className="border-b border-gray-100 dark:border-gray-900">
-                            <td className="py-2 px-4 font-mono">className</td>
-                            <td className="py-2 px-4 font-mono">string</td>
-                            <td className="py-2 px-4">-</td>
-                            <td className="py-2 px-4">추가 CSS 클래스</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <Body className="mt-2">
-                      <strong>중요:</strong> SkipLink는 자동으로 #krds-skip-link
-                      ID를 적용하여 KRDS 표준을 준수합니다.
-                    </Body>
-                  </div>
-
-                  <div className="space-y-2">
-                    <SectionHeading
-                      level="h3"
-                      title="SkipLinkItem Type"
-                      id="skiplinkitem-type"
-                    />
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead>
-                          <tr className="border-b border-gray-200 dark:border-gray-800">
-                            <th className="text-left py-2 px-4">Property</th>
-                            <th className="text-left py-2 px-4">Type</th>
-                            <th className="text-left py-2 px-4">Description</th>
-                          </tr>
-                        </thead>
-                        <tbody className="text-gray-700 dark:text-gray-300">
-                          <tr className="border-b border-gray-100 dark:border-gray-900">
-                            <td className="py-2 px-4 font-mono">href</td>
-                            <td className="py-2 px-4 font-mono">string</td>
-                            <td className="py-2 px-4">
-                              링크 대상 (예: &quot;#main-content&quot;, 필수)
-                            </td>
-                          </tr>
-                          <tr className="border-b border-gray-100 dark:border-gray-900">
-                            <td className="py-2 px-4 font-mono">label</td>
-                            <td className="py-2 px-4 font-mono">string</td>
-                            <td className="py-2 px-4">
-                              링크 레이블 텍스트 (예: &quot;본문 바로가기&quot;,
-                              필수)
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
-      </PageSection>
-    </>
+      <PageNavigation
+        previous={{
+          title: 'Pagination',
+          href: '/components/navigation/pagination',
+        }}
+        next={{
+          title: 'SideNavigation',
+          href: '/components/navigation/sidenavigation',
+        }}
+      />
+    </Section>
   );
 }

@@ -1,279 +1,401 @@
 'use client';
 
-import { Display, Stack, Heading, Body } from '@hanui/react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageHeader } from '@/components/content/PageHeader';
-import { PageSection } from '@/components/content/PageSection';
-import { GuidelineBox } from '@/components/content/GuidelineBox';
+import {
+  Display as DisplayComponent,
+  Section,
+  SectionHeading,
+  Subsection,
+  Body,
+  Stack,
+  Card,
+  Code,
+  List,
+  ListItem,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  PageNavigation,
+  DoCard,
+  DontCard,
+} from '@/components/hanui';
 
 export default function DisplayPage() {
   return (
     <>
-      <PageHeader
+      <SectionHeading
+        level="h1"
         title="Display"
-        description="배너와 마케팅용 대형 텍스트 컴포넌트"
+        description="배너와 마케팅용 대형 텍스트 컴포넌트입니다."
       />
 
-      {/* Preview */}
-      <PageSection>
-        <ComponentPreview>
-          <div className="flex flex-col gap-6">
-            <Display size="lg">환영합니다</Display>
-            <Display size="md">공공서비스 플랫폼</Display>
-            <Display size="sm">HANUI 디자인 시스템</Display>
-          </div>
-        </ComponentPreview>
-      </PageSection>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API</TabsTrigger>
+        </TabsList>
 
-      {/* Overview */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="overview">
-            개요
-          </Heading>
-          <Body className="leading-relaxed">
-            Display는 <strong>KRDS 타이포그래피 시스템</strong>에서 가장 큰
-            크기의 텍스트 스타일입니다. 배너, 히어로 섹션, 마케팅 메시지 등
-            사용자의 주목을 끌어야 하는 곳에 사용됩니다.
-          </Body>
-          <Body className="leading-relaxed">
-            모든 크기는 반응형으로 설계되어 PC와 모바일에서 최적의 가독성을
-            제공합니다.
-          </Body>
-        </Stack>
-      </PageSection>
-
-      {/* Sizes */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="sizes">
-            크기 (Size)
-          </Heading>
-        </Stack>
-
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack gap="sm">
-              <Display size="lg">Large Display</Display>
-              <Body size="sm" className="text-krds-gray-70">
-                60px (PC) / 44px (Mobile) · 700 (Bold) · 150% 줄 간격
+        <TabsContent value="overview">
+          {/* Installation */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="installation" title="설치">
+              <Body className="leading-relaxed">
+                다음 명령어로 Display 컴포넌트를 설치합니다:
               </Body>
-              <div>
-                <CodeBlock
-                  code={`<Display size="lg">최대 강조 텍스트</Display>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </Stack>
-          </div>
+            </SectionHeading>
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              npx @hanui/cli add display
+            </Code>
+          </Section>
 
-          <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack gap="sm">
-              <Display size="md">Medium Display</Display>
-              <Body size="sm" className="text-krds-gray-70">
-                44px (PC) / 32px (Mobile) · 700 (Bold) · 150% 줄 간격
-              </Body>
-              <div>
-                <CodeBlock
-                  code={`<Display size="md">주요 제목</Display>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </Stack>
-          </div>
+          {/* What is it */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="what-is-it"
+              title="무엇인가요?"
+              description="Display는 KRDS 타이포그래피 시스템에서 가장 큰 크기의 텍스트 스타일입니다. 배너, 히어로 섹션, 마케팅 메시지 등 사용자의 주목을 끌어야 하는 곳에 사용됩니다."
+            />
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>반응형 크기:</strong> PC와 모바일에서 최적의 가독성을
+                  제공합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>KRDS 준수:</strong> Bold(700) 폰트 굵기와 150% 줄
+                  간격으로 가독성을 확보합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>Polymorphic:</strong> as prop으로 다양한 HTML 태그로
+                  렌더링할 수 있습니다.
+                </ListItem>
+                <ListItem>
+                  <strong>접근성:</strong> 명도 대비 4.5:1 이상을 만족하여 WCAG
+                  2.1 / KWCAG 2.2를 준수합니다.
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
 
-          <div className="rounded-lg border border-krds-gray-20 p-6">
-            <Stack gap="sm">
-              <Display size="sm">Small Display</Display>
-              <Body size="sm" className="text-krds-gray-70">
-                36px (PC) / 28px (Mobile) · 700 (Bold) · 150% 줄 간격
-              </Body>
-              <div>
-                <CodeBlock
-                  code={`<Display size="sm">보조 제목</Display>`}
-                  language="tsx"
-                  showLineNumbers={false}
-                />
-              </div>
-            </Stack>
-          </div>
-        </Stack>
-      </PageSection>
+          {/* Preview */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Card>
+              <Stack gap="lg">
+                <DisplayComponent size="lg">환영합니다</DisplayComponent>
+                <DisplayComponent size="md">공공서비스 플랫폼</DisplayComponent>
+                <DisplayComponent size="sm">
+                  HANUI 디자인 시스템
+                </DisplayComponent>
+              </Stack>
+            </Card>
+            <Code variant="block" language="tsx">
+              {`<Display size="lg">환영합니다</Display>
+<Display size="md">공공서비스 플랫폼</Display>
+<Display size="sm">HANUI 디자인 시스템</Display>`}
+            </Code>
+          </Section>
 
-      {/* Usage */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="usage">
-            예제
-          </Heading>
-        </Stack>
+          {/* Usage */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="usage" title="사용 방법" />
 
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          {/* Polymorphic */}
-          <Stack gap="sm">
-            <Heading level="h3">다양한 HTML 태그</Heading>
-            <div>
-              <ComponentPreview>
-                <div className="flex flex-col gap-4">
-                  <Display as="h1" size="lg">
+            {/* Sizes */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="sizes" title="크기 (Size)" />
+              <Card>
+                <Stack gap="lg">
+                  <Stack gap="sm">
+                    <DisplayComponent size="lg">Large Display</DisplayComponent>
+                    <Body size="sm" className="text-krds-gray-70">
+                      60px (PC) / 44px (Mobile) · 700 (Bold) · 150% 줄 간격
+                    </Body>
+                  </Stack>
+
+                  <Stack gap="sm">
+                    <DisplayComponent size="md">
+                      Medium Display
+                    </DisplayComponent>
+                    <Body size="sm" className="text-krds-gray-70">
+                      44px (PC) / 32px (Mobile) · 700 (Bold) · 150% 줄 간격
+                    </Body>
+                  </Stack>
+
+                  <Stack gap="sm">
+                    <DisplayComponent size="sm">Small Display</DisplayComponent>
+                    <Body size="sm" className="text-krds-gray-70">
+                      36px (PC) / 28px (Mobile) · 700 (Bold) · 150% 줄 간격
+                    </Body>
+                  </Stack>
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Display size="lg">최대 강조 텍스트</Display>
+<Display size="md">주요 제목</Display>
+<Display size="sm">보조 제목</Display>`}
+              </Code>
+            </Subsection>
+
+            {/* Polymorphic */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="polymorphic"
+                title="다양한 HTML 태그"
+                description="as prop을 사용하여 원하는 HTML 태그로 렌더링할 수 있습니다."
+              />
+              <Card>
+                <Stack gap="md">
+                  <DisplayComponent as="h1" size="lg">
                     h1 태그로 렌더링
-                  </Display>
-                  <Display as="h2" size="md">
+                  </DisplayComponent>
+                  <DisplayComponent as="h2" size="md">
                     h2 태그로 렌더링
-                  </Display>
-                  <Display as="div" size="sm">
+                  </DisplayComponent>
+                  <DisplayComponent as="div" size="sm">
                     div 태그로 렌더링
-                  </Display>
-                </div>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Display as="h1" size="lg">h1 태그로 렌더링</Display>
+                  </DisplayComponent>
+                </Stack>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Display as="h1" size="lg">h1 태그로 렌더링</Display>
 <Display as="h2" size="md">h2 태그로 렌더링</Display>
 <Display as="div" size="sm">div 태그로 렌더링</Display>`}
-                  language="tsx"
-                />
-              </div>
-            </div>
-          </Stack>
+              </Code>
+            </Subsection>
 
-          {/* Custom Styling */}
-          <Stack gap="sm">
-            <Heading level="h3">커스텀 스타일</Heading>
-            <div>
-              <ComponentPreview>
-                <Display size="md" className="text-krds-primary-base">
+            {/* Custom Styling */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="custom-styling"
+                title="커스텀 스타일"
+                description="className prop으로 추가 스타일을 적용할 수 있습니다."
+              />
+              <Card>
+                <DisplayComponent size="md" className="text-krds-primary-base">
                   브랜드 컬러 적용
-                </Display>
-              </ComponentPreview>
-              <div className="mt-4">
-                <CodeBlock
-                  code={`<Display size="md" className="text-krds-primary-base">
+                </DisplayComponent>
+              </Card>
+              <Code variant="block" language="tsx">
+                {`<Display size="md" className="text-krds-primary-base">
   브랜드 컬러 적용
 </Display>`}
-                  language="tsx"
-                />
-              </div>
-            </div>
-          </Stack>
-        </Stack>
-      </PageSection>
+              </Code>
+            </Subsection>
+          </Section>
 
-      {/* Guidelines */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="guidelines">
-            사용 가이드라인
-          </Heading>
-        </Stack>
+          {/* Best Practices */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Stack gap="md">
+              <DoCard title="Display를 사용하기 적합한 경우">
+                <List variant="check">
+                  <ListItem>랜딩 페이지의 히어로 섹션</ListItem>
+                  <ListItem>프로모션 배너의 핵심 메시지</ListItem>
+                  <ListItem>서비스 소개 페이지의 대제목</ListItem>
+                  <ListItem>강력한 시각적 임팩트가 필요한 곳</ListItem>
+                </List>
+              </DoCard>
 
-        <Stack gap="lg" className="mt-2 md:mt-4">
-          <GuidelineBox title="Display를 사용하기 적합한 경우">
-            <ul className="list-disc list-inside space-y-2">
-              <li>랜딩 페이지의 히어로 섹션</li>
-              <li>프로모션 배너의 핵심 메시지</li>
-              <li>서비스 소개 페이지의 대제목</li>
-              <li>강력한 시각적 임팩트가 필요한 곳</li>
-            </ul>
-          </GuidelineBox>
+              <DontCard title="Display를 사용하지 말아야 하는 경우">
+                <List variant="cross">
+                  <ListItem>일반 페이지 제목 (Heading 사용 권장)</ListItem>
+                  <ListItem>본문 내용 (Body 사용 권장)</ListItem>
+                  <ListItem>폼 라벨 (Label 사용 권장)</ListItem>
+                  <ListItem>텍스트가 많은 콘텐츠 영역</ListItem>
+                </List>
+              </DontCard>
+            </Stack>
+          </Section>
 
-          <GuidelineBox title="Display를 사용하지 말아야 하는 경우">
-            <ul className="list-disc list-inside space-y-2">
-              <li>일반 페이지 제목 (Heading 사용 권장)</li>
-              <li>본문 내용 (Body 사용 권장)</li>
-              <li>폼 라벨 (Label 사용 권장)</li>
-              <li>텍스트가 많은 콘텐츠 영역</li>
-            </ul>
-          </GuidelineBox>
-        </Stack>
-      </PageSection>
+          {/* Accessibility */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="Display는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>색상 대비:</strong> 기본 색상(gray-95)이 명도 대비
+                  4.5:1 이상을 만족합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>의미론적 HTML:</strong> as prop으로 적절한 HTML 태그를
+                  선택할 수 있습니다.
+                </ListItem>
+                <ListItem>
+                  <strong>반응형 타이포그래피:</strong> 모든 기기에서 읽기 쉬운
+                  크기를 유지합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>다크 모드:</strong> 자동으로 다크 모드를 지원합니다.
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
+        </TabsContent>
 
-      {/* API */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="api-reference">
-            API 레퍼런스
-          </Heading>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-krds-gray-20">
-                  <th className="text-left py-3 px-4">Prop</th>
-                  <th className="text-left py-3 px-4">Type</th>
-                  <th className="text-left py-3 px-4">Default</th>
-                  <th className="text-left py-3 px-4">Description</th>
-                </tr>
-              </thead>
-              <tbody className="text-krds-gray-90">
-                <tr className="border-b border-krds-gray-20">
-                  <td className="py-3 px-4">
-                    <code>size</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"lg" | "md" | "sm"</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"md"</code>
-                  </td>
-                  <td className="py-3 px-4">Display 크기</td>
-                </tr>
-                <tr className="border-b border-krds-gray-20">
-                  <td className="py-3 px-4">
-                    <code>as</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"h1" | "h2" | "h3" | "div" | "p"</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>"h1"</code>
-                  </td>
-                  <td className="py-3 px-4">렌더링할 HTML 태그</td>
-                </tr>
-                <tr className="border-b border-krds-gray-20">
-                  <td className="py-3 px-4">
-                    <code>className</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>string</code>
-                  </td>
-                  <td className="py-3 px-4">-</td>
-                  <td className="py-3 px-4">추가 CSS 클래스</td>
-                </tr>
-                <tr>
-                  <td className="py-3 px-4">
-                    <code>children</code>
-                  </td>
-                  <td className="py-3 px-4">
-                    <code>ReactNode</code>
-                  </td>
-                  <td className="py-3 px-4">-</td>
-                  <td className="py-3 px-4">텍스트 내용</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </Stack>
-      </PageSection>
+        <TabsContent value="api">
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API 레퍼런스"
+            />
 
-      {/* KRDS Compliance */}
-      <PageSection>
-        <Stack gap="md">
-          <Heading level="h2" id="krds">
-            KRDS 준수사항
-          </Heading>
-          <div className="rounded-lg border border-krds-primary-border bg-krds-primary-surface p-6">
-            <ul className="space-y-2 text-krds-primary-text">
-              <li>✓ 모든 Display는 Bold (700) 폰트 굵기 사용</li>
-              <li>✓ 150% 줄 간격으로 가독성 확보</li>
-              <li>✓ 반응형 크기 (PC/모바일 최적화)</li>
-              <li>✓ Pretendard GOV 폰트 적용</li>
-            </ul>
-          </div>
-        </Stack>
-      </PageSection>
+            {/* Props */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" id="props" title="Props" />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>
+                        &quot;lg&quot; | &quot;md&quot; | &quot;sm&quot;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;md&quot;</Code>
+                    </TableCell>
+                    <TableCell>Display 크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>as</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>
+                        &quot;h1&quot; | &quot;h2&quot; | &quot;h3&quot; |
+                        &quot;div&quot; | &quot;p&quot;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;h1&quot;</Code>
+                    </TableCell>
+                    <TableCell>렌더링할 HTML 태그</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>children</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>텍스트 내용</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            {/* Size Variants */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="size-variants"
+                title="Size Variants"
+              />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Size</TableHead>
+                    <TableHead>PC</TableHead>
+                    <TableHead>Mobile</TableHead>
+                    <TableHead>Font Weight</TableHead>
+                    <TableHead>Line Height</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>lg</Code>
+                    </TableCell>
+                    <TableCell>60px</TableCell>
+                    <TableCell>44px</TableCell>
+                    <TableCell>700 (Bold)</TableCell>
+                    <TableCell>150%</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>md</Code>
+                    </TableCell>
+                    <TableCell>44px</TableCell>
+                    <TableCell>32px</TableCell>
+                    <TableCell>700 (Bold)</TableCell>
+                    <TableCell>150%</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>sm</Code>
+                    </TableCell>
+                    <TableCell>36px</TableCell>
+                    <TableCell>28px</TableCell>
+                    <TableCell>700 (Bold)</TableCell>
+                    <TableCell>150%</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            {/* KRDS Compliance */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="krds-compliance"
+                title="KRDS 준수사항"
+              />
+              <Card variant="info">
+                <List variant="check" className="text-krds-gray-90">
+                  <ListItem>모든 Display는 Bold (700) 폰트 굵기 사용</ListItem>
+                  <ListItem>150% 줄 간격으로 가독성 확보</ListItem>
+                  <ListItem>반응형 크기 (PC/모바일 최적화)</ListItem>
+                  <ListItem>Pretendard GOV 폰트 적용</ListItem>
+                  <ListItem>
+                    명도 대비 4.5:1 이상 (WCAG 2.1 / KWCAG 2.2 Level AA)
+                  </ListItem>
+                </List>
+              </Card>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'Colors', href: '/design-system/colors' }}
+        next={{ title: 'Heading', href: '/typography/heading' }}
+      />
     </>
   );
 }
