@@ -1,16 +1,30 @@
 'use client';
 
-import { StructuredList, StructuredListItem, Body } from '@hanui/react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageSection } from '@/components/content/PageSection';
-import { SectionHeading } from '@/components/hanui/section-header';
 import {
+  Section,
+  SectionHeading,
+  Subsection,
+  List,
+  ListItem,
+  Code,
+  Body,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  Card,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@/components/hanui/tabs';
+  PageNavigation,
+  StructuredList,
+  DoCard,
+  DontCard,
+} from '@/components/hanui';
+import type { StructuredListItem } from '@/components/hanui';
 
 export default function StructuredListPage() {
   // Basic example items
@@ -64,51 +78,97 @@ export default function StructuredListPage() {
         description="복잡한 콘텐츠를 카드 형식으로 정리하여 표시하는 구조화 목록 컴포넌트입니다."
       />
 
-      <PageSection>
-        <Tabs defaultValue="overview">
-          <TabsList>
-            <TabsTrigger value="overview">개요</TabsTrigger>
-            <TabsTrigger value="api">API</TabsTrigger>
-          </TabsList>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API</TabsTrigger>
+        </TabsList>
 
-          <TabsContent value="overview">
-            <PageSection>
-              <ComponentPreview>
-                <StructuredList items={basicItems} variant="default" />
-              </ComponentPreview>
-            </PageSection>
-
-            <SectionHeading level="h2" id="overview" title="개요">
+        {/* 개요 탭 */}
+        <TabsContent value="overview">
+          {/* Installation */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
-                Structured List는 배지, 타이틀, 설명, 날짜, 태그, 액션 버튼 등
-                다양한 정보를 포함하는 복잡한 콘텐츠를 카드 형식으로 정리하여
-                표시하는 컴포넌트입니다.{' '}
-                <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>을 준수하여
-                공공 웹사이트에 최적화된 접근성과 사용성을 제공합니다.
+                다음 명령어로 Structured List 컴포넌트를 설치합니다:
               </Body>
             </SectionHeading>
 
-            <SectionHeading level="h2" id="installation" title="설치" />
-            <CodeBlock code="npx hanui add structured-list" language="bash" />
-            <Body className="text-krds-gray-70 mt-2">
-              이 명령은 컴포넌트 파일(TSX)과 스타일 파일(SCSS Module)을 자동으로
-              설치합니다.
-            </Body>
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              npx @hanui/cli add structured-list
+            </Code>
+          </Section>
 
-            <SectionHeading level="h2" id="examples" title="예제" />
-
+          {/* What is it */}
+          <Section level="h2">
             <SectionHeading
-              level="h3"
-              id="basic-example"
-              title="기본 Structured List"
-            >
-              <Body>
-                기본적인 Structured List입니다. 3열 그리드 레이아웃으로
-                표시되며, 태블릿에서는 2열, 모바일에서는 1열로 자동 조정됩니다.
-              </Body>
-            </SectionHeading>
-            <CodeBlock
-              code={`import { StructuredList } from '@hanui/react';
+              level="h2"
+              id="what-is-it"
+              title="무엇인가요?"
+              description="Structured List는 배지, 타이틀, 설명, 날짜, 태그, 액션 버튼 등 다양한 정보를 포함하는 복잡한 콘텐츠를 카드 형식으로 정리하여 표시하는 컴포넌트입니다."
+            />
+
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>반응형 그리드:</strong> 데스크탑 3열, 태블릿 2열,
+                  모바일 1열로 자동 조정됩니다.
+                </ListItem>
+                <ListItem>
+                  <strong>배지 시스템:</strong> primary, success, secondary
+                  3가지 배지 스타일을 지원합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>말줄임 처리:</strong> 타이틀은 1줄, 설명은 최대
+                  3줄까지 표시하고 나머지는 말줄임 처리합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>날짜 정보:</strong> 신청 기간 등 날짜 정보를 key-value
+                  형식으로 표시합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>태그 시스템:</strong> 해시태그 형식의 태그를
+                  표시합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>액션 버튼:</strong> 신청하기 등의 주요 액션 버튼을
+                  지원합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>공유/찜 기능:</strong> 공유하기, 찜하기 버튼을
+                  지원합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>KRDS 준수:</strong> WCAG 2.1 및 KWCAG 2.2 접근성
+                  기준을 충족합니다.
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
+
+          {/* Preview */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Card variant="outlined">
+              <StructuredList items={basicItems} variant="default" />
+            </Card>
+          </Section>
+
+          {/* Usage */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="usage" title="사용 방법" />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="기본 사용">
+                <Body className="leading-relaxed">
+                  기본적인 Structured List입니다. 3열 그리드 레이아웃으로
+                  표시되며, 태블릿에서는 2열, 모바일에서는 1열로 자동
+                  조정됩니다:
+                </Body>
+              </SectionHeading>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`import { StructuredList } from '@/components/hanui';
 
 const items = [
   {
@@ -127,36 +187,35 @@ const items = [
 ];
 
 <StructuredList items={items} variant="default" />`}
-              language="tsx"
-            />
+              </Code>
+            </Subsection>
 
-            <SectionHeading
-              level="h3"
-              id="full-variant"
-              title="가로형 레이아웃"
-            >
-              <Body>
-                `variant="full"` 속성을 사용하면 가로형 레이아웃으로 표시됩니다.
-                콘텐츠가 많을 때 유용합니다.
-              </Body>
-            </SectionHeading>
-            <CodeBlock
-              code={`<StructuredList items={items} variant="full" />`}
-              language="tsx"
-            />
-            <div className="mt-6">
-              <ComponentPreview>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="가로형 레이아웃">
+                <Body className="leading-relaxed">
+                  variant="full" 속성을 사용하면 가로형 레이아웃으로 표시됩니다.
+                  콘텐츠가 많을 때 유용합니다:
+                </Body>
+              </SectionHeading>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<StructuredList items={items} variant="full" />`}
+              </Code>
+
+              <Card variant="outlined" className="mt-3">
                 <StructuredList items={basicItems} variant="full" />
-              </ComponentPreview>
-            </div>
+              </Card>
+            </Subsection>
 
-            <SectionHeading level="h3" id="sizes" title="카드 크기">
-              <Body>
-                `size` 속성으로 카드 크기를 조절할 수 있습니다. (sm, md, lg)
-              </Body>
-            </SectionHeading>
-            <CodeBlock
-              code={`// Small size
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="카드 크기">
+                <Body className="leading-relaxed">
+                  size 속성으로 카드 크기를 조절할 수 있습니다 (sm, md, lg):
+                </Body>
+              </SectionHeading>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`// Small size
 <StructuredList items={items} size="sm" />
 
 // Medium size (default)
@@ -164,152 +223,219 @@ const items = [
 
 // Large size
 <StructuredList items={items} size="lg" />`}
-              language="tsx"
-            />
+              </Code>
+            </Subsection>
+          </Section>
 
-            <SectionHeading level="h2" id="key-features" title="주요 기능" />
-            <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
-              <li>
-                <strong>반응형 그리드:</strong> 데스크탑 3열, 태블릿 2열, 모바일
-                1열로 자동 조정
-              </li>
-              <li>
-                <strong>배지 표시:</strong> primary, success, secondary 3가지
-                배지 스타일 지원
-              </li>
-              <li>
-                <strong>3줄 설명 말줄임:</strong> 설명 텍스트는 최대 3줄까지
-                표시하고 나머지는 말줄임 처리
-              </li>
-              <li>
-                <strong>날짜 정보:</strong> 신청 기간 등 날짜 정보를 key-value
-                형식으로 표시
-              </li>
-              <li>
-                <strong>태그 시스템:</strong> 해시태그 형식의 태그 표시
-              </li>
-              <li>
-                <strong>액션 버튼:</strong> 신청하기 등의 주요 액션 버튼 지원
-              </li>
-              <li>
-                <strong>공유/찜 기능:</strong> 공유하기, 찜하기 버튼 지원
-              </li>
-              <li>
-                <strong>카드 크기:</strong> sm, md, lg 3가지 크기 옵션
-              </li>
-            </ul>
-
+          {/* Best Practices */}
+          <Section level="h2">
             <SectionHeading
               level="h2"
-              id="design-guidelines"
-              title="디자인 가이드라인"
+              id="best-practices"
+              title="Best Practices"
             />
-            <Body>KRDS Structured List 가이드라인을 준수합니다:</Body>
-            <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90 mt-2">
-              <li>타이틀은 한 줄 말줄임 처리</li>
-              <li>설명은 최대 3줄까지 표시</li>
-              <li>배지는 카드 상단에 배치</li>
-              <li>태그는 카드 하단에 경계선과 함께 표시</li>
-              <li>공유/찜 버튼은 카드 우측 상단에 절대 위치</li>
-              <li>액션 버튼은 본문 영역 우측에 배치</li>
-            </ul>
 
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="언제 사용하나요?" />
+              <DoCard title="Structured List를 사용하기 적합한 경우">
+                <List variant="check">
+                  <ListItem>
+                    공공 지원 사업, 프로그램 등 복잡한 정보를 카드 형식으로
+                    보여줄 때
+                  </ListItem>
+                  <ListItem>
+                    배지, 날짜, 태그 등 다양한 메타데이터가 필요할 때
+                  </ListItem>
+                  <ListItem>
+                    사용자가 각 항목에 대해 공유하거나 찜할 수 있어야 할 때
+                  </ListItem>
+                  <ListItem>
+                    반응형 그리드 레이아웃이 필요할 때 (데스크탑 3열, 태블릿
+                    2열, 모바일 1열)
+                  </ListItem>
+                </List>
+              </DoCard>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <DontCard title="Structured List 사용을 피해야 하는 경우">
+                <List variant="dash">
+                  <ListItem>
+                    간단한 목록만 필요할 때 (<Code>List</Code> 컴포넌트 사용)
+                  </ListItem>
+                  <ListItem>
+                    테이블 형태의 데이터를 표시할 때 (<Code>Table</Code>{' '}
+                    컴포넌트 사용)
+                  </ListItem>
+                  <ListItem>
+                    단순한 카드 레이아웃만 필요할 때 (<Code>Card</Code> 컴포넌트
+                    사용)
+                  </ListItem>
+                  <ListItem>
+                    태그나 배지가 필요하지 않은 간단한 콘텐츠일 때
+                  </ListItem>
+                </List>
+              </DontCard>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="디자인 가이드라인" />
+              <List>
+                <ListItem>타이틀은 한 줄 말줄임 처리합니다.</ListItem>
+                <ListItem>설명은 최대 3줄까지 표시합니다.</ListItem>
+                <ListItem>배지는 카드 상단에 배치합니다.</ListItem>
+                <ListItem>
+                  태그는 카드 하단에 경계선과 함께 표시합니다.
+                </ListItem>
+                <ListItem>
+                  공유/찜 버튼은 카드 우측 상단에 절대 위치로 배치합니다.
+                </ListItem>
+                <ListItem>액션 버튼은 본문 영역 우측에 배치합니다.</ListItem>
+              </List>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="사용 시 주의사항" />
+              <List>
+                <ListItem>
+                  타이틀은 가능한 한 간결하게 작성하세요 (1줄 권장).
+                </ListItem>
+                <ListItem>
+                  설명은 최대 3줄까지 표시되므로 핵심 내용을 먼저 작성하세요.
+                </ListItem>
+                <ListItem>
+                  태그는 3-5개 정도가 적절하며, 너무 많으면 레이아웃이 깨질 수
+                  있습니다.
+                </ListItem>
+                <ListItem>
+                  배지는 사용자의 주의를 끌기 위한 용도이므로 중요한 정보에만
+                  사용하세요.
+                </ListItem>
+                <ListItem>
+                  variant="full"은 콘텐츠가 많을 때 유용하지만, 모바일에서는
+                  자동으로 세로형으로 전환됩니다.
+                </ListItem>
+                <ListItem>
+                  공유/찜 버튼은 절대 위치로 배치되므로, 카드 높이가 충분한지
+                  확인하세요.
+                </ListItem>
+              </List>
+            </Subsection>
+          </Section>
+
+          {/* Accessibility */}
+          <Section level="h2">
             <SectionHeading level="h2" id="accessibility" title="접근성" />
-            <Body>
+
+            <Body className="mb-3">
               Structured List 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 레벨 준수를
               목표로 합니다:
             </Body>
-            <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90 mt-2">
-              <li>
-                <strong>Semantic HTML:</strong> `&lt;ul&gt;`, `&lt;li&gt;`
-                요소를 사용한 시맨틱 마크업
-              </li>
-              <li>
+
+            <List variant="check">
+              <ListItem>
+                <strong>Semantic HTML:</strong> &lt;ul&gt;, &lt;li&gt; 요소를
+                사용한 시맨틱 마크업
+              </ListItem>
+              <ListItem>
                 <strong>Keyboard Navigation:</strong> 모든 링크와 버튼에 키보드
                 접근 가능
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>Focus Visible:</strong> 키보드 포커스 시 명확한 아웃라인
                 표시
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>Color Contrast:</strong> WCAG AA 기준 색상 대비 준수
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>Responsive:</strong> 모바일 환경에서 터치 친화적인
                 레이아웃
-              </li>
-            </ul>
-          </TabsContent>
+              </ListItem>
+            </List>
+          </Section>
+        </TabsContent>
 
-          <TabsContent value="api">
-            <SectionHeading
-              level="h2"
-              id="structured-list-props"
-              title="StructuredList Props"
-            />
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-krds-gray-30">
-                    <th className="text-left p-3 font-semibold">Prop</th>
-                    <th className="text-left p-3 font-semibold">Type</th>
-                    <th className="text-left p-3 font-semibold">Default</th>
-                    <th className="text-left p-3 font-semibold">Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">items</td>
-                    <td className="p-3 font-mono">StructuredListItem[]</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3">표시할 아이템 배열</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">variant?</td>
-                    <td className="p-3 font-mono">'default' | 'full'</td>
-                    <td className="p-3 font-mono">'default'</td>
-                    <td className="p-3">
+        {/* API 탭 */}
+        <TabsContent value="api">
+          <Section level="h2">
+            <SectionHeading level="h2" id="api" title="API Reference" />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="StructuredList Props" />
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">items</TableCell>
+                    <TableCell className="font-mono">
+                      StructuredListItem[]
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>표시할 아이템 배열</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">variant</TableCell>
+                    <TableCell className="font-mono">
+                      &apos;default&apos; | &apos;full&apos;
+                    </TableCell>
+                    <TableCell className="font-mono">
+                      &apos;default&apos;
+                    </TableCell>
+                    <TableCell>
                       레이아웃 타입 (default: 세로형, full: 가로형)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">size?</td>
-                    <td className="p-3 font-mono">'sm' | 'md' | 'lg'</td>
-                    <td className="p-3 font-mono">'md'</td>
-                    <td className="p-3">카드 크기</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">onShare?</td>
-                    <td className="p-3 font-mono">(item) =&gt; void</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3">공유 버튼 클릭 핸들러</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">onLike?</td>
-                    <td className="p-3 font-mono">(item) =&gt; void</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3">찜 버튼 클릭 핸들러</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">className?</td>
-                    <td className="p-3 font-mono">string</td>
-                    <td className="p-3 font-mono">''</td>
-                    <td className="p-3">추가 CSS 클래스</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">size</TableCell>
+                    <TableCell className="font-mono">
+                      &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;
+                    </TableCell>
+                    <TableCell className="font-mono">&apos;md&apos;</TableCell>
+                    <TableCell>카드 크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">onShare</TableCell>
+                    <TableCell className="font-mono">
+                      (item) =&gt; void
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>공유 버튼 클릭 핸들러</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">onLike</TableCell>
+                    <TableCell className="font-mono">
+                      (item) =&gt; void
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>찜 버튼 클릭 핸들러</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">className</TableCell>
+                    <TableCell className="font-mono">string</TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-            <SectionHeading
-              level="h2"
-              id="structured-list-item-type"
-              title="StructuredListItem Type"
-            >
-              <Body>Structured List 아이템의 타입입니다:</Body>
-            </SectionHeading>
-            <CodeBlock
-              code={`export interface StructuredListItem {
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="StructuredListItem Type" />
+
+              <Body className="mb-3">Structured List 아이템의 타입입니다:</Body>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`export interface StructuredListItem {
   /** 아이템 ID */
   id: string;
   /** 배지 텍스트 (선택사항) */
@@ -340,39 +466,16 @@ const items = [
   /** 찜 버튼 활성화 (선택사항) */
   showLike?: boolean;
 }`}
-              language="tsx"
-            />
+              </Code>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
 
-            <SectionHeading
-              level="h2"
-              id="usage-notes"
-              title="사용 시 주의사항"
-            />
-            <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
-              <li>타이틀은 가능한 한 간결하게 작성하세요 (1줄 권장)</li>
-              <li>
-                설명은 최대 3줄까지 표시되므로 핵심 내용을 먼저 작성하세요
-              </li>
-              <li>
-                태그는 3-5개 정도가 적절하며, 너무 많으면 레이아웃이 깨질 수
-                있습니다
-              </li>
-              <li>
-                배지는 사용자의 주의를 끌기 위한 용도이므로 중요한 정보에만
-                사용하세요
-              </li>
-              <li>
-                `variant="full"`은 콘텐츠가 많을 때 유용하지만, 모바일에서는
-                자동으로 세로형으로 전환됩니다
-              </li>
-              <li>
-                공유/찜 버튼은 절대 위치로 배치되므로, 카드 높이가 충분한지
-                확인하세요
-              </li>
-            </ul>
-          </TabsContent>
-        </Tabs>
-      </PageSection>
+      <PageNavigation
+        prev={{ title: 'List', href: '/layout/list' }}
+        next={{ title: 'Table', href: '/layout/table' }}
+      />
     </>
   );
 }
