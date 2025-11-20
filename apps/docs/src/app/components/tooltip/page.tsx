@@ -654,11 +654,11 @@ export default function MyComponent() {
       <PageNavigation
         previous={{
           title: 'FileUpload',
-          href: '/components/form/file-upload',
+          href: '/components/file-upload',
         }}
         next={{
           title: 'Pagination',
-          href: '/components/navigation/pagination',
+          href: '/components/pagination',
         }}
       />
     </Section>

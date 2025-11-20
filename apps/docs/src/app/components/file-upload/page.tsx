@@ -829,11 +829,11 @@ export default function MyComponent() {
       <PageNavigation
         previous={{
           title: 'Input',
-          href: '/components/form/input',
+          href: '/components/input',
         }}
         next={{
           title: 'Select',
-          href: '/components/selection/select',
+          href: '/components/select',
         }}
       />
     </Section>

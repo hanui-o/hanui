@@ -394,11 +394,11 @@ export default function RootLayout({ children }) {
       <PageNavigation
         previous={{
           title: 'Pagination',
-          href: '/components/navigation/pagination',
+          href: '/components/pagination',
         }}
         next={{
           title: 'SideNavigation',
-          href: '/components/navigation/sidenavigation',
+          href: '/components/sidenavigation',
         }}
       />
     </Section>

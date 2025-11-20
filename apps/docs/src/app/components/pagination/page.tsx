@@ -588,11 +588,11 @@ export default function MyComponent() {
       <PageNavigation
         previous={{
           title: 'Tooltip',
-          href: '/components/help/tooltip',
+          href: '/components/tooltip',
         }}
         next={{
           title: 'SkipLink',
-          href: '/components/navigation/skiplink',
+          href: '/components/skiplink',
         }}
       />
     </Section>

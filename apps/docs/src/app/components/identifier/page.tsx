@@ -523,11 +523,11 @@ export default function IdentifierPage() {
       <PageNavigation
         previous={{
           title: 'MainMenu',
-          href: '/components/navigation/mainmenu',
+          href: '/components/mainmenu',
         }}
         next={{
           title: 'Header',
-          href: '/components/identity/header',
+          href: '/components/header',
         }}
       />
     </Section>

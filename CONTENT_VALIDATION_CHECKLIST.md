@@ -324,13 +324,13 @@ grep -r "\.lnb-\|\.gnb-\|\.krds-" packages/react/src/components/ --include="*.sc
 3. **Border Radius** → `/components/border-radius`
    - prev: Body
    - next: Breadcrumb
-4. **Breadcrumb** → `/components/navigation/breadcrumb`
+4. **Breadcrumb** → `/components/breadcrumb`
    - prev: Border Radius
    - next: Breakpoints
 5. **Breakpoints** → `/components/breakpoints`
    - prev: Breadcrumb
    - next: Button
-6. **Button** → `/components/action/button`
+6. **Button** → `/components/button`
    - prev: Breakpoints
    - next: Card
 7. **Card** → `/components/card`
@@ -348,22 +348,22 @@ grep -r "\.lnb-\|\.gnb-\|\.krds-" packages/react/src/components/ --include="*.sc
 11. **Display** → `/components/display`
     - prev: Container
     - next: File Upload
-12. **File Upload** → `/components/form/file-upload`
+12. **File Upload** → `/components/file-upload`
     - prev: Display
     - next: Footer
 13. **Footer** → `/components/identity/footer`
     - prev: File Upload
     - next: Header
-14. **Header** → `/components/identity/header`
+14. **Header** → `/components/header`
     - prev: Footer
     - next: Heading
 15. **Heading** → `/components/heading`
     - prev: Header
     - next: Identifier
-16. **Identifier** → `/components/identity/identifier`
+16. **Identifier** → `/components/identifier`
     - prev: Heading
     - next: In-page Navigation
-17. **In-page Navigation** → `/components/navigation/inpagenavigation`
+17. **In-page Navigation** → `/components/inpagenavigation`
     - prev: Identifier
     - next: Installation
 18. **Installation** → `/docs/installation`
@@ -372,19 +372,19 @@ grep -r "\.lnb-\|\.gnb-\|\.krds-" packages/react/src/components/ --include="*.sc
 19. **Introduction** → `/docs/introduction`
     - prev: Installation
     - next: Label
-20. **Label** → `/components/form/label`
+20. **Label** → `/components/label`
     - prev: Introduction
     - next: Link
-21. **Link** → `/components/navigation/link`
+21. **Link** → `/components/link`
     - prev: Label
     - next: List
 22. **List** → `/components/list`
     - prev: Link
     - next: Main Menu
-23. **Main Menu** → `/components/navigation/mainmenu`
+23. **Main Menu** → `/components/mainmenu`
     - prev: List
     - next: Masthead
-24. **Masthead** → `/components/identity/masthead`
+24. **Masthead** → `/components/masthead`
     - prev: Main Menu
     - next: Modal
 25. **Modal** → `/components/modal`
@@ -393,7 +393,7 @@ grep -r "\.lnb-\|\.gnb-\|\.krds-" packages/react/src/components/ --include="*.sc
 26. **NavText** → `/components/navtext`
     - prev: Modal
     - next: Pagination
-27. **Pagination** → `/components/navigation/pagination`
+27. **Pagination** → `/components/pagination`
     - prev: NavText
     - next: Quick Start
 28. **Quick Start** → `/docs/quick-start`
@@ -405,16 +405,16 @@ grep -r "\.lnb-\|\.gnb-\|\.krds-" packages/react/src/components/ --include="*.sc
 30. **Section Heading System** → `/components/section-heading-system`
     - prev: Section
     - next: Select
-31. **Select** → `/components/selection/select`
+31. **Select** → `/components/select`
     - prev: Section Heading System
     - next: Side Navigation
-32. **Side Navigation** → `/components/navigation/sidenavigation`
+32. **Side Navigation** → `/components/sidenavigation`
     - prev: Select
     - next: SimpleGrid
 33. **SimpleGrid** → `/components/simple-grid`
     - prev: Side Navigation
     - next: SkipLink
-34. **SkipLink** → `/components/navigation/skiplink`
+34. **SkipLink** → `/components/skiplink`
     - prev: SimpleGrid
     - next: Spacing
 35. **Spacing** → `/components/spacing`
@@ -426,7 +426,7 @@ grep -r "\.lnb-\|\.gnb-\|\.krds-" packages/react/src/components/ --include="*.sc
 37. **Structured List** → `/components/structured-list`
     - prev: Stack
     - next: Tab Bars
-38. **Tab Bars** → `/components/navigation/tabbars`
+38. **Tab Bars** → `/components/tabbars`
     - prev: Structured List
     - next: Table
 39. **Table** → `/components/table`
@@ -435,10 +435,10 @@ grep -r "\.lnb-\|\.gnb-\|\.krds-" packages/react/src/components/ --include="*.sc
 40. **Tabs** → `/components/tabs`
     - prev: Table
     - next: Text Input
-41. **Text Input** → `/components/form/input`
+41. **Text Input** → `/components/input`
     - prev: Tabs
     - next: Tooltip
-42. **Tooltip** → `/components/help/tooltip`
+42. **Tooltip** → `/components/tooltip`
     - prev: Text Input
     - next: Typography
 43. **Typography** → `/components/typography`
@@ -580,39 +580,39 @@ grep -A 3 "PageNavigation" apps/docs/src/app/components/body/page.tsx
 
 ### 📋 Form (3)
 
-- [ ] File Upload - `/apps/docs/src/app/components/form/file-upload/page.tsx`
-- [ ] Label - `/apps/docs/src/app/components/form/label/page.tsx`
-- [ ] Text Input - `/apps/docs/src/app/components/form/input/page.tsx`
+- [ ] File Upload - `/apps/docs/src/app/components/file-upload/page.tsx`
+- [ ] Label - `/apps/docs/src/app/components/label/page.tsx`
+- [ ] Text Input - `/apps/docs/src/app/components/input/page.tsx`
 
 ### ☑️ Selection (1)
 
-- [ ] Select - `/apps/docs/src/app/components/selection/select/page.tsx`
+- [ ] Select - `/apps/docs/src/app/components/select/page.tsx`
 
 ### ❓ Help (1)
 
-- [ ] Tooltip - `/apps/docs/src/app/components/help/tooltip/page.tsx`
+- [ ] Tooltip - `/apps/docs/src/app/components/tooltip/page.tsx`
 
 ### 🧭 Navigation (8)
 
-- [ ] Breadcrumb - `/apps/docs/src/app/components/navigation/breadcrumb/page.tsx`
-- [ ] In-page Navigation - `/apps/docs/src/app/components/navigation/inpagenavigation/page.tsx`
-- [ ] Link - `/apps/docs/src/app/components/navigation/link/page.tsx`
-- [ ] Main Menu - `/apps/docs/src/app/components/navigation/mainmenu/page.tsx`
-- [ ] Pagination - `/apps/docs/src/app/components/navigation/pagination/page.tsx`
-- [ ] Side Navigation - `/apps/docs/src/app/components/navigation/sidenavigation/page.tsx`
-- [ ] SkipLink - `/apps/docs/src/app/components/navigation/skiplink/page.tsx`
-- [ ] Tab Bars - `/apps/docs/src/app/components/navigation/tabbars/page.tsx`
+- [ ] Breadcrumb - `/apps/docs/src/app/components/breadcrumb/page.tsx`
+- [ ] In-page Navigation - `/apps/docs/src/app/components/inpagenavigation/page.tsx`
+- [ ] Link - `/apps/docs/src/app/components/link/page.tsx`
+- [ ] Main Menu - `/apps/docs/src/app/components/mainmenu/page.tsx`
+- [ ] Pagination - `/apps/docs/src/app/components/pagination/page.tsx`
+- [ ] Side Navigation - `/apps/docs/src/app/components/sidenavigation/page.tsx`
+- [ ] SkipLink - `/apps/docs/src/app/components/skiplink/page.tsx`
+- [ ] Tab Bars - `/apps/docs/src/app/components/tabbars/page.tsx`
 
 ### 🆔 Identity (4)
 
 - [ ] Footer - `/apps/docs/src/app/components/identity/footer/page.tsx`
-- [ ] Header - `/apps/docs/src/app/components/identity/header/page.tsx`
-- [ ] Identifier - `/apps/docs/src/app/components/identity/identifier/page.tsx`
-- [ ] Masthead - `/apps/docs/src/app/components/identity/masthead/page.tsx`
+- [ ] Header - `/apps/docs/src/app/components/header/page.tsx`
+- [ ] Identifier - `/apps/docs/src/app/components/identifier/page.tsx`
+- [ ] Masthead - `/apps/docs/src/app/components/masthead/page.tsx`
 
 ### 🎬 Action (1)
 
-- [ ] Button - `/apps/docs/src/app/components/action/button/page.tsx`
+- [ ] Button - `/apps/docs/src/app/components/button/page.tsx`
 
 ---
 
@@ -673,17 +673,17 @@ npm run dev
 
 ```bash
 # 브라우저에서 각 페이지를 열고 실제로 조작해보기
-http://localhost:3000/components/action/button        # Button 클릭
-http://localhost:3000/components/form/input           # Input 입력
-http://localhost:3000/components/form/file-upload     # FileUpload 파일 선택
-http://localhost:3000/components/selection/select     # Select 옵션 선택
-http://localhost:3000/components/help/tooltip         # Tooltip 호버
+http://localhost:3000/components/button        # Button 클릭
+http://localhost:3000/components/input           # Input 입력
+http://localhost:3000/components/file-upload     # FileUpload 파일 선택
+http://localhost:3000/components/select     # Select 옵션 선택
+http://localhost:3000/components/tooltip         # Tooltip 호버
 http://localhost:3000/components/tabs                     # Tabs 전환
 http://localhost:3000/components/accordion                # Accordion 열기/닫기
 http://localhost:3000/components/modal                    # Modal 열기/닫기
-http://localhost:3000/components/navigation/mainmenu  # MainMenu 드롭다운
-http://localhost:3000/components/navigation/sidenavigation  # SideNavigation 확장/축소
-http://localhost:3000/components/navigation/pagination      # Pagination 클릭
+http://localhost:3000/components/mainmenu  # MainMenu 드롭다운
+http://localhost:3000/components/sidenavigation  # SideNavigation 확장/축소
+http://localhost:3000/components/pagination      # Pagination 클릭
 ```
 
 **체크 사항**:

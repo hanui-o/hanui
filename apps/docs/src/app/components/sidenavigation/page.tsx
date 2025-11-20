@@ -650,11 +650,11 @@ export default function MyPage() {
       <PageNavigation
         previous={{
           title: 'SkipLink',
-          href: '/components/navigation/skiplink',
+          href: '/components/skiplink',
         }}
         next={{
           title: 'MainMenu',
-          href: '/components/navigation/mainmenu',
+          href: '/components/mainmenu',
         }}
       />
     </Section>

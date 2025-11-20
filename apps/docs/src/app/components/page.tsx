@@ -42,19 +42,19 @@ const identityComponents = [
   {
     name: 'Header',
     description: '헤더 (CSS Module)',
-    href: '/components/identity/header',
+    href: '/components/header',
     updated: true,
   },
   {
     name: 'Identifier',
     description: '운영기관 식별자',
-    href: '/components/identity/identifier',
+    href: '/components/identifier',
     updated: true,
   },
   {
     name: 'Masthead',
     description: '공식 배너',
-    href: '/components/identity/masthead',
+    href: '/components/masthead',
     updated: true,
   },
 ];
@@ -64,19 +64,19 @@ const navigationMainComponents = [
   {
     name: 'Main Menu',
     description: '주 메뉴',
-    href: '/components/navigation/mainmenu',
+    href: '/components/mainmenu',
     updated: true,
   },
   {
     name: 'Side Navigation',
     description: '사이드 메뉴',
-    href: '/components/navigation/sidenavigation',
+    href: '/components/sidenavigation',
     updated: true,
   },
   {
     name: 'Tab Bars',
     description: '하단 고정 탭바',
-    href: '/components/navigation/tabbars',
+    href: '/components/tabbars',
     updated: true,
   },
 ];
@@ -85,19 +85,19 @@ const navigationContentComponents = [
   {
     name: 'Breadcrumb',
     description: '브레드크럼',
-    href: '/components/navigation/breadcrumb',
+    href: '/components/breadcrumb',
     updated: true,
   },
   {
     name: 'In-page Navigation',
     description: '콘텐츠 내 탐색',
-    href: '/components/navigation/inpagenavigation',
+    href: '/components/inpagenavigation',
     updated: true,
   },
   {
     name: 'Pagination',
     description: '페이지네이션',
-    href: '/components/navigation/pagination',
+    href: '/components/pagination',
     updated: true,
   },
 ];
@@ -106,13 +106,13 @@ const navigationLinkComponents = [
   {
     name: 'Link',
     description: 'Next.js 통합 링크',
-    href: '/components/navigation/link',
+    href: '/components/link',
     updated: true,
   },
   {
     name: 'SkipLink',
     description: '건너뛰기 링크 (접근성)',
-    href: '/components/navigation/skiplink',
+    href: '/components/skiplink',
     updated: true,
   },
 ];
@@ -207,7 +207,7 @@ const actionComponents = [
   {
     name: 'Button',
     description: '버튼',
-    href: '/components/action/button',
+    href: '/components/button',
     updated: true,
   },
 ];
@@ -217,7 +217,7 @@ const selectionComponents = [
   {
     name: 'Select',
     description: '셀렉트',
-    href: '/components/selection/select',
+    href: '/components/select',
     updated: true,
   },
 ];
@@ -235,7 +235,7 @@ const helpComponents = [
   {
     name: 'Tooltip',
     description: '툴팁',
-    href: '/components/help/tooltip',
+    href: '/components/tooltip',
     updated: true,
   },
 ];
@@ -245,19 +245,19 @@ const inputComponents = [
   {
     name: 'Label',
     description: '라벨',
-    href: '/components/form/label',
+    href: '/components/label',
     updated: true,
   },
   {
     name: 'Text Input',
     description: '텍스트 입력 필드',
-    href: '/components/form/input',
+    href: '/components/input',
     updated: true,
   },
   {
     name: 'File Upload',
     description: '파일 업로드',
-    href: '/components/form/file-upload',
+    href: '/components/file-upload',
     updated: true,
   },
 ];

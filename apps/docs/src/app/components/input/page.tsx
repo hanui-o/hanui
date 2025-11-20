@@ -627,7 +627,7 @@ export default function InputPage() {
 
       <PageNavigation
         prev={{ title: 'Spacing', href: '/components/spacing' }}
-        next={{ title: 'Label', href: '/components/form/label' }}
+        next={{ title: 'Label', href: '/components/label' }}
       />
     </>
   );

@@ -703,11 +703,11 @@ export default function Layout() {
       <PageNavigation
         previous={{
           title: 'SideNavigation',
-          href: '/components/navigation/sidenavigation',
+          href: '/components/sidenavigation',
         }}
         next={{
           title: 'Identifier',
-          href: '/components/identity/identifier',
+          href: '/components/identifier',
         }}
       />
     </Section>

@@ -764,7 +764,7 @@ export default function ButtonPage() {
 
       <PageNavigation
         prev={{ title: 'Components', href: '/components' }}
-        next={{ title: 'Main Menu', href: '/components/navigation/mainmenu' }}
+        next={{ title: 'Main Menu', href: '/components/mainmenu' }}
       />
     </>
   );

@@ -492,8 +492,8 @@ export default function BodyPage() {
       <PageNavigation
         prev={{ title: 'Accordion', href: '/components/accordion' }}
         next={{
-          title: 'Breadcrumb',
-          href: '/components/navigation/breadcrumb',
+          title: 'Border Radius',
+          href: '/components/border-radius',
         }}
       />
     </>

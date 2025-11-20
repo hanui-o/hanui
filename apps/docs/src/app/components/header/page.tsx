@@ -335,11 +335,11 @@ export default function Layout() {
       <PageNavigation
         previous={{
           title: 'Identifier',
-          href: '/components/identity/identifier',
+          href: '/components/identifier',
         }}
         next={{
           title: 'Masthead',
-          href: '/components/identity/masthead',
+          href: '/components/masthead',
         }}
       />
     </Section>

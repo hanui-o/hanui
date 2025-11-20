@@ -410,7 +410,7 @@ export default function Layout({ children }) {
       <PageNavigation
         previous={{
           title: 'Header',
-          href: '/components/identity/header',
+          href: '/components/header',
         }}
       />
     </Section>
