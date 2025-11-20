@@ -490,8 +490,11 @@ export default function BodyPage() {
 
       {/* Page Navigation */}
       <PageNavigation
-        prev={{ title: 'Typography', href: '/design-system/typography' }}
-        next={{ title: 'Display', href: '/typography/display' }}
+        prev={{ title: 'Accordion', href: '/layout/accordion' }}
+        next={{
+          title: 'Breadcrumb',
+          href: '/components/navigation/breadcrumb',
+        }}
       />
     </>
   );
