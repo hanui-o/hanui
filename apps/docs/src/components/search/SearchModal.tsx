@@ -147,25 +147,26 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] bg-black/30 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl mx-4 bg-white rounded-lg shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200"
+        className="w-full max-w-3xl mx-4 bg-white rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200 border border-krds-gray-10"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-krds-gray-10">
-          <Search className="w-5 h-5 text-krds-gray-60" />
+        <div className="flex items-center gap-4 px-6 py-4 border-b border-krds-gray-10 bg-krds-gray-0">
+          <Search className="w-5 h-5 text-krds-gray-60 flex-shrink-0" />
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search documentation..."
+            placeholder="검색어를 입력하세요..."
             value={query}
             onChange={(e) => handleSearch(e.target.value)}
             className="flex-1 bg-transparent border-none outline-none text-base text-krds-gray-95 placeholder:text-krds-gray-60"
+            style={{ fontSize: '1.6rem' }}
           />
-          <kbd className="hidden sm:inline-flex h-6 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-5 px-2 font-mono text-xs font-medium text-krds-gray-70">
+          <kbd className="hidden sm:inline-flex h-7 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2.5 font-mono text-xs font-medium text-krds-gray-70 shadow-sm">
             ESC
           </kbd>
         </div>
@@ -187,31 +188,33 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     key={result.href}
                     onClick={() => handleSelect(result.href)}
                     onMouseEnter={() => setSelectedIndex(index)}
-                    className={`w-full flex items-start gap-3 px-4 py-3 text-left transition-all ${
-                      isSelected ? 'bg-krds-gray-5' : 'hover:bg-krds-gray-5'
+                    className={`w-full flex items-start gap-4 px-6 py-4 text-left transition-all border-l-4 ${
+                      isSelected
+                        ? 'bg-krds-primary-base/5 border-l-krds-primary-base'
+                        : 'hover:bg-krds-gray-0 border-l-transparent'
                     }`}
                   >
                     {/* Icon */}
                     <div
-                      className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded ${categoryInfo.color} bg-current/10`}
+                      className={`flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg ${categoryInfo.color} bg-current/10`}
                     >
-                      <Icon className={`w-4 h-4 ${categoryInfo.color}`} />
+                      <Icon className={`w-5 h-5 ${categoryInfo.color}`} />
                     </div>
 
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-medium text-krds-gray-95 truncate">
+                        <span className="text-base font-semibold text-krds-gray-95 truncate">
                           {result.title}
                         </span>
                         <span
-                          className={`text-xs px-2 py-0.5 rounded-full bg-current/10 ${categoryInfo.color} flex-shrink-0`}
+                          className={`text-xs px-2.5 py-1 rounded-full bg-current/10 ${categoryInfo.color} flex-shrink-0 font-medium`}
                         >
                           {categoryInfo.label}
                         </span>
                       </div>
                       {result.description && (
-                        <p className="text-xs text-krds-gray-70 line-clamp-2">
+                        <p className="text-sm text-krds-gray-70 line-clamp-2 leading-relaxed">
                           {result.description}
                         </p>
                       )}
@@ -219,7 +222,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
                     {/* Enter Key Hint */}
                     {isSelected && (
-                      <kbd className="hidden sm:inline-flex h-6 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-5 px-2 font-mono text-xs font-medium text-krds-gray-70 flex-shrink-0">
+                      <kbd className="hidden sm:inline-flex h-7 select-none items-center gap-1 rounded-md border border-krds-primary-base/30 bg-krds-primary-base/5 px-2.5 font-mono text-xs font-medium text-krds-primary-base flex-shrink-0 shadow-sm">
                         ↵
                       </kbd>
                     )}
@@ -228,22 +231,31 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               })}
             </div>
           ) : query.trim() ? (
-            <div className="py-12 text-center">
-              <Search className="w-12 h-12 mx-auto text-krds-gray-40 mb-3" />
-              <p className="text-sm text-krds-gray-70">No results found</p>
-              <p className="text-xs text-krds-gray-60 mt-1">
-                Try searching with different keywords
+            <div className="py-16 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-krds-gray-5 flex items-center justify-center">
+                <Search className="w-8 h-8 text-krds-gray-40" />
+              </div>
+              <p className="text-base font-medium text-krds-gray-95 mb-1">
+                검색 결과가 없습니다
+              </p>
+              <p className="text-sm text-krds-gray-60">
+                다른 키워드로 검색해보세요
               </p>
             </div>
           ) : (
-            <div className="py-12 text-center">
-              <Search className="w-12 h-12 mx-auto text-krds-gray-40 mb-3" />
-              <p className="text-sm text-krds-gray-70">
-                Start typing to search documentation
+            <div className="py-16 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-krds-primary-base/10 flex items-center justify-center">
+                <Search className="w-8 h-8 text-krds-primary-base" />
+              </div>
+              <p className="text-base font-medium text-krds-gray-95 mb-1">
+                문서 검색
               </p>
-              <div className="mt-6 px-4">
-                <p className="text-xs text-krds-gray-60 mb-2">
-                  Popular searches:
+              <p className="text-sm text-krds-gray-60 mb-6">
+                검색어를 입력하여 문서를 찾아보세요
+              </p>
+              <div className="mt-8 px-6">
+                <p className="text-sm font-medium text-krds-gray-70 mb-3">
+                  인기 검색어
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {['Button', 'Input', 'Modal', 'Typography', 'Colors'].map(
@@ -251,7 +263,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       <button
                         key={keyword}
                         onClick={() => handleSearch(keyword)}
-                        className="px-3 py-1 text-xs rounded-full bg-krds-gray-5 text-krds-gray-70 hover:bg-krds-gray-10 transition-colors"
+                        className="px-4 py-2 text-sm rounded-lg bg-krds-gray-5 text-krds-gray-70 hover:bg-krds-primary-base/10 hover:text-krds-primary-base transition-all border border-krds-gray-10 hover:border-krds-primary-base/30 font-medium"
                       >
                         {keyword}
                       </button>
@@ -264,28 +276,28 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-4 py-2 border-t border-krds-gray-10 bg-krds-gray-0 text-xs text-krds-gray-60">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1">
-              <kbd className="inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-white px-1.5 font-mono text-[10px] font-medium">
+        <div className="flex items-center justify-between px-6 py-3 border-t border-krds-gray-10 bg-krds-gray-0 text-xs text-krds-gray-60">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-1.5">
+              <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
                 ↑
               </kbd>
-              <kbd className="inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-white px-1.5 font-mono text-[10px] font-medium">
+              <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
                 ↓
               </kbd>
-              <span className="ml-1">to navigate</span>
+              <span className="ml-1 text-sm">이동</span>
             </span>
-            <span className="flex items-center gap-1">
-              <kbd className="inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-white px-1.5 font-mono text-[10px] font-medium">
+            <span className="flex items-center gap-1.5">
+              <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
                 ↵
               </kbd>
-              <span className="ml-1">to select</span>
+              <span className="ml-1 text-sm">선택</span>
             </span>
-            <span className="flex items-center gap-1">
-              <kbd className="inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-white px-1.5 font-mono text-[10px] font-medium">
+            <span className="flex items-center gap-1.5">
+              <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
                 ESC
               </kbd>
-              <span className="ml-1">to close</span>
+              <span className="ml-1 text-sm">닫기</span>
             </span>
           </div>
         </div>
