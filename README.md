@@ -69,36 +69,40 @@ HANUI는 한국 공공기관 웹사이트 개발의 고질적인 문제를 해�
 
 ### 🚀 빠른 시작
 
-#### 방법 1: CLI로 새 프로젝트 생성 (권장)
+#### 새 프로젝트 생성
 
 ```bash
-# CLI 도구로 프로젝트 초기화
-npx hanui init my-project
+# HANUI 프로젝트 생성
+npx create-hanui-app my-project
 
 # 프로젝트 디렉토리 이동
 cd my-project
 
+# 프로젝트 초기화
+npx hanui init
+
 # 컴포넌트 추가
-npx hanui add button input
+npx hanui add button card input
 
 # 개발 서버 실행
 npm run dev
 ```
 
-#### 방법 2: 기존 프로젝트에 설치
+#### 기존 프로젝트에 추가
 
 ```bash
-# 패키지 설치
-npm install @hanui/react
+# 프로젝트 초기화
+npx hanui init
 
-# Tailwind CSS 설정 (필수)
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+# 컴포넌트 추가
+npx hanui add button card
 ```
 
 ```tsx
 // 컴포넌트 사용 예제
-import { Button, Input, Card } from '@hanui/react';
+import { Button } from '@/components/hanui/button';
+import { Input } from '@/components/hanui/input';
+import { Card } from '@/components/hanui/card';
 
 export default function MyPage() {
   return (
@@ -120,8 +124,9 @@ export default function MyPage() {
 
 #### packages/
 
-- **[@hanui/react](./packages/react)** - React 컴포넌트 라이브러리 ([NPM](https://www.npmjs.com/package/@hanui/react))
-- **[create-hanui-app](./packages/cli)** - CLI 도구 ([NPM](https://www.npmjs.com/package/create-hanui-app))
+- **[@hanui/cli](./packages/cli)** - CLI 도구 ([NPM](https://www.npmjs.com/package/@hanui/cli))
+- **[@hanui/react](./packages/react)** - React 컴포넌트 소스
+- **[@hanui/registry](./packages/registry)** - 컴포넌트 레지스트리
 
 #### apps/
 

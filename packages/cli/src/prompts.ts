@@ -31,7 +31,16 @@ export async function promptForConfig(
     name: 'framework',
     message: '프레임워크를 선택하세요:',
     choices: [
-      { title: 'React', value: 'react', description: 'React 18 + TypeScript' },
+      {
+        title: 'Next.js',
+        value: 'nextjs',
+        description: 'Next.js 15 + React 19 + TypeScript',
+      },
+      {
+        title: 'React',
+        value: 'react',
+        description: 'React 18 + Vite + TypeScript',
+      },
       {
         title: 'Vue (Coming soon)',
         value: 'vue',
@@ -42,9 +51,15 @@ export async function promptForConfig(
     initial: 0,
   });
 
-  // 템플릿 선택
+  // 템플릿 선택 (프레임워크에 따라 동적으로 변경)
   questions.push({
-    type: 'select',
+    type: (prev, values) => {
+      // Next.js는 템플릿 선택 없이 기본 템플릿만 제공
+      if (values.framework === 'nextjs') {
+        return null; // 이 질문을 건너뜀
+      }
+      return 'select';
+    },
     name: 'template',
     message: '템플릿을 선택하세요:',
     choices: [
@@ -94,7 +109,7 @@ export async function promptForConfig(
     return {
       projectName: initialProjectName || answers.projectName,
       framework: answers.framework,
-      template: answers.template,
+      template: answers.framework === 'nextjs' ? 'default' : answers.template,
       installDeps: answers.installDeps,
       initGit: answers.initGit,
     };

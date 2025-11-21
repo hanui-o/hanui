@@ -1,64 +1,57 @@
-# create-hanui-app
+# @hanui/cli
 
-> KRDS 기반 공공 웹 프로젝트 생성 CLI
+> KRDS 기반 HANUI 프로젝트 CLI
 
-HANUI 기반 공공 웹사이트 프로젝트를 빠르게 생성하는 CLI 도구입니다.
+HANUI 컴포넌트를 사용하는 프로젝트를 빠르게 생성하고 관리하는 CLI 도구입니다.
 
 ## 사용법
 
+### 새 프로젝트 생성
+
 ```bash
-# npm
-npm create hanui-app
-
-# pnpm
-pnpm create hanui-app
-
-# yarn
-yarn create hanui-app
-
-# 프로젝트명 직접 지정
-pnpm create hanui-app my-portal-app
+npx create-hanui-app
 ```
 
-## 기능
+### 프로젝트 초기화
 
-- **인터랙티브 프롬프트**: 프로젝트 설정을 단계별로 안내
-- **프레임워크 선택**: React (Vue 준비 중)
-- **템플릿 선택**: Portal, Admin, Both
-- **자동 설치**: Dependencies 자동 설치 (pnpm)
-- **Git 초기화**: 선택적 Git 저장소 초기화
-- **KRDS 디자인**: 공공 웹 디자인 시스템 완벽 지원
+```bash
+npx hanui init
+```
 
-## 템플릿
+### 컴포넌트 추가
 
-### Portal (민원 포털)
+```bash
+# 단일 컴포넌트
+npx hanui add button
 
-시민 대상 민원 포털 템플릿
+# 여러 컴포넌트
+npx hanui add button card input
 
-- React 18 + TypeScript
-- Vite
-- HANUI Components
+# 인터랙티브 선택
+npx hanui add
+```
 
-### Admin (관리자)
+## 주요 기능
 
-관리자용 백오피스 템플릿 (Coming soon)
-
-### Both (Portal + Admin)
-
-포털 + 관리자 멀티 앱 (Coming soon)
+- **프로젝트 생성**: Next.js + Tailwind CSS + KRDS preset 자동 설정
+- **프로젝트 감지**: src 폴더 유무 자동 감지 및 경로 설정
+- **컴포넌트 추가**: 필요한 컴포넌트만 선택하여 프로젝트에 복사
+- **의존성 관리**: 컴포넌트별 필수 패키지 자동 설치
+- **경로 변환**: import 경로 자동 변환 (@/ alias)
 
 ## 기술 스택
 
-- **빌드 도구**: Vite
+- **프레임워크**: Next.js 15
 - **언어**: TypeScript
-- **패키지 매니저**: pnpm
-- **컴포넌트**: @hanui/react
+- **스타일**: Tailwind CSS 4 + KRDS preset
+- **디자인 시스템**: KRDS (Korean Government Design System)
 
 ## 문서
 
 - [HANUI Documentation](https://hanui.io)
+- [Installation Guide](https://hanui.io/docs/installation)
 - [KRDS Design System](https://uiux.egovframe.go.kr/)
 
 ## 라이선스
 
-MIT © [odada-o](https://github.com/odada-o)
+MIT © [hanui-o](https://github.com/hanui-o)

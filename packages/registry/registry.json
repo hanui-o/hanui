@@ -1,863 +1,207 @@
 {
-  "$schema": "./schema.json",
   "button": {
     "name": "button",
-    "type": "component",
-    "description": "KRDS-compliant accessible button component with Radix UI Slot pattern",
-    "dependencies": [
-      "@radix-ui/react-slot@^1.1.0",
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
+    "type": "ui",
+    "description": "KRDS 디자인 시스템을 준수하는 버튼 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
     "files": [
       {
-        "path": "components/button.tsx",
-        "type": "component",
-        "target": "components/hanui/button.tsx"
+        "path": "components/Button/Button.tsx",
+        "type": "component"
       }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-primary-60": "#256ef4",
-              "krds-primary-70": "#0b50d0",
-              "krds-primary-80": "#083891"
-            }
-          }
-        }
-      }
-    }
+    ]
   },
-  "heading": {
-    "name": "heading",
-    "type": "component",
-    "description": "KRDS typography heading component with automatic ID generation for TOC",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
+  "card": {
+    "name": "card",
+    "type": "ui",
+    "description": "콘텐츠를 담는 카드 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/heading.tsx",
-        "type": "component",
-        "target": "components/hanui/heading.tsx"
+        "path": "components/Card/Card.tsx",
+        "type": "component"
       }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-gray-95": "#1a1a1a"
-            }
-          }
-        }
-      }
-    }
-  },
-  "section-header": {
-    "name": "section-header",
-    "type": "component",
-    "description": "Section header component with title and optional description following KRDS guidelines",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/section-header.tsx",
-        "type": "component",
-        "target": "components/hanui/section-header.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-gray-95": "#1a1a1a",
-              "krds-gray-70": "#666666"
-            }
-          }
-        }
-      }
-    }
-  },
-  "section-heading-system": {
-    "name": "section-heading-system",
-    "type": "component",
-    "description": "KRDS Section Heading System with automatic spacing, semantic structure, and Gap-layout compliance (includes SectionHeading, Section, Subsection, Item, SubItem)",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/section-heading-system.tsx",
-        "type": "component",
-        "target": "components/hanui/section-heading-system.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-gray-95": "#1a1a1a",
-              "krds-gray-70": "#666666"
-            }
-          }
-        }
-      }
-    },
-    "cssRequired": true
-  },
-  "body": {
-    "name": "body",
-    "type": "component",
-    "description": "KRDS typography body text component with size and weight variants",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/body.tsx",
-        "type": "component",
-        "target": "components/hanui/body.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-gray-90": "#333333",
-              "krds-gray-95": "#1a1a1a"
-            }
-          }
-        }
-      }
-    }
-  },
-  "stack": {
-    "name": "stack",
-    "type": "component",
-    "description": "KRDS-compliant layout component with context-based semantic spacing (includes Stack, VStack, HStack)",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/stack.tsx",
-        "type": "component",
-        "target": "components/hanui/stack.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {}
-        }
-      }
-    }
-  },
-  "tabs": {
-    "name": "tabs",
-    "type": "component",
-    "description": "Accessible tabs component with ARIA automation, keyboard navigation, and WCAG 2.1 compliance (includes Tabs, TabsList, TabsTrigger, TabsContent)",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/tabs.tsx",
-        "type": "component",
-        "target": "components/hanui/tabs.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {}
-        }
-      }
-    }
-  },
-  "modal": {
-    "name": "modal",
-    "type": "component",
-    "description": "Accessible modal dialog with Radix UI Dialog primitives, focus management, and WCAG 2.1 compliance (includes Modal, ModalTitle, ModalBody, ModalFooter, ModalDescription, ModalCloseButton)",
-    "dependencies": [
-      "@radix-ui/react-dialog@^1.1.1",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/modal.tsx",
-        "type": "component",
-        "target": "components/hanui/modal.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {}
-        }
-      }
-    }
+    ]
   },
   "input": {
     "name": "input",
-    "type": "component",
-    "description": "KRDS-compliant input component with variants, sizes, error states, and addon support",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
+    "type": "ui",
+    "description": "폼 입력 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "registryDependencies": ["label"],
     "files": [
       {
-        "path": "components/input.tsx",
-        "type": "component",
-        "target": "components/hanui/input.tsx"
+        "path": "components/Input/Input.tsx",
+        "type": "component"
       }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-primary-60": "#256ef4"
-            }
-          }
-        }
-      }
-    }
+    ]
   },
-  "select": {
-    "name": "select",
-    "type": "component",
-    "description": "Accessible select component with Radix UI Select primitives and WCAG 2.1 compliance",
-    "dependencies": [
-      "@radix-ui/react-select@^2.1.1",
-      "lucide-react@^0.460.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
+  "label": {
+    "name": "label",
+    "type": "ui",
+    "description": "폼 레이블 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/select.tsx",
-        "type": "component",
-        "target": "components/hanui/select.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-primary-60": "#256ef4"
-            }
-          }
-        }
-      }
-    }
-  },
-  "utils": {
-    "name": "utils",
-    "type": "lib",
-    "description": "Utility functions for merging Tailwind classes",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "devDependencies": [],
-    "registryDependencies": [],
-    "files": [
-      {
-        "path": "lib/utils.ts",
-        "type": "lib",
-        "target": "lib/utils.ts"
+        "path": "components/Label/Label.tsx",
+        "type": "component"
       }
     ]
   },
   "container": {
     "name": "container",
-    "type": "component",
-    "description": "KRDS-compliant layout container with responsive max-width and screen margins",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
+    "type": "ui",
+    "description": "레이아웃 컨테이너 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/container.tsx",
-        "type": "component",
-        "target": "components/hanui/container.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {}
-        }
-      }
-    }
-  },
-  "accordion": {
-    "name": "accordion",
-    "type": "component",
-    "description": "Accessible accordion component with ARIA automation, keyboard navigation, and semantic headings (includes Accordion, AccordionItem, AccordionTrigger, AccordionContent)",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/accordion.tsx",
-        "type": "component",
-        "target": "components/hanui/accordion.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {}
-        }
-      }
-    }
-  },
-  "tooltip": {
-    "name": "tooltip",
-    "type": "component",
-    "description": "Accessible tooltip component with focus management, ARIA automation, and WCAG 2.2 compliance",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/tooltip.tsx",
-        "type": "component",
-        "target": "components/hanui/tooltip.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {}
-        }
-      }
-    }
-  },
-  "label": {
-    "name": "label",
-    "type": "component",
-    "description": "KRDS-compliant form label component with semantic HTML and typography variants",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/label.tsx",
-        "type": "component",
-        "target": "components/hanui/label.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-gray-90": "#1e1e1e"
-            }
-          }
-        }
-      }
-    }
-  },
-  "card": {
-    "name": "card",
-    "type": "component",
-    "description": "KRDS-compliant card component with elevation, interactive states, and compound component pattern (Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter)",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/card.tsx",
-        "type": "component",
-        "target": "components/hanui/card.tsx"
+        "path": "components/Container/Container.tsx",
+        "type": "component"
       }
     ]
   },
-  "table": {
-    "name": "table",
-    "type": "component",
-    "description": "KRDS-compliant table component with semantic structure, sortable headers, and accessibility (Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption)",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
+  "stack": {
+    "name": "stack",
+    "type": "ui",
+    "description": "수직/수평 스택 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/table.tsx",
-        "type": "component",
-        "target": "components/hanui/table.tsx"
-      }
-    ]
-  },
-  "pagination": {
-    "name": "pagination",
-    "type": "component",
-    "description": "KRDS-compliant pagination component with smart ellipsis, accessibility, and customizable navigation controls",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/pagination.tsx",
-        "type": "component",
-        "target": "components/hanui/pagination.tsx"
-      }
-    ]
-  },
-  "breadcrumb": {
-    "name": "breadcrumb",
-    "type": "component",
-    "description": "KRDS-compliant breadcrumb navigation with semantic structure, overflow handling, customizable separator, and accessibility",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/breadcrumb.tsx",
-        "type": "component",
-        "target": "components/hanui/breadcrumb.tsx"
+        "path": "components/Stack/Stack.tsx",
+        "type": "component"
       }
     ]
   },
   "box": {
     "name": "box",
-    "type": "component",
-    "description": "Versatile layout container component with easy access to Flexbox and Grid through props",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "registryDependencies": ["utils"],
+    "type": "ui",
+    "description": "기본 박스 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/box.tsx",
-        "type": "component",
-        "target": "components/hanui/box.tsx"
+        "path": "components/Box/Box.tsx",
+        "type": "component"
       }
     ]
   },
   "display": {
     "name": "display",
-    "type": "component",
-    "description": "KRDS Typography - Large text component for banners/marketing with responsive sizing",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "registryDependencies": ["utils"],
+    "type": "ui",
+    "description": "디스플레이 텍스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/display.tsx",
-        "type": "component",
-        "target": "components/hanui/display.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-gray-95": "#0a0a0a"
-            }
-          }
-        }
-      }
-    }
-  },
-  "file-upload": {
-    "name": "file-upload",
-    "type": "component",
-    "description": "WCAG 2.1 / KWCAG 2.2 compliant file upload with drag & drop, validation, preview, and progress tracking",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/file-upload.tsx",
-        "type": "component",
-        "target": "components/hanui/file-upload.tsx"
+        "path": "components/Display/Display.tsx",
+        "type": "component"
       }
     ]
   },
-  "form": {
-    "name": "form",
-    "type": "component",
-    "description": "Form field context system with automatic accessibility connections (FormField, FormLabel, FormDescription, FormError, FormMessage)",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
+  "body": {
+    "name": "body",
+    "type": "ui",
+    "description": "본문 텍스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/form.tsx",
-        "type": "component",
-        "target": "components/hanui/form.tsx"
+        "path": "components/Body/Body.tsx",
+        "type": "component"
       }
     ]
   },
-  "identifier": {
-    "name": "identifier",
-    "type": "component",
-    "description": "KRDS organization identifier component for government digital services",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
+  "heading": {
+    "name": "heading",
+    "type": "ui",
+    "description": "제목 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/identifier.tsx",
-        "type": "component",
-        "target": "components/hanui/identifier.tsx"
+        "path": "components/Heading/Heading.tsx",
+        "type": "component"
       }
     ]
   },
-  "masthead": {
-    "name": "masthead",
-    "type": "component",
-    "description": "KRDS official banner for government digital services",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
+  "link": {
+    "name": "link",
+    "type": "ui",
+    "description": "링크 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/masthead.tsx",
-        "type": "component",
-        "target": "components/hanui/masthead.tsx"
+        "path": "components/Link/Link.tsx",
+        "type": "component"
       }
     ]
   },
-  "main-menu": {
-    "name": "main-menu",
-    "type": "component",
-    "description": "KRDS main navigation menu with dropdowns, sections, descriptions, and utility links",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
+  "breadcrumb": {
+    "name": "breadcrumb",
+    "type": "ui",
+    "description": "브레드크럼 네비게이션 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/main-menu.tsx",
-        "type": "component",
-        "target": "components/hanui/main-menu.tsx"
-      }
-    ]
-  },
-  "section": {
-    "name": "section",
-    "type": "component",
-    "description": "KRDS-compliant padding component with semantic presets for layout sections",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/section.tsx",
-        "type": "component",
-        "target": "components/hanui/section.tsx"
-      }
-    ]
-  },
-  "skip-link": {
-    "name": "skip-link",
-    "type": "component",
-    "description": "WCAG 2.1 / KWCAG 2.2 compliant skip navigation links for keyboard and screen reader users",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/skip-link.tsx",
-        "type": "component",
-        "target": "components/hanui/skip-link.tsx"
-      }
-    ]
-  },
-  "nav-text": {
-    "name": "nav-text",
-    "type": "component",
-    "description": "KRDS Typography - Navigation text component for menus, tabs, and breadcrumbs",
-    "dependencies": [
-      "class-variance-authority@^0.7.0",
-      "clsx@^2.1.0",
-      "tailwind-merge@^2.2.0"
-    ],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/nav-text.tsx",
-        "type": "component",
-        "target": "components/hanui/nav-text.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-gray-90": "#1e1e1e",
-              "krds-gray-95": "#0a0a0a"
-            }
-          }
-        }
-      }
-    }
-  },
-  "header": {
-    "name": "header",
-    "type": "component",
-    "description": "KRDS header compound component with branding, logo, slogan, and utility links",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/header.tsx",
-        "type": "component",
-        "target": "components/hanui/header.tsx"
-      }
-    ]
-  },
-  "footer": {
-    "name": "footer",
-    "type": "layout",
-    "description": "KRDS government footer layout with organization info, links, and identifier",
-    "dependencies": ["sass@^1.70.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils", "identifier"],
-    "files": [
-      {
-        "path": "components/footer.tsx",
-        "type": "component",
-        "target": "components/hanui/footer.tsx"
+        "path": "components/Breadcrumb/Breadcrumb.tsx",
+        "type": "component"
       },
       {
-        "path": "components/footer.module.scss",
-        "type": "style",
-        "target": "components/hanui/footer.module.scss"
+        "path": "components/Breadcrumb/BreadcrumbItem.tsx",
+        "type": "component"
       }
     ]
   },
-  "header": {
-    "name": "header",
-    "type": "layout",
-    "description": "KRDS government header layout with navigation, search, and mobile menu",
-    "dependencies": ["sass@^1.70.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
+  "accordion": {
+    "name": "accordion",
+    "type": "ui",
+    "description": "아코디언 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/header.tsx",
-        "type": "component",
-        "target": "components/hanui/header.tsx"
+        "path": "components/Accordion/Accordion.tsx",
+        "type": "component"
       },
       {
-        "path": "components/header.module.scss",
-        "type": "style",
-        "target": "components/hanui/header.module.scss"
-      }
-    ]
-  },
-  "side-navigation": {
-    "name": "side-navigation",
-    "type": "navigation",
-    "description": "KRDS side navigation with multi-level expandable menu (up to 4 depth)",
-    "dependencies": ["sass@^1.70.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/side-navigation.tsx",
-        "type": "component",
-        "target": "components/hanui/side-navigation.tsx"
-      },
-      {
-        "path": "components/side-navigation.module.scss",
-        "type": "style",
-        "target": "components/hanui/side-navigation.module.scss"
-      }
-    ]
-  },
-  "in-page-navigation": {
-    "name": "in-page-navigation",
-    "type": "navigation",
-    "description": "KRDS in-page navigation with fixed sidebar, auto-tracking scroll position, and anchor links",
-    "dependencies": ["sass@^1.70.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/in-page-navigation.tsx",
-        "type": "component",
-        "target": "components/hanui/in-page-navigation.tsx"
-      },
-      {
-        "path": "components/in-page-navigation.module.scss",
-        "type": "style",
-        "target": "components/hanui/in-page-navigation.module.scss"
-      }
-    ]
-  },
-  "tab-bars": {
-    "name": "tab-bars",
-    "type": "navigation",
-    "description": "KRDS bottom navigation tab bars for mobile/tablet with badge support (max 5 items)",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/tab-bars.tsx",
-        "type": "component",
-        "target": "components/hanui/tab-bars.tsx"
-      }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-primary-base": "#3182f6",
-              "krds-gray-20": "#e5e5e5",
-              "krds-gray-60": "#767676",
-              "krds-gray-90": "#333333",
-              "krds-red-base": "#f04452"
-            }
-          }
-        }
-      }
-    }
-  },
-  "structured-list": {
-    "name": "structured-list",
-    "type": "layout",
-    "description": "KRDS structured list with card layout, badges, tags, and action buttons",
-    "dependencies": ["sass@^1.70.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
-    "files": [
-      {
-        "path": "components/structured-list.tsx",
-        "type": "component",
-        "target": "components/hanui/structured-list.tsx"
-      },
-      {
-        "path": "components/structured-list.module.scss",
-        "type": "style",
-        "target": "components/hanui/structured-list.module.scss"
+        "path": "components/Accordion/AccordionItem.tsx",
+        "type": "component"
       }
     ]
   },
   "list": {
     "name": "list",
-    "type": "component",
-    "description": "KRDS-compliant list component with unordered and ordered variants",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
+    "type": "ui",
+    "description": "리스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/List.tsx",
-        "type": "component",
-        "target": "components/hanui/list.tsx"
+        "path": "components/List/List.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/List/ListItem.tsx",
+        "type": "component"
       }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-primary-text": "#256ef4",
-              "krds-gray-90": "#333333"
-            }
-          }
-        }
-      }
-    }
+    ]
   },
-  "code": {
-    "name": "code",
-    "type": "component",
-    "description": "KRDS-compliant inline and block code component with monospace font",
-    "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.2.0"],
-    "devDependencies": [],
-    "registryDependencies": ["utils"],
+  "tabs": {
+    "name": "tabs",
+    "type": "ui",
+    "description": "탭 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/Code.tsx",
-        "type": "component",
-        "target": "components/hanui/code.tsx"
+        "path": "components/Tabs/Tabs.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/Tabs/TabsList.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/Tabs/TabsTrigger.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/Tabs/TabsContent.tsx",
+        "type": "component"
       }
-    ],
-    "tailwind": {
-      "config": {
-        "theme": {
-          "extend": {
-            "colors": {
-              "krds-gray-5": "#f7f7f7",
-              "krds-gray-20": "#d9d9d9",
-              "krds-gray-95": "#1a1a1a"
-            }
-          }
-        }
-      }
-    }
-  },
-  "layout": {
-    "name": "layout",
-    "type": "bundle",
-    "description": "Complete layout components bundle including Header, Footer, SkipLink, MainMenu, Breadcrumb, and Container",
-    "dependencies": [],
-    "devDependencies": [],
-    "registryDependencies": [
-      "header",
-      "footer",
-      "skip-link",
-      "main-menu",
-      "breadcrumb",
-      "container"
-    ],
-    "files": []
+    ]
   }
 }

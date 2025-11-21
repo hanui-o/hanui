@@ -225,6 +225,12 @@ export const add = new Command()
             }
           }
 
+          // Transform imports to use alias paths
+          content = content.replace(
+            /from ['"]\.\.\/\.\.\/lib\/utils['"]/g,
+            "from '@/lib/utils'"
+          );
+
           // Write file
           await fs.writeFile(targetPath, content, 'utf-8');
         }

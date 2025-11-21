@@ -1,7 +1,7 @@
 export interface ProjectConfig {
   projectName: string;
-  framework: 'react' | 'vue';
-  template: 'portal' | 'admin' | 'both';
+  framework: 'react' | 'vue' | 'nextjs';
+  template: 'portal' | 'admin' | 'both' | 'default';
   installDeps: boolean;
   initGit: boolean;
 }
