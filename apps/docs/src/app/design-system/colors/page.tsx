@@ -13,6 +13,16 @@ import {
   Stack,
   Wrap,
   PageNavigation,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
 } from '@/components/hanui';
 import { CircleX, AlertTriangle, CheckCircle, Info } from 'lucide-react';
 
@@ -25,119 +35,127 @@ export default function ColorsPage() {
         description="KRDS 색상 시스템을 Tailwind CSS로 사용하는 방법"
       />
 
-      <Section level="h2">
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="빠른 요약">
-            <Body>
-              <Code>krds-</Code> 접두사를 사용하여 Tailwind 기본 색상과 KRDS
-              색상을 구분합니다.
-            </Body>
-          </SectionHeading>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="api">API</TabsTrigger>
+        </TabsList>
 
-          <Stack direction="row" gap="md" className="flex-col md:flex-row">
-            <Card variant="outlined" className="flex-1">
-              <SectionHeading level="h4" title="Tailwind 기본 색상">
-                <Body size="sm" className="mt-2">
-                  예: <Code>bg-gray-50</Code>
+        <TabsContent value="overview">
+          <Section level="h2">
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="빠른 요약">
+                <Body>
+                  <Code>krds-</Code> 접두사를 사용하여 Tailwind 기본 색상과 KRDS
+                  색상을 구분합니다.
                 </Body>
               </SectionHeading>
-            </Card>
-            <Card variant="outlined" className="flex-1">
-              <SectionHeading level="h4" title="KRDS 색상 (krds- 접두사)">
-                <Body size="sm" className="mt-2">
-                  예: <Code>bg-krds-gray-50</Code>
-                </Body>
-              </SectionHeading>
-            </Card>
-          </Stack>
-        </Subsection>
-      </Section>
 
-      {/* Overview */}
-      <Section level="h2">
-        <SectionHeading level="h2" id="overview" title="개요">
-          <Body>
-            HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind CSS에서
-            사용할 수 있도록 통합했습니다. Tailwind의 기본 색상(gray, red, blue
-            등)과 충돌을 피하기 위해 <Code>krds-</Code> 접두사를 붙인 별도
-            네임스페이스를 사용합니다.
-          </Body>
-        </SectionHeading>
+              <Stack direction="row" gap="md" className="flex-col md:flex-row">
+                <Card variant="outlined" className="flex-1">
+                  <SectionHeading level="h4" title="Tailwind 기본 색상">
+                    <Body size="sm" className="mt-2">
+                      예: <Code>bg-gray-50</Code>
+                    </Body>
+                  </SectionHeading>
+                </Card>
+                <Card variant="outlined" className="flex-1">
+                  <SectionHeading level="h4" title="KRDS 색상 (krds- 접두사)">
+                    <Body size="sm" className="mt-2">
+                      예: <Code>bg-krds-gray-50</Code>
+                    </Body>
+                  </SectionHeading>
+                </Card>
+              </Stack>
+            </Subsection>
+          </Section>
 
-        <Card variant="info">
-          <Body>
-            <strong>핵심:</strong> <Code>krds-</Code> 접두사를 사용하면 Tailwind
-            기본 색상과 KRDS 색상이 공존할 수 있습니다. 필요에 따라 둘 다 사용할
-            수 있습니다.
-          </Body>
-        </Card>
-      </Section>
-
-      {/* KRDS Color System Integration */}
-      <Section level="h2">
-        <SectionHeading
-          level="h2"
-          id="krds-integration"
-          title="KRDS 색상 시스템 통합"
-          description="Tailwind의 기본 색상(gray, red, blue 등)과 충돌을 피하기 위해 krds- 접두사를 붙인 별도 네임스페이스를 사용합니다."
-        />
-
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="왜 krds- 접두사를 사용하나요?">
-            <Body>
-              Tailwind CSS는 기본적으로 gray, red, blue 등의 색상을 제공합니다.
-              KRDS 색상도 같은 이름을 사용하면 충돌이 발생합니다. 예를 들어:
-            </Body>
-          </SectionHeading>
-
-          <Stack direction="row" gap="md" className="flex-col md:flex-row">
-            <Card variant="outlined" className="flex-1">
-              <SectionHeading level="h4" title="Tailwind 기본 색상">
-                <Body size="sm" className="text-krds-gray-70">
-                  gray-50, gray-100, gray-200...
-                </Body>
-                <Body size="sm" className="mt-2">
-                  예: <Code>bg-gray-50</Code>
-                </Body>
-              </SectionHeading>
-            </Card>
-            <Card variant="outlined" className="flex-1">
-              <SectionHeading level="h4" title="KRDS 색상 (krds- 접두사)">
-                <Body size="sm" className="text-krds-gray-70">
-                  krds-gray-50, krds-primary-60...
-                </Body>
-                <Body size="sm" className="mt-2">
-                  예: <Code>bg-krds-gray-50</Code>
-                </Body>
-              </SectionHeading>
-            </Card>
-          </Stack>
-
-          <Card variant="info" className="mt-4">
-            <Body>
-              <strong>핵심:</strong> <Code>krds-</Code> 접두사를 사용하면
-              Tailwind 기본 색상과 KRDS 색상이 공존할 수 있습니다. 필요에 따라
-              둘 다 사용할 수 있습니다.
-            </Body>
-          </Card>
-        </Subsection>
-
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="구현 방법">
-            <Body>
-              <Code>globals.css</Code>에서 KRDS 색상을 CSS 변수로 정의하고,
-              <Code>tailwind.config.ts</Code>에서 <Code>krds-</Code> 접두사를
-              붙여 Tailwind 유틸리티로 사용할 수 있도록 매핑합니다.
-            </Body>
-          </SectionHeading>
-
-          <Stack gap="md">
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                1. globals.css - CSS 변수 정의
+          {/* Overview */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="overview" title="개요">
+              <Body>
+                HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind
+                CSS에서 사용할 수 있도록 통합했습니다. Tailwind의 기본
+                색상(gray, red, blue 등)과 충돌을 피하기 위해 <Code>krds-</Code>{' '}
+                접두사를 붙인 별도 네임스페이스를 사용합니다.
               </Body>
-              <Code variant="block" language="css">
-                {`:root {
+            </SectionHeading>
+
+            <Card variant="info">
+              <Body>
+                <strong>핵심:</strong> <Code>krds-</Code> 접두사를 사용하면
+                Tailwind 기본 색상과 KRDS 색상이 공존할 수 있습니다. 필요에 따라
+                둘 다 사용할 수 있습니다.
+              </Body>
+            </Card>
+          </Section>
+
+          {/* KRDS Color System Integration */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="krds-integration"
+              title="KRDS 색상 시스템 통합"
+              description="Tailwind의 기본 색상(gray, red, blue 등)과 충돌을 피하기 위해 krds- 접두사를 붙인 별도 네임스페이스를 사용합니다."
+            />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="왜 krds- 접두사를 사용하나요?">
+                <Body>
+                  Tailwind CSS는 기본적으로 gray, red, blue 등의 색상을
+                  제공합니다. KRDS 색상도 같은 이름을 사용하면 충돌이
+                  발생합니다. 예를 들어:
+                </Body>
+              </SectionHeading>
+
+              <Stack direction="row" gap="md" className="flex-col md:flex-row">
+                <Card variant="outlined" className="flex-1">
+                  <SectionHeading level="h4" title="Tailwind 기본 색상">
+                    <Body size="sm" className="text-krds-gray-70">
+                      gray-50, gray-100, gray-200...
+                    </Body>
+                    <Body size="sm" className="mt-2">
+                      예: <Code>bg-gray-50</Code>
+                    </Body>
+                  </SectionHeading>
+                </Card>
+                <Card variant="outlined" className="flex-1">
+                  <SectionHeading level="h4" title="KRDS 색상 (krds- 접두사)">
+                    <Body size="sm" className="text-krds-gray-70">
+                      krds-gray-50, krds-primary-60...
+                    </Body>
+                    <Body size="sm" className="mt-2">
+                      예: <Code>bg-krds-gray-50</Code>
+                    </Body>
+                  </SectionHeading>
+                </Card>
+              </Stack>
+
+              <Card variant="info" className="mt-4">
+                <Body>
+                  <strong>핵심:</strong> <Code>krds-</Code> 접두사를 사용하면
+                  Tailwind 기본 색상과 KRDS 색상이 공존할 수 있습니다. 필요에
+                  따라 둘 다 사용할 수 있습니다.
+                </Body>
+              </Card>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="구현 방법">
+                <Body>
+                  <Code>globals.css</Code>에서 KRDS 색상을 CSS 변수로 정의하고,
+                  <Code>tailwind.config.ts</Code>에서 <Code>krds-</Code>{' '}
+                  접두사를 붙여 Tailwind 유틸리티로 사용할 수 있도록 매핑합니다.
+                </Body>
+              </SectionHeading>
+
+              <Stack gap="md">
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    1. globals.css - CSS 변수 정의
+                  </Body>
+                  <Code variant="block" language="css">
+                    {`:root {
   /* KRDS Primary Colors - Light Mode */
   --krds-color-light-primary-5: #ecf2fe;
   --krds-color-light-primary-10: #d8e5fd;
@@ -152,15 +170,15 @@ export default function ColorsPage() {
   --krds-color-light-primary-60: #4c87f6;
   --krds-color-light-primary-95: #ecf2fe;
 }`}
-              </Code>
-            </div>
+                  </Code>
+                </div>
 
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                2. tailwind.config.ts - krds- 접두사로 매핑
-              </Body>
-              <Code variant="block" language="typescript">
-                {`colors: {
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    2. tailwind.config.ts - krds- 접두사로 매핑
+                  </Body>
+                  <Code variant="block" language="typescript">
+                    {`colors: {
   // krds- 접두사를 붙여서 별도 네임스페이스로 정의
   'krds-primary': {
     5: 'var(--krds-color-light-primary-5)',
@@ -174,25 +192,25 @@ export default function ColorsPage() {
     // ...
   }
 }`}
-              </Code>
-            </div>
-          </Stack>
-        </Subsection>
+                  </Code>
+                </div>
+              </Stack>
+            </Subsection>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="사용 방법">
-            <Body>
-              <Code>krds-</Code> 접두사를 붙인 클래스명을 사용합니다.
-            </Body>
-          </SectionHeading>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="사용 방법">
+                <Body>
+                  <Code>krds-</Code> 접두사를 붙인 클래스명을 사용합니다.
+                </Body>
+              </SectionHeading>
 
-          <Stack gap="md">
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                KRDS 색상 사용 예시
-              </Body>
-              <Code variant="block" language="tsx">
-                {`// Primary 색상 - 다크 모드 자동 전환
+              <Stack gap="md">
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    KRDS 색상 사용 예시
+                  </Body>
+                  <Code variant="block" language="tsx">
+                    {`// Primary 색상 - 다크 모드 자동 전환
 <div className="bg-krds-primary-50 text-krds-primary-10">
   {/*
     라이트 모드: 진한 배경(50) + 밝은 텍스트(10)
@@ -214,82 +232,84 @@ export default function ColorsPage() {
 <button className="bg-krds-danger-50 text-krds-danger-10 hover:bg-krds-danger-60">
   Delete
 </button>`}
-              </Code>
-            </div>
+                  </Code>
+                </div>
 
-            <Card variant="outlined">
-              <Body size="sm">
-                <strong>주의:</strong>
-              </Body>
-              <List className="mt-2">
-                <ListItem>
-                  <strong>숫자 스케일도 자동 전환됨:</strong>{' '}
-                  <Code>bg-krds-gray-5</Code>, <Code>text-krds-gray-10</Code>{' '}
-                  같은 숫자 스케일도 CSS 변수를 통해 자동 전환됩니다.{' '}
-                  <Code>globals.css</Code>의 <Code>.dark</Code>
-                  에서 변수 값을 재정의하므로 <Code>dark:</Code> 접두사가 필요
-                  없습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>text-white 사용:</strong> <Code>text-white</Code>는
-                  순수 흰색(#ffffff) CSS 변수를 사용합니다. 다크 모드에서도 항상
-                  흰색이므로, 배경이 모드에 따라 변한다면 KRDS 색상 변수(
-                  <Code>text-krds-white</Code> 등)를 사용하세요. 순수 흰색이
-                  필요한 경우에만 사용하세요.
-                </ListItem>
-              </List>
-            </Card>
+                <Card variant="outlined">
+                  <Body size="sm">
+                    <strong>주의:</strong>
+                  </Body>
+                  <List className="mt-2">
+                    <ListItem>
+                      <strong>숫자 스케일도 자동 전환됨:</strong>{' '}
+                      <Code>bg-krds-gray-5</Code>,{' '}
+                      <Code>text-krds-gray-10</Code> 같은 숫자 스케일도 CSS
+                      변수를 통해 자동 전환됩니다. <Code>globals.css</Code>의{' '}
+                      <Code>.dark</Code>
+                      에서 변수 값을 재정의하므로 <Code>dark:</Code> 접두사가
+                      필요 없습니다.
+                    </ListItem>
+                    <ListItem>
+                      <strong>text-white 사용:</strong> <Code>text-white</Code>
+                      는 순수 흰색(#ffffff) CSS 변수를 사용합니다. 다크
+                      모드에서도 항상 흰색이므로, 배경이 모드에 따라 변한다면
+                      KRDS 색상 변수(
+                      <Code>text-krds-white</Code> 등)를 사용하세요. 순수 흰색이
+                      필요한 경우에만 사용하세요.
+                    </ListItem>
+                  </List>
+                </Card>
 
-            <Card variant="info">
-              <Body>
-                <strong>참고:</strong> Tailwind 기본 색상(gray-50, red-500 등)도
-                그대로 사용할 수 있습니다. KRDS 색상은 <Code>krds-</Code>{' '}
-                접두사가 붙은 것만 사용하면 됩니다.
-              </Body>
-            </Card>
-          </Stack>
-        </Subsection>
-      </Section>
+                <Card variant="info">
+                  <Body>
+                    <strong>참고:</strong> Tailwind 기본 색상(gray-50, red-500
+                    등)도 그대로 사용할 수 있습니다. KRDS 색상은{' '}
+                    <Code>krds-</Code> 접두사가 붙은 것만 사용하면 됩니다.
+                  </Body>
+                </Card>
+              </Stack>
+            </Subsection>
+          </Section>
 
-      {/* Colors */}
-      <Section level="h2">
-        <SectionHeading
-          level="h2"
-          id="colors"
-          title="색상 (Colors)"
-          description="KRDS 색상 시스템은 접근성을 최우선으로 하며, WCAG 2.1 AA 기준을 준수합니다."
-        />
+          {/* Colors */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="colors"
+              title="색상 (Colors)"
+              description="KRDS 색상 시스템은 접근성을 최우선으로 하며, WCAG 2.1 AA 기준을 준수합니다."
+            />
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="Base Colors (기본 색상)">
-            <Body>
-              흰색과 검은색은 모드에 따라 자동으로 반전됩니다. 순수
-              흰색/검은색이 필요한 경우에는 <Code>white</Code>와{' '}
-              <Code>black</Code>을 사용하세요.
-            </Body>
-          </SectionHeading>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Base Colors (기본 색상)">
+                <Body>
+                  흰색과 검은색은 모드에 따라 자동으로 반전됩니다. 순수
+                  흰색/검은색이 필요한 경우에는 <Code>white</Code>와{' '}
+                  <Code>black</Code>을 사용하세요.
+                </Body>
+              </SectionHeading>
 
-          <Wrap gap="md" className="mb-4">
-            <div className="flex-1 min-w-[300px]">
-              <div className="p-4 bg-krds-white text-krds-black rounded-lg border border-krds-gray-20 w-full">
-                <code className="block mb-2">bg-krds-white</code>
-                <p className="text-sm">
-                  기본 모드: 흰색, 다크 모드: 검은색 (자동 반전)
-                </p>
-              </div>
-            </div>
-            <div className="flex-1 min-w-[300px]">
-              <div className="p-4 bg-krds-black text-krds-white rounded-lg border border-krds-gray-20 w-full">
-                <code className="block mb-2">bg-krds-black</code>
-                <p className="text-sm">
-                  기본 모드: 검은색, 다크 모드: 흰색 (자동 반전)
-                </p>
-              </div>
-            </div>
-          </Wrap>
+              <Wrap gap="md" className="mb-4">
+                <div className="flex-1 min-w-[300px]">
+                  <div className="p-4 bg-krds-white text-krds-black rounded-lg border border-krds-gray-20 w-full">
+                    <code className="block mb-2">bg-krds-white</code>
+                    <p className="text-sm">
+                      기본 모드: 흰색, 다크 모드: 검은색 (자동 반전)
+                    </p>
+                  </div>
+                </div>
+                <div className="flex-1 min-w-[300px]">
+                  <div className="p-4 bg-krds-black text-krds-white rounded-lg border border-krds-gray-20 w-full">
+                    <code className="block mb-2">bg-krds-black</code>
+                    <p className="text-sm">
+                      기본 모드: 검은색, 다크 모드: 흰색 (자동 반전)
+                    </p>
+                  </div>
+                </div>
+              </Wrap>
 
-          <Code variant="block" language="tsx">
-            {`// KRDS 흰색/검은색 - 모드에 따라 자동 반전
+              <Code variant="block" language="tsx">
+                {`// KRDS 흰색/검은색 - 모드에 따라 자동 반전
 <div className="bg-krds-white text-krds-black">
   {/*
     라이트 모드: 흰색 배경 + 검은색 텍스트
@@ -304,238 +324,244 @@ export default function ColorsPage() {
 <div className="bg-white text-black">
   {/* 항상 흰색 배경 + 검은색 텍스트 */}
 </div>`}
-          </Code>
+              </Code>
 
-          <Card variant="info" className="mt-4">
-            <Body>
-              <strong>차이점:</strong>
-            </Body>
-            <List className="mt-2">
-              <ListItem>
-                <Code>krds-white</Code>/<Code>krds-black</Code>: 모드에 따라
-                자동 반전 (권장)
-              </ListItem>
-              <ListItem>
-                <Code>white</Code>/<Code>black</Code>: 모드 무관, 항상 동일
-                (순수 색상이 필요한 경우)
-              </ListItem>
-            </List>
-          </Card>
-        </Subsection>
+              <Card variant="info" className="mt-4">
+                <Body>
+                  <strong>차이점:</strong>
+                </Body>
+                <List className="mt-2">
+                  <ListItem>
+                    <Code>krds-white</Code>/<Code>krds-black</Code>: 모드에 따라
+                    자동 반전 (권장)
+                  </ListItem>
+                  <ListItem>
+                    <Code>white</Code>/<Code>black</Code>: 모드 무관, 항상 동일
+                    (순수 색상이 필요한 경우)
+                  </ListItem>
+                </List>
+              </Card>
+            </Subsection>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="Primary Colors" />
-          <Wrap gap="md" className="mb-4">
-            <div className="flex-1 min-w-[300px]">
-              <div className="p-4 bg-krds-primary-50 text-krds-primary-10 rounded-lg w-full">
-                <code className="block mb-2">bg-krds-primary-50</code>
-                <p className="text-sm">Primary - 주요 상호작용</p>
-              </div>
-            </div>
-            <div className="flex-1 min-w-[300px]">
-              <div className="p-4 bg-krds-primary-60 text-krds-primary-10 rounded-lg w-full">
-                <code className="block mb-2">hover:bg-krds-primary-60</code>
-                <p className="text-sm">Primary Hover</p>
-              </div>
-            </div>
-          </Wrap>
-          <Code variant="block" language="tsx">
-            {`<Button variant="primary">확인</Button>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Primary Colors" />
+              <Wrap gap="md" className="mb-4">
+                <div className="flex-1 min-w-[300px]">
+                  <div className="p-4 bg-krds-primary-50 text-krds-primary-10 rounded-lg w-full">
+                    <code className="block mb-2">bg-krds-primary-50</code>
+                    <p className="text-sm">Primary - 주요 상호작용</p>
+                  </div>
+                </div>
+                <div className="flex-1 min-w-[300px]">
+                  <div className="p-4 bg-krds-primary-60 text-krds-primary-10 rounded-lg w-full">
+                    <code className="block mb-2">hover:bg-krds-primary-60</code>
+                    <p className="text-sm">Primary Hover</p>
+                  </div>
+                </div>
+              </Wrap>
+              <Code variant="block" language="tsx">
+                {`<Button variant="primary">확인</Button>
 // 또는
 <button className="bg-krds-primary-50 text-krds-primary-10 hover:bg-krds-primary-60">
   확인
 </button>`}
-          </Code>
-        </Subsection>
+              </Code>
+            </Subsection>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="Gray Scale">
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Gray Scale">
+                <Body>
+                  Gray는 Surface(배경/표면)로 <strong>0, 5, 10</strong> 세
+                  가지를 사용합니다.
+                </Body>
+              </SectionHeading>
+              <Stack gap="sm" className="mb-4">
+                <div className="flex items-center gap-4 p-3 bg-krds-white rounded-lg border border-krds-gray-20">
+                  <div className="w-16 h-16 bg-krds-white border border-krds-gray-20 rounded"></div>
+                  <div>
+                    <code className="text-sm">bg-krds-white</code>
+                    <p className="text-xs">Surface 0 - 기본 배경</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
+                  <div className="w-16 h-16 bg-krds-gray-5 border border-krds-gray-20 rounded"></div>
+                  <div>
+                    <code className="text-sm">bg-krds-gray-5</code>
+                    <p className="text-xs">Surface 5 - 보조 배경</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 bg-krds-gray-10 rounded-lg border border-krds-gray-20">
+                  <div className="w-16 h-16 bg-krds-gray-10 border border-krds-gray-20 rounded"></div>
+                  <div>
+                    <code className="text-sm">bg-krds-gray-10</code>
+                    <p className="text-xs">Surface 10 - 강조 배경</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 bg-krds-gray-20 rounded-lg border border-krds-gray-30">
+                  <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
+                  <div>
+                    <code className="text-sm">bg-krds-gray-20</code>
+                    <p className="text-xs">구분선, 테두리</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 bg-krds-gray-40 rounded-lg border border-krds-gray-30">
+                  <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
+                  <div>
+                    <code className="text-sm">bg-krds-gray-40</code>
+                    <p className="text-xs">비활성화</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 bg-krds-gray-50 rounded-lg border border-krds-gray-30">
+                  <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
+                  <div>
+                    <code className="text-krds-gray-10">bg-krds-gray-50</code>
+                    <p className="text-xs text-krds-gray-10">비활성화</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 bg-krds-gray-70 rounded-lg">
+                  <div className="w-16 h-16 bg-krds-gray-60 rounded"></div>
+                  <div>
+                    <code className="text-krds-gray-10">text-krds-gray-70</code>
+                    <p className="text-xs text-krds-gray-30">보조 텍스트</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 bg-krds-gray-90 rounded-lg">
+                  <div className="w-16 h-16 bg-krds-gray-90 rounded"></div>
+                  <div>
+                    <code className="text-krds-gray-10">text-krds-gray-90</code>
+                    <p className="text-xs text-krds-gray-30">본문 텍스트</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-3 bg-krds-gray-95 rounded-lg">
+                  <div className="w-16 h-16 bg-krds-gray-90 rounded"></div>
+                  <div>
+                    <code className="text-krds-gray-10">text-krds-gray-95</code>
+                    <p className="text-xs text-krds-gray-30">굵은 텍스트</p>
+                  </div>
+                </div>
+              </Stack>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="System Colors" />
+              <Stack gap="md" className="mb-4">
+                {/* Danger */}
+                <div className="p-4 bg-krds-danger-5 border border-krds-danger-10 rounded-lg">
+                  <strong className="text-krds-danger-60 mb-2 flex items-center gap-2">
+                    <CircleX className="w-4 h-4 text-krds-danger-50" /> Danger -
+                    오류, 삭제
+                  </strong>
+                  <code className="block">
+                    icon-krds-danger-50 (다크: 20) / text-krds-danger-60 (다크:
+                    20) / <br />
+                    bg-krds-danger-5 (다크: 95) / border-krds-danger-10 (다크:
+                    90)
+                  </code>
+                </div>
+
+                {/* Warning */}
+                <div className="p-4 bg-krds-warning-5 border border-krds-warning-10 rounded-lg">
+                  <strong className="text-krds-warning-60 mb-2 flex items-center gap-2">
+                    <AlertTriangle className="w-4 h-4 text-krds-warning-50" />{' '}
+                    Warning - 경고, 주의
+                  </strong>
+                  <code className="block">
+                    icon-krds-warning-50 (다크: 20) / text-krds-warning-60
+                    (다크: 20) / <br /> bg-krds-warning-5 (다크: 95) /
+                    border-krds-warning-10 (다크: 90)
+                  </code>
+                </div>
+
+                {/* Success */}
+                <div className="p-4 bg-krds-success-5 border border-krds-success-10 rounded-lg">
+                  <strong className="text-krds-success-60 mb-2 flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-krds-success-50" />{' '}
+                    Success - 완료, 성공
+                  </strong>
+                  <code className="block">
+                    icon-krds-success-50 (다크: 20) / text-krds-success-60
+                    (다크: 20) / <br /> bg-krds-success-5 (다크: 95) /
+                    border-krds-success-10 (다크: 90)
+                  </code>
+                </div>
+
+                {/* Information */}
+                <div className="p-4 bg-krds-information-5 border border-krds-information-10 rounded-lg">
+                  <strong className="text-krds-information-60 mb-2 flex items-center gap-2">
+                    <Info className="w-4 h-4 text-krds-information-50" /> Info -
+                    정보, 안내
+                  </strong>
+                  <code className="block">
+                    icon-krds-information-50 (다크: 20) /
+                    text-krds-information-60 (다크: 20) / <br />{' '}
+                    bg-krds-information-5 (다크: 95) /
+                    border-krds-information-10 (다크: 90)
+                  </code>
+                </div>
+              </Stack>
+            </Subsection>
+          </Section>
+
+          {/* Semantic Color Tokens */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="semantic-colors"
+              title="의미 기반 색상 (Semantic Color Tokens)"
+            >
+              <Body>
+                기본 모드와 다크 모드에서 <strong>text, base, surface</strong>의
+                기준이 다릅니다. 예를 들어 Primary 색상의 경우:
+              </Body>
+            </SectionHeading>
+
+            <Stack
+              direction="row"
+              gap="md"
+              className="flex-col md:flex-row mb-4"
+            >
+              <Card variant="outlined" className="flex-1">
+                <SectionHeading level="h4" title="기본 모드" />
+                <List>
+                  <ListItem>
+                    <Code>base</Code> = 50
+                  </ListItem>
+                  <ListItem>
+                    <Code>text</Code> = 60
+                  </ListItem>
+                  <ListItem>
+                    <Code>surface</Code> = 5
+                  </ListItem>
+                </List>
+              </Card>
+              <Card variant="outlined" className="flex-1">
+                <SectionHeading level="h4" title="다크 모드" />
+                <List>
+                  <ListItem>
+                    <Code>base</Code> = 50
+                  </ListItem>
+                  <ListItem>
+                    <Code>text</Code> = 20
+                  </ListItem>
+                  <ListItem>
+                    <Code>surface</Code> = 95
+                  </ListItem>
+                </List>
+              </Card>
+            </Stack>
+
             <Body>
-              Gray는 Surface(배경/표면)로 <strong>0, 5, 10</strong> 세 가지를
-              사용합니다.
+              이를 해결하기 위해 <strong>Semantic 변수</strong>를 사용하여
+              모드에 따라 자동으로 올바른 색상이 적용되도록 설정했습니다.
             </Body>
-          </SectionHeading>
-          <Stack gap="sm" className="mb-4">
-            <div className="flex items-center gap-4 p-3 bg-krds-white rounded-lg border border-krds-gray-20">
-              <div className="w-16 h-16 bg-krds-white border border-krds-gray-20 rounded"></div>
-              <div>
-                <code className="text-sm">bg-krds-white</code>
-                <p className="text-xs">Surface 0 - 기본 배경</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-3 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
-              <div className="w-16 h-16 bg-krds-gray-5 border border-krds-gray-20 rounded"></div>
-              <div>
-                <code className="text-sm">bg-krds-gray-5</code>
-                <p className="text-xs">Surface 5 - 보조 배경</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-3 bg-krds-gray-10 rounded-lg border border-krds-gray-20">
-              <div className="w-16 h-16 bg-krds-gray-10 border border-krds-gray-20 rounded"></div>
-              <div>
-                <code className="text-sm">bg-krds-gray-10</code>
-                <p className="text-xs">Surface 10 - 강조 배경</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-3 bg-krds-gray-20 rounded-lg border border-krds-gray-30">
-              <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
-              <div>
-                <code className="text-sm">bg-krds-gray-20</code>
-                <p className="text-xs">구분선, 테두리</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-3 bg-krds-gray-40 rounded-lg border border-krds-gray-30">
-              <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
-              <div>
-                <code className="text-sm">bg-krds-gray-40</code>
-                <p className="text-xs">비활성화</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-3 bg-krds-gray-50 rounded-lg border border-krds-gray-30">
-              <div className="w-16 h-16 bg-krds-gray-20 border border-krds-gray-30 rounded"></div>
-              <div>
-                <code className="text-krds-gray-10">bg-krds-gray-50</code>
-                <p className="text-xs text-krds-gray-10">비활성화</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-3 bg-krds-gray-70 rounded-lg">
-              <div className="w-16 h-16 bg-krds-gray-60 rounded"></div>
-              <div>
-                <code className="text-krds-gray-10">text-krds-gray-70</code>
-                <p className="text-xs text-krds-gray-30">보조 텍스트</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-3 bg-krds-gray-90 rounded-lg">
-              <div className="w-16 h-16 bg-krds-gray-90 rounded"></div>
-              <div>
-                <code className="text-krds-gray-10">text-krds-gray-90</code>
-                <p className="text-xs text-krds-gray-30">본문 텍스트</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 p-3 bg-krds-gray-95 rounded-lg">
-              <div className="w-16 h-16 bg-krds-gray-90 rounded"></div>
-              <div>
-                <code className="text-krds-gray-10">text-krds-gray-95</code>
-                <p className="text-xs text-krds-gray-30">굵은 텍스트</p>
-              </div>
-            </div>
-          </Stack>
-        </Subsection>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="System Colors" />
-          <Stack gap="md" className="mb-4">
-            {/* Danger */}
-            <div className="p-4 bg-krds-danger-5 border border-krds-danger-10 rounded-lg">
-              <strong className="text-krds-danger-60 mb-2 flex items-center gap-2">
-                <CircleX className="w-4 h-4 text-krds-danger-50" /> Danger -
-                오류, 삭제
-              </strong>
-              <code className="block">
-                icon-krds-danger-50 (다크: 20) / text-krds-danger-60 (다크: 20)
-                / <br />
-                bg-krds-danger-5 (다크: 95) / border-krds-danger-10 (다크: 90)
-              </code>
-            </div>
-
-            {/* Warning */}
-            <div className="p-4 bg-krds-warning-5 border border-krds-warning-10 rounded-lg">
-              <strong className="text-krds-warning-60 mb-2 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-krds-warning-50" />{' '}
-                Warning - 경고, 주의
-              </strong>
-              <code className="block">
-                icon-krds-warning-50 (다크: 20) / text-krds-warning-60 (다크:
-                20) / <br /> bg-krds-warning-5 (다크: 95) /
-                border-krds-warning-10 (다크: 90)
-              </code>
-            </div>
-
-            {/* Success */}
-            <div className="p-4 bg-krds-success-5 border border-krds-success-10 rounded-lg">
-              <strong className="text-krds-success-60 mb-2 flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-krds-success-50" /> Success
-                - 완료, 성공
-              </strong>
-              <code className="block">
-                icon-krds-success-50 (다크: 20) / text-krds-success-60 (다크:
-                20) / <br /> bg-krds-success-5 (다크: 95) /
-                border-krds-success-10 (다크: 90)
-              </code>
-            </div>
-
-            {/* Information */}
-            <div className="p-4 bg-krds-information-5 border border-krds-information-10 rounded-lg">
-              <strong className="text-krds-information-60 mb-2 flex items-center gap-2">
-                <Info className="w-4 h-4 text-krds-information-50" /> Info -
-                정보, 안내
-              </strong>
-              <code className="block">
-                icon-krds-information-50 (다크: 20) / text-krds-information-60
-                (다크: 20) / <br /> bg-krds-information-5 (다크: 95) /
-                border-krds-information-10 (다크: 90)
-              </code>
-            </div>
-          </Stack>
-        </Subsection>
-      </Section>
-
-      {/* Semantic Color Tokens */}
-      <Section level="h2">
-        <SectionHeading
-          level="h2"
-          id="semantic-colors"
-          title="의미 기반 색상 (Semantic Color Tokens)"
-        >
-          <Body>
-            기본 모드와 다크 모드에서 <strong>text, base, surface</strong>의
-            기준이 다릅니다. 예를 들어 Primary 색상의 경우:
-          </Body>
-        </SectionHeading>
-
-        <Stack direction="row" gap="md" className="flex-col md:flex-row mb-4">
-          <Card variant="outlined" className="flex-1">
-            <SectionHeading level="h4" title="기본 모드" />
-            <List>
-              <ListItem>
-                <Code>base</Code> = 50
-              </ListItem>
-              <ListItem>
-                <Code>text</Code> = 60
-              </ListItem>
-              <ListItem>
-                <Code>surface</Code> = 5
-              </ListItem>
-            </List>
-          </Card>
-          <Card variant="outlined" className="flex-1">
-            <SectionHeading level="h4" title="다크 모드" />
-            <List>
-              <ListItem>
-                <Code>base</Code> = 50
-              </ListItem>
-              <ListItem>
-                <Code>text</Code> = 20
-              </ListItem>
-              <ListItem>
-                <Code>surface</Code> = 95
-              </ListItem>
-            </List>
-          </Card>
-        </Stack>
-
-        <Body>
-          이를 해결하기 위해 <strong>Semantic 변수</strong>를 사용하여 모드에
-          따라 자동으로 올바른 색상이 적용되도록 설정했습니다.
-        </Body>
-
-        <Stack gap="md" className="mt-4">
-          <div>
-            <Body size="sm" className="font-semibold mb-2">
-              1. globals.css - Semantic 변수 정의
-            </Body>
-            <Code variant="block" language="css">
-              {`:root {
+            <Stack gap="md" className="mt-4">
+              <div>
+                <Body size="sm" className="font-semibold mb-2">
+                  1. globals.css - Semantic 변수 정의
+                </Body>
+                <Code variant="block" language="css">
+                  {`:root {
   /* 기본 모드: text=60, surface=5, base=50 */
   --krds-primary-text: var(--krds-color-light-primary-60);
   --krds-primary-surface: var(--krds-color-light-primary-5);
@@ -548,15 +574,15 @@ export default function ColorsPage() {
   --krds-primary-surface: var(--krds-color-light-primary-95);
   --krds-primary-base: var(--krds-color-light-primary-50);
 }`}
-            </Code>
-          </div>
+                </Code>
+              </div>
 
-          <div>
-            <Body size="sm" className="font-semibold mb-2">
-              2. tailwind.config.ts - Semantic 이름 매핑
-            </Body>
-            <Code variant="block" language="typescript">
-              {`colors: {
+              <div>
+                <Body size="sm" className="font-semibold mb-2">
+                  2. tailwind.config.ts - Semantic 이름 매핑
+                </Body>
+                <Code variant="block" language="typescript">
+                  {`colors: {
   'krds-primary': {
     DEFAULT: 'var(--krds-primary-base)', // base 색상
     // Semantic 변수 (모드에 따라 자동 변경)
@@ -570,172 +596,177 @@ export default function ColorsPage() {
     // ...
   }
 }`}
-            </Code>
-          </div>
-        </Stack>
+                </Code>
+              </div>
+            </Stack>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="Semantic 변수 vs 숫자 스케일">
-            <Body>
-              둘 다 자동 전환되지만, 사용 목적이 다릅니다. 언제 무엇을 사용해야
-              할까요?
-            </Body>
-          </SectionHeading>
-
-          <Stack direction="row" gap="md" className="flex-col md:flex-row">
-            <Card variant="outlined" className="flex-1">
-              <SectionHeading level="h4" title="Semantic 변수 (권장)">
-                <Body size="sm" className="mb-3">
-                  <Code>bg-krds-primary-surface</Code>,{' '}
-                  <Code>text-krds-primary-text</Code>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Semantic 변수 vs 숫자 스케일">
+                <Body>
+                  둘 다 자동 전환되지만, 사용 목적이 다릅니다. 언제 무엇을
+                  사용해야 할까요?
                 </Body>
               </SectionHeading>
-              <List>
-                <ListItem>의미 기반 이름(surface, text, base)</ListItem>
-                <ListItem>CSS 변수를 통해 자동 전환됨</ListItem>
-                <ListItem>모드에 따라 적절한 숫자 값 자동 선택</ListItem>
-                <ListItem>
-                  라이트 모드: surface=5, 다크 모드: surface=95
-                </ListItem>
-              </List>
-            </Card>
 
-            <Card variant="outlined" className="flex-1">
-              <SectionHeading level="h4" title="숫자 스케일">
-                <Body size="sm" className="mb-3">
-                  <Code>bg-krds-gray-5</Code>, <Code>text-krds-gray-90</Code>
+              <Stack direction="row" gap="md" className="flex-col md:flex-row">
+                <Card variant="outlined" className="flex-1">
+                  <SectionHeading level="h4" title="Semantic 변수 (권장)">
+                    <Body size="sm" className="mb-3">
+                      <Code>bg-krds-primary-surface</Code>,{' '}
+                      <Code>text-krds-primary-text</Code>
+                    </Body>
+                  </SectionHeading>
+                  <List>
+                    <ListItem>의미 기반 이름(surface, text, base)</ListItem>
+                    <ListItem>CSS 변수를 통해 자동 전환됨</ListItem>
+                    <ListItem>모드에 따라 적절한 숫자 값 자동 선택</ListItem>
+                    <ListItem>
+                      라이트 모드: surface=5, 다크 모드: surface=95
+                    </ListItem>
+                  </List>
+                </Card>
+
+                <Card variant="outlined" className="flex-1">
+                  <SectionHeading level="h4" title="숫자 스케일">
+                    <Body size="sm" className="mb-3">
+                      <Code>bg-krds-gray-5</Code>,{' '}
+                      <Code>text-krds-gray-90</Code>
+                    </Body>
+                  </SectionHeading>
+                  <List>
+                    <ListItem>구체적인 색상 값(5, 90 등)을 직접 지정</ListItem>
+                    <ListItem>CSS 변수를 통해 자동 전환됨</ListItem>
+                    <ListItem>항상 같은 숫자(5)를 참조</ListItem>
+                    <ListItem>
+                      라이트 모드: 밝은 색, 다크 모드: 어두운 색
+                    </ListItem>
+                  </List>
+                </Card>
+              </Stack>
+
+              <Card variant="info" className="mt-4">
+                <Body>
+                  <strong>언제 무엇을 사용하나요?</strong>
                 </Body>
+                <List className="mt-2">
+                  <ListItem>
+                    <strong>Semantic 변수 권장:</strong> 일반적인 UI
+                    컴포넌트(버튼, 카드, 알림 등)에서 의미에 맞는 색상을 사용할
+                    때
+                  </ListItem>
+                  <ListItem>
+                    <strong>숫자 스케일 사용:</strong> 특정 색상 값이 필요한
+                    경우(예: 디자인 시스템에서 정확히 5번 색상을 지정해야 할 때)
+                  </ListItem>
+                </List>
+              </Card>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="사용 가능한 Semantic 변수">
+                <Body>다음 컬러들이 Semantic 변수를 지원합니다:</Body>
               </SectionHeading>
-              <List>
-                <ListItem>구체적인 색상 값(5, 90 등)을 직접 지정</ListItem>
-                <ListItem>CSS 변수를 통해 자동 전환됨</ListItem>
-                <ListItem>항상 같은 숫자(5)를 참조</ListItem>
-                <ListItem>라이트 모드: 밝은 색, 다크 모드: 어두운 색</ListItem>
-              </List>
-            </Card>
-          </Stack>
 
-          <Card variant="info" className="mt-4">
-            <Body>
-              <strong>언제 무엇을 사용하나요?</strong>
-            </Body>
-            <List className="mt-2">
-              <ListItem>
-                <strong>Semantic 변수 권장:</strong> 일반적인 UI 컴포넌트(버튼,
-                카드, 알림 등)에서 의미에 맞는 색상을 사용할 때
-              </ListItem>
-              <ListItem>
-                <strong>숫자 스케일 사용:</strong> 특정 색상 값이 필요한
-                경우(예: 디자인 시스템에서 정확히 5번 색상을 지정해야 할 때)
-              </ListItem>
-            </List>
-          </Card>
-        </Subsection>
+              <Wrap gap="md">
+                <div className="flex-1 min-w-[300px]">
+                  <Card variant="outlined" className="w-full">
+                    <SectionHeading level="h4" title="Primary" />
+                    <List>
+                      <ListItem>
+                        <Code>text-krds-primary-text</Code>
+                      </ListItem>
+                      <ListItem>
+                        <Code>bg-krds-primary-surface</Code>
+                      </ListItem>
+                      <ListItem>
+                        <Code>bg-krds-primary-base</Code>
+                      </ListItem>
+                    </List>
+                  </Card>
+                </div>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="사용 가능한 Semantic 변수">
-            <Body>다음 컬러들이 Semantic 변수를 지원합니다:</Body>
-          </SectionHeading>
+                <div className="flex-1 min-w-[300px]">
+                  <Card variant="outlined" className="w-full">
+                    <SectionHeading level="h4" title="Secondary" />
+                    <List>
+                      <ListItem>
+                        <Code>text-krds-secondary-text</Code>
+                      </ListItem>
+                      <ListItem>
+                        <Code>bg-krds-secondary-surface</Code>
+                      </ListItem>
+                      <ListItem>
+                        <Code>bg-krds-secondary-base</Code>
+                      </ListItem>
+                    </List>
+                  </Card>
+                </div>
 
-          <Wrap gap="md">
-            <div className="flex-1 min-w-[300px]">
-              <Card variant="outlined" className="w-full">
-                <SectionHeading level="h4" title="Primary" />
-                <List>
-                  <ListItem>
-                    <Code>text-krds-primary-text</Code>
-                  </ListItem>
-                  <ListItem>
-                    <Code>bg-krds-primary-surface</Code>
-                  </ListItem>
-                  <ListItem>
-                    <Code>bg-krds-primary-base</Code>
-                  </ListItem>
-                </List>
-              </Card>
-            </div>
+                <div className="flex-1 min-w-[300px]">
+                  <Card variant="outlined" className="w-full">
+                    <SectionHeading level="h4" title="Accent (강조)" />
+                    <List>
+                      <ListItem>
+                        <Code>text-krds-accent-text</Code>
+                      </ListItem>
+                      <ListItem>
+                        <Code>bg-krds-accent-surface</Code>
+                      </ListItem>
+                      <ListItem>
+                        <Code>bg-krds-accent-base</Code>
+                      </ListItem>
+                    </List>
+                  </Card>
+                </div>
 
-            <div className="flex-1 min-w-[300px]">
-              <Card variant="outlined" className="w-full">
-                <SectionHeading level="h4" title="Secondary" />
-                <List>
-                  <ListItem>
-                    <Code>text-krds-secondary-text</Code>
-                  </ListItem>
-                  <ListItem>
-                    <Code>bg-krds-secondary-surface</Code>
-                  </ListItem>
-                  <ListItem>
-                    <Code>bg-krds-secondary-base</Code>
-                  </ListItem>
-                </List>
-              </Card>
-            </div>
+                <div className="flex-1 min-w-[300px]">
+                  <Card variant="outlined" className="w-full">
+                    <SectionHeading level="h4" title="Danger (위험/에러)" />
+                    <List>
+                      <ListItem>
+                        <Code>text-krds-danger-text</Code>
+                      </ListItem>
+                      <ListItem>
+                        <Code>bg-krds-danger-surface</Code>
+                      </ListItem>
+                      <ListItem>
+                        <Code>border-krds-danger-border</Code>
+                      </ListItem>
+                    </List>
+                  </Card>
+                </div>
+              </Wrap>
+            </Subsection>
+          </Section>
 
-            <div className="flex-1 min-w-[300px]">
-              <Card variant="outlined" className="w-full">
-                <SectionHeading level="h4" title="Accent (강조)" />
-                <List>
-                  <ListItem>
-                    <Code>text-krds-accent-text</Code>
-                  </ListItem>
-                  <ListItem>
-                    <Code>bg-krds-accent-surface</Code>
-                  </ListItem>
-                  <ListItem>
-                    <Code>bg-krds-accent-base</Code>
-                  </ListItem>
-                </List>
-              </Card>
-            </div>
-
-            <div className="flex-1 min-w-[300px]">
-              <Card variant="outlined" className="w-full">
-                <SectionHeading level="h4" title="Danger (위험/에러)" />
-                <List>
-                  <ListItem>
-                    <Code>text-krds-danger-text</Code>
-                  </ListItem>
-                  <ListItem>
-                    <Code>bg-krds-danger-surface</Code>
-                  </ListItem>
-                  <ListItem>
-                    <Code>border-krds-danger-border</Code>
-                  </ListItem>
-                </List>
-              </Card>
-            </div>
-          </Wrap>
-        </Subsection>
-      </Section>
-
-      {/* Dark Mode */}
-      <Section level="h2">
-        <SectionHeading level="h2" id="dark-mode" title="다크 모드">
-          <Body>
-            HANUI는 CSS 변수를 활용하여 다크 모드를 자동으로 지원합니다.{' '}
-            <Code>html</Code>요소에 <Code>dark</Code>클래스를 추가하면 모든 KRDS
-            색상이 자동으로 전환됩니다.
-          </Body>
-        </SectionHeading>
-
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="작동 원리">
-            <Body>
-              CSS 변수는 상위 요소의 값을 상속받습니다. <Code>globals.css</Code>
-              에서 <Code>:root</Code>와 <Code>.dark</Code>에서 같은 변수명을
-              사용하지만 다른 값을 할당하여, 모드에 따라 자동으로 색상이
-              변경되도록 구현했습니다.
-            </Body>
-          </SectionHeading>
-
-          <Stack gap="md">
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                1. globals.css - CSS 변수 정의
+          {/* Dark Mode */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="dark-mode" title="다크 모드">
+              <Body>
+                HANUI는 CSS 변수를 활용하여 다크 모드를 자동으로 지원합니다.{' '}
+                <Code>html</Code>요소에 <Code>dark</Code>클래스를 추가하면 모든
+                KRDS 색상이 자동으로 전환됩니다.
               </Body>
-              <Code variant="block" language="css">
-                {`:root {
+            </SectionHeading>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="작동 원리">
+                <Body>
+                  CSS 변수는 상위 요소의 값을 상속받습니다.{' '}
+                  <Code>globals.css</Code>
+                  에서 <Code>:root</Code>와 <Code>.dark</Code>에서 같은 변수명을
+                  사용하지만 다른 값을 할당하여, 모드에 따라 자동으로 색상이
+                  변경되도록 구현했습니다.
+                </Body>
+              </SectionHeading>
+
+              <Stack gap="md">
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    1. globals.css - CSS 변수 정의
+                  </Body>
+                  <Code variant="block" language="css">
+                    {`:root {
   /* 기본 모드 (라이트 모드) */
   --krds-color-light-primary-5: #ecf2fe;  /* 밝은 파란색 */
   --krds-color-light-primary-50: #256ef4;  /* 중간 파란색 */
@@ -748,30 +779,30 @@ export default function ColorsPage() {
   --krds-color-light-primary-50: #256ef4;  /* 중간 파란색 (동일) */
   --krds-color-light-primary-80: #b1cefb;  /* 밝은 파란색 */
 }`}
-              </Code>
-            </div>
+                  </Code>
+                </div>
 
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                2. tailwind.config.ts - CSS 변수 참조
-              </Body>
-              <Code variant="block" language="typescript">
-                {`colors: {
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    2. tailwind.config.ts - CSS 변수 참조
+                  </Body>
+                  <Code variant="block" language="typescript">
+                    {`colors: {
   'krds-primary': {
     5: 'var(--krds-color-light-primary-5)',   // CSS 변수 참조
     50: 'var(--krds-color-light-primary-50)',
     80: 'var(--krds-color-light-primary-80)',
   }
 }`}
-              </Code>
-            </div>
+                  </Code>
+                </div>
 
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                3. 실제 사용 - 자동 전환
-              </Body>
-              <Code variant="block" language="tsx">
-                {`// HTML에 dark 클래스가 없을 때 (기본 모드)
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    3. 실제 사용 - 자동 전환
+                  </Body>
+                  <Code variant="block" language="tsx">
+                    {`// HTML에 dark 클래스가 없을 때 (기본 모드)
 <div className="bg-krds-primary-5">
   → var(--krds-color-light-primary-5) 참조
   → :root의 값 #ecf2fe 사용 (밝은 파란색)
@@ -785,26 +816,27 @@ export default function ColorsPage() {
     → dark: 접두사 불필요!
   </div>
 </html>`}
-              </Code>
-            </div>
-          </Stack>
-        </Subsection>
+                  </Code>
+                </div>
+              </Stack>
+            </Subsection>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="자동 전환 예시">
-            <Body>
-              모든 KRDS 색상(숫자 스케일, semantic 변수,
-              `krds-white`/`krds-black` 모두)은 CSS 변수를 통해 자동 전환됩니다.
-            </Body>
-          </SectionHeading>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="자동 전환 예시">
+                <Body>
+                  모든 KRDS 색상(숫자 스케일, semantic 변수,
+                  `krds-white`/`krds-black` 모두)은 CSS 변수를 통해 자동
+                  전환됩니다.
+                </Body>
+              </SectionHeading>
 
-          <Stack gap="md">
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                숫자 스케일 - 자동 전환
-              </Body>
-              <Code variant="block" language="tsx">
-                {`<div className="bg-krds-gray-5 text-krds-gray-90">
+              <Stack gap="md">
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    숫자 스케일 - 자동 전환
+                  </Body>
+                  <Code variant="block" language="tsx">
+                    {`<div className="bg-krds-gray-5 text-krds-gray-90">
   {/*
     라이트 모드:
     - bg-krds-gray-5 → #f4f5f6 (밝은 회색, 거의 흰색)
@@ -819,15 +851,15 @@ export default function ColorsPage() {
     → dark: 접두사 불필요!
   */}
 </div>`}
-              </Code>
-            </div>
+                  </Code>
+                </div>
 
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                Semantic 변수 - 자동 전환
-              </Body>
-              <Code variant="block" language="tsx">
-                {`<div className="bg-krds-primary-surface text-krds-primary-text">
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    Semantic 변수 - 자동 전환
+                  </Body>
+                  <Code variant="block" language="tsx">
+                    {`<div className="bg-krds-primary-surface text-krds-primary-text">
   {/*
     라이트 모드:
     - bg-krds-primary-surface → var(--krds-primary-surface) → #ecf2fe
@@ -840,15 +872,15 @@ export default function ColorsPage() {
     → dark: 접두사 불필요!
   */}
 </div>`}
-              </Code>
-            </div>
+                  </Code>
+                </div>
 
-            <div>
-              <Body size="sm" className="font-semibold mb-2">
-                Base Colors - 자동 반전
-              </Body>
-              <Code variant="block" language="tsx">
-                {`<div className="bg-krds-white text-krds-black">
+                <div>
+                  <Body size="sm" className="font-semibold mb-2">
+                    Base Colors - 자동 반전
+                  </Body>
+                  <Code variant="block" language="tsx">
+                    {`<div className="bg-krds-white text-krds-black">
   {/*
     라이트 모드:
     - bg-krds-white → var(--krds-white) → #ffffff (흰색)
@@ -861,21 +893,21 @@ export default function ColorsPage() {
     → dark: 접두사 불필요!
   */}
 </div>`}
-              </Code>
-            </div>
-          </Stack>
-        </Subsection>
+                  </Code>
+                </div>
+              </Stack>
+            </Subsection>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="다크 모드 활성화 방법">
-            <Body>
-              <Code>html</Code>요소에 <Code>dark</Code> 클래스를 추가하면
-              됩니다.
-            </Body>
-          </SectionHeading>
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="다크 모드 활성화 방법">
+                <Body>
+                  <Code>html</Code>요소에 <Code>dark</Code> 클래스를 추가하면
+                  됩니다.
+                </Body>
+              </SectionHeading>
 
-          <Code variant="block" language="tsx">
-            {`// React/Next.js 예시
+              <Code variant="block" language="tsx">
+                {`// React/Next.js 예시
 import { useEffect, useState } from 'react';
 
 function useDarkMode() {
@@ -902,68 +934,619 @@ function App() {
     </button>
   );
 }`}
-          </Code>
-        </Subsection>
+              </Code>
+            </Subsection>
 
-        <Subsection level="h3">
-          <SectionHeading level="h3" title="주의사항" />
-          <Stack gap="sm">
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="주의사항" />
+              <Stack gap="sm">
+                <Card variant="outlined">
+                  <Body>
+                    <strong>text-white 사용:</strong> <Code>text-white</Code>는
+                    순수 흰색(#ffffff) CSS 변수를 사용하지만, 모드에 따라 값이
+                    변하지 않으므로 항상 흰색입니다. 배경이 모드에 따라 변한다면
+                    KRDS 색상 변수(<Code>text-krds-gray-10</Code> 등)를
+                    사용하세요. 순수 흰색이 필요한 경우(로고, 아이콘 등)에만
+                    사용하세요.
+                  </Body>
+                </Card>
+
+                <Card variant="info">
+                  <Body>
+                    <strong>핵심:</strong> 모든 KRDS 색상(숫자 스케일, semantic
+                    변수, `krds-white`/`krds-black` 모두)은 CSS 변수를 통해 자동
+                    전환되므로, <Code>dark:</Code> 접두사가 필요 없습니다.{' '}
+                    <Code>html</Code> 요소에 <Code>dark</Code> 클래스만 추가하면
+                    됩니다.
+                  </Body>
+                </Card>
+              </Stack>
+            </Subsection>
+          </Section>
+
+          {/* Best Practices */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+
             <Card variant="outlined">
-              <Body>
-                <strong>text-white 사용:</strong> <Code>text-white</Code>는 순수
-                흰색(#ffffff) CSS 변수를 사용하지만, 모드에 따라 값이 변하지
-                않으므로 항상 흰색입니다. 배경이 모드에 따라 변한다면 KRDS 색상
-                변수(<Code>text-krds-gray-10</Code> 등)를 사용하세요. 순수
-                흰색이 필요한 경우(로고, 아이콘 등)에만 사용하세요.
-              </Body>
-            </Card>
-
-            <Card variant="info">
-              <Body>
-                <strong>핵심:</strong> 모든 KRDS 색상(숫자 스케일, semantic
-                변수, `krds-white`/`krds-black` 모두)은 CSS 변수를 통해 자동
-                전환되므로, <Code>dark:</Code> 접두사가 필요 없습니다.{' '}
-                <Code>html</Code> 요소에 <Code>dark</Code> 클래스만 추가하면
-                됩니다.
-              </Body>
-            </Card>
-          </Stack>
-        </Subsection>
-      </Section>
-
-      {/* Best Practices */}
-      <Section level="h2">
-        <SectionHeading level="h2" id="best-practices" title="모범 사례" />
-
-        <Card variant="outlined">
-          <SectionHeading level="h3" title="의미 있는 색상 사용">
-            <Body size="sm" className="text-krds-gray-70 mb-3">
-              System Colors를 올바른 의미로 사용하세요.
-            </Body>
-          </SectionHeading>
-          <Code variant="block" language="tsx">
-            {`// Success는 긍정적 결과에
+              <SectionHeading level="h3" title="의미 있는 색상 사용">
+                <Body size="sm" className="text-krds-gray-70 mb-3">
+                  System Colors를 올바른 의미로 사용하세요.
+                </Body>
+              </SectionHeading>
+              <Code variant="block" language="tsx">
+                {`// Success는 긍정적 결과에
 <Button variant="success">저장 완료</Button>
 
 // Danger는 위험한 액션에
 <Button variant="danger">삭제</Button>`}
-          </Code>
-        </Card>
-      </Section>
+              </Code>
+            </Card>
+          </Section>
 
-      {/* Reference */}
-      <Section level="h2">
-        <SectionHeading level="h2" id="reference" title="참고 자료" />
+          {/* Reference */}
+          <Section level="h2">
+            <SectionHeading level="h2" id="reference" title="참고 자료" />
 
-        <Link
-          href="https://www.krds.go.kr/html/site/style/style_02.html"
-          external
-          className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
-        >
-          <h4 className="font-semibold mb-1">KRDS 색상 시스템</h4>
-          <p className="text-krds-gray-70">색상 팔레트, 접근성 기준</p>
-        </Link>
-      </Section>
+            <Link
+              href="https://www.krds.go.kr/html/site/style/style_02.html"
+              external
+              className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
+            >
+              <h4 className="font-semibold mb-1">KRDS 색상 시스템</h4>
+              <p className="text-krds-gray-70">색상 팔레트, 접근성 기준</p>
+            </Link>
+          </Section>
+        </TabsContent>
+
+        <TabsContent value="api">
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="api-reference"
+              title="API 레퍼런스"
+            />
+
+            {/* Color Categories */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="색상 카테고리" />
+              <Body>
+                KRDS 색상 시스템은 다음 8가지 주요 카테고리를 제공합니다:
+              </Body>
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Category</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead>Use Case</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">Gray</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      중립 회색 색상
+                    </TableCell>
+                    <TableCell>텍스트, 배경, 구분선, 비활성 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Primary</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      주요 브랜드 색상
+                    </TableCell>
+                    <TableCell>주요 버튼, 링크, 강조 요소</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Secondary</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      보조 브랜드 색상
+                    </TableCell>
+                    <TableCell>보조 버튼, 대안적 강조</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Success</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      성공 상태 색상
+                    </TableCell>
+                    <TableCell>완료 메시지, 성공 알림, 긍정적 피드백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Warning</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      경고 상태 색상
+                    </TableCell>
+                    <TableCell>주의 메시지, 경고 알림</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Danger</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      위험/에러 색상
+                    </TableCell>
+                    <TableCell>에러 메시지, 삭제 버튼, 위험한 작업</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Accent</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      강조 색상
+                    </TableCell>
+                    <TableCell>특별한 강조, 하이라이트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Information</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      정보 색상
+                    </TableCell>
+                    <TableCell>안내 메시지, 정보성 알림</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            {/* Color Scale */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="색상 스케일" />
+              <Body>
+                각 색상 카테고리는 밝기에 따라 11단계의 스케일을 제공합니다:
+              </Body>
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Scale</TableHead>
+                    <TableHead>Brightness</TableHead>
+                    <TableHead>Typical Use</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">5</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      가장 밝음
+                    </TableCell>
+                    <TableCell>배경, Surface</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">10</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      매우 밝음
+                    </TableCell>
+                    <TableCell>보조 배경, Border</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">20</TableCell>
+                    <TableCell className="text-krds-gray-70">밝음</TableCell>
+                    <TableCell>구분선, 비활성 요소</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">30</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      약간 밝음
+                    </TableCell>
+                    <TableCell>Border, Hover 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">40</TableCell>
+                    <TableCell className="text-krds-gray-70">중간</TableCell>
+                    <TableCell>비활성 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">50</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      기본 (Base)
+                    </TableCell>
+                    <TableCell>버튼, 아이콘, 주요 요소</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">60</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      약간 어두움
+                    </TableCell>
+                    <TableCell>텍스트, Hover 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">70</TableCell>
+                    <TableCell className="text-krds-gray-70">어두움</TableCell>
+                    <TableCell>보조 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">80</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      매우 어두움
+                    </TableCell>
+                    <TableCell>진한 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">90</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      거의 검정
+                    </TableCell>
+                    <TableCell>본문 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">95</TableCell>
+                    <TableCell className="text-krds-gray-70">
+                      가장 어두움
+                    </TableCell>
+                    <TableCell>제목, 굵은 텍스트</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            {/* Usage Table */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="사용 예시" />
+              <Body>주요 색상의 CSS 변수와 Tailwind 클래스 사용법:</Body>
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Category</TableHead>
+                    <TableHead>CSS Variable</TableHead>
+                    <TableHead>Tailwind Class</TableHead>
+                    <TableHead>Example Use Case</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">Gray</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        --krds-color-light-gray-50
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-gray-50</Code>
+                    </TableCell>
+                    <TableCell>비활성 버튼 배경</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Primary</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        --krds-color-light-primary-50
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-primary-50</Code>
+                    </TableCell>
+                    <TableCell>주요 버튼 배경</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Secondary</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        --krds-color-light-secondary-50
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-secondary-50</Code>
+                    </TableCell>
+                    <TableCell>보조 버튼 배경</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Success</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        --krds-color-light-success-50
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-success-50</Code>
+                    </TableCell>
+                    <TableCell>성공 알림 아이콘</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Warning</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        --krds-color-light-warning-50
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-warning-50</Code>
+                    </TableCell>
+                    <TableCell>경고 알림 아이콘</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Danger</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        --krds-color-light-danger-50
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-danger-50</Code>
+                    </TableCell>
+                    <TableCell>삭제 버튼, 에러 아이콘</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Accent</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        --krds-color-light-accent-50
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-accent-50</Code>
+                    </TableCell>
+                    <TableCell>배지, 강조 태그</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">Information</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        --krds-color-light-information-50
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-information-50</Code>
+                    </TableCell>
+                    <TableCell>정보 알림 아이콘</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            {/* Semantic Colors */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="시맨틱 색상 변수" />
+              <Body>
+                의미 기반 색상 변수는 모드에 따라 자동으로 적절한 값으로
+                전환됩니다:
+              </Body>
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Semantic Variable</TableHead>
+                    <TableHead>Light Mode Value</TableHead>
+                    <TableHead>Dark Mode Value</TableHead>
+                    <TableHead>Use Case</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-primary-text</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">60</TableCell>
+                    <TableCell className="text-krds-gray-70">20</TableCell>
+                    <TableCell>Primary 텍스트 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-primary-surface</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">5</TableCell>
+                    <TableCell className="text-krds-gray-70">95</TableCell>
+                    <TableCell>Primary 배경 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-primary-base</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">50</TableCell>
+                    <TableCell className="text-krds-gray-70">50</TableCell>
+                    <TableCell>Primary 기본 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-danger-text</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">60</TableCell>
+                    <TableCell className="text-krds-gray-70">20</TableCell>
+                    <TableCell>Danger 텍스트 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-danger-surface</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">5</TableCell>
+                    <TableCell className="text-krds-gray-70">95</TableCell>
+                    <TableCell>Danger 배경 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-danger-border</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">10</TableCell>
+                    <TableCell className="text-krds-gray-70">90</TableCell>
+                    <TableCell>Danger 테두리 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-success-text</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">60</TableCell>
+                    <TableCell className="text-krds-gray-70">20</TableCell>
+                    <TableCell>Success 텍스트 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-warning-text</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">60</TableCell>
+                    <TableCell className="text-krds-gray-70">20</TableCell>
+                    <TableCell>Warning 텍스트 색상</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+
+              <Card variant="info" className="mt-4">
+                <Body>
+                  <strong>사용 예시:</strong>
+                </Body>
+                <Code variant="block" language="tsx" className="mt-2">
+                  {`// Semantic 변수 사용 (권장)
+<div className="bg-krds-primary-surface text-krds-primary-text">
+  Primary 카드
+</div>
+
+// Tailwind 클래스
+<div className="bg-krds-primary-surface text-krds-primary-text border-krds-primary-base">
+  {/* 라이트 모드: surface=5, text=60 */}
+  {/* 다크 모드: surface=95, text=20 */}
+  {/* 자동 전환됨! */}
+</div>`}
+                </Code>
+              </Card>
+            </Subsection>
+
+            {/* Dark Mode */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="다크 모드" />
+              <Body>
+                KRDS 색상은 CSS 변수를 통해 다크 모드를 자동으로 지원합니다.
+              </Body>
+
+              <Card variant="info">
+                <SectionHeading level="h4" title="작동 원리" />
+                <List variant="check" className="mt-2 text-krds-gray-90">
+                  <ListItem>
+                    <Code>html</Code> 요소에 <Code>dark</Code> 클래스 추가 시
+                    모든 KRDS 색상이 자동 전환
+                  </ListItem>
+                  <ListItem>
+                    <Code>globals.css</Code>의 <Code>.dark</Code> 선택자에서 CSS
+                    변수 값을 재정의하여 구현
+                  </ListItem>
+                  <ListItem>
+                    Tailwind의 <Code>dark:</Code> 접두사 불필요 (CSS 변수가 자동
+                    처리)
+                  </ListItem>
+                  <ListItem>숫자 스케일과 시맨틱 변수 모두 자동 전환</ListItem>
+                </List>
+              </Card>
+
+              <Card className="mt-4">
+                <Body className="mb-2 font-semibold">예시: Gray 색상 전환</Body>
+                <Code variant="block" language="tsx">
+                  {`// 라이트 모드
+<div className="bg-krds-gray-5 text-krds-gray-90">
+  {/* bg: #f4f5f6 (밝은 회색) */}
+  {/* text: #1e2124 (진한 회색) */}
+</div>
+
+// 다크 모드 (html.dark)
+<div className="bg-krds-gray-5 text-krds-gray-90">
+  {/* bg: #131416 (어두운 회색) - 자동 전환! */}
+  {/* text: #e6e8ea (밝은 회색) - 자동 전환! */}
+</div>`}
+                </Code>
+              </Card>
+
+              <Card className="mt-4">
+                <Body className="mb-2 font-semibold">
+                  다크 모드 활성화 방법
+                </Body>
+                <Code variant="block" language="typescript">
+                  {`// 다크 모드 토글
+function toggleDarkMode(isDark: boolean) {
+  if (isDark) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+}`}
+                </Code>
+              </Card>
+            </Subsection>
+
+            {/* Base Colors */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="베이스 색상" />
+              <Body>
+                <Code>krds-white</Code>와 <Code>krds-black</Code>는 모드에 따라
+                자동으로 반전됩니다:
+              </Body>
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Variable</TableHead>
+                    <TableHead>Light Mode</TableHead>
+                    <TableHead>Dark Mode</TableHead>
+                    <TableHead>Use Case</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-white</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">#ffffff</TableCell>
+                    <TableCell className="text-krds-gray-70">#000000</TableCell>
+                    <TableCell>주요 배경색</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">--krds-black</Code>
+                    </TableCell>
+                    <TableCell className="text-krds-gray-70">#000000</TableCell>
+                    <TableCell className="text-krds-gray-70">#ffffff</TableCell>
+                    <TableCell>주요 텍스트색</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+
+              <Card variant="info" className="mt-4">
+                <Body>
+                  <strong>참고:</strong> 순수 흰색/검은색이 필요한 경우에는{' '}
+                  <Code>white</Code>와 <Code>black</Code> (접두사 없음)을
+                  사용하세요. 이들은 모드에 관계없이 항상 동일합니다.
+                </Body>
+              </Card>
+            </Subsection>
+
+            {/* Tailwind Prefix */}
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="krds- 접두사" />
+              <Body>
+                모든 KRDS 색상은 <Code>krds-</Code> 접두사를 사용하여 Tailwind
+                기본 색상과 구분됩니다:
+              </Body>
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Example</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-semibold">
+                      Tailwind 기본
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-gray-50</Code>
+                    </TableCell>
+                    <TableCell>Tailwind의 기본 gray 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-semibold">KRDS 색상</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">bg-krds-gray-50</Code>
+                    </TableCell>
+                    <TableCell>KRDS gray 색상 (다크 모드 지원)</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+
+              <Card variant="info" className="mt-4">
+                <Body>
+                  <strong>장점:</strong> <Code>krds-</Code> 접두사 덕분에
+                  Tailwind 기본 색상과 KRDS 색상을 동시에 사용할 수 있습니다.
+                  필요에 따라 적절한 것을 선택하세요.
+                </Body>
+              </Card>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
 
       {/* Page Navigation */}
       <PageNavigation
