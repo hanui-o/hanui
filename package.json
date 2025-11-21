@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "turbo run dev",
+    "dev:docs": "pnpm --filter docs dev",
     "dev:playground": "pnpm --filter playground dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
