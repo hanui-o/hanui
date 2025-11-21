@@ -170,7 +170,7 @@ export function Header() {
     { label: 'Get Started', href: '/docs/introduction', key: 'get-started' },
     {
       label: 'Design System',
-      href: '/components/colors',
+      href: '/design-system/colors',
       key: 'design-system',
     },
     { label: 'Components', href: '/components', key: 'components' },

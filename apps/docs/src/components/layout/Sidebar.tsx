@@ -16,6 +16,18 @@ const getStartedNavigation = [
   },
 ];
 
+const designSystemNavigation = [
+  {
+    title: 'Design System',
+    items: [
+      { title: 'Breakpoints', href: '/design-system/breakpoints' },
+      { title: 'Colors', href: '/design-system/colors' },
+      { title: 'Spacing', href: '/design-system/spacing' },
+      { title: 'Typography', href: '/design-system/typography' },
+    ],
+  },
+];
+
 const componentsNavigation = [
   {
     title: 'Components',
@@ -25,11 +37,9 @@ const componentsNavigation = [
       { title: 'Body', href: '/components/body' },
       { title: 'Border Radius', href: '/components/border-radius' },
       { title: 'Breadcrumb', href: '/components/breadcrumb' },
-      { title: 'Breakpoints', href: '/components/breakpoints' },
       { title: 'Button', href: '/components/button' },
       { title: 'Card', href: '/components/card' },
       { title: 'Code', href: '/components/code' },
-      { title: 'Colors', href: '/components/colors' },
       { title: 'Container', href: '/components/container' },
       { title: 'Display', href: '/components/display' },
       { title: 'File Upload', href: '/components/file-upload' },
@@ -56,14 +66,12 @@ const componentsNavigation = [
       { title: 'Side Navigation', href: '/components/sidenavigation' },
       { title: 'SimpleGrid', href: '/components/simple-grid' },
       { title: 'SkipLink', href: '/components/skiplink' },
-      { title: 'Spacing', href: '/components/spacing' },
       { title: 'Stack', href: '/components/stack' },
       { title: 'Structured List', href: '/components/structured-list' },
       { title: 'Tab Bars', href: '/components/tabbars' },
       { title: 'Table', href: '/components/table' },
       { title: 'Tabs', href: '/components/tabs' },
       { title: 'Tooltip', href: '/components/tooltip' },
-      { title: 'Typography', href: '/components/typography' },
       { title: 'Wrap', href: '/components/wrap' },
     ],
   },
@@ -121,6 +129,8 @@ export function Sidebar() {
   const getNavigation = () => {
     if (pathname?.startsWith('/docs')) {
       return getStartedNavigation;
+    } else if (pathname?.startsWith('/design-system')) {
+      return designSystemNavigation;
     } else if (pathname?.startsWith('/components')) {
       return componentsNavigation;
     } else if (pathname?.startsWith('/templates')) {
