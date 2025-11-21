@@ -15,6 +15,7 @@ import {
   TabsContent,
   PageNavigation,
 } from '@/components/hanui';
+import { Footer } from '@/components/hanui/footer';
 
 export default function FooterPage() {
   return (
@@ -81,6 +82,8 @@ export default function FooterPage() {
               </List>
             </Card>
           </Section>
+
+          <Footer />
 
           {/* Usage */}
           <Section level="h2">
