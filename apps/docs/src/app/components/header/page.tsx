@@ -15,6 +15,7 @@ import {
   TabsContent,
   PageNavigation,
 } from '@/components/hanui';
+import { Header } from '@/components/hanui/header';
 
 export default function HeaderPage() {
   return (
@@ -83,6 +84,8 @@ export default function HeaderPage() {
               </List>
             </Card>
           </Section>
+
+          <Header />
 
           {/* Usage */}
           <Section level="h2">
