@@ -49,7 +49,7 @@
         padding: 0.5rem 0;
         list-style: none;
 
-        li {
+      li {
           margin: 0;
 
           a {
@@ -61,6 +61,14 @@
             color: var(--krds-color-gray-70, #4b5563);
             text-decoration: none;
             transition: color 0.2s;
+
+            .icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 1rem;
+              height: 1rem;
+            }
 
             &:hover {
               color: var(--krds-color-primary-60, #2563eb);
@@ -124,6 +132,17 @@
 
         @media (min-width: 1024px) {
           height: 3rem;
+        }
+      }
+
+      .serviceName {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--krds-color-gray-90, #1f2937);
+        white-space: nowrap;
+
+        @media (min-width: 768px) {
+          font-size: 1.5rem;
         }
       }
     }

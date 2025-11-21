@@ -143,8 +143,8 @@ export type {
   SkipLinkVariant,
 } from './components/SkipLink';
 
-export { Header } from './components/Header';
-export type { HeaderProps } from './components/Header';
+export { Header } from './components/header';
+export type { HeaderProps } from './components/header';
 
 export { Footer } from './components/Footer';
 export type { FooterProps } from './components/Footer';

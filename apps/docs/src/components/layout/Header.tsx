@@ -198,7 +198,7 @@ export function Header() {
         </Link>
 
         {/* Center: Main Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 text-sm font-medium ml-8">
+        <nav className="hidden md:flex items-center space-x-2 text-sm font-medium ml-8">
           <Link
             href="/docs/introduction"
             className={`transition-colors px-4 py-2 whitespace-nowrap ${
@@ -211,13 +211,13 @@ export function Header() {
           </Link>
           <Link
             href="/showcase"
-            className="text-krds-gray-70 hover:text-krds-gray-95 transition-colors"
+            className="text-krds-gray-70 hover:text-krds-gray-95 transition-colors px-4 py-2"
           >
             Showcase
           </Link>
           <Link
             href="/community"
-            className="text-krds-gray-70 hover:text-krds-gray-95 transition-colors"
+            className="text-krds-gray-70 hover:text-krds-gray-95 transition-colors px-4 py-2"
           >
             Community
           </Link>
@@ -225,7 +225,7 @@ export function Header() {
             href="https://velog.io/@hanui/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-krds-gray-70 hover:text-krds-gray-95 transition-colors"
+            className="flex items-center gap-2 text-krds-gray-70 hover:text-krds-gray-95 transition-colors px-4 py-2"
           >
             Blog <ExternalLinkIcon className="w-4 h-4 text-krds-gray-70" />
           </Link>
