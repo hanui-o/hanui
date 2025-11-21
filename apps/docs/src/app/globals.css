@@ -12,6 +12,25 @@
   /* spacing은 16px 기준, font-size는 17px 기준으로 분리 */
   --base-font-size: 17px;
 
+  /* KRDS Header Spacing Variables */
+  --krds-gap-2: 0.5rem; /* 8px */
+  --krds-gap-3: 0.75rem; /* 12px */
+  --krds-gap-4: 1rem; /* 16px */
+  --krds-padding-2: 0.5rem; /* 8px */
+  --krds-padding-3: 0.75rem; /* 12px */
+  --krds-padding-4: 1rem; /* 16px */
+  --krds-padding-5: 1.25rem; /* 20px */
+  --krds-padding-6: 1.5rem; /* 24px */
+
+  /* KRDS Header Size Variables */
+  --krds-size-height-6: 3rem; /* 48px */
+
+  /* KRDS Header Color Variables (Light Mode) */
+  --krds-light-color-surface-white: #ffffff;
+  --krds-light-color-divider-gray-light: #e6e8ea;
+  --krds-light-color-text-basic: #1e2124;
+  --krds-light-color-text-subtle: #6d7882;
+
   /* Base Colors - 순수 흰색/검은색 (모드에 따라 반전) */
   --krds-white: #ffffff; /* 기본 모드: 흰색, 다크 모드: 검은색 */
   --krds-black: #000000; /* 기본 모드: 검은색, 다크 모드: 흰색 */

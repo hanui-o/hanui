@@ -2,27 +2,53 @@
 
 import * as React from 'react';
 import { cn } from '../../lib/utils';
-
-/**
- * Header Context
- */
-interface HeaderContextValue {
-  variant?: 'default' | 'compact';
-}
-
-const HeaderContext = React.createContext<HeaderContextValue>({
-  variant: 'default',
-});
+import { useHeaderLogic } from './useHeaderLogic';
+import styles from './header.module.scss';
 
 /**
  * Header Props Interface
  */
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   /**
-   * Header variant
-   * @default "default"
+   * Service logo source
    */
-  variant?: 'default' | 'compact';
+  logoSrc: string;
+
+  /**
+   * Service logo alt text (required for accessibility)
+   */
+  logoAlt: string;
+
+  /**
+   * Service logo link href
+   * @default "/"
+   */
+  logoHref?: string;
+
+  /**
+   * Service slogan text (optional)
+   */
+  slogan?: string;
+
+  /**
+   * Utility links (login, signup, etc.)
+   */
+  utilityLinks?: Array<{
+    href: string;
+    label: string;
+  }>;
+
+  /**
+   * Main navigation menu items
+   */
+  menuItems?: Array<{
+    href: string;
+    label: string;
+    submenu?: Array<{
+      href: string;
+      label: string;
+    }>;
+  }>;
 
   /**
    * Additional className for header element
@@ -30,9 +56,9 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
 
   /**
-   * Header content (compound components)
+   * Children for custom header content
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 /**
@@ -54,311 +80,232 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
  *
  * @example
  * ```tsx
- * // Basic header with branding and utility
- * <Header>
- *   <Header.Branding>
- *     <Header.Logo
- *       src="/logo.svg"
- *       alt="정부 서비스"
- *       href="/"
- *     />
- *     <Header.Slogan>국민을 위한 서비스</Header.Slogan>
- *   </Header.Branding>
- *   <Header.Utility>
- *     <Header.UtilityLink href="/login">로그인</Header.UtilityLink>
- *     <Header.UtilityLink href="/signup">회원가입</Header.UtilityLink>
- *   </Header.Utility>
- * </Header>
+ * <Header
+ *   logoSrc="/logo.svg"
+ *   logoAlt="정부 서비스"
+ *   logoHref="/"
+ *   slogan="국민을 위한 서비스"
+ *   utilityLinks={[
+ *     { href: '/login', label: '로그인' },
+ *     { href: '/signup', label: '회원가입' },
+ *   ]}
+ *   menuItems={[
+ *     { href: '/about', label: '소개' },
+ *     { href: '/services', label: '서비스' },
+ *     {
+ *       href: '/support',
+ *       label: '지원',
+ *       submenu: [
+ *         { href: '/support/faq', label: 'FAQ' },
+ *         { href: '/support/contact', label: '문의' },
+ *       ],
+ *     },
+ *   ]}
+ * />
  * ```
  */
 export const Header = React.forwardRef<HTMLElement, HeaderProps>(
-  ({ variant = 'default', className, children, ...props }, ref) => {
-    return (
-      <HeaderContext.Provider value={{ variant }}>
+  (
+    {
+      logoSrc,
+      logoAlt,
+      logoHref = '/',
+      slogan,
+      utilityLinks = [],
+      menuItems = [],
+      className,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const {
+      isMobileMenuOpen,
+      mobileNavRef,
+      mobileMenuButtonRef,
+      toggleMobileMenu,
+      closeMobileMenu,
+      handleOverlayClick,
+      toggleSubmenu,
+      isSubmenuOpen,
+      getAriaAttributes,
+    } = useHeaderLogic();
+
+    const ariaAttrs = getAriaAttributes();
+
+    // Custom children이 제공되면 사용자 정의 헤더 렌더링
+    if (children) {
+      return (
         <header
           id="krds-header"
           ref={ref}
-          className={cn(
-            'w-full bg-white dark:bg-gray-900',
-            'border-b border-gray-200 dark:border-gray-800',
-            'transition-colors duration-200',
-            className
-          )}
+          className={cn(styles.header, className)}
           {...props}
         >
-          <div className="container mx-auto px-4">{children}</div>
+          {children}
         </header>
-      </HeaderContext.Provider>
+      );
+    }
+
+    // KRDS 표준 헤더 구조 렌더링
+    return (
+      <header
+        id="krds-header"
+        ref={ref}
+        className={cn(styles.header, className)}
+        {...props}
+      >
+        {/* Skip to content link for accessibility */}
+        <a href="#main-content" className={styles.skipLink}>
+          본문으로 바로가기
+        </a>
+
+        <div className={styles.headerContainer}>
+          {/* Utility Area (상단 유틸리티 영역) */}
+          {utilityLinks.length > 0 && (
+            <div className={styles.headerUtility}>
+              {utilityLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  className={styles.headerUtilityLink}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
+
+          {/* Branding & Actions Row */}
+          <div className={styles.headerBrandingRow}>
+            {/* Branding (로고 + 슬로건) */}
+            <div className={styles.headerBranding}>
+              <a href={logoHref} className={styles.headerLogo}>
+                <img src={logoSrc} alt={logoAlt} />
+              </a>
+              {slogan && <span className={styles.headerSlogan}>{slogan}</span>}
+            </div>
+
+            {/* Actions (검색, 햄버거 버튼 등) */}
+            <div className={styles.headerActions}>
+              {/* Mobile Menu Button */}
+              <button
+                ref={mobileMenuButtonRef}
+                type="button"
+                className={styles.mobileMenuButton}
+                onClick={toggleMobileMenu}
+                {...ariaAttrs.mobileMenuButton}
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="3" y1="12" x2="21" y2="12"></line>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+                <span className={styles.srOnly}>
+                  {ariaAttrs.mobileMenuButton['aria-label']}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop Navigation */}
+          {menuItems.length > 0 && (
+            <nav className={styles.headerNav} {...ariaAttrs.desktopNav}>
+              <ul>
+                {menuItems.map((item, index) => (
+                  <li key={index}>
+                    <a href={item.href}>{item.label}</a>
+                    {item.submenu && item.submenu.length > 0 && (
+                      <ul className={styles.submenu}>
+                        {item.submenu.map((subitem, subindex) => (
+                          <li key={subindex}>
+                            <a href={subitem.href}>{subitem.label}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+        </div>
+
+        {/* Mobile Navigation */}
+        <div
+          ref={mobileNavRef}
+          className={cn(styles.mobileNav, {
+            [styles.isOpen]: isMobileMenuOpen,
+          })}
+          {...ariaAttrs.mobileNav}
+        >
+          <div
+            className={styles.mobileNavOverlay}
+            onClick={handleOverlayClick}
+          />
+          <div className={styles.mobileNavPanel} data-mobile-panel>
+            {/* Mobile Nav Header */}
+            <div className={styles.mobileNavHeader}>
+              <span className={styles.headerSlogan}>{slogan || logoAlt}</span>
+              <button
+                type="button"
+                className={styles.mobileNavClose}
+                onClick={closeMobileMenu}
+                aria-label="메뉴 닫기"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Nav Menu */}
+            <div className={styles.mobileNavMenu}>
+              <ul>
+                {menuItems.map((item, index) => (
+                  <li key={index}>
+                    <a href={item.href} onClick={closeMobileMenu}>
+                      {item.label}
+                    </a>
+                    {item.submenu && item.submenu.length > 0 && (
+                      <ul className={styles.submenu}>
+                        {item.submenu.map((subitem, subindex) => (
+                          <li key={subindex}>
+                            <a href={subitem.href} onClick={closeMobileMenu}>
+                              {subitem.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
     );
   }
 );
+
 Header.displayName = 'Header';
-
-/**
- * Header.Branding Props Interface
- */
-export interface HeaderBrandingProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Additional className
-   */
-  className?: string;
-
-  /**
-   * Branding content (Logo, Slogan)
-   */
-  children: React.ReactNode;
-}
-
-/**
- * Header.Branding Component
- *
- * Contains logo and optional slogan for service branding.
- * Automatically applies .header-branding class for KRDS compliance.
- */
-const HeaderBranding = React.forwardRef<HTMLDivElement, HeaderBrandingProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          'header-branding',
-          'flex items-center gap-4 py-4',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-HeaderBranding.displayName = 'Header.Branding';
-
-/**
- * Header.Logo Props Interface
- */
-export interface HeaderLogoProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  /**
-   * Logo image source
-   */
-  src: string;
-
-  /**
-   * Logo alt text (required for accessibility)
-   */
-  alt: string;
-
-  /**
-   * Logo link href
-   * @default "/"
-   */
-  href?: string;
-
-  /**
-   * Logo image width
-   * @default 120
-   */
-  width?: number;
-
-  /**
-   * Logo image height
-   * @default 40
-   */
-  height?: number;
-
-  /**
-   * Additional className
-   */
-  className?: string;
-}
-
-/**
- * Header.Logo Component
- *
- * Service logo with link to home page.
- * Ensures proper accessibility with required alt text.
- */
-const HeaderLogo = React.forwardRef<HTMLAnchorElement, HeaderLogoProps>(
-  (
-    { src, alt, href = '/', width = 120, height = 40, className, ...props },
-    ref
-  ) => {
-    return (
-      <a
-        ref={ref}
-        href={href}
-        className={cn(
-          'flex items-center',
-          'focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-400 rounded',
-          className
-        )}
-        {...props}
-      >
-        <img
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className="object-contain"
-        />
-      </a>
-    );
-  }
-);
-HeaderLogo.displayName = 'Header.Logo';
-
-/**
- * Header.Slogan Props Interface
- */
-export interface HeaderSloganProps
-  extends React.HTMLAttributes<HTMLSpanElement> {
-  /**
-   * Additional className
-   */
-  className?: string;
-
-  /**
-   * Slogan text
-   */
-  children: React.ReactNode;
-}
-
-/**
- * Header.Slogan Component
- *
- * Optional service slogan or description text.
- */
-const HeaderSlogan = React.forwardRef<HTMLSpanElement, HeaderSloganProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <span
-        ref={ref}
-        className={cn(
-          'text-gray-600 dark:text-gray-400',
-          'hidden md:inline-block',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </span>
-    );
-  }
-);
-HeaderSlogan.displayName = 'Header.Slogan';
-
-/**
- * Header.Utility Props Interface
- */
-export interface HeaderUtilityProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Additional className
-   */
-  className?: string;
-
-  /**
-   * Utility links
-   */
-  children: React.ReactNode;
-}
-
-/**
- * Header.Utility Component
- *
- * Container for utility links (login, signup, language selection, etc.).
- * Automatically applies .header-utility class for KRDS compliance.
- */
-const HeaderUtility = React.forwardRef<HTMLDivElement, HeaderUtilityProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          'header-utility',
-          'flex items-center gap-4 ml-auto',
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-HeaderUtility.displayName = 'Header.Utility';
-
-/**
- * Header.UtilityLink Props Interface
- */
-export interface HeaderUtilityLinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  /**
-   * Link href
-   */
-  href: string;
-
-  /**
-   * Additional className
-   */
-  className?: string;
-
-  /**
-   * Link text
-   */
-  children: React.ReactNode;
-}
-
-/**
- * Header.UtilityLink Component
- *
- * Individual utility link with consistent styling and accessibility.
- */
-const HeaderUtilityLink = React.forwardRef<
-  HTMLAnchorElement,
-  HeaderUtilityLinkProps
->(({ href, className, children, ...props }, ref) => {
-  return (
-    <a
-      ref={ref}
-      href={href}
-      className={cn(
-        'text-gray-700 dark:text-gray-300',
-        'hover:text-blue-600 dark:hover:text-blue-400',
-        'hover:underline',
-        'transition-colors',
-        'focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-400 rounded px-1',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </a>
-  );
-});
-HeaderUtilityLink.displayName = 'Header.UtilityLink';
-
-/**
- * Compound component type
- */
-interface HeaderComponent
-  extends React.ForwardRefExoticComponent<
-    HeaderProps & React.RefAttributes<HTMLElement>
-  > {
-  Branding: typeof HeaderBranding;
-  Logo: typeof HeaderLogo;
-  Slogan: typeof HeaderSlogan;
-  Utility: typeof HeaderUtility;
-  UtilityLink: typeof HeaderUtilityLink;
-}
-
-/**
- * Compound exports
- */
-(Header as HeaderComponent).Branding = HeaderBranding;
-(Header as HeaderComponent).Logo = HeaderLogo;
-(Header as HeaderComponent).Slogan = HeaderSlogan;
-(Header as HeaderComponent).Utility = HeaderUtility;
-(Header as HeaderComponent).UtilityLink = HeaderUtilityLink;

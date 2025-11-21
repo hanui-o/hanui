@@ -203,5 +203,29 @@
         "type": "component"
       }
     ]
+  },
+  "header": {
+    "name": "header",
+    "type": "ui",
+    "description": "KRDS 표준 헤더 컴포넌트 (브랜딩, 네비게이션, 유틸리티)",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/Header/Header.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/Header/useHeaderLogic.ts",
+        "type": "hook"
+      },
+      {
+        "path": "components/Header/header.module.scss",
+        "type": "style"
+      },
+      {
+        "path": "components/Header/index.ts",
+        "type": "export"
+      }
+    ]
   }
 }
