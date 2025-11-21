@@ -95,8 +95,8 @@ export function Header({ className }: HeaderProps) {
           <h1 className={styles.logo}>
             <a href="/">
               <img
-                src="https://www.krds.go.kr/resources/img/common/logo.svg"
-                alt="국민건강보험"
+                src="https://www.krds.go.kr/resources/img/pattern/layout/head_logo.svg"
+                alt="대한민국정부"
               />
             </a>
           </h1>

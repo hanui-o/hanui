@@ -23,7 +23,7 @@ export default function FooterPage() {
       <SectionHeading
         level="h1"
         title="Footer"
-        description="정부 서비스의 하단에 위치하여 조직 정보, 연락처, 관련 링크를 제공하는 푸터 컴포넌트입니다. 현재는 CSS Modules 방식으로 제공되며, Tailwind 스타일은 추후 지원 예정입니다."
+        description="KRDS 표준을 따르는 정부 서비스 푸터 컴포넌트입니다. CSS Modules 방식으로 구현되어 복잡한 레이아웃과 반응형 디자인을 효과적으로 관리합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -43,8 +43,21 @@ export default function FooterPage() {
             />
 
             <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add footer
+              npx hanui add footer
             </Code>
+
+            <Card variant="info" className="mt-6">
+              <Body className="mb-3">설치 시 다음 파일이 추가됩니다:</Body>
+              <List className="text-krds-gray-90">
+                <ListItem>
+                  <Code>components/hanui/footer.tsx</Code> - Footer 컴포넌트
+                </ListItem>
+                <ListItem>
+                  <Code>components/hanui/footer.module.scss</Code> - CSS Modules
+                  스타일
+                </ListItem>
+              </List>
+            </Card>
           </Section>
 
           {/* What is it */}
@@ -53,37 +66,41 @@ export default function FooterPage() {
               level="h2"
               id="what-is-it"
               title="Footer란?"
-              description="KRDS 표준에 따라 일관된 레이아웃을 제공하는 푸터 컴포넌트입니다."
+              description="KRDS 표준에 따라 구조화된 정부 서비스 푸터입니다."
             />
 
             <Card variant="info">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
-                  <strong>KRDS 표준 준수:</strong> #krds-footer ID 자동 적용 및
-                  시맨틱 HTML 사용
+                  <strong>CSS Modules 방식:</strong> SCSS를 활용한 명확한 스타일
+                  구조
                 </ListItem>
                 <ListItem>
-                  <strong>반응형 디자인:</strong> Desktop / Tablet / Mobile 자동
-                  대응
+                  <strong>KRDS 표준 준수:</strong> #krds-footer ID 적용 및
+                  시맨틱 HTML 구조
+                </ListItem>
+                <ListItem>
+                  <strong>반응형 디자인:</strong> Desktop(1280px+) /
+                  Large(1024px+) / Tablet(768px+) / Mobile 자동 대응
+                </ListItem>
+                <ListItem>
+                  <strong>다크 모드:</strong> KRDS 디자인 토큰을 활용한 자동
+                  테마 전환
                 </ListItem>
                 <ListItem>
                   <strong>접근성:</strong> WCAG 2.1 / KWCAG 2.2 완전 준수
                 </ListItem>
                 <ListItem>
-                  <strong>Identifier 통합:</strong> 공식 상징 마크 자동 렌더링
-                </ListItem>
-                <ListItem>
-                  <strong>관련 사이트 드롭다운:</strong> Quick Links 확장/축소
-                  상태 자동 관리
-                </ListItem>
-                <ListItem>
-                  <strong>외부 링크 보안:</strong> noopener noreferrer 자동 설정
+                  <strong>KRDS 디자인 토큰:</strong> CSS 변수를 통한 일관된
+                  스타일 적용
                 </ListItem>
               </List>
             </Card>
           </Section>
 
-          <Footer />
+          <Section>
+            <Footer />
+          </Section>
 
           {/* Usage */}
           <Section level="h2">
@@ -94,158 +111,273 @@ export default function FooterPage() {
               description="Footer 컴포넌트의 기본 사용법입니다."
             />
 
-            <Code variant="block" language="tsx" showLineNumbers={false}>
-              {`import { Footer } from '@/components/hanui/footer';
-
-export default function Layout() {
-  return (
-    <Footer
-      organizationName="국민건강보험공단"
-      logo="/logo.svg"
-      logoAlt="국민건강보험공단"
-      address="(26464) 강원특별자치도 원주시 건강로 32(반곡동)"
-      contactInfo={[
-        { label: '대표전화', value: '1577-1000' },
-        { label: '팩스', value: '033-811-2000' }
-      ]}
-      quickLinks={[
-        { label: '건강iN', href: 'https://hi.nhis.or.kr' },
-        { label: '사회보험통합징수포털', href: 'https://si4n.nhis.or.kr' }
-      ]}
-      utilityLinks={[
-        { label: '오시는 길', href: '/directions' },
-        { label: '이용안내', href: '/guide' }
-      ]}
-      socialLinks={[
-        { platform: 'youtube', href: 'https://youtube.com/@nhis' },
-        { platform: 'instagram', href: 'https://instagram.com/nhis' }
-      ]}
-      menuLinks={[
-        { label: '개인정보처리방침', href: '/privacy' },
-        { label: '이용약관', href: '/terms' }
-      ]}
-      copyright="© 2024 National Health Insurance Service. All rights reserved."
-    />
-  );
-}`}
-            </Code>
-          </Section>
-
-          {/* Examples */}
-          <Section level="h2">
-            <SectionHeading
-              level="h2"
-              id="examples"
-              title="예제"
-              description="다양한 Footer 구성 예제입니다."
-            />
-
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                title="기본 사용"
-                description="최소한의 정보만 제공하는 간단한 Footer입니다."
-              />
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Footer
-  organizationName="행정안전부"
-  address="(30128) 세종특별자치시 도움6로 42"
-  contactInfo={[
-    { label: '대표전화', value: '02-2100-3399' }
-  ]}
-/>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                title="관련 사이트 추가"
-                description="quickLinks로 관련 사이트 드롭다운을 추가할 수 있습니다."
-              />
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Footer
-  organizationName="행정안전부"
-  address="(30128) 세종특별자치시 도움6로 42"
-  quickLinks={[
-    { label: '정부24', href: 'https://www.gov.kr' },
-    { label: '국민신문고', href: 'https://www.epeople.go.kr' },
-    { label: '정책브리핑', href: 'https://www.korea.kr' }
-  ]}
-/>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                title="소셜 미디어 링크"
-                description="지원되는 플랫폼: instagram, youtube, x, facebook, blog"
-              />
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Footer
-  organizationName="문화체육관광부"
-  address="(30119) 세종특별자치시 갈매로 388"
-  socialLinks={[
-    { platform: 'youtube', href: 'https://youtube.com/@mcst' },
-    { platform: 'instagram', href: 'https://instagram.com/mcst' },
-    { platform: 'facebook', href: 'https://facebook.com/mcst' },
-    { platform: 'blog', href: 'https://blog.naver.com/mcst' }
-  ]}
-/>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                title="전체 예제"
-                description="모든 옵션을 포함한 완전한 Footer 예제입니다."
-              />
+              <SectionHeading level="h3" title="기본 사용" />
+              <Body className="mb-4 text-krds-gray-70">
+                Footer 컴포넌트는 KRDS 표준 레이아웃을 그대로 제공합니다.
+                레이아웃의 최하단에 배치하세요.
+              </Body>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { Footer } from '@/components/hanui/footer';
 
-export default function Layout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <main id="main-content">{children}</main>
-      <Footer
-        organizationName="국민건강보험공단"
-        logo="/assets/logo.svg"
-        logoAlt="국민건강보험공단"
-        address="(26464) 강원특별자치도 원주시 건강로 32(반곡동)"
-        contactInfo={[
-          { label: '대표전화', value: '1577-1000' },
-          { label: '팩스', value: '033-811-2000' },
-          { label: '당직실', value: '033-736-2299' }
-        ]}
-        quickLinks={[
-          { label: '건강iN', href: 'https://hi.nhis.or.kr' },
-          { label: '사회보험통합징수포털', href: 'https://si4n.nhis.or.kr' },
-          { label: '민원접수', href: 'https://minwon.nhis.or.kr' }
-        ]}
-        utilityLinks={[
-          { label: '찾아오시는 길', href: '/directions' },
-          { label: '이용안내', href: '/guide' }
-        ]}
-        socialLinks={[
-          { platform: 'youtube', href: 'https://youtube.com/@nhis' },
-          { platform: 'instagram', href: 'https://instagram.com/nhis' }
-        ]}
-        menuLinks={[
-          { label: '개인정보처리방침', href: '/privacy', external: false },
-          { label: '이용약관', href: '/terms', external: false },
-          { label: '저작권정책', href: '/copyright', external: false }
-        ]}
-        copyright="© 2024 National Health Insurance Service. All rights reserved."
-        showIdentifier={true}
-      />
-    </>
+    <html lang="ko">
+      <body>
+        {children}
+        <Footer />
+      </body>
+    </html>
   );
+}`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="커스터마이징" />
+              <Body className="mb-4 text-krds-gray-70">
+                내용을 변경하려면 <Code>footer.tsx</Code> 파일을 직접
+                수정하세요. CSS Modules 방식이므로{' '}
+                <Code>footer.module.scss</Code>에서 스타일을 조정할 수 있습니다.
+              </Body>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`// components/hanui/footer.tsx
+export function Footer({ className }: FooterProps) {
+  return (
+    <footer id="krds-footer" className={\`\${styles.footer} \${className || ''}\`}>
+      {/* Quick Links */}
+      <div className={styles.footQuick}>
+        <div className={styles.inner}>
+          <button type="button" className={styles.link}>
+            관련사이트 1
+          </button>
+          {/* 필요한 만큼 추가 */}
+        </div>
+      </div>
+
+      <div className={styles.inner}>
+        {/* Logo */}
+        <div className={styles.fLogo}>
+          <span className={styles.srOnly}>조직명</span>
+        </div>
+
+        {/* Content */}
+        <div className={styles.fCnt}>
+          <div className={styles.fInfo}>
+            <p className={styles.infoAddr}>
+              (우편번호) 주소
+            </p>
+            <ul className={styles.infoCs}>
+              <li>
+                <strong className={styles.strong}>대표전화 1577-1000</strong>
+                <span className={styles.span}>(유료, 평일 09시~18시)</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Links & Social */}
+          <div className={styles.fLink}>
+            {/* 링크 섹션 */}
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className={styles.fBtm}>
+          {/* 하단 메뉴 및 저작권 */}
+        </div>
+      </div>
+    </footer>
+  );
+}`}
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* Structure */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="structure"
+              title="레이아웃 구조"
+              description="Footer는 다음과 같은 KRDS 표준 구조로 구성됩니다."
+            />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Quick Links (footQuick)" />
+              <Body className="mb-4 text-krds-gray-70">
+                관련 사이트 빠른 링크 영역입니다. 버튼 형태로 구성되며,
+                모바일에서는 세로로 쌓입니다.
+              </Body>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<div className={styles.footQuick}>
+  <div className={styles.inner}>
+    <button type="button" className={styles.link}>
+      건강iN
+    </button>
+    <button type="button" className={styles.link}>
+      The건강보험
+    </button>
+  </div>
+</div>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Logo & Content (fLogo, fCnt)" />
+              <Body className="mb-4 text-krds-gray-70">
+                조직 로고, 주소, 연락처, 유틸리티 링크, 소셜 미디어 링크
+                영역입니다.
+              </Body>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<div className={styles.fLogo}>
+  <span className={styles.srOnly}>KRDS - Korea Design System</span>
+</div>
+
+<div className={styles.fCnt}>
+  <div className={styles.fInfo}>
+    <p className={styles.infoAddr}>
+      (26464) 강원특별자치도 원주시 건강로 32(반곡동)
+    </p>
+    <ul className={styles.infoCs}>
+      <li>
+        <strong>대표전화 1577-1000</strong>
+        <span>(유료, 평일 09시~18시)</span>
+      </li>
+    </ul>
+  </div>
+
+  <div className={styles.fLink}>
+    {/* 유틸리티 링크 및 소셜 미디어 */}
+  </div>
+</div>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Bottom Section (fBtm)" />
+              <Body className="mb-4 text-krds-gray-70">
+                하단 메뉴(개인정보처리방침 등), 저작권, KRDS Identifier
+                영역입니다.
+              </Body>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<div className={styles.fBtm}>
+  <div className={styles.fBtmText}>
+    <div className={styles.fMenu}>
+      <a href="#" className={styles.point}>개인정보처리방침</a>
+      <a href="#">저작권 정책</a>
+    </div>
+    <p className={styles.fCopy}>
+      © 2023 National Health Insurance Service. All rights reserved.
+    </p>
+  </div>
+
+  <div className={styles.krdsIdentifier}>
+    <span className={styles.logo}>
+      <span className={styles.srOnly}>KRDS - Korea Design System</span>
+    </span>
+    <span className={styles.banTxt}>
+      이 누리집은 보건복지부 누리집입니다.
+    </span>
+  </div>
+</div>`}
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* Styling */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="styling"
+              title="스타일 커스터마이징"
+              description="CSS Modules를 활용한 스타일 수정 방법입니다."
+            />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="KRDS 디자인 토큰 활용" />
+              <Body className="mb-4 text-krds-gray-70">
+                footer.module.scss에서 KRDS CSS 변수를 사용하여 일관된 디자인을
+                유지합니다.
+              </Body>
+
+              <Code variant="block" language="scss" showLineNumbers={false}>
+                {`.footer {
+  background-color: var(--krds-color-light-gray-5);
+
+  .footQuick {
+    border-top: 1px solid var(--krds-color-light-gray-10);
+
+    .link {
+      gap: var(--krds-gap-3);
+      padding: 0 var(--krds-padding-8, 2rem);
+      height: calc(4rem - 0.2rem);
+
+      &:hover {
+        background-color: var(--krds-color-light-gray-10);
+      }
+    }
+  }
+}`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="반응형 브레이크포인트" />
+              <Body className="mb-4 text-krds-gray-70">
+                SCSS 미디어 쿼리를 통해 4단계 반응형 디자인을 제공합니다.
+              </Body>
+
+              <Code variant="block" language="scss" showLineNumbers={false}>
+                {`// Web (1280px 이상)
+@media (min-width: 1280px) {
+  gap: var(--krds-gap-9, 3rem);
+  padding: var(--krds-padding-10, 2.5rem) 0;
+}
+
+// Large (1024px ~ 1279px)
+@media (min-width: 1024px) and (max-width: 1279px) {
+  padding: var(--krds-padding-10, 2.5rem) var(--krds-padding-6, 1.5rem);
+}
+
+// Tablet (768px ~ 1023px)
+@media (min-width: 768px) and (max-width: 1023px) {
+  flex-direction: column;
+  gap: var(--krds-gap-5, 1.25rem);
+}
+
+// Mobile (767px 이하)
+@media (max-width: 767px) {
+  font-size: 0.875rem;
+  gap: var(--krds-gap-3, 0.75rem);
+}`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="다크 모드" />
+              <Body className="mb-4 text-krds-gray-70">
+                .dark 클래스를 통해 다크 모드 스타일이 자동으로 적용됩니다.
+              </Body>
+
+              <Code variant="block" language="scss" showLineNumbers={false}>
+                {`.dark {
+  .footer {
+    background-color: var(--krds-color-light-gray-95);
+
+    .fLogo {
+      background-image: url('...ico_logo_krds_dark.svg');
+    }
+
+    .footQuick {
+      background-color: var(--krds-color-light-gray-100);
+      border-color: var(--krds-color-light-gray-80);
+    }
+  }
 }`}
               </Code>
             </Subsection>
@@ -266,20 +398,25 @@ export default function Layout({ children }) {
                 배치합니다
               </ListItem>
               <ListItem>
-                <strong>완전한 정보:</strong> 조직명, 주소, 연락처는 필수로
-                제공합니다
+                <strong>KRDS ID 유지:</strong> <Code>#krds-footer</Code> ID는
+                KRDS 표준 요구사항이므로 변경하지 마세요
+              </ListItem>
+              <ListItem>
+                <strong>조직 정보 수정:</strong> footer.tsx 파일에서 조직명,
+                주소, 연락처를 직접 수정하세요
               </ListItem>
               <ListItem>
                 <strong>법적 링크:</strong> 개인정보처리방침, 이용약관 등 필수
                 법적 링크를 포함합니다
               </ListItem>
               <ListItem>
-                <strong>Identifier 필수:</strong> 정부 서비스임을 명확히 하기
-                위해 Identifier를 항상 표시합니다
+                <strong>외부 링크 보안:</strong> 외부 링크에는{' '}
+                <Code>target="_blank"</Code>,{' '}
+                <Code>rel="noopener noreferrer"</Code>를 사용하세요
               </ListItem>
               <ListItem>
-                <strong>외부 링크:</strong> 외부 사이트 링크는 새 창에서
-                열리도록 설정되어 있습니다 (자동 처리)
+                <strong>스타일 수정:</strong> footer.module.scss에서 KRDS 디자인
+                토큰을 활용하여 일관성을 유지하세요
               </ListItem>
             </List>
           </Section>
@@ -330,36 +467,37 @@ export default function Layout({ children }) {
             />
 
             <Card variant="info">
-              <Body className="font-semibold mb-3">
-                자동 처리되는 KRDS 표준:
-              </Body>
+              <Body className="font-semibold mb-3">준수하는 KRDS 표준:</Body>
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
-                  <strong>필수 ID:</strong> <Code>#krds-footer</Code> ID 자동
-                  적용 (KRDS 필수 요구사항)
+                  <strong>필수 ID:</strong> <Code>#krds-footer</Code> ID 적용
+                  (KRDS 필수 요구사항)
                 </ListItem>
                 <ListItem>
-                  <strong>레이아웃 구조:</strong> KRDS 표준 레이아웃 자동 적용
-                  (Quick Links → Logo → Info → Links → Bottom)
+                  <strong>레이아웃 구조:</strong> Quick Links → Logo → Content →
+                  Bottom 순서의 표준 구조
                 </ListItem>
                 <ListItem>
-                  <strong>시맨틱 HTML:</strong> footer 요소를 사용하여 페이지
-                  구조를 명확히 합니다
+                  <strong>시맨틱 HTML:</strong> footer, nav, ul, li 등 시맨틱
+                  요소 사용
                 </ListItem>
                 <ListItem>
-                  <strong>반응형 디자인:</strong> Desktop / Tablet / Mobile 자동
-                  대응
+                  <strong>반응형 디자인:</strong> Web(1280px+) / Large(1024px+)
+                  / Tablet(768px+) / Mobile 4단계 대응
                 </ListItem>
                 <ListItem>
-                  <strong>다크 모드:</strong> 라이트/다크 모드를 자동으로
-                  지원합니다
+                  <strong>다크 모드:</strong> .dark 클래스를 통한 자동 테마 전환
                 </ListItem>
                 <ListItem>
-                  <strong>CSS Variables:</strong> KRDS 디자인 토큰을 CSS
-                  Variables로 제공합니다
+                  <strong>CSS Variables:</strong> KRDS 디자인 토큰 활용
+                  (--krds-color-*, --krds-gap-*, --krds-padding-*)
                 </ListItem>
                 <ListItem>
-                  <strong>Identifier 통합:</strong> 공식 상징 마크 자동 렌더링
+                  <strong>Identifier:</strong> KRDS 로고 및 인증 문구 포함
+                </ListItem>
+                <ListItem>
+                  <strong>아이콘:</strong> KRDS SVG 아이콘 사용 (Plus,
+                  ChevronRight 등)
                 </ListItem>
               </List>
             </Card>
@@ -377,38 +515,7 @@ export default function Layout({ children }) {
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="organizationName" />
-              <List variant="unordered">
-                <ListItem>
-                  <strong>타입:</strong> <Code>string</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>필수:</strong> Yes
-                </ListItem>
-                <ListItem>
-                  <strong>설명:</strong> 조직명 (필수)
-                </ListItem>
-              </List>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="logo" />
-              <List variant="unordered">
-                <ListItem>
-                  <strong>타입:</strong>{' '}
-                  <Code>string | React.ReactElement</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>필수:</strong> No
-                </ListItem>
-                <ListItem>
-                  <strong>설명:</strong> 조직 로고 (이미지 URL 또는 컴포넌트)
-                </ListItem>
-              </List>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="logoAlt" />
+              <SectionHeading level="h3" title="className" />
               <List variant="unordered">
                 <ListItem>
                   <strong>타입:</strong> <Code>string</Code>
@@ -417,151 +524,195 @@ export default function Layout({ children }) {
                   <strong>필수:</strong> No
                 </ListItem>
                 <ListItem>
-                  <strong>설명:</strong> 로고 이미지 대체 텍스트 (logo가
-                  문자열인 경우 권장)
+                  <strong>설명:</strong> 추가 CSS 클래스명
+                </ListItem>
+              </List>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Footer className="custom-footer-class" />`}
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* CSS Modules Classes */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="css-modules"
+              title="CSS Modules 클래스"
+              description="footer.module.scss에서 사용 가능한 클래스 목록입니다."
+            />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="레이아웃 클래스" />
+              <List variant="unordered">
+                <ListItem>
+                  <Code>.footer</Code> - 메인 푸터 컨테이너
+                </ListItem>
+                <ListItem>
+                  <Code>.inner</Code> - 내부 컨텐츠 래퍼 (max-width 적용)
+                </ListItem>
+                <ListItem>
+                  <Code>.footQuick</Code> - 상단 Quick Links 영역
+                </ListItem>
+                <ListItem>
+                  <Code>.fLogo</Code> - 조직 로고 영역
+                </ListItem>
+                <ListItem>
+                  <Code>.fCnt</Code> - 메인 컨텐츠 영역
+                </ListItem>
+                <ListItem>
+                  <Code>.fInfo</Code> - 조직 정보 (주소, 연락처)
+                </ListItem>
+                <ListItem>
+                  <Code>.fLink</Code> - 링크 섹션 (유틸리티, 소셜)
+                </ListItem>
+                <ListItem>
+                  <Code>.fBtm</Code> - 하단 영역 (메뉴, 저작권)
                 </ListItem>
               </List>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="address" />
+              <SectionHeading level="h3" title="Quick Links 클래스" />
               <List variant="unordered">
                 <ListItem>
-                  <strong>타입:</strong> <Code>string</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>필수:</strong> Yes
-                </ListItem>
-                <ListItem>
-                  <strong>설명:</strong> 조직 주소 (필수)
+                  <Code>.link</Code> - Quick Links 버튼
                 </ListItem>
               </List>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="contactInfo" />
+              <SectionHeading level="h3" title="정보 영역 클래스" />
               <List variant="unordered">
                 <ListItem>
-                  <strong>타입:</strong>{' '}
-                  <Code>{`Array<{ label: string; value: string }>`}</Code>
+                  <Code>.infoAddr</Code> - 주소
                 </ListItem>
                 <ListItem>
-                  <strong>기본값:</strong> <Code>[]</Code>
+                  <Code>.infoCs</Code> - 연락처 리스트
                 </ListItem>
                 <ListItem>
-                  <strong>설명:</strong> 연락처 정보 (대표전화, 팩스 등)
+                  <Code>.strong</Code> - 굵은 텍스트 (전화번호 등)
+                </ListItem>
+                <ListItem>
+                  <Code>.span</Code> - 보조 텍스트 (영업 시간 등)
                 </ListItem>
               </List>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="quickLinks" />
+              <SectionHeading level="h3" title="링크 영역 클래스" />
               <List variant="unordered">
                 <ListItem>
-                  <strong>타입:</strong>{' '}
-                  <Code>{`Array<{ label: string; href: string }>`}</Code>
+                  <Code>.linkGo</Code> - 유틸리티 링크 컨테이너
                 </ListItem>
                 <ListItem>
-                  <strong>기본값:</strong> <Code>[]</Code>
+                  <Code>.linkGoBtn</Code> - 유틸리티 링크 버튼
                 </ListItem>
                 <ListItem>
-                  <strong>설명:</strong> 관련 사이트 링크 (드롭다운)
+                  <Code>.linkSns</Code> - 소셜 미디어 컨테이너
+                </ListItem>
+                <ListItem>
+                  <Code>.snsLink</Code> - 소셜 미디어 링크
                 </ListItem>
               </List>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="utilityLinks" />
+              <SectionHeading level="h3" title="하단 영역 클래스" />
               <List variant="unordered">
                 <ListItem>
-                  <strong>타입:</strong>{' '}
-                  <Code>{`Array<{ label: string; href: string; external?: boolean }>`}</Code>
+                  <Code>.fBtmText</Code> - 하단 텍스트 영역
                 </ListItem>
                 <ListItem>
-                  <strong>기본값:</strong> <Code>[]</Code>
+                  <Code>.fMenu</Code> - 하단 메뉴
                 </ListItem>
                 <ListItem>
-                  <strong>설명:</strong> 유틸리티 링크 (오시는 길, 이용안내 등)
+                  <Code>.point</Code> - 강조 링크 (개인정보처리방침 등)
+                </ListItem>
+                <ListItem>
+                  <Code>.fCopy</Code> - 저작권 텍스트
+                </ListItem>
+                <ListItem>
+                  <Code>.krdsIdentifier</Code> - KRDS Identifier 영역
+                </ListItem>
+                <ListItem>
+                  <Code>.banTxt</Code> - Identifier 텍스트
                 </ListItem>
               </List>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="socialLinks" />
+              <SectionHeading level="h3" title="유틸리티 클래스" />
               <List variant="unordered">
                 <ListItem>
-                  <strong>타입:</strong>{' '}
-                  <Code>{`Array<{ platform: 'instagram' | 'youtube' | 'x' | 'facebook' | 'blog'; href: string; label?: string }>`}</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>기본값:</strong> <Code>[]</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>설명:</strong> 소셜 미디어 링크
+                  <Code>.srOnly</Code> - 스크린 리더 전용 텍스트
                 </ListItem>
               </List>
             </Subsection>
+          </Section>
+
+          {/* CSS Variables */}
+          <Section level="h2">
+            <SectionHeading
+              level="h2"
+              id="css-variables"
+              title="CSS 변수"
+              description="사용되는 KRDS 디자인 토큰입니다."
+            />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="menuLinks" />
-              <List variant="unordered">
-                <ListItem>
-                  <strong>타입:</strong>{' '}
-                  <Code>{`Array<{ label: string; href: string; external?: boolean }>`}</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>기본값:</strong> <Code>[]</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>설명:</strong> 하단 메뉴 링크 (개인정보처리방침,
-                  이용약관 등)
-                </ListItem>
-              </List>
+              <SectionHeading level="h3" title="색상 (Color)" />
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`--krds-color-light-gray-0
+--krds-color-light-gray-5
+--krds-color-light-gray-10
+--krds-color-light-gray-20
+--krds-color-light-gray-50
+--krds-color-light-gray-70
+--krds-color-light-gray-90
+--krds-color-light-gray-95
+--krds-color-light-gray-100
+--krds-accent-text`}
+              </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="copyright" />
-              <List variant="unordered">
-                <ListItem>
-                  <strong>타입:</strong> <Code>string</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>필수:</strong> No
-                </ListItem>
-                <ListItem>
-                  <strong>설명:</strong> 저작권 텍스트
-                </ListItem>
-              </List>
+              <SectionHeading level="h3" title="간격 (Gap)" />
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`--krds-gap-2     /* 0.5rem */
+--krds-gap-3     /* 0.75rem */
+--krds-gap-5     /* 1.25rem */
+--krds-gap-6     /* 1.5rem */
+--krds-gap-7     /* 2rem */
+--krds-gap-8     /* 2.5rem */
+--krds-gap-9     /* 3rem */`}
+              </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="showIdentifier" />
-              <List variant="unordered">
-                <ListItem>
-                  <strong>타입:</strong> <Code>boolean</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>기본값:</strong> <Code>true</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>설명:</strong> Identifier(공식 상징 마크) 표시 여부
-                </ListItem>
-              </List>
+              <SectionHeading level="h3" title="패딩 (Padding)" />
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`--krds-padding-6     /* 1.5rem */
+--krds-padding-8     /* 2rem */
+--krds-padding-10    /* 2.5rem */`}
+              </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="identifierVariant" />
-              <List variant="unordered">
-                <ListItem>
-                  <strong>타입:</strong> <Code>'light' | 'dark'</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>기본값:</strong> <Code>'light'</Code>
-                </ListItem>
-                <ListItem>
-                  <strong>설명:</strong> Identifier 테마
-                </ListItem>
-              </List>
+              <SectionHeading level="h3" title="크기 (Size)" />
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`--krds-size-height-7        /* 3.5rem */
+--krds-icon--size-medium    /* 1.5rem */`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="폰트 (Font)" />
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`--krds-font-weight-regular    /* 400 */
+--krds-font-weight-bold       /* 700 */`}
+              </Code>
             </Subsection>
           </Section>
         </TabsContent>
