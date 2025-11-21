@@ -1,0 +1,60 @@
+// Header 기본 스타일
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  background-color: var(--krds-header--color-surface, #ffffff);
+  border-bottom: 1px solid var(--krds-header--color-divider, #e0e0e0);
+}
+
+.headerIn {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// Utility 영역
+.headerUtility {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--krds-header--utility-gap, 1rem);
+  padding: 0.5rem 0;
+}
+
+.utilityList {
+  display: flex;
+  gap: var(--krds-header--utility-gap, 1rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.utilityLink {
+  color: var(--krds-header--color-text, #212121);
+  text-decoration: none;
+  font-size: 0.875rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Branding 영역
+.headerBranding {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.logo {
+  height: 2.5rem;
+  width: auto;
+}
+
+.slogan {
+  font-size: 1rem;
+  font-weight: var(--krds-font-weight-bold, 700);
+  color: var(--krds-header--color-text, #212121);
+}
