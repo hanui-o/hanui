@@ -89,6 +89,9 @@ npx hanui init`}
                     프로젝트 타입 감지 (Next.js/Vite, src 폴더 유무)
                   </ListItem>
                   <ListItem>컴포넌트 설치 경로 자동 설정</ListItem>
+                  <ListItem>
+                    <Code>hanui.css</Code> - KRDS 디자인 토큰 및 Pretendard 폰트
+                  </ListItem>
                   <ListItem>cn() 유틸리티 함수 생성</ListItem>
                   <ListItem>hanui.json 설정 파일 생성</ListItem>
                 </List>
@@ -218,6 +221,10 @@ export default config;`}
                 <List className="text-krds-gray-90">
                   <ListItem>
                     컴포넌트 설치 경로 (기본: components/hanui)
+                  </ListItem>
+                  <ListItem>
+                    <Code>hanui.css</Code> - KRDS 디자인 토큰, Pretendard 폰트,
+                    SVG 아이콘 스타일
                   </ListItem>
                   <ListItem>유틸리티 함수 경로 (기본: lib/utils)</ListItem>
                   <ListItem>Tailwind CSS 설정 여부</ListItem>
