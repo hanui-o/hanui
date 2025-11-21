@@ -967,8 +967,7 @@ function App() {
 
       {/* Page Navigation */}
       <PageNavigation
-        prev={{ title: 'Code', href: '/components/code' }}
-        next={{ title: 'Container', href: '/components/container' }}
+        next={{ title: 'Typography', href: '/design-system/typography' }}
       />
     </>
   );

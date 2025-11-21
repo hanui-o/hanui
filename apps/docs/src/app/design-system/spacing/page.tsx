@@ -2206,8 +2206,8 @@ export default function SpacingPage() {
       </PageSection>
 
       <PageNavigation
-        prev={{ title: 'SkipLink', href: '/components/skiplink' }}
-        next={{ title: 'Stack', href: '/components/stack' }}
+        prev={{ title: 'Typography', href: '/design-system/typography' }}
+        next={{ title: 'Breakpoints', href: '/design-system/breakpoints' }}
       />
     </>
   );

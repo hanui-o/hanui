@@ -20,10 +20,10 @@ const designSystemNavigation = [
   {
     title: 'Design System',
     items: [
-      { title: 'Breakpoints', href: '/design-system/breakpoints' },
       { title: 'Colors', href: '/design-system/colors' },
-      { title: 'Spacing', href: '/design-system/spacing' },
       { title: 'Typography', href: '/design-system/typography' },
+      { title: 'Spacing', href: '/design-system/spacing' },
+      { title: 'Breakpoints', href: '/design-system/breakpoints' },
     ],
   },
 ];

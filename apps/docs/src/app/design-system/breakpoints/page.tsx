@@ -547,8 +547,7 @@ module.exports = {
 
       {/* Page Navigation */}
       <PageNavigation
-        prev={{ title: 'Breadcrumb', href: '/components/breadcrumb' }}
-        next={{ title: 'Button', href: '/components/button' }}
+        prev={{ title: 'Spacing', href: '/design-system/spacing' }}
       />
     </>
   );

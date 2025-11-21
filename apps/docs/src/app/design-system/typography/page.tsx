@@ -429,8 +429,8 @@ npx @hanui/cli init`}
 
       {/* Page Navigation */}
       <PageNavigation
-        prev={{ title: 'Tooltip', href: '/components/tooltip' }}
-        next={{ title: 'Wrap', href: '/components/wrap' }}
+        prev={{ title: 'Colors', href: '/design-system/colors' }}
+        next={{ title: 'Spacing', href: '/design-system/spacing' }}
       />
     </>
   );
