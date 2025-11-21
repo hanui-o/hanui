@@ -713,6 +713,74 @@ export default () => {
                 </TableBody>
               </Table>
             </Subsection>
+
+            {/* Radix UI Features */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="radix-features"
+                title="Radix UI 기능"
+              />
+              <Card variant="info">
+                <List variant="check" className="text-krds-gray-90">
+                  <ListItem>
+                    <strong>@radix-ui/react-dialog:</strong> Radix UI Dialog
+                    Primitive를 기반으로 구축되었습니다.
+                  </ListItem>
+                  <ListItem>
+                    <strong>자동 ARIA:</strong> role="dialog", aria-labelledby,
+                    aria-describedby 등이 자동으로 적용됩니다.
+                  </ListItem>
+                  <ListItem>
+                    <strong>포커스 트랩:</strong> 모달이 열리면 포커스가 모달
+                    내부에 고정되며, Tab 키로 모달 내 요소만 순환합니다.
+                  </ListItem>
+                  <ListItem>
+                    <strong>키보드 단축키:</strong> Escape 키로 모달을 닫을 수
+                    있습니다.
+                  </ListItem>
+                  <ListItem>
+                    <strong>배경 스크롤 방지:</strong> 모달이 열리면 자동으로
+                    배경 스크롤이 비활성화됩니다.
+                  </ListItem>
+                  <ListItem>
+                    <strong>Portal 렌더링:</strong> 모달이 DOM 트리의 최상위에
+                    렌더링되어 z-index 문제를 방지합니다.
+                  </ListItem>
+                  <ListItem>
+                    <strong>외부 클릭 닫기:</strong> 모달 배경(Overlay)을
+                    클릭하면 모달이 닫힙니다.
+                  </ListItem>
+                </List>
+              </Card>
+            </Subsection>
+
+            {/* KRDS Compliance */}
+            <Subsection level="h3">
+              <SectionHeading
+                level="h3"
+                id="krds-compliance"
+                title="KRDS 준수사항"
+              />
+              <Card variant="info">
+                <List variant="check" className="text-krds-gray-90">
+                  <ListItem>
+                    Radix UI 기반으로 완전한 접근성 보장 (WCAG 2.1 AAA)
+                  </ListItem>
+                  <ListItem>키보드 네비게이션 완전 지원 (Tab, Escape)</ListItem>
+                  <ListItem>
+                    스크린 리더 완전 지원 (ARIA 속성 자동 적용)
+                  </ListItem>
+                  <ListItem>
+                    Focus trap으로 포커스 이탈 방지 (접근성 필수)
+                  </ListItem>
+                  <ListItem>
+                    모달 제목(ModalTitle) 필수 사용으로 스크린 리더 사용자에게
+                    명확한 컨텍스트 제공
+                  </ListItem>
+                </List>
+              </Card>
+            </Subsection>
           </Section>
         </TabsContent>
       </Tabs>
