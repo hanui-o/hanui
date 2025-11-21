@@ -33,6 +33,7 @@ const componentsNavigation = [
       { title: 'Container', href: '/components/container' },
       { title: 'Display', href: '/components/display' },
       { title: 'File Upload', href: '/components/file-upload' },
+      { title: 'Footer', href: '/components/footer' },
       { title: 'Header', href: '/components/header' },
       { title: 'Heading', href: '/components/heading' },
       { title: 'Identifier', href: '/components/identifier' },
