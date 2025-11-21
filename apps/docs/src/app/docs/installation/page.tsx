@@ -224,19 +224,10 @@ export default config;`}
                 </List>
               </Card>
 
-              <Body className="font-semibold mb-4 mt-6">
-                4. 필수 의존성 설치
-              </Body>
+              <Body className="font-semibold mb-4 mt-6">4. 컴포넌트 추가</Body>
               <Body className="mb-4 text-krds-gray-70">
-                HANUI 컴포넌트에 필요한 기본 패키지를 설치합니다:
-              </Body>
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                npm install clsx tailwind-merge
-              </Code>
-
-              <Body className="font-semibold mb-4 mt-6">5. 컴포넌트 추가</Body>
-              <Body className="mb-4 text-krds-gray-70">
-                필요한 컴포넌트를 선택하여 프로젝트에 추가합니다:
+                필요한 컴포넌트를 선택하여 프로젝트에 추가합니다. 필요한
+                의존성(clsx, tailwind-merge 등)은 자동으로 설치됩니다:
               </Body>
               <Code variant="block" language="bash" showLineNumbers={false}>
                 npx hanui add button card input
