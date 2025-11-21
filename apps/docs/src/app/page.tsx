@@ -40,14 +40,15 @@ export default function Home() {
 
             {/* Title */}
             <Display size="lg" as="h1" className="tracking-tight">
-              WCAG 2.1 AA와 KRDS를 <br /> 준수하는 시맨틱 React 컴포넌트
+              공공기관 웹사이트를 위한
+              <br /> KRDS 표준 React 컴포넌트
             </Display>
 
             {/* Description */}
             <Body size="md" className="max-w-2xl">
-              접근성과 사용성을 갖춘 React 컴포넌트.
+              KWCAG 2.2 접근성과 KRDS 2.2 디자인을 기본으로 제공하는
               <br className="hidden sm:block" />
-              KRDS를 완벽히 준수하는 공공기관 웹사이트 개발의 시작.
+              정부·공공기관 전용 오픈소스 컴포넌트 라이브러리.
             </Body>
 
             {/* CTA Buttons */}

@@ -73,7 +73,7 @@ export default function DesignTokensPage() {
           <Body size="sm">
             <strong>📖 상세 내용:</strong> 색상 시스템의 자세한 사용법, Semantic
             변수, 다크 모드 등은{' '}
-            <Link href="/design-system/colors">Design System → Colors</Link>
+            <Link href="/components/colors">Components → Colors</Link>
             페이지를 참고하세요.
           </Body>
         </Card>
@@ -167,9 +167,7 @@ export default function DesignTokensPage() {
       </Section>
 
       {/* Page Navigation */}
-      <PageNavigation
-        next={{ title: 'Colors', href: '/design-system/colors' }}
-      />
+      <PageNavigation next={{ title: 'Colors', href: '/components/colors' }} />
     </>
   );
 }
