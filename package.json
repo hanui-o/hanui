@@ -13,6 +13,7 @@
   },
   "scripts": {
     "dev": "turbo run dev",
+    "dev:playground": "pnpm --filter playground dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
