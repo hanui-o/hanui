@@ -19,7 +19,14 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'next/link'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'next/link',
+        '@radix-ui/react-dropdown-menu',
+        '@radix-ui/react-navigation-menu',
+      ],
       output: {
         globals: {
           react: 'React',
