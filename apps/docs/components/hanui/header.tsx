@@ -1,6 +1,10 @@
 'use client';
 
 import React from 'react';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import * as Accordion from '@radix-ui/react-accordion';
+import * as Dialog from '@radix-ui/react-dialog';
 import styles from './header.module.scss';
 import { ChevronDown, Search, Menu, X } from 'lucide-react';
 
@@ -8,8 +12,57 @@ export interface HeaderProps {
   className?: string;
 }
 
+// 유틸리티 메뉴 데이터
+const UTILITY_LINKS = [
+  { label: '로그인', href: '#' },
+  { label: '회원가입', href: '#' },
+  { label: 'ENGLISH', href: '#' },
+];
+
+const RELATED_SITES = [
+  { label: '건강iN', href: '#' },
+  { label: 'The건강보험', href: '#' },
+  { label: '요양기관업무포털', href: '#' },
+  { label: '민원신청', href: '#' },
+];
+
+// 메인 메뉴 데이터
+const MAIN_MENU = [
+  {
+    title: '건강보험',
+    subItems: ['보험료', '급여', '요양기관', '건강검진'],
+  },
+  {
+    title: '장기요양',
+    subItems: ['장기요양보험', '장기요양인정', '장기요양기관', '장기요양급여'],
+  },
+  {
+    title: '민원·증명서',
+    subItems: ['민원신청', '증명서발급', '민원처리결과'],
+  },
+  {
+    title: '건강정보',
+    subItems: ['건강정보', '질병정보', '의학정보'],
+  },
+  {
+    title: '건강IN',
+    subItems: ['건강관리', '건강검진', '진료내역', '약제비'],
+  },
+  {
+    title: '병원·약국',
+    subItems: ['병원찾기', '약국찾기', '응급실찾기'],
+  },
+  {
+    title: '소개',
+    subItems: ['공단소개', '조직·업무', '채용정보', '알림·소식'],
+  },
+];
+
 export function Header({ className }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isUtilityDropdownOpen, setIsUtilityDropdownOpen] =
+    React.useState(false);
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
 
   return (
     <header className={`${styles.header} ${className || ''}`}>
@@ -17,73 +70,55 @@ export function Header({ className }: HeaderProps) {
       <div className={styles.headerUtility}>
         <div className={styles.inner}>
           <ul className={styles.utilityList}>
+            {UTILITY_LINKS.map((link) => (
+              <li key={link.label}>
+                <button type="button" className={styles.utilityLink}>
+                  {link.label}
+                </button>
+              </li>
+            ))}
             <li>
-              <button type="button" className={styles.utilityLink}>
-                로그인
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.utilityLink}>
-                회원가입
-              </button>
-            </li>
-            <li>
-              <button type="button" className={styles.utilityLink}>
-                ENGLISH
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className={styles.utilityDropdownBtn}
-                aria-haspopup="true"
-                aria-expanded="false"
+              <DropdownMenu.Root
+                open={isUtilityDropdownOpen}
+                onOpenChange={setIsUtilityDropdownOpen}
+                modal={false}
               >
-                관련사이트
-                <ChevronDown className={styles.dropdownIcon} />
-              </button>
-              <ul className={styles.utilityDropdown}>
-                <li>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="새 창 열기"
+                <DropdownMenu.Trigger asChild>
+                  <button
+                    type="button"
+                    className={styles.utilityDropdownBtn}
+                    aria-label="관련사이트 메뉴"
+                    onMouseEnter={() => setIsUtilityDropdownOpen(true)}
+                    onMouseLeave={() => setIsUtilityDropdownOpen(false)}
                   >
-                    건강iN
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="새 창 열기"
+                    관련사이트
+                    <ChevronDown className={styles.dropdownIcon} />
+                  </button>
+                </DropdownMenu.Trigger>
+
+                <DropdownMenu.Portal>
+                  <DropdownMenu.Content
+                    className={styles.utilityDropdown}
+                    sideOffset={5}
+                    align="end"
+                    onMouseEnter={() => setIsUtilityDropdownOpen(true)}
+                    onMouseLeave={() => setIsUtilityDropdownOpen(false)}
                   >
-                    The건강보험
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="새 창 열기"
-                  >
-                    요양기관업무포털
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="새 창 열기"
-                  >
-                    민원신청
-                  </a>
-                </li>
-              </ul>
+                    {RELATED_SITES.map((site) => (
+                      <DropdownMenu.Item key={site.label} asChild>
+                        <a
+                          href={site.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="새 창 열기"
+                        >
+                          {site.label}
+                        </a>
+                      </DropdownMenu.Item>
+                    ))}
+                  </DropdownMenu.Content>
+                </DropdownMenu.Portal>
+              </DropdownMenu.Root>
             </li>
           </ul>
         </div>
@@ -92,31 +127,66 @@ export function Header({ className }: HeaderProps) {
       {/* Header Branding */}
       <div className={styles.headerBranding}>
         <div className={styles.inner}>
-          <h1 className={styles.logo}>
-            <a href="/">
+          <div className={styles.branding}>
+            <a
+              href="/"
+              className={styles.logo}
+              aria-label="대한민국정부 홈으로 이동"
+            >
               <img
                 src="https://www.krds.go.kr/resources/img/pattern/layout/head_logo.svg"
                 alt="대한민국정부"
               />
             </a>
-          </h1>
-          <span className={styles.slogan}>
-            <span className={styles.srOnly}>슬로건</span>
-          </span>
+            <span className={styles.slogan}>
+              <span className={styles.srOnly}>슬로건</span>
+            </span>
+          </div>
 
           {/* Header Actions */}
           <div className={styles.headerActions}>
-            <button
-              type="button"
-              className={styles.searchBtn}
-              aria-label="검색"
-            >
-              <Search />
-            </button>
+            <Dialog.Root open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+              <Dialog.Trigger asChild>
+                <button
+                  type="button"
+                  className={styles.searchBtn}
+                  aria-label="검색"
+                >
+                  <Search />
+                </button>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Overlay className={styles.searchOverlay} />
+                <Dialog.Content className={styles.searchContent}>
+                  <Dialog.Title className={styles.searchTitle}>
+                    검색
+                  </Dialog.Title>
+                  <div className={styles.searchInputWrapper}>
+                    <Search className={styles.searchIcon} aria-hidden="true" />
+                    <input
+                      type="search"
+                      placeholder="검색어를 입력하세요"
+                      className={styles.searchInput}
+                      autoFocus
+                    />
+                  </div>
+                  <Dialog.Close asChild>
+                    <button
+                      type="button"
+                      className={styles.searchClose}
+                      aria-label="닫기"
+                    >
+                      <X />
+                    </button>
+                  </Dialog.Close>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
             <button
               type="button"
               className={styles.menuBtn}
-              aria-label="메뉴 열기"
+              aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+              aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X /> : <Menu />}
@@ -125,422 +195,80 @@ export function Header({ className }: HeaderProps) {
         </div>
       </div>
 
-      {/* Desktop Main Menu */}
-      <nav className={styles.mainMenu} aria-label="주 메뉴">
-        <div className={styles.inner}>
-          <ul className={styles.menuList}>
-            <li className={styles.menuItem}>
-              <button type="button" className={styles.menuLink}>
-                건강보험
-                <ChevronDown className={styles.menuIcon} />
-              </button>
-              <div className={styles.subMenuWrapper}>
+      {/* Header Main Menu */}
+      <NavigationMenu.Root className={styles.mainMenu} delayDuration={0}>
+        <NavigationMenu.List className={styles.menuList}>
+          {MAIN_MENU.map((menu) => (
+            <NavigationMenu.Item key={menu.title} className={styles.menuItem}>
+              <NavigationMenu.Trigger className={styles.menuLink}>
+                {menu.title}
+                <ChevronDown className={styles.menuIcon} aria-hidden="true" />
+              </NavigationMenu.Trigger>
+              <NavigationMenu.Content className={styles.subMenuWrapper}>
                 <div className={styles.subMenuInner}>
                   <ul className={styles.subMenuList}>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        보험료
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        급여
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        요양기관
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        건강검진
-                      </a>
-                    </li>
+                    {menu.subItems.map((subItem) => (
+                      <li key={subItem}>
+                        <NavigationMenu.Link
+                          href="#"
+                          className={styles.subMenuLink}
+                        >
+                          {subItem}
+                        </NavigationMenu.Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
-              </div>
-            </li>
-            <li className={styles.menuItem}>
-              <button type="button" className={styles.menuLink}>
-                장기요양
-                <ChevronDown className={styles.menuIcon} />
-              </button>
-              <div className={styles.subMenuWrapper}>
-                <div className={styles.subMenuInner}>
-                  <ul className={styles.subMenuList}>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        장기요양보험
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        장기요양인정
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        장기요양기관
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        장기요양급여
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li className={styles.menuItem}>
-              <button type="button" className={styles.menuLink}>
-                민원·증명서
-                <ChevronDown className={styles.menuIcon} />
-              </button>
-              <div className={styles.subMenuWrapper}>
-                <div className={styles.subMenuInner}>
-                  <ul className={styles.subMenuList}>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        민원신청
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        증명서발급
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        민원처리결과
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li className={styles.menuItem}>
-              <button type="button" className={styles.menuLink}>
-                건강정보
-                <ChevronDown className={styles.menuIcon} />
-              </button>
-              <div className={styles.subMenuWrapper}>
-                <div className={styles.subMenuInner}>
-                  <ul className={styles.subMenuList}>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        건강정보
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        질병정보
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        의학정보
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li className={styles.menuItem}>
-              <button type="button" className={styles.menuLink}>
-                건강IN
-                <ChevronDown className={styles.menuIcon} />
-              </button>
-              <div className={styles.subMenuWrapper}>
-                <div className={styles.subMenuInner}>
-                  <ul className={styles.subMenuList}>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        건강관리
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        건강검진
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        진료내역
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        약제비
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li className={styles.menuItem}>
-              <button type="button" className={styles.menuLink}>
-                병원·약국
-                <ChevronDown className={styles.menuIcon} />
-              </button>
-              <div className={styles.subMenuWrapper}>
-                <div className={styles.subMenuInner}>
-                  <ul className={styles.subMenuList}>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        병원찾기
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        약국찾기
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        응급실찾기
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li className={styles.menuItem}>
-              <button type="button" className={styles.menuLink}>
-                소개
-                <ChevronDown className={styles.menuIcon} />
-              </button>
-              <div className={styles.subMenuWrapper}>
-                <div className={styles.subMenuInner}>
-                  <ul className={styles.subMenuList}>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        공단소개
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        조직·업무
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        채용정보
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className={styles.subMenuLink}>
-                        알림·소식
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+          ))}
+        </NavigationMenu.List>
+      </NavigationMenu.Root>
 
       {/* Mobile Main Menu */}
       {isMobileMenuOpen && (
         <nav className={styles.mainMenuMobile} aria-label="모바일 메뉴">
           <div className={styles.mobileMenuInner}>
-            <ul className={styles.mobileMenuList}>
-              <li className={styles.mobileMenuItem}>
-                <button type="button" className={styles.mobileMenuLink}>
-                  건강보험
-                  <ChevronDown className={styles.mobileMenuIcon} />
-                </button>
-                <ul className={styles.mobileSubMenuList}>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      보험료
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      급여
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      요양기관
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      건강검진
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className={styles.mobileMenuItem}>
-                <button type="button" className={styles.mobileMenuLink}>
-                  장기요양
-                  <ChevronDown className={styles.mobileMenuIcon} />
-                </button>
-                <ul className={styles.mobileSubMenuList}>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      장기요양보험
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      장기요양인정
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      장기요양기관
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      장기요양급여
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className={styles.mobileMenuItem}>
-                <button type="button" className={styles.mobileMenuLink}>
-                  민원·증명서
-                  <ChevronDown className={styles.mobileMenuIcon} />
-                </button>
-                <ul className={styles.mobileSubMenuList}>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      민원신청
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      증명서발급
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      민원처리결과
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className={styles.mobileMenuItem}>
-                <button type="button" className={styles.mobileMenuLink}>
-                  건강정보
-                  <ChevronDown className={styles.mobileMenuIcon} />
-                </button>
-                <ul className={styles.mobileSubMenuList}>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      건강정보
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      질병정보
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      의학정보
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className={styles.mobileMenuItem}>
-                <button type="button" className={styles.mobileMenuLink}>
-                  건강IN
-                  <ChevronDown className={styles.mobileMenuIcon} />
-                </button>
-                <ul className={styles.mobileSubMenuList}>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      건강관리
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      건강검진
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      진료내역
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      약제비
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className={styles.mobileMenuItem}>
-                <button type="button" className={styles.mobileMenuLink}>
-                  병원·약국
-                  <ChevronDown className={styles.mobileMenuIcon} />
-                </button>
-                <ul className={styles.mobileSubMenuList}>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      병원찾기
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      약국찾기
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      응급실찾기
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className={styles.mobileMenuItem}>
-                <button type="button" className={styles.mobileMenuLink}>
-                  소개
-                  <ChevronDown className={styles.mobileMenuIcon} />
-                </button>
-                <ul className={styles.mobileSubMenuList}>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      공단소개
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      조직·업무
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      채용정보
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className={styles.mobileSubMenuLink}>
-                      알림·소식
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+            <Accordion.Root type="multiple" className={styles.mobileMenuList}>
+              {MAIN_MENU.map((menu) => (
+                <Accordion.Item
+                  key={menu.title}
+                  value={menu.title}
+                  className={styles.mobileMenuItem}
+                >
+                  <Accordion.Trigger className={styles.mobileMenuLink}>
+                    {menu.title}
+                    <ChevronDown
+                      className={styles.mobileMenuIcon}
+                      aria-hidden="true"
+                    />
+                  </Accordion.Trigger>
+                  <Accordion.Content className={styles.mobileSubMenuList}>
+                    <ul>
+                      {menu.subItems.map((subItem) => (
+                        <li key={subItem}>
+                          <a href="#" className={styles.mobileSubMenuLink}>
+                            {subItem}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion.Root>
 
             {/* Mobile Utility */}
             <div className={styles.mobileUtility}>
-              <button type="button" className={styles.mobileUtilityBtn}>
-                로그인
-              </button>
-              <button type="button" className={styles.mobileUtilityBtn}>
-                회원가입
-              </button>
-              <button type="button" className={styles.mobileUtilityBtn}>
-                ENGLISH
-              </button>
+              {UTILITY_LINKS.map((link) => (
+                <button
+                  key={link.label}
+                  type="button"
+                  className={styles.mobileUtilityBtn}
+                >
+                  {link.label}
+                </button>
+              ))}
             </div>
           </div>
         </nav>

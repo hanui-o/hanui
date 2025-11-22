@@ -110,11 +110,8 @@
   height: 1.6rem;
 }
 
+// Radix UI DropdownMenu Content (Portal로 렌더링됨)
 .utilityDropdown {
-  display: none;
-  position: absolute;
-  top: calc(100% + 0.4rem);
-  right: 0;
   background: var(--krds-header--color-surface);
   border: 1px solid var(--krds-header--utility-color-divider);
   border-radius: 1.2rem;
@@ -122,60 +119,57 @@
               0 0.4rem 1.6rem rgba(0, 0, 0, 0.03);
   min-width: 14rem;
   padding: 1rem 0;
-  list-style: none;
-  margin: 0;
   z-index: 100;
   backdrop-filter: blur(8px);
   background: rgba(255, 255, 255, 0.98);
-  opacity: 0;
-  animation: dropdownFadeIn 0.2s ease-out forwards;
 
-  &:hover {
-    display: block;
+  // Radix UI 애니메이션
+  &[data-state='open'] {
+    animation: dropdownFadeIn 0.2s ease-out;
   }
 
-  li {
-    margin: 0;
-    padding: 0 0.8rem;
+  &[data-state='closed'] {
+    animation: dropdownFadeOut 0.15s ease-in;
+  }
+
+  // Radix UI Item 스타일
+  a {
+    display: block;
+    position: relative;
+    padding: 0.6rem 1rem;
+    padding-left: 2rem;
+    margin: 0 0.8rem;
+    color: var(--krds-header--navi-color-text);
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0.8rem;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
 
     &::before {
-      display: none !important;
+      content: '';
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%) translateX(-0.4rem);
+      width: 0.3rem;
+      height: 1.6rem;
+      background-color: var(--krds-color-primary-60);
+      border-radius: 0.2rem;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    a {
-      display: block;
-      position: relative;
-      padding: 0.6rem 1rem;
-      padding-left: 2rem;
-      color: var(--krds-header--navi-color-text);
-      text-decoration: none;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 0.8rem;
-      white-space: nowrap;
+    &:hover,
+    &[data-highlighted] {
+      background-color: var(--krds-header--navi-color-hover);
+      padding-left: 2.4rem;
+      color: var(--krds-color-primary-60);
 
       &::before {
-        content: '';
-        position: absolute;
-        left: 0.8rem;
-        top: 50%;
-        transform: translateY(-50%) translateX(-0.4rem);
-        width: 0.3rem;
-        height: 1.6rem;
-        background-color: var(--krds-color-primary-60);
-        border-radius: 0.2rem;
-        opacity: 0;
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      &:hover {
-        background-color: var(--krds-header--navi-color-hover);
-        padding-left: 2.4rem;
-        color: var(--krds-color-primary-60);
-
-        &::before {
-          opacity: 1;
-          transform: translateY(-50%) translateX(0);
-        }
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
       }
     }
   }
@@ -189,6 +183,17 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes dropdownFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.8rem);
   }
 }
 
@@ -319,10 +324,6 @@
   border-bottom: 0.1rem solid var(--krds-header--utility-color-divider);
 
   @media (min-width: 1024px) {
-    display: block;
-  }
-
-  .inner {
     display: flex;
     width: 100%;
     max-width: var(--krds-container-max-width, 120rem);
@@ -342,12 +343,6 @@
 
 .menuItem {
   position: relative;
-
-  &:hover {
-    .subMenuWrapper {
-      display: block;
-    }
-  }
 }
 
 .menuLink {
@@ -376,18 +371,19 @@
 }
 
 .subMenuWrapper {
-  display: none;
   position: absolute;
-  top: 90%;
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
-  // padding-top: 1.2rem;
-  opacity: 0;
-  animation: slideDown 0.2s ease-out forwards;
 
-  &:hover {
-    display: block;
+  // Radix UI 애니메이션
+  &[data-state='open'] {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: slideUp 0.15s ease-in;
   }
 }
 
@@ -399,6 +395,17 @@
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-0.8rem);
   }
 }
 

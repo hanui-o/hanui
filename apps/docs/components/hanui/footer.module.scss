@@ -80,6 +80,20 @@
         }
       }
     }
+
+
+    .accordionRoot {
+      display: flex;
+      width: 100%;
+
+      .accordionItem {
+        flex: 1;
+
+        .link {
+          width: 100%;
+        }
+      }
+    }
   }
 
   > .inner {
