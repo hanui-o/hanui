@@ -1,8 +1,10 @@
 'use client';
 
-import * as Accordion from '@radix-ui/react-accordion';
+import { useState } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 import styles from './footer.module.scss';
-import { ChevronRight, ChevronDown } from 'lucide-react';
+import { ChevronRight, X } from 'lucide-react';
+import { Container } from '../container';
 
 export interface FooterProps {
   className?: string;
@@ -115,50 +117,71 @@ const FOOTER_MENU = [
 ];
 
 export function Footer({ className }: FooterProps) {
+  const [openModal, setOpenModal] = useState<string | null>(null);
+
   return (
     <footer id="krds-footer" className={`${styles.footer} ${className || ''}`}>
       <div className={styles.footQuick}>
-        <div className={styles.inner}>
-          <Accordion.Root
-            type="single"
-            collapsible
-            className={styles.accordionRoot}
-          >
+        <Container className={styles.inner}>
+          <nav className={styles.relatedSitesNav}>
             {RELATED_SITES.map((site) => (
-              <Accordion.Item
+              <Dialog.Root
                 key={site.id}
-                value={site.id}
-                className={styles.accordionItem}
+                open={openModal === site.id}
+                onOpenChange={(open) => setOpenModal(open ? site.id : null)}
               >
-                <Accordion.Trigger
-                  className={styles.link}
-                  title={`${site.title} 메뉴`}
-                >
-                  {site.title}
-                  <ChevronDown className={styles.chevron} aria-hidden="true" />
-                </Accordion.Trigger>
-                <Accordion.Content className={styles.accordionContent}>
-                  <ul className={styles.relatedSitesList}>
-                    {site.links.map((link) => (
-                      <li key={link.name}>
-                        <a
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title="새 창 열기"
-                        >
-                          {link.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </Accordion.Content>
-              </Accordion.Item>
+                <Dialog.Trigger asChild>
+                  <button className={styles.link} title={`${site.title} 메뉴`}>
+                    {site.title}
+                    <ChevronRight
+                      className={styles.chevron}
+                      aria-hidden="true"
+                    />
+                  </button>
+                </Dialog.Trigger>
+
+                <Dialog.Portal>
+                  <Dialog.Overlay className={styles.modalOverlay} />
+                  <Dialog.Content className={styles.modalContent}>
+                    <div className={styles.modalHeader}>
+                      <Dialog.Title className={styles.modalTitle}>
+                        {site.title}
+                      </Dialog.Title>
+                      <Dialog.Close asChild>
+                        <button className={styles.modalClose} aria-label="닫기">
+                          <X aria-hidden="true" />
+                        </button>
+                      </Dialog.Close>
+                    </div>
+
+                    <Dialog.Description className={styles.srOnly}>
+                      {site.title} 관련 사이트 목록
+                    </Dialog.Description>
+
+                    <div className={styles.modalBody}>
+                      <ul className={styles.relatedSitesList}>
+                        {site.links.map((link) => (
+                          <li key={link.name}>
+                            <a
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title="새 창 열기"
+                            >
+                              {link.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </Dialog.Content>
+                </Dialog.Portal>
+              </Dialog.Root>
             ))}
-          </Accordion.Root>
-        </div>
+          </nav>
+        </Container>
       </div>
-      <div className={styles.inner}>
+      <Container className={styles.inner}>
         <div className={styles.fLogo}>
           <span className={styles.srOnly}>KRDS - Korea Design System</span>
         </div>
@@ -239,7 +262,7 @@ export function Footer({ className }: FooterProps) {
             </span>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

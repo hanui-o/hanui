@@ -17,124 +17,212 @@
       @media (max-width: 1023px) {
         flex-direction: column;
       }
-
-      .link {
-        display: inline-flex;
-        justify-content: space-between;
-        align-items: center;
-        flex: 1;
-        gap: var(--krds-gap-3);
-        height: calc(4rem - 0.2rem); // border 위 아래값 빼기
-        padding: 0 var(--krds-padding-8, 2rem);
-        background-color: var(--krds-color-light-gray-5);
-        border: none;
-        border-right: 1px solid var(--krds-color-light-gray-10);
-        transition: all 0.2s ease;
-        cursor: pointer;
-        font-size: inherit;
-        color: inherit;
-        text-align: left;
-
-        &:first-child {
-          border-left: 1px solid var(--krds-color-light-gray-10);
-        }
-
-        // Radix ChevronDown 아이콘
-        .chevron {
-          width: var(--krds-icon--size-medium, 1.5rem);
-          height: var(--krds-icon--size-medium, 1.5rem);
-          flex-shrink: 0;
-          transition: transform 0.2s ease;
-        }
-
-        // Radix Accordion 열림 상태
-        &[data-state='open'] {
-          .chevron {
-            transform: rotate(180deg);
-          }
-        }
-
-        &:hover {
-          background-color: var(--krds-color-light-gray-10);
-        }
-
-        &:active,
-        &:focus {
-          background-color: var(--krds-color-light-gray-20);
-        }
-
-        // 태블릿 (768px ~ 1023px)
-        @media (min-width: 768px) and (max-width: 1023px) {
-          word-break: break-all;
-          padding: 0 0.25rem 0 0.5rem;
-          text-align: left;
-        }
-
-        // 모바일
-        @media (max-width: 767px) {
-          font-size: 0.875rem;
-          min-height: calc(3.5rem - 0.2rem);
-          padding: 0 var(--krds-padding-6, 1.5rem);
-          border: 0;
-
-          &:first-child {
-            border: 0;
-          }
-
-          &:not(:first-child) {
-            border-top: 1px solid var(--krds-color-light-gray-10);
-          }
-        }
-      }
     }
 
-
-    .accordionRoot {
+    .relatedSitesNav {
       display: flex;
       width: 100%;
 
-      .accordionItem {
-        flex: 1;
+      // 모바일
+      @media (max-width: 1023px) {
+        flex-direction: column;
+      }
 
-        .link {
-          width: 100%;
+      > * {
+        flex: 1;
+      }
+    }
+
+    .link {
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: var(--krds-gap-3);
+      height: calc(4rem - 0.2rem);
+      padding: 0 var(--krds-padding-8, 2rem);
+      background-color: var(--krds-color-light-gray-0);
+      border: none;
+      border-right: 1px solid var(--krds-color-light-gray-10);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      font-size: inherit;
+      color: inherit;
+      text-align: left;
+
+      .chevron {
+        width: var(--krds-icon--size-medium, 1.5rem);
+        height: var(--krds-icon--size-medium, 1.5rem);
+        flex-shrink: 0;
+      }
+
+      &:hover {
+        background-color: var(--krds-color-light-primary-5);
+      }
+
+      &:active,
+      &:focus {
+        background-color: var(--krds-color-light-primary-10);
+      }
+
+      // 태블릿 (768px ~ 1023px)
+      @media (min-width: 768px) and (max-width: 1023px) {
+        word-break: break-all;
+        padding: 0 0.25rem 0 0.5rem;
+      }
+
+      // 모바일
+      @media (max-width: 767px) {
+        font-size: 0.875rem;
+        min-height: calc(3.5rem - 0.2rem);
+        padding: 0 var(--krds-padding-6, 1.5rem);
+        border: 0;
+        border-right: none;
+      }
+    }
+
+    .relatedSitesNav {
+      border-left: 1px solid var(--krds-color-light-gray-10);
+
+      @media (max-width: 767px) {
+        border-left: 0;
+      }
+
+      // 모바일에서 첫 번째 이후 링크들
+      > :not(:first-child) .link {
+        @media (max-width: 767px) {
+          border-top: 1px solid var(--krds-color-light-gray-10);
         }
       }
     }
+  }
 
-    .accordionContent {
-      overflow: hidden;
-      background-color: var(--krds-color-light-gray-0);
+  // Modal styles
+  .modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+  }
 
-      // Radix Accordion Content 애니메이션
-      &[data-state='open'] {
-        animation: footerAccordionSlideDown 0.2s ease-out;
-      }
+  .modalContent {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--krds-color-light-gray-0);
+    border-radius: var(--krds-radius-3, 0.75rem);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 56rem;
+    max-height: 85vh;
+    z-index: 1001;
+    animation: slideIn 0.2s ease-out;
 
-      &[data-state='closed'] {
-        animation: footerAccordionSlideUp 0.15s ease-in;
-      }
+    @media (max-width: 767px) {
+      width: 95%;
+      max-height: 90vh;
+    }
+  }
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--krds-padding-6, 1.5rem) var(--krds-padding-8, 2rem);
+    border-bottom: 1px solid var(--krds-color-light-gray-10);
+
+    @media (max-width: 767px) {
+      padding: var(--krds-padding-5, 1.25rem) var(--krds-padding-6, 1.5rem);
+    }
+  }
+
+  .modalTitle {
+    font-size: 1.25rem;
+    font-weight: var(--krds-font-weight-bold, 700);
+    color: var(--krds-color-light-gray-90);
+    margin: 0;
+
+    @media (max-width: 767px) {
+      font-size: 1.125rem;
+    }
+  }
+
+  .modalClose {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    background-color: transparent;
+    border-radius: var(--krds-radius-2, 0.5rem);
+    cursor: pointer;
+    color: var(--krds-color-light-gray-70);
+    transition: all 0.2s ease;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
     }
 
-    .relatedSitesList {
-      list-style: none;
+    &:hover {
+      background-color: var(--krds-color-light-gray-5);
+      color: var(--krds-color-light-gray-90);
+    }
+
+    &:active,
+    &:focus {
+      background-color: var(--krds-color-light-gray-10);
+    }
+  }
+
+  .modalBody {
+    padding: var(--krds-padding-8, 2rem);
+    overflow-y: auto;
+    max-height: calc(85vh - 5rem);
+
+    @media (max-width: 767px) {
+      padding: var(--krds-padding-6, 1.5rem);
+      max-height: calc(90vh - 4.5rem);
+    }
+  }
+
+  .relatedSitesList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--krds-gap-6, 1.5rem);
+
+    @media (max-width: 1023px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--krds-gap-4, 1rem);
+    }
+
+    li {
       margin: 0;
-      padding: 1.6rem 2rem;
 
-      li {
-        margin: 0;
+      a {
+        display: block;
+        padding: var(--krds-padding-4, 1rem);
+        color: var(--krds-color-light-gray-70);
+        text-decoration: none;
+        border: 1px solid var(--krds-color-light-gray-10);
+        border-radius: var(--krds-radius-2, 0.5rem);
+        transition: all 0.2s ease;
+        text-align: center;
 
-        a {
-          display: block;
-          padding: 0.8rem 0;
-          color: var(--krds-color-light-gray-70);
-          text-decoration: none;
-          transition: color 0.2s ease;
-
-          &:hover {
-            color: var(--krds-color-primary-60);
-            text-decoration: underline;
-          }
+        &:hover {
+          color: var(--krds-color-primary-60);
+          border-color: var(--krds-color-primary-20);
+          background-color: var(--krds-color-light-primary-5);
         }
       }
     }
@@ -168,7 +256,7 @@
     width: 13.7rem;
     height: var(--krds-size-height-7, 3.5rem);
     background-image: url('https://www.krds.go.kr/resources/img/component/icon/ico_logo_krds.svg');
-    background-position: center;
+    background-position: 0 50%;
     background-size: contain;
     background-repeat: no-repeat;
 
@@ -329,9 +417,14 @@
           width: 3rem;
           height: 3rem;
           border: 1px solid var(--krds-color-light-gray-20);
-          border-radius: 0.5rem;
+          border-radius: 50%;
+          background-color: var(--krds-color-light-gray-0);
           text-decoration: none;
           transition: all 0.2s ease;
+
+          svg {
+            width: 55%;
+          }
 
           &:hover {
             background-color: var(--krds-color-light-gray-5);
@@ -461,23 +554,56 @@
       border-bottom: 1px solid var(--krds-color-light-gray-80);
       background-color: var(--krds-color-light-gray-100);
 
-      .inner {
-        .link {
-          background-color: var(--krds-color-light-gray-95);
-          border-right: 1px solid var(--krds-color-light-gray-80);
+      .link {
+        background-color: var(--krds-color-light-gray-95);
+        border-right: 1px solid var(--krds-color-light-gray-80);
+        color: var(--krds-color-light-gray-10);
 
-          &:first-child {
-            border-left: 1px solid var(--krds-color-light-gray-80);
-          }
+        &:hover {
+          background-color: var(--krds-color-light-gray-90);
+        }
 
-          &:hover {
-            background-color: var(--krds-color-light-gray-90);
-          }
+        &:active,
+        &:focus {
+          background-color: var(--krds-color-light-gray-80);
+        }
+      }
 
-          &:active,
-          &:focus {
-            background-color: var(--krds-color-light-gray-80);
-          }
+      .relatedSitesNav {
+        border-left: 1px solid var(--krds-color-light-gray-80);
+      }
+    }
+
+    .modalContent {
+      background-color: var(--krds-color-light-gray-95);
+      border: 1px solid var(--krds-color-light-gray-80);
+    }
+
+    .modalHeader {
+      border-bottom-color: var(--krds-color-light-gray-80);
+    }
+
+    .modalTitle {
+      color: var(--krds-color-light-gray-10);
+    }
+
+    .modalClose {
+      color: var(--krds-color-light-gray-30);
+
+      &:hover {
+        background-color: var(--krds-color-light-gray-90);
+        color: var(--krds-color-light-gray-10);
+      }
+    }
+
+    .relatedSitesList {
+      a {
+        color: var(--krds-color-light-gray-30);
+        border-color: var(--krds-color-light-gray-80);
+
+        &:hover {
+          background-color: var(--krds-color-light-gray-90);
+          border-color: var(--krds-color-light-gray-70);
         }
       }
     }
@@ -515,25 +641,23 @@
   border-width: 0;
 }
 
-// Footer Accordion 애니메이션
-@keyframes footerAccordionSlideDown {
+// Modal animations
+@keyframes fadeIn {
   from {
-    height: 0;
     opacity: 0;
   }
   to {
-    height: var(--radix-accordion-content-height);
     opacity: 1;
   }
 }
 
-@keyframes footerAccordionSlideUp {
+@keyframes slideIn {
   from {
-    height: var(--radix-accordion-content-height);
-    opacity: 1;
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
   }
   to {
-    height: 0;
-    opacity: 0;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
