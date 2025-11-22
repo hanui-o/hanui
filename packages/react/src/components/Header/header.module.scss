@@ -1,381 +1,258 @@
-/**
- * KRDS Header Component Styles
- *
- * KRDS 공식 SCSS를 CSS Variables 방식으로 변환
- * 원본 소스: https://github.com/KRDS-uiux/krds-uiux/blob/main/resources/scss/component/_header.scss
- */
-
-/* ============================================
-   KRDS Header CSS Variables
-   ============================================ */
-
+// Header Size Variables
 .header {
-  /* Size Variables */
   --krds-header--utility-gap: var(--krds-gap-4);
   --krds-header--container-gap: var(--krds-gap-2);
   --krds-header--container-padding-top: var(--krds-padding-5);
   --krds-header--container-padding-bottom: var(--krds-padding-6);
   --krds-header--navi-min-height: var(--krds-size-height-6);
-  --krds-header--navi-padding-y: var(--krds-padding-2);
-  --krds-header--navi-gap: var(--krds-gap-3);
-  --krds-header--mobile-menu-width: 20rem;
+  --krds-header--navi-gap: var(--krds-gap-2) var(--krds-gap-3);
+  --krds-header--navi-padding: var(--krds-padding-2) var(--krds-padding-5) 0;
+  --krds-header--navi-border-radius: var(--krds-radius-medium1);
+  --krds-header--navi-font-size-pc: var(--krds-pc-font-size-navigation-depth-medium-bold);
+  --krds-header--navi-font-size-mobile: var(--krds-mobile-font-size-navigation-depth-small-bold);
 
-  /* Color Variables */
+  // Header Color Variables
   --krds-header--color-surface: var(--krds-light-color-surface-white);
-  --krds-header--color-divider: var(--krds-light-color-divider-gray-light);
-  --krds-header--color-text: var(--krds-light-color-text-basic);
-  --krds-header--color-text-subtle: var(--krds-light-color-text-subtle);
-  --krds-header--color-primary: var(--krds-color-light-primary-50);
+  --krds-header--utility-color-divider: var(--krds-light-color-divider-gray-light);
+  --krds-header--navi-color-text: var(--krds-light-color-text-basic);
+  --krds-header--navi-color-hover: var(--krds-light-color-action-secondary-hover);
+  --krds-header--navi-color-pressed: var(--krds-light-color-action-secondary-pressed);
 
-  /* Layout */
   position: sticky;
   top: 0;
   left: 0;
   z-index: 70;
   background-color: var(--krds-header--color-surface);
-  border-bottom: 1px solid var(--krds-header--color-divider);
 }
 
-/* Dark Mode */
-.dark .header {
-  --krds-header--color-surface: var(--krds-color-light-gray-5);
-  --krds-header--color-divider: var(--krds-color-light-gray-20);
-  --krds-header--color-text: var(--krds-color-light-gray-90);
-  --krds-header--color-text-subtle: var(--krds-color-light-gray-70);
-}
-
-/* ============================================
-   Header Container
-   ============================================ */
-
-.headerContainer {
-  display: flex;
-  flex-direction: column;
-  gap: var(--krds-header--container-gap);
-  padding: var(--krds-header--container-padding-top) var(--krds-padding-4)
-    var(--krds-header--container-padding-bottom);
-  max-width: 1280px;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .headerContainer {
-    padding-left: var(--krds-padding-6);
-    padding-right: var(--krds-padding-6);
-  }
-}
-
-/* ============================================
-   Header Utility Area (상단 유틸리티 영역)
-   ============================================ */
-
+// Header Utility (Top bar with login, signup, etc.)
 .headerUtility {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  gap: var(--krds-header--utility-gap);
-  font-size: 0.875rem;
-  color: var(--krds-header--color-text-subtle);
-}
 
-.headerUtilityLink {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: var(--krds-header--color-primary);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--krds-header--color-primary);
-    outline-offset: 2px;
-    border-radius: 0.25rem;
-  }
-}
-
-/* ============================================
-   Header Branding & Actions Row
-   ============================================ */
-
-.headerBrandingRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--krds-gap-4);
-}
-
-/* ============================================
-   Header Branding (로고 + 슬로건)
-   ============================================ */
-
-.headerBranding {
-  display: flex;
-  align-items: center;
-  gap: var(--krds-gap-3);
-}
-
-.headerLogo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-
-  &:focus-visible {
-    outline: 2px solid var(--krds-header--color-primary);
-    outline-offset: 2px;
-    border-radius: 0.25rem;
-  }
-
-  img {
-    display: block;
-    max-height: 2.5rem;
-    width: auto;
-  }
-}
-
-.headerSlogan {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--krds-header--color-text);
-
-  @media (max-width: 767px) {
-    display: none;
-  }
-}
-
-/* ============================================
-   Header Actions (검색, 햄버거 버튼 등)
-   ============================================ */
-
-.headerActions {
-  display: flex;
-  align-items: center;
-  gap: var(--krds-gap-3);
-}
-
-.mobileMenuButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--krds-header--color-text);
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: var(--krds-header--color-primary);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--krds-header--color-primary);
-    outline-offset: 2px;
-    border-radius: 0.25rem;
-  }
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
-
-/* ============================================
-   Header Navigation (Desktop)
-   ============================================ */
-
-.headerNav {
-  display: none;
-
-  @media (min-width: 768px) {
-    display: block;
-  }
-
-  ul {
+  .inner {
     display: flex;
-    align-items: center;
-    gap: var(--krds-header--navi-gap);
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: var(--krds-container-max-width, 120rem);
+    margin: 0 auto;
+    padding: 0 var(--krds-container-padding, 2rem);
   }
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
+}
+
+.utilityList {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   li {
     position: relative;
-  }
+    display: flex;
+    align-items: center;
 
-  a {
-    display: block;
-    padding: var(--krds-header--navi-padding-y) var(--krds-padding-3);
-    min-height: var(--krds-header--navi-min-height);
-    color: var(--krds-header--color-text);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    &:not(:first-child) {
 
-    &:hover {
-      color: var(--krds-header--color-primary);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--krds-header--color-primary);
-      outline-offset: 2px;
-      border-radius: 0.25rem;
+      &::before {
+        content: '';
+        display: inline-flex;
+        width: 0.1rem;
+        height: var(--krds-size-height-2);
+        background-color: var(--krds-header--utility-color-divider);
+      }
     }
   }
 }
 
-/* ============================================
-   Mobile Navigation
-   ============================================ */
-
-.mobileNav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  display: none;
-
-  &.isOpen {
-    display: block;
-  }
-}
-
-.mobileNavOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.mobileNavPanel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: var(--krds-header--mobile-menu-width);
-  max-width: 85vw;
-  height: 100%;
-  background-color: var(--krds-header--color-surface);
-  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-
-  .isOpen & {
-    transform: translateX(0);
-  }
-}
-
-.mobileNavHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--krds-padding-4);
-  border-bottom: 1px solid var(--krds-header--color-divider);
-}
-
-.mobileNavClose {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
+.utilityLink {
   background: none;
   border: none;
+  padding: 0.8rem 1.2rem;
   cursor: pointer;
-  color: var(--krds-header--color-text);
+  font-size: var(--krds-font-size-body-small);
+  color: var(--krds-header--navi-color-text);
+  transition: var(--krds-transition-base);
 
   &:hover {
-    color: var(--krds-header--color-primary);
+    color: var(--krds-color-primary-60);
   }
 
+  // 키보드 포커스 가시성
   &:focus-visible {
-    outline: 2px solid var(--krds-header--color-primary);
+    outline: 2px solid var(--krds-color-primary-60);
     outline-offset: 2px;
-    border-radius: 0.25rem;
+    border-radius: 0.4rem;
   }
 }
 
-.mobileNavMenu {
-  padding: var(--krds-padding-4);
+.utilityDropdownBtn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  font-size: var(--krds-font-size-body-small);
+  color: var(--krds-header--navi-color-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--krds-transition-base);
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  &:hover {
+    color: var(--krds-color-primary-60);
+
+    ~ .utilityDropdown {
+      display: block;
+    }
+  }
+}
+
+.dropdownIcon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+// Radix UI DropdownMenu Content (Portal로 렌더링됨)
+.utilityDropdown {
+  background: var(--krds-header--color-surface);
+  border: 1px solid var(--krds-header--utility-color-divider);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.04),
+              0 0.4rem 1.6rem rgba(0, 0, 0, 0.03);
+  min-width: 14rem;
+  padding: 1rem 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.98);
+
+  // Radix UI 애니메이션
+  &[data-state='open'] {
+    animation: dropdownFadeIn 0.2s ease-out;
   }
 
-  li {
-    margin-bottom: var(--krds-gap-2);
+  &[data-state='closed'] {
+    animation: dropdownFadeOut 0.15s ease-in;
   }
 
+  // Radix UI Item 스타일
   a {
     display: block;
-    padding: var(--krds-padding-3);
-    color: var(--krds-header--color-text);
+    position: relative;
+    padding: 0.6rem 1rem;
+    padding-left: 2rem;
+    margin: 0 0.8rem;
+    color: var(--krds-header--navi-color-text);
     text-decoration: none;
-    font-weight: 500;
-    border-radius: 0.25rem;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0.8rem;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
 
-    &:hover {
-      background-color: var(--krds-color-light-gray-5);
-      color: var(--krds-header--color-primary);
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%) translateX(-0.4rem);
+      width: 0.3rem;
+      height: 1.6rem;
+      background-color: var(--krds-color-primary-60);
+      border-radius: 0.2rem;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    &:focus-visible {
-      outline: 2px solid var(--krds-header--color-primary);
-      outline-offset: 2px;
+    &:hover,
+    &[data-highlighted] {
+      background-color: var(--krds-header--navi-color-hover);
+      padding-left: 2.4rem;
+      color: var(--krds-color-primary-60);
+
+      &::before {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
     }
   }
 }
 
-/* ============================================
-   Submenu (2-depth navigation)
-   ============================================ */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.8rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-.submenu {
-  padding-left: var(--krds-padding-4);
-  margin-top: var(--krds-gap-2);
+@keyframes dropdownFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.8rem);
+  }
+}
+
+// Header Branding (Logo section)
+.headerBranding {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.1rem solid var(--krds-header--utility-color-divider);
+
+  .inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: var(--krds-header--container-padding-top);
+    padding-bottom: var(--krds-header--container-padding-bottom);
+    gap: var(--krds-header--container-gap);
+
+    @media (max-width: 1023px) {
+      padding: var(--krds-gap-3) var(--krds-container-padding, 2rem);
+    }
+  }
+}
+
+.logo {
+  display: inline-flex;
+  width: 13.7rem;
+  height: var(--krds-size-height-7);
+  margin: 0;
+
+  @media (max-width: 767px) {
+    width: 9.4rem;
+    height: 3.2rem;
+  }
 
   a {
-    font-size: 0.9375rem;
-    font-weight: 400;
-    color: var(--krds-header--color-text-subtle);
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 
-/* ============================================
-   Accessibility
-   ============================================ */
-
-/* Skip to content link */
-.skipLink {
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
-
-  &:focus {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    padding: var(--krds-padding-3) var(--krds-padding-4);
-    background-color: var(--krds-header--color-surface);
-    color: var(--krds-header--color-primary);
-    text-decoration: none;
-    border: 2px solid var(--krds-header--color-primary);
-    border-radius: 0.25rem;
-  }
+.slogan {
+  display: inline-flex;
+  margin-left: var(--krds-gap-3);
 }
 
-/* Screen reader only text */
 .srOnly {
   position: absolute;
   width: 1px;
@@ -385,5 +262,610 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border-width: 0;
+  border: 0;
+}
+
+.headerActions {
+  display: inline-flex;
+  gap: var(--krds-gap-3);
+  margin-left: auto;
+
+  @media (max-width: 767px) {
+    gap: 0;
+  }
+}
+
+.searchBtn,
+.menuBtn {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--krds-header--navi-gap);
+  min-height: var(--krds-header--navi-min-height);
+  padding: var(--krds-header--navi-padding);
+  border: none;
+  border-radius: var(--krds-header--navi-border-radius);
+  background: none;
+  font-size: var(--krds-header--navi-font-size-pc);
+  font-weight: var(--krds-font-weight-bold);
+  color: var(--krds-header--navi-color-text);
+  cursor: pointer;
+  transition: var(--krds-transition-base);
+
+  @media (max-width: 767px) {
+    font-size: var(--krds-header--navi-font-size-mobile);
+  }
+
+  svg {
+    width: var(--krds-icon--size-medium);
+    height: var(--krds-icon--size-medium);
+  }
+
+  &:hover {
+    background-color: var(--krds-header--navi-color-hover);
+  }
+
+  &:active,
+  &:focus {
+    background-color: var(--krds-header--navi-color-pressed);
+  }
+
+  @media (max-width: 1023px) {
+    flex-direction: column;
+  }
+}
+
+.menuBtn {
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+// Desktop Main Menu
+.mainMenu {
+  display: none;
+  background-color: var(--krds-header--color-surface);
+  border-bottom: 0.1rem solid var(--krds-header--utility-color-divider);
+
+  @media (min-width: 1024px) {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.menuList {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.menuItem {
+  position: relative;
+}
+
+.menuLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.6rem 2rem;
+  background: none;
+  border: none;
+  font-size: var(--krds-font-size-body-medium);
+  font-weight: var(--krds-font-weight-bold);
+  color: var(--krds-header--navi-color-text);
+  cursor: pointer;
+  transition: var(--krds-transition-base);
+  white-space: nowrap;
+
+  &:hover {
+    background-color: var(--krds-header--navi-color-hover);
+    border-radius: var(--krds-radius-medium);
+  }
+
+  // 키보드 포커스 가시성
+  &:focus-visible {
+    outline: 2px solid var(--krds-color-primary-60);
+    outline-offset: 2px;
+    border-radius: var(--krds-radius-medium);
+  }
+}
+
+.menuIcon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.subMenuWrapper {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+
+  // Radix UI 애니메이션
+  &[data-state='open'] {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: slideUp 0.15s ease-in;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-0.8rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-0.8rem);
+  }
+}
+
+.subMenuInner {
+  background: var(--krds-header--color-surface);
+  border: 1px solid var(--krds-header--utility-color-divider);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.08),
+              0 0.8rem 2.4rem rgba(0, 0, 0, 0.06),
+              0 0 0.1rem rgba(0, 0, 0, 0.04);
+  padding: 1rem 0;
+  min-width: 12rem;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.subMenuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+
+  li {
+    margin: 0;
+    padding: 0 0.8rem;
+  }
+}
+
+.subMenuLink {
+  display: block;
+  position: relative;
+  padding: 0.6rem 1rem;
+  padding-left: 2rem;
+  color: var(--krds-header--navi-color-text);
+  text-decoration: none;
+  font-size: var(--krds-font-size-body-small);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  border-radius: 0.8rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(-0.4rem);
+    width: 0.3rem;
+    height: 1.6rem;
+    background-color: var(--krds-color-primary-60);
+    border-radius: 0.2rem;
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    background-color: var(--krds-header--navi-color-hover);
+    padding-left: 2.4rem;
+    color: var(--krds-color-primary-60);
+
+    &::before {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+  }
+
+  // 키보드 포커스 가시성
+  &:focus-visible {
+    outline: 2px solid var(--krds-color-primary-60);
+    outline-offset: 2px;
+    background-color: var(--krds-header--navi-color-hover);
+  }
+}
+
+// Mobile Main Menu
+.mainMenuMobile {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: var(--krds-header--color-surface);
+  overflow-y: auto;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.mobileMenuHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid var(--krds-header--utility-color-divider);
+  position: sticky;
+  top: 0;
+  background-color: var(--krds-header--color-surface);
+  z-index: 10;
+}
+
+.mobileMenuCloseBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  border: none;
+  background: none;
+  color: var(--krds-header--navi-color-text);
+  cursor: pointer;
+  border-radius: 0.8rem;
+  transition: var(--krds-transition-base);
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &:hover {
+    background-color: var(--krds-header--navi-color-hover);
+  }
+
+  &:active,
+  &:focus {
+    background-color: var(--krds-header--navi-color-pressed);
+  }
+
+  // 키보드 포커스 가시성
+  &:focus-visible {
+    outline: 2px solid var(--krds-color-primary-60);
+    outline-offset: 2px;
+  }
+}
+
+.mobileMenuInner {
+  padding: 2rem;
+}
+
+.mobileMenuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobileMenuItem {
+  border-bottom: 1px solid var(--krds-header--utility-color-divider);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.mobileMenuLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.6rem 0;
+  background: none;
+  border: none;
+  font-size: var(--krds-font-size-body-medium);
+  font-weight: var(--krds-font-weight-bold);
+  color: var(--krds-header--navi-color-text);
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    color: var(--krds-color-primary-60);
+  }
+}
+
+.mobileMenuIcon {
+  width: 2rem;
+  height: 2rem;
+  transition: transform 0.2s ease;
+
+  // Radix Accordion 열림 상태
+  [data-state='open'] & {
+    transform: rotate(180deg);
+  }
+}
+
+.mobileSubMenuList {
+  // Radix Accordion Content 애니메이션
+  overflow: hidden;
+
+  &[data-state='open'] {
+    animation: accordionSlideDown 0.2s ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: accordionSlideUp 0.15s ease-in;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 1.2rem 1.6rem;
+  }
+
+  li {
+    margin: 0;
+    border: none;
+  }
+}
+
+@keyframes accordionSlideDown {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordionSlideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.mobileSubMenuLink {
+  display: block;
+  padding: 0.8rem 0;
+  color: var(--krds-color-gray-70);
+  text-decoration: none;
+  font-size: var(--krds-font-size-body-small);
+  transition: var(--krds-transition-base);
+
+  &:hover {
+    color: var(--krds-color-primary-60);
+  }
+}
+
+.mobileUtility {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--krds-header--utility-color-divider);
+}
+
+.mobileUtilityBtn {
+  display: block;
+  width: 100%;
+  padding: 1.2rem;
+  background: none;
+  border: 1px solid var(--krds-header--utility-color-divider);
+  border-radius: var(--krds-radius-medium);
+  font-size: var(--krds-font-size-body-medium);
+  color: var(--krds-header--navi-color-text);
+  cursor: pointer;
+  transition: var(--krds-transition-base);
+
+  &:hover {
+    background-color: var(--krds-header--navi-color-hover);
+  }
+}
+
+// 검색 Dialog 스타일
+.searchOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  backdrop-filter: blur(4px);
+
+  &[data-state='open'] {
+    animation: overlayShow 0.2s ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: overlayHide 0.15s ease-in;
+  }
+}
+
+.searchContent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 60rem;
+  background: var(--krds-header--color-surface);
+  border-radius: 1.6rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15),
+              0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  z-index: 1000;
+
+  &[data-state='open'] {
+    animation: contentShow 0.2s ease-out;
+  }
+
+  &[data-state='closed'] {
+    animation: contentHide 0.15s ease-in;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @media (max-width: 767px) {
+    width: 95vw;
+    padding: 2rem;
+  }
+}
+
+.searchTitle {
+  font-size: var(--krds-font-size-heading-3);
+  font-weight: var(--krds-font-weight-bold);
+  color: var(--krds-header--navi-color-text);
+  margin-bottom: 2rem;
+
+  @media (max-width: 767px) {
+    font-size: var(--krds-font-size-heading-4);
+    margin-bottom: 1.5rem;
+  }
+}
+
+.searchInputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.6rem 2rem;
+  background-color: var(--krds-header--navi-color-hover);
+  border-radius: 1.2rem;
+  border: 2px solid transparent;
+  transition: var(--krds-transition-base);
+
+  &:focus-within {
+    border-color: var(--krds-color-primary-60);
+    background-color: var(--krds-header--color-surface);
+  }
+}
+
+.searchIcon {
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--krds-color-gray-60);
+  flex-shrink: 0;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: none;
+  font-size: var(--krds-font-size-body-large);
+  color: var(--krds-header--navi-color-text);
+  outline: none;
+
+  &::placeholder {
+    color: var(--krds-color-gray-50);
+  }
+
+  @media (max-width: 767px) {
+    font-size: var(--krds-font-size-body-medium);
+  }
+}
+
+.searchClose {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border: none;
+  background: none;
+  color: var(--krds-header--navi-color-text);
+  cursor: pointer;
+  border-radius: 0.8rem;
+  transition: var(--krds-transition-base);
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &:hover {
+    background-color: var(--krds-header--navi-color-hover);
+  }
+
+  &:active,
+  &:focus {
+    background-color: var(--krds-header--navi-color-pressed);
+  }
+
+  @media (max-width: 767px) {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 3.6rem;
+    height: 3.6rem;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes contentHide {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
 }

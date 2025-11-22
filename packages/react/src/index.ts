@@ -9,11 +9,11 @@
 export const version = '0.0.0';
 
 // Components
-export { Button, buttonVariants } from './components/Button';
-export type { ButtonProps } from './components/Button';
+export { Button, buttonVariants } from './components/button';
+export type { ButtonProps } from './components/button';
 
-export { Input, inputVariants } from './components/Input';
-export type { InputProps } from './components/Input';
+export { Input, inputVariants } from './components/input';
+export type { InputProps } from './components/input';
 
 export {
   Card,
@@ -23,8 +23,8 @@ export {
   CardBody,
   CardFooter,
   cardVariants,
-} from './components/Card';
-export type { CardProps } from './components/Card';
+} from './components/card';
+export type { CardProps } from './components/card';
 
 export {
   Table,
@@ -35,7 +35,7 @@ export {
   TableRow,
   TableCell,
   TableCaption,
-} from './components/Table';
+} from './components/table';
 
 export {
   Modal,
@@ -43,84 +43,84 @@ export {
   ModalBody,
   ModalFooter,
   ModalCloseButton,
-} from './components/Modal';
-export type { ModalProps } from './components/Modal';
+} from './components/modal';
+export type { ModalProps } from './components/modal';
 
-export { Pagination } from './components/Pagination';
-export type { PaginationProps } from './components/Pagination';
+export { Pagination } from './components/pagination';
+export type { PaginationProps } from './components/pagination';
 
-export { Breadcrumb } from './components/Breadcrumb';
-export type { BreadcrumbProps, BreadcrumbItem } from './components/Breadcrumb';
+export { Breadcrumb } from './components/breadcrumb';
+export type { BreadcrumbProps, BreadcrumbItem } from './components/breadcrumb';
 
-export { FileUpload } from './components/FileUpload';
-export type { FileUploadProps, UploadedFile } from './components/FileUpload';
+export { FileUpload } from './components/file-upload';
+export type { FileUploadProps, UploadedFile } from './components/file-upload';
 
-export { Select } from './components/Select';
-export type { SelectProps, SelectOption } from './components/Select';
+export { Select } from './components/select';
+export type { SelectProps, SelectOption } from './components/select';
 
-export { Container } from './components/Container';
-export type { ContainerProps } from './components/Container';
+export { Container } from './components/container';
+export type { ContainerProps } from './components/container';
 
-export { Stack, VStack, HStack, stackVariants } from './components/Stack';
-export type { StackProps } from './components/Stack';
+export { Stack, VStack, HStack, stackVariants } from './components/stack';
+export type { StackProps } from './components/stack';
 
-export { Section, sectionVariants } from './components/Section';
-export type { SectionProps } from './components/Section';
-
-export { Wrap, wrapVariants } from './components/Wrap';
-export type { WrapProps } from './components/Wrap';
-
-export { SimpleGrid, simpleGridVariants } from './components/SimpleGrid';
-export type { SimpleGridProps } from './components/SimpleGrid';
+export { Section, sectionVariants } from './components/section';
+export type { SectionProps } from './components/section';
 
 // Typography Components
-export { Display } from './components/Display';
-export type { DisplayProps } from './components/Display';
+export { Display } from './components/display';
+export type { DisplayProps } from './components/display';
 
-export { Heading } from './components/Heading';
-export type { HeadingProps } from './components/Heading';
+export { Heading } from './components/heading';
+export type { HeadingProps } from './components/heading';
 
-export { Body } from './components/Body';
-export type { BodyProps } from './components/Body';
+export { Body } from './components/body';
+export type { BodyProps } from './components/body';
 
-export { Label } from './components/Label';
-export type { LabelProps } from './components/Label';
+export { Label } from './components/label';
+export type { LabelProps } from './components/label';
 
-export { NavText } from './components/NavText';
-export type { NavTextProps } from './components/NavText';
+export { NavText } from './components/nav-text';
+export type { NavTextProps } from './components/nav-text';
 
-export { Link, linkVariants } from './components/Link';
-export type { LinkProps } from './components/Link';
+export { Link, linkVariants } from './components/link';
+export type { LinkProps } from './components/link';
 
-export { Box } from './components/Box';
-export type { BoxProps } from './components/Box';
+export { Code } from './components/code';
+export type { CodeProps } from './components/code';
 
-export { Tooltip } from './components/Tooltip';
-export type { TooltipProps } from './components/Tooltip';
+export { List, ListItem } from './components/list';
+export type { ListProps } from './components/list';
 
-export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs';
+export { Box } from './components/box';
+export type { BoxProps } from './components/box';
+
+export { Tooltip } from './components/tooltip';
+export type { TooltipProps } from './components/tooltip';
+
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/tabs';
 export type {
   TabsProps,
   TabsListProps,
   TabsTriggerProps,
   TabsContentProps,
-} from './components/Tabs';
+} from './components/tabs';
 
 export {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from './components/Accordion';
+} from './components/accordion';
 export type {
   AccordionProps,
   AccordionItemProps,
   AccordionTriggerProps,
   AccordionContentProps,
-} from './components/Accordion';
+} from './components/accordion';
 
-export { Masthead } from './components/Masthead';
-export type { MastheadProps } from './components/Masthead';
+export { Masthead } from './components/masthead';
+export type { MastheadProps } from './components/masthead';
 
 export { MainMenu } from './components/main-menu';
 export type {
@@ -130,53 +130,34 @@ export type {
   MainMenuSection,
 } from './components/main-menu';
 
-export { Identifier } from './components/Identifier';
-export type {
-  IdentifierProps,
-  IdentifierVariant,
-} from './components/Identifier';
-
-export { SkipLink } from './components/SkipLink';
+export { SkipLink } from './components/skip-link';
 export type {
   SkipLinkProps,
   SkipLinkItem,
   SkipLinkVariant,
-} from './components/SkipLink';
+} from './components/skip-link';
 
-export { Header } from './components/header';
-export type { HeaderProps } from './components/header';
+export { Header } from './components/Header/header';
+export type { HeaderProps } from './components/Header/header';
 
-export { Footer } from './components/Footer';
-export type { FooterProps } from './components/Footer';
+export { Footer } from './components/Footer/footer';
+export type { FooterProps } from './components/Footer/footer';
 
-export { SideNavigation } from './components/side-navigation';
+export { SideNavigation } from './components/SideNavigation/side-navigation';
 export type {
   SideNavigationProps,
   SideNavSection,
   SideNavLink,
-} from './components/side-navigation';
+} from './components/SideNavigation/side-navigation';
 
-export { InPageNavigation } from './components/in-page-navigation';
+export { InPageNavigation } from './components/InPageNavigation/in-page-navigation';
 export type {
   InPageNavigationProps,
   InPageNavLink,
-} from './components/in-page-navigation';
+} from './components/InPageNavigation/in-page-navigation';
 
 export { TabBars } from './components/TabBars';
 export type { TabBarsProps, TabBarItem } from './components/TabBars';
-
-export { StructuredList } from './components/StructuredList';
-export type {
-  StructuredListProps,
-  StructuredListItem,
-  StructuredListDate,
-} from './components/StructuredList';
-
-export { List, ListItem } from './components/List';
-export type { ListProps, ListItemProps } from './components/List';
-
-export { Code } from './components/Code';
-export type { CodeProps } from './components/Code';
 
 // Utils
 export { cn } from './lib/utils';

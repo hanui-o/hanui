@@ -298,7 +298,7 @@ export default function CodePage() {
 
       <PageNavigation
         prev={{ title: 'Card', href: '/components/card' }}
-        next={{ title: 'Colors', href: '/components/colors' }}
+        next={{ title: 'Container', href: '/components/container' }}
       />
     </>
   );

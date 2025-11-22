@@ -1,311 +1,289 @@
 'use client';
 
-import * as React from 'react';
-import { cn } from '../../lib/utils';
-import { useHeaderLogic } from './useHeaderLogic';
+import React from 'react';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import * as Accordion from '@radix-ui/react-accordion';
+import * as Dialog from '@radix-ui/react-dialog';
 import styles from './header.module.scss';
+import { ChevronDown, Search, Menu, X } from 'lucide-react';
+import { Container } from '../container';
 
-/**
- * Header Props Interface
- */
-export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
-  /**
-   * Service logo source
-   */
-  logoSrc: string;
-
-  /**
-   * Service logo alt text (required for accessibility)
-   */
-  logoAlt: string;
-
-  /**
-   * Service logo link href
-   * @default "/"
-   */
-  logoHref?: string;
-
-  /**
-   * Service slogan text (optional)
-   */
-  slogan?: string;
-
-  /**
-   * Utility links (login, signup, etc.)
-   */
-  utilityLinks?: Array<{
-    href: string;
-    label: string;
-  }>;
-
-  /**
-   * Main navigation menu items
-   */
-  menuItems?: Array<{
-    href: string;
-    label: string;
-    submenu?: Array<{
-      href: string;
-      label: string;
-    }>;
-  }>;
-
-  /**
-   * Additional className for header element
-   */
+export interface HeaderProps {
   className?: string;
-
-  /**
-   * Children for custom header content
-   */
-  children?: React.ReactNode;
 }
 
-/**
- * Header Component (헤더)
- *
- * **Foundation Layer Features:**
- * - Required ID: #krds-header (KRDS mandatory)
- * - Semantic HTML: header element with proper ARIA attributes
- * - WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation, focus management
- * - Screen Reader Support: Proper ARIA labels and semantic structure
- * - Visual Hierarchy: Consistent spacing and color system
- *
- * **KRDS Standards:**
- * - Provides consistent navigation and branding across government websites
- * - Contains service branding, utility links, search, and main navigation
- * - Responsive design for desktop and mobile
- * - Required positioning at top of page
- * - Supports multi-level navigation menus
- *
- * @example
- * ```tsx
- * <Header
- *   logoSrc="/logo.svg"
- *   logoAlt="정부 서비스"
- *   logoHref="/"
- *   slogan="국민을 위한 서비스"
- *   utilityLinks={[
- *     { href: '/login', label: '로그인' },
- *     { href: '/signup', label: '회원가입' },
- *   ]}
- *   menuItems={[
- *     { href: '/about', label: '소개' },
- *     { href: '/services', label: '서비스' },
- *     {
- *       href: '/support',
- *       label: '지원',
- *       submenu: [
- *         { href: '/support/faq', label: 'FAQ' },
- *         { href: '/support/contact', label: '문의' },
- *       ],
- *     },
- *   ]}
- * />
- * ```
- */
-export const Header = React.forwardRef<HTMLElement, HeaderProps>(
-  (
-    {
-      logoSrc,
-      logoAlt,
-      logoHref = '/',
-      slogan,
-      utilityLinks = [],
-      menuItems = [],
-      className,
-      children,
-      ...props
-    },
-    ref
-  ) => {
-    const {
-      isMobileMenuOpen,
-      mobileNavRef,
-      mobileMenuButtonRef,
-      toggleMobileMenu,
-      closeMobileMenu,
-      handleOverlayClick,
-      toggleSubmenu,
-      isSubmenuOpen,
-      getAriaAttributes,
-    } = useHeaderLogic();
+// 유틸리티 메뉴 데이터
+const UTILITY_LINKS = [
+  { label: '로그인', href: '#' },
+  { label: '회원가입', href: '#' },
+  { label: 'ENGLISH', href: '#' },
+];
 
-    const ariaAttrs = getAriaAttributes();
+const RELATED_SITES = [
+  { label: '건강iN', href: '#' },
+  { label: 'The건강보험', href: '#' },
+  { label: '요양기관업무포털', href: '#' },
+  { label: '민원신청', href: '#' },
+];
 
-    // Custom children이 제공되면 사용자 정의 헤더 렌더링
-    if (children) {
-      return (
-        <header
-          id="krds-header"
-          ref={ref}
-          className={cn(styles.header, className)}
-          {...props}
-        >
-          {children}
-        </header>
-      );
-    }
+// 메인 메뉴 데이터
+const MAIN_MENU = [
+  {
+    title: '건강보험',
+    subItems: ['보험료', '급여', '요양기관', '건강검진'],
+  },
+  {
+    title: '장기요양',
+    subItems: ['장기요양보험', '장기요양인정', '장기요양기관', '장기요양급여'],
+  },
+  {
+    title: '민원·증명서',
+    subItems: ['민원신청', '증명서발급', '민원처리결과'],
+  },
+  {
+    title: '건강정보',
+    subItems: ['건강정보', '질병정보', '의학정보'],
+  },
+  {
+    title: '건강IN',
+    subItems: ['건강관리', '건강검진', '진료내역', '약제비'],
+  },
+  {
+    title: '병원·약국',
+    subItems: ['병원찾기', '약국찾기', '응급실찾기'],
+  },
+  {
+    title: '소개',
+    subItems: ['공단소개', '조직·업무', '채용정보', '알림·소식'],
+  },
+];
 
-    // KRDS 표준 헤더 구조 렌더링
-    return (
-      <header
-        id="krds-header"
-        ref={ref}
-        className={cn(styles.header, className)}
-        {...props}
-      >
-        {/* Skip to content link for accessibility */}
-        <a href="#main-content" className={styles.skipLink}>
-          본문으로 바로가기
-        </a>
+export function Header({ className }: HeaderProps) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isUtilityDropdownOpen, setIsUtilityDropdownOpen] =
+    React.useState(false);
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
 
-        <div className={styles.headerContainer}>
-          {/* Utility Area (상단 유틸리티 영역) */}
-          {utilityLinks.length > 0 && (
-            <div className={styles.headerUtility}>
-              {utilityLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className={styles.headerUtilityLink}
+  return (
+    <header className={`${styles.header} ${className || ''}`}>
+      {/* Header Utility */}
+      <div className={styles.headerUtility}>
+        <div className={styles.inner}>
+          <ul className={styles.utilityList}>
+            {UTILITY_LINKS.map((link) => (
+              <li key={link.label}>
+                <button type="button" className={styles.utilityLink}>
+                  {link.label}
+                </button>
+              </li>
+            ))}
+            <li>
+              <DropdownMenu.Root
+                open={isUtilityDropdownOpen}
+                onOpenChange={setIsUtilityDropdownOpen}
+                modal={false}
+              >
+                <DropdownMenu.Trigger asChild>
+                  <button
+                    type="button"
+                    className={styles.utilityDropdownBtn}
+                    aria-label="관련사이트 메뉴"
+                    onMouseEnter={() => setIsUtilityDropdownOpen(true)}
+                    onMouseLeave={() => setIsUtilityDropdownOpen(false)}
+                  >
+                    관련사이트
+                    <ChevronDown className={styles.dropdownIcon} />
+                  </button>
+                </DropdownMenu.Trigger>
+
+                <DropdownMenu.Portal>
+                  <DropdownMenu.Content
+                    className={styles.utilityDropdown}
+                    sideOffset={5}
+                    align="end"
+                    onMouseEnter={() => setIsUtilityDropdownOpen(true)}
+                    onMouseLeave={() => setIsUtilityDropdownOpen(false)}
+                  >
+                    {RELATED_SITES.map((site) => (
+                      <DropdownMenu.Item key={site.label} asChild>
+                        <a
+                          href={site.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="새 창 열기"
+                        >
+                          {site.label}
+                        </a>
+                      </DropdownMenu.Item>
+                    ))}
+                  </DropdownMenu.Content>
+                </DropdownMenu.Portal>
+              </DropdownMenu.Root>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Header Branding */}
+      <div className={styles.headerBranding}>
+        <Container maxWidth="xl" className={styles.inner}>
+          <div className={styles.branding}>
+            <a
+              href="/"
+              className={styles.logo}
+              aria-label="대한민국정부 홈으로 이동"
+            >
+              <img
+                src="https://www.krds.go.kr/resources/img/pattern/layout/head_logo.svg"
+                alt="대한민국정부"
+              />
+            </a>
+            <span className={styles.slogan}>
+              <span className={styles.srOnly}>슬로건</span>
+            </span>
+          </div>
+
+          {/* Header Actions */}
+          <div className={styles.headerActions}>
+            <Dialog.Root open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+              <Dialog.Trigger asChild>
+                <button
+                  type="button"
+                  className={styles.searchBtn}
+                  aria-label="검색"
+                >
+                  <Search />
+                </button>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Overlay className={styles.searchOverlay} />
+                <Dialog.Content className={styles.searchContent}>
+                  <Dialog.Title className={styles.searchTitle}>
+                    검색
+                  </Dialog.Title>
+                  <div className={styles.searchInputWrapper}>
+                    <Search className={styles.searchIcon} aria-hidden="true" />
+                    <input
+                      type="search"
+                      placeholder="검색어를 입력하세요"
+                      className={styles.searchInput}
+                      autoFocus
+                    />
+                  </div>
+                  <Dialog.Close asChild>
+                    <button
+                      type="button"
+                      className={styles.searchClose}
+                      aria-label="닫기"
+                    >
+                      <X />
+                    </button>
+                  </Dialog.Close>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
+            <button
+              type="button"
+              className={styles.menuBtn}
+              aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+              aria-expanded={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </Container>
+      </div>
+
+      {/* Header Main Menu */}
+      <NavigationMenu.Root className={styles.mainMenu} delayDuration={0}>
+        <NavigationMenu.List className={styles.menuList}>
+          {MAIN_MENU.map((menu) => (
+            <NavigationMenu.Item key={menu.title} className={styles.menuItem}>
+              <NavigationMenu.Trigger className={styles.menuLink}>
+                {menu.title}
+                <ChevronDown className={styles.menuIcon} aria-hidden="true" />
+              </NavigationMenu.Trigger>
+              <NavigationMenu.Content className={styles.subMenuWrapper}>
+                <div className={styles.subMenuInner}>
+                  <ul className={styles.subMenuList}>
+                    {menu.subItems.map((subItem) => (
+                      <li key={subItem}>
+                        <NavigationMenu.Link
+                          href="#"
+                          className={styles.subMenuLink}
+                        >
+                          {subItem}
+                        </NavigationMenu.Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+          ))}
+        </NavigationMenu.List>
+      </NavigationMenu.Root>
+
+      {/* Mobile Main Menu */}
+      {isMobileMenuOpen && (
+        <nav className={styles.mainMenuMobile} aria-label="모바일 메뉴">
+          <div className={styles.mobileMenuHeader}>
+            <button
+              type="button"
+              className={styles.mobileMenuCloseBtn}
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="메뉴 닫기"
+            >
+              <X />
+            </button>
+          </div>
+          <div className={styles.mobileMenuInner}>
+            <Accordion.Root type="multiple" className={styles.mobileMenuList}>
+              {MAIN_MENU.map((menu) => (
+                <Accordion.Item
+                  key={menu.title}
+                  value={menu.title}
+                  className={styles.mobileMenuItem}
+                >
+                  <Accordion.Trigger className={styles.mobileMenuLink}>
+                    {menu.title}
+                    <ChevronDown
+                      className={styles.mobileMenuIcon}
+                      aria-hidden="true"
+                    />
+                  </Accordion.Trigger>
+                  <Accordion.Content className={styles.mobileSubMenuList}>
+                    <ul>
+                      {menu.subItems.map((subItem) => (
+                        <li key={subItem}>
+                          <a href="#" className={styles.mobileSubMenuLink}>
+                            {subItem}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion.Root>
+
+            {/* Mobile Utility */}
+            <div className={styles.mobileUtility}>
+              {UTILITY_LINKS.map((link) => (
+                <button
+                  key={link.label}
+                  type="button"
+                  className={styles.mobileUtilityBtn}
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
             </div>
-          )}
-
-          {/* Branding & Actions Row */}
-          <div className={styles.headerBrandingRow}>
-            {/* Branding (로고 + 슬로건) */}
-            <div className={styles.headerBranding}>
-              <a href={logoHref} className={styles.headerLogo}>
-                <img src={logoSrc} alt={logoAlt} />
-              </a>
-              {slogan && <span className={styles.headerSlogan}>{slogan}</span>}
-            </div>
-
-            {/* Actions (검색, 햄버거 버튼 등) */}
-            <div className={styles.headerActions}>
-              {/* Mobile Menu Button */}
-              <button
-                ref={mobileMenuButtonRef}
-                type="button"
-                className={styles.mobileMenuButton}
-                onClick={toggleMobileMenu}
-                {...ariaAttrs.mobileMenuButton}
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-                <span className={styles.srOnly}>
-                  {ariaAttrs.mobileMenuButton['aria-label']}
-                </span>
-              </button>
-            </div>
           </div>
-
-          {/* Desktop Navigation */}
-          {menuItems.length > 0 && (
-            <nav className={styles.headerNav} {...ariaAttrs.desktopNav}>
-              <ul>
-                {menuItems.map((item, index) => (
-                  <li key={index}>
-                    <a href={item.href}>{item.label}</a>
-                    {item.submenu && item.submenu.length > 0 && (
-                      <ul className={styles.submenu}>
-                        {item.submenu.map((subitem, subindex) => (
-                          <li key={subindex}>
-                            <a href={subitem.href}>{subitem.label}</a>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
-        </div>
-
-        {/* Mobile Navigation */}
-        <div
-          ref={mobileNavRef}
-          className={cn(styles.mobileNav, {
-            [styles.isOpen]: isMobileMenuOpen,
-          })}
-          {...ariaAttrs.mobileNav}
-        >
-          <div
-            className={styles.mobileNavOverlay}
-            onClick={handleOverlayClick}
-          />
-          <div className={styles.mobileNavPanel} data-mobile-panel>
-            {/* Mobile Nav Header */}
-            <div className={styles.mobileNavHeader}>
-              <span className={styles.headerSlogan}>{slogan || logoAlt}</span>
-              <button
-                type="button"
-                className={styles.mobileNavClose}
-                onClick={closeMobileMenu}
-                aria-label="메뉴 닫기"
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </div>
-
-            {/* Mobile Nav Menu */}
-            <div className={styles.mobileNavMenu}>
-              <ul>
-                {menuItems.map((item, index) => (
-                  <li key={index}>
-                    <a href={item.href} onClick={closeMobileMenu}>
-                      {item.label}
-                    </a>
-                    {item.submenu && item.submenu.length > 0 && (
-                      <ul className={styles.submenu}>
-                        {item.submenu.map((subitem, subindex) => (
-                          <li key={subindex}>
-                            <a href={subitem.href} onClick={closeMobileMenu}>
-                              {subitem.label}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </header>
-    );
-  }
-);
-
-Header.displayName = 'Header';
+        </nav>
+      )}
+    </header>
+  );
+}

@@ -508,7 +508,7 @@ export default function BreadcrumbPage() {
 
       <PageNavigation
         prev={{ title: 'Border Radius', href: '/components/border-radius' }}
-        next={{ title: 'Breakpoints', href: '/components/breakpoints' }}
+        next={{ title: 'Button', href: '/components/button' }}
       />
     </>
   );

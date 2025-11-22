@@ -1,14 +1,14 @@
+// Docs content components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
-  List,
-  ListItem,
-  Code,
-  Body,
-  Card,
   PageNavigation,
-} from '@/components/hanui';
+  CodeBlock,
+} from '@/components/content';
+
+// UI components from @hanui/react
+import { Body, Card, Code, List, ListItem } from '@hanui/react';
 
 export default function IntroductionPage() {
   return (
@@ -19,8 +19,55 @@ export default function IntroductionPage() {
         description="HANUI는 Radix UI Primitives 기반의 KRDS(Korea Republic Design System) 컴포넌트 라이브러리입니다. 소스 코드 복사 방식으로 배포되어 완전한 커스터마이징이 가능합니다."
       />
 
+      {/* Quick Start */}
+      <Section>
+        <SectionHeading
+          level="h2"
+          id="quick-start"
+          title="30초 만에 시작하기"
+          description="CLI 한 줄로 HANUI 컴포넌트를 바로 사용할 수 있습니다."
+        />
+
+        <Card className="mt-6">
+          <Body className="font-semibold mb-4">1. 프로젝트 초기화</Body>
+          <CodeBlock
+            code="npx hanui init"
+            language="bash"
+            showLineNumbers={false}
+          />
+
+          <Body className="font-semibold mb-4 mt-6">
+            2. 원하는 컴포넌트 추가
+          </Body>
+          <CodeBlock
+            code="npx hanui add button card input"
+            language="bash"
+            showLineNumbers={false}
+          />
+
+          <Body className="font-semibold mb-4 mt-6">3. 바로 사용</Body>
+          <CodeBlock
+            code={`import { Button } from '@/components/hanui/button';
+
+export default function Page() {
+  return <Button variant="primary">시작하기</Button>;
+}`}
+            language="tsx"
+            showLineNumbers={false}
+          />
+        </Card>
+
+        <Card variant="info" className="mt-6">
+          <Body as="div">
+            <strong>새 프로젝트라면?</strong> <Code>npx create-hanui-app</Code>
+            으로 Next.js + Tailwind CSS + KRDS 프리셋이 모두 설정된 프로젝트를
+            생성할 수 있습니다.
+          </Body>
+        </Card>
+      </Section>
+
       {/* What is HANUI */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="what-is-hanui"
@@ -56,7 +103,7 @@ export default function IntroductionPage() {
       </Section>
 
       {/* Key Features */}
-      <Section level="h2">
+      <Section>
         <SectionHeading level="h2" id="key-features" title="주요 기능" />
 
         <Subsection level="h3">
@@ -155,7 +202,7 @@ export default function IntroductionPage() {
 
         <Subsection level="h3">
           <SectionHeading level="h3" title="Tailwind CSS">
-            <Body className="leading-relaxed">
+            <Body as="div" className="leading-relaxed">
               유틸리티 클래스 기반으로 컴포넌트를 쉽게 커스터마이징할 수
               있습니다. 프로젝트의 디자인 시스템에 맞게 자유롭게 스타일을 조정할
               수 있습니다. Radix UI의 <Code>data-[state]</Code> 속성과 함께
@@ -166,7 +213,7 @@ export default function IntroductionPage() {
       </Section>
 
       {/* Who should use HANUI */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="who-should-use"
@@ -199,7 +246,7 @@ export default function IntroductionPage() {
       </Section>
 
       {/* Browser Support */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="browser-support"
