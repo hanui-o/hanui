@@ -1,9 +1,15 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   Subsection,
   SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+
+// UI components - from @hanui/react
+import {
   Body,
   Card,
   Code,
@@ -13,8 +19,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
-} from '@/components/hanui';
+} from '@hanui/react';
 import { SideNavigation } from '@hanui/react';
 
 export default function SideNavigationPage() {
@@ -78,7 +83,7 @@ export default function SideNavigationPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="installation"
@@ -106,7 +111,7 @@ export default function SideNavigationPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -150,7 +155,7 @@ export default function SideNavigationPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="usage"
@@ -256,7 +261,7 @@ export default function Page() {
           </Section>
 
           {/* Structure */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="structure"
@@ -300,7 +305,7 @@ export default function Page() {
           </Section>
 
           {/* Styling */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="styling"
@@ -377,7 +382,7 @@ export default function Page() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -410,7 +415,7 @@ export default function Page() {
           </Section>
 
           {/* Accessibility */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="accessibility"
@@ -443,7 +448,7 @@ export default function Page() {
           </Section>
 
           {/* KRDS Standards */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="krds-standards"
@@ -484,7 +489,7 @@ export default function Page() {
 
         <TabsContent value="api">
           {/* Props */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="props"
@@ -551,7 +556,7 @@ export default function Page() {
           </Section>
 
           {/* Types */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="types"
@@ -607,7 +612,7 @@ export default function Page() {
           </Section>
 
           {/* State Management */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="state-management"
@@ -654,7 +659,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
           </Section>
 
           {/* CSS Modules Classes */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="css-modules"
@@ -730,7 +735,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
           </Section>
 
           {/* CSS Variables */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="css-variables"

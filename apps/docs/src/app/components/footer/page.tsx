@@ -1,9 +1,15 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   Subsection,
   SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+
+// UI components - from @hanui/react
+import {
   Body,
   Card,
   Code,
@@ -13,9 +19,8 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
-} from '@/components/hanui';
-import { Footer } from '@/components/hanui/footer';
+  Footer,
+} from '@hanui/react';
 
 export default function FooterPage() {
   return (
@@ -34,7 +39,7 @@ export default function FooterPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="installation"
@@ -61,7 +66,7 @@ export default function FooterPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -103,7 +108,7 @@ export default function FooterPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="usage"
@@ -119,7 +124,7 @@ export default function FooterPage() {
               </Body>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Footer } from '@/components/hanui/footer';
+                {`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -196,7 +201,7 @@ export function Footer({ className }: FooterProps) {
           </Section>
 
           {/* Structure */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="structure"
@@ -290,7 +295,7 @@ export function Footer({ className }: FooterProps) {
           </Section>
 
           {/* Styling */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="styling"
@@ -384,7 +389,7 @@ export function Footer({ className }: FooterProps) {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -422,7 +427,7 @@ export function Footer({ className }: FooterProps) {
           </Section>
 
           {/* Accessibility */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="accessibility"
@@ -458,7 +463,7 @@ export function Footer({ className }: FooterProps) {
           </Section>
 
           {/* KRDS Standards */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="krds-standards"
@@ -506,7 +511,7 @@ export function Footer({ className }: FooterProps) {
 
         <TabsContent value="api">
           {/* Props */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="props"
@@ -535,7 +540,7 @@ export function Footer({ className }: FooterProps) {
           </Section>
 
           {/* CSS Modules Classes */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="css-modules"
@@ -653,7 +658,7 @@ export function Footer({ className }: FooterProps) {
           </Section>
 
           {/* CSS Variables */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="css-variables"

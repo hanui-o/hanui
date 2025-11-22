@@ -1,9 +1,15 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   Subsection,
   SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+
+// UI components - from @hanui/react
+import {
   Body,
   Card,
   Code,
@@ -13,9 +19,8 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
-} from '@/components/hanui';
-import { Header } from '@/components/hanui/header';
+  Header,
+} from '@hanui/react';
 
 export default function HeaderPage() {
   return (
@@ -34,7 +39,7 @@ export default function HeaderPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="installation"
@@ -61,7 +66,7 @@ export default function HeaderPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -107,7 +112,7 @@ export default function HeaderPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="usage"
@@ -123,7 +128,7 @@ export default function HeaderPage() {
               </Body>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Header } from '@/components/hanui/header';
+                {`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -213,7 +218,7 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* Structure */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="structure"
@@ -381,7 +386,7 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* Styling */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="styling"
@@ -461,7 +466,7 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -498,7 +503,7 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* Accessibility */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="accessibility"
@@ -531,7 +536,7 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* KRDS Standards */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="krds-standards"
@@ -581,7 +586,7 @@ export function Header({ className }: HeaderProps) {
 
         <TabsContent value="api">
           {/* Props */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="props"
@@ -610,7 +615,7 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* State Management */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="state-management"
@@ -646,7 +651,7 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* CSS Modules Classes */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="css-modules"
@@ -794,7 +799,7 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* CSS Variables */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="css-variables"

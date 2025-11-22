@@ -1,9 +1,18 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { SimpleGrid, DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   List,
   ListItem,
   Code,
@@ -16,16 +25,12 @@ import {
   TableCell,
   Card,
   Stack,
-  SimpleGrid,
   Button,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function SimpleGridPage() {
   return (
@@ -45,7 +50,7 @@ export default function SimpleGridPage() {
         {/* 개요 탭 */}
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 SimpleGrid 컴포넌트를 설치합니다:
@@ -58,7 +63,7 @@ export default function SimpleGridPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -93,7 +98,7 @@ export default function SimpleGridPage() {
           </Section>
 
           {/* Preview */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <SimpleGrid columns={3} gap="md">
@@ -120,7 +125,7 @@ export default function SimpleGridPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
@@ -297,7 +302,7 @@ export default function SimpleGridPage() {
           </Section>
 
           {/* Examples */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="examples" title="사용 예시" />
 
             <Subsection level="h3">
@@ -384,7 +389,7 @@ export default function SimpleGridPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -447,7 +452,7 @@ export default function SimpleGridPage() {
           </Section>
 
           {/* Accessibility */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="accessibility" title="접근성" />
 
             <Card variant="info">
@@ -472,7 +477,7 @@ export default function SimpleGridPage() {
 
         {/* API 탭 */}
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

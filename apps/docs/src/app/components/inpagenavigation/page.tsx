@@ -1,23 +1,27 @@
 'use client';
 
 import { useState } from 'react';
+
+// Docs layout components
+import {
+  PageSection,
+  SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
+import { CodeBlock } from '@/components/content/CodeBlock';
+
+// UI components - from @hanui/react
 import {
   InPageNavigation,
   InPageNavigationProps,
   InPageNavLink,
   Body,
-} from '@hanui/react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageSection } from '@/components/content/PageSection';
-import { SectionHeading } from '@/components/hanui/section-header';
-import {
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@/components/hanui/tabs';
-import { PageNavigation } from '@/components/hanui';
+} from '@hanui/react';
 
 export default function InPageNavigationPage() {
   const [activeExample, setActiveExample] = useState('basic');

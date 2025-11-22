@@ -1,10 +1,19 @@
 'use client';
 
 import { SideNavigation } from '@hanui/react';
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   Subsection,
   SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Body,
   Card,
   Code,
@@ -20,9 +29,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function SideNavigationPage() {
   return (

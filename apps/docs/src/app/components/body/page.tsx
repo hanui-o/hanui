@@ -1,9 +1,18 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Body,
   Code,
   Card,
@@ -20,9 +29,8 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-} from '@/components/hanui';
-import { DoCard, DontCard } from '@/components/hanui';
+} from '@hanui/react';
+// Docs helper components (moved above)
 
 export default function BodyPage() {
   return (
@@ -41,7 +49,7 @@ export default function BodyPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="installation"
@@ -55,7 +63,7 @@ export default function BodyPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -90,7 +98,7 @@ export default function BodyPage() {
           </Section>
 
           {/* Preview */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="preview"
@@ -109,7 +117,7 @@ export default function BodyPage() {
           </Section>
 
           {/* Sizes */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="sizes"
@@ -181,7 +189,7 @@ export default function BodyPage() {
           </Section>
 
           {/* Weights */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="weights"
@@ -216,7 +224,7 @@ export default function BodyPage() {
           </Section>
 
           {/* Examples */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="examples"
@@ -309,7 +317,7 @@ export default function BodyPage() {
           </Section>
 
           {/* Guidelines */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="guidelines"
@@ -336,7 +344,7 @@ export default function BodyPage() {
           </Section>
 
           {/* KRDS Compliance */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="krds"
@@ -362,7 +370,7 @@ export default function BodyPage() {
 
         <TabsContent value="api">
           {/* API Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

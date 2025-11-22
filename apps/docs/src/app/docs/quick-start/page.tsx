@@ -1,17 +1,24 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// UI components - from @hanui/react
+import {
   List,
   ListItem,
   Code,
   Body,
   Card,
   Link,
-  PageNavigation,
-} from '@/components/hanui';
+  Button,
+  Modal,
+} from '@hanui/react';
 
 export default function QuickStartPage() {
   return (
@@ -23,7 +30,7 @@ export default function QuickStartPage() {
       />
 
       {/* Getting Started */}
-      <Section level="h2">
+      <Section>
         <SectionHeading level="h2" id="getting-started" title="시작하기">
           <Body className="leading-relaxed">
             HANUI는 <strong>소스 코드 복사 방식</strong>으로 배포됩니다. CLI
@@ -87,7 +94,7 @@ export default function QuickStartPage() {
           />
 
           <Code variant="block" language="typescript" showLineNumbers={false}>
-            {`import { Button } from '@/components/hanui/button';
+            {`// Button already imported from @hanui/react above
 
 export default function MyPage() {
   return (
@@ -125,7 +132,7 @@ export default function MyPage() {
       </Section>
 
       {/* Common Patterns */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="common-patterns"
@@ -149,7 +156,7 @@ export default function MyPage() {
 
           <Code variant="block" language="tsx" showLineNumbers={false}>
             {`import { Input } from '@/components/hanui/input';
-import { Button } from '@/components/hanui/button';
+// Button already imported from @hanui/react above
 
 function LoginForm() {
   return (
@@ -200,7 +207,7 @@ function LoginForm() {
 
           <Code variant="block" language="tsx" showLineNumbers={false}>
             {`import { Container } from '@/components/hanui/container';
-import { Card } from '@/components/hanui/card';
+// Card already imported from @hanui/react above
 
 function Dashboard() {
   return (
@@ -244,8 +251,8 @@ function Dashboard() {
 
           <Code variant="block" language="tsx" showLineNumbers={false}>
             {`import { useState } from 'react';
-import { Modal } from '@/components/hanui/modal';
-import { Button } from '@/components/hanui/button';
+// Modal already imported from @hanui/react above
+// Button already imported from @hanui/react above
 
 function ConfirmDialog() {
   const [isOpen, setIsOpen] = useState(false);
@@ -290,7 +297,7 @@ function ConfirmDialog() {
       </Section>
 
       {/* TypeScript Support */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="typescript-support"
@@ -329,7 +336,7 @@ function CustomButton(props: ButtonProps) {
       </Section>
 
       {/* Styling Customization */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="styling-customization"
@@ -344,7 +351,7 @@ function CustomButton(props: ButtonProps) {
           />
 
           <Code variant="block" language="tsx" showLineNumbers={false}>
-            {`import { Button } from '@/components/hanui/button';
+            {`// Button already imported from @hanui/react above
 
 <Button className="w-full rounded-full shadow-lg">
   전체 너비 둥근 버튼
@@ -392,7 +399,7 @@ const buttonVariants = cva(
       </Section>
 
       {/* Accessibility */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="accessibility"
@@ -434,7 +441,7 @@ const buttonVariants = cva(
       </Section>
 
       {/* Best Practices */}
-      <Section level="h2">
+      <Section>
         <SectionHeading level="h2" id="best-practices" title="모범 사례" />
 
         <Subsection level="h3">

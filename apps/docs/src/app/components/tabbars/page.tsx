@@ -1,17 +1,24 @@
 'use client';
 
-import { TabBars, TabBarItem, Body } from '@hanui/react';
+// Docs layout components
+import {
+  PageSection,
+  SectionHeading,
+  PageNavigation,
+} from '@/components/content';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageSection } from '@/components/content/PageSection';
-import { SectionHeading } from '@/components/hanui/section-header';
+
+// UI components - from @hanui/react
 import {
+  TabBars,
+  TabBarItem,
+  Body,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@/components/hanui/tabs';
-import { PageNavigation } from '@/components/hanui';
+} from '@hanui/react';
 
 // Simple icon components for example
 const HomeIcon = () => (

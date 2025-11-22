@@ -1,10 +1,12 @@
 'use client';
 
 import { Body } from '@hanui/react';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageSection } from '@/components/content/PageSection';
-import { SectionHeading } from '@/components/hanui/section-header';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
+import {
+  CodeBlock,
+  PageSection,
+  SectionHeading,
+  ComponentPreview,
+} from '@/components/content';
 
 export default function BasicLayoutPage() {
   const layoutCode = `import {

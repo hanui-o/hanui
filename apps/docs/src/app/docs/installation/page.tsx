@@ -1,20 +1,26 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// UI components - from @hanui/react
+import {
   List,
   ListItem,
   Code,
   Body,
   Card,
-  PageNavigation,
+  Button,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function InstallationPage() {
   return (
@@ -26,7 +32,7 @@ export default function InstallationPage() {
       />
 
       {/* Installation Methods */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="installation-methods"
@@ -245,7 +251,7 @@ export default config;`}
       </Section>
 
       {/* Usage Example */}
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="usage"
@@ -256,8 +262,8 @@ export default config;`}
         <Code variant="block" language="tsx" showLineNumbers={false}>
           {`'use client';
 
-import { Button } from '@/components/hanui/button';
-import { Card } from '@/components/hanui/card';
+// Button already imported from @hanui/react above
+// Card already imported from @hanui/react above
 
 export default function Page() {
   return (
@@ -290,7 +296,7 @@ export default function Page() {
       </Section>
 
       {/* Troubleshooting */}
-      <Section level="h2">
+      <Section>
         <SectionHeading level="h2" id="troubleshooting" title="문제 해결" />
 
         <Subsection level="h3">

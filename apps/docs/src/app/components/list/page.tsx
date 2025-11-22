@@ -1,7 +1,16 @@
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   List,
   ListItem,
   Code,
@@ -18,10 +27,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function ListPage() {
   return (
@@ -41,7 +47,7 @@ export default function ListPage() {
         {/* 개요 탭 */}
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 List 컴포넌트를 설치합니다:
@@ -54,7 +60,7 @@ export default function ListPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -89,7 +95,7 @@ export default function ListPage() {
           </Section>
 
           {/* Preview */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <List>
@@ -101,7 +107,7 @@ export default function ListPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
@@ -349,7 +355,7 @@ export default function ListPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -415,7 +421,7 @@ export default function ListPage() {
 
         {/* API 탭 */}
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

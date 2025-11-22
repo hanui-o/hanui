@@ -1,10 +1,19 @@
 'use client';
 
+// Docs layout components
 import {
-  Input as InputComponent,
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
+  Input as InputComponent,
   Body,
   Stack,
   Card,
@@ -21,10 +30,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 // Example icons
 const SearchIcon = () => (
@@ -89,7 +95,7 @@ export default function InputPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Input 컴포넌트를 설치합니다:
@@ -101,7 +107,7 @@ export default function InputPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -131,7 +137,7 @@ export default function InputPage() {
           </Section>
 
           {/* Preview */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="preview" title="미리보기" />
             <Card>
               <Stack gap="md" className="max-w-md">
@@ -149,7 +155,7 @@ export default function InputPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             {/* Sizes */}
@@ -339,7 +345,7 @@ export default function InputPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="best-practices" title="모범 사례" />
             <Stack gap="md">
               <DoCard title="Input을 사용하기 적합한 경우">
@@ -392,7 +398,7 @@ export default function InputPage() {
           </Section>
 
           {/* Accessibility */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="accessibility"
@@ -427,7 +433,7 @@ export default function InputPage() {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="api-reference"

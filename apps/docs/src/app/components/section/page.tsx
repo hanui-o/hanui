@@ -1,7 +1,16 @@
+// Docs layout components
 import {
-  Section as SectionComponent,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
+  Section as SectionComponent,
   List,
   ListItem,
   Code,
@@ -17,10 +26,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function SectionPage() {
   return (

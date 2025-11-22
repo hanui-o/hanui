@@ -2,10 +2,19 @@
 
 import { FileUpload, type UploadedFile } from '@hanui/react';
 import { useState } from 'react';
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   Subsection,
   SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Body,
   Stack,
   Card,
@@ -22,10 +31,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function FileUploadPage() {
   const [files, setFiles] = useState<UploadedFile[]>([]);

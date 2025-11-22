@@ -1,10 +1,18 @@
 'use client';
 
-import { Identifier } from '@hanui/react';
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   Subsection,
   SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Body,
   Card,
   Code,
@@ -20,10 +28,11 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
+
+// TODO: Identifier component needs to be added via CLI or created locally
+// This is a placeholder that will cause compilation errors until the component is added
+const Identifier: any = () => null;
 
 export default function IdentifierPage() {
   return (

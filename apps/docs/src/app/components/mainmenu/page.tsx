@@ -1,10 +1,19 @@
 'use client';
 
 import { MainMenu } from '@hanui/react';
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   Subsection,
   SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Body,
   Card,
   Code,
@@ -20,10 +29,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function MainMenuPage() {
   return (

@@ -2,10 +2,19 @@
 
 import { Pagination } from '@hanui/react';
 import { useState } from 'react';
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   Subsection,
   SectionHeading,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Body,
   Card,
   Code,
@@ -21,10 +30,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function PaginationPage() {
   const [currentPage, setCurrentPage] = useState(1);

@@ -1,15 +1,23 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { Wrap } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Code,
   Body,
   Card,
   Stack,
   Link,
-  PageNavigation,
   List,
   ListItem,
   Tabs,
@@ -22,8 +30,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  Wrap,
-} from '@/components/hanui';
+} from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 export default function BorderRadiusPage() {
@@ -43,7 +50,7 @@ export default function BorderRadiusPage() {
 
         <TabsContent value="overview">
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -74,7 +81,7 @@ export default function BorderRadiusPage() {
           </Section>
 
           {/* Standard Style */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="standard-style"
@@ -198,7 +205,7 @@ export default function BorderRadiusPage() {
           </Section>
 
           {/* Calculation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="calculation"
@@ -304,7 +311,7 @@ export default function BorderRadiusPage() {
           </Section>
 
           {/* Extended Style */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="extended-style"
@@ -361,7 +368,7 @@ export default function BorderRadiusPage() {
           </Section>
 
           {/* Expression Method */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="expression"
@@ -426,7 +433,7 @@ export default function BorderRadiusPage() {
           </Section>
 
           {/* Usage Guide */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="usage"
@@ -509,7 +516,7 @@ export default function BorderRadiusPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -541,7 +548,7 @@ export default function BorderRadiusPage() {
           </Section>
 
           {/* Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="reference"
@@ -590,7 +597,7 @@ export default function BorderRadiusPage() {
 
         <TabsContent value="api">
           {/* API Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

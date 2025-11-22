@@ -1,8 +1,7 @@
 'use client';
 
 import { Heading, Body, Container } from '@hanui/react';
-import { SectionHeading } from '@/components/hanui/section-header';
-import { PageSection } from '@/components/content/PageSection';
+import { PageSection, SectionHeading } from '@/components/content';
 import Link from 'next/link';
 
 export default function ShowcasePage() {

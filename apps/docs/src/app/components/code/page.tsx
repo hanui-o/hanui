@@ -1,7 +1,13 @@
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// UI components - from @hanui/react
+import {
   List,
   ListItem,
   Code,
@@ -18,8 +24,7 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function CodePage() {
   return (
@@ -38,7 +43,7 @@ export default function CodePage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="installation"
@@ -52,7 +57,7 @@ export default function CodePage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -83,7 +88,7 @@ export default function CodePage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
@@ -94,8 +99,11 @@ export default function CodePage() {
               />
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Code   PageNavigation,
-} from '@/components/hanui';
+                {`// UI components - from @hanui/react
+import {
+  Code   PageNavigation,
+  
+} from '@hanui/react';
 
 <Body>
   파일을 저장하려면 <Code>Ctrl+S</Code>를 누르세요.
@@ -224,7 +232,7 @@ export default function CodePage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -253,7 +261,7 @@ export default function CodePage() {
 
         <TabsContent value="api">
           {/* API Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

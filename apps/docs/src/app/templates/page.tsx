@@ -1,9 +1,7 @@
 'use client';
 
 import { Body } from '@hanui/react';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageSection } from '@/components/content/PageSection';
-import { SectionHeading } from '@/components/hanui/section-header';
+import { CodeBlock, PageSection, SectionHeading } from '@/components/content';
 import Link from 'next/link';
 
 export default function TemplatesPage() {

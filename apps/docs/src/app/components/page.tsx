@@ -1,5 +1,12 @@
 import Link from 'next/link';
-import { Section, SectionHeading, Body, Wrap } from '@/components/hanui';
+// Docs layout components
+import { PageSection as Section, SectionHeading } from '@/components/content';
+
+// Docs helper components
+import { Wrap } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import { Body } from '@hanui/react';
 
 // KRDS 분류 체계에 따른 컴포넌트 정리
 
@@ -298,7 +305,7 @@ function ComponentSection({
   if (components.length === 0) return null;
 
   return (
-    <Section level="h2">
+    <Section>
       <SectionHeading level="h2" id={id} title={title}>
         {description && (
           <Body className="text-krds-gray-70">{description}</Body>
@@ -359,7 +366,7 @@ export default function ComponentsPage() {
         id="identity"
       />
 
-      <Section level="h2">
+      <Section>
         <SectionHeading
           level="h2"
           id="navigation"

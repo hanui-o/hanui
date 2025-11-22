@@ -1,9 +1,18 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Stack as StackComponent,
   VStack,
   HStack,
@@ -22,10 +31,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function StackPage() {
   return (
@@ -44,7 +50,7 @@ export default function StackPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Stack 컴포넌트를 설치합니다:
@@ -57,7 +63,7 @@ export default function StackPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -89,7 +95,7 @@ export default function StackPage() {
           </Section>
 
           {/* Preview */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <StackComponent gap="md">
@@ -107,7 +113,7 @@ export default function StackPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
@@ -346,7 +352,7 @@ export default function StackPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -405,7 +411,7 @@ export default function StackPage() {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

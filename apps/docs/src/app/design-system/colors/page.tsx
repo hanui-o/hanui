@@ -1,9 +1,18 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { Wrap } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   List,
   ListItem,
   Code,
@@ -11,8 +20,6 @@ import {
   Card,
   Link,
   Stack,
-  Wrap,
-  PageNavigation,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -23,7 +30,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from '@/components/hanui';
+} from '@hanui/react';
 import { CircleX, AlertTriangle, CheckCircle, Info } from 'lucide-react';
 
 export default function ColorsPage() {
@@ -42,7 +49,7 @@ export default function ColorsPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          <Section level="h2">
+          <Section>
             <Subsection level="h3">
               <SectionHeading level="h3" title="빠른 요약">
                 <Body>
@@ -71,7 +78,7 @@ export default function ColorsPage() {
           </Section>
 
           {/* Overview */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="overview" title="개요">
               <Body>
                 HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind
@@ -91,7 +98,7 @@ export default function ColorsPage() {
           </Section>
 
           {/* KRDS Color System Integration */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="krds-integration"
@@ -272,7 +279,7 @@ export default function ColorsPage() {
           </Section>
 
           {/* Colors */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="colors"
@@ -503,7 +510,7 @@ export default function ColorsPage() {
           </Section>
 
           {/* Semantic Color Tokens */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="semantic-colors"
@@ -740,7 +747,7 @@ export default function ColorsPage() {
           </Section>
 
           {/* Dark Mode */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="dark-mode" title="다크 모드">
               <Body>
                 HANUI는 CSS 변수를 활용하여 다크 모드를 자동으로 지원합니다.{' '}
@@ -965,7 +972,7 @@ function App() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="best-practices" title="모범 사례" />
 
             <Card variant="outlined">
@@ -985,7 +992,7 @@ function App() {
           </Section>
 
           {/* Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="reference" title="참고 자료" />
 
             <Link
@@ -1000,7 +1007,7 @@ function App() {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="api-reference"

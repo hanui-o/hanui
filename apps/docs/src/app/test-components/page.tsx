@@ -1,32 +1,30 @@
 'use client';
 
 import { useState } from 'react';
+
+// UI components - from @hanui/react
 import {
   Modal,
   ModalTitle,
   ModalBody,
   ModalFooter,
   ModalCloseButton,
-} from '@/components/hanui/modal';
-import { Button } from '@/components/hanui/button';
-import { Input } from '@/components/hanui/input';
-import { Select } from '@/components/hanui/select';
-import {
+  Button,
+  Input,
+  Select,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from '@/components/hanui/tabs';
-import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from '@/components/hanui/accordion';
-import { Heading } from '@/components/hanui/heading';
-import { Body } from '@/components/hanui/body';
-import { Stack } from '@/components/hanui/stack';
-import { Container } from '@/components/hanui/container';
+  Heading,
+  Body,
+  Stack,
+  Container,
+} from '@hanui/react';
 
 export default function TestComponentsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);

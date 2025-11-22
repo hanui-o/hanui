@@ -1,6 +1,5 @@
 import { Stack, Heading, Body } from '@hanui/react';
-import { PageSection } from '@/components/content/PageSection';
-import { SectionHeading } from '@/components/hanui/section-header';
+import { PageSection, SectionHeading } from '@/components/content';
 
 export default function CommunityPage() {
   return (

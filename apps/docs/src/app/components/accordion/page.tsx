@@ -1,7 +1,16 @@
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   List,
   ListItem,
   Code,
@@ -18,14 +27,11 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function AccordionPage() {
   return (
@@ -45,7 +51,7 @@ export default function AccordionPage() {
         {/* 개요 탭 */}
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Accordion 컴포넌트를 설치합니다:
@@ -58,7 +64,7 @@ export default function AccordionPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -93,7 +99,7 @@ export default function AccordionPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
@@ -340,7 +346,7 @@ export default function AccordionPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -436,7 +442,7 @@ export default function AccordionPage() {
 
         {/* API 탭 */}
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

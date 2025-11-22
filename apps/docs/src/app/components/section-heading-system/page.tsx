@@ -1,9 +1,16 @@
+// Docs layout components
 import {
-  Section as SectionComponent,
+  PageSection as SectionComponent,
   SectionHeading as SectionHeadingComponent,
   Subsection as SubsectionComponent,
-  Item,
-  SubItem,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Body,
   Stack,
   Card,
@@ -20,10 +27,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function SectionHeadingSystemPage() {
   return (
@@ -126,7 +130,7 @@ export default function SectionHeadingSystemPage() {
               </SectionHeadingComponent>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Section level="h2">
+                {`<Section>
   <SectionHeading level="h2" title="섹션 제목" />
   {/* 콘텐츠 */}
 </Section>`}
@@ -181,7 +185,7 @@ export default function SectionHeadingSystemPage() {
               </SectionHeadingComponent>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Section level="h2">
+                {`<Section>
   <SectionHeading
     level="h2"
     title="소개"
@@ -231,7 +235,7 @@ export default function SectionHeadingSystemPage() {
 />
 
 {/* 첫 번째 주요 섹션 (h2) */}
-<Section level="h2">
+<Section>
   <SectionHeading level="h2" title="주요 기능" />
 
   <Subsection level="h3">
@@ -255,7 +259,7 @@ export default function SectionHeadingSystemPage() {
 </Section>
 
 {/* 두 번째 주요 섹션 (h2) */}
-<Section level="h2">
+<Section>
   <SectionHeading level="h2" title="설치 방법" />
   <p>본문...</p>
 </Section>`}

@@ -1,9 +1,18 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   List,
   ListItem,
   Code,
@@ -21,9 +30,8 @@ import {
   TabsTrigger,
   TabsContent,
   Link,
-  PageNavigation,
-} from '@/components/hanui';
-import { DoCard, DontCard } from '@/components/hanui';
+} from '@hanui/react';
+// Docs helper components (moved above)
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 export default function BreadcrumbPage() {
@@ -43,7 +51,7 @@ export default function BreadcrumbPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="installation"
@@ -57,7 +65,7 @@ export default function BreadcrumbPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -88,7 +96,7 @@ export default function BreadcrumbPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
@@ -203,7 +211,7 @@ export default function BreadcrumbPage() {
           </Section>
 
           {/* Guidelines */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="guidelines"
@@ -239,7 +247,7 @@ export default function BreadcrumbPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -271,7 +279,7 @@ export default function BreadcrumbPage() {
           </Section>
 
           {/* Accessibility */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="accessibility" title="접근성" />
 
             <Card variant="info">
@@ -298,7 +306,7 @@ export default function BreadcrumbPage() {
           </Section>
 
           {/* Examples */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="examples" title="다양한 예시" />
 
             <Subsection level="h3">
@@ -392,7 +400,7 @@ export default function BreadcrumbPage() {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

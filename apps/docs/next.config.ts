@@ -14,9 +14,11 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['@hanui/react'],
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  experimental: {
-    optimizePackageImports: ['@hanui/react'],
-  },
+  // NOTE: optimizePackageImports disabled - it incorrectly tries to bundle
+  // content components (PageSection, SectionHeading) with @hanui/react
+  // experimental: {
+  //   optimizePackageImports: ['@hanui/react'],
+  // },
 };
 
 const withMDX = createMDX({

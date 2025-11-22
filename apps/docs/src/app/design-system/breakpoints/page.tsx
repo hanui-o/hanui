@@ -1,14 +1,19 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// UI components - from @hanui/react
+import {
   Code,
   Body,
   Card,
   Link,
-  PageNavigation,
   List,
   ListItem,
   Tabs,
@@ -21,7 +26,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from '@/components/hanui';
+} from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 export default function BreakpointsPage() {
@@ -41,7 +46,7 @@ export default function BreakpointsPage() {
 
         <TabsContent value="overview">
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -72,7 +77,7 @@ export default function BreakpointsPage() {
           </Section>
 
           {/* Breakpoint Scale */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="breakpoint-scale"
@@ -257,7 +262,7 @@ export default function BreakpointsPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="usage"
@@ -343,7 +348,7 @@ export default function BreakpointsPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -375,7 +380,7 @@ export default function BreakpointsPage() {
           </Section>
 
           {/* Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="reference"
@@ -400,7 +405,7 @@ export default function BreakpointsPage() {
 
         <TabsContent value="api">
           {/* API Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

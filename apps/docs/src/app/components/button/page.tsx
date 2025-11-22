@@ -1,21 +1,27 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
   Button,
   Stack,
   Body,
   Code,
-  DoCard,
-  DontCard,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-  PageNavigation,
-} from '@/components/hanui';
+} from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 export default function ButtonPage() {
@@ -35,7 +41,7 @@ export default function ButtonPage() {
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
-          <Section level="h2">
+          <Section>
             <ComponentPreview>
               <div className="flex items-center gap-4">
                 <Button variant="primary">Primary Button</Button>
@@ -45,7 +51,7 @@ export default function ButtonPage() {
           </Section>
 
           {/* Overview */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="overview" title="개요">
               <Body className="leading-relaxed">
                 버튼은 사용자가 서비스를 이용하는 과정에서 어떤 행동이 중요한지
@@ -56,7 +62,7 @@ export default function ButtonPage() {
             </SectionHeading>
           </Section>
 
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="installation"
@@ -68,7 +74,7 @@ export default function ButtonPage() {
             </Code>
           </Section>
 
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
               {`import { Button } from '@/components/hanui/button'
@@ -78,7 +84,7 @@ export default function ButtonPage() {
           </Section>
 
           {/* 가이드라인 섹션 */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="guidelines"
@@ -235,7 +241,7 @@ export default function ButtonPage() {
           </Section>
 
           {/* 예제 섹션 */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
@@ -392,7 +398,7 @@ export default function ButtonPage() {
 
         {/* API 탭 */}
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">

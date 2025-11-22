@@ -1,14 +1,19 @@
 'use client';
 
+// Docs layout components
 import {
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// UI components - from @hanui/react
+import {
   Code,
   Card,
   Stack,
   Link,
-  PageNavigation,
   List,
   ListItem,
   Tabs,
@@ -21,7 +26,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function TypographyPage() {
   return (
@@ -40,7 +45,7 @@ export default function TypographyPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="installation"
@@ -56,7 +61,7 @@ npx @hanui/cli init`}
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -87,7 +92,7 @@ npx @hanui/cli init`}
           </Section>
 
           {/* Heading Scale */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="heading-scale"
@@ -128,7 +133,7 @@ npx @hanui/cli init`}
           </Section>
 
           {/* Body Text */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="body-text"
@@ -165,7 +170,7 @@ npx @hanui/cli init`}
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="usage"
@@ -226,7 +231,7 @@ npx @hanui/cli init`}
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="best-practices"
@@ -256,7 +261,7 @@ npx @hanui/cli init`}
           </Section>
 
           {/* Accessibility */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="accessibility"
@@ -285,7 +290,7 @@ npx @hanui/cli init`}
           </Section>
 
           {/* Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="reference"
@@ -308,7 +313,7 @@ npx @hanui/cli init`}
 
         <TabsContent value="api">
           {/* API Reference */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">

@@ -1,9 +1,18 @@
 'use client';
 
+// Docs layout components
+import {
+  PageNavigation,
+  PageSection,
+  SectionHeading,
+} from '@/components/content';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
+import { CodeBlock } from '@/components/content/CodeBlock';
+
+// UI components - from @hanui/react
 import {
   Stack,
   HStack,
-  PageNavigation,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -17,12 +26,11 @@ import {
   Code,
   Body,
   Card,
-} from '@/components/hanui';
-import { Section, Button, Input, Heading } from '@hanui/react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
-import { PageSection } from '@/components/content/PageSection';
-import { SectionHeading } from '@/components/hanui/section-header';
+  Section,
+  Button,
+  Input,
+  Heading,
+} from '@hanui/react';
 
 export default function SpacingPage() {
   return (
@@ -107,7 +115,7 @@ export default function SpacingPage() {
                   </Stack>
                 </ComponentPreview>
                 <CodeBlock
-                  code={`import { SectionHeading } from '@/components/hanui/section-header';
+                  code={`
 
 // 설명과 함께 사용
 <SectionHeading

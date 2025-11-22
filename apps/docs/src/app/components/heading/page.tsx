@@ -1,10 +1,19 @@
 'use client';
 
+// Docs layout components
 import {
-  Heading as HeadingComponent,
-  Section,
+  PageSection as Section,
   SectionHeading,
   Subsection,
+  PageNavigation,
+} from '@/components/content';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
+import {
+  Heading as HeadingComponent,
   Body,
   Stack,
   Card,
@@ -21,10 +30,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  PageNavigation,
-  DoCard,
-  DontCard,
-} from '@/components/hanui';
+} from '@hanui/react';
 
 export default function HeadingPage() {
   return (
@@ -43,7 +49,7 @@ export default function HeadingPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Heading 컴포넌트를 설치합니다:
@@ -55,7 +61,7 @@ export default function HeadingPage() {
           </Section>
 
           {/* What is it */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="what-is-it"
@@ -85,7 +91,7 @@ export default function HeadingPage() {
           </Section>
 
           {/* Preview */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="preview" title="미리보기" />
             <Card>
               <Stack gap="md">
@@ -106,7 +112,7 @@ export default function HeadingPage() {
           </Section>
 
           {/* Usage */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="usage" title="사용 방법" />
 
             {/* Levels */}
@@ -240,7 +246,7 @@ export default function HeadingPage() {
           </Section>
 
           {/* Best Practices */}
-          <Section level="h2">
+          <Section>
             <SectionHeading level="h2" id="best-practices" title="모범 사례" />
             <Stack gap="md">
               <DoCard title="Heading을 사용하기 적합한 경우">
@@ -275,7 +281,7 @@ export default function HeadingPage() {
           </Section>
 
           {/* Accessibility */}
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="accessibility"
@@ -310,7 +316,7 @@ export default function HeadingPage() {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section level="h2">
+          <Section>
             <SectionHeading
               level="h2"
               id="api-reference"
