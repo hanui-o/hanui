@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
   // experimental: {
   //   optimizePackageImports: ['@hanui/react'],
   // },
+  webpack: (config) => {
+    // Enable CSS imports from workspace packages
+    config.resolve.extensionAlias = {
+      '.js': ['.ts', '.tsx', '.js', '.jsx'],
+      '.css': ['.css'],
+    };
+    return config;
+  },
 };
 
 const withMDX = createMDX({

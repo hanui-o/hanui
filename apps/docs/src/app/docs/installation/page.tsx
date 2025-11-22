@@ -103,6 +103,25 @@ npx hanui init`}
                 </List>
               </Card>
 
+              <Body className="font-semibold mb-4 mt-6">
+                2-1. CSS 변수 Import (권장)
+              </Body>
+              <Body className="mb-4 text-krds-gray-70">
+                KRDS 디자인 시스템의 모든 CSS 변수를 사용하려면 globals.css에
+                추가하세요:
+              </Body>
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`/* app/globals.css */
+@import '@hanui/react/variables.css';`}
+              </Code>
+
+              <Card variant="info" className="mt-6">
+                <Body className="mb-3">
+                  variables.css는 모든 KRDS 표준 값을 제공하며, 조직의 브랜드
+                  색상으로 쉽게 커스터마이징할 수 있습니다.
+                </Body>
+              </Card>
+
               <Body className="font-semibold mb-4 mt-6">3. 컴포넌트 추가</Body>
               <Body className="mb-4 text-krds-gray-70">
                 필요한 컴포넌트를 프로젝트에 추가합니다.
@@ -237,7 +256,61 @@ export default config;`}
                 </List>
               </Card>
 
-              <Body className="font-semibold mb-4 mt-6">4. 컴포넌트 추가</Body>
+              <Body className="font-semibold mb-4 mt-6">
+                4. CSS 변수 Import
+              </Body>
+              <Body className="mb-4 text-krds-gray-70">
+                KRDS 디자인 시스템의 모든 CSS 변수를 사용하려면 globals.css 또는
+                root layout에 variables.css를 import하세요:
+              </Body>
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`/* app/globals.css 또는 styles/globals.css */
+@import '@hanui/react/variables.css';`}
+              </Code>
+
+              <Card variant="info" className="mt-6">
+                <Body className="mb-3">
+                  variables.css에는 다음이 포함되어 있습니다:
+                </Body>
+                <List className="text-krds-gray-90">
+                  <ListItem>색상 시스템 (Primary, Gray, Semantic)</ListItem>
+                  <ListItem>간격 시스템 (Gap, Padding, Container)</ListItem>
+                  <ListItem>
+                    타이포그래피 (Font Size, Weight, Line Height)
+                  </ListItem>
+                  <ListItem>Border & Radius</ListItem>
+                  <ListItem>Shadow, Z-Index, Transition</ListItem>
+                  <ListItem>다크 모드 자동 지원</ListItem>
+                </List>
+              </Card>
+
+              <Body className="font-semibold mb-4 mt-6">
+                5. 조직 브랜드 색상 커스터마이징 (선택사항)
+              </Body>
+              <Body className="mb-4 text-krds-gray-70">
+                조직의 브랜드 색상을 적용하려면 별도 파일에서 Primary 색상을
+                오버라이드하세요:
+              </Body>
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`/* styles/theme.css */
+:root {
+  /* 조직의 브랜드 컬러로 변경 */
+  --krds-color-primary-500: #0066cc;
+  --krds-color-primary-600: #0052a3;
+  /* 필요한 색상만 오버라이드 */
+}`}
+              </Code>
+
+              <Body className="mb-4 text-krds-gray-70 mt-4">
+                그리고 globals.css에서 import:
+              </Body>
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`/* app/globals.css */
+@import '@hanui/react/variables.css';
+@import './theme.css'; /* 커스텀 테마 */`}
+              </Code>
+
+              <Body className="font-semibold mb-4 mt-6">6. 컴포넌트 추가</Body>
               <Body className="mb-4 text-krds-gray-70">
                 필요한 컴포넌트를 선택하여 프로젝트에 추가합니다. 필요한
                 의존성(clsx, tailwind-merge 등)은 자동으로 설치됩니다:
