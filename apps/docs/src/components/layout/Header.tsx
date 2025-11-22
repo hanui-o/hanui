@@ -190,6 +190,7 @@ export function Header() {
     },
     { label: 'Components', href: '/components', key: 'components' },
     { label: 'Templates', href: '/templates', key: 'templates' },
+    { label: 'Test', href: '/test', key: 'test' },
   ];
 
   return (
