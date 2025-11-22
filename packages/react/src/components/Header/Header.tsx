@@ -69,7 +69,7 @@ export function Header({ className }: HeaderProps) {
     <header className={`${styles.header} ${className || ''}`}>
       {/* Header Utility */}
       <div className={styles.headerUtility}>
-        <div className={styles.inner}>
+        <Container className={styles.inner}>
           <ul className={styles.utilityList}>
             {UTILITY_LINKS.map((link) => (
               <li key={link.label}>
@@ -122,12 +122,12 @@ export function Header({ className }: HeaderProps) {
               </DropdownMenu.Root>
             </li>
           </ul>
-        </div>
+        </Container>
       </div>
 
       {/* Header Branding */}
       <div className={styles.headerBranding}>
-        <Container maxWidth="xl" className={styles.inner}>
+        <Container className={styles.inner}>
           <div className={styles.branding}>
             <a
               href="/"
