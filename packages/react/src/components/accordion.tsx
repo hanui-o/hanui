@@ -16,7 +16,7 @@ const accordionVariants = cva(['w-full'].join(' '), {
   variants: {
     variant: {
       default: 'space-y-2',
-      line: 'divide-y divide-gray-200',
+      line: 'divide-y divide-krds-gray-20',
     },
   },
   defaultVariants: {
@@ -25,7 +25,7 @@ const accordionVariants = cva(['w-full'].join(' '), {
 });
 
 const accordionItemVariants = cva(
-  ['border', 'border-gray-200', 'rounded-lg'].join(' '),
+  ['border', 'border-krds-gray-20', 'rounded-lg'].join(' '),
   {
     variants: {
       variant: {
@@ -51,7 +51,7 @@ const accordionTriggerVariants = cva(
     'transition-colors',
     'focus-visible:outline-none',
     'focus-visible:ring-2',
-    'focus-visible:ring-blue-500',
+    'focus-visible:ring-krds-primary-50',
     'focus-visible:ring-offset-2',
     'disabled:pointer-events-none',
     'disabled:opacity-50',
@@ -60,7 +60,7 @@ const accordionTriggerVariants = cva(
   {
     variants: {
       variant: {
-        default: 'hover:bg-gray-50',
+        default: 'hover:bg-krds-gray-5',
         line: 'hover:bg-transparent',
       },
     },
@@ -279,8 +279,8 @@ export const AccordionTrigger = React.forwardRef<
         className={cn(accordionTriggerVariants({ variant }), className)}
         {...props}
       >
-        <span className="flex-1 font-medium text-gray-900">{children}</span>
-        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 text-gray-500" />
+        <span className="flex-1 font-medium text-krds-gray-90">{children}</span>
+        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 text-krds-gray-50" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
@@ -305,7 +305,7 @@ export const AccordionContent = React.forwardRef<
     className={cn(accordionContentVariants(), className)}
     {...props}
   >
-    <div className="p-4 text-gray-700">{children}</div>
+    <div className="p-4 text-krds-gray-70">{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;

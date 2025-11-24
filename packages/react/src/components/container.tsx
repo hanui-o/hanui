@@ -5,20 +5,24 @@ import { cn } from '@/lib/utils';
  * Container Max Width Classes
  *
  * Based on KRDS Breakpoints:
+ * - xs: 360px (extra small - mobile)
  * - sm: 640px (small breakpoint)
  * - md: 768px (medium breakpoint)
  * - lg: 1024px (large breakpoint)
  * - xl: 1280px (xlarge breakpoint - default)
- * - 2xl: 1440px (xxlarge breakpoint)
+ * - 2xl: 1536px (xxlarge breakpoint - Tailwind standard)
  * - full: 100% (no max-width constraint)
+ *
+ * Note: Uses custom KRDS max-width classes defined in tailwind.config.ts
+ * because Tailwind's standard max-w-xl is only 576px, but KRDS requires 1280px.
  */
 const maxWidthClasses = {
-  xs: 'max-w-[var(--krds-container-xs)]',
-  sm: 'max-w-[var(--krds-container-sm)]',
-  md: 'max-w-[var(--krds-container-md)]',
-  lg: 'max-w-[var(--krds-container-lg)]',
-  xl: 'max-w-[var(--krds-container-xl)]',
-  '2xl': 'max-w-[var(--krds-container-2xl)]',
+  xs: 'max-w-krds-xs',
+  sm: 'max-w-krds-sm',
+  md: 'max-w-krds-md',
+  lg: 'max-w-krds-lg',
+  xl: 'max-w-krds-xl',
+  '2xl': 'max-w-krds-2xl',
   full: 'max-w-full',
 } as const;
 
@@ -34,11 +38,12 @@ export interface ContainerProps {
    * @default 'xl'
    *
    * Size mapping:
+   * - xs: 320px - Extra small (mobile-first)
    * - sm: 640px - Compact content
    * - md: 768px - Medium content
    * - lg: 1024px - Large content
    * - xl: 1280px - Default content (recommended)
-   * - 2xl: 1440px - Extra wide content
+   * - 2xl: 1536px - Extra wide content
    * - full: 100% - Full width with padding
    * - false: No max-width (padding only)
    */

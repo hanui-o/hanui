@@ -46,6 +46,16 @@ const config: Config = {
         '12': '48px', // gap-12 (KRDS 추가, Tailwind 기본값 48px와 동일)
         '20': '80px', // gap-20 (KRDS 추가)
       },
+      maxWidth: {
+        // KRDS Container Max Width
+        // Tailwind 기본값과 KRDS 요구사항이 다르므로 커스텀 값 정의
+        'krds-xs': '360px', // KRDS xs
+        'krds-sm': '640px', // KRDS sm (Tailwind과 동일)
+        'krds-md': '768px', // KRDS md (Tailwind과 동일)
+        'krds-lg': '1024px', // KRDS lg (Tailwind과 동일)
+        'krds-xl': '1280px', // KRDS xl (Tailwind max-w-xl은 576px이므로 커스텀 필요)
+        'krds-2xl': '1536px', // KRDS 2xl (Tailwind과 동일)
+      },
       colors: {
         // Base Colors - 순수 흰색/검은색 (모드 무관, 항상 동일)
         white: 'var(--color-white)',

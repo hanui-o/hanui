@@ -112,6 +112,28 @@ export interface ButtonProps
    * ```
    */
   iconRight?: React.ReactNode;
+
+  /**
+   * URL for link button
+   * When provided, renders as <a> tag instead of <button>
+   *
+   * @example
+   * ```tsx
+   * <Button href="/about">About</Button>
+   * <Button href="https://example.com" target="_blank">External</Button>
+   * ```
+   */
+  href?: string;
+
+  /**
+   * Link target attribute (only used with href)
+   */
+  target?: string;
+
+  /**
+   * Link rel attribute (only used with href)
+   */
+  rel?: string;
 }
 
 /**
@@ -182,7 +204,10 @@ const LoadingSpinner = () => (
  * </Button>
  * ```
  */
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>(
   (
     {
       className,
@@ -195,6 +220,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       type = 'button',
       asChild = false,
+      href,
+      target,
+      rel,
       ...props
     },
     ref
@@ -217,20 +245,26 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       }
     }, [isIconOnly, props]);
 
-    const Comp = asChild ? Slot.Root : 'button';
+    // Development warning: href and asChild cannot be used together
+    React.useEffect(() => {
+      if (
+        typeof process !== 'undefined' &&
+        process.env.NODE_ENV === 'development' &&
+        href &&
+        asChild
+      ) {
+        console.warn(
+          '[HANUI Button] href and asChild props cannot be used together. Use either href or asChild, not both.'
+        );
+      }
+    }, [href, asChild]);
 
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size }), className)}
-        ref={ref}
-        {...(!asChild && {
-          type,
-          disabled: isDisabled,
-          'aria-busy': loading,
-          'aria-disabled': isDisabled,
-        })}
-        {...props}
-      >
+    // Determine the component to render
+    const Comp = asChild ? Slot.Root : href ? 'a' : 'button';
+
+    // Common content
+    const content = (
+      <>
         {loading && <LoadingSpinner />}
         {!loading && iconLeft && (
           <span
@@ -249,6 +283,40 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             {iconRight}
           </span>
         )}
+      </>
+    );
+
+    // Render as link
+    if (href && !asChild) {
+      return (
+        <a
+          className={cn(buttonVariants({ variant, size }), className)}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          target={target}
+          rel={rel}
+          aria-disabled={isDisabled}
+          {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
+          {content}
+        </a>
+      );
+    }
+
+    // Render as button or Slot
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size }), className)}
+        ref={ref as any}
+        {...(!asChild && {
+          type,
+          disabled: isDisabled,
+          'aria-busy': loading,
+          'aria-disabled': isDisabled,
+        })}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      >
+        {content}
       </Comp>
     );
   }
