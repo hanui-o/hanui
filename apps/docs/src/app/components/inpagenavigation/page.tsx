@@ -3,11 +3,7 @@
 import { useState } from 'react';
 
 // Docs layout components
-import {
-  PageSection,
-  SectionHeading,
-  PageNavigation,
-} from '@/components/content';
+import { PageSection, Heading, PageNavigation } from '@/components/content';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 
@@ -48,7 +44,7 @@ export default function InPageNavigationPage() {
 
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="In-page Navigation"
         description="페이지 내 콘텐츠 탐색을 위한 고정 사이드바 네비게이션 컴포넌트입니다."
@@ -73,7 +69,7 @@ export default function InPageNavigationPage() {
               </ComponentPreview>
             </PageSection>
 
-            <SectionHeading level="h2" id="overview" title="개요">
+            <Heading level="h2" id="overview" title="개요">
               <Body className="leading-relaxed">
                 In-page Navigation은 페이지 내 콘텐츠를 탐색하기 위한 고정
                 사이드바 네비게이션 컴포넌트입니다. 스크롤 위치에 따라 자동으로
@@ -81,9 +77,9 @@ export default function InPageNavigationPage() {
                 <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>을 준수하여
                 공공 웹사이트에 최적화된 접근성과 사용성을 제공합니다.
               </Body>
-            </SectionHeading>
+            </Heading>
 
-            <SectionHeading level="h2" id="installation" title="설치" />
+            <Heading level="h2" id="installation" title="설치" />
             <CodeBlock
               code="npx hanui add in-page-navigation"
               language="bash"
@@ -93,9 +89,9 @@ export default function InPageNavigationPage() {
               설치합니다.
             </Body>
 
-            <SectionHeading level="h2" id="examples" title="예제" />
+            <Heading level="h2" id="examples" title="예제" />
 
-            <SectionHeading
+            <Heading
               level="h3"
               id="basic-example"
               title="기본 In-page Navigation"
@@ -104,7 +100,7 @@ export default function InPageNavigationPage() {
                 기본적인 In-page Navigation입니다. 스크롤 위치에 따라 자동으로
                 활성 링크가 업데이트됩니다.
               </Body>
-            </SectionHeading>
+            </Heading>
             <CodeBlock
               code={`import { InPageNavigation } from '@hanui/react';
 
@@ -131,15 +127,11 @@ const links = [
               />
             </div>
 
-            <SectionHeading
-              level="h3"
-              id="with-action-button"
-              title="액션 버튼 포함"
-            >
+            <Heading level="h3" id="with-action-button" title="액션 버튼 포함">
               <Body>
                 액션 버튼과 추가 정보를 포함한 In-page Navigation입니다.
               </Body>
-            </SectionHeading>
+            </Heading>
             <CodeBlock
               code={`import { InPageNavigation } from '@hanui/react';
 
@@ -176,18 +168,14 @@ const links = [
               />
             </div>
 
-            <SectionHeading
-              level="h2"
-              id="technical-background"
-              title="기술적 배경"
-            >
+            <Heading level="h2" id="technical-background" title="기술적 배경">
               <Body>
                 In-page Navigation 컴포넌트는 KRDS(Korean Design System)의
                 In-page Navigation 가이드라인을 기반으로 구현되었습니다.
               </Body>
-            </SectionHeading>
+            </Heading>
 
-            <SectionHeading level="h3" id="key-features" title="주요 기능" />
+            <Heading level="h3" id="key-features" title="주요 기능" />
             <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
               <li>
                 <strong>Fixed Positioning:</strong> 데스크탑에서는 fixed
@@ -211,17 +199,13 @@ const links = [
               </li>
             </ul>
 
-            <SectionHeading
-              level="h3"
-              id="scroll-tracking"
-              title="스크롤 추적 로직"
-            >
+            <Heading level="h3" id="scroll-tracking" title="스크롤 추적 로직">
               <Body>
                 컴포넌트는 `useEffect` 훅을 사용하여 스크롤 이벤트를 리스닝하고,
                 각 섹션의 `getBoundingClientRect().top` 값을 계산하여 현재
                 뷰포트 상단에 가장 가까운 섹션을 활성화합니다.
               </Body>
-            </SectionHeading>
+            </Heading>
             <CodeBlock
               code={`useEffect(() => {
   const handleScroll = () => {
@@ -247,15 +231,11 @@ const links = [
               language="tsx"
             />
 
-            <SectionHeading
-              level="h3"
-              id="responsive-behavior"
-              title="반응형 동작"
-            >
+            <Heading level="h3" id="responsive-behavior" title="반응형 동작">
               <Body>
                 In-page Navigation은 화면 크기에 따라 다르게 동작합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
             <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
               <li>
                 <strong>Desktop (1024px+):</strong> Fixed 사이드바로 표시되며,
@@ -267,12 +247,12 @@ const links = [
               </li>
             </ul>
 
-            <SectionHeading level="h2" id="accessibility" title="접근성">
+            <Heading level="h2" id="accessibility" title="접근성">
               <Body>
                 In-page Navigation 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 레벨
                 준수를 목표로 합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
             <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
               <li>
                 <strong>Semantic HTML:</strong> `&lt;nav&gt;` 요소를 사용하여
@@ -302,7 +282,7 @@ const links = [
           </TabsContent>
 
           <TabsContent value="api">
-            <SectionHeading
+            <Heading
               level="h2"
               id="in-page-navigation-props"
               title="InPageNavigation Props"
@@ -364,13 +344,13 @@ const links = [
               </table>
             </div>
 
-            <SectionHeading
+            <Heading
               level="h2"
               id="in-page-nav-link-type"
               title="InPageNavLink Type"
             >
               <Body>In-page Navigation 링크 아이템의 타입입니다:</Body>
-            </SectionHeading>
+            </Heading>
             <CodeBlock
               code={`export interface InPageNavLink {
   label: string;   // Link label (표시 텍스트)
@@ -380,11 +360,7 @@ const links = [
               language="tsx"
             />
 
-            <SectionHeading
-              level="h2"
-              id="usage-notes"
-              title="사용 시 주의사항"
-            />
+            <Heading level="h2" id="usage-notes" title="사용 시 주의사항" />
             <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
               <li>
                 `links` 배열의 `href`는 반드시 `#` + ID 형식이어야 합니다 (예:

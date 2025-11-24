@@ -4,9 +4,11 @@
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
 import {
@@ -25,7 +27,7 @@ import {
 export default function FooterPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Footer"
         description="KRDS 표준을 따르는 정부 서비스 푸터 컴포넌트입니다. CSS Modules 방식으로 구현되어 복잡한 레이아웃과 반응형 디자인을 효과적으로 관리합니다."
@@ -38,20 +40,28 @@ export default function FooterPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <SectionHeading
+          <Section level="h2">
+            <Heading
               level="h2"
-              id="installation"
-              title="설치"
-              description="Footer 컴포넌트를 프로젝트에 추가합니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
+            <ComponentPreview>
+              <Footer />
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`import { Footer } from '@hanui/react'
 
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx hanui add footer
+<Footer />`}
             </Code>
+          </Section>
 
-            <Card variant="info" className="mt-6">
+          <Installation componentName="footer" />
+
+          <Section level="h2">
+            <Heading level="h2" id="note" title="참고 사항" />
+            <Card variant="info">
               <Body className="mb-3">설치 시 다음 파일이 추가됩니다:</Body>
               <List className="text-krds-gray-90">
                 <ListItem>
@@ -65,16 +75,15 @@ export default function FooterPage() {
             </Card>
           </Section>
 
-          {/* What is it */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="what-is-it"
-              title="Footer란?"
-              description="KRDS 표준에 따라 구조화된 정부 서비스 푸터입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="what-is-it" title="Footer란?" />
+            <Body className="text-krds-gray-70">
+              KRDS 표준에 따라 구조화된 정부 서비스 푸터입니다. CSS Modules
+              방식으로 구현되어 복잡한 레이아웃과 반응형 디자인을 효과적으로
+              관리합니다.
+            </Body>
 
-            <Card variant="info">
+            <Card variant="info" className="mt-4">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>CSS Modules 방식:</strong> SCSS를 활용한 명확한 스타일
@@ -103,28 +112,13 @@ export default function FooterPage() {
             </Card>
           </Section>
 
-          <Section>
-            <Footer />
-          </Section>
-
-          {/* Usage */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="usage"
-              title="사용 예제"
-              description="Footer 컴포넌트의 기본 사용법입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 사용" />
-              <Body className="mb-4 text-krds-gray-70">
-                Footer 컴포넌트는 KRDS 표준 레이아웃을 그대로 제공합니다.
-                레이아웃의 최하단에 배치하세요.
-              </Body>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`
+              <Heading level="h3" title="기본 사용" />
+              <Code variant="block" language="tsx">
+                {`import { Footer } from '@hanui/react'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -140,14 +134,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="커스터마이징" />
-              <Body className="mb-4 text-krds-gray-70">
-                내용을 변경하려면 <Code>footer.tsx</Code> 파일을 직접
-                수정하세요. CSS Modules 방식이므로{' '}
-                <Code>footer.module.scss</Code>에서 스타일을 조정할 수 있습니다.
-              </Body>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Heading level="h3" title="커스터마이징" />
+              <Code variant="block" language="tsx">
                 {`// components/hanui/footer.tsx
 export function Footer({ className }: FooterProps) {
   return (
@@ -200,23 +188,12 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
           </Section>
 
-          {/* Structure */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="structure"
-              title="레이아웃 구조"
-              description="Footer는 다음과 같은 KRDS 표준 구조로 구성됩니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="structure" title="레이아웃 구조" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Quick Links (footQuick)" />
-              <Body className="mb-4 text-krds-gray-70">
-                관련 사이트 빠른 링크 영역입니다. 버튼 형태로 구성되며,
-                모바일에서는 세로로 쌓입니다.
-              </Body>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Heading level="h3" title="Quick Links (footQuick)" />
+              <Code variant="block" language="tsx">
                 {`<div className={styles.footQuick}>
   <div className={styles.inner}>
     <button type="button" className={styles.link}>
@@ -231,13 +208,8 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Logo & Content (fLogo, fCnt)" />
-              <Body className="mb-4 text-krds-gray-70">
-                조직 로고, 주소, 연락처, 유틸리티 링크, 소셜 미디어 링크
-                영역입니다.
-              </Body>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Heading level="h3" title="Logo & Content (fLogo, fCnt)" />
+              <Code variant="block" language="tsx">
                 {`<div className={styles.fLogo}>
   <span className={styles.srOnly}>KRDS - Korea Design System</span>
 </div>
@@ -263,13 +235,8 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Bottom Section (fBtm)" />
-              <Body className="mb-4 text-krds-gray-70">
-                하단 메뉴(개인정보처리방침 등), 저작권, KRDS Identifier
-                영역입니다.
-              </Body>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Heading level="h3" title="Bottom Section (fBtm)" />
+              <Code variant="block" language="tsx">
                 {`<div className={styles.fBtm}>
   <div className={styles.fBtmText}>
     <div className={styles.fMenu}>
@@ -294,23 +261,12 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
           </Section>
 
-          {/* Styling */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="styling"
-              title="스타일 커스터마이징"
-              description="CSS Modules를 활용한 스타일 수정 방법입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="styling" title="스타일 커스터마이징" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="KRDS 디자인 토큰 활용" />
-              <Body className="mb-4 text-krds-gray-70">
-                footer.module.scss에서 KRDS CSS 변수를 사용하여 일관된 디자인을
-                유지합니다.
-              </Body>
-
-              <Code variant="block" language="scss" showLineNumbers={false}>
+              <Heading level="h3" title="KRDS 디자인 토큰 활용" />
+              <Code variant="block" language="scss">
                 {`.footer {
   background-color: var(--krds-color-light-gray-5);
 
@@ -332,12 +288,8 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="반응형 브레이크포인트" />
-              <Body className="mb-4 text-krds-gray-70">
-                SCSS 미디어 쿼리를 통해 4단계 반응형 디자인을 제공합니다.
-              </Body>
-
-              <Code variant="block" language="scss" showLineNumbers={false}>
+              <Heading level="h3" title="반응형 브레이크포인트" />
+              <Code variant="block" language="scss">
                 {`// Web (1280px 이상)
 @media (min-width: 1280px) {
   gap: var(--krds-gap-9, 3rem);
@@ -364,12 +316,8 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="다크 모드" />
-              <Body className="mb-4 text-krds-gray-70">
-                .dark 클래스를 통해 다크 모드 스타일이 자동으로 적용됩니다.
-              </Body>
-
-              <Code variant="block" language="scss" showLineNumbers={false}>
+              <Heading level="h3" title="다크 모드" />
+              <Code variant="block" language="scss">
                 {`.dark {
   .footer {
     background-color: var(--krds-color-light-gray-95);
@@ -388,14 +336,8 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="모범 사례"
-              description="Footer 컴포넌트를 효과적으로 사용하기 위한 가이드입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <List variant="unordered">
               <ListItem>
@@ -426,14 +368,8 @@ export function Footer({ className }: FooterProps) {
             </List>
           </Section>
 
-          {/* Accessibility */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="accessibility"
-              title="접근성"
-              description="이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 기준을 준수합니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="accessibility" title="접근성" />
 
             <List variant="unordered">
               <ListItem>
@@ -462,14 +398,8 @@ export function Footer({ className }: FooterProps) {
             </List>
           </Section>
 
-          {/* KRDS Standards */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="krds-standards"
-              title="KRDS 표준"
-              description="Footer 컴포넌트가 준수하는 KRDS 표준입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="krds-standards" title="KRDS 표준" />
 
             <Card variant="info">
               <Body className="font-semibold mb-3">준수하는 KRDS 표준:</Body>
@@ -510,17 +440,11 @@ export function Footer({ className }: FooterProps) {
         </TabsContent>
 
         <TabsContent value="api">
-          {/* Props */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="props"
-              title="Props"
-              description="Footer 컴포넌트의 속성입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="props" title="Props" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="className" />
+              <Heading level="h3" title="className" />
               <List variant="unordered">
                 <ListItem>
                   <strong>타입:</strong> <Code>string</Code>
@@ -539,17 +463,11 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
           </Section>
 
-          {/* CSS Modules Classes */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="css-modules"
-              title="CSS Modules 클래스"
-              description="footer.module.scss에서 사용 가능한 클래스 목록입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="css-modules" title="CSS Modules 클래스" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="레이아웃 클래스" />
+              <Heading level="h3" title="레이아웃 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.footer</Code> - 메인 푸터 컨테이너
@@ -579,7 +497,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Quick Links 클래스" />
+              <Heading level="h3" title="Quick Links 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.link</Code> - Quick Links 버튼
@@ -588,7 +506,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="정보 영역 클래스" />
+              <Heading level="h3" title="정보 영역 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.infoAddr</Code> - 주소
@@ -606,7 +524,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="링크 영역 클래스" />
+              <Heading level="h3" title="링크 영역 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.linkGo</Code> - 유틸리티 링크 컨테이너
@@ -624,7 +542,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="하단 영역 클래스" />
+              <Heading level="h3" title="하단 영역 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.fBtmText</Code> - 하단 텍스트 영역
@@ -648,7 +566,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="유틸리티 클래스" />
+              <Heading level="h3" title="유틸리티 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.srOnly</Code> - 스크린 리더 전용 텍스트
@@ -657,17 +575,11 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
           </Section>
 
-          {/* CSS Variables */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="css-variables"
-              title="CSS 변수"
-              description="사용되는 KRDS 디자인 토큰입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="css-variables" title="CSS 변수" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="색상 (Color)" />
+              <Heading level="h3" title="색상 (Color)" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-color-light-gray-0
 --krds-color-light-gray-5
@@ -683,7 +595,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="간격 (Gap)" />
+              <Heading level="h3" title="간격 (Gap)" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-gap-2     /* 0.5rem */
 --krds-gap-3     /* 0.75rem */
@@ -696,7 +608,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="패딩 (Padding)" />
+              <Heading level="h3" title="패딩 (Padding)" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-padding-6     /* 1.5rem */
 --krds-padding-8     /* 2rem */
@@ -705,7 +617,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="크기 (Size)" />
+              <Heading level="h3" title="크기 (Size)" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-size-height-7        /* 3.5rem */
 --krds-icon--size-medium    /* 1.5rem */`}
@@ -713,7 +625,7 @@ export function Footer({ className }: FooterProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="폰트 (Font)" />
+              <Heading level="h3" title="폰트 (Font)" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-font-weight-regular    /* 400 */
 --krds-font-weight-bold       /* 700 */`}

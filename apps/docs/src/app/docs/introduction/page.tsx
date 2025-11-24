@@ -1,7 +1,7 @@
 // Docs content components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
   CodeBlock,
@@ -13,7 +13,7 @@ import { Body, Card, Code, List, ListItem } from '@hanui/react';
 export default function IntroductionPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Introduction"
         description="HANUI는 Radix UI Primitives 기반의 KRDS(Korea Republic Design System) 컴포넌트 라이브러리입니다. 소스 코드 복사 방식으로 배포되어 완전한 커스터마이징이 가능합니다."
@@ -21,7 +21,7 @@ export default function IntroductionPage() {
 
       {/* Quick Start */}
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="quick-start"
           title="30초 만에 시작하기"
@@ -68,7 +68,7 @@ export default function Page() {
 
       {/* What is HANUI */}
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="what-is-hanui"
           title="HANUI란?"
@@ -76,7 +76,7 @@ export default function Page() {
         />
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="핵심 가치" />
+          <Heading level="h3" title="핵심 가치" />
 
           <List>
             <ListItem>
@@ -104,10 +104,10 @@ export default function Page() {
 
       {/* Key Features */}
       <Section>
-        <SectionHeading level="h2" id="key-features" title="주요 기능" />
+        <Heading level="h2" id="key-features" title="주요 기능" />
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="KRDS 디자인 시스템"
             description="한국 공공기관 표준 디자인 가이드라인을 준수하는 컴포넌트를 제공합니다. 정부 및 공공기관 웹사이트 개발 시 필수적인 디자인 표준을 손쉽게 적용할 수 있습니다."
@@ -115,12 +115,12 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="Radix UI Primitives 기반">
+          <Heading level="h3" title="Radix UI Primitives 기반">
             <Body className="leading-relaxed">
               HANUI는 <strong>Radix UI Primitives</strong>를 기반으로 구축되어
               접근성과 사용성을 자동으로 보장합니다.
             </Body>
-          </SectionHeading>
+          </Heading>
 
           <Card variant="info">
             <List variant="check" className="text-krds-gray-90">
@@ -149,12 +149,12 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="소스 코드 기반 배포">
+          <Heading level="h3" title="소스 코드 기반 배포">
             <Body className="leading-relaxed">
               HANUI는 <strong>소스 코드 복사 방식</strong>으로 배포되어,
               사용자가 컴포넌트를 직접 수정하고 커스터마이징할 수 있습니다.
             </Body>
-          </SectionHeading>
+          </Heading>
 
           <Card variant="info">
             <List variant="check" className="text-krds-gray-90">
@@ -185,7 +185,7 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="웹 접근성"
             description="스크린 리더, 키보드 네비게이션, ARIA 속성 등 웹 접근성을 완벽하게 지원합니다. 모든 사용자가 차별 없이 웹사이트를 이용할 수 있도록 설계되었습니다. Radix UI Primitives 기반으로 접근성 로직이 자동으로 처리되어, 개발자가 별도로 구현할 필요가 없습니다."
@@ -193,7 +193,7 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="React + TypeScript"
             description="타입 안정성과 자동완성 기능으로 개발 생산성을 높입니다. 컴포넌트의 모든 Props와 이벤트 핸들러에 대한 완벽한 타입 정의를 제공합니다."
@@ -201,27 +201,23 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="Tailwind CSS">
+          <Heading level="h3" title="Tailwind CSS">
             <Body as="div" className="leading-relaxed">
               유틸리티 클래스 기반으로 컴포넌트를 쉽게 커스터마이징할 수
               있습니다. 프로젝트의 디자인 시스템에 맞게 자유롭게 스타일을 조정할
               수 있습니다. Radix UI의 <Code>data-[state]</Code> 속성과 함께
               사용하여 상태 기반 스타일링도 쉽게 구현할 수 있습니다.
             </Body>
-          </SectionHeading>
+          </Heading>
         </Subsection>
       </Section>
 
       {/* Who should use HANUI */}
       <Section>
-        <SectionHeading
-          level="h2"
-          id="who-should-use"
-          title="누가 사용하나요?"
-        />
+        <Heading level="h2" id="who-should-use" title="누가 사용하나요?" />
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="공공기관 웹 개발자"
             description="정부, 지자체, 공공기관 웹사이트 개발 시 KRDS 준수가 필수인 프로젝트에 적합합니다."
@@ -229,7 +225,7 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="SI 개발사"
             description="공공 프로젝트를 수주하는 SI 업체에서 빠른 개발과 표준 준수가 필요한 경우에 활용할 수 있습니다."
@@ -237,7 +233,7 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="접근성 중시 프로젝트"
             description="웹 접근성 준수가 중요한 모든 웹 애플리케이션 개발에 사용할 수 있습니다."
@@ -247,7 +243,7 @@ export default function Page() {
 
       {/* Browser Support */}
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="browser-support"
           title="브라우저 지원"

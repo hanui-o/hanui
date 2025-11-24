@@ -1,6 +1,6 @@
 import Link from 'next/link';
 // Docs layout components
-import { PageSection as Section, SectionHeading } from '@/components/content';
+import { PageSection as Section, Heading } from '@/components/content';
 
 // Docs helper components
 import { Wrap } from '@/components/helpers';
@@ -34,6 +34,12 @@ const typographyComponents = [
     name: 'NavText',
     description: '네비게이션 텍스트',
     href: '/components/navtext',
+    updated: true,
+  },
+  {
+    name: 'Heading',
+    description: '페이지/섹션 제목',
+    href: '/components/section-heading',
     updated: true,
   },
 ];
@@ -306,11 +312,11 @@ function ComponentSection({
 
   return (
     <Section>
-      <SectionHeading level="h2" id={id} title={title}>
+      <Heading level="h2" id={id} title={title}>
         {description && (
           <Body className="text-krds-gray-70">{description}</Body>
         )}
-      </SectionHeading>
+      </Heading>
 
       <Wrap gap="lg">
         {components.map((component) => (
@@ -344,7 +350,7 @@ function ComponentSection({
 export default function ComponentsPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Components"
         description="HANUI 라이브러리에서 제공하는 모든 컴포넌트를 KRDS(Korean Design System) 분류 체계에 따라 정리했습니다."
@@ -367,7 +373,7 @@ export default function ComponentsPage() {
       />
 
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="navigation"
           title="탐색"

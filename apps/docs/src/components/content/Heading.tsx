@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { cn } from '@hanui/react';
 
-interface SectionHeadingProps {
+interface HeadingProps {
   /**
    * Heading 레벨 (h1-h5)
    */
@@ -74,7 +74,7 @@ function getSpacing(level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'): string {
 }
 
 /**
- * SectionHeading - 섹션 내부 제목과 설명 컴포넌트
+ * Heading - 섹션 내부 제목과 설명 컴포넌트
  *
  * PageSection 내부에서 사용하는 제목과 설명을 일관되게 표시합니다.
  * KRDS 타이포그래피 가이드라인을 준수합니다.
@@ -82,7 +82,7 @@ function getSpacing(level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'): string {
  * @example
  * ```tsx
  * // 설명과 함께
- * <SectionHeading
+ * <Heading
  *   level="h2"
  *   id="overview"
  *   title="개요"
@@ -90,27 +90,27 @@ function getSpacing(level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'): string {
  * />
  *
  * // 설명 없이
- * <SectionHeading
+ * <Heading
  *   level="h3"
  *   title="서브 섹션"
  * />
  *
  * // 커스텀 설명 콘텐츠
- * <SectionHeading level="h2" title="고급 기능">
+ * <Heading level="h2" title="고급 기능">
  *   <div className="text-krds-gray-70">
  *     커스텀 내용 <strong>강조</strong> 가능
  *   </div>
- * </SectionHeading>
+ * </Heading>
  * ```
  */
-export function SectionHeading({
+export function Heading({
   level,
   title,
   description,
   id,
   children,
   className,
-}: SectionHeadingProps) {
+}: HeadingProps) {
   const Tag = level;
   const headingId = id || generateId(title);
   const hasDescription = Boolean(description || children);

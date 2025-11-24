@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -35,7 +35,7 @@ import {
 export default function WrapPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Wrap"
         description="공간이 부족할 때 자동으로 줄바꿈되는 flexbox 레이아웃 컴포넌트입니다."
@@ -50,11 +50,11 @@ export default function WrapPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Wrap 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add wrap
@@ -63,7 +63,7 @@ export default function WrapPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -94,7 +94,7 @@ export default function WrapPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <WrapComponent gap="md">
                 <div className="px-4 py-2 bg-krds-primary-10 rounded">
@@ -118,14 +118,14 @@ export default function WrapPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 사용">
+              <Heading level="h3" title="기본 사용">
                 <Body className="leading-relaxed">
                   Wrap 컴포넌트는 자식 요소들을 자동으로 줄바꿈합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { Wrap } from '@/components/hanui';
@@ -160,11 +160,11 @@ export default function WrapPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="간격 조절 (Gap)">
+              <Heading level="h3" title="간격 조절 (Gap)">
                 <Body className="leading-relaxed">
                   gap prop으로 요소 간 간격을 조절합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// 간격 옵션
@@ -211,11 +211,11 @@ export default function WrapPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="정렬 (Align & Justify)">
+              <Heading level="h3" title="정렬 (Align & Justify)">
                 <Body className="leading-relaxed">
                   align과 justify로 요소를 정렬합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// 가운데 정렬
@@ -264,11 +264,11 @@ export default function WrapPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="실제 사용 예시">
+              <Heading level="h3" title="실제 사용 예시">
                 <Body className="leading-relaxed">
                   태그 목록과 버튼 그룹 예시입니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// 태그 목록
@@ -319,14 +319,10 @@ export default function WrapPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하나요?" />
+              <Heading level="h3" title="언제 사용하나요?" />
               <DoCard title="Wrap을 사용하기 적합한 경우">
                 <List variant="check">
                   <ListItem>태그나 배지 목록을 표시할 때</ListItem>
@@ -342,7 +338,7 @@ export default function WrapPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
               <DontCard title="Wrap 사용을 피해야 하는 경우">
                 <List variant="dash">
                   <ListItem>
@@ -361,7 +357,7 @@ export default function WrapPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="사용 가이드라인" />
+              <Heading level="h3" title="사용 가이드라인" />
               <List>
                 <ListItem>
                   간격은 콘텐츠의 밀도에 따라 sm, md, lg 중 선택하세요
@@ -378,7 +374,7 @@ export default function WrapPage() {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
 
             <Card variant="info">
               <List variant="check" className="text-krds-gray-90">
@@ -401,10 +397,10 @@ export default function WrapPage() {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Wrap Props" />
+              <Heading level="h3" title="Wrap Props" />
 
               <Table>
                 <TableHeader>
@@ -458,7 +454,7 @@ export default function WrapPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Gap Options" />
+              <Heading level="h3" title="Gap Options" />
 
               <Table>
                 <TableHeader>

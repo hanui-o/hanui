@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -81,7 +81,7 @@ const CheckIcon = () => (
 export default function InputPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Input"
         description="다양한 스타일과 크기를 지원하는 입력 필드 컴포넌트입니다."
@@ -96,11 +96,11 @@ export default function InputPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Input 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add input
             </Code>
@@ -108,7 +108,7 @@ export default function InputPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -138,7 +138,7 @@ export default function InputPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card>
               <Stack gap="md" className="max-w-md">
                 <InputComponent placeholder="기본 입력 필드" />
@@ -156,11 +156,11 @@ export default function InputPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             {/* Sizes */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="sizes"
                 title="크기 (Size)"
@@ -182,7 +182,7 @@ export default function InputPage() {
 
             {/* Variants */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="variants"
                 title="변형 (Variant)"
@@ -208,7 +208,7 @@ export default function InputPage() {
 
             {/* With Icons */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="with-icons"
                 title="아이콘 추가"
@@ -250,7 +250,7 @@ export default function InputPage() {
 
             {/* Error State */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="error-state"
                 title="에러 상태"
@@ -291,7 +291,7 @@ export default function InputPage() {
 
             {/* Types */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="types"
                 title="Input Types"
@@ -321,7 +321,7 @@ export default function InputPage() {
 
             {/* Disabled */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="disabled"
                 title="비활성화"
@@ -346,7 +346,7 @@ export default function InputPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
             <Stack gap="md">
               <DoCard title="Input을 사용하기 적합한 경우">
                 <List variant="check">
@@ -360,7 +360,7 @@ export default function InputPage() {
               </DoCard>
 
               <Card variant="warning">
-                <SectionHeading level="h3" id="caution" title="주의사항" />
+                <Heading level="h3" id="caution" title="주의사항" />
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>
                     <strong>레이블 필수:</strong> 모든 입력 필드에는 명확한
@@ -399,7 +399,7 @@ export default function InputPage() {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="accessibility"
               title="접근성"
@@ -434,15 +434,11 @@ export default function InputPage() {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API 레퍼런스"
-            />
+            <Heading level="h2" id="api-reference" title="API 레퍼런스" />
 
             {/* Props */}
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -565,11 +561,7 @@ export default function InputPage() {
 
             {/* Size Variants */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="size-variants"
-                title="Size Variants"
-              />
+              <Heading level="h3" id="size-variants" title="Size Variants" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -610,11 +602,7 @@ export default function InputPage() {
 
             {/* KRDS Compliance */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="krds-compliance"
-                title="KRDS 준수사항"
-              />
+              <Heading level="h3" id="krds-compliance" title="KRDS 준수사항" />
               <Card variant="info">
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>

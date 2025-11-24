@@ -4,7 +4,7 @@ import { Body } from '@hanui/react';
 import {
   CodeBlock,
   PageSection,
-  SectionHeading,
+  Heading,
   ComponentPreview,
 } from '@/components/content';
 
@@ -196,19 +196,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Basic Layout"
         description="정부 웹사이트의 기본 레이아웃 템플릿입니다. Header, Footer, MainMenu, Breadcrumb, SkipLink를 포함합니다."
       />
 
       <PageSection>
-        <SectionHeading level="h2" id="preview" title="미리보기">
+        <Heading level="h2" id="preview" title="미리보기">
           <Body className="leading-relaxed">
             이 템플릿은 KRDS 공식 샘플 페이지를 기반으로 제작되었으며, 실제 정부
             웹사이트에서 사용되는 표준 레이아웃 구조를 제공합니다.
           </Body>
-        </SectionHeading>
+        </Heading>
 
         <div className="border border-krds-gray-20 rounded-lg p-4 bg-krds-gray-5 my-6">
           <Body className="text-krds-gray-70">
@@ -224,36 +224,32 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </ul>
         </div>
 
-        <SectionHeading level="h2" id="installation" title="설치">
+        <Heading level="h2" id="installation" title="설치">
           <Body>필요한 컴포넌트를 한 번에 설치합니다:</Body>
-        </SectionHeading>
+        </Heading>
         <CodeBlock code="npx hanui add layout" language="bash" />
         <Body className="text-krds-gray-70 mt-2">
           이 명령은 Header, Footer, SkipLink, MainMenu, Breadcrumb, Container를
           자동으로 설치합니다.
         </Body>
 
-        <SectionHeading
-          level="h2"
-          id="layout-component"
-          title="레이아웃 컴포넌트"
-        >
+        <Heading level="h2" id="layout-component" title="레이아웃 컴포넌트">
           <Body>
             다음 코드를 <code>app/layout.tsx</code> 또는{' '}
             <code>components/Layout.tsx</code>에 복사하세요:
           </Body>
-        </SectionHeading>
+        </Heading>
         <CodeBlock code={layoutCode} language="tsx" />
 
-        <SectionHeading level="h2" id="page-component" title="페이지 컴포넌트">
+        <Heading level="h2" id="page-component" title="페이지 컴포넌트">
           <Body>
             레이아웃 안에서 사용할 페이지 컴포넌트 예제입니다. 실제 콘텐츠로
             교체하여 사용하세요:
           </Body>
-        </SectionHeading>
+        </Heading>
         <CodeBlock code={pageCode} language="tsx" />
 
-        <SectionHeading level="h2" id="structure" title="구조 설명" />
+        <Heading level="h2" id="structure" title="구조 설명" />
 
         <div className="space-y-4 mt-4">
           <div>
@@ -307,7 +303,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <SectionHeading level="h2" id="customization" title="커스터마이징" />
+        <Heading level="h2" id="customization" title="커스터마이징" />
         <Body>템플릿을 프로젝트에 맞게 수정하는 방법:</Body>
 
         <div className="space-y-4 mt-4">
@@ -357,7 +353,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <SectionHeading level="h2" id="accessibility" title="접근성 고려사항" />
+        <Heading level="h2" id="accessibility" title="접근성 고려사항" />
         <Body>이 템플릿은 KRDS 및 WCAG 2.1 AA 레벨을 준수합니다:</Body>
         <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90 mt-2">
           <li>
@@ -382,7 +378,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </li>
         </ul>
 
-        <SectionHeading level="h2" id="responsive" title="반응형 디자인" />
+        <Heading level="h2" id="responsive" title="반응형 디자인" />
         <Body>모든 컴포넌트는 반응형으로 설계되었습니다:</Body>
         <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90 mt-2">
           <li>
@@ -398,7 +394,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </li>
         </ul>
 
-        <SectionHeading level="h2" id="next-steps" title="다음 단계" />
+        <Heading level="h2" id="next-steps" title="다음 단계" />
         <Body>기본 레이아웃을 설치했다면, 다음 작업을 진행하세요:</Body>
         <ol className="list-decimal pl-6 space-y-2 text-base text-krds-gray-90 mt-2">
           <li>메뉴 구조를 프로젝트에 맞게 수정</li>

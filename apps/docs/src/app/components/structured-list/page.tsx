@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -81,7 +81,7 @@ export default function StructuredListPage() {
 
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Structured List"
         description="복잡한 콘텐츠를 카드 형식으로 정리하여 표시하는 구조화 목록 컴포넌트입니다."
@@ -97,11 +97,11 @@ export default function StructuredListPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Structured List 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add structured-list
@@ -110,7 +110,7 @@ export default function StructuredListPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -157,7 +157,7 @@ export default function StructuredListPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <StructuredList items={basicItems} variant="default" />
             </Card>
@@ -165,16 +165,16 @@ export default function StructuredListPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 사용">
+              <Heading level="h3" title="기본 사용">
                 <Body className="leading-relaxed">
                   기본적인 Structured List입니다. 3열 그리드 레이아웃으로
                   표시되며, 태블릿에서는 2열, 모바일에서는 1열로 자동
                   조정됩니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { StructuredList } from '@/components/hanui';
@@ -200,12 +200,12 @@ const items = [
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="가로형 레이아웃">
+              <Heading level="h3" title="가로형 레이아웃">
                 <Body className="leading-relaxed">
                   variant="full" 속성을 사용하면 가로형 레이아웃으로 표시됩니다.
                   콘텐츠가 많을 때 유용합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<StructuredList items={items} variant="full" />`}
@@ -217,11 +217,11 @@ const items = [
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="카드 크기">
+              <Heading level="h3" title="카드 크기">
                 <Body className="leading-relaxed">
                   size 속성으로 카드 크기를 조절할 수 있습니다 (sm, md, lg):
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// Small size
@@ -238,14 +238,10 @@ const items = [
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하나요?" />
+              <Heading level="h3" title="언제 사용하나요?" />
               <DoCard title="Structured List를 사용하기 적합한 경우">
                 <List variant="check">
                   <ListItem>
@@ -267,7 +263,7 @@ const items = [
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
               <DontCard title="Structured List 사용을 피해야 하는 경우">
                 <List variant="dash">
                   <ListItem>
@@ -289,7 +285,7 @@ const items = [
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="디자인 가이드라인" />
+              <Heading level="h3" title="디자인 가이드라인" />
               <List>
                 <ListItem>타이틀은 한 줄 말줄임 처리합니다.</ListItem>
                 <ListItem>설명은 최대 3줄까지 표시합니다.</ListItem>
@@ -305,7 +301,7 @@ const items = [
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="사용 시 주의사항" />
+              <Heading level="h3" title="사용 시 주의사항" />
               <List>
                 <ListItem>
                   타이틀은 가능한 한 간결하게 작성하세요 (1줄 권장).
@@ -335,7 +331,7 @@ const items = [
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
 
             <Body className="mb-3">
               Structured List 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 레벨 준수를
@@ -369,10 +365,10 @@ const items = [
         {/* API 탭 */}
         <TabsContent value="api">
           <Section>
-            <SectionHeading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="StructuredList Props" />
+              <Heading level="h3" title="StructuredList Props" />
 
               <Table>
                 <TableHeader>
@@ -439,7 +435,7 @@ const items = [
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="StructuredListItem Type" />
+              <Heading level="h3" title="StructuredListItem Type" />
 
               <Body className="mb-3">Structured List 아이템의 타입입니다:</Body>
 

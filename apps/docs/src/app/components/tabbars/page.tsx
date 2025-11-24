@@ -1,11 +1,7 @@
 'use client';
 
 // Docs layout components
-import {
-  PageSection,
-  SectionHeading,
-  PageNavigation,
-} from '@/components/content';
+import { PageSection, Heading, PageNavigation } from '@/components/content';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 
@@ -144,7 +140,7 @@ export default function TabBarsPage() {
 
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Tab Bars"
         description="모바일 및 태블릿에서 주요 화면 간 빠른 이동을 위한 하단 고정 네비게이션입니다."
@@ -168,30 +164,30 @@ export default function TabBarsPage() {
               </ComponentPreview>
             </PageSection>
 
-            <SectionHeading level="h2" id="overview" title="개요">
+            <Heading level="h2" id="overview" title="개요">
               <Body className="leading-relaxed">
                 Tab Bars는 모바일 및 태블릿에서 화면 하단에 고정되어 주요 서비스
                 화면 간 빠른 이동을 제공하는 네비게이션 컴포넌트입니다.
                 <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>을 준수하여
                 공공 모바일 서비스에 최적화된 접근성과 사용성을 제공합니다.
               </Body>
-            </SectionHeading>
+            </Heading>
 
-            <SectionHeading level="h2" id="installation" title="설치" />
+            <Heading level="h2" id="installation" title="설치" />
             <CodeBlock code="npx hanui add tab-bars" language="bash" />
             <Body className="text-krds-gray-70 mt-2">
               이 명령은 컴포넌트 파일을 자동으로 설치합니다. Tab Bars는 Tailwind
               CSS를 사용합니다.
             </Body>
 
-            <SectionHeading level="h2" id="examples" title="예제" />
+            <Heading level="h2" id="examples" title="예제" />
 
-            <SectionHeading level="h3" id="basic-example" title="기본 Tab Bars">
+            <Heading level="h3" id="basic-example" title="기본 Tab Bars">
               <Body>
                 기본적인 Tab Bars입니다. 아이콘과 라벨을 함께 사용하며, 최대
                 5개의 메뉴를 권장합니다.
               </Body>
-            </SectionHeading>
+            </Heading>
             <CodeBlock
               code={`import { TabBars, TabBarItem } from '@hanui/react';
 
@@ -231,7 +227,7 @@ const items: TabBarItem[] = [
               language="tsx"
             />
 
-            <SectionHeading level="h2" id="key-features" title="주요 기능" />
+            <Heading level="h2" id="key-features" title="주요 기능" />
             <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
               <li>
                 <strong>하단 고정:</strong> 화면 하단에 고정되어 스크롤 시에도
@@ -259,11 +255,7 @@ const items: TabBarItem[] = [
               </li>
             </ul>
 
-            <SectionHeading
-              level="h2"
-              id="guidelines"
-              title="디자인 가이드라인"
-            />
+            <Heading level="h2" id="guidelines" title="디자인 가이드라인" />
             <Body>KRDS Tab Bars 가이드라인을 준수합니다:</Body>
             <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90 mt-2">
               <li>홈 버튼은 가장 왼쪽, 전체 메뉴 버튼은 가장 오른쪽에 배치</li>
@@ -273,7 +265,7 @@ const items: TabBarItem[] = [
               <li>최소 터치 영역 44x44px 이상 확보</li>
             </ul>
 
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
             <Body>
               Tab Bars 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 레벨 준수를 목표로
               합니다:
@@ -303,11 +295,7 @@ const items: TabBarItem[] = [
           </TabsContent>
 
           <TabsContent value="api">
-            <SectionHeading
-              level="h2"
-              id="tab-bars-props"
-              title="TabBars Props"
-            />
+            <Heading level="h2" id="tab-bars-props" title="TabBars Props" />
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
@@ -345,13 +333,9 @@ const items: TabBarItem[] = [
               </table>
             </div>
 
-            <SectionHeading
-              level="h2"
-              id="tab-bar-item-type"
-              title="TabBarItem Type"
-            >
+            <Heading level="h2" id="tab-bar-item-type" title="TabBarItem Type">
               <Body>Tab Bar 아이템의 타입입니다:</Body>
-            </SectionHeading>
+            </Heading>
             <CodeBlock
               code={`export interface TabBarItem {
   label: string;           // 메뉴 라벨 (1-2 단어 권장)
@@ -364,11 +348,7 @@ const items: TabBarItem[] = [
               language="tsx"
             />
 
-            <SectionHeading
-              level="h2"
-              id="usage-notes"
-              title="사용 시 주의사항"
-            />
+            <Heading level="h2" id="usage-notes" title="사용 시 주의사항" />
             <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
               <li>메뉴는 최대 5개까지 권장합니다 (KRDS 가이드라인)</li>
               <li>

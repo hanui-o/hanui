@@ -1,11 +1,7 @@
 'use client';
 
 // Docs layout components
-import {
-  PageSection,
-  SectionHeading,
-  PageNavigation,
-} from '@/components/content';
+import { PageSection, Heading, PageNavigation } from '@/components/content';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { GuidelineSection } from '@/components/content/GuidelineSection';
@@ -24,7 +20,7 @@ import {
 export default function LinkPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Link"
         description="내부 및 외부 링크를 위한 Next.js 통합 링크 컴포넌트"
@@ -57,16 +53,16 @@ export default function LinkPage() {
             </PageSection>
 
             {/* Overview */}
-            <SectionHeading level="h2" id="overview" title="개요">
+            <Heading level="h2" id="overview" title="개요">
               <Body className="leading-relaxed">
                 Link 컴포넌트는 Next.js의 클라이언트 사이드 네비게이션과
                 통합되어 빠르고 원활한 페이지 이동을 제공합니다. 외부 링크는
                 자동으로 감지되어 새 탭에서 열리며, 접근성을 고려한 다양한
                 variant를 제공합니다.
               </Body>
-            </SectionHeading>
+            </Heading>
 
-            <SectionHeading
+            <Heading
               level="h2"
               id="installation"
               title="설치"
@@ -78,7 +74,7 @@ export default function LinkPage() {
               showLineNumbers={false}
             />
 
-            <SectionHeading level="h2" id="usage" title="사용법" />
+            <Heading level="h2" id="usage" title="사용법" />
             <CodeBlock
               code={`import { Link } from '@/components/hanui/link'
 
@@ -99,14 +95,10 @@ export default function LinkPage() {
             />
 
             {/* 가이드라인 섹션 */}
-            <SectionHeading
-              level="h2"
-              id="guidelines"
-              title="사용 가이드라인"
-            />
+            <Heading level="h2" id="guidelines" title="사용 가이드라인" />
 
             {/* When to use */}
-            <SectionHeading level="h3" title="언제 사용해야 하나요?" />
+            <Heading level="h3" title="언제 사용해야 하나요?" />
             <div className="grid grid-cols-1 gap-4">
               <GuidelineSection type="do" title="링크를 사용하기 적합한 경우">
                 <ul className="list-disc list-inside space-y-2">
@@ -131,9 +123,9 @@ export default function LinkPage() {
             </div>
 
             {/* Variants */}
-            <SectionHeading level="h2" id="variants" title="Variants" />
+            <Heading level="h2" id="variants" title="Variants" />
 
-            <SectionHeading level="h3" title="Primary (기본)" />
+            <Heading level="h3" title="Primary (기본)" />
             <ComponentPreview>
               <Link href="/components" variant="primary">
                 Primary Link
@@ -147,7 +139,7 @@ export default function LinkPage() {
               showLineNumbers={false}
             />
 
-            <SectionHeading level="h3" title="Secondary" />
+            <Heading level="h3" title="Secondary" />
             <ComponentPreview>
               <Link href="/components" variant="secondary">
                 Secondary Link
@@ -161,7 +153,7 @@ export default function LinkPage() {
               showLineNumbers={false}
             />
 
-            <SectionHeading level="h3" title="Button Style" />
+            <Heading level="h3" title="Button Style" />
             <ComponentPreview>
               <Stack gap="md">
                 <Link href="/components" variant="button">
@@ -184,7 +176,7 @@ export default function LinkPage() {
               showLineNumbers={false}
             />
 
-            <SectionHeading level="h3" title="Custom Style (None)" />
+            <Heading level="h3" title="Custom Style (None)" />
             <ComponentPreview>
               <Link
                 href="/components"
@@ -207,7 +199,7 @@ export default function LinkPage() {
             />
 
             {/* External Links */}
-            <SectionHeading level="h2" id="external" title="외부 링크" />
+            <Heading level="h2" id="external" title="외부 링크" />
             <Body className="leading-relaxed mb-4">
               외부 링크는 자동으로 감지되거나 <code>external</code> prop으로
               명시할 수 있습니다. 외부 링크는 새 탭에서 열리며{' '}
@@ -236,7 +228,7 @@ export default function LinkPage() {
             />
 
             {/* Size */}
-            <SectionHeading level="h2" id="size" title="크기" />
+            <Heading level="h2" id="size" title="크기" />
             <ComponentPreview>
               <Stack gap="md">
                 <Link href="/components" size="sm">
@@ -259,7 +251,7 @@ export default function LinkPage() {
             />
 
             {/* Accessibility */}
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
             <GuidelineSection type="do" title="접근성 모범 사례">
               <ul className="list-disc list-inside space-y-2">
                 <li>
@@ -276,7 +268,7 @@ export default function LinkPage() {
 
           {/* API 탭 */}
           <TabsContent value="api">
-            <SectionHeading level="h2" id="props" title="Props" />
+            <Heading level="h2" id="props" title="Props" />
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
@@ -348,9 +340,9 @@ export default function LinkPage() {
               </table>
             </div>
 
-            <SectionHeading level="h2" id="examples" title="사용 예제" />
+            <Heading level="h2" id="examples" title="사용 예제" />
 
-            <SectionHeading level="h3" title="기본 사용" />
+            <Heading level="h3" title="기본 사용" />
             <CodeBlock
               code={`import { Link } from '@/components/hanui/link'
 
@@ -367,7 +359,7 @@ function Navigation() {
               showLineNumbers={false}
             />
 
-            <SectionHeading level="h3" title="외부 링크와 내부 링크 혼합" />
+            <Heading level="h3" title="외부 링크와 내부 링크 혼합" />
             <CodeBlock
               code={`import { Link } from '@/components/hanui/link'
 
@@ -386,7 +378,7 @@ function Footer() {
               showLineNumbers={false}
             />
 
-            <SectionHeading level="h3" title="커스텀 스타일링" />
+            <Heading level="h3" title="커스텀 스타일링" />
             <CodeBlock
               code={`import { Link } from '@/components/hanui/link'
 

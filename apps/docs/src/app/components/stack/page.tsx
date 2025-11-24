@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -36,7 +36,7 @@ import {
 export default function StackPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Stack, VStack, HStack"
         description="요소들을 수직 또는 수평으로 정렬하고 간격을 관리하는 간단한 레이아웃 컴포넌트입니다."
@@ -51,11 +51,11 @@ export default function StackPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Stack 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add stack
@@ -64,7 +64,7 @@ export default function StackPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -96,7 +96,7 @@ export default function StackPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <StackComponent gap="md">
                 <div className="bg-krds-primary-10 p-4 rounded">
@@ -114,14 +114,14 @@ export default function StackPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="VStack - 수직 레이아웃">
+              <Heading level="h3" title="VStack - 수직 레이아웃">
                 <Body className="leading-relaxed">
                   요소를 수직으로 쌓아 올립니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { VStack } from '@/components/hanui';
@@ -149,11 +149,11 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="HStack - 수평 레이아웃">
+              <Heading level="h3" title="HStack - 수평 레이아웃">
                 <Body className="leading-relaxed">
                   요소를 수평으로 나란히 배치합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { HStack } from '@/components/hanui';
@@ -181,12 +181,12 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Stack - 방향 전환 가능">
+              <Heading level="h3" title="Stack - 방향 전환 가능">
                 <Body className="leading-relaxed">
                   Stack은 기본 수직이지만 direction="row"로 수평으로 변경할 수
                   있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { Stack } from '@/components/hanui';
@@ -206,11 +206,11 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="간격 조절 (Gap)">
+              <Heading level="h3" title="간격 조절 (Gap)">
                 <Body className="leading-relaxed">
                   gap prop으로 요소 간 간격을 조절합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// 간격 옵션
@@ -258,11 +258,11 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="정렬 (Align & Justify)">
+              <Heading level="h3" title="정렬 (Align & Justify)">
                 <Body className="leading-relaxed">
                   align과 justify로 요소를 정렬합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// 가운데 정렬
@@ -322,11 +322,11 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="실제 사용 예시">
+              <Heading level="h3" title="실제 사용 예시">
                 <Body className="leading-relaxed">
                   폼 레이아웃과 버튼 그룹 예시입니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// 폼 레이아웃
@@ -353,14 +353,10 @@ export default function StackPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하나요?" />
+              <Heading level="h3" title="언제 사용하나요?" />
               <DoCard title="Stack을 사용하기 적합한 경우">
                 <List variant="check">
                   <ListItem>여러 요소를 수직 또는 수평으로 나열할 때</ListItem>
@@ -373,7 +369,7 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
               <DontCard title="Stack 사용을 피해야 하는 경우">
                 <List variant="dash">
                   <ListItem>
@@ -390,7 +386,7 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="사용 가이드라인" />
+              <Heading level="h3" title="사용 가이드라인" />
               <List>
                 <ListItem>
                   VStack과 HStack은 명확한 의도 표현에 좋습니다
@@ -412,10 +408,10 @@ export default function StackPage() {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Stack Props" />
+              <Heading level="h3" title="Stack Props" />
 
               <Table>
                 <TableHeader>
@@ -483,7 +479,7 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Gap Options" />
+              <Heading level="h3" title="Gap Options" />
 
               <Table>
                 <TableHeader>
@@ -539,7 +535,7 @@ export default function StackPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Component 비교" />
+              <Heading level="h3" title="Component 비교" />
 
               <Table>
                 <TableHeader>

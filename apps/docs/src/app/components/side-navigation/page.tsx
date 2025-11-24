@@ -4,7 +4,7 @@
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
 
@@ -69,7 +69,7 @@ export default function SideNavigationPage() {
 
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Side Navigation"
         description="KRDS 표준을 따르는 사이드 네비게이션 컴포넌트입니다. 최대 4단계 depth를 지원하며, Props 기반 API와 CSS Modules로 구현되었습니다."
@@ -84,7 +84,7 @@ export default function SideNavigationPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="installation"
               title="설치"
@@ -112,7 +112,7 @@ export default function SideNavigationPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="Side Navigation이란?"
@@ -156,7 +156,7 @@ export default function SideNavigationPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="usage"
               title="사용 예제"
@@ -164,7 +164,7 @@ export default function SideNavigationPage() {
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 사용" />
+              <Heading level="h3" title="기본 사용" />
               <Body className="mb-4 text-krds-gray-70">
                 <Code>title</Code>과 <Code>sections</Code> props를 제공하여
                 사이드 네비게이션을 생성합니다.
@@ -201,7 +201,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="4단계 Depth 사용" />
+              <Heading level="h3" title="4단계 Depth 사용" />
               <Body className="mb-4 text-krds-gray-70">
                 3Depth 링크에 <Code>children</Code>을 추가하여 4Depth 서브메뉴를
                 만들 수 있습니다.
@@ -232,7 +232,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Active 상태 지정" />
+              <Heading level="h3" title="Active 상태 지정" />
               <Body className="mb-4 text-krds-gray-70">
                 <Code>active: true</Code>를 설정하여 현재 페이지를 표시합니다.
                 부모 섹션도 자동으로 확장됩니다.
@@ -262,7 +262,7 @@ export default function Page() {
 
           {/* Structure */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="structure"
               title="데이터 구조"
@@ -270,7 +270,7 @@ export default function Page() {
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="SideNavSection (2nd Depth)" />
+              <Heading level="h3" title="SideNavSection (2nd Depth)" />
               <Body className="mb-4 text-krds-gray-70">
                 2단계 섹션은 토글 버튼으로 표시되며, children을 가질 수
                 있습니다.
@@ -287,7 +287,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="SideNavLink (3rd/4th Depth)" />
+              <Heading level="h3" title="SideNavLink (3rd/4th Depth)" />
               <Body className="mb-4 text-krds-gray-70">
                 3단계 및 4단계 링크는 실제 페이지 링크입니다. 3단계는 children을
                 가져 4단계를 만들 수 있습니다.
@@ -306,7 +306,7 @@ export default function Page() {
 
           {/* Styling */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="styling"
               title="스타일 커스터마이징"
@@ -314,7 +314,7 @@ export default function Page() {
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="KRDS 디자인 토큰 활용" />
+              <Heading level="h3" title="KRDS 디자인 토큰 활용" />
               <Body className="mb-4 text-krds-gray-70">
                 side-navigation.module.scss에서 KRDS CSS 변수를 사용합니다.
               </Body>
@@ -340,7 +340,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="토글 아이콘 애니메이션" />
+              <Heading level="h3" title="토글 아이콘 애니메이션" />
               <Body className="mb-4 text-krds-gray-70">
                 chevron 아이콘은 확장 시 180도 회전합니다.
               </Body>
@@ -361,7 +361,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Grid 기반 확장 애니메이션" />
+              <Heading level="h3" title="Grid 기반 확장 애니메이션" />
               <Body className="mb-4 text-krds-gray-70">
                 서브메뉴는 CSS Grid를 활용하여 부드럽게 확장/축소됩니다.
               </Body>
@@ -383,7 +383,7 @@ export default function Page() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="best-practices"
               title="모범 사례"
@@ -416,7 +416,7 @@ export default function Page() {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="accessibility"
               title="접근성"
@@ -449,7 +449,7 @@ export default function Page() {
 
           {/* KRDS Standards */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="krds-standards"
               title="KRDS 표준"
@@ -490,7 +490,7 @@ export default function Page() {
         <TabsContent value="api">
           {/* Props */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="props"
               title="Props"
@@ -498,7 +498,7 @@ export default function Page() {
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="title" />
+              <Heading level="h3" title="title" />
               <List variant="unordered">
                 <ListItem>
                   <strong>타입:</strong> <Code>string</Code>
@@ -517,7 +517,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="sections" />
+              <Heading level="h3" title="sections" />
               <List variant="unordered">
                 <ListItem>
                   <strong>타입:</strong> <Code>{`SideNavSection[]`}</Code>
@@ -532,7 +532,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="className" />
+              <Heading level="h3" title="className" />
               <List variant="unordered">
                 <ListItem>
                   <strong>타입:</strong> <Code>string</Code>
@@ -557,7 +557,7 @@ export default function Page() {
 
           {/* Types */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="types"
               title="TypeScript 타입"
@@ -565,7 +565,7 @@ export default function Page() {
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="SideNavSection" />
+              <Heading level="h3" title="SideNavSection" />
               <Body className="mb-4 text-krds-gray-70">
                 2nd Depth 섹션의 타입 정의입니다.
               </Body>
@@ -588,7 +588,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="SideNavLink" />
+              <Heading level="h3" title="SideNavLink" />
               <Body className="mb-4 text-krds-gray-70">
                 3rd/4th Depth 링크의 타입 정의입니다.
               </Body>
@@ -613,7 +613,7 @@ export default function Page() {
 
           {/* State Management */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="state-management"
               title="상태 관리"
@@ -621,7 +621,7 @@ export default function Page() {
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="expandedSections" />
+              <Heading level="h3" title="expandedSections" />
               <Body className="mb-4 text-krds-gray-70">
                 확장된 2nd Depth 섹션의 인덱스를 Set으로 관리합니다.
               </Body>
@@ -642,7 +642,7 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="expandedSubItems" />
+              <Heading level="h3" title="expandedSubItems" />
               <Body className="mb-4 text-krds-gray-70">
                 확장된 3rd Depth 서브메뉴를 문자열 키로 관리합니다.
               </Body>
@@ -660,7 +660,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
 
           {/* CSS Modules Classes */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="css-modules"
               title="CSS Modules 클래스"
@@ -668,7 +668,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="메인 구조" />
+              <Heading level="h3" title="메인 구조" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.krds-side-navigation</Code> - 메인 컨테이너
@@ -686,7 +686,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="버튼 및 링크" />
+              <Heading level="h3" title="버튼 및 링크" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.lnb-btn</Code> - 기본 버튼/링크 스타일
@@ -704,7 +704,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="서브메뉴" />
+              <Heading level="h3" title="서브메뉴" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.lnb-submenu</Code> - 3rd Depth 서브메뉴 컨테이너
@@ -719,7 +719,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="상태 클래스" />
+              <Heading level="h3" title="상태 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.active</Code> - 활성화 상태
@@ -736,7 +736,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
 
           {/* CSS Variables */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="css-variables"
               title="CSS 변수"
@@ -744,7 +744,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Spacing" />
+              <Heading level="h3" title="Spacing" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-spacing-3
 --krds-spacing-6
@@ -754,7 +754,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Colors" />
+              <Heading level="h3" title="Colors" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-color-text-primary
 --krds-color-divider-gray
@@ -769,7 +769,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Typography" />
+              <Heading level="h3" title="Typography" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-font-size-xs
 --krds-font-size-sm
@@ -783,7 +783,7 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Border Radius" />
+              <Heading level="h3" title="Border Radius" />
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`--krds-border-radius-sm`}
               </Code>

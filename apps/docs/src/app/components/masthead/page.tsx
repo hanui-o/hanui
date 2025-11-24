@@ -5,7 +5,7 @@ import { Masthead } from '@hanui/react';
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
 
@@ -34,7 +34,7 @@ import {
 export default function MastheadPage() {
   return (
     <Section>
-      <SectionHeading
+      <Heading
         level="h1"
         id="masthead"
         title="Masthead"
@@ -50,7 +50,7 @@ export default function MastheadPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="installation" title="설치" />
+            <Heading level="h2" id="installation" title="설치" />
             <Body>
               CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
             </Body>
@@ -61,7 +61,7 @@ export default function MastheadPage() {
 
           {/* What is it */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="what-is-it" title="Masthead란?" />
+            <Heading level="h2" id="what-is-it" title="Masthead란?" />
             <Body>
               Masthead(공식 배너)는 정부 웹사이트의 가장 최상단에 위치하여
               대한민국 공식 전자정부 누리집임을 명시하는 컴포넌트입니다.
@@ -75,10 +75,10 @@ export default function MastheadPage() {
 
           {/* Preview */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="basic" title="기본 사용" />
+              <Heading level="h3" id="basic" title="기본 사용" />
               <Body>
                 기본 Masthead는 대한민국 공식 전자정부를 나타내는 표준 텍스트를
                 표시합니다.
@@ -92,11 +92,7 @@ export default function MastheadPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="custom-text"
-                title="커스텀 텍스트"
-              />
+              <Heading level="h3" id="custom-text" title="커스텀 텍스트" />
               <Body>필요한 경우 텍스트를 커스터마이징할 수 있습니다.</Body>
               <Card>
                 <Masthead text="이 누리집은 대한민국 공식 전자정부 누리집입니다" />
@@ -111,7 +107,7 @@ export default function MastheadPage() {
 
           {/* Usage */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
             <Body>
               Masthead는 페이지 레이아웃의 최상단에 배치하며, SkipLink 다음,
               Header보다 앞에 위치해야 합니다.
@@ -151,14 +147,10 @@ export default function Layout({ children }) {
 
           {/* Best Practices */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="when-to-use"
-                title="언제 사용하나요?"
-              />
+              <Heading level="h3" id="when-to-use" title="언제 사용하나요?" />
               <DoCard>
                 <List variant="check">
                   <ListItem>
@@ -178,11 +170,7 @@ export default function Layout({ children }) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="implementation-tips"
-                title="구현 팁"
-              />
+              <Heading level="h3" id="implementation-tips" title="구현 팁" />
               <List variant="disc">
                 <ListItem>
                   <strong>최상단 고정:</strong> Masthead는 항상 페이지 최상단에
@@ -206,7 +194,7 @@ export default function Layout({ children }) {
 
           {/* Accessibility */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
             <Body>
               이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level A 기준을 준수합니다.
             </Body>
@@ -233,7 +221,7 @@ export default function Layout({ children }) {
 
           {/* Foundation Layer */}
           <Subsection level="h2">
-            <SectionHeading
+            <Heading
               level="h2"
               id="foundation-layer"
               title="Foundation Layer"
@@ -268,7 +256,7 @@ export default function Layout({ children }) {
 
           {/* KRDS Standards */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="krds-standards" title="KRDS 표준" />
+            <Heading level="h2" id="krds-standards" title="KRDS 표준" />
 
             <Card variant="warning">
               <List variant="disc">
@@ -302,14 +290,10 @@ export default function Layout({ children }) {
         <TabsContent value="api">
           {/* API Reference */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -347,7 +331,7 @@ export default function Layout({ children }) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="examples" title="사용 예제" />
+              <Heading level="h3" id="examples" title="사용 예제" />
 
               <Body className="font-medium mb-2">기본 사용:</Body>
               <Card>
@@ -384,11 +368,7 @@ export default function Layout({ children }) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="krds-note"
-                title="KRDS 표준 준수"
-              />
+              <Heading level="h3" id="krds-note" title="KRDS 표준 준수" />
               <Card variant="warning">
                 <Body className="font-medium mb-2">중요사항:</Body>
                 <List variant="disc">

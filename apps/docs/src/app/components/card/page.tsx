@@ -3,45 +3,42 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
-
-// Docs helper components
-import { DoCard, DontCard } from '@/components/helpers';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
 import {
-  List,
-  ListItem,
-  Code,
-  Body,
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
   CardBody,
   CardFooter,
+  Button,
+  Code,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
 } from '@hanui/react';
 
 export default function CardPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Card"
-        description="관련 콘텐츠를 그룹화하여 표시하는 유연한 컨테이너 컴포넌트입니다. 다양한 변형과 compound component 패턴을 제공합니다."
+        description="관련 콘텐츠를 그룹화하여 표시하는 유연한 컨테이너 컴포넌트입니다."
       />
 
       <Tabs defaultValue="overview">
@@ -50,96 +47,17 @@ export default function CardPage() {
           <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
-        {/* 개요 탭 */}
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
-              <Body className="leading-relaxed">
-                다음 명령어로 Card 컴포넌트를 설치합니다:
-              </Body>
-            </SectionHeading>
-
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add card
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
-            <SectionHeading
+          {/* 개요 */}
+          <Section level="h2">
+            <Heading
               level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="Card는 Compound Component 패턴을 사용하여 구조화된 콘텐츠를 담을 수 있습니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-
-            <div className="bg-krds-gray-5 rounded-lg p-6 border border-krds-gray-20">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>Compound Component 패턴:</strong> Header, Title,
-                  Description, Body, Footer로 구조화된 콘텐츠를 작성할 수
-                  있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>8가지 변형:</strong> outlined (기본), shadow, filled,
-                  elevated + semantic variants (info, success, warning, error)
-                  스타일을 제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>패딩 옵션:</strong> none, sm, md, lg 4가지 패딩 크기를
-                  제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>인터랙티브:</strong> hoverable prop으로 클릭 가능한
-                  카드를 만들 수 있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>접근성:</strong> WCAG 2.1 및 KWCAG 2.2 준수, 키보드
-                  네비게이션 지원.
-                </ListItem>
-                <ListItem>
-                  <strong>다크 모드:</strong> 자동 다크 모드 지원.
-                </ListItem>
-              </List>
-            </div>
-          </Section>
-
-          {/* Usage */}
-          <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 카드">
-                <Body className="leading-relaxed">
-                  Compound Component 패턴을 사용하여 구조화된 카드를 만들 수
-                  있습니다:
-                </Body>
-              </SectionHeading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter, Button } from '@/components/hanui';
-
-export default function Example() {
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>카드 제목</CardTitle>
-        <CardDescription>카드에 대한 간단한 설명입니다.</CardDescription>
-      </CardHeader>
-      <CardBody>
-        <p>카드의 주요 콘텐츠가 여기에 들어갑니다.</p>
-      </CardBody>
-      <CardFooter>
-        <Button size="sm">확인</Button>
-        <Button size="sm" variant="outline">취소</Button>
-      </CardFooter>
-    </Card>
-  );
-}`}
-              </Code>
-
-              <Card variant="outlined" className="mt-3">
+            <ComponentPreview>
+              <Card variant="outlined">
                 <CardHeader>
                   <CardTitle>카드 제목</CardTitle>
                   <CardDescription>
@@ -147,169 +65,351 @@ export default function Example() {
                   </CardDescription>
                 </CardHeader>
                 <CardBody>
-                  <Body>카드의 주요 콘텐츠가 여기에 들어갑니다.</Body>
+                  <p className="text-[15px] text-krds-gray-90">
+                    카드의 주요 콘텐츠가 여기에 들어갑니다.
+                  </p>
                 </CardBody>
+                <CardFooter>
+                  <Button size="sm">확인</Button>
+                  <Button size="sm" variant="outline">
+                    취소
+                  </Button>
+                </CardFooter>
               </Card>
-            </Subsection>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`<Card>
+  <CardHeader>
+    <CardTitle>카드 제목</CardTitle>
+    <CardDescription>카드에 대한 간단한 설명입니다.</CardDescription>
+  </CardHeader>
+  <CardBody>
+    <p>카드의 주요 콘텐츠가 여기에 들어갑니다.</p>
+  </CardBody>
+  <CardFooter>
+    <Button size="sm">확인</Button>
+    <Button size="sm" variant="outline">취소</Button>
+  </CardFooter>
+</Card>`}
+            </Code>
+          </Section>
 
+          {/* 설치 */}
+          <Installation componentName="card" />
+
+          {/* 사용법 */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Code variant="block" language="tsx">
+              {`import { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter } from '@/components/hanui/card'
+
+<Card>
+  <CardHeader>
+    <CardTitle>카드 제목</CardTitle>
+    <CardDescription>카드 설명</CardDescription>
+  </CardHeader>
+  <CardBody>
+    <p>카드 내용</p>
+  </CardBody>
+  <CardFooter>
+    <Button>액션</Button>
+  </CardFooter>
+</Card>`}
+            </Code>
+          </Section>
+
+          {/* 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            {/* Variant */}
             <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 변형 (Variants)">
-                <Body className="leading-relaxed">
-                  Card는 4가지 기본 시각적 변형을 제공합니다:
-                </Body>
-              </SectionHeading>
-
-              <div className="space-y-6">
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Card>
-  <CardBody>기본 카드 스타일 (테두리)</CardBody>
-</Card>`}
-                  </Code>
-                  <Card className="mt-3">
-                    <CardBody>기본 카드 스타일 (테두리)</CardBody>
-                  </Card>
-                </div>
-
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Card variant="shadow">
-  <CardBody>그림자 + 테두리 카드</CardBody>
-</Card>`}
-                  </Code>
-                  <Card variant="shadow" className="mt-3">
-                    <CardBody>그림자 + 테두리 카드</CardBody>
-                  </Card>
-                </div>
-
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Card variant="filled">
-  <CardBody>배경색 스타일 카드</CardBody>
-</Card>`}
-                  </Code>
-                  <Card variant="filled" className="mt-3">
-                    <CardBody>배경색 스타일 카드</CardBody>
-                  </Card>
-                </div>
-
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Card variant="elevated">
-  <CardBody>강조된 그림자 카드</CardBody>
-</Card>`}
-                  </Code>
-                  <Card variant="elevated" className="mt-3">
-                    <CardBody>강조된 그림자 카드</CardBody>
-                  </Card>
-                </div>
-              </div>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                title="시맨틱 변형 (Semantic Variants)"
-              >
-                <Body className="leading-relaxed">
-                  의미에 따른 4가지 색상 변형을 제공합니다. 알림, 상태 표시 등에
-                  적합합니다:
-                </Body>
-              </SectionHeading>
-
-              <div className="space-y-6">
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Card variant="info">
-  <CardBody>정보 카드 - 일반적인 정보나 도움말에 사용</CardBody>
-</Card>`}
-                  </Code>
-                  <Card variant="info" className="mt-3">
+              <Heading level="h3" title="Variant" />
+              <ComponentPreview>
+                <div className="grid grid-cols-2 gap-6">
+                  <Card variant="outlined">
+                    <CardHeader>
+                      <CardTitle as="h4">Outlined</CardTitle>
+                      <CardDescription>기본 테두리 스타일</CardDescription>
+                    </CardHeader>
                     <CardBody>
-                      정보 카드 - 일반적인 정보나 도움말에 사용
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        가장 기본적인 카드 스타일입니다. 테두리만 있고 그림자나
+                        배경색이 없어 깔끔한 느낌을 줍니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        일반적인 콘텐츠 그룹화에 적합합니다.
+                      </p>
+                    </CardBody>
+                  </Card>
+                  <Card variant="shadow">
+                    <CardHeader>
+                      <CardTitle as="h4">Shadow</CardTitle>
+                      <CardDescription>그림자 + 테두리</CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        은은한 그림자가 있는 카드입니다. 적당한 깊이감을
+                        표현하여 콘텐츠를 돋보이게 합니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        중요한 정보를 강조할 때 사용합니다.
+                      </p>
+                    </CardBody>
+                  </Card>
+                  <Card variant="filled">
+                    <CardHeader>
+                      <CardTitle as="h4">Filled</CardTitle>
+                      <CardDescription>배경색 스타일</CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        배경색이 있는 카드입니다. 부드러운 배경색으로 콘텐츠
+                        영역을 명확히 구분합니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        섹션 구분이 필요할 때 유용합니다.
+                      </p>
+                    </CardBody>
+                  </Card>
+                  <Card variant="elevated">
+                    <CardHeader>
+                      <CardTitle as="h4">Elevated</CardTitle>
+                      <CardDescription>강조된 그림자</CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        강한 그림자로 강조된 카드입니다. 높은 깊이감으로 시선을
+                        집중시킵니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        가장 중요한 콘텐츠를 표시할 때 사용합니다.
+                      </p>
                     </CardBody>
                   </Card>
                 </div>
-
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Card variant="success">
-  <CardBody>성공 카드 - 성공적인 작업 완료 표시</CardBody>
-</Card>`}
-                  </Code>
-                  <Card variant="success" className="mt-3">
-                    <CardBody>성공 카드 - 성공적인 작업 완료 표시</CardBody>
-                  </Card>
-                </div>
-
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Card variant="warning">
-  <CardBody>경고 카드 - 주의가 필요한 정보</CardBody>
-</Card>`}
-                  </Code>
-                  <Card variant="warning" className="mt-3">
-                    <CardBody>경고 카드 - 주의가 필요한 정보</CardBody>
-                  </Card>
-                </div>
-
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Card variant="error">
-  <CardBody>오류 카드 - 오류나 실패 상태 표시</CardBody>
-</Card>`}
-                  </Code>
-                  <Card variant="error" className="mt-3">
-                    <CardBody>오류 카드 - 오류나 실패 상태 표시</CardBody>
-                  </Card>
-                </div>
-              </div>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="패딩 옵션">
-                <Body className="leading-relaxed">
-                  <Code>padding</Code> prop으로 패딩 크기를 조절할 수 있습니다:
-                </Body>
-              </SectionHeading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// 패딩 없음 (0px)
-<Card padding="none">
-  <CardBody>패딩 없음</CardBody>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Card variant="outlined">
+  <CardHeader>
+    <CardTitle>Outlined</CardTitle>
+    <CardDescription>기본 테두리 스타일</CardDescription>
+  </CardHeader>
+  <CardBody>
+    <p>가장 기본적인 카드 스타일입니다.</p>
+  </CardBody>
 </Card>
 
-// 작은 패딩 (16px)
-<Card padding="sm">
-  <CardBody>작은 패딩</CardBody>
-</Card>
-
-// 중간 패딩 (24px) - 기본값
-<Card padding="md">
-  <CardBody>중간 패딩</CardBody>
-</Card>
-
-// 큰 패딩 (32px)
-<Card padding="lg">
-  <CardBody>큰 패딩</CardBody>
+<Card variant="shadow">
+  <CardHeader>
+    <CardTitle>Shadow</CardTitle>
+    <CardDescription>그림자 + 테두리</CardDescription>
+  </CardHeader>
+  <CardBody>
+    <p>은은한 그림자가 있는 카드입니다.</p>
+  </CardBody>
 </Card>`}
               </Code>
             </Subsection>
 
+            {/* Semantic Variants */}
             <Subsection level="h3">
-              <SectionHeading level="h3" title="인터랙티브 카드">
-                <Body className="leading-relaxed">
-                  <Code>hoverable</Code> prop을 사용하면 클릭 가능한 카드를 만들
-                  수 있습니다. 호버 시 그림자가 강조되고 약간 위로 올라가며,
-                  키보드로도 접근 가능합니다 (Enter, Space):
-                </Body>
-              </SectionHeading>
+              <Heading level="h3" title="Semantic Variants" />
+              <ComponentPreview>
+                <div className="grid grid-cols-2 gap-6">
+                  <Card variant="info">
+                    <CardHeader>
+                      <CardTitle as="h4">정보</CardTitle>
+                      <CardDescription>일반 알림</CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        일반적인 정보나 도움말을 제공할 때 사용합니다.
+                        사용자에게 참고 사항을 안내하는데 적합합니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        예: 시스템 공지, 기능 안내
+                      </p>
+                    </CardBody>
+                  </Card>
+                  <Card variant="success">
+                    <CardHeader>
+                      <CardTitle as="h4">성공</CardTitle>
+                      <CardDescription>작업 완료</CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        성공적인 작업 완료를 표시합니다. 긍정적인 결과를
+                        사용자에게 알릴 때 사용합니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        예: 저장 성공, 전송 완료
+                      </p>
+                    </CardBody>
+                  </Card>
+                  <Card variant="warning">
+                    <CardHeader>
+                      <CardTitle as="h4">경고</CardTitle>
+                      <CardDescription>주의 필요</CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        주의가 필요한 정보를 표시합니다. 사용자의 주의를
+                        환기시켜야 하는 상황에 사용합니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        예: 삭제 전 확인, 중요 변경사항
+                      </p>
+                    </CardBody>
+                  </Card>
+                  <Card variant="error">
+                    <CardHeader>
+                      <CardTitle as="h4">오류</CardTitle>
+                      <CardDescription>실패 상태</CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        오류나 실패 상태를 표시합니다. 문제가 발생했음을 명확히
+                        전달할 때 사용합니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        예: 검증 실패, 서버 오류
+                      </p>
+                    </CardBody>
+                  </Card>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Card variant="info">
+  <CardHeader>
+    <CardTitle>정보</CardTitle>
+  </CardHeader>
+  <CardBody>
+    <p>일반적인 정보나 도움말에 사용합니다.</p>
+  </CardBody>
+</Card>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+<Card variant="success">
+  <CardHeader>
+    <CardTitle>성공</CardTitle>
+  </CardHeader>
+  <CardBody>
+    <p>성공적인 작업 완료를 표시합니다.</p>
+  </CardBody>
+</Card>`}
+              </Code>
+            </Subsection>
+
+            {/* Padding */}
+            <Subsection level="h3">
+              <Heading level="h3" title="Padding" />
+              <ComponentPreview>
+                <div className="space-y-6">
+                  <Card padding="none">
+                    <div className="p-4 bg-krds-gray-10">
+                      <CardHeader>
+                        <CardTitle as="h4">Padding: none (0px)</CardTitle>
+                        <CardDescription>
+                          내부 여백이 없어 커스텀 레이아웃에 적합
+                        </CardDescription>
+                      </CardHeader>
+                      <CardBody>
+                        <p className="text-[15px] text-krds-gray-90">
+                          이미지나 커스텀 콘텐츠를 카드 전체에 배치할 때
+                          사용합니다.
+                        </p>
+                      </CardBody>
+                    </div>
+                  </Card>
+                  <Card padding="sm">
+                    <CardHeader>
+                      <CardTitle as="h4">Padding: sm (16px)</CardTitle>
+                      <CardDescription>
+                        작은 여백으로 콤팩트한 디자인
+                      </CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90">
+                        공간이 제한적이거나 여러 카드를 밀집하게 배치할 때
+                        적합합니다.
+                      </p>
+                    </CardBody>
+                  </Card>
+                  <Card padding="md">
+                    <CardHeader>
+                      <CardTitle as="h4">Padding: md (24px)</CardTitle>
+                      <CardDescription>
+                        표준 여백으로 가장 많이 사용
+                      </CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90">
+                        일반적인 콘텐츠 카드에 적합한 기본 패딩값입니다.
+                      </p>
+                    </CardBody>
+                  </Card>
+                  <Card padding="lg">
+                    <CardHeader>
+                      <CardTitle as="h4">Padding: lg (32px)</CardTitle>
+                      <CardDescription>
+                        넓은 여백으로 여유로운 레이아웃
+                      </CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90">
+                        중요한 콘텐츠를 강조하거나 시각적 여유를 줄 때
+                        사용합니다.
+                      </p>
+                    </CardBody>
+                  </Card>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Card padding="none">
+  <CardBody>Padding: none (0px)</CardBody>
+</Card>
+
+<Card padding="sm">
+  <CardBody>Padding: sm (16px)</CardBody>
+</Card>
+
+<Card padding="md">
+  <CardBody>Padding: md (24px)</CardBody>
+</Card>
+
+<Card padding="lg">
+  <CardBody>Padding: lg (32px)</CardBody>
+</Card>`}
+              </Code>
+            </Subsection>
+
+            {/* Hoverable */}
+            <Subsection level="h3">
+              <Heading level="h3" title="Hoverable" />
+              <ComponentPreview>
+                <Card
+                  hoverable
+                  onClick={() => alert('Card clicked!')}
+                  aria-label="클릭 가능한 카드"
+                >
+                  <CardHeader>
+                    <CardTitle>클릭 가능한 카드</CardTitle>
+                    <CardDescription>
+                      이 카드를 클릭하거나 Enter/Space 키를 눌러보세요
+                    </CardDescription>
+                  </CardHeader>
+                  <CardBody>
+                    <p className="text-[15px] text-krds-gray-90">
+                      카드 전체가 버튼처럼 작동합니다.
+                    </p>
+                  </CardBody>
+                </Card>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
                 {`<Card
   hoverable
   onClick={() => console.log('Card clicked')}
-  aria-label="상세 정보 보기"
+  aria-label="클릭 가능한 카드"
 >
   <CardHeader>
     <CardTitle>클릭 가능한 카드</CardTitle>
@@ -322,63 +422,126 @@ export default function Example() {
   </CardBody>
 </Card>`}
               </Code>
-
-              <Card
-                variant="outlined"
-                hoverable
-                onClick={() => alert('Card clicked!')}
-                aria-label="데모 카드"
-                className="mt-3"
-              >
-                <CardHeader>
-                  <CardTitle>클릭 가능한 카드</CardTitle>
-                  <CardDescription>
-                    이 카드를 클릭하거나 Enter/Space 키를 눌러보세요
-                  </CardDescription>
-                </CardHeader>
-                <CardBody>
-                  <Body>카드 전체가 버튼처럼 작동합니다.</Body>
-                </CardBody>
-              </Card>
             </Subsection>
 
+            {/* Complete Example */}
             <Subsection level="h3">
-              <SectionHeading level="h3" title="실제 사용 예시">
-                <Body className="leading-relaxed">
-                  정보 카드와 그리드 레이아웃 예시입니다:
-                </Body>
-              </SectionHeading>
+              <Heading level="h3" title="Complete Example" />
+              <ComponentPreview>
+                <div className="grid grid-cols-2 gap-6">
+                  <Card hoverable variant="shadow">
+                    <CardHeader>
+                      <CardTitle as="h4">데이터 분석</CardTitle>
+                      <CardDescription>
+                        실시간 데이터 시각화 및 분석
+                      </CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        대시보드를 통해 비즈니스 지표를 실시간으로 모니터링하고
+                        데이터 기반 의사결정을 내릴 수 있습니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        차트, 그래프, 테이블 등 다양한 형태로 데이터를
+                        시각화합니다.
+                      </p>
+                    </CardBody>
+                    <CardFooter>
+                      <Button size="sm">자세히 보기</Button>
+                      <Button size="sm" variant="outline">
+                        데모 보기
+                      </Button>
+                    </CardFooter>
+                  </Card>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// 정보 카드
-<Card>
-  <CardHeader>
-    <CardTitle>개인정보 처리방침</CardTitle>
-    <CardDescription>최종 수정일: 2024년 1월 1일</CardDescription>
-  </CardHeader>
-  <CardBody>
-    <p>귀하의 개인정보는 관련 법령에 따라 안전하게 보호됩니다.</p>
-    <List>
-      <ListItem>수집 항목: 이름, 이메일, 전화번호</ListItem>
-      <ListItem>수집 목적: 서비스 제공 및 고객 지원</ListItem>
-      <ListItem>보유 기간: 회원 탈퇴 시까지</ListItem>
-    </List>
-  </CardBody>
-  <CardFooter>
-    <Button size="sm">전체 보기</Button>
-  </CardFooter>
-</Card>
+                  <Card hoverable variant="shadow">
+                    <CardHeader>
+                      <CardTitle as="h4">보고서 생성</CardTitle>
+                      <CardDescription>
+                        자동화된 보고서 작성 시스템
+                      </CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        설정한 주기에 따라 자동으로 보고서를 생성하고 관련자에게
+                        이메일로 발송합니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        PDF, Excel 등 다양한 형식으로 내보내기가 가능합니다.
+                      </p>
+                    </CardBody>
+                    <CardFooter>
+                      <Button size="sm">자세히 보기</Button>
+                      <Button size="sm" variant="outline">
+                        데모 보기
+                      </Button>
+                    </CardFooter>
+                  </Card>
 
-// 카드 그리드
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <Card hoverable variant="elevated">
+                    <CardHeader>
+                      <CardTitle as="h4">팀 협업</CardTitle>
+                      <CardDescription>
+                        실시간 협업 도구 및 커뮤니케이션
+                      </CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        팀원들과 실시간으로 소통하고 작업을 공유하며 프로젝트를
+                        효율적으로 관리할 수 있습니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        채팅, 화상회의, 파일 공유 등 다양한 협업 기능을
+                        제공합니다.
+                      </p>
+                    </CardBody>
+                    <CardFooter>
+                      <Button size="sm">자세히 보기</Button>
+                      <Button size="sm" variant="outline">
+                        데모 보기
+                      </Button>
+                    </CardFooter>
+                  </Card>
+
+                  <Card hoverable variant="elevated">
+                    <CardHeader>
+                      <CardTitle as="h4">보안 관리</CardTitle>
+                      <CardDescription>
+                        통합 보안 모니터링 시스템
+                      </CardDescription>
+                    </CardHeader>
+                    <CardBody>
+                      <p className="text-[15px] text-krds-gray-90 mb-4">
+                        사용자 권한 관리, 접근 로그 추적, 보안 정책 설정 등을
+                        통해 시스템을 안전하게 보호합니다.
+                      </p>
+                      <p className="text-[13px] text-krds-gray-60">
+                        2단계 인증, IP 화이트리스트, 암호화 등 다양한 보안
+                        기능을 제공합니다.
+                      </p>
+                    </CardBody>
+                    <CardFooter>
+                      <Button size="sm">자세히 보기</Button>
+                      <Button size="sm" variant="outline">
+                        데모 보기
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
   <Card hoverable>
     <CardHeader>
       <CardTitle>서비스 1</CardTitle>
       <CardDescription>간단한 설명</CardDescription>
     </CardHeader>
     <CardBody>
-      <p>서비스 상세 내용</p>
+      <p>서비스 상세 내용이 여기에 들어갑니다.</p>
     </CardBody>
+    <CardFooter>
+      <Button size="sm">자세히 보기</Button>
+    </CardFooter>
   </Card>
 
   <Card hoverable>
@@ -387,64 +550,25 @@ export default function Example() {
       <CardDescription>간단한 설명</CardDescription>
     </CardHeader>
     <CardBody>
-      <p>서비스 상세 내용</p>
+      <p>서비스 상세 내용이 여기에 들어갑니다.</p>
     </CardBody>
+    <CardFooter>
+      <Button size="sm">자세히 보기</Button>
+    </CardFooter>
   </Card>
 </div>`}
               </Code>
             </Subsection>
           </Section>
-
-          {/* Best Practices */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하나요?" />
-              <DoCard title="Card를 사용하기 적합한 경우">
-                <List variant="check">
-                  <ListItem>관련 정보를 시각적으로 그룹화할 때</ListItem>
-                  <ListItem>여러 콘텐츠 항목을 구별해서 표시할 때</ListItem>
-                  <ListItem>클릭 가능한 콘텐츠 블록이 필요할 때</ListItem>
-                  <ListItem>계층적 정보를 구조화할 때</ListItem>
-                </List>
-              </DoCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
-              <DontCard title="Card 사용을 피해야 하는 경우">
-                <List variant="dash">
-                  <ListItem>
-                    단일 텍스트 블록만 표시할 때 (<Code>Body</Code> 컴포넌트
-                    사용)
-                  </ListItem>
-                  <ListItem>
-                    복잡한 폼을 담을 때 (<Code>Form</Code> 컴포넌트 사용)
-                  </ListItem>
-                  <ListItem>
-                    데이터 테이블을 표시할 때 (<Code>Table</Code> 컴포넌트 사용)
-                  </ListItem>
-                  <ListItem>너무 많은 카드를 한 화면에 배치할 때</ListItem>
-                </List>
-              </DontCard>
-            </Subsection>
-          </Section>
         </TabsContent>
 
-        {/* API 탭 */}
         <TabsContent value="api">
-          <Section>
-            <SectionHeading level="h2" id="api" title="API Reference" />
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Card Props" />
-
-              <Table>
+              <Heading level="h3" title="Card" />
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
@@ -455,73 +579,112 @@ export default function Example() {
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">variant</TableCell>
                     <TableCell className="font-mono">
-                      &apos;outlined&apos; | &apos;shadow&apos; |
-                      &apos;filled&apos; | &apos;elevated&apos; |
-                      &apos;info&apos; | &apos;success&apos; |
-                      &apos;warning&apos; | &apos;error&apos;
+                      <Code>variant</Code>
                     </TableCell>
-                    <TableCell className="font-mono">
-                      &apos;outlined&apos;
+                    <TableCell>
+                      <Code className="text-xs">
+                        'outlined' | 'shadow' | 'filled' | 'elevated' | 'info' |
+                        'success' | 'warning' | 'error'
+                      </Code>
                     </TableCell>
-                    <TableCell>카드 시각적 변형</TableCell>
+                    <TableCell>'outlined'</TableCell>
+                    <TableCell>카드 시각적 스타일</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">padding</TableCell>
                     <TableCell className="font-mono">
-                      &apos;none&apos; | &apos;sm&apos; | &apos;md&apos; |
-                      &apos;lg&apos;
+                      <Code>padding</Code>
                     </TableCell>
-                    <TableCell className="font-mono">&apos;md&apos;</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'none' | 'sm' | 'md' | 'lg'
+                      </Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
                     <TableCell>패딩 크기</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">hoverable</TableCell>
-                    <TableCell className="font-mono">boolean</TableCell>
-                    <TableCell className="font-mono">false</TableCell>
+                    <TableCell className="font-mono">
+                      <Code>hoverable</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
                     <TableCell>호버 효과 및 클릭 가능 여부</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">className</TableCell>
-                    <TableCell className="font-mono">string</TableCell>
+                    <TableCell className="font-mono">
+                      <Code>onClick</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">() =&gt; void</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>추가 CSS 클래스</TableCell>
+                    <TableCell>클릭 핸들러</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">aria-label</TableCell>
-                    <TableCell className="font-mono">string</TableCell>
+                    <TableCell className="font-mono">
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>접근성 레이블</TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="하위 컴포넌트" />
-
-              <List>
-                <ListItem>
-                  <Code>CardHeader</Code>: 카드 헤더 영역. CardTitle과
-                  CardDescription을 포함합니다.
-                </ListItem>
-                <ListItem>
-                  <Code>CardTitle</Code>: 카드 제목 (h3 요소, 24px,
-                  font-semibold).
-                </ListItem>
-                <ListItem>
-                  <Code>CardDescription</Code>: 카드 설명 (p 요소, 15px,
-                  text-gray-600).
-                </ListItem>
-                <ListItem>
-                  <Code>CardBody</Code>: 카드 본문 콘텐츠 영역.
-                </ListItem>
-                <ListItem>
-                  <Code>CardFooter</Code>: 카드 푸터 영역. 주로 버튼 등 액션을
-                  배치합니다.
-                </ListItem>
-              </List>
+              <Heading level="h3" title="하위 컴포넌트" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Component</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>CardHeader</Code>
+                    </TableCell>
+                    <TableCell>
+                      카드 헤더 영역. CardTitle과 CardDescription을 포함합니다.
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>CardTitle</Code>
+                    </TableCell>
+                    <TableCell>
+                      카드 제목 (h3 요소, 24px, font-semibold)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>CardDescription</Code>
+                    </TableCell>
+                    <TableCell>카드 설명 (p 요소, 15px, gray-60)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>CardBody</Code>
+                    </TableCell>
+                    <TableCell>카드 본문 콘텐츠 영역</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>CardFooter</Code>
+                    </TableCell>
+                    <TableCell>
+                      카드 푸터 영역. 주로 버튼 등 액션을 배치합니다.
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </Subsection>
           </Section>
         </TabsContent>

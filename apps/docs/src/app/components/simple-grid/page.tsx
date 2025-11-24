@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -35,7 +35,7 @@ import {
 export default function SimpleGridPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="SimpleGrid"
         description="자동으로 반응형 그리드 레이아웃을 생성하는 간단한 그리드 컴포넌트입니다."
@@ -51,11 +51,11 @@ export default function SimpleGridPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 SimpleGrid 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add simple-grid
@@ -64,7 +64,7 @@ export default function SimpleGridPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -99,7 +99,7 @@ export default function SimpleGridPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <SimpleGrid columns={3} gap="md">
                 <Card padding="md">
@@ -126,15 +126,15 @@ export default function SimpleGridPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="고정된 열 개수">
+              <Heading level="h3" title="고정된 열 개수">
                 <Body className="leading-relaxed">
                   <Code>columns</Code> prop으로 그리드의 열 개수를 지정할 수
                   있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { SimpleGrid } from '@/components/hanui';
@@ -161,12 +161,12 @@ export default function SimpleGridPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="자동 반응형 (minChildWidth)">
+              <Heading level="h3" title="자동 반응형 (minChildWidth)">
                 <Body className="leading-relaxed">
                   <Code>minChildWidth</Code> prop으로 각 아이템의 최소 너비를
                   지정하면, 컨테이너 크기에 따라 자동으로 열 개수가 조정됩니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<SimpleGrid minChildWidth="200px" gap="lg">
@@ -193,12 +193,12 @@ export default function SimpleGridPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="간격 조정">
+              <Heading level="h3" title="간격 조정">
                 <Body className="leading-relaxed">
                   <Code>gap</Code> prop으로 그리드 아이템 간 간격을 조절할 수
                   있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Stack gap="md">
                 <div>
@@ -256,11 +256,11 @@ export default function SimpleGridPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="열 개수 변형">
+              <Heading level="h3" title="열 개수 변형">
                 <Body className="leading-relaxed">
                   1~12개의 열을 자유롭게 설정할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Stack gap="md">
                 <div>
@@ -303,14 +303,14 @@ export default function SimpleGridPage() {
 
           {/* Examples */}
           <Section>
-            <SectionHeading level="h2" id="examples" title="사용 예시" />
+            <Heading level="h2" id="examples" title="사용 예시" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="제품 카드 그리드">
+              <Heading level="h3" title="제품 카드 그리드">
                 <Body className="leading-relaxed">
                   제품 목록을 그리드 레이아웃으로 표시하는 예시입니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined" className="mb-3">
                 <SimpleGrid minChildWidth="250px" gap="lg">
@@ -349,11 +349,11 @@ export default function SimpleGridPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="대시보드 위젯">
+              <Heading level="h3" title="대시보드 위젯">
                 <Body className="leading-relaxed">
                   통계 대시보드를 그리드로 구성하는 예시입니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined" className="mb-3">
                 <SimpleGrid columns={3} gap="md">
@@ -390,14 +390,10 @@ export default function SimpleGridPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하나요?" />
+              <Heading level="h3" title="언제 사용하나요?" />
               <DoCard title="SimpleGrid를 사용하기 적합한 경우">
                 <List variant="check">
                   <ListItem>카드 그리드를 만들 때</ListItem>
@@ -410,7 +406,7 @@ export default function SimpleGridPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
               <DontCard title="SimpleGrid 사용을 피해야 하는 경우">
                 <List variant="dash">
                   <ListItem>
@@ -431,7 +427,7 @@ export default function SimpleGridPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="사용 가이드라인" />
+              <Heading level="h3" title="사용 가이드라인" />
               <List>
                 <ListItem>
                   고정된 레이아웃이 필요한 경우 <Code>columns</Code>를
@@ -453,7 +449,7 @@ export default function SimpleGridPage() {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
 
             <Card variant="info">
               <List variant="check" className="text-krds-gray-90">
@@ -478,10 +474,10 @@ export default function SimpleGridPage() {
         {/* API 탭 */}
         <TabsContent value="api">
           <Section>
-            <SectionHeading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="SimpleGrid Props" />
+              <Heading level="h3" title="SimpleGrid Props" />
 
               <Table>
                 <TableHeader>
@@ -538,7 +534,7 @@ export default function SimpleGridPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Gap 크기" />
+              <Heading level="h3" title="Gap 크기" />
 
               <Table>
                 <TableHeader>

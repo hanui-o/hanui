@@ -5,7 +5,7 @@ import { MainMenu } from '@hanui/react';
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
 
@@ -34,7 +34,7 @@ import {
 export default function MainMenuPage() {
   return (
     <Section>
-      <SectionHeading
+      <Heading
         level="h1"
         id="mainmenu"
         title="MainMenu"
@@ -50,7 +50,7 @@ export default function MainMenuPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="installation" title="설치" />
+            <Heading level="h2" id="installation" title="설치" />
             <Body>
               CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
             </Body>
@@ -61,7 +61,7 @@ export default function MainMenuPage() {
 
           {/* What is it */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="what-is-it" title="MainMenu란?" />
+            <Heading level="h2" id="what-is-it" title="MainMenu란?" />
             <Body>
               MainMenu(주 메뉴)는 웹사이트의 주요 네비게이션을 제공하는
               컴포넌트로, 일반적으로 헤더에 배치됩니다.
@@ -74,10 +74,10 @@ export default function MainMenuPage() {
 
           {/* Preview */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="basic" title="기본 수평 메뉴" />
+              <Heading level="h3" id="basic" title="기본 수평 메뉴" />
               <Body>
                 간단한 링크들로 구성된 수평 메뉴입니다. 드롭다운 없이 직접
                 링크만 제공합니다.
@@ -107,7 +107,7 @@ export default function MainMenuPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="dropdown-simple"
                 title="드롭다운 메뉴 (간단한 서브메뉴)"
@@ -156,7 +156,7 @@ export default function MainMenuPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="dropdown-sections"
                 title="섹션별 드롭다운 (설명 및 유틸리티 링크 포함)"
@@ -239,7 +239,7 @@ export default function MainMenuPage() {
 
           {/* Usage */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
             <Body>
               MainMenu는 일반적으로 Header 컴포넌트 내부에 배치합니다.
             </Body>
@@ -272,14 +272,10 @@ export default function Layout() {
 
           {/* Best Practices */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="when-to-use"
-                title="언제 사용하나요?"
-              />
+              <Heading level="h3" id="when-to-use" title="언제 사용하나요?" />
               <DoCard>
                 <List variant="check">
                   <ListItem>
@@ -300,11 +296,7 @@ export default function Layout() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="implementation-tips"
-                title="구현 팁"
-              />
+              <Heading level="h3" id="implementation-tips" title="구현 팁" />
               <List variant="disc">
                 <ListItem>
                   <strong>메뉴 개수 제한:</strong> 최대 5-7개의 주요 메뉴
@@ -330,7 +322,7 @@ export default function Layout() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="avoid" title="피해야 할 사항" />
+              <Heading level="h3" id="avoid" title="피해야 할 사항" />
               <DontCard>
                 <List variant="cross">
                   <ListItem>
@@ -348,7 +340,7 @@ export default function Layout() {
 
           {/* Accessibility */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
             <Body>
               이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다.
             </Body>
@@ -377,7 +369,7 @@ export default function Layout() {
             </List>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="keyboard-navigation"
                 title="키보드 네비게이션"
@@ -429,7 +421,7 @@ export default function Layout() {
 
           {/* Foundation Layer */}
           <Subsection level="h2">
-            <SectionHeading
+            <Heading
               level="h2"
               id="foundation-layer"
               title="Foundation Layer"
@@ -468,7 +460,7 @@ export default function Layout() {
 
           {/* KRDS Standards */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="krds-standards" title="KRDS 표준" />
+            <Heading level="h2" id="krds-standards" title="KRDS 표준" />
 
             <Card variant="warning">
               <List variant="disc">
@@ -503,14 +495,10 @@ export default function Layout() {
         <TabsContent value="api">
           {/* API Reference */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -568,11 +556,7 @@ export default function Layout() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="mainmenuitem"
-                title="MainMenuItem Type"
-              />
+              <Heading level="h3" id="mainmenuitem" title="MainMenuItem Type" />
               <Card>
                 <Code language="tsx">
                   {`export interface MainMenuItem {
@@ -606,7 +590,7 @@ export default function Layout() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="mainmenusection"
                 title="MainMenuSection Type"
@@ -634,11 +618,7 @@ export default function Layout() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="mainmenulink"
-                title="MainMenuLink Type"
-              />
+              <Heading level="h3" id="mainmenulink" title="MainMenuLink Type" />
               <Card>
                 <Code language="tsx">
                   {`export interface MainMenuLink {
@@ -667,7 +647,7 @@ export default function Layout() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="example" title="고급 사용 예제" />
+              <Heading level="h3" id="example" title="고급 사용 예제" />
               <Body>다중 섹션을 활용한 복잡한 드롭다운 메뉴 예제:</Body>
               <Card>
                 <Code language="tsx">

@@ -1,13 +1,13 @@
 'use client';
 
-import { Heading, Body, Container } from '@hanui/react';
-import { PageSection, SectionHeading } from '@/components/content';
+import { Body, Container } from '@hanui/react';
+import { PageSection, Heading } from '@/components/content';
 import Link from 'next/link';
 
 export default function ShowcasePage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Showcase"
         description="HANUI로 만들어진 프로젝트들을 소개합니다. 실제 프로덕션 환경에서 사용되는 사례를 확인하세요."

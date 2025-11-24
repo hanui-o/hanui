@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -35,7 +35,7 @@ import {
 export default function TabsPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Tabs"
         description="여러 콘텐츠 영역을 효율적으로 구성하고 전환할 수 있는 탭 네비게이션 컴포넌트입니다."
@@ -50,11 +50,11 @@ export default function TabsPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Tabs 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add tabs
@@ -63,7 +63,7 @@ export default function TabsPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -98,7 +98,7 @@ export default function TabsPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Card variant="outlined">
               <TabsComponent defaultValue="tab1">
@@ -162,14 +162,14 @@ export default function TabsPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용법" />
+            <Heading level="h2" id="usage" title="사용법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Pills Variant">
+              <Heading level="h3" title="Pills Variant">
                 <Body className="leading-relaxed">
                   Pills 스타일은 둥근 배경으로 선택된 탭을 강조합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <TabsComponent defaultValue="account" variant="pills">
@@ -207,11 +207,11 @@ export default function TabsPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="비활성화된 탭">
+              <Heading level="h3" title="비활성화된 탭">
                 <Body className="leading-relaxed">
                   disabled prop으로 특정 탭을 비활성화할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <TabsComponent defaultValue="general">
@@ -249,12 +249,12 @@ export default function TabsPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Controlled Mode">
+              <Heading level="h3" title="Controlled Mode">
                 <Body className="leading-relaxed">
                   value와 onValueChange props로 탭 상태를 외부에서 제어할 수
                   있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`const [activeTab, setActiveTab] = useState('home');
@@ -275,11 +275,7 @@ export default function TabsPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Stack gap="content">
               <DoCard
@@ -311,7 +307,7 @@ export default function TabsPage() {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
 
             <Card variant="info">
               <List variant="check">
@@ -339,7 +335,7 @@ export default function TabsPage() {
             </Card>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="키보드 단축키" />
+              <Heading level="h3" title="키보드 단축키" />
 
               <Table>
                 <TableHeader>
@@ -381,14 +377,10 @@ export default function TabsPage() {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Tabs Props" />
+              <Heading level="h3" title="Tabs Props" />
 
               <Table>
                 <TableHeader>
@@ -435,7 +427,7 @@ export default function TabsPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="TabsTrigger Props" />
+              <Heading level="h3" title="TabsTrigger Props" />
 
               <Table>
                 <TableHeader>
@@ -464,7 +456,7 @@ export default function TabsPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="TabsContent Props" />
+              <Heading level="h3" title="TabsContent Props" />
 
               <Table>
                 <TableHeader>
@@ -485,7 +477,7 @@ export default function TabsPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Variant 옵션" />
+              <Heading level="h3" title="Variant 옵션" />
 
               <Table>
                 <TableHeader>

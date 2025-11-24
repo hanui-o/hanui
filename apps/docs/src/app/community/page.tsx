@@ -1,11 +1,11 @@
-import { Stack, Heading, Body } from '@hanui/react';
-import { PageSection, SectionHeading } from '@/components/content';
+import { Stack, Body } from '@hanui/react';
+import { PageSection, Heading } from '@/components/content';
 
 export default function CommunityPage() {
   return (
     <>
       <PageSection>
-        <SectionHeading
+        <Heading
           level="h1"
           title="Community"
           description="HANUI는 오픈소스 프로젝트입니다. 버그 리포트, 기능 제안, 질문 등은 GitHub을 통해 참여해주세요."

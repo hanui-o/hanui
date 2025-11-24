@@ -1,6 +1,6 @@
 // Docs layout components
 export { PageSection } from './PageSection';
-export { SectionHeading } from './SectionHeader';
+export { Heading } from './Heading';
 export { Subsection } from './Subsection';
 export { PageNavigation } from './PageNavigation';
 export { CodeBlock } from './CodeBlock';

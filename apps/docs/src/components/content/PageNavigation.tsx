@@ -31,34 +31,30 @@ export function PageNavigation({ prev, next, className }: PageNavigationProps) {
     return null;
   }
 
+  const navItems = [
+    { item: prev, label: '이전', Icon: ArrowLeftIcon, isNext: false },
+    { item: next, label: '다음', Icon: ArrowRightIcon, isNext: true },
+  ];
+
   return (
     <nav
       className={cn('flex items-center justify-between gap-4 mt-8', className)}
     >
-      {prev ? (
-        <Link
-          href={prev.href}
-          className="flex items-center gap-1 px-3 py-2 rounded-md bg-krds-gray-5 hover:border-krds-primary-base hover:bg-krds-primary-5 transition-all"
-        >
-          <span className="sr-only">이전</span>
-          <ArrowLeftIcon className="w-4 h-4" />
-          <span className="text-sm text-krds-gray-95">{prev.title}</span>
-        </Link>
-      ) : (
-        <div className="flex-1" />
-      )}
-
-      {next ? (
-        <Link
-          href={next.href}
-          className="flex items-center gap-1 px-3 py-2 rounded-md bg-krds-gray-5 hover:border-krds-primary-base hover:bg-krds-primary-5 transition-all"
-        >
-          <span className="sr-only">다음</span>
-          <span className="text-sm text-krds-gray-95">{next.title}</span>
-          <ArrowRightIcon className="w-4 h-4" />
-        </Link>
-      ) : (
-        <div className="flex-1" />
+      {navItems.map(({ item, label, Icon, isNext }) =>
+        item ? (
+          <Link
+            key={label}
+            href={item.href}
+            className="flex items-center gap-1 px-3 py-2 rounded-md bg-krds-gray-5 hover:bg-krds-gray-10 transition-all"
+          >
+            <span className="sr-only">{label}</span>
+            {!isNext && <Icon className="w-4 h-4" />}
+            <span className="text-sm text-krds-gray-95">{item.title}</span>
+            {isNext && <Icon className="w-4 h-4" />}
+          </Link>
+        ) : (
+          <div key={label} className="flex-1" />
+        )
       )}
     </nav>
   );

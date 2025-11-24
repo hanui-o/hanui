@@ -6,7 +6,7 @@ import { useState } from 'react';
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
 
@@ -43,7 +43,7 @@ export default function PaginationPage() {
 
   return (
     <Section>
-      <SectionHeading
+      <Heading
         level="h1"
         id="pagination"
         title="Pagination"
@@ -59,7 +59,7 @@ export default function PaginationPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="installation" title="설치" />
+            <Heading level="h2" id="installation" title="설치" />
             <Body>
               CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
             </Body>
@@ -70,11 +70,7 @@ export default function PaginationPage() {
 
           {/* What is it */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="what-is-it"
-              title="Pagination이란?"
-            />
+            <Heading level="h2" id="what-is-it" title="Pagination이란?" />
             <Body>
               Pagination 컴포넌트는 많은 콘텐츠를 여러 페이지로 나누어 표시할 때
               사용하는 네비게이션 컴포넌트입니다. 이전/다음 버튼과 페이지 번호를
@@ -89,10 +85,10 @@ export default function PaginationPage() {
 
           {/* Preview */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="basic" title="기본" />
+              <Heading level="h3" id="basic" title="기본" />
               <Card>
                 <div className="flex flex-col items-center gap-4">
                   <Pagination
@@ -126,7 +122,7 @@ export default function Example() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="many-pages" title="많은 페이지" />
+              <Heading level="h3" id="many-pages" title="많은 페이지" />
               <Body>
                 페이지가 많을 때는 생략 부호(...)를 사용하여 간결하게
                 표시됩니다.
@@ -155,11 +151,7 @@ export default function Example() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="sibling-count"
-                title="Sibling Count"
-              />
+              <Heading level="h3" id="sibling-count" title="Sibling Count" />
               <Body>
                 siblingCount로 현재 페이지 양쪽에 표시할 페이지 수를 조정할 수
                 있습니다. 기본값은 1입니다.
@@ -212,7 +204,7 @@ export default function Example() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="few-pages" title="적은 페이지" />
+              <Heading level="h3" id="few-pages" title="적은 페이지" />
               <Body>
                 페이지가 적을 때는 생략 부호(...) 없이 모든 페이지 번호가
                 표시됩니다.
@@ -238,7 +230,7 @@ export default function Example() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="very-many-pages"
                 title="매우 많은 페이지"
@@ -268,11 +260,7 @@ export default function Example() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="practical"
-                title="실제 사용 예제"
-              />
+              <Heading level="h3" id="practical" title="실제 사용 예제" />
               <Body>
                 실제 데이터 목록과 함께 사용하는 예제입니다. 페이지 변경 시
                 목록이 업데이트됩니다.
@@ -333,7 +321,7 @@ return (
 
           {/* Usage */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
             <Card>
               <Code language="tsx">
                 {`import { Pagination } from '@hanui/react';
@@ -357,14 +345,10 @@ export default function MyComponent() {
 
           {/* Best Practices */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="when-to-use"
-                title="언제 사용하나요?"
-              />
+              <Heading level="h3" id="when-to-use" title="언제 사용하나요?" />
               <DoCard>
                 <List variant="check">
                   <ListItem>
@@ -386,7 +370,7 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="when-not-to-use"
                 title="언제 사용하지 말아야 하나요?"
@@ -411,11 +395,7 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="implementation-tips"
-                title="구현 팁"
-              />
+              <Heading level="h3" id="implementation-tips" title="구현 팁" />
               <List variant="disc">
                 <ListItem>
                   <strong>페이지 크기:</strong> 한 페이지당 10-50개 항목이
@@ -443,7 +423,7 @@ export default function MyComponent() {
 
           {/* Accessibility */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
             <Body>
               이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다.
             </Body>
@@ -477,7 +457,7 @@ export default function MyComponent() {
 
           {/* Foundation Layer */}
           <Subsection level="h2">
-            <SectionHeading
+            <Heading
               level="h2"
               id="foundation-layer"
               title="Foundation Layer"
@@ -512,14 +492,10 @@ export default function MyComponent() {
         <TabsContent value="api">
           {/* API Reference */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>

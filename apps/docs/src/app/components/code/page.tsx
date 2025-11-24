@@ -1,38 +1,38 @@
+'use client';
+
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
 import {
-  List,
-  ListItem,
   Code,
   Body,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
   Table,
   TableHeader,
   TableBody,
   TableRow,
   TableHead,
   TableCell,
-  Card,
-  Stack,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
 } from '@hanui/react';
 
 export default function CodePage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Code"
-        description="KRDS 준수 인라인 및 블록 코드 컴포넌트입니다. 모노스페이스 폰트로 코드를 명확하게 표시합니다."
+        description="인라인 및 블록 코드를 표시하는 컴포넌트"
       />
 
       <Tabs defaultValue="overview">
@@ -41,231 +41,219 @@ export default function CodePage() {
           <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
+        {/* 개요 탭 */}
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <SectionHeading
+          <Section level="h2">
+            <Heading
               level="h2"
-              id="installation"
-              title="설치"
-              description="다음 명령어로 Code 컴포넌트를 설치합니다:"
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add code
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="Code는 인라인 코드와 블록 코드를 표시하기 위한 컴포넌트입니다."
-            />
-
-            <Card variant="info">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>Inline/Block 지원:</strong> 인라인 코드와 코드 블록
-                  모두 지원합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>크기 옵션:</strong> sm, default, lg 3가지 크기를
-                  제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>KRDS 색상:</strong> KRDS 디자인 시스템의 색상을
-                  준수합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>모노스페이스 폰트:</strong> 코드 가독성을 위한 고정폭
-                  폰트를 사용합니다.
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
-
-          {/* Usage */}
-          <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
-
-            <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                title="Inline Code"
-                description="텍스트 안에 코드를 표시할 때 사용합니다:"
-              />
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// UI components - from @hanui/react
-import {
-  Code   PageNavigation,
-  
-} from '@hanui/react';
-
-<Body>
-  파일을 저장하려면 <Code>Ctrl+S</Code>를 누르세요.
-</Body>`}
-              </Code>
-
-              <Card variant="outlined" className="mt-3">
+            <ComponentPreview>
+              <div className="flex flex-col gap-4">
                 <Body>
                   파일을 저장하려면 <Code>Ctrl+S</Code>를 누르세요.
                 </Body>
-              </Card>
-            </Subsection>
+                <Code variant="block" language="typescript">
+                  {`function hello() {
+  console.log("Hello, World!");
+}`}
+                </Code>
+              </div>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`<Body>
+  파일을 저장하려면 <Code>Ctrl+S</Code>를 누르세요.
+</Body>
 
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Size 옵션">
-                <Body className="leading-relaxed">
-                  <Code>size</Code> prop으로 크기를 조절할 수 있습니다:
-                </Body>
-              </SectionHeading>
-
-              <Stack gap="md">
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Code size="sm">npm install</Code>`}
-                  </Code>
-                  <Card variant="outlined" className="mt-3">
-                    <Body>
-                      작은 크기: <Code size="sm">npm install</Code>
-                    </Body>
-                  </Card>
-                </div>
-
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Code>npm install</Code>`}
-                  </Code>
-                  <Card variant="outlined" className="mt-3">
-                    <Body>
-                      기본 크기: <Code>npm install</Code>
-                    </Body>
-                  </Card>
-                </div>
-
-                <div>
-                  <Code variant="block" language="tsx" showLineNumbers={false}>
-                    {`<Code size="lg">npm install</Code>`}
-                  </Code>
-                  <Card variant="outlined" className="mt-3">
-                    <Body>
-                      큰 크기: <Code size="lg">npm install</Code>
-                    </Body>
-                  </Card>
-                </div>
-              </Stack>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Block Code">
-                <Body className="leading-relaxed">
-                  <Code>variant="block"</Code>으로 코드 블록을 만들 수 있습니다:
-                </Body>
-              </SectionHeading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Code variant="block">
+<Code variant="block" language="typescript">
   {\`function hello() {
     console.log("Hello, World!");
   }\`}
 </Code>`}
-              </Code>
-
-              <Card variant="outlined" className="mt-3">
-                {`function hello() {
-  console.log("Hello, World!");
-}`}
-              </Card>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="실제 사용 예시">
-                <Body className="leading-relaxed">
-                  문서에서 코드를 설명할 때 활용할 수 있습니다:
-                </Body>
-              </SectionHeading>
-
-              <Card variant="outlined" className="space-y-3">
-                <Body>
-                  React에서 상태를 관리하려면 <Code>useState</Code> 훅을
-                  사용하세요.
-                </Body>
-                <Body>
-                  컴포넌트를 import할 때는{' '}
-                  <Code>import &#123; Button &#125; from '@hanui/react'</Code>{' '}
-                  형식을 사용합니다.
-                </Body>
-                <Body>
-                  환경 변수는 <Code>process.env.NODE_ENV</Code>로 접근할 수
-                  있습니다.
-                </Body>
-              </Card>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="커스텀 스타일링">
-                <Body className="leading-relaxed">
-                  <Code>className</Code>을 사용하여 커스텀 스타일을 적용할 수
-                  있습니다:
-                </Body>
-              </SectionHeading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Code className="text-krds-primary-text bg-krds-primary-surface">
-  primary color code
-</Code>`}
-              </Code>
-
-              <Card variant="outlined" className="mt-3">
-                <Body>
-                  Primary 색상:{' '}
-                  <Code className="text-krds-primary-text bg-krds-primary-surface">
-                    primary color code
-                  </Code>
-                </Body>
-              </Card>
-            </Subsection>
+            </Code>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+          <Installation componentName="code" />
 
-            <List>
-              <ListItem>
-                <strong>인라인 코드</strong>는 짧은 명령어, 변수명, 파일명 등에
-                사용하세요.
-              </ListItem>
-              <ListItem>
-                <strong>블록 코드</strong>는 여러 줄의 코드 예제에 사용하세요.
-              </ListItem>
-              <ListItem>
-                구문 강조가 필요한 경우 별도의 <Code>CodeBlock</Code> 컴포넌트를
-                사용하세요.
-              </ListItem>
-              <ListItem>
-                과도한 인라인 코드 사용은 가독성을 해칠 수 있으니 적절히
-                사용하세요.
-              </ListItem>
-            </List>
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Code variant="block" language="tsx">
+              {`import { Code } from '@/components/hanui/code'
+
+// Inline code
+<Code>npm install</Code>
+
+// Block code
+<Code variant="block">
+  npm install @hanui/react
+</Code>
+
+// With syntax highlighting
+<Code variant="block" language="typescript">
+  const hello = 'world';
+</Code>`}
+            </Code>
+          </Section>
+
+          {/* 예제 섹션 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Inline Code" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-3">
+                  <Body>
+                    React에서 상태를 관리하려면 <Code>useState</Code> 훅을
+                    사용하세요.
+                  </Body>
+                  <Body>
+                    환경 변수는 <Code>process.env.NODE_ENV</Code>로 접근할 수
+                    있습니다.
+                  </Body>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Body>
+  React에서 상태를 관리하려면 <Code>useState</Code> 훅을 사용하세요.
+</Body>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Size" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-3">
+                  <Body>
+                    작은 크기: <Code size="sm">npm install</Code>
+                  </Body>
+                  <Body>
+                    기본 크기: <Code>npm install</Code>
+                  </Body>
+                  <Body>
+                    큰 크기: <Code size="lg">npm install</Code>
+                  </Body>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Code size="sm">npm install</Code>
+<Code>npm install</Code>
+<Code size="lg">npm install</Code>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Block Code (Simple)" />
+              <ComponentPreview>
+                <Code variant="block">
+                  {`npm install @hanui/react
+npm run dev`}
+                </Code>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Code variant="block">
+  {\`npm install @hanui/react
+npm run dev\`}
+</Code>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="With Syntax Highlighting" />
+              <ComponentPreview>
+                <Code variant="block" language="typescript">
+                  {`function greet(name: string) {
+  return \`Hello, \${name}!\`;
+}
+
+const message = greet('World');
+console.log(message);`}
+                </Code>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Code variant="block" language="typescript">
+  {\`function greet(name: string) {
+    return \\\`Hello, \\\${name}!\\\`;
+  }
+
+  const message = greet('World');
+  console.log(message);\`}
+</Code>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="With Filename" />
+              <ComponentPreview>
+                <Code
+                  variant="block"
+                  language="typescript"
+                  fileName="example.ts"
+                >
+                  {`export function add(a: number, b: number) {
+  return a + b;
+}`}
+                </Code>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Code
+  variant="block"
+  language="typescript"
+  fileName="example.ts"
+>
+  {\`export function add(a: number, b: number) {
+    return a + b;
+  }\`}
+</Code>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Without Line Numbers" />
+              <ComponentPreview>
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  npx @hanui/cli add code
+                </Code>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Code
+  variant="block"
+  language="bash"
+  showLineNumbers={false}
+>
+  npx @hanui/cli add code
+</Code>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Custom Styling" />
+              <ComponentPreview>
+                <Body>
+                  Primary 색상:{' '}
+                  <Code className="text-krds-primary-base bg-krds-primary-5 border-krds-primary-20">
+                    primary code
+                  </Code>
+                </Body>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Code className="text-krds-primary-base bg-krds-primary-5 border-krds-primary-20">
+  primary code
+</Code>`}
+              </Code>
+            </Subsection>
           </Section>
         </TabsContent>
 
+        {/* API 레퍼런스 탭 */}
         <TabsContent value="api">
-          {/* API Reference */}
-          <Section>
-            <SectionHeading level="h2" id="api" title="API Reference" />
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Code Props" />
+              <Heading level="h3" title="Code Props" />
 
               <Table>
                 <TableHeader>
@@ -278,24 +266,87 @@ import {
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">variant</TableCell>
-                    <TableCell className="font-mono">
-                      &apos;inline&apos; | &apos;block&apos;
+                    <TableCell>
+                      <Code>variant</Code>
                     </TableCell>
-                    <TableCell className="font-mono">
-                      &apos;inline&apos;
+                    <TableCell>
+                      <Code>&apos;inline&apos; | &apos;block&apos;</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&apos;inline&apos;</Code>
                     </TableCell>
                     <TableCell>코드 표시 방식</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">size</TableCell>
-                    <TableCell className="font-mono">
-                      &apos;sm&apos; | &apos;default&apos; | &apos;lg&apos;
+                    <TableCell>
+                      <Code>size</Code>
                     </TableCell>
-                    <TableCell className="font-mono">
-                      &apos;default&apos;
+                    <TableCell>
+                      <Code>
+                        &apos;sm&apos; | &apos;default&apos; | &apos;lg&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&apos;default&apos;</Code>
                     </TableCell>
                     <TableCell>크기 (inline만 적용)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>language</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>undefined</Code>
+                    </TableCell>
+                    <TableCell>
+                      프로그래밍 언어 (block variant에서 syntax highlighting
+                      활성화)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>showLineNumbers</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>boolean</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>true</Code>
+                    </TableCell>
+                    <TableCell>
+                      줄 번호 표시 여부 (block with language만 적용)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>fileName</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>undefined</Code>
+                    </TableCell>
+                    <TableCell>
+                      파일명 표시 (block with language만 적용)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>theme</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&apos;github-dark&apos;</Code>
+                    </TableCell>
+                    <TableCell>
+                      Shiki 테마 (block with language만 적용)
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -35,7 +35,7 @@ import {
 export default function NavTextPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="NavText"
         description="네비게이션 메뉴를 위한 텍스트 컴포넌트입니다."
@@ -50,11 +50,11 @@ export default function NavTextPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 NavText 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add navtext
             </Code>
@@ -62,7 +62,7 @@ export default function NavTextPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -92,7 +92,7 @@ export default function NavTextPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card className="bg-krds-gray-5">
               <Stack gap="md">
                 <NavTextComponent variant="tit-lg">
@@ -119,11 +119,11 @@ export default function NavTextPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             {/* Title Variants */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="title-variants"
                 title="Title (메뉴 제목)"
@@ -173,7 +173,7 @@ export default function NavTextPage() {
 
             {/* Depth Variants */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="depth-variants"
                 title="Depth (메뉴 항목)"
@@ -223,7 +223,7 @@ export default function NavTextPage() {
 
             {/* Main Navigation */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="main-navigation"
                 title="메인 네비게이션"
@@ -290,7 +290,7 @@ export default function NavTextPage() {
 
             {/* Hierarchical Navigation */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="hierarchical"
                 title="계층형 네비게이션"
@@ -370,7 +370,7 @@ export default function NavTextPage() {
 
             {/* Active State */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="active-state"
                 title="활성 상태 스타일링"
@@ -430,7 +430,7 @@ export default function NavTextPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
             <Stack gap="md">
               <DoCard title="NavText를 사용하기 적합한 경우">
                 <List variant="check">
@@ -443,7 +443,7 @@ export default function NavTextPage() {
               </DoCard>
 
               <Card variant="warning">
-                <SectionHeading level="h3" id="caution" title="주의사항" />
+                <Heading level="h3" id="caution" title="주의사항" />
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>tit 변형은 메뉴 제목/그룹명에 사용</ListItem>
                   <ListItem>depth 변형은 실제 링크 항목에 사용</ListItem>
@@ -465,7 +465,7 @@ export default function NavTextPage() {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="accessibility"
               title="접근성"
@@ -501,15 +501,11 @@ export default function NavTextPage() {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API 레퍼런스"
-            />
+            <Heading level="h2" id="api-reference" title="API 레퍼런스" />
 
             {/* Props */}
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -620,11 +616,7 @@ export default function NavTextPage() {
 
             {/* Variant Styles */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="variant-styles"
-                title="Variant Styles"
-              />
+              <Heading level="h3" id="variant-styles" title="Variant Styles" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -678,11 +670,7 @@ export default function NavTextPage() {
 
             {/* KRDS Compliance */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="krds-compliance"
-                title="KRDS 준수사항"
-              />
+              <Heading level="h3" id="krds-compliance" title="KRDS 준수사항" />
               <Card variant="info">
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>tit 변형은 Bold (700) 폰트 굵기</ListItem>

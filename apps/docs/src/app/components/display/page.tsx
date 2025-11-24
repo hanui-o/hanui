@@ -3,10 +3,12 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // Docs helper components
 import { DoCard, DontCard } from '@/components/helpers';
@@ -35,10 +37,10 @@ import {
 export default function DisplayPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Display"
-        description="배너와 마케팅용 대형 텍스트 컴포넌트입니다."
+        description="배너와 마케팅용 대형 텍스트 컴포넌트"
       />
 
       <Tabs defaultValue="overview">
@@ -48,52 +50,14 @@ export default function DisplayPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
-              <Body className="leading-relaxed">
-                다음 명령어로 Display 컴포넌트를 설치합니다:
-              </Body>
-            </SectionHeading>
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add display
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
-            <SectionHeading
+          <Section level="h2">
+            <Heading
               level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="Display는 KRDS 타이포그래피 시스템에서 가장 큰 크기의 텍스트 스타일입니다. 배너, 히어로 섹션, 마케팅 메시지 등 사용자의 주목을 끌어야 하는 곳에 사용됩니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-            <Card variant="info">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>반응형 크기:</strong> PC와 모바일에서 최적의 가독성을
-                  제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>KRDS 준수:</strong> Bold(700) 폰트 굵기와 150% 줄
-                  간격으로 가독성을 확보합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>Polymorphic:</strong> as prop으로 다양한 HTML 태그로
-                  렌더링할 수 있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>접근성:</strong> 명도 대비 4.5:1 이상을 만족하여 WCAG
-                  2.1 / KWCAG 2.2를 준수합니다.
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
-
-          {/* Preview */}
-          <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
-            <Card>
+            <ComponentPreview>
               <Stack gap="lg">
                 <DisplayComponent size="lg">환영합니다</DisplayComponent>
                 <DisplayComponent size="md">공공서비스 플랫폼</DisplayComponent>
@@ -101,7 +65,7 @@ export default function DisplayPage() {
                   HANUI 디자인 시스템
                 </DisplayComponent>
               </Stack>
-            </Card>
+            </ComponentPreview>
             <Code variant="block" language="tsx">
               {`<Display size="lg">환영합니다</Display>
 <Display size="md">공공서비스 플랫폼</Display>
@@ -109,14 +73,49 @@ export default function DisplayPage() {
             </Code>
           </Section>
 
-          {/* Usage */}
-          <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+          <Installation componentName="display" />
 
-            {/* Sizes */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+
+            <Card variant="info">
+              <Body className="font-bold mb-3">
+                ⚠️ 중요: Display vs Heading
+              </Body>
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>Display:</strong> 마케팅, 프로모션, 배너용 대형 텍스트
+                </ListItem>
+                <ListItem>
+                  <strong>Heading:</strong> 페이지 제목 (h1, h2, h3) - 일반적인
+                  사용
+                </ListItem>
+              </List>
+              <Body className="text-krds-gray-70 mt-3">
+                일반 페이지의 제목에는 Display 대신 Heading을 사용하세요.
+              </Body>
+            </Card>
+
+            <Code variant="block" language="tsx">
+              {`import { Display } from '@hanui/react'
+
+// ✅ 올바른 사용
+<Display size="lg">환영합니다</Display>
+<Display size="md">봄맞이 특별 할인 50%</Display>
+
+// ❌ 잘못된 사용 - Heading을 사용하세요
+<Display as="h1">페이지 제목</Display>
+<Display as="h2">섹션 제목</Display>`}
+            </Code>
+          </Section>
+
+          {/* 예제 섹션 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
             <Subsection level="h3">
-              <SectionHeading level="h3" id="sizes" title="크기 (Size)" />
-              <Card>
+              <Heading level="h3" title="크기" />
+              <ComponentPreview>
                 <Stack gap="lg">
                   <Stack gap="sm">
                     <DisplayComponent size="lg">Large Display</DisplayComponent>
@@ -141,7 +140,7 @@ export default function DisplayPage() {
                     </Body>
                   </Stack>
                 </Stack>
-              </Card>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<Display size="lg">최대 강조 텍스트</Display>
 <Display size="md">주요 제목</Display>
@@ -149,47 +148,13 @@ export default function DisplayPage() {
               </Code>
             </Subsection>
 
-            {/* Polymorphic */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="polymorphic"
-                title="다양한 HTML 태그"
-                description="as prop을 사용하여 원하는 HTML 태그로 렌더링할 수 있습니다."
-              />
-              <Card>
-                <Stack gap="md">
-                  <DisplayComponent as="h1" size="lg">
-                    h1 태그로 렌더링
-                  </DisplayComponent>
-                  <DisplayComponent as="h2" size="md">
-                    h2 태그로 렌더링
-                  </DisplayComponent>
-                  <DisplayComponent as="div" size="sm">
-                    div 태그로 렌더링
-                  </DisplayComponent>
-                </Stack>
-              </Card>
-              <Code variant="block" language="tsx">
-                {`<Display as="h1" size="lg">h1 태그로 렌더링</Display>
-<Display as="h2" size="md">h2 태그로 렌더링</Display>
-<Display as="div" size="sm">div 태그로 렌더링</Display>`}
-              </Code>
-            </Subsection>
-
-            {/* Custom Styling */}
-            <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="custom-styling"
-                title="커스텀 스타일"
-                description="className prop으로 추가 스타일을 적용할 수 있습니다."
-              />
-              <Card>
+              <Heading level="h3" title="커스텀 스타일" />
+              <ComponentPreview>
                 <DisplayComponent size="md" className="text-krds-primary-base">
                   브랜드 컬러 적용
                 </DisplayComponent>
-              </Card>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<Display size="md" className="text-krds-primary-base">
   브랜드 컬러 적용
@@ -197,72 +162,14 @@ export default function DisplayPage() {
               </Code>
             </Subsection>
           </Section>
-
-          {/* Best Practices */}
-          <Section>
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
-            <Stack gap="md">
-              <DoCard title="Display를 사용하기 적합한 경우">
-                <List variant="check">
-                  <ListItem>랜딩 페이지의 히어로 섹션</ListItem>
-                  <ListItem>프로모션 배너의 핵심 메시지</ListItem>
-                  <ListItem>서비스 소개 페이지의 대제목</ListItem>
-                  <ListItem>강력한 시각적 임팩트가 필요한 곳</ListItem>
-                </List>
-              </DoCard>
-
-              <DontCard title="Display를 사용하지 말아야 하는 경우">
-                <List variant="cross">
-                  <ListItem>일반 페이지 제목 (Heading 사용 권장)</ListItem>
-                  <ListItem>본문 내용 (Body 사용 권장)</ListItem>
-                  <ListItem>폼 라벨 (Label 사용 권장)</ListItem>
-                  <ListItem>텍스트가 많은 콘텐츠 영역</ListItem>
-                </List>
-              </DontCard>
-            </Stack>
-          </Section>
-
-          {/* Accessibility */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="accessibility"
-              title="접근성"
-              description="Display는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
-            />
-            <Card variant="info">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>색상 대비:</strong> 기본 색상(gray-95)이 명도 대비
-                  4.5:1 이상을 만족합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>의미론적 HTML:</strong> as prop으로 적절한 HTML 태그를
-                  선택할 수 있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>반응형 타이포그래피:</strong> 모든 기기에서 읽기 쉬운
-                  크기를 유지합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>다크 모드:</strong> 자동으로 다크 모드를 지원합니다.
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
         </TabsContent>
 
         <TabsContent value="api">
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API 레퍼런스"
-            />
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API Reference" />
 
-            {/* Props */}
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" title="Display Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -326,13 +233,8 @@ export default function DisplayPage() {
               </Table>
             </Subsection>
 
-            {/* Size Variants */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="size-variants"
-                title="Size Variants"
-              />
+              <Heading level="h3" title="Size Variants" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -373,26 +275,6 @@ export default function DisplayPage() {
                   </TableRow>
                 </TableBody>
               </Table>
-            </Subsection>
-
-            {/* KRDS Compliance */}
-            <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="krds-compliance"
-                title="KRDS 준수사항"
-              />
-              <Card variant="info">
-                <List variant="check" className="text-krds-gray-90">
-                  <ListItem>모든 Display는 Bold (700) 폰트 굵기 사용</ListItem>
-                  <ListItem>150% 줄 간격으로 가독성 확보</ListItem>
-                  <ListItem>반응형 크기 (PC/모바일 최적화)</ListItem>
-                  <ListItem>Pretendard GOV 폰트 적용</ListItem>
-                  <ListItem>
-                    명도 대비 4.5:1 이상 (WCAG 2.1 / KWCAG 2.2 Level AA)
-                  </ListItem>
-                </List>
-              </Card>
             </Subsection>
           </Section>
         </TabsContent>

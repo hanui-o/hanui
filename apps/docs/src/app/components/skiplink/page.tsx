@@ -5,7 +5,7 @@ import { SkipLink } from '@hanui/react';
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
 
@@ -34,7 +34,7 @@ import {
 export default function SkipLinkPage() {
   return (
     <Section>
-      <SectionHeading
+      <Heading
         level="h1"
         id="skiplink"
         title="SkipLink"
@@ -50,7 +50,7 @@ export default function SkipLinkPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="installation" title="설치" />
+            <Heading level="h2" id="installation" title="설치" />
             <Body>
               CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
             </Body>
@@ -61,7 +61,7 @@ export default function SkipLinkPage() {
 
           {/* What is it */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="what-is-it" title="SkipLink란?" />
+            <Heading level="h2" id="what-is-it" title="SkipLink란?" />
             <Body>
               SkipLink(건너뛰기 링크)는 키보드 사용자와 스크린 리더 사용자가
               헤더, 네비게이션 등 반복적인 콘텐츠를 건너뛰고 페이지의 주요
@@ -75,10 +75,10 @@ export default function SkipLinkPage() {
 
           {/* Preview */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="hidden" title="숨김 (기본)" />
+              <Heading level="h3" id="hidden" title="숨김 (기본)" />
               <Body>
                 기본적으로 숨겨진 상태이며, Tab 키를 눌러 포커스를 받으면 화면에
                 나타납니다. 가장 일반적으로 사용하는 방식입니다.
@@ -107,7 +107,7 @@ export default function SkipLinkPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="visible" title="항상 표시" />
+              <Heading level="h3" id="visible" title="항상 표시" />
               <Body>
                 variant를 "visible"로 설정하면 항상 화면에 표시됩니다.
               </Body>
@@ -136,7 +136,7 @@ export default function SkipLinkPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="single" title="단일 링크 (권장)" />
+              <Heading level="h3" id="single" title="단일 링크 (권장)" />
               <Body>
                 대부분의 경우 본문으로 바로가기 링크 하나만 제공하는 것이
                 충분합니다.
@@ -160,7 +160,7 @@ export default function SkipLinkPage() {
 
           {/* Usage */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
             <Body>
               SkipLink는 페이지의 가장 첫 번째 요소로 배치해야 합니다 (쿠키
               배너/모달 제외).
@@ -197,14 +197,10 @@ export default function RootLayout({ children }) {
 
           {/* Best Practices */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="when-to-use"
-                title="언제 사용하나요?"
-              />
+              <Heading level="h3" id="when-to-use" title="언제 사용하나요?" />
               <DoCard>
                 <List variant="check">
                   <ListItem>
@@ -224,11 +220,7 @@ export default function RootLayout({ children }) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="implementation-tips"
-                title="구현 팁"
-              />
+              <Heading level="h3" id="implementation-tips" title="구현 팁" />
               <List variant="disc">
                 <ListItem>
                   <strong>페이지 최상단 배치:</strong> body 요소의 첫 번째 자식
@@ -256,7 +248,7 @@ export default function RootLayout({ children }) {
 
           {/* Accessibility */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
             <Body>
               이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level A 기준을 준수합니다.
             </Body>
@@ -286,7 +278,7 @@ export default function RootLayout({ children }) {
 
           {/* Foundation Layer */}
           <Subsection level="h2">
-            <SectionHeading
+            <Heading
               level="h2"
               id="foundation-layer"
               title="Foundation Layer"
@@ -320,14 +312,10 @@ export default function RootLayout({ children }) {
         <TabsContent value="api">
           {/* API Reference */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -379,7 +367,7 @@ export default function RootLayout({ children }) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="skiplink-item"
                 title="SkipLinkItem Type"

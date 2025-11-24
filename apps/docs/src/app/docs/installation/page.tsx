@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -25,7 +25,7 @@ import {
 export default function InstallationPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Installation"
         description="CLI를 사용하여 HANUI 컴포넌트를 프로젝트에 추가하세요."
@@ -33,7 +33,7 @@ export default function InstallationPage() {
 
       {/* Installation Methods */}
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="installation-methods"
           title="설치 방법"
@@ -600,7 +600,7 @@ export default config;`}
 
       {/* Usage Example */}
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="usage"
           title="사용 예제"
@@ -645,10 +645,10 @@ export default function Page() {
 
       {/* Troubleshooting */}
       <Section>
-        <SectionHeading level="h2" id="troubleshooting" title="문제 해결" />
+        <Heading level="h2" id="troubleshooting" title="문제 해결" />
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="컴포넌트를 찾을 수 없다는 에러" />
+          <Heading level="h3" title="컴포넌트를 찾을 수 없다는 에러" />
           <Body className="mb-4 text-krds-gray-70">
             import 경로 오류일 가능성이 높습니다:
           </Body>
@@ -668,7 +668,7 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="스타일이 적용되지 않는 경우" />
+          <Heading level="h3" title="스타일이 적용되지 않는 경우" />
           <List>
             <ListItem>
               <Code>tailwind.config.ts</Code>의 content 경로에 컴포넌트 경로가
@@ -692,10 +692,7 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
-            level="h3"
-            title="KRDS 색상 클래스를 찾을 수 없다는 에러"
-          />
+          <Heading level="h3" title="KRDS 색상 클래스를 찾을 수 없다는 에러" />
           <Body className="mb-4 text-krds-gray-70">
             <Code>bg-krds-primary-50</Code> 같은 클래스를 사용할 때 "Unknown at
             rule" 또는 색상이 적용되지 않는 경우:
@@ -717,7 +714,7 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="hanui init 실패" />
+          <Heading level="h3" title="hanui init 실패" />
           <Body className="mb-4 text-krds-gray-70">
             package.json이 있는 프로젝트 루트에서 실행하고 있는지 확인하세요:
           </Body>
@@ -731,7 +728,7 @@ npx hanui init`}
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="TypeScript 타입 에러" />
+          <Heading level="h3" title="TypeScript 타입 에러" />
           <Body className="mb-4 text-krds-gray-70">
             React 타입 버전이 18 이상인지 확인하세요:
           </Body>

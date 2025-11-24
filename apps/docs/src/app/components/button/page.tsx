@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -29,7 +29,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 export default function ButtonPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Button"
         description="다양한 스타일과 크기를 지원하는 버튼 컴포넌트"
@@ -44,7 +44,7 @@ export default function ButtonPage() {
         {/* 개요 탭 */}
         <TabsContent value="overview">
           <Section level="h2">
-            <SectionHeading
+            <Heading
               level="h2"
               id="overview"
               title="개요"
@@ -61,7 +61,7 @@ export default function ButtonPage() {
           <Installation componentName="button" />
 
           <Section level="h2">
-            <SectionHeading level="h2" id="usage" title="사용법" />
+            <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
               {`import { Button } from '@/components/hanui/button'
 
@@ -71,10 +71,10 @@ export default function ButtonPage() {
 
           {/* 예제 섹션 */}
           <Section level="h2">
-            <SectionHeading level="h2" id="examples" title="예제" />
+            <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Variant" />
+              <Heading level="h3" title="Variant" />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-3">
                   <Button variant="primary">Primary</Button>
@@ -98,7 +98,7 @@ export default function ButtonPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Size" />
+              <Heading level="h3" title="Size" />
               <ComponentPreview>
                 <div className="flex items-center gap-4">
                   <Button size="sm">Small</Button>
@@ -114,7 +114,7 @@ export default function ButtonPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Icon" />
+              <Heading level="h3" title="Icon" />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-3">
                   <Button iconLeft={<span>←</span>}>이전</Button>
@@ -134,7 +134,7 @@ export default function ButtonPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Link" />
+              <Heading level="h3" title="Link" />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-3">
                   <Button href="/about">내부 링크</Button>
@@ -156,7 +156,7 @@ export default function ButtonPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Loading" />
+              <Heading level="h3" title="Loading" />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-3">
                   <Button loading>처리 중...</Button>
@@ -172,7 +172,7 @@ export default function ButtonPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Disabled" />
+              <Heading level="h3" title="Disabled" />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-3">
                   <Button disabled>비활성화</Button>
@@ -192,10 +192,10 @@ export default function ButtonPage() {
         {/* API 탭 */}
         <TabsContent value="api">
           <Section level="h2">
-            <SectionHeading level="h2" id="api" title="API 레퍼런스" />
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Props" />
+              <Heading level="h3" title="Props" />
               <Table small>
                 <TableHeader>
                   <TableRow>

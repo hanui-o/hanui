@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -47,7 +47,7 @@ export default function SelectPage() {
 
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Select"
         description="접근성을 고려한 선택 목록 컴포넌트입니다."
@@ -62,11 +62,11 @@ export default function SelectPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Select 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add select
             </Code>
@@ -74,7 +74,7 @@ export default function SelectPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -104,7 +104,7 @@ export default function SelectPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card>
               <div className="max-w-md">
                 <SelectComponent
@@ -134,11 +134,11 @@ export default function SelectPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             {/* With Label */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="with-label"
                 title="라벨 포함"
@@ -172,7 +172,7 @@ export default function SelectPage() {
 
             {/* Multiple Selection */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="multiple"
                 title="다중 선택"
@@ -204,7 +204,7 @@ export default function SelectPage() {
 
             {/* Error State */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="error"
                 title="에러 상태"
@@ -238,7 +238,7 @@ export default function SelectPage() {
 
             {/* Disabled */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="disabled"
                 title="비활성화"
@@ -269,7 +269,7 @@ export default function SelectPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
             <Stack gap="md">
               <DoCard title="Select를 사용하기 적합한 경우">
                 <List variant="check">
@@ -281,7 +281,7 @@ export default function SelectPage() {
               </DoCard>
 
               <Card variant="warning">
-                <SectionHeading level="h3" id="caution" title="주의사항" />
+                <Heading level="h3" id="caution" title="주의사항" />
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>
                     <strong>논리적 순서:</strong> 알파벳순, 가나다순 등 예측
@@ -317,7 +317,7 @@ export default function SelectPage() {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="accessibility"
               title="접근성"
@@ -348,15 +348,11 @@ export default function SelectPage() {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API 레퍼런스"
-            />
+            <Heading level="h2" id="api-reference" title="API 레퍼런스" />
 
             {/* Props */}
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -483,11 +479,7 @@ export default function SelectPage() {
 
             {/* Radix UI Features */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="radix-features"
-                title="Radix UI 기능"
-              />
+              <Heading level="h3" id="radix-features" title="Radix UI 기능" />
               <Card variant="info">
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>
@@ -515,11 +507,7 @@ export default function SelectPage() {
 
             {/* KRDS Compliance */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="krds-compliance"
-                title="KRDS 준수사항"
-              />
+              <Heading level="h3" id="krds-compliance" title="KRDS 준수사항" />
               <Card variant="info">
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>Radix UI 기반으로 완전한 접근성 보장</ListItem>

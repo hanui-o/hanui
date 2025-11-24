@@ -5,7 +5,7 @@ import { Tooltip, Button } from '@hanui/react';
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
 
@@ -34,7 +34,7 @@ import {
 export default function TooltipPage() {
   return (
     <Section>
-      <SectionHeading
+      <Heading
         level="h1"
         id="tooltip"
         title="Tooltip"
@@ -50,7 +50,7 @@ export default function TooltipPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="installation" title="설치" />
+            <Heading level="h2" id="installation" title="설치" />
             <Body>
               CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
             </Body>
@@ -61,7 +61,7 @@ export default function TooltipPage() {
 
           {/* What is it */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="what-is-it" title="Tooltip이란?" />
+            <Heading level="h2" id="what-is-it" title="Tooltip이란?" />
             <Body>
               Tooltip은 사용자가 UI 요소에 마우스를 올리거나 키보드로 포커스할
               때 간단한 도움말이나 부가 설명을 제공하는 컴포넌트입니다.
@@ -75,10 +75,10 @@ export default function TooltipPage() {
 
           {/* Preview */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="basic" title="기본" />
+              <Heading level="h3" id="basic" title="기본" />
               <Card>
                 <div className="flex gap-4">
                   <Tooltip content="저장 버튼을 클릭하여 변경사항을 저장하세요">
@@ -109,7 +109,7 @@ export default function TooltipPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="position" title="위치" />
+              <Heading level="h3" id="position" title="위치" />
               <Body>position prop으로 툴팁의 위치를 지정할 수 있습니다.</Body>
               <Card>
                 <div className="flex gap-4">
@@ -149,7 +149,7 @@ export default function TooltipPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="variants" title="변형" />
+              <Heading level="h3" id="variants" title="변형" />
               <Body>variant prop으로 툴팁 스타일을 변경할 수 있습니다.</Body>
               <Card>
                 <div className="flex gap-4">
@@ -175,7 +175,7 @@ export default function TooltipPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="delay" title="지연 시간" />
+              <Heading level="h3" id="delay" title="지연 시간" />
               <Body>
                 delay prop으로 툴팁이 나타나는 지연 시간을 밀리초 단위로 설정할
                 수 있습니다. 기본값은 200ms입니다.
@@ -211,7 +211,7 @@ export default function TooltipPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="icon-button"
                 title="아이콘 버튼과 함께 사용"
@@ -257,7 +257,7 @@ export default function TooltipPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="disabled" title="비활성화" />
+              <Heading level="h3" id="disabled" title="비활성화" />
               <Body>disabled prop으로 툴팁을 비활성화할 수 있습니다.</Body>
               <Card>
                 <div className="flex gap-4">
@@ -283,11 +283,7 @@ export default function TooltipPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="custom-styling"
-                title="커스텀 스타일링"
-              />
+              <Heading level="h3" id="custom-styling" title="커스텀 스타일링" />
               <Body>
                 className과 wrapperClassName prop으로 툴팁을 커스터마이징할 수
                 있습니다.
@@ -330,7 +326,7 @@ export default function TooltipPage() {
 
           {/* Usage */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
             <Card>
               <Code language="tsx">
                 {`import { Tooltip, Button } from '@hanui/react';
@@ -348,14 +344,10 @@ export default function MyComponent() {
 
           {/* Best Practices */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="when-to-use"
-                title="언제 사용하나요?"
-              />
+              <Heading level="h3" id="when-to-use" title="언제 사용하나요?" />
               <DoCard>
                 <List variant="check">
                   <ListItem>
@@ -379,7 +371,7 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="when-not-to-use"
                 title="언제 사용하지 말아야 하나요?"
@@ -407,7 +399,7 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="interaction-patterns"
                 title="상호작용 패턴"
@@ -463,7 +455,7 @@ export default function MyComponent() {
 
           {/* Accessibility */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
             <Body>
               이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 기준을 준수하며 KRDS 2.2
               접근성 가이드라인을 충족합니다.
@@ -495,7 +487,7 @@ export default function MyComponent() {
 
           {/* Foundation Layer */}
           <Subsection level="h2">
-            <SectionHeading
+            <Heading
               level="h2"
               id="foundation-layer"
               title="Foundation Layer"
@@ -536,14 +528,10 @@ export default function MyComponent() {
         <TabsContent value="api">
           {/* API Reference */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>

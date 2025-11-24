@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -51,7 +51,7 @@ export default function ModalPage() {
 
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Modal"
         description="Radix UI Dialog 기반의 접근성 높은 모달 컴포넌트입니다."
@@ -66,11 +66,11 @@ export default function ModalPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Modal 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add modal
@@ -79,7 +79,7 @@ export default function ModalPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -114,7 +114,7 @@ export default function ModalPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Card variant="outlined">
               <Button onClick={() => setIsBasicOpen(true)}>모달 열기</Button>
@@ -167,14 +167,14 @@ export default () => {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용법" />
+            <Heading level="h2" id="usage" title="사용법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="크기 옵션">
+              <Heading level="h3" title="크기 옵션">
                 <Body className="leading-relaxed">
                   다섯 가지 크기를 지원합니다: sm, md (기본), lg, xl, full
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <div className="flex flex-wrap gap-4">
@@ -296,11 +296,11 @@ export default () => {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="닫기 버튼 포함">
+              <Heading level="h3" title="닫기 버튼 포함">
                 <Body className="leading-relaxed">
                   상단에 닫기 버튼을 추가할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <Button onClick={() => setIsCloseButtonOpen(true)}>
@@ -342,11 +342,11 @@ export default () => {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Confirmation Modal">
+              <Heading level="h3" title="Confirmation Modal">
                 <Body className="leading-relaxed">
                   사용자의 확인이 필요한 작업에 사용하는 패턴입니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <Button
@@ -404,11 +404,11 @@ export default () => {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Form Modal">
+              <Heading level="h3" title="Form Modal">
                 <Body className="leading-relaxed">
                   폼을 포함하는 모달 예제입니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <Button onClick={() => setIsFormOpen(true)}>
@@ -487,11 +487,7 @@ export default () => {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Stack gap="content">
               <DoCard
@@ -523,7 +519,7 @@ export default () => {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
 
             <Card variant="info">
               <List variant="check">
@@ -551,7 +547,7 @@ export default () => {
             </Card>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="키보드 단축키" />
+              <Heading level="h3" title="키보드 단축키" />
 
               <Table>
                 <TableHeader>
@@ -589,14 +585,10 @@ export default () => {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Modal Props" />
+              <Heading level="h3" title="Modal Props" />
 
               <Table>
                 <TableHeader>
@@ -644,7 +636,7 @@ export default () => {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Sub-components" />
+              <Heading level="h3" title="Sub-components" />
 
               <Stack gap="md">
                 <div>
@@ -680,7 +672,7 @@ export default () => {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Size 옵션" />
+              <Heading level="h3" title="Size 옵션" />
 
               <Table>
                 <TableHeader>
@@ -722,11 +714,7 @@ export default () => {
 
             {/* Radix UI Features */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="radix-features"
-                title="Radix UI 기능"
-              />
+              <Heading level="h3" id="radix-features" title="Radix UI 기능" />
               <Card variant="info">
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>
@@ -763,11 +751,7 @@ export default () => {
 
             {/* KRDS Compliance */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="krds-compliance"
-                title="KRDS 준수사항"
-              />
+              <Heading level="h3" id="krds-compliance" title="KRDS 준수사항" />
               <Card variant="info">
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>

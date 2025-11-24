@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -36,7 +36,7 @@ import {
 export default function LabelPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Label"
         description="폼 요소를 위한 라벨 컴포넌트입니다."
@@ -51,11 +51,11 @@ export default function LabelPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Label 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add label
             </Code>
@@ -63,7 +63,7 @@ export default function LabelPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -93,7 +93,7 @@ export default function LabelPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card>
               <Stack gap="md" className="max-w-md">
                 <div>
@@ -130,11 +130,11 @@ export default function LabelPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             {/* Sizes */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="sizes"
                 title="크기 (Size)"
@@ -189,7 +189,7 @@ export default function LabelPage() {
 
             {/* Form Fields */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="form-fields"
                 title="폼 필드"
@@ -222,7 +222,7 @@ export default function LabelPage() {
 
             {/* Checkbox & Radio */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="checkbox-radio"
                 title="체크박스 & 라디오"
@@ -271,7 +271,7 @@ export default function LabelPage() {
 
             {/* Required Fields */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="required-fields"
                 title="필수 필드 표시"
@@ -301,7 +301,7 @@ export default function LabelPage() {
 
             {/* Custom Styling */}
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="custom-styling"
                 title="커스텀 스타일"
@@ -333,7 +333,7 @@ export default function LabelPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
             <Stack gap="md">
               <DoCard title="Label을 사용하기 적합한 경우">
                 <List variant="check">
@@ -346,7 +346,7 @@ export default function LabelPage() {
               </DoCard>
 
               <Card variant="warning">
-                <SectionHeading level="h3" id="caution" title="주의사항" />
+                <Heading level="h3" id="caution" title="주의사항" />
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>
                     <strong>htmlFor 필수:</strong> 항상 htmlFor 속성으로 입력
@@ -375,7 +375,7 @@ export default function LabelPage() {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="accessibility"
               title="접근성"
@@ -406,15 +406,11 @@ export default function LabelPage() {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API 레퍼런스"
-            />
+            <Heading level="h2" id="api-reference" title="API 레퍼런스" />
 
             {/* Props */}
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -476,11 +472,7 @@ export default function LabelPage() {
 
             {/* Size Variants */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="size-variants"
-                title="Size Variants"
-              />
+              <Heading level="h3" id="size-variants" title="Size Variants" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -534,11 +526,7 @@ export default function LabelPage() {
 
             {/* KRDS Compliance */}
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="krds-compliance"
-                title="KRDS 준수사항"
-              />
+              <Heading level="h3" id="krds-compliance" title="KRDS 준수사항" />
               <Card variant="info">
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>모든 Label은 Regular (400) 폰트 굵기 사용</ListItem>

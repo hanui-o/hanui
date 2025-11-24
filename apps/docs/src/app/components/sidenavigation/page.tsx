@@ -5,7 +5,7 @@ import { SideNavigation } from '@hanui/react';
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
 
@@ -34,7 +34,7 @@ import {
 export default function SideNavigationPage() {
   return (
     <Section>
-      <SectionHeading
+      <Heading
         level="h1"
         id="sidenavigation"
         title="SideNavigation"
@@ -50,7 +50,7 @@ export default function SideNavigationPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="installation" title="설치" />
+            <Heading level="h2" id="installation" title="설치" />
             <Body>
               CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
             </Body>
@@ -61,11 +61,7 @@ export default function SideNavigationPage() {
 
           {/* What is it */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="what-is-it"
-              title="SideNavigation이란?"
-            />
+            <Heading level="h2" id="what-is-it" title="SideNavigation이란?" />
             <Body>
               SideNavigation은 웹사이트나 애플리케이션의 측면에 배치되어
               콘텐츠의 계층 구조를 보여주는 네비게이션 컴포넌트입니다.
@@ -78,10 +74,10 @@ export default function SideNavigationPage() {
 
           {/* Preview */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="basic" title="기본 사용" />
+              <Heading level="h3" id="basic" title="기본 사용" />
               <Body>
                 2단계 구조의 기본적인 사이드 네비게이션입니다. 활성 페이지가
                 포함된 섹션은 자동으로 확장됩니다.
@@ -139,11 +135,7 @@ export default function SideNavigationPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="3-depth"
-                title="3단계 네비게이션"
-              />
+              <Heading level="h3" id="3-depth" title="3단계 네비게이션" />
               <Body>
                 하위 링크에 children을 추가하여 3단계 구조를 만들 수 있습니다.
               </Body>
@@ -211,11 +203,7 @@ export default function SideNavigationPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="simple-links"
-                title="단순 링크 섹션"
-              />
+              <Heading level="h3" id="simple-links" title="단순 링크 섹션" />
               <Body>children이 없는 섹션은 단순 링크로 표시됩니다.</Body>
               <Card>
                 <div className="max-w-xs">
@@ -246,7 +234,7 @@ export default function SideNavigationPage() {
 
           {/* Usage */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
             <Body>
               SideNavigation은 일반적으로 페이지 레이아웃의 왼쪽 영역에
               배치합니다.
@@ -287,14 +275,10 @@ export default function MyPage() {
 
           {/* Best Practices */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+            <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="when-to-use"
-                title="언제 사용하나요?"
-              />
+              <Heading level="h3" id="when-to-use" title="언제 사용하나요?" />
               <DoCard>
                 <List variant="check">
                   <ListItem>
@@ -317,11 +301,7 @@ export default function MyPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="implementation-tips"
-                title="구현 팁"
-              />
+              <Heading level="h3" id="implementation-tips" title="구현 팁" />
               <List variant="disc">
                 <ListItem>
                   <strong>활성 상태 자동 관리:</strong> active 속성을 설정하면
@@ -349,7 +329,7 @@ export default function MyPage() {
 
           {/* Accessibility */}
           <Subsection level="h2">
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
             <Body>
               이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다.
             </Body>
@@ -384,7 +364,7 @@ export default function MyPage() {
 
           {/* Foundation Layer */}
           <Subsection level="h2">
-            <SectionHeading
+            <Heading
               level="h2"
               id="foundation-layer"
               title="Foundation Layer"
@@ -421,14 +401,10 @@ export default function MyPage() {
 
           {/* Technical Background */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="technical-background"
-              title="기술적 배경"
-            />
+            <Heading level="h2" id="technical-background" title="기술적 배경" />
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="css-module"
                 title="CSS Module 방식 선택"
@@ -461,11 +437,7 @@ export default function MyPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="file-structure"
-                title="파일 구조"
-              />
+              <Heading level="h3" id="file-structure" title="파일 구조" />
               <Card>
                 <Code language="plaintext">
                   {`components/hanui/
@@ -480,14 +452,10 @@ export default function MyPage() {
         <TabsContent value="api">
           {/* API Reference */}
           <Subsection level="h2">
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="props" title="Props" />
+              <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -535,7 +503,7 @@ export default function MyPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
+              <Heading
                 level="h3"
                 id="sidenavSection"
                 title="SideNavSection Type"
@@ -568,11 +536,7 @@ export default function MyPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                id="sidenavlink"
-                title="SideNavLink Type"
-              />
+              <Heading level="h3" id="sidenavlink" title="SideNavLink Type" />
               <Card>
                 <Code language="tsx">
                   {`export interface SideNavLink {
@@ -601,7 +565,7 @@ export default function MyPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" id="example" title="고급 사용 예제" />
+              <Heading level="h3" id="example" title="고급 사용 예제" />
               <Body>최대 4단계 깊이를 활용한 복잡한 네비게이션 예제:</Body>
               <Card>
                 <Code language="tsx">

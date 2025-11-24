@@ -1,9 +1,5 @@
 // Docs layout components
-import {
-  SectionHeading,
-  Subsection,
-  PageNavigation,
-} from '@/components/content';
+import { Heading, Subsection, PageNavigation } from '@/components/content';
 
 // Docs helper components
 import { DoCard, DontCard } from '@/components/helpers';
@@ -31,7 +27,7 @@ import {
 export default function SectionPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Section"
         description="KRDS 수직 간격을 준수하는 의미론적 섹션 컴포넌트입니다."
@@ -47,11 +43,11 @@ export default function SectionPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <SectionComponent level="h2">
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Section 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add section
@@ -60,7 +56,7 @@ export default function SectionPage() {
 
           {/* What is it */}
           <SectionComponent level="h2">
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -96,7 +92,7 @@ export default function SectionPage() {
 
           {/* Preview */}
           <SectionComponent level="h2">
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <SectionComponent padding="page-section" background="gray">
                 <h2 className="text-xl font-semibold mb-4">섹션 제목</h2>
@@ -109,14 +105,14 @@ export default function SectionPage() {
 
           {/* Usage */}
           <SectionComponent level="h2">
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 사용">
+              <Heading level="h3" title="기본 사용">
                 <Body className="leading-relaxed">
                   기본적인 Section 사용 예시입니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { Section } from '@/components/hanui';
@@ -129,11 +125,11 @@ export default function SectionPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="패딩 프리셋">
+              <Heading level="h3" title="패딩 프리셋">
                 <Body className="leading-relaxed">
                   다양한 패딩 프리셋을 사용할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// 메인 페이지 섹션용
@@ -163,11 +159,11 @@ export default function SectionPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="배경색">
+              <Heading level="h3" title="배경색">
                 <Body className="leading-relaxed">
                   4가지 배경색 옵션을 사용할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<Section background="white">...</Section>
@@ -196,11 +192,11 @@ export default function SectionPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="여러 섹션 조합">
+              <Heading level="h3" title="여러 섹션 조합">
                 <Body className="leading-relaxed">
                   여러 섹션을 조합하여 페이지를 구성할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<Section padding="content-area" background="white">
@@ -238,11 +234,11 @@ export default function SectionPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="시맨틱 HTML">
+              <Heading level="h3" title="시맨틱 HTML">
                 <Body className="leading-relaxed">
                   as prop으로 다양한 시맨틱 태그로 렌더링할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<Section as="header" padding="page-section">
@@ -262,14 +258,10 @@ export default function SectionPage() {
 
           {/* Best Practices */}
           <SectionComponent level="h2">
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하나요?" />
+              <Heading level="h3" title="언제 사용하나요?" />
               <DoCard title="Section을 사용하기 적합한 경우">
                 <List variant="check">
                   <ListItem>
@@ -284,7 +276,7 @@ export default function SectionPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
               <DontCard title="Section 사용을 피해야 하는 경우">
                 <List variant="dash">
                   <ListItem>
@@ -303,7 +295,7 @@ export default function SectionPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="사용 가이드라인" />
+              <Heading level="h3" title="사용 가이드라인" />
               <List>
                 <ListItem>
                   페이지의 의미론적 구조를 고려하여 적절한 <Code>as</Code>{' '}
@@ -324,10 +316,10 @@ export default function SectionPage() {
         {/* API 탭 */}
         <TabsContent value="api">
           <SectionComponent level="h2">
-            <SectionHeading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Section Props" />
+              <Heading level="h3" title="Section Props" />
 
               <Table>
                 <TableHeader>
@@ -386,7 +378,7 @@ export default function SectionPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Padding Presets" />
+              <Heading level="h3" title="Padding Presets" />
 
               <Table>
                 <TableHeader>

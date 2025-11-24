@@ -19,6 +19,7 @@ const getStartedNavigation = [
     items: [
       { title: 'Colors', href: '/docs/colors' },
       { title: 'Typography', href: '/docs/typography' },
+      { title: 'Border Radius', href: '/docs/border-radius' },
       { title: 'Spacing', href: '/docs/spacing' },
       { title: 'Breakpoints', href: '/docs/breakpoints' },
     ],
@@ -44,7 +45,6 @@ const componentsNavigation = [
       { title: 'Overview', href: '/components' },
       { title: 'Accordion', href: '/components/accordion' },
       { title: 'Body', href: '/components/body' },
-      { title: 'Border Radius', href: '/components/border-radius' },
       { title: 'Breadcrumb', href: '/components/breadcrumb' },
       { title: 'Button', href: '/components/button' },
       { title: 'Card', href: '/components/card' },
@@ -67,6 +67,7 @@ const componentsNavigation = [
       { title: 'NavText', href: '/components/navtext' },
       { title: 'Pagination', href: '/components/pagination' },
       { title: 'Section', href: '/components/section' },
+      { title: 'Heading', href: '/components/section-heading' },
       {
         title: 'Section Heading System',
         href: '/components/section-heading-system',

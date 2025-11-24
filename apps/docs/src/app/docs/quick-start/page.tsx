@@ -3,7 +3,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -23,7 +23,7 @@ import {
 export default function QuickStartPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Quick Start"
         description="HANUI의 기본 사용법을 빠르게 익혀보세요. 5분이면 충분합니다!"
@@ -31,16 +31,16 @@ export default function QuickStartPage() {
 
       {/* Getting Started */}
       <Section>
-        <SectionHeading level="h2" id="getting-started" title="시작하기">
+        <Heading level="h2" id="getting-started" title="시작하기">
           <Body className="leading-relaxed">
             HANUI는 <strong>소스 코드 복사 방식</strong>으로 배포됩니다. CLI
             명령어로 컴포넌트 소스 코드를 프로젝트에 직접 복사하여 완전히
             소유하고 자유롭게 커스터마이징할 수 있습니다.
           </Body>
-        </SectionHeading>
+        </Heading>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="1. 프로젝트 초기화"
             description="프로젝트에 HANUI를 처음 설치하는 경우, 먼저 초기화 명령을 실행하세요:"
@@ -69,7 +69,7 @@ export default function QuickStartPage() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="2. 컴포넌트 추가"
             description="필요한 컴포넌트를 프로젝트에 추가합니다:"
@@ -87,7 +87,7 @@ export default function QuickStartPage() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="3. 컴포넌트 사용"
             description="이제 프로젝트 어디서든 컴포넌트를 import하여 사용할 수 있습니다:"
@@ -109,7 +109,7 @@ export default function MyPage() {
         </Subsection>
 
         <Card variant="info" className="mt-6">
-          <SectionHeading level="h3" title="왜 소스 코드 복사 방식인가요?" />
+          <Heading level="h3" title="왜 소스 코드 복사 방식인가요?" />
           <List variant="check" className="text-krds-gray-90">
             <ListItem>
               <strong>완전한 소유권:</strong> 컴포넌트 코드가 프로젝트 안에 있어
@@ -133,14 +133,10 @@ export default function MyPage() {
 
       {/* Common Patterns */}
       <Section>
-        <SectionHeading
-          level="h2"
-          id="common-patterns"
-          title="자주 사용하는 패턴"
-        />
+        <Heading level="h2" id="common-patterns" title="자주 사용하는 패턴" />
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="폼 만들기"
             description="먼저 필요한 컴포넌트를 추가합니다:"
@@ -193,7 +189,7 @@ function LoginForm() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="카드 레이아웃"
             description="Container와 Card 컴포넌트를 추가하고 깔끔한 레이아웃을 구성하세요:"
@@ -237,7 +233,7 @@ function Dashboard() {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading
+          <Heading
             level="h3"
             title="모달 사용하기"
             description="Modal과 Button 컴포넌트로 사용자 인터랙션을 추가합니다:"
@@ -298,7 +294,7 @@ function ConfirmDialog() {
 
       {/* TypeScript Support */}
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="typescript-support"
           title="TypeScript 지원"
@@ -337,7 +333,7 @@ function CustomButton(props: ButtonProps) {
 
       {/* Styling Customization */}
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="styling-customization"
           title="스타일 커스터마이징"
@@ -345,10 +341,7 @@ function CustomButton(props: ButtonProps) {
         />
 
         <Subsection level="h3">
-          <SectionHeading
-            level="h3"
-            title="방법 1: className prop으로 간단히 수정"
-          />
+          <Heading level="h3" title="방법 1: className prop으로 간단히 수정" />
 
           <Code variant="block" language="tsx" showLineNumbers={false}>
             {`// Button already imported from @hanui/react above
@@ -364,12 +357,12 @@ function CustomButton(props: ButtonProps) {
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="방법 2: 소스 코드를 직접 수정">
+          <Heading level="h3" title="방법 2: 소스 코드를 직접 수정">
             <Body className="text-krds-gray-70">
               <Code>components/hanui/button.tsx</Code> 파일을 열어 variant를
               추가하거나 수정하세요:
             </Body>
-          </SectionHeading>
+          </Heading>
 
           <Code variant="block" language="typescript" showLineNumbers={false}>
             {`// components/hanui/button.tsx
@@ -400,7 +393,7 @@ const buttonVariants = cva(
 
       {/* Accessibility */}
       <Section>
-        <SectionHeading
+        <Heading
           level="h2"
           id="accessibility"
           title="접근성 (Accessibility)"
@@ -442,10 +435,10 @@ const buttonVariants = cva(
 
       {/* Best Practices */}
       <Section>
-        <SectionHeading level="h2" id="best-practices" title="모범 사례" />
+        <Heading level="h2" id="best-practices" title="모범 사례" />
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="✓ Do: 시맨틱 HTML 사용" />
+          <Heading level="h3" title="✓ Do: 시맨틱 HTML 사용" />
 
           <Code variant="block" language="tsx" showLineNumbers={false}>
             {`<Container as="main">
@@ -456,7 +449,7 @@ const buttonVariants = cva(
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="✓ Do: 명확한 레이블 제공" />
+          <Heading level="h3" title="✓ Do: 명확한 레이블 제공" />
 
           <Code variant="block" language="tsx" showLineNumbers={false}>
             {`<label htmlFor="email">이메일</label>
@@ -465,7 +458,7 @@ const buttonVariants = cva(
         </Subsection>
 
         <Subsection level="h3">
-          <SectionHeading level="h3" title="✗ Don't: 접근성 무시" />
+          <Heading level="h3" title="✗ Don't: 접근성 무시" />
 
           <Code variant="block" language="tsx" showLineNumbers={false}>
             {`<div onClick={handleClick}>  {/* 버튼이 아님 */}

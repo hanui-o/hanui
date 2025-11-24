@@ -4,7 +4,7 @@ import React from 'react';
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -52,7 +52,7 @@ export default function TablePage() {
 
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Table"
         description="데이터를 구조화하여 표시하는 테이블 컴포넌트입니다."
@@ -67,11 +67,11 @@ export default function TablePage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Table 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add table
@@ -80,7 +80,7 @@ export default function TablePage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -115,7 +115,7 @@ export default function TablePage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
 
             <Card variant="outlined">
               <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
@@ -184,15 +184,15 @@ export default function TablePage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용법" />
+            <Heading level="h2" id="usage" title="사용법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="With Caption">
+              <Heading level="h3" title="With Caption">
                 <Body className="leading-relaxed">
                   TableCaption을 사용하여 테이블에 설명을 추가할 수 있습니다.
                   스크린 리더 사용자에게 테이블의 목적을 명확히 전달합니다.
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
@@ -249,11 +249,11 @@ export default function TablePage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="With Footer">
+              <Heading level="h3" title="With Footer">
                 <Body className="leading-relaxed">
                   TableFooter를 사용하여 합계나 요약 정보를 표시할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
@@ -315,13 +315,13 @@ export default function TablePage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Sortable Headers">
+              <Heading level="h3" title="Sortable Headers">
                 <Body className="leading-relaxed">
                   TableHead에 sortable, sortDirection, onSort props를 사용하여
                   정렬 기능을 구현할 수 있습니다. 키보드 접근성도 자동으로
                   지원됩니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Card variant="outlined">
                 <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
@@ -420,11 +420,7 @@ const handleSort = (column: string) => {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Stack gap="content">
               <DoCard
@@ -456,7 +452,7 @@ const handleSort = (column: string) => {
 
           {/* Accessibility */}
           <Section>
-            <SectionHeading level="h2" id="accessibility" title="접근성" />
+            <Heading level="h2" id="accessibility" title="접근성" />
 
             <Card variant="info">
               <List variant="check">
@@ -487,14 +483,10 @@ const handleSort = (column: string) => {
 
         <TabsContent value="api">
           <Section>
-            <SectionHeading
-              level="h2"
-              id="api-reference"
-              title="API Reference"
-            />
+            <Heading level="h2" id="api-reference" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Table" />
+              <Heading level="h3" title="Table" />
 
               <Table>
                 <TableHeader>
@@ -525,7 +517,7 @@ const handleSort = (column: string) => {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="TableBody" />
+              <Heading level="h3" title="TableBody" />
 
               <Table>
                 <TableHeader>
@@ -556,7 +548,7 @@ const handleSort = (column: string) => {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="TableHead" />
+              <Heading level="h3" title="TableHead" />
 
               <Table>
                 <TableHeader>
@@ -601,7 +593,7 @@ const handleSort = (column: string) => {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Other Components" />
+              <Heading level="h3" title="Other Components" />
 
               <Stack gap="md">
                 <div>

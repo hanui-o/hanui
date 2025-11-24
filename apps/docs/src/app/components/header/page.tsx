@@ -4,9 +4,11 @@
 import {
   PageSection as Section,
   Subsection,
-  SectionHeading,
+  Heading,
   PageNavigation,
 } from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
 import {
@@ -25,7 +27,7 @@ import {
 export default function HeaderPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="Header"
         description="KRDS 표준을 따르는 정부 서비스 헤더 컴포넌트입니다. CSS Modules 방식으로 구현되어 복잡한 네비게이션과 반응형 디자인을 효과적으로 관리합니다."
@@ -38,41 +40,54 @@ export default function HeaderPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <SectionHeading
+          {/* Overview */}
+          <Section level="h2">
+            <Heading
               level="h2"
-              id="installation"
-              title="설치"
-              description="Header 컴포넌트를 프로젝트에 추가합니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
 
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx hanui add header
-            </Code>
+            <div className="space-y-6">
+              {/* Desktop */}
+              <div>
+                <Body className="mb-2 font-semibold text-krds-gray-90">
+                  Desktop (1280px)
+                </Body>
+                <ComponentPreview className="h-[400px] overflow-hidden flex items-start justify-center">
+                  <div
+                    className="scale-[0.7] origin-top w-[1280px]"
+                    style={{ height: '571px' }}
+                  >
+                    <Header className="w-[1280px]" />
+                  </div>
+                </ComponentPreview>
+              </div>
 
-            <Card variant="info" className="mt-6">
-              <Body className="mb-3">설치 시 다음 파일이 추가됩니다:</Body>
-              <List className="text-krds-gray-90">
-                <ListItem>
-                  <Code>components/hanui/header.tsx</Code> - Header 컴포넌트
-                </ListItem>
-                <ListItem>
-                  <Code>components/hanui/header.module.scss</Code> - CSS Modules
-                  스타일
-                </ListItem>
-              </List>
-            </Card>
+              {/* Mobile */}
+              {/* <div>
+                <Body className="mb-2 font-semibold text-krds-gray-90">Mobile (375px)</Body>
+                <ComponentPreview className="h-[200px] overflow-hidden flex justify-center">
+                  <div className="w-[375px]">
+                    <Header />
+                  </div>
+                </ComponentPreview>
+              </div> */}
+            </div>
+
+            <Code variant="block" language="tsx">
+              {`import { Header } from '@hanui/react'
+
+<Header />`}
+            </Code>
           </Section>
 
+          <Installation componentName="header" />
+
           {/* What is it */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="what-is-it"
-              title="Header란?"
-              description="KRDS 표준에 따라 구조화된 정부 서비스 헤더입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="what-is-it" title="Header란?" />
 
             <Card variant="info">
               <List variant="check" className="text-krds-gray-90">
@@ -107,30 +122,19 @@ export default function HeaderPage() {
             </Card>
           </Section>
 
-          <Section className="overflow-x-scroll h-[540px] border border-krds-gray-10">
-            <Header className="w-[1280px]" />
-          </Section>
-
           {/* Usage */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="usage"
-              title="사용 예제"
-              description="Header 컴포넌트의 기본 사용법입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용 예제" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 사용" />
+              <Heading level="h3" title="기본 사용" />
               <Body className="mb-4 text-krds-gray-70">
                 Header 컴포넌트는 KRDS 표준 레이아웃을 그대로 제공합니다.
                 레이아웃의 최상단에 배치하세요.
               </Body>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+              <Code variant="block" language="tsx">
+                {`export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
       <body>
@@ -144,14 +148,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="커스터마이징" />
+              <Heading level="h3" title="커스터마이징" />
               <Body className="mb-4 text-krds-gray-70">
                 내용을 변경하려면 <Code>header.tsx</Code> 파일을 직접
                 수정하세요. CSS Modules 방식이므로{' '}
                 <Code>header.module.scss</Code>에서 스타일을 조정할 수 있습니다.
               </Body>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Code variant="block" language="tsx">
                 {`// components/hanui/header.tsx
 export function Header({ className }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -218,25 +222,17 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* Structure */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="structure"
-              title="레이아웃 구조"
-              description="Header는 다음과 같은 KRDS 표준 구조로 구성됩니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="structure" title="레이아웃 구조" />
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                title="1. Utility Bar (headerUtility)"
-              />
+              <Heading level="h3" title="1. Utility Bar (headerUtility)" />
               <Body className="mb-4 text-krds-gray-70">
                 상단 유틸리티 링크 영역입니다. 로그인, 회원가입, 언어 선택 등의
                 버튼을 포함합니다. Desktop(1024px+)에서만 표시됩니다.
               </Body>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Code variant="block" language="tsx">
                 {`<div className={styles.headerUtility}>
   <div className={styles.inner}>
     <ul className={styles.utilityList}>
@@ -276,12 +272,12 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="2. Branding (headerBranding)" />
+              <Heading level="h3" title="2. Branding (headerBranding)" />
               <Body className="mb-4 text-krds-gray-70">
                 로고, 슬로건, 검색 및 모바일 메뉴 버튼 영역입니다.
               </Body>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Code variant="block" language="tsx">
                 {`<div className={styles.headerBranding}>
   <div className={styles.inner}>
     <h1 className={styles.logo}>
@@ -311,13 +307,13 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="3. Main Menu (mainMenu)" />
+              <Heading level="h3" title="3. Main Menu (mainMenu)" />
               <Body className="mb-4 text-krds-gray-70">
                 주요 네비게이션 메뉴입니다. Desktop(1024px+)에서만 표시되며,
                 hover 시 서브메뉴가 드롭다운 형태로 나타납니다.
               </Body>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Code variant="block" language="tsx">
                 {`<nav className={styles.mainMenu}>
   <div className={styles.inner}>
     <ul className={styles.menuList}>
@@ -343,16 +339,13 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading
-                level="h3"
-                title="4. Mobile Menu (mainMenuMobile)"
-              />
+              <Heading level="h3" title="4. Mobile Menu (mainMenuMobile)" />
               <Body className="mb-4 text-krds-gray-70">
                 모바일 전체 화면 메뉴입니다. <Code>isMobileMenuOpen</Code>{' '}
                 상태에 따라 조건부 렌더링됩니다.
               </Body>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Code variant="block" language="tsx">
                 {`{isMobileMenuOpen && (
   <nav className={styles.mainMenuMobile}>
     <div className={styles.mobileMenuInner}>
@@ -386,22 +379,17 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* Styling */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="styling"
-              title="스타일 커스터마이징"
-              description="CSS Modules를 활용한 스타일 수정 방법입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="styling" title="스타일 커스터마이징" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="KRDS 디자인 토큰 활용" />
+              <Heading level="h3" title="KRDS 디자인 토큰 활용" />
               <Body className="mb-4 text-krds-gray-70">
                 header.module.scss에서 KRDS CSS 변수를 사용하여 일관된 디자인을
                 유지합니다.
               </Body>
 
-              <Code variant="block" language="scss" showLineNumbers={false}>
+              <Code variant="block" language="scss">
                 {`.header {
   --krds-header--utility-gap: var(--krds-gap-4);
   --krds-header--container-gap: var(--krds-gap-2);
@@ -417,13 +405,13 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="반응형 브레이크포인트" />
+              <Heading level="h3" title="반응형 브레이크포인트" />
               <Body className="mb-4 text-krds-gray-70">
                 Desktop(1024px+)과 Mobile(1023px 이하) 두 가지 브레이크포인트를
                 사용합니다.
               </Body>
 
-              <Code variant="block" language="scss" showLineNumbers={false}>
+              <Code variant="block" language="scss">
                 {`// Desktop: 1024px 이상
 @media (min-width: 1024px) {
   .mainMenu {
@@ -447,13 +435,13 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Sticky Header" />
+              <Heading level="h3" title="Sticky Header" />
               <Body className="mb-4 text-krds-gray-70">
                 Header는 <Code>position: sticky</Code>를 사용하여 스크롤 시
                 상단에 고정됩니다.
               </Body>
 
-              <Code variant="block" language="scss" showLineNumbers={false}>
+              <Code variant="block" language="scss">
                 {`.header {
   position: sticky;
   top: 0;
@@ -466,13 +454,8 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* Best Practices */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="모범 사례"
-              description="Header 컴포넌트를 효과적으로 사용하기 위한 가이드입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <List variant="unordered">
               <ListItem>
@@ -503,13 +486,8 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* Accessibility */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="accessibility"
-              title="접근성"
-              description="이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 기준을 준수합니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="accessibility" title="접근성" />
 
             <List variant="unordered">
               <ListItem>
@@ -536,13 +514,8 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* KRDS Standards */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="krds-standards"
-              title="KRDS 표준"
-              description="Header 컴포넌트가 준수하는 KRDS 표준입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="krds-standards" title="KRDS 표준" />
 
             <Card variant="info">
               <Body className="font-semibold mb-3">준수하는 KRDS 표준:</Body>
@@ -586,16 +559,11 @@ export function Header({ className }: HeaderProps) {
 
         <TabsContent value="api">
           {/* Props */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="props"
-              title="Props"
-              description="Header 컴포넌트의 속성입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="props" title="Props" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="className" />
+              <Heading level="h3" title="className" />
               <List variant="unordered">
                 <ListItem>
                   <strong>타입:</strong> <Code>string</Code>
@@ -608,28 +576,23 @@ export function Header({ className }: HeaderProps) {
                 </ListItem>
               </List>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Code variant="block" language="tsx">
                 {`<Header className="custom-header-class" />`}
               </Code>
             </Subsection>
           </Section>
 
           {/* State Management */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="state-management"
-              title="상태 관리"
-              description="Header 컴포넌트 내부의 상태 관리입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="state-management" title="상태 관리" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="isMobileMenuOpen" />
+              <Heading level="h3" title="isMobileMenuOpen" />
               <Body className="mb-4 text-krds-gray-70">
                 모바일 메뉴의 열림/닫힘 상태를 관리하는 React state입니다.
               </Body>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Code variant="block" language="tsx">
                 {`const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
 // 메뉴 버튼 클릭 시 토글
@@ -651,16 +614,11 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* CSS Modules Classes */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="css-modules"
-              title="CSS Modules 클래스"
-              description="header.module.scss에서 사용 가능한 클래스 목록입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="css-modules" title="CSS Modules 클래스" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="메인 구조" />
+              <Heading level="h3" title="메인 구조" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.header</Code> - 메인 헤더 컨테이너 (sticky)
@@ -672,7 +630,7 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Utility Bar 클래스" />
+              <Heading level="h3" title="Utility Bar 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.headerUtility</Code> - 상단 유틸리티 바
@@ -696,7 +654,7 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Branding 클래스" />
+              <Heading level="h3" title="Branding 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.headerBranding</Code> - 브랜딩 영역
@@ -720,7 +678,7 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Desktop 메뉴 클래스" />
+              <Heading level="h3" title="Desktop 메뉴 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.mainMenu</Code> - 메인 네비게이션
@@ -753,7 +711,7 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Mobile 메뉴 클래스" />
+              <Heading level="h3" title="Mobile 메뉴 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.mainMenuMobile</Code> - 모바일 전체화면 메뉴
@@ -789,7 +747,7 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="유틸리티 클래스" />
+              <Heading level="h3" title="유틸리티 클래스" />
               <List variant="unordered">
                 <ListItem>
                   <Code>.srOnly</Code> - 스크린 리더 전용 텍스트
@@ -799,17 +757,12 @@ export function Header({ className }: HeaderProps) {
           </Section>
 
           {/* CSS Variables */}
-          <Section>
-            <SectionHeading
-              level="h2"
-              id="css-variables"
-              title="CSS 변수"
-              description="사용되는 KRDS 디자인 토큰입니다."
-            />
+          <Section level="h2">
+            <Heading level="h2" id="css-variables" title="CSS 변수" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Header 전용 변수" />
-              <Code variant="block" language="css" showLineNumbers={false}>
+              <Heading level="h3" title="Header 전용 변수" />
+              <Code variant="block" language="css">
                 {`--krds-header--utility-gap
 --krds-header--container-gap
 --krds-header--container-padding-top
@@ -829,8 +782,8 @@ export function Header({ className }: HeaderProps) {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="공통 KRDS 변수" />
-              <Code variant="block" language="css" showLineNumbers={false}>
+              <Heading level="h3" title="공통 KRDS 변수" />
+              <Code variant="block" language="css">
                 {`/* Gap */
 --krds-gap-2, --krds-gap-3, --krds-gap-4
 

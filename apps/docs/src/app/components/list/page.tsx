@@ -1,7 +1,7 @@
 // Docs layout components
 import {
   PageSection as Section,
-  SectionHeading,
+  Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
@@ -32,7 +32,7 @@ import {
 export default function ListPage() {
   return (
     <>
-      <SectionHeading
+      <Heading
         level="h1"
         title="List"
         description="KRDS 준수 리스트 컴포넌트입니다. Unordered와 Ordered 리스트를 지원하며, 다양한 간격 옵션을 제공합니다."
@@ -48,11 +48,11 @@ export default function ListPage() {
         <TabsContent value="overview">
           {/* Installation */}
           <Section>
-            <SectionHeading level="h2" id="installation" title="설치">
+            <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 List 컴포넌트를 설치합니다:
               </Body>
-            </SectionHeading>
+            </Heading>
 
             <Code variant="block" language="bash" showLineNumbers={false}>
               npx @hanui/cli add list
@@ -61,7 +61,7 @@ export default function ListPage() {
 
           {/* What is it */}
           <Section>
-            <SectionHeading
+            <Heading
               level="h2"
               id="what-is-it"
               title="무엇인가요?"
@@ -96,7 +96,7 @@ export default function ListPage() {
 
           {/* Preview */}
           <Section>
-            <SectionHeading level="h2" id="preview" title="미리보기" />
+            <Heading level="h2" id="preview" title="미리보기" />
             <Card variant="outlined">
               <List>
                 <ListItem>첫 번째 항목</ListItem>
@@ -108,15 +108,15 @@ export default function ListPage() {
 
           {/* Usage */}
           <Section>
-            <SectionHeading level="h2" id="usage" title="사용 방법" />
+            <Heading level="h2" id="usage" title="사용 방법" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="기본 사용">
+              <Heading level="h3" title="기본 사용">
                 <Body className="leading-relaxed">
                   <Code>List</Code>와 <Code>ListItem</Code>을 조합하여
                   사용합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { List, ListItem } from '@/components/hanui';
@@ -138,12 +138,12 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Ordered List">
+              <Heading level="h3" title="Ordered List">
                 <Body className="leading-relaxed">
                   <Code>variant="ordered"</Code>로 번호 리스트를 만들 수
                   있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<List variant="ordered">
@@ -163,12 +163,12 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Dash List">
+              <Heading level="h3" title="Dash List">
                 <Body className="leading-relaxed">
                   <Code>variant="dash"</Code>로 대시(−) 리스트를 만들 수
                   있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<List variant="dash">
@@ -188,12 +188,12 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Check List">
+              <Heading level="h3" title="Check List">
                 <Body className="leading-relaxed">
                   <Code>variant="check"</Code>로 체크(✓) 리스트를 만들 수
                   있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<List variant="check">
@@ -213,14 +213,14 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="2depth 중첩 리스트">
+              <Heading level="h3" title="2depth 중첩 리스트">
                 <Body className="leading-relaxed">
                   <Code>ListItem</Code> 안에 <Code>List</Code>를 넣으면 자동으로
                   2depth 중첩 리스트가 됩니다. <Code>level=&#123;2&#125;</Code>
                   나 <Code>variant="dash"</Code>를 지정하지 않아도 자동으로
                   들여쓰기되고 dash(−) 아이콘을 사용합니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<List>
@@ -271,12 +271,12 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="Spacing 옵션">
+              <Heading level="h3" title="Spacing 옵션">
                 <Body className="leading-relaxed">
                   <Code>spacing</Code> prop으로 항목 간 간격을 조절할 수
                   있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Stack gap="md">
                 <div>
@@ -315,12 +315,12 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="커스텀 Indicator">
+              <Heading level="h3" title="커스텀 Indicator">
                 <Body className="leading-relaxed">
                   <Code>showIndicator=&#123;false&#125;</Code>로 기본 불릿을
                   숨기고 커스텀 아이콘을 사용할 수 있습니다:
                 </Body>
-              </SectionHeading>
+              </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<List>
@@ -356,14 +356,10 @@ export default function ListPage() {
 
           {/* Best Practices */}
           <Section>
-            <SectionHeading
-              level="h2"
-              id="best-practices"
-              title="Best Practices"
-            />
+            <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하나요?" />
+              <Heading level="h3" title="언제 사용하나요?" />
               <DoCard title="List를 사용하기 적합한 경우">
                 <List variant="check">
                   <ListItem>관련된 항목들을 순서대로 나열할 때</ListItem>
@@ -378,7 +374,7 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
               <DontCard title="List 사용을 피해야 하는 경우">
                 <List variant="dash">
                   <ListItem>
@@ -397,7 +393,7 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="사용 가이드라인" />
+              <Heading level="h3" title="사용 가이드라인" />
               <List>
                 <ListItem>
                   순서가 중요한 경우 <Code>variant="ordered"</Code>를
@@ -422,10 +418,10 @@ export default function ListPage() {
         {/* API 탭 */}
         <TabsContent value="api">
           <Section>
-            <SectionHeading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="List Props" />
+              <Heading level="h3" title="List Props" />
 
               <Table>
                 <TableHeader>
@@ -487,7 +483,7 @@ export default function ListPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="ListItem Props" />
+              <Heading level="h3" title="ListItem Props" />
 
               <Table>
                 <TableHeader>
