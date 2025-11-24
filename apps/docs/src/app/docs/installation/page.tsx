@@ -104,21 +104,95 @@ npx hanui init`}
               </Card>
 
               <Body className="font-semibold mb-4 mt-6">
-                2-1. CSS 변수 Import (권장)
+                2-1. CSS 변수 설정 (필수)
               </Body>
               <Body className="mb-4 text-krds-gray-70">
-                KRDS 디자인 시스템의 모든 CSS 변수를 사용하려면 globals.css에
-                추가하세요:
+                먼저 globals.css에 KRDS CSS 변수를 추가하세요:
               </Body>
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`/* app/globals.css */
-@import '@hanui/react/variables.css';`}
+@import '@hanui/react/variables.css';
+
+/* 기존 Tailwind 지시어 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;`}
+              </Code>
+
+              <Card variant="warning" className="mt-6">
+                <Body className="font-semibold mb-3">
+                  ⚠️ CSS 변수를 먼저 설정하세요
+                </Body>
+                <Body className="text-krds-gray-90">
+                  Tailwind 설정에서 이 CSS 변수들을 참조하므로, 반드시
+                  globals.css에 먼저 import해야 합니다.
+                </Body>
+              </Card>
+
+              <Body className="font-semibold mb-4 mt-6">
+                2-2. Tailwind CSS에 KRDS 색상 설정
+              </Body>
+              <Body className="mb-4 text-krds-gray-70">
+                <Code>create-hanui-app</Code>으로 생성한 경우 이미 설정되어
+                있지만, 수동으로 추가하려면 다음과 같이 설정합니다:
+              </Body>
+              <Code
+                variant="block"
+                language="typescript"
+                showLineNumbers={false}
+              >
+                {`// tailwind.config.ts
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'krds-primary': {
+          5: 'var(--krds-color-light-primary-5)',
+          10: 'var(--krds-color-light-primary-10)',
+          20: 'var(--krds-color-light-primary-20)',
+          30: 'var(--krds-color-light-primary-30)',
+          40: 'var(--krds-color-light-primary-40)',
+          50: 'var(--krds-color-light-primary-50)',
+          60: 'var(--krds-color-light-primary-60)',
+          70: 'var(--krds-color-light-primary-70)',
+          80: 'var(--krds-color-light-primary-80)',
+          90: 'var(--krds-color-light-primary-90)',
+          95: 'var(--krds-color-light-primary-95)',
+        },
+        'krds-gray': {
+          0: 'var(--krds-color-light-gray-0)',
+          5: 'var(--krds-color-light-gray-5)',
+          10: 'var(--krds-color-light-gray-10)',
+          20: 'var(--krds-color-light-gray-20)',
+          30: 'var(--krds-color-light-gray-30)',
+          40: 'var(--krds-color-light-gray-40)',
+          50: 'var(--krds-color-light-gray-50)',
+          60: 'var(--krds-color-light-gray-60)',
+          70: 'var(--krds-color-light-gray-70)',
+          80: 'var(--krds-color-light-gray-80)',
+          90: 'var(--krds-color-light-gray-90)',
+          95: 'var(--krds-color-light-gray-95)',
+        },
+        // ... danger, success, warning, information도 동일한 패턴으로 추가
+      },
+    },
+  },
+};
+
+export default config;`}
               </Code>
 
               <Card variant="info" className="mt-6">
                 <Body className="mb-3">
-                  variables.css는 모든 KRDS 표준 값을 제공하며, 조직의 브랜드
-                  색상으로 쉽게 커스터마이징할 수 있습니다.
+                  전체 색상 정의는 설치 문서의 "기존 프로젝트에 추가" 탭을
+                  참고하세요.
                 </Body>
               </Card>
 
@@ -257,16 +331,202 @@ export default config;`}
               </Card>
 
               <Body className="font-semibold mb-4 mt-6">
-                4. CSS 변수 Import
+                4. CSS 변수 설정 (필수)
               </Body>
               <Body className="mb-4 text-krds-gray-70">
-                KRDS 디자인 시스템의 모든 CSS 변수를 사용하려면 globals.css 또는
-                root layout에 variables.css를 import하세요:
+                먼저 globals.css에 KRDS CSS 변수를 추가하세요. 이 변수들은
+                Tailwind 색상 클래스의 기반이 됩니다:
               </Body>
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`/* app/globals.css 또는 styles/globals.css */
-@import '@hanui/react/variables.css';`}
+@import '@hanui/react/variables.css';
+
+/* 기존 Tailwind 지시어 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;`}
               </Code>
+
+              <Card variant="warning" className="mt-6">
+                <Body className="font-semibold mb-3">⚠️ 중요: 설정 순서</Body>
+                <Body className="mb-4 text-krds-gray-90">
+                  다음 순서로 설정해야 합니다:
+                </Body>
+                <div className="bg-krds-gray-5 p-4 rounded-lg text-krds-gray-90 space-y-3">
+                  <div>
+                    <strong>1️⃣ globals.css</strong>
+                    <div className="ml-4 mt-1 text-sm">
+                      <Code>@import '@hanui/react/variables.css'</Code>
+                      <div className="mt-1 text-krds-gray-70">
+                        → CSS 변수 정의:{' '}
+                        <Code>--krds-color-light-primary-50</Code>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-krds-gray-50 text-center">↓</div>
+                  <div>
+                    <strong>2️⃣ tailwind.config.ts</strong>
+                    <div className="ml-4 mt-1 text-sm">
+                      <Code>{`'krds-primary-50': 'var(--krds-color-light-primary-50)'`}</Code>
+                      <div className="mt-1 text-krds-gray-70">
+                        → CSS 변수를 Tailwind 클래스로 매핑
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-krds-gray-50 text-center">↓</div>
+                  <div>
+                    <strong>3️⃣ 컴포넌트에서 사용</strong>
+                    <div className="ml-4 mt-1 text-sm">
+                      <Code>{`className="bg-krds-primary-50"`}</Code>
+                      <div className="mt-1 text-krds-gray-70">
+                        → Tailwind 클래스로 스타일 적용
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              <Body className="font-semibold mb-4 mt-6">
+                5. Tailwind CSS에 KRDS 색상 설정
+              </Body>
+              <Body className="mb-4 text-krds-gray-70">
+                이제 globals.css에 설정한 CSS 변수들을 Tailwind 유틸리티
+                클래스로 매핑합니다. 예를 들어,{' '}
+                <Code>--krds-color-light-primary-50</Code> CSS 변수를{' '}
+                <Code>bg-krds-primary-50</Code> Tailwind 클래스로 사용할 수 있게
+                합니다:
+              </Body>
+              <Code
+                variant="block"
+                language="typescript"
+                showLineNumbers={false}
+              >
+                {`// tailwind.config.ts
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    // HANUI 컴포넌트 경로 포함
+    './node_modules/@hanui/react/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'krds-primary': {
+          5: 'var(--krds-color-light-primary-5)',
+          10: 'var(--krds-color-light-primary-10)',
+          20: 'var(--krds-color-light-primary-20)',
+          30: 'var(--krds-color-light-primary-30)',
+          40: 'var(--krds-color-light-primary-40)',
+          50: 'var(--krds-color-light-primary-50)',
+          60: 'var(--krds-color-light-primary-60)',
+          70: 'var(--krds-color-light-primary-70)',
+          80: 'var(--krds-color-light-primary-80)',
+          90: 'var(--krds-color-light-primary-90)',
+          95: 'var(--krds-color-light-primary-95)',
+        },
+        'krds-gray': {
+          0: 'var(--krds-color-light-gray-0)',
+          5: 'var(--krds-color-light-gray-5)',
+          10: 'var(--krds-color-light-gray-10)',
+          20: 'var(--krds-color-light-gray-20)',
+          30: 'var(--krds-color-light-gray-30)',
+          40: 'var(--krds-color-light-gray-40)',
+          50: 'var(--krds-color-light-gray-50)',
+          60: 'var(--krds-color-light-gray-60)',
+          70: 'var(--krds-color-light-gray-70)',
+          80: 'var(--krds-color-light-gray-80)',
+          90: 'var(--krds-color-light-gray-90)',
+          95: 'var(--krds-color-light-gray-95)',
+        },
+        'krds-danger': {
+          5: 'var(--krds-color-light-danger-5)',
+          10: 'var(--krds-color-light-danger-10)',
+          20: 'var(--krds-color-light-danger-20)',
+          30: 'var(--krds-color-light-danger-30)',
+          40: 'var(--krds-color-light-danger-40)',
+          50: 'var(--krds-color-light-danger-50)',
+          60: 'var(--krds-color-light-danger-60)',
+          70: 'var(--krds-color-light-danger-70)',
+          80: 'var(--krds-color-light-danger-80)',
+          90: 'var(--krds-color-light-danger-90)',
+        },
+        'krds-success': {
+          5: 'var(--krds-color-light-success-5)',
+          10: 'var(--krds-color-light-success-10)',
+          20: 'var(--krds-color-light-success-20)',
+          30: 'var(--krds-color-light-success-30)',
+          40: 'var(--krds-color-light-success-40)',
+          50: 'var(--krds-color-light-success-50)',
+          60: 'var(--krds-color-light-success-60)',
+          70: 'var(--krds-color-light-success-70)',
+          80: 'var(--krds-color-light-success-80)',
+          90: 'var(--krds-color-light-success-90)',
+        },
+        'krds-warning': {
+          5: 'var(--krds-color-light-warning-5)',
+          10: 'var(--krds-color-light-warning-10)',
+          20: 'var(--krds-color-light-warning-20)',
+          30: 'var(--krds-color-light-warning-30)',
+          40: 'var(--krds-color-light-warning-40)',
+          50: 'var(--krds-color-light-warning-50)',
+          60: 'var(--krds-color-light-warning-60)',
+          70: 'var(--krds-color-light-warning-70)',
+          80: 'var(--krds-color-light-warning-80)',
+          90: 'var(--krds-color-light-warning-90)',
+        },
+        'krds-information': {
+          5: 'var(--krds-color-light-information-5)',
+          10: 'var(--krds-color-light-information-10)',
+          20: 'var(--krds-color-light-information-20)',
+          30: 'var(--krds-color-light-information-30)',
+          40: 'var(--krds-color-light-information-40)',
+          50: 'var(--krds-color-light-information-50)',
+          60: 'var(--krds-color-light-information-60)',
+          70: 'var(--krds-color-light-information-70)',
+          80: 'var(--krds-color-light-information-80)',
+          90: 'var(--krds-color-light-information-90)',
+        },
+      },
+    },
+  },
+};
+
+export default config;`}
+              </Code>
+
+              <Card variant="info" className="mt-6">
+                <Body className="font-semibold mb-3">
+                  작동 원리: CSS 변수 → Tailwind 클래스 매핑
+                </Body>
+                <Body className="mb-4 text-krds-gray-90">
+                  위 설정은 globals.css의 CSS 변수를 Tailwind 클래스로
+                  변환합니다:
+                </Body>
+                <List className="text-krds-gray-90">
+                  <ListItem>
+                    <Code>--krds-color-light-primary-50</Code> (CSS 변수) →{' '}
+                    <Code>bg-krds-primary-50</Code> (Tailwind 클래스)
+                  </ListItem>
+                  <ListItem>
+                    <Code>--krds-color-light-gray-90</Code> (CSS 변수) →{' '}
+                    <Code>text-krds-gray-90</Code> (Tailwind 클래스)
+                  </ListItem>
+                  <ListItem>
+                    <Code>--krds-color-light-danger-50</Code> (CSS 변수) →{' '}
+                    <Code>border-krds-danger-50</Code> (Tailwind 클래스)
+                  </ListItem>
+                </List>
+                <Body className="mt-4 text-krds-gray-90">
+                  이렇게 설정하면 HANUI 컴포넌트에서{' '}
+                  <Code>bg-krds-primary-50</Code>,{' '}
+                  <Code>hover:bg-krds-success-60</Code> 같은 Tailwind 유틸리티
+                  클래스를 사용할 수 있습니다.
+                </Body>
+              </Card>
 
               <Card variant="info" className="mt-6">
                 <Body className="mb-3">
@@ -284,8 +544,22 @@ export default config;`}
                 </List>
               </Card>
 
+              <Card variant="warning" className="mt-6">
+                <Body className="font-semibold mb-3">
+                  왜 CSS 변수 대신 Tailwind 클래스를 사용하나요?
+                </Body>
+                <Body className="text-krds-gray-90">
+                  HANUI 컴포넌트는{' '}
+                  <Code>bg-[var(--krds-color-light-primary-50)]</Code> 대신{' '}
+                  <Code>bg-krds-primary-50</Code>을 사용합니다. 이렇게 하면
+                  Tailwind의 JIT 컴파일러가 사용된 클래스만 생성하여 CSS 번들
+                  크기를 최적화하고, 자동완성과 타입 안정성을 제공하며, 일관된
+                  네이밍 컨벤션을 유지할 수 있습니다.
+                </Body>
+              </Card>
+
               <Body className="font-semibold mb-4 mt-6">
-                5. 조직 브랜드 색상 커스터마이징 (선택사항)
+                6. 조직 브랜드 색상 커스터마이징 (선택사항)
               </Body>
               <Body className="mb-4 text-krds-gray-70">
                 조직의 브랜드 색상을 적용하려면 별도 파일에서 Primary 색상을
@@ -295,8 +569,9 @@ export default config;`}
                 {`/* styles/theme.css */
 :root {
   /* 조직의 브랜드 컬러로 변경 */
-  --krds-color-primary-500: #0066cc;
-  --krds-color-primary-600: #0052a3;
+  --krds-color-light-primary-50: #0066cc;
+  --krds-color-light-primary-60: #0052a3;
+  --krds-color-light-primary-70: #003d7a;
   /* 필요한 색상만 오버라이드 */
 }`}
               </Code>
@@ -310,7 +585,7 @@ export default config;`}
 @import './theme.css'; /* 커스텀 테마 */`}
               </Code>
 
-              <Body className="font-semibold mb-4 mt-6">6. 컴포넌트 추가</Body>
+              <Body className="font-semibold mb-4 mt-6">7. 컴포넌트 추가</Body>
               <Body className="mb-4 text-krds-gray-70">
                 필요한 컴포넌트를 선택하여 프로젝트에 추가합니다. 필요한
                 의존성(clsx, tailwind-merge 등)은 자동으로 설치됩니다:
@@ -403,12 +678,41 @@ export default function Page() {
               </Code>
             </ListItem>
             <ListItem>
-              KRDS 디자인 토큰 사용을 위해 preset 설정 확인:
+              <Code>tailwind.config.ts</Code>의 theme.extend.colors에 KRDS
+              색상이 정의되어 있는지 확인 (위 설치 가이드 참고)
+            </ListItem>
+            <ListItem>
+              <Code>globals.css</Code>에 variables.css가 import되어 있는지 확인:
               <Code className="block mt-2">
-                presets: [require('@hanui/react/preset')]
+                @import '@hanui/react/variables.css';
               </Code>
             </ListItem>
             <ListItem>개발 서버를 재시작해보세요</ListItem>
+          </List>
+        </Subsection>
+
+        <Subsection level="h3">
+          <SectionHeading
+            level="h3"
+            title="KRDS 색상 클래스를 찾을 수 없다는 에러"
+          />
+          <Body className="mb-4 text-krds-gray-70">
+            <Code>bg-krds-primary-50</Code> 같은 클래스를 사용할 때 "Unknown at
+            rule" 또는 색상이 적용되지 않는 경우:
+          </Body>
+          <List>
+            <ListItem>
+              <Code>tailwind.config.ts</Code>의 theme.extend.colors에 krds-*
+              색상이 정의되어 있는지 확인하세요 (위 4단계 참고)
+            </ListItem>
+            <ListItem>
+              CSS 변수가 정의된 <Code>variables.css</Code>가 import되어 있는지
+              확인하세요
+            </ListItem>
+            <ListItem>
+              Tailwind CSS IntelliSense 확장을 사용하는 경우, VSCode를
+              재시작하면 자동완성이 작동합니다
+            </ListItem>
           </List>
         </Subsection>
 
