@@ -75,16 +75,30 @@ const accordionContentVariants = cva(
 );
 
 /**
+ * Accordion Root Props for Single Type
+ */
+interface AccordionSinglePropsBase
+  extends Omit<AccordionPrimitive.AccordionSingleProps, 'type'>,
+    VariantProps<typeof accordionVariants> {
+  type?: 'single';
+  collapsible?: boolean;
+}
+
+/**
+ * Accordion Root Props for Multiple Type
+ */
+interface AccordionMultiplePropsBase
+  extends Omit<AccordionPrimitive.AccordionMultipleProps, 'type'>,
+    VariantProps<typeof accordionVariants> {
+  type: 'multiple';
+}
+
+/**
  * Accordion Root Props
  */
-export interface AccordionProps
-  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>,
-    VariantProps<typeof accordionVariants> {
-  /**
-   * Additional CSS classes
-   */
-  className?: string;
-}
+export type AccordionProps =
+  | AccordionSinglePropsBase
+  | AccordionMultiplePropsBase;
 
 /**
  * AccordionItem Props
@@ -157,17 +171,55 @@ const AccordionContext = React.createContext<{
 export const Accordion = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Root>,
   AccordionProps
->(({ className, variant = 'default', children, ...props }, ref) => (
-  <AccordionContext.Provider value={{ variant: variant as 'default' | 'line' }}>
-    <AccordionPrimitive.Root
-      ref={ref}
-      className={cn(accordionVariants({ variant }), className)}
-      {...props}
+>(({ className, variant = 'default', type, children, ...props }, ref) => {
+  // Default to single type with collapsible
+  const accordionType = type ?? 'single';
+
+  if (accordionType === 'single') {
+    const singleProps = props as Omit<
+      AccordionSinglePropsBase,
+      'type' | 'variant' | 'className'
+    >;
+    const collapsible = singleProps.collapsible ?? true;
+
+    return (
+      <AccordionContext.Provider
+        value={{ variant: variant as 'default' | 'line' }}
+      >
+        <AccordionPrimitive.Root
+          ref={ref}
+          type="single"
+          collapsible={collapsible}
+          className={cn(accordionVariants({ variant }), className)}
+          {...singleProps}
+        >
+          {children}
+        </AccordionPrimitive.Root>
+      </AccordionContext.Provider>
+    );
+  }
+
+  // Multiple type
+  const multipleProps = props as Omit<
+    AccordionMultiplePropsBase,
+    'type' | 'variant' | 'className'
+  >;
+
+  return (
+    <AccordionContext.Provider
+      value={{ variant: variant as 'default' | 'line' }}
     >
-      {children}
-    </AccordionPrimitive.Root>
-  </AccordionContext.Provider>
-));
+      <AccordionPrimitive.Root
+        ref={ref}
+        type="multiple"
+        className={cn(accordionVariants({ variant }), className)}
+        {...multipleProps}
+      >
+        {children}
+      </AccordionPrimitive.Root>
+    </AccordionContext.Provider>
+  );
+});
 Accordion.displayName = 'Accordion';
 
 /**

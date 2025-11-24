@@ -2,7 +2,6 @@
 
 import React from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import * as Accordion from '@radix-ui/react-accordion';
 import * as Dialog from '@radix-ui/react-dialog';
 import styles from './header.module.scss';
@@ -197,34 +196,36 @@ export function Header({ className }: HeaderProps) {
       </div>
 
       {/* Header Main Menu */}
-      <NavigationMenu.Root className={styles.mainMenu} delayDuration={0}>
-        <NavigationMenu.List className={styles.menuList}>
+      <nav id="gnb" className={styles.mainMenu}>
+        <ul className={styles.menuList}>
           {MAIN_MENU.map((menu) => (
-            <NavigationMenu.Item key={menu.title} className={styles.menuItem}>
-              <NavigationMenu.Trigger className={styles.menuLink}>
+            <li key={menu.title} className={styles.menuItem}>
+              <a href="#" className={styles.menuLink}>
                 {menu.title}
-                <ChevronDown className={styles.menuIcon} aria-hidden="true" />
-              </NavigationMenu.Trigger>
-              <NavigationMenu.Content className={styles.subMenuWrapper}>
-                <div className={styles.subMenuInner}>
-                  <ul className={styles.subMenuList}>
-                    {menu.subItems.map((subItem) => (
-                      <li key={subItem}>
-                        <NavigationMenu.Link
-                          href="#"
-                          className={styles.subMenuLink}
-                        >
-                          {subItem}
-                        </NavigationMenu.Link>
-                      </li>
-                    ))}
-                  </ul>
+                {menu.subItems.length > 0 && (
+                  <ChevronDown className={styles.menuIcon} aria-hidden="true" />
+                )}
+              </a>
+              {/* Submenu */}
+              {menu.subItems.length > 0 && (
+                <div className={styles.subMenuWrapper}>
+                  <div className={styles.subMenuInner}>
+                    <ul className={styles.subMenuList}>
+                      {menu.subItems.map((subItem) => (
+                        <li key={subItem}>
+                          <a href="#" className={styles.subMenuLink}>
+                            {subItem}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
+              )}
+            </li>
           ))}
-        </NavigationMenu.List>
-      </NavigationMenu.Root>
+        </ul>
+      </nav>
 
       {/* Mobile Main Menu */}
       {isMobileMenuOpen && (

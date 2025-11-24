@@ -372,6 +372,16 @@
 
 .menuItem {
   position: relative;
+
+  // 호버 시 서브메뉴 표시 (애니메이션 적용)
+  &:hover .subMenuWrapper,
+  &:focus-within .subMenuWrapper {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
 }
 
 .menuLink {
@@ -409,19 +419,19 @@
 
 .subMenuWrapper {
   position: absolute;
-  top: 90%;
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-0.8rem);
   z-index: 100;
+  padding-top: 0.4rem;
 
-  // Radix UI 애니메이션
-  &[data-state='open'] {
-    animation: slideDown 0.2s ease-out;
-  }
+  // 기본적으로 숨김
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
 
-  &[data-state='closed'] {
-    animation: slideUp 0.15s ease-in;
-  }
+  // 애니메이션 준비
+  transition: visibility 0s linear 0.15s, opacity 0.15s ease-in, transform 0.15s ease-in;
 }
 
 @keyframes slideDown {

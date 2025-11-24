@@ -28,11 +28,6 @@ export interface SkipLinkItem {
  */
 export interface SkipLinkProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Array of skip link items (max 3 recommended)
-   */
-  links: SkipLinkItem[];
-
-  /**
    * Visual variant
    * @default "hidden"
    */
@@ -43,6 +38,14 @@ export interface SkipLinkProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   className?: string;
 }
+
+/**
+ * Default skip link items
+ */
+const DEFAULT_LINKS: SkipLinkItem[] = [
+  { href: '#gnb', label: '주메뉴 바로가기' },
+  { href: '#breadcrumb', label: '본문 바로가기' },
+];
 
 /**
  * SkipLink Component
@@ -61,39 +64,19 @@ export interface SkipLinkProps extends React.HTMLAttributes<HTMLDivElement> {
  * - Two variants: visible (always shown) and hidden (shows on focus)
  * - Focus must scroll to destination and be visually distinct
  * - Links must be keyboard accessible (Tab and Enter)
- *
- * @example
- * ```tsx
- * // Basic usage (hidden variant)
- * <SkipLink
- *   links={[
- *     { href: '#main-content', label: 'Skip to main content' },
- *     { href: '#main-navigation', label: 'Skip to navigation' },
- *   ]}
- * />
- *
- * // Recommended page structure
- * <body>
- *   <SkipLink links={[{ href: '#main-content', label: 'Skip to main content' }]} />
- *   <Masthead />
- *   <header>...</header>
- *   <main id="main-content" tabIndex={-1}>...</main>
- *   <footer>...</footer>
- * </body>
- * ```
  */
 
 export const SkipLink = React.forwardRef<HTMLDivElement, SkipLinkProps>(
-  ({ links, variant = 'hidden', className, ...props }, ref) => {
+  ({ variant = 'hidden', className, ...props }, ref) => {
     // Validate max 3 links
     React.useEffect(() => {
-      if (process.env.NODE_ENV === 'development' && links.length > 3) {
+      if (process.env.NODE_ENV === 'development' && DEFAULT_LINKS.length > 3) {
         console.warn(
           'SkipLink: Maximum 3 links recommended for optimal accessibility. Current count:',
-          links.length
+          DEFAULT_LINKS.length
         );
       }
-    }, [links]);
+    }, []);
 
     const handleClick = (
       e: React.MouseEvent<HTMLAnchorElement>,
@@ -106,15 +89,26 @@ export const SkipLink = React.forwardRef<HTMLDivElement, SkipLinkProps>(
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
-        // Set focus on target element
-        targetElement.setAttribute('tabindex', '-1');
-        targetElement.focus();
-
-        // Scroll to target element
+        // Scroll to target element first
         targetElement.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
         });
+
+        // Find first focusable element inside container
+        const firstFocusable = targetElement.querySelector(
+          'button:not([disabled]), [href]:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ) as HTMLElement;
+
+        // Use setTimeout to ensure focus happens after scroll
+        setTimeout(() => {
+          if (firstFocusable) {
+            firstFocusable.focus();
+          } else {
+            targetElement.setAttribute('tabindex', '-1');
+            targetElement.focus();
+          }
+        }, 100);
 
         // Update URL hash without triggering scroll
         if (window.history.pushState) {
@@ -126,51 +120,24 @@ export const SkipLink = React.forwardRef<HTMLDivElement, SkipLinkProps>(
       }
     };
 
-    const variantStyles = {
-      visible: 'relative',
-      hidden: 'absolute -top-full left-0 focus-within:top-0',
-    };
-
     return (
-      <nav
+      <div
         ref={ref}
         id="krds-skip-link"
-        aria-label="Skip navigation"
-        className={cn(
-          'w-full',
-          'bg-blue-600',
-          'z-50',
-          variantStyles[variant],
-          className
-        )}
+        className={cn(variant === 'visible' ? 'type2' : 'type1', className)}
         {...props}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <ul className="flex items-center gap-4 min-h-[48px] py-2">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => handleClick(e, link.href)}
-                  className={cn(
-                    'inline-block',
-                    'px-4 py-2',
-                    'font-medium',
-                    'text-white',
-                    'bg-blue-700',
-                    'rounded',
-                    'transition-colors',
-                    'hover:bg-blue-800',
-                    'focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600'
-                  )}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
+        {DEFAULT_LINKS.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            onClick={(e) => handleClick(e, link.href)}
+            className="fixed left-0 -top-full z-[9999] w-full bg-black text-white px-4 py-1 focus:top-0 text-sm text-center"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
     );
   }
 );

@@ -145,7 +145,12 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
     }, [items, maxItems, itemsBeforeCollapse, itemsAfterCollapse]);
 
     return (
-      <nav ref={ref} aria-label={ariaLabel} className={cn('', className)}>
+      <nav
+        id="breadcrumb"
+        ref={ref}
+        aria-label={ariaLabel}
+        className={cn('pt-6 mb-10', className)}
+      >
         <ol className="flex items-center flex-wrap gap-2">
           {displayedItems.map((item, index) => {
             const isLast = index === displayedItems.length - 1;
@@ -156,14 +161,14 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
               <li key={index} className="flex items-center gap-2">
                 {isCollapsed ? (
                   <span
-                    className="text-gray-500 dark:text-gray-400"
+                    className="text-gray-500 dark:text-gray-400 underline"
                     aria-hidden="true"
                   >
                     {item.label}
                   </span>
                 ) : isCurrent ? (
                   <span
-                    className="font-medium text-gray-900 dark:text-gray-100"
+                    className="font-medium text-gray-900 dark:text-gray-100 underline"
                     aria-current="page"
                   >
                     {item.label}
@@ -176,7 +181,8 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                       'hover:text-gray-900 dark:hover:text-gray-100',
                       'transition-colors',
                       'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-                      'rounded-sm'
+                      'rounded-sm',
+                      'underline'
                     )}
                   >
                     {item.label}
@@ -185,7 +191,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
 
                 {!isLast && (
                   <span
-                    className="text-gray-400 dark:text-gray-600 select-none"
+                    className="text-gray-400 dark:text-gray-600 select-none underline"
                     aria-hidden="true"
                   >
                     {separator}

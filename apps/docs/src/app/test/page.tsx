@@ -9,26 +9,28 @@ import {
   Container,
   SAMPLE_SIDE_NAVIGATION,
   SkipLink,
+  Breadcrumb,
 } from '@hanui/react';
 
 export default function TestPage() {
   return (
     <div id="wrap" className="flex flex-col min-h-screen">
-      <SkipLink
-        links={[
-          { href: '#header', label: 'Skip to header' },
-          { href: '#main', label: 'Skip to main content' },
-          { href: '#footer', label: 'Skip to footer' },
-        ]}
-      />
+      <SkipLink />
       <Header />
-      <main className="flex-1">
+      <main className="flex-1 min-h-[600px]">
         <Container className="flex justify-between gap-20">
           <SideNavigation
             title="1Depth-title"
             sections={SAMPLE_SIDE_NAVIGATION}
           />
           <div className="grow">
+            <Breadcrumb
+              items={[
+                { label: '홈', href: '/' },
+                { label: '2Depth-title', href: '/' },
+                { label: '3Depth-title', href: '/' },
+              ]}
+            />
             <Accordion>
               <AccordionItem value="item-1">
                 <AccordionTrigger>Section 1</AccordionTrigger>
