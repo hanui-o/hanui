@@ -34,7 +34,6 @@ const tabsTriggerVariants = cva(
     'justify-center',
     'px-4',
     'py-2',
-    'text-sm',
     'font-medium',
     'transition-colors',
     'focus-visible:outline-none',

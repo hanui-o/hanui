@@ -1,6 +1,8 @@
 'use client';
 
 import * as React from 'react';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /**
@@ -9,6 +11,10 @@ import { cn } from '@/lib/utils';
 export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   className?: string;
   children: React.ReactNode;
+  /**
+   * Apply small text size to the table
+   */
+  small?: boolean;
 }
 
 /**
@@ -75,6 +81,10 @@ export interface TableCellProps
   extends React.TdHTMLAttributes<HTMLTableCellElement> {
   className?: string;
   children: React.ReactNode;
+  /**
+   * Apply small text size to the cell
+   */
+  small?: boolean;
 }
 
 /**
@@ -113,12 +123,16 @@ export interface TableCaptionProps
  * ```
  */
 export const Table = React.forwardRef<HTMLTableElement, TableProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ className, children, small, ...props }, ref) => {
     return (
       <div className="relative w-full overflow-auto">
         <table
           ref={ref}
-          className={cn('w-full caption-bottom border-collapse', className)}
+          className={cn(
+            'w-full caption-bottom border-collapse',
+            small && 'text-sm',
+            className
+          )}
           {...props}
         >
           {children}
@@ -296,13 +310,14 @@ TableHead.displayName = 'TableHead';
  * TableCell Component
  */
 export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ className, children, small, ...props }, ref) => {
     return (
       <td
         ref={ref}
         className={cn(
           'p-4 align-middle',
           '[&:has([role=checkbox])]:pr-0',
+          small && 'text-sm',
           className
         )}
         {...props}
@@ -334,3 +349,222 @@ export const TableCaption = React.forwardRef<
 });
 
 TableCaption.displayName = 'TableCaption';
+
+/**
+ * TableAccordion Props for Single Type
+ */
+interface TableAccordionSingleProps {
+  className?: string;
+  children: React.ReactNode;
+  type?: 'single';
+  collapsible?: boolean;
+  defaultValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+}
+
+/**
+ * TableAccordion Props for Multiple Type
+ */
+interface TableAccordionMultipleProps {
+  className?: string;
+  children: React.ReactNode;
+  type: 'multiple';
+  defaultValue?: string[];
+  value?: string[];
+  onValueChange?: (value: string[]) => void;
+}
+
+/**
+ * TableAccordion Props
+ */
+export type TableAccordionProps =
+  | TableAccordionSingleProps
+  | TableAccordionMultipleProps;
+
+/**
+ * TableAccordionItem Props
+ */
+export interface TableAccordionItemProps {
+  className?: string;
+  value: string;
+  children: React.ReactNode;
+  disabled?: boolean;
+}
+
+/**
+ * TableAccordionTrigger Props
+ */
+export interface TableAccordionTriggerProps {
+  className?: string;
+  children: React.ReactNode;
+  /**
+   * Column span for the trigger row
+   */
+  colSpan?: number;
+}
+
+/**
+ * TableAccordionContent Props
+ */
+export interface TableAccordionContentProps {
+  className?: string;
+  children: React.ReactNode;
+  /**
+   * Column span for the content row
+   */
+  colSpan?: number;
+}
+
+/**
+ * TableAccordion Component
+ *
+ * Accordion wrapper for expandable table rows using Radix UI
+ *
+ * @example
+ * ```tsx
+ * <Table>
+ *   <TableBody>
+ *     <TableAccordion type="single" collapsible>
+ *       <TableAccordionItem value="item-1">
+ *         <TableRow>
+ *           <TableAccordionTrigger colSpan={3}>
+ *             <TableCell>Main Row Content</TableCell>
+ *           </TableAccordionTrigger>
+ *         </TableRow>
+ *         <TableAccordionContent colSpan={3}>
+ *           <TableRow>
+ *             <TableCell>Expanded Content</TableCell>
+ *           </TableRow>
+ *         </TableAccordionContent>
+ *       </TableAccordionItem>
+ *     </TableAccordion>
+ *   </TableBody>
+ * </Table>
+ * ```
+ */
+export const TableAccordion = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Root>,
+  TableAccordionProps
+>((props, ref) => {
+  const { className, children, type = 'single' } = props;
+
+  if (type === 'multiple') {
+    const { defaultValue, value, onValueChange } =
+      props as TableAccordionMultipleProps;
+    return (
+      <AccordionPrimitive.Root
+        ref={ref}
+        type="multiple"
+        className={cn(className)}
+        defaultValue={defaultValue}
+        value={value}
+        onValueChange={onValueChange}
+      >
+        {children}
+      </AccordionPrimitive.Root>
+    );
+  }
+
+  const { collapsible, defaultValue, value, onValueChange } =
+    props as TableAccordionSingleProps;
+  return (
+    <AccordionPrimitive.Root
+      ref={ref}
+      type="single"
+      collapsible={collapsible}
+      className={cn(className)}
+      defaultValue={defaultValue}
+      value={value}
+      onValueChange={onValueChange}
+    >
+      {children}
+    </AccordionPrimitive.Root>
+  );
+});
+
+TableAccordion.displayName = 'TableAccordion';
+
+/**
+ * TableAccordionItem Component
+ *
+ * Wrapper for each expandable row group
+ */
+export const TableAccordionItem = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Item>,
+  TableAccordionItemProps
+>(({ className, ...props }, ref) => {
+  return (
+    <AccordionPrimitive.Item ref={ref} className={cn(className)} {...props} />
+  );
+});
+
+TableAccordionItem.displayName = 'TableAccordionItem';
+
+/**
+ * TableAccordionTrigger Component
+ *
+ * Trigger row that expands/collapses content.
+ * Must be used within a TableRow component.
+ */
+export const TableAccordionTrigger = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Trigger>,
+  TableAccordionTriggerProps
+>(({ className, children, colSpan, ...props }, ref) => {
+  return (
+    <AccordionPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        'group flex w-full items-center justify-between',
+        'transition-colors',
+        className
+      )}
+      asChild
+      {...props}
+    >
+      <td colSpan={colSpan} className="p-0">
+        <div className="flex w-full items-center px-4 py-2">
+          <div className="flex-1">{children}</div>
+          <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+        </div>
+      </td>
+    </AccordionPrimitive.Trigger>
+  );
+});
+
+TableAccordionTrigger.displayName = 'TableAccordionTrigger';
+
+/**
+ * TableAccordionContent Component
+ *
+ * Expandable content that appears when trigger is clicked.
+ * Must be wrapped in a TableRow component.
+ */
+export const TableAccordionContent = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Content>,
+  TableAccordionContentProps
+>(({ className, children, colSpan, ...props }, ref) => {
+  return (
+    <AccordionPrimitive.Content
+      ref={ref}
+      className={cn(
+        'overflow-hidden',
+        'transition-all',
+        'data-[state=closed]:animate-accordion-up',
+        'data-[state=open]:animate-accordion-down'
+      )}
+      asChild
+      {...props}
+    >
+      <tr>
+        <td colSpan={colSpan} className={cn('p-0', className)}>
+          <div className="px-4 py-2 bg-gray-50 dark:bg-gray-800/30">
+            {children}
+          </div>
+        </td>
+      </tr>
+    </AccordionPrimitive.Content>
+  );
+});
+
+TableAccordionContent.displayName = 'TableAccordionContent';
