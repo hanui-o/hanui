@@ -28,7 +28,6 @@ import {
   TableRow,
   TableHead,
   TableCell,
-  Card,
 } from '@hanui/react';
 
 export default function HeadingPage() {
@@ -37,7 +36,7 @@ export default function HeadingPage() {
       <Heading
         level="h1"
         title="Heading"
-        description="KRDS 타이포그래피 시스템의 페이지 및 섹션 제목 컴포넌트입니다."
+        description="KRDS 타이포그래피 시스템을 따르는 페이지 및 섹션 제목 컴포넌트입니다. 시맨틱 HTML(h1-h5)을 사용하여 접근성을 보장하고, 자동 ID 생성으로 TOC 링크를 지원합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -218,60 +217,8 @@ export default function HeadingPage() {
 </Heading>`}
               </Code>
             </Subsection>
-          </Section>
 
-          {/* 가이드라인 */}
-          <Section level="h2">
-            <Heading level="h2" id="guidelines" title="가이드라인" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="사용 권장 사항" />
-              <Card variant="info">
-                <List variant="check" spacing="tight">
-                  <ListItem>페이지의 메인 제목 (h1은 페이지당 하나만)</ListItem>
-                  <ListItem>주요 섹션 구분 (h2)</ListItem>
-                  <ListItem>하위 섹션의 제목 (h3-h5)</ListItem>
-                  <ListItem>명확한 콘텐츠 계층 구조가 필요한 곳</ListItem>
-                </List>
-              </Card>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="주의사항" />
-              <Card variant="warning">
-                <List variant="dash" spacing="tight">
-                  <ListItem>
-                    <Body size="sm" weight="bold" as="span">
-                      레벨 순차성:
-                    </Body>
-                    <Body size="sm" as="span">
-                      {' '}
-                      레벨을 건너뛰지 말고 순차적으로 사용하세요 (h2 다음 h4는
-                      지양)
-                    </Body>
-                  </ListItem>
-                  <ListItem>
-                    <Body size="sm" weight="bold" as="span">
-                      단일 h1:
-                    </Body>
-                    <Body size="sm" as="span">
-                      {' '}
-                      페이지당 h1은 하나만 사용하여 주제를 명확히 하세요
-                    </Body>
-                  </ListItem>
-                  <ListItem>
-                    <Body size="sm" weight="bold" as="span">
-                      구조적 의미:
-                    </Body>
-                    <Body size="sm" as="span">
-                      {' '}
-                      스타일 목적이 아닌 구조적 의미로 사용하세요
-                    </Body>
-                  </ListItem>
-                </List>
-              </Card>
-            </Subsection>
-
+            {/* 대안 컴포넌트 */}
             <Subsection level="h3">
               <Heading level="h3" title="대안 컴포넌트" />
               <Body className="mb-4">
@@ -281,38 +228,34 @@ export default function HeadingPage() {
               <List spacing="tight">
                 <ListItem>
                   <Body size="sm" weight="bold" as="span">
-                    배너나 히어로 섹션:
+                    배너나 히어로 섹션
                   </Body>
                   <Body size="sm" as="span">
-                    {' '}
-                    Display 컴포넌트 사용
+                    : Display 컴포넌트 사용
                   </Body>
                 </ListItem>
                 <ListItem>
                   <Body size="sm" weight="bold" as="span">
-                    본문 텍스트:
+                    본문 텍스트
                   </Body>
                   <Body size="sm" as="span">
-                    {' '}
-                    Body 컴포넌트 사용
+                    : Body 컴포넌트 사용
                   </Body>
                 </ListItem>
                 <ListItem>
                   <Body size="sm" weight="bold" as="span">
-                    폼 라벨:
+                    폼 라벨
                   </Body>
                   <Body size="sm" as="span">
-                    {' '}
-                    Label 컴포넌트 사용
+                    : Label 컴포넌트 사용
                   </Body>
                 </ListItem>
                 <ListItem>
                   <Body size="sm" weight="bold" as="span">
-                    네비게이션 메뉴:
+                    네비게이션 메뉴
                   </Body>
                   <Body size="sm" as="span">
-                    {' '}
-                    NavText 컴포넌트 사용
+                    : NavText 컴포넌트 사용
                   </Body>
                 </ListItem>
               </List>
@@ -322,73 +265,65 @@ export default function HeadingPage() {
           {/* 접근성 */}
           <Section level="h2">
             <Heading level="h2" id="accessibility" title="접근성" />
-            <Body className="mb-4">
-              Heading은 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다.
-            </Body>
-            <Card variant="info">
-              <List variant="check" spacing="tight">
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    시맨틱 HTML:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    h1-h5 태그를 사용하여 스크린 리더를 지원합니다
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    명확한 계층:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    명확한 계층 구조로 콘텐츠 탐색이 용이합니다
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    단일 h1:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    페이지당 h1은 하나만 사용하여 주제를 명확히 합니다
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    순차적 레벨:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    순차적 레벨 사용으로 문서 구조 이해가 개선됩니다
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    자동 ID:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    자동 ID 생성으로 TOC 링크를 지원합니다
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    명도 대비:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    4.5:1 이상의 명도 대비로 가독성을 보장합니다
-                  </Body>
-                </ListItem>
-              </List>
-            </Card>
+
+            <List variant="check" spacing="default">
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  시맨틱 HTML
+                </Body>
+                <Body size="sm" as="span">
+                  : h1-h5 태그를 사용하여 스크린 리더를 지원합니다
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  명확한 계층
+                </Body>
+                <Body size="sm" as="span">
+                  : 명확한 계층 구조로 콘텐츠 탐색이 용이합니다
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  단일 h1
+                </Body>
+                <Body size="sm" as="span">
+                  : 페이지당 h1은 하나만 사용하여 주제를 명확히 합니다
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  순차적 레벨
+                </Body>
+                <Body size="sm" as="span">
+                  : 순차적 레벨 사용으로 문서 구조 이해가 개선됩니다 (h2 다음
+                  h4는 지양)
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  자동 ID
+                </Body>
+                <Body size="sm" as="span">
+                  : 자동 ID 생성으로 TOC 링크를 지원합니다
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  명도 대비
+                </Body>
+                <Body size="sm" as="span">
+                  : 4.5:1 이상의 명도 대비로 가독성을 보장합니다 (WCAG 2.1 /
+                  KWCAG 2.2 Level AA)
+                </Body>
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
         <TabsContent value="api">
           <Section level="h2">
-            <Heading level="h2" id="api" title="API 레퍼런스" />
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
               <Heading level="h3" title="Heading Props" />
@@ -517,20 +452,56 @@ export default function HeadingPage() {
 
             <Subsection level="h3">
               <Heading level="h3" title="KRDS 준수사항" />
-              <Card variant="info">
-                <List variant="check" spacing="tight">
-                  <ListItem>모든 Heading은 Bold (700) 폰트 굵기 사용</ListItem>
-                  <ListItem>150% 줄 간격으로 가독성 확보</ListItem>
-                  <ListItem>
-                    반응형 크기 (h1-h3는 PC/모바일 최적화, h4-h5는 고정 크기)
-                  </ListItem>
-                  <ListItem>Pretendard GOV 폰트 적용</ListItem>
-                  <ListItem>
-                    명도 대비 4.5:1 이상 (WCAG 2.1 / KWCAG 2.2 Level AA)
-                  </ListItem>
-                  <ListItem>시맨틱 HTML 태그 사용 (h1-h5)</ListItem>
-                </List>
-              </Card>
+              <List variant="check" spacing="default">
+                <ListItem>
+                  <Body size="sm" weight="bold" as="span">
+                    폰트 굵기
+                  </Body>
+                  <Body size="sm" as="span">
+                    : 모든 Heading은 Bold (700) 폰트 굵기 사용
+                  </Body>
+                </ListItem>
+                <ListItem>
+                  <Body size="sm" weight="bold" as="span">
+                    줄 간격
+                  </Body>
+                  <Body size="sm" as="span">
+                    : 150% 줄 간격으로 가독성 확보
+                  </Body>
+                </ListItem>
+                <ListItem>
+                  <Body size="sm" weight="bold" as="span">
+                    반응형 크기
+                  </Body>
+                  <Body size="sm" as="span">
+                    : h1-h3는 PC/모바일 최적화, h4-h5는 고정 크기
+                  </Body>
+                </ListItem>
+                <ListItem>
+                  <Body size="sm" weight="bold" as="span">
+                    폰트
+                  </Body>
+                  <Body size="sm" as="span">
+                    : Pretendard GOV 폰트 적용
+                  </Body>
+                </ListItem>
+                <ListItem>
+                  <Body size="sm" weight="bold" as="span">
+                    명도 대비
+                  </Body>
+                  <Body size="sm" as="span">
+                    : 4.5:1 이상 (WCAG 2.1 / KWCAG 2.2 Level AA)
+                  </Body>
+                </ListItem>
+                <ListItem>
+                  <Body size="sm" weight="bold" as="span">
+                    시맨틱 HTML
+                  </Body>
+                  <Body size="sm" as="span">
+                    : h1-h5 태그 사용
+                  </Body>
+                </ListItem>
+              </List>
             </Subsection>
           </Section>
         </TabsContent>
