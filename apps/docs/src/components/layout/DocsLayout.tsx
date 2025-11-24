@@ -14,7 +14,7 @@ export function DocsLayout({ children }: DocsLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-krds-gray-0">
       <Header />
-      <div className="flex-1 flex pt-[100px]">
+      <div className="flex-1 flex pt-[56px]">
         <Sidebar />
         <main className="flex-1">
           <Container>{children}</Container>

@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 interface PageSectionProps {
+  level?: 'h2' | 'h3';
   children: ReactNode;
 }
 
@@ -25,6 +26,6 @@ interface PageSectionProps {
  * </PageSection>
  * ```
  */
-export function PageSection({ children }: PageSectionProps) {
+export function PageSection({ level, children }: PageSectionProps) {
   return <section className="mb-10 md:mb-20">{children}</section>;
 }

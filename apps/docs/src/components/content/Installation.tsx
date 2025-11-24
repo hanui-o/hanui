@@ -9,17 +9,15 @@ interface InstallationProps {
   componentName: string;
 }
 
-export function Installation({
-  componentName: _componentName,
-}: InstallationProps) {
+export function Installation({ componentName }: InstallationProps) {
   const [packageManager, setPackageManager] = useState<PackageManager>('pnpm');
 
   const getInstallCommand = () => {
     const commands = {
-      pnpm: `pnpm add @hanui/react`,
-      npm: `npm install @hanui/react`,
-      yarn: `yarn add @hanui/react`,
-      bun: `bun add @hanui/react`,
+      pnpm: `pnpm dlx @hanui/cli add ${componentName}`,
+      npm: `npx @hanui/cli add ${componentName}`,
+      yarn: `npx @hanui/cli add ${componentName}`,
+      bun: `bunx @hanui/cli add ${componentName}`,
     };
     return commands[packageManager];
   };

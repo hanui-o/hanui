@@ -14,19 +14,28 @@ const getStartedNavigation = [
       { title: 'Quick Start', href: '/docs/quick-start' },
     ],
   },
-];
-
-const designSystemNavigation = [
   {
     title: 'Design System',
     items: [
-      { title: 'Colors', href: '/design-system/colors' },
-      { title: 'Typography', href: '/design-system/typography' },
-      { title: 'Spacing', href: '/design-system/spacing' },
-      { title: 'Breakpoints', href: '/design-system/breakpoints' },
+      { title: 'Colors', href: '/docs/colors' },
+      { title: 'Typography', href: '/docs/typography' },
+      { title: 'Spacing', href: '/docs/spacing' },
+      { title: 'Breakpoints', href: '/docs/breakpoints' },
     ],
   },
 ];
+
+// const designSystemNavigation = [
+//   {
+//     title: 'Design System',
+//     items: [
+//       { title: 'Colors', href: '/design-system/colors' },
+//       { title: 'Typography', href: '/design-system/typography' },
+//       { title: 'Spacing', href: '/design-system/spacing' },
+//       { title: 'Breakpoints', href: '/design-system/breakpoints' },
+//     ],
+//   },
+// ];
 
 const componentsNavigation = [
   {

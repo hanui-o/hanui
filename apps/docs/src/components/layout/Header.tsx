@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Logo } from './Logo';
 import { Container } from '@hanui/react';
-import { ExternalLinkIcon } from 'lucide-react';
+import { SquareArrowOutUpRight } from 'lucide-react';
 import { SearchModal } from '@/components/search/SearchModal';
 
 const SearchIcon = () => (
@@ -77,19 +77,6 @@ const MoonIcon = () => (
     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
   </svg>
 );
-
-// GitHub Sponsors 설정 후 활성화 예정
-// const HeartIcon = () => (
-//   <svg
-//     xmlns="http://www.w3.org/2000/svg"
-//     width="16"
-//     height="16"
-//     viewBox="0 0 24 24"
-//     fill="currentColor"
-//   >
-//     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-//   </svg>
-// );
 
 const ChevronDownIcon = () => (
   <svg
@@ -183,14 +170,15 @@ export function Header() {
   // Sub-navigation items for Docs section
   const docsSubNavItems = [
     { label: 'Get Started', href: '/docs/introduction', key: 'get-started' },
-    {
-      label: 'Design System',
-      href: '/design-system/colors',
-      key: 'design-system',
-    },
     { label: 'Components', href: '/components', key: 'components' },
-    { label: 'Templates', href: '/templates', key: 'templates' },
-    { label: 'Test', href: '/test', key: 'test' },
+    // {
+    //   label: 'Templates',
+    //   href: '/templates',
+    //   key: 'templates',
+    //   icon: <SquareArrowOutUpRight className="w-4 h-4 text-krds-gray-70" />,
+    //   target: '_blank',
+    // },
+    // { label: 'Test', href: '/test', key: 'test' },
   ];
 
   return (
@@ -231,10 +219,18 @@ export function Header() {
               Docs
             </Link>
             <Link
-              href="/showcase"
+              href="/components"
               className="text-krds-gray-70 hover:text-krds-gray-95 transition-colors px-4 py-2"
             >
-              Showcase
+              Components
+            </Link>
+            <Link
+              href="/templates"
+              target="_blank"
+              className="flex items-center gap-2 text-krds-gray-70 hover:text-krds-gray-95 transition-colors px-4 py-2"
+            >
+              Templates{' '}
+              <SquareArrowOutUpRight className="w-4 h-4 text-krds-gray-70" />
             </Link>
             <Link
               href="/community"
@@ -248,7 +244,8 @@ export function Header() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-krds-gray-70 hover:text-krds-gray-95 transition-colors px-4 py-2"
             >
-              Blog <ExternalLinkIcon className="w-4 h-4 text-krds-gray-70" />
+              Blog{' '}
+              <SquareArrowOutUpRight className="w-4 h-4 text-krds-gray-70" />
             </Link>
           </nav>
 
@@ -308,7 +305,7 @@ export function Header() {
         </Container>
 
         {/* Sub Navigation - Only show when in Docs section */}
-        {isInDocs && (
+        {/* {isInDocs && (
           <div>
             <Container maxWidth="full" className="h-11">
               <nav className="flex items-center h-full overflow-x-auto scrollbar-hide">
@@ -319,13 +316,15 @@ export function Header() {
                       <Link
                         key={item.key}
                         href={item.href}
-                        className={`flex items-center h-11 px-4 py-2 whitespace-nowrap transition-colors ${
+                        target={item.target}
+                        className={`flex items-center gap-2 h-11 px-4 py-2 whitespace-nowrap transition-colors ${
                           isActive
                             ? 'text-krds-primary-base font-semibold border-b border-krds-primary-base'
                             : 'text-krds-gray-70 hover:text-krds-gray-95 border-b border-transparent'
                         }`}
                       >
                         {item.label}
+                        {item.icon}
                       </Link>
                     );
                   })}
@@ -333,7 +332,7 @@ export function Header() {
               </nav>
             </Container>
           </div>
-        )}
+        )} */}
       </header>
     </>
   );
