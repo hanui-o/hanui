@@ -143,6 +143,9 @@ export type { HeaderProps } from './components/Header/header';
 export { Footer } from './components/Footer/footer';
 export type { FooterProps } from './components/Footer/footer';
 
+export { Identifier } from './components/identifier';
+export type { IdentifierProps } from './components/identifier';
+
 export {
   SideNavigation,
   SAMPLE_SIDE_NAVIGATION,
