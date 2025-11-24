@@ -13,34 +13,22 @@ const cardVariants = cva(
   [
     'rounded-lg',
     'border',
-    'border-gray-200',
-    'dark:border-gray-800',
-    'bg-white',
-    'dark:bg-gray-900',
+    'border-krds-gray-20',
+    'bg-krds-white',
     'transition-all',
     'duration-200',
   ].join(' '),
   {
     variants: {
       variant: {
-        outlined: [
-          'bg-white dark:bg-gray-800',
-          'border border-gray-300 dark:border-gray-600',
-        ].join(' '),
+        outlined: ['bg-krds-white', 'border border-krds-gray-30'].join(' '),
         shadow: [
-          'bg-white dark:bg-gray-800',
-          'shadow-md dark:shadow-gray-900/50',
-          'border border-gray-200 dark:border-gray-700',
+          'bg-krds-white',
+          'shadow-md',
+          'border border-krds-gray-20',
         ].join(' '),
-        filled: [
-          'bg-gray-50 dark:bg-gray-900',
-          'border border-gray-200 dark:border-gray-800',
-        ].join(' '),
-        elevated: [
-          'bg-white dark:bg-gray-800',
-          'shadow-lg dark:shadow-gray-900/50',
-          'border-0',
-        ].join(' '),
+        filled: ['bg-krds-gray-5', 'border border-krds-gray-20'].join(' '),
+        elevated: ['bg-krds-white', 'shadow-lg', 'border-0'].join(' '),
         info: [
           'bg-blue-50 dark:bg-blue-950',
           'border border-blue-200 dark:border-blue-800',
@@ -66,10 +54,10 @@ const cardVariants = cva(
       },
       hoverable: {
         true: [
-          'hover:shadow-xl dark:hover:shadow-gray-900/70',
+          'hover:shadow-xl',
           'hover:-translate-y-0.5',
           'cursor-pointer',
-          'focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-blue-400',
+          'focus:outline-none focus:ring-2 focus:ring-krds-primary-base',
         ].join(' '),
         false: '',
       },
@@ -274,7 +262,7 @@ export const CardDescription = React.forwardRef<
       className={cn(
         'text-[15px]',
         'leading-[150%]',
-        'text-gray-600 dark:text-gray-400',
+        'text-krds-gray-60',
         className
       )}
       {...props}

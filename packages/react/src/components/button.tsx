@@ -3,6 +3,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import * as Slot from '@radix-ui/react-slot';
+import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /**
@@ -25,21 +26,21 @@ const buttonVariants = cva(
        */
       variant: {
         primary:
-          'bg-[#256ef4] text-white hover:bg-[#0b50d0] active:bg-[#083891] focus-visible:ring-[#256ef4]',
+          'bg-krds-primary-base text-krds-white hover:bg-krds-primary-70 active:bg-krds-primary-80 focus-visible:ring-krds-primary-base',
         secondary:
-          'bg-gray-200 text-gray-900 hover:bg-gray-300 active:bg-gray-400 focus-visible:ring-gray-400',
+          'bg-krds-gray-20 text-krds-gray-95 hover:bg-krds-gray-30 active:bg-krds-gray-40 focus-visible:ring-krds-gray-40',
         success:
-          'bg-[#28A745] text-white hover:bg-[#218838] active:bg-[#1e7e34] focus-visible:ring-[#28A745]',
+          'bg-krds-success-base text-krds-white hover:bg-krds-success-70 active:bg-krds-success-80 focus-visible:ring-krds-success-base',
         danger:
-          'bg-[#DC3545] text-white hover:bg-[#c82333] active:bg-[#bd2130] focus-visible:ring-[#DC3545]',
+          'bg-krds-danger-base text-krds-white hover:bg-krds-danger-70 active:bg-krds-danger-80 focus-visible:ring-krds-danger-base',
         ghost:
-          'bg-transparent text-gray-900 hover:bg-gray-100 active:bg-gray-200 focus-visible:ring-gray-900 dark:text-gray-100 dark:hover:bg-gray-900 dark:active:bg-gray-800',
+          'bg-transparent text-krds-gray-95 hover:bg-krds-gray-5 active:bg-krds-gray-10 focus-visible:ring-krds-gray-95',
         'ghost-primary':
-          'bg-transparent text-[#256ef4] hover:bg-[#ecf2fe] active:bg-[#d8e5fd] focus-visible:ring-[#256ef4]',
+          'bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10 focus-visible:ring-krds-primary-base',
         outline:
-          'border-2 border-[#256ef4] bg-transparent text-[#256ef4] hover:bg-[#ecf2fe] active:bg-[#d8e5fd] focus-visible:ring-[#256ef4]',
+          'border-2 border-krds-primary-base bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10 focus-visible:ring-krds-primary-base',
         black:
-          'bg-gray-900 text-white hover:bg-gray-800 active:bg-gray-700 focus-visible:ring-gray-900 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-100 dark:active:bg-gray-200',
+          'bg-krds-gray-95 text-krds-white hover:bg-krds-gray-90 active:bg-krds-gray-80 focus-visible:ring-krds-gray-95',
       },
       /**
        * Size variants
@@ -138,30 +139,11 @@ export interface ButtonProps
 
 /**
  * Loading Spinner Component
+ * Uses lucide-react Loader2 icon with spin animation
  * Hidden from screen readers with aria-hidden
  */
 const LoadingSpinner = () => (
-  <svg
-    className="animate-spin h-4 w-4"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    aria-hidden="true"
-  >
-    <circle
-      className="opacity-25"
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      strokeWidth="4"
-    />
-    <path
-      className="opacity-75"
-      fill="currentColor"
-      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-    />
-  </svg>
+  <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
 );
 
 /**

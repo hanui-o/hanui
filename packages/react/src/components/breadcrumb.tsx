@@ -45,14 +45,14 @@ export interface BreadcrumbProps {
   maxItems?: number;
 
   /**
-   * Position to show items when collapsed
-   * @default 'end' (show last items)
+   * Number of items to show before collapse indicator
+   * @default 1
    */
   itemsBeforeCollapse?: number;
 
   /**
-   * Position to show items when collapsed
-   * @default 'end' (show last items)
+   * Number of items to show after collapse indicator
+   * @default 1
    */
   itemsAfterCollapse?: number;
 
@@ -131,9 +131,14 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
         return items;
       }
 
-      const totalCollapsed = items.length - maxItems;
-      const beforeItems = items.slice(0, itemsBeforeCollapse);
-      const afterItems = items.slice(items.length - itemsAfterCollapse);
+      // maxItems는 '...'를 포함한 총 표시 개수
+      // 예: maxItems={4} → [홈] + [...] + [Computers, Laptops] = 4개 표시
+      const totalSlots = maxItems - 1; // '...' 자리를 위해 1개 제외
+      const before = itemsBeforeCollapse;
+      const after = Math.max(1, totalSlots - before); // 최소 1개는 뒤에 표시
+
+      const beforeItems = items.slice(0, before);
+      const afterItems = items.slice(items.length - after);
 
       return [
         ...beforeItems,
@@ -156,19 +161,17 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
             const isLast = index === displayedItems.length - 1;
             const isCurrent = item.isCurrent || isLast;
             const isCollapsed = 'isCollapsed' in item && item.isCollapsed;
+            const key = item.href || `${item.label}-${index}`;
 
             return (
-              <li key={index} className="flex items-center gap-2">
+              <li key={key} className="flex items-center gap-2">
                 {isCollapsed ? (
-                  <span
-                    className="text-gray-500 dark:text-gray-400 underline"
-                    aria-hidden="true"
-                  >
+                  <span className="text-krds-gray-60" aria-hidden="true">
                     {item.label}
                   </span>
                 ) : isCurrent ? (
                   <span
-                    className="font-medium text-gray-900 dark:text-gray-100 underline"
+                    className="font-medium text-krds-gray-95"
                     aria-current="page"
                   >
                     {item.label}
@@ -177,12 +180,11 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                   <LinkComponent
                     href={item.href || '#'}
                     className={cn(
-                      'text-gray-600 dark:text-gray-400',
-                      'hover:text-gray-900 dark:hover:text-gray-100',
+                      'text-krds-gray-70',
+                      'hover:text-krds-gray-95',
                       'transition-colors',
-                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-                      'rounded-sm',
-                      'underline'
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2',
+                      'rounded-sm'
                     )}
                   >
                     {item.label}
@@ -191,7 +193,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
 
                 {!isLast && (
                   <span
-                    className="text-gray-400 dark:text-gray-600 select-none underline"
+                    className="text-krds-gray-50 select-none"
                     aria-hidden="true"
                   >
                     {separator}

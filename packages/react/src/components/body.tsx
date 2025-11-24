@@ -12,14 +12,14 @@ import { cn } from '@/lib/utils';
  * - Medium: 17px (표준 본문 크기)
  * - Small: 15px
  * - Xsmall: 13px
- * - 가중치: Regular(400) / Bold(700)
+ * - 가중치: Normal(400) / Bold(700)
  * - 모든 레벨 줄 간격 150%
- * - 기본 색상: gray-90 (basic, regular weight) / gray-95 (bolder, bold weight)
+ * - 기본 색상: gray-90 (normal weight) / gray-95 (bold weight)
  * - 다크 모드 자동 전환 (CSS 변수 기반)
  */
 const bodyVariants = cva(
   // Base styles - KRDS 명도 대비 4.5:1 이상을 만족하는 기본 색상
-  ['leading-[150%]'].join(' '),
+  'leading-[150%]',
   {
     variants: {
       size: {
@@ -29,13 +29,13 @@ const bodyVariants = cva(
         xs: 'text-[13px]',
       },
       weight: {
-        regular: ['font-normal', 'text-krds-gray-90'].join(' '), // 400 = basic
-        bold: ['font-bold', 'text-krds-gray-95'].join(' '), // 700 = bolder
+        normal: 'font-normal text-krds-gray-90', // 400 = normal
+        bold: 'font-bold text-krds-gray-95', // 700 = bold
       },
     },
     defaultVariants: {
       size: 'md',
-      weight: 'regular',
+      weight: 'normal',
     },
   }
 );
@@ -54,15 +54,15 @@ export interface BodyProps
 
   /**
    * 글자 굵기
-   * @default "regular"
+   * @default "normal"
    */
-  weight?: 'regular' | 'bold';
+  weight?: 'normal' | 'bold';
 
   /**
    * HTML 태그
    * @default "p"
    */
-  as?: 'p' | 'span' | 'div' | 'article' | 'section';
+  as?: 'p' | 'span' | 'div' | 'article' | 'section' | 'strong';
 
   /**
    * 텍스트 내용
@@ -82,25 +82,22 @@ export interface BodyProps
  * <Body>기본 본문 텍스트입니다.</Body>
  * <Body size="lg">큰 본문 텍스트</Body>
  * <Body weight="bold">강조된 텍스트</Body>
+ * <Body as="strong">강조된 텍스트 (자동으로 bold 적용)</Body>
  * <Body size="sm" as="span">작은 텍스트</Body>
  * ```
  */
 export const Body = React.forwardRef<HTMLElement, BodyProps>(
   (
-    {
-      className,
-      size = 'md',
-      weight = 'regular',
-      as: Component = 'p',
-      children,
-      ...props
-    },
+    { className, size = 'md', weight, as: Component = 'p', children, ...props },
     ref
   ) => {
+    // strong 태그일 때는 자동으로 bold weight 적용
+    const finalWeight = weight ?? (Component === 'strong' ? 'bold' : 'normal');
+
     return (
       <Component
         ref={ref as any}
-        className={cn(bodyVariants({ size, weight }), className)}
+        className={cn(bodyVariants({ size, weight: finalWeight }), className)}
         {...props}
       >
         {children}

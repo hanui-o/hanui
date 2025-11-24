@@ -14,13 +14,13 @@ import { cn } from '@/lib/utils';
  */
 const displayVariants = cva(
   // Base styles - Default color that meets KRDS contrast 4.5:1 or higher
-  ['font-bold', 'leading-[150%]', 'text-krds-gray-95'].join(' '),
+  'font-bold leading-[150%] text-krds-gray-95',
   {
     variants: {
       size: {
-        lg: ['text-[44px]', 'md:text-[60px]'].join(' '),
-        md: ['text-[32px]', 'md:text-[44px]'].join(' '),
-        sm: ['text-[28px]', 'md:text-[36px]'].join(' '),
+        lg: 'text-[44px] md:text-[60px]',
+        md: 'text-[32px] md:text-[44px]',
+        sm: 'text-[28px] md:text-[36px]',
       },
     },
     defaultVariants: {
@@ -57,13 +57,27 @@ export interface DisplayProps
  * Display Component
  *
  * KRDS Typography - Large text for banners/marketing
- * Use for the largest text that needs to attract attention
+ *
+ * **Important:**
+ * - Use Display for marketing/promotional content ONLY
+ * - DO NOT use Display for page headings (h1, h2, h3)
+ * - For page headings, use SectionHeading component instead
+ *
+ * **Use cases:**
+ * - Hero sections on landing pages
+ * - Promotional banners
+ * - Marketing messages
+ * - Large visual impact text
  *
  * @example
  * ```tsx
- * <Display size="lg">Welcome</Display>
- * <Display size="md">Public Service Platform</Display>
- * <Display size="sm" as="h2">Subtitle</Display>
+ * // ✅ Correct usage
+ * <Display size="lg">Welcome to Our Service</Display>
+ * <Display size="md">Spring Sale 50% Off</Display>
+ *
+ * // ❌ Wrong usage - Use SectionHeading instead
+ * <Display as="h1">Page Title</Display>
+ * <Display as="h2">Section Title</Display>
  * ```
  */
 export const Display = React.forwardRef<HTMLHeadingElement, DisplayProps>(

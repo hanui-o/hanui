@@ -365,21 +365,18 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           className={cn(
             'relative border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer',
             'focus:outline-none focus:ring-2',
-            'focus:ring-blue-600 dark:focus:ring-blue-400',
+            'focus:ring-krds-primary-base',
             'focus:border-transparent',
             isDragging &&
               !disabled && [
-                'border-blue-600 dark:border-blue-400',
-                'bg-blue-50 dark:bg-blue-950/30',
+                'border-krds-primary-base',
+                'bg-krds-primary-base/5',
               ],
             !isDragging &&
-              !disabled && [
-                'border-gray-300 dark:border-gray-600',
-                'hover:border-gray-400 dark:hover:border-gray-500',
-              ],
+              !disabled && ['border-krds-gray-30', 'hover:border-krds-gray-40'],
             disabled && [
-              'border-gray-200 dark:border-gray-700',
-              'bg-gray-50 dark:bg-gray-900',
+              'border-krds-gray-20',
+              'bg-krds-gray-5',
               'cursor-not-allowed opacity-60',
             ]
           )}
@@ -405,9 +402,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           <svg
             className={cn(
               'mx-auto h-12 w-12 mb-4',
-              disabled
-                ? 'text-gray-300 dark:text-gray-700'
-                : 'text-gray-400 dark:text-gray-500'
+              disabled ? 'text-krds-gray-30' : 'text-krds-gray-50'
             )}
             stroke="currentColor"
             fill="none"
@@ -426,9 +421,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           <p
             className={cn(
               'text-sm',
-              disabled
-                ? 'text-gray-400 dark:text-gray-600'
-                : 'text-gray-600 dark:text-gray-300'
+              disabled ? 'text-krds-gray-50' : 'text-krds-gray-70'
             )}
           >
             {label}
@@ -436,7 +429,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
           {/* File Info */}
           {(accept || maxSize) && (
-            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+            <p className="mt-2 text-xs text-krds-gray-60">
               {accept && <span>Format: {accept}</span>}
               {accept && maxSize && <span> · </span>}
               {maxSize && <span>Max size: {formatBytes(maxSize)}</span>}
@@ -453,8 +446,8 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                 className={cn(
                   'flex items-center gap-3 p-3 rounded-md border',
                   uploadedFile.error
-                    ? 'border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950/30'
-                    : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50'
+                    ? 'border-krds-error bg-krds-error/5'
+                    : 'border-krds-gray-20 bg-krds-gray-5'
                 )}
               >
                 {/* Preview or Icon */}
@@ -465,9 +458,9 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                     className="h-12 w-12 object-cover rounded"
                   />
                 ) : (
-                  <div className="h-12 w-12 flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded">
+                  <div className="h-12 w-12 flex items-center justify-center bg-krds-gray-10 rounded">
                     <svg
-                      className="h-6 w-6 text-gray-500 dark:text-gray-400"
+                      className="h-6 w-6 text-krds-gray-60"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -484,19 +477,19 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
                 {/* File Info */}
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-gray-900 dark:text-gray-100 truncate">
+                  <p className="font-medium text-krds-gray-95 truncate">
                     {uploadedFile.file.name}
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-krds-gray-60">
                     {formatBytes(uploadedFile.file.size)}
                   </p>
 
                   {/* Progress Bar */}
                   {uploadedFile.progress !== undefined &&
                     uploadedFile.progress < 100 && (
-                      <div className="mt-1 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                      <div className="mt-1 w-full bg-krds-gray-20 rounded-full h-1.5">
                         <div
-                          className="bg-blue-600 dark:bg-blue-500 h-1.5 rounded-full transition-all"
+                          className="bg-krds-primary-base h-1.5 rounded-full transition-all"
                           style={{ width: `${uploadedFile.progress}%` }}
                         />
                       </div>
@@ -504,7 +497,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
                   {/* Error Message */}
                   {uploadedFile.error && (
-                    <p className="mt-1 text-xs text-red-600 dark:text-red-400">
+                    <p className="mt-1 text-xs text-krds-error">
                       {uploadedFile.error}
                     </p>
                   )}
@@ -516,11 +509,11 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                   onClick={() => removeFile(uploadedFile.id)}
                   className={cn(
                     'p-1 rounded-md',
-                    'text-gray-400 dark:text-gray-500',
-                    'hover:text-gray-600 dark:hover:text-gray-300',
-                    'hover:bg-gray-200 dark:hover:bg-gray-700',
+                    'text-krds-gray-50',
+                    'hover:text-krds-gray-70',
+                    'hover:bg-krds-gray-10',
                     'focus:outline-none focus:ring-2',
-                    'focus:ring-blue-600 dark:focus:ring-blue-400'
+                    'focus:ring-krds-primary-base'
                   )}
                   aria-label={`Remove ${uploadedFile.file.name}`}
                 >

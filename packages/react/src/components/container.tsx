@@ -50,14 +50,14 @@ export interface ContainerProps {
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | false;
 
   /**
-   * Remove horizontal padding (gutters)
+   * Remove horizontal padding
    *
    * When true, content extends to the edges.
    * Useful for full-bleed images or backgrounds.
    *
    * @default false
    */
-  disableGutters?: boolean;
+  disablePadding?: boolean;
 
   /**
    * HTML element type to render
@@ -118,8 +118,8 @@ export interface ContainerProps {
  *   <HeroSection />
  * </Container>
  *
- * // No gutters (full bleed)
- * <Container disableGutters>
+ * // No padding (full bleed)
+ * <Container disablePadding>
  *   <FullWidthImage />
  * </Container>
  *
@@ -145,7 +145,7 @@ export const Container = React.forwardRef<
   (
     {
       maxWidth = 'xl',
-      disableGutters = false,
+      disablePadding = false,
       as: Component = 'div',
       children,
       className,
@@ -166,7 +166,7 @@ export const Container = React.forwardRef<
           // - sm: 1rem (px-4)
           // - md: 1.5rem (px-6)
           // - lg+: 2rem (px-8)
-          !disableGutters && 'px-4 sm:px-6 lg:px-8',
+          !disablePadding && 'px-4 sm:px-6 lg:px-8',
           className
         )}
         {...props}

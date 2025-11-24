@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
  * KRDS-compliant accordion with accessibility automation
  * Foundation Layer: ARIA automation + Keyboard navigation + Semantic headings
  */
-const accordionVariants = cva(['w-full'].join(' '), {
+const accordionVariants = cva('w-full', {
   variants: {
     variant: {
       default: 'space-y-2',
@@ -24,39 +24,20 @@ const accordionVariants = cva(['w-full'].join(' '), {
   },
 });
 
-const accordionItemVariants = cva(
-  ['border', 'border-krds-gray-20', 'rounded-lg'].join(' '),
-  {
-    variants: {
-      variant: {
-        default: '',
-        line: 'border-0 rounded-none',
-      },
+const accordionItemVariants = cva('border border-krds-gray-20 rounded-lg', {
+  variants: {
+    variant: {
+      default: '',
+      line: 'border-0 rounded-none',
     },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
 
 const accordionTriggerVariants = cva(
-  [
-    'flex',
-    'w-full',
-    'items-center',
-    'justify-between',
-    'px-4',
-    'py-3',
-    'text-left',
-    'transition-colors',
-    'focus-visible:outline-none',
-    'focus-visible:ring-2',
-    'focus-visible:ring-krds-primary-50',
-    'focus-visible:ring-offset-2',
-    'disabled:pointer-events-none',
-    'disabled:opacity-50',
-    '[&[data-state=open]>svg]:rotate-180',
-  ].join(' '),
+  'flex w-full items-center justify-between px-4 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180',
   {
     variants: {
       variant: {
