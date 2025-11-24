@@ -20,8 +20,8 @@
 }
 
 .krds-in-page-navigation-area {
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
+  background: var(--krds-color-light-gray-0, #ffffff);
+  border: 1px solid var(--krds-color-light-gray-20, #e5e5e5);
   border-radius: 8px;
   padding: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -37,16 +37,16 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: #f5f5f5;
+    background: var(--krds-color-light-gray-10, #f5f5f5);
     border-radius: 3px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #d0d0d0;
+    background: var(--krds-color-light-gray-30, #d0d0d0);
     border-radius: 3px;
 
     &:hover {
-      background: #b0b0b0;
+      background: var(--krds-color-light-gray-40, #b0b0b0);
     }
   }
 }
@@ -55,12 +55,12 @@
 .in-page-navigation-header {
   margin-bottom: 20px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--krds-color-light-gray-20, #e5e5e5);
 
   .quick-caption {
     font-size: 13px;
     font-weight: 500;
-    color: #666666;
+    color: var(--krds-color-light-gray-70, #666666);
     margin: 0 0 8px 0;
     letter-spacing: -0.02em;
   }
@@ -68,7 +68,7 @@
   .quick-title {
     font-size: 18px;
     font-weight: 700;
-    color: #222222;
+    color: var(--krds-color-light-gray-90, #222222);
     margin: 0;
     line-height: 1.4;
     letter-spacing: -0.02em;
@@ -99,7 +99,7 @@
     padding: 10px 12px;
     font-size: 15px;
     font-weight: 500;
-    color: #555555;
+    color: var(--krds-color-light-gray-70, #555555);
     text-decoration: none;
     border-radius: 6px;
     transition: all 0.2s ease;
@@ -108,19 +108,19 @@
     position: relative;
 
     &:hover {
-      color: #0066cc;
-      background-color: #f0f7ff;
+      color: var(--krds-color-light-primary-60, #0066cc);
+      background-color: var(--krds-color-light-primary-5, #f0f7ff);
     }
 
     &:focus-visible {
-      outline: 2px solid #0066cc;
+      outline: 2px solid var(--krds-color-light-primary-60, #0066cc);
       outline-offset: 2px;
     }
 
     // Active state
     &.active {
-      color: #0066cc;
-      background-color: #e6f2ff;
+      color: var(--krds-color-light-primary-60, #0066cc);
+      background-color: var(--krds-color-light-primary-10, #e6f2ff);
       font-weight: 700;
 
       &::before {
@@ -131,7 +131,7 @@
         transform: translateY(-50%);
         width: 3px;
         height: 20px;
-        background-color: #0066cc;
+        background-color: var(--krds-color-light-primary-60, #0066cc);
         border-radius: 0 2px 2px 0;
       }
     }
@@ -141,15 +141,15 @@
 // Action section
 .in-page-navigation-action {
   padding-top: 16px;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid var(--krds-color-light-gray-20, #e5e5e5);
 
   button {
     width: 100%;
     padding: 12px 16px;
     font-size: 15px;
     font-weight: 600;
-    color: #ffffff;
-    background-color: #0066cc;
+    color: var(--krds-color-light-gray-0, #ffffff);
+    background-color: var(--krds-color-light-primary-60, #0066cc);
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -157,22 +157,22 @@
     letter-spacing: -0.02em;
 
     &:hover {
-      background-color: #0052a3;
+      background-color: var(--krds-color-light-primary-70, #0052a3);
     }
 
     &:focus-visible {
-      outline: 2px solid #0066cc;
+      outline: 2px solid var(--krds-color-light-primary-60, #0066cc);
       outline-offset: 2px;
     }
 
     &:active {
-      background-color: #004080;
+      background-color: var(--krds-color-light-primary-80, #004080);
     }
   }
 
   .quick-info {
     font-size: 13px;
-    color: #666666;
+    color: var(--krds-color-light-gray-70, #666666);
     margin: 8px 0 0 0;
     text-align: center;
     line-height: 1.4;
@@ -182,58 +182,58 @@
 // High contrast mode support
 @media (prefers-contrast: high) {
   .krds-in-page-navigation-area {
-    border-color: #000000;
+    border-color: var(--krds-color-light-gray-95, #000000);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   .in-page-navigation-header {
-    border-bottom-color: #000000;
+    border-bottom-color: var(--krds-color-light-gray-95, #000000);
 
     .quick-caption {
-      color: #000000;
+      color: var(--krds-color-light-gray-95, #000000);
     }
 
     .quick-title {
-      color: #000000;
+      color: var(--krds-color-light-gray-95, #000000);
     }
   }
 
   .in-page-navigation-list {
     a {
-      color: #000000;
+      color: var(--krds-color-light-gray-95, #000000);
       border: 1px solid transparent;
 
       &:hover {
-        border-color: #000000;
-        background-color: #f0f0f0;
+        border-color: var(--krds-color-light-gray-95, #000000);
+        background-color: var(--krds-color-light-gray-10, #f0f0f0);
       }
 
       &.active {
-        color: #0000ff;
-        border-color: #0000ff;
-        background-color: #e6f2ff;
+        color: var(--krds-color-light-primary-60, #0000ff);
+        border-color: var(--krds-color-light-primary-60, #0000ff);
+        background-color: var(--krds-color-light-primary-10, #e6f2ff);
 
         &::before {
-          background-color: #0000ff;
+          background-color: var(--krds-color-light-primary-60, #0000ff);
         }
       }
     }
   }
 
   .in-page-navigation-action {
-    border-top-color: #000000;
+    border-top-color: var(--krds-color-light-gray-95, #000000);
 
     button {
-      border: 2px solid #000000;
+      border: 2px solid var(--krds-color-light-gray-95, #000000);
 
       &:hover {
-        background-color: #0052a3;
-        border-color: #000000;
+        background-color: var(--krds-color-light-primary-70, #0052a3);
+        border-color: var(--krds-color-light-gray-95, #000000);
       }
     }
 
     .quick-info {
-      color: #000000;
+      color: var(--krds-color-light-gray-95, #000000);
     }
   }
 }

@@ -14,13 +14,13 @@ const inputVariants = cva(
     'rounded-md',
     'font-medium',
     'transition-colors',
-    'placeholder:text-gray-400',
+    'placeholder:text-krds-gray-50',
     'focus-visible:outline-none',
     'focus-visible:ring-2',
     'focus-visible:ring-offset-2',
     'disabled:cursor-not-allowed',
     'disabled:opacity-60',
-    'disabled:bg-gray-100',
+    'disabled:bg-krds-gray-10',
   ].join(' '),
   {
     variants: {
@@ -30,14 +30,14 @@ const inputVariants = cva(
       variant: {
         default: [
           'border',
-          'border-gray-300',
-          'bg-white',
-          'focus-visible:ring-[#256ef4]',
+          'border-krds-gray-30',
+          'bg-krds-white',
+          'focus-visible:ring-krds-primary-60',
         ].join(' '),
         filled: [
           'border-0',
-          'bg-gray-100',
-          'focus-visible:ring-[#256ef4]',
+          'bg-krds-gray-10',
+          'focus-visible:ring-krds-primary-60',
         ].join(' '),
       },
       /**
@@ -181,7 +181,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       return (
         <div className={cn('relative flex items-center', className)}>
           {leftAddon && (
-            <div className="pointer-events-none absolute left-3 flex items-center text-gray-500">
+            <div className="pointer-events-none absolute left-3 flex items-center text-krds-gray-60">
               {leftAddon}
             </div>
           )}
@@ -190,7 +190,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className={cn(
               inputVariants({ variant, size }),
               finalError &&
-                'border-[#DC3545] focus-visible:ring-[#DC3545] focus-visible:ring-offset-0',
+                'border-krds-danger-50 focus-visible:ring-krds-danger-50 focus-visible:ring-offset-0',
               leftAddon && 'pl-10',
               rightAddon && 'pr-10'
             )}
@@ -198,7 +198,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {...mergedProps}
           />
           {rightAddon && (
-            <div className="pointer-events-none absolute right-3 flex items-center text-gray-500">
+            <div className="pointer-events-none absolute right-3 flex items-center text-krds-gray-60">
               {rightAddon}
             </div>
           )}
@@ -213,7 +213,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className={cn(
           inputVariants({ variant, size }),
           finalError &&
-            'border-[#DC3545] focus-visible:ring-[#DC3545] focus-visible:ring-offset-0',
+            'border-krds-danger-50 focus-visible:ring-krds-danger-50 focus-visible:ring-offset-0',
           className
         )}
         ref={ref}
