@@ -324,9 +324,26 @@
   background-color: var(--krds-header--color-surface);
   border-bottom: 0.1rem solid var(--krds-header--utility-color-divider);
 
+  @media (min-width: 640px) {
+    > div {
+      padding: 0 var(--krds-container-padding-mobile);
+    }
+  }
+
   @media (min-width: 1024px) {
+    > div {
+      padding: 0 var(--krds-container-padding-tablet);
+    }
+  }
+
+  @media (min-width: 1280px) {
     display: flex;
+    justify-content: center;
     width: 100%;
+    > div {
+      min-width: var(--krds-container-xl);
+      padding: 0 var(--krds-container-padding-desktop);
+    }
   }
 }
 
@@ -334,18 +351,8 @@
   display: flex;
   list-style: none;
   margin: 0 auto;
-  padding: 0 1rem; // 16px (px-4)
   width: 100%;
-  max-width: 1280px; // Container xl
   justify-content: space-between;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem; // 24px (sm:px-6)
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem; // 32px (lg:px-8)
-  }
 }
 
 .menuItem {
@@ -369,6 +376,7 @@
   &:hover {
     background-color: var(--krds-header--navi-color-hover);
     border-radius: var(--krds-radius-medium);
+    color: var(--krds-color-primary-60);
   }
 
   // 키보드 포커스 가시성
@@ -386,7 +394,7 @@
 
 .subMenuWrapper {
   position: absolute;
-  top: 100%;
+  top: 90%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;

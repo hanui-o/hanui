@@ -354,7 +354,6 @@ export default function AccordionPage() {
             />
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하나요?" />
               <DoCard title="Accordion을 사용하기 적합한 경우">
                 <List variant="check">
                   <ListItem>
@@ -377,7 +376,6 @@ export default function AccordionPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <SectionHeading level="h3" title="언제 사용하지 말아야 하나요?" />
               <DontCard title="Accordion 사용을 피해야 하는 경우">
                 <List variant="dash">
                   <ListItem>

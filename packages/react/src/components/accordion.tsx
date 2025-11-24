@@ -1,6 +1,8 @@
 'use client';
 
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { ChevronDown } from 'lucide-react';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -14,7 +16,7 @@ const accordionVariants = cva(['w-full'].join(' '), {
   variants: {
     variant: {
       default: 'space-y-2',
-      line: 'divide-y divide-gray-200 dark:divide-gray-800',
+      line: 'divide-y divide-gray-200',
     },
   },
   defaultVariants: {
@@ -23,7 +25,7 @@ const accordionVariants = cva(['w-full'].join(' '), {
 });
 
 const accordionItemVariants = cva(
-  ['border', 'border-gray-200', 'dark:border-gray-800', 'rounded-lg'].join(' '),
+  ['border', 'border-gray-200', 'rounded-lg'].join(' '),
   {
     variants: {
       variant: {
@@ -53,11 +55,12 @@ const accordionTriggerVariants = cva(
     'focus-visible:ring-offset-2',
     'disabled:pointer-events-none',
     'disabled:opacity-50',
+    '[&[data-state=open]>svg]:rotate-180',
   ].join(' '),
   {
     variants: {
       variant: {
-        default: 'hover:bg-gray-50 dark:hover:bg-gray-900',
+        default: 'hover:bg-gray-50',
         line: 'hover:bg-transparent',
       },
     },
@@ -68,164 +71,61 @@ const accordionTriggerVariants = cva(
 );
 
 const accordionContentVariants = cva(
-  ['overflow-hidden', 'transition-all'].join(' '),
-  {
-    variants: {
-      state: {
-        open: 'animate-accordion-down',
-        closed: 'animate-accordion-up',
-      },
-    },
-    defaultVariants: {
-      state: 'closed',
-    },
-  }
+  'overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down'
 );
 
 /**
  * Accordion Root Props
  */
-export interface AccordionProps extends VariantProps<typeof accordionVariants> {
-  /**
-   * Accordion type: single (one at a time) or multiple (multiple can be open)
-   */
-  type?: 'single' | 'multiple';
-
-  /**
-   * Allow collapsing the active item (only for type="single")
-   */
-  collapsible?: boolean;
-
-  /**
-   * Default open item value(s)
-   */
-  defaultValue?: string | string[];
-
-  /**
-   * Controlled open item value(s)
-   */
-  value?: string | string[];
-
-  /**
-   * Callback when value changes
-   */
-  onValueChange?: (value: string | string[]) => void;
-
+export interface AccordionProps
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>,
+    VariantProps<typeof accordionVariants> {
   /**
    * Additional CSS classes
    */
   className?: string;
-
-  /**
-   * Child elements (AccordionItem)
-   */
-  children: React.ReactNode;
 }
 
 /**
  * AccordionItem Props
  */
 export interface AccordionItemProps
-  extends VariantProps<typeof accordionItemVariants> {
-  /**
-   * Unique value for this item
-   */
-  value: string;
-
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>,
+    VariantProps<typeof accordionItemVariants> {
   /**
    * Additional CSS classes
    */
   className?: string;
-
-  /**
-   * Child elements (AccordionTrigger, AccordionContent)
-   */
-  children: React.ReactNode;
 }
 
 /**
  * AccordionTrigger Props
  */
 export interface AccordionTriggerProps
-  extends VariantProps<typeof accordionTriggerVariants> {
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>,
+    VariantProps<typeof accordionTriggerVariants> {
   /**
    * Additional CSS classes
    */
   className?: string;
-
-  /**
-   * Child elements (heading text)
-   */
-  children: React.ReactNode;
-
-  /**
-   * Disabled state
-   */
-  disabled?: boolean;
 }
 
 /**
  * AccordionContent Props
  */
 export interface AccordionContentProps
-  extends VariantProps<typeof accordionContentVariants> {
+  extends React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>,
+    VariantProps<typeof accordionContentVariants> {
   /**
    * Additional CSS classes
    */
   className?: string;
-
-  /**
-   * Child elements (panel content)
-   */
-  children: React.ReactNode;
 }
 
-/**
- * Accordion Context
- */
-interface AccordionContextValue {
-  type: 'single' | 'multiple';
-  collapsible: boolean;
-  value: string[];
-  onValueChange: (value: string) => void;
+// Context to pass variant down to children
+const AccordionContext = React.createContext<{
   variant: 'default' | 'line';
-}
-
-const AccordionContext = React.createContext<AccordionContextValue | undefined>(
-  undefined
-);
-
-const useAccordionContext = () => {
-  const context = React.useContext(AccordionContext);
-  if (!context) {
-    throw new Error('Accordion components must be used within Accordion');
-  }
-  return context;
-};
-
-/**
- * AccordionItem Context
- */
-interface AccordionItemContextValue {
-  value: string;
-  isOpen: boolean;
-  triggerId: string;
-  contentId: string;
-}
-
-const AccordionItemContext = React.createContext<
-  AccordionItemContextValue | undefined
->(undefined);
-
-const useAccordionItemContext = () => {
-  const context = React.useContext(AccordionItemContext);
-  if (!context) {
-    throw new Error(
-      'AccordionTrigger and AccordionContent must be used within AccordionItem'
-    );
-  }
-  return context;
-};
+}>({ variant: 'default' });
 
 /**
  * Accordion Root Component
@@ -254,84 +154,20 @@ const useAccordionItemContext = () => {
  * </Accordion>
  * ```
  */
-export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
-  (
-    {
-      type = 'single',
-      collapsible = false,
-      defaultValue,
-      value: controlledValue,
-      onValueChange,
-      variant = 'default',
-      className,
-      children,
-      ...props
-    },
-    ref
-  ) => {
-    const [internalValue, setInternalValue] = React.useState<string[]>(() => {
-      if (defaultValue === undefined) return [];
-      return Array.isArray(defaultValue) ? defaultValue : [defaultValue];
-    });
-
-    const value = React.useMemo(() => {
-      if (controlledValue === undefined) return internalValue;
-      return Array.isArray(controlledValue)
-        ? controlledValue
-        : [controlledValue];
-    }, [controlledValue, internalValue]);
-
-    const handleValueChange = React.useCallback(
-      (itemValue: string) => {
-        let newValue: string[];
-
-        if (type === 'single') {
-          // Single mode: only one item can be open
-          const isOpen = value.includes(itemValue);
-          if (isOpen && !collapsible) {
-            // If collapsible=false, cannot close the open item
-            return;
-          }
-          newValue = isOpen ? [] : [itemValue];
-        } else {
-          // Multiple mode: toggle the clicked item
-          const isOpen = value.includes(itemValue);
-          newValue = isOpen
-            ? value.filter((v) => v !== itemValue)
-            : [...value, itemValue];
-        }
-
-        if (controlledValue === undefined) {
-          setInternalValue(newValue);
-        }
-
-        onValueChange?.(type === 'single' ? newValue[0] || '' : newValue);
-      },
-      [type, collapsible, value, controlledValue, onValueChange]
-    );
-
-    return (
-      <AccordionContext.Provider
-        value={{
-          type,
-          collapsible,
-          value,
-          onValueChange: handleValueChange,
-          variant: variant as 'default' | 'line',
-        }}
-      >
-        <div
-          ref={ref}
-          className={cn(accordionVariants({ variant }), className)}
-          {...props}
-        >
-          {children}
-        </div>
-      </AccordionContext.Provider>
-    );
-  }
-);
-
+export const Accordion = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Root>,
+  AccordionProps
+>(({ className, variant = 'default', children, ...props }, ref) => (
+  <AccordionContext.Provider value={{ variant: variant as 'default' | 'line' }}>
+    <AccordionPrimitive.Root
+      ref={ref}
+      className={cn(accordionVariants({ variant }), className)}
+      {...props}
+    >
+      {children}
+    </AccordionPrimitive.Root>
+  </AccordionContext.Provider>
+));
 Accordion.displayName = 'Accordion';
 
 /**
@@ -342,31 +178,20 @@ Accordion.displayName = 'Accordion';
  * - Provides context for trigger and content components
  */
 export const AccordionItem = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof AccordionPrimitive.Item>,
   AccordionItemProps
->(({ value, variant: variantProp, className, children, ...props }, ref) => {
-  const { value: openValues, variant: contextVariant } = useAccordionContext();
-  const variant = (variantProp ?? contextVariant) as 'default' | 'line';
-  const isOpen = openValues.includes(value);
-
-  const triggerId = React.useMemo(() => `accordion-trigger-${value}`, [value]);
-  const contentId = React.useMemo(() => `accordion-content-${value}`, [value]);
+>(({ className, variant: variantProp, ...props }, ref) => {
+  const { variant: contextVariant } = React.useContext(AccordionContext);
+  const variant = variantProp || contextVariant;
 
   return (
-    <AccordionItemContext.Provider
-      value={{ value, isOpen, triggerId, contentId }}
-    >
-      <div
-        ref={ref}
-        className={cn(accordionItemVariants({ variant }), className)}
-        {...props}
-      >
-        {children}
-      </div>
-    </AccordionItemContext.Provider>
+    <AccordionPrimitive.Item
+      ref={ref}
+      className={cn(accordionItemVariants({ variant }), className)}
+      {...props}
+    />
   );
 });
-
 AccordionItem.displayName = 'AccordionItem';
 
 /**
@@ -389,50 +214,26 @@ AccordionItem.displayName = 'AccordionItem';
  * ```
  */
 export const AccordionTrigger = React.forwardRef<
-  HTMLButtonElement,
+  React.ElementRef<typeof AccordionPrimitive.Trigger>,
   AccordionTriggerProps
->(({ variant: variantProp, className, children, disabled, ...props }, ref) => {
-  const { onValueChange, variant: contextVariant } = useAccordionContext();
-  const { value, isOpen, triggerId, contentId } = useAccordionItemContext();
-  const variant = (variantProp ?? contextVariant) as 'default' | 'line';
+>(({ className, children, variant: variantProp, ...props }, ref) => {
+  const { variant: contextVariant } = React.useContext(AccordionContext);
+  const variant = variantProp || contextVariant;
 
   return (
-    <button
-      ref={ref}
-      id={triggerId}
-      type="button"
-      aria-expanded={isOpen}
-      aria-controls={contentId}
-      disabled={disabled}
-      className={cn(accordionTriggerVariants({ variant }), className)}
-      onClick={() => onValueChange(value)}
-      {...props}
-    >
-      <span className="flex-1 font-medium text-gray-900 dark:text-gray-100">
-        {children}
-      </span>
-      <svg
-        className={cn(
-          'h-4 w-4 flex-shrink-0 transition-transform text-gray-500 dark:text-gray-400',
-          isOpen && 'rotate-180'
-        )}
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+    <AccordionPrimitive.Header className="flex">
+      <AccordionPrimitive.Trigger
+        ref={ref}
+        className={cn(accordionTriggerVariants({ variant }), className)}
+        {...props}
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M19 9l-7 7-7-7"
-        />
-      </svg>
-    </button>
+        <span className="flex-1 font-medium text-gray-900">{children}</span>
+        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 text-gray-500" />
+      </AccordionPrimitive.Trigger>
+    </AccordionPrimitive.Header>
   );
 });
-
-AccordionTrigger.displayName = 'AccordionTrigger';
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 /**
  * AccordionContent Component
@@ -444,31 +245,15 @@ AccordionTrigger.displayName = 'AccordionTrigger';
  * - Smooth height animation
  */
 export const AccordionContent = React.forwardRef<
-  HTMLDivElement,
+  React.ElementRef<typeof AccordionPrimitive.Content>,
   AccordionContentProps
->(({ className, children, ...props }, ref) => {
-  const { isOpen, triggerId, contentId } = useAccordionItemContext();
-
-  return (
-    <div
-      ref={ref}
-      id={contentId}
-      role="region"
-      aria-labelledby={triggerId}
-      className={cn(
-        accordionContentVariants({ state: isOpen ? 'open' : 'closed' }),
-        className
-      )}
-      style={{
-        height: isOpen ? 'auto' : 0,
-      }}
-      {...props}
-    >
-      <div className="px-4 pb-3 pt-0 text-gray-700 dark:text-gray-300">
-        {children}
-      </div>
-    </div>
-  );
-});
-
-AccordionContent.displayName = 'AccordionContent';
+>(({ className, children, ...props }, ref) => (
+  <AccordionPrimitive.Content
+    ref={ref}
+    className={cn(accordionContentVariants(), className)}
+    {...props}
+  >
+    <div className="p-4 text-gray-700">{children}</div>
+  </AccordionPrimitive.Content>
+));
+AccordionContent.displayName = AccordionPrimitive.Content.displayName;

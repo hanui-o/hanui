@@ -157,9 +157,9 @@ export const Container = React.forwardRef<
           maxWidth !== false && maxWidthClasses[maxWidth],
           // Apply horizontal padding (screen margins) unless disabled
           // KRDS Standards:
-          // - sm: 16px (px-4)
-          // - md: 24px (px-6)
-          // - lg+: 32px (px-8)
+          // - sm: 1rem (px-4)
+          // - md: 1.5rem (px-6)
+          // - lg+: 2rem (px-8)
           !disableGutters && 'px-4 sm:px-6 lg:px-8',
           className
         )}
