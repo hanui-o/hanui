@@ -40,8 +40,8 @@ export default function BreakpointsPage() {
 
       <Tabs defaultValue="overview">
         <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="api">API Reference</TabsTrigger>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview">

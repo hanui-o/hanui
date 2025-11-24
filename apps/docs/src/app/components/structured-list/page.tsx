@@ -90,7 +90,7 @@ export default function StructuredListPage() {
       <Tabs defaultValue="overview">
         <TabsList>
           <TabsTrigger value="overview">개요</TabsTrigger>
-          <TabsTrigger value="api">API</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
         {/* 개요 탭 */}

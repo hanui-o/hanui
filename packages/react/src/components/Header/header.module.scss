@@ -353,6 +353,21 @@
   margin: 0 auto;
   width: 100%;
   justify-content: space-between;
+
+  // Container와 동일한 그리드 적용
+  max-width: var(--krds-container-xl);
+  padding-left: var(--krds-container-padding-mobile);
+  padding-right: var(--krds-container-padding-mobile);
+
+  @media (min-width: 640px) {
+    padding-left: var(--krds-container-padding-tablet);
+    padding-right: var(--krds-container-padding-tablet);
+  }
+
+  @media (min-width: 1024px) {
+    padding-left: var(--krds-container-padding-desktop);
+    padding-right: var(--krds-container-padding-desktop);
+  }
 }
 
 .menuItem {

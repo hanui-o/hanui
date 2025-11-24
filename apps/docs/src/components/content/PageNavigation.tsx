@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { cn } from '@hanui/react';
+import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 
 interface PageLink {
   title: string;
@@ -32,18 +33,16 @@ export function PageNavigation({ prev, next, className }: PageNavigationProps) {
 
   return (
     <nav
-      className={cn(
-        'flex items-center justify-between gap-4 pt-8 mt-8 border-t border-krds-gray-20',
-        className
-      )}
+      className={cn('flex items-center justify-between gap-4 mt-8', className)}
     >
       {prev ? (
         <Link
           href={prev.href}
-          className="flex flex-col gap-1 p-4 rounded-lg border border-krds-gray-20 hover:border-krds-primary-base hover:bg-krds-primary-5 transition-all flex-1"
+          className="flex items-center gap-1 px-3 py-2 rounded-md bg-krds-gray-5 hover:border-krds-primary-base hover:bg-krds-primary-5 transition-all"
         >
-          <span className="text-sm text-krds-gray-70">이전</span>
-          <span className="font-medium text-krds-gray-95">{prev.title}</span>
+          <span className="sr-only">이전</span>
+          <ArrowLeftIcon className="w-4 h-4" />
+          <span className="text-sm text-krds-gray-95">{prev.title}</span>
         </Link>
       ) : (
         <div className="flex-1" />
@@ -52,10 +51,11 @@ export function PageNavigation({ prev, next, className }: PageNavigationProps) {
       {next ? (
         <Link
           href={next.href}
-          className="flex flex-col gap-1 p-4 rounded-lg border border-krds-gray-20 hover:border-krds-primary-base hover:bg-krds-primary-5 transition-all flex-1 text-right"
+          className="flex items-center gap-1 px-3 py-2 rounded-md bg-krds-gray-5 hover:border-krds-primary-base hover:bg-krds-primary-5 transition-all"
         >
-          <span className="text-sm text-krds-gray-70">다음</span>
-          <span className="font-medium text-krds-gray-95">{next.title}</span>
+          <span className="sr-only">다음</span>
+          <span className="text-sm text-krds-gray-95">{next.title}</span>
+          <ArrowRightIcon className="w-4 h-4" />
         </Link>
       ) : (
         <div className="flex-1" />

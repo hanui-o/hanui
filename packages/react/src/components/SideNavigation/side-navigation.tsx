@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import * as Accordion from '@radix-ui/react-accordion';
 import styles from './side-navigation.module.scss';
+import { cn } from '../../lib/utils';
 
 /**
  * Side Navigation Link Item
@@ -15,7 +17,7 @@ export interface SideNavLink {
   /**
    * Link URL
    */
-  href: string;
+  href?: string;
 
   /**
    * Active state
@@ -84,27 +86,11 @@ export interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
  * - WCAG 2.1 / KWCAG 2.2 Compliance
  *
  * **Features:**
- * - Props-based API
+ * - Radix UI Accordion based
  * - Self-contained CSS Module (SCSS)
  * - Keyboard navigation
  * - ARIA attributes
  * - Smooth animations
- *
- * @example
- * ```tsx
- * <SideNavigation
- *   title="주요 서비스"
- *   sections={[
- *     {
- *       label: '건강보험',
- *       children: [
- *         { label: '보험료 조회', href: '/insurance/fee', active: true },
- *         { label: '자격 득실 확인', href: '/insurance/status' }
- *       ]
- *     }
- *   ]}
- * />
- * ```
  */
 export function SideNavigation({
   title,
@@ -112,205 +98,235 @@ export function SideNavigation({
   className = '',
   ...props
 }: SideNavigationProps) {
-  const [expandedSections, setExpandedSections] = useState<Set<number>>(
-    new Set(
-      sections
-        .map((section, index) =>
-          section.active || section.children?.some((child) => child.active)
-            ? index
-            : -1
-        )
-        .filter((index) => index >= 0)
+  // Calculate default open items based on active state
+  const defaultValue = sections
+    .map((section, index) =>
+      section.active || section.children?.some((child) => child.active)
+        ? `section-${index}`
+        : ''
     )
-  );
-
-  const [expandedSubItems, setExpandedSubItems] = useState<Set<string>>(
-    new Set()
-  );
-
-  const toggleSection = (index: number) => {
-    setExpandedSections((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(index)) {
-        newSet.delete(index);
-      } else {
-        newSet.add(index);
-      }
-      return newSet;
-    });
-  };
-
-  const toggleSubItem = (key: string) => {
-    setExpandedSubItems((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(key)) {
-        newSet.delete(key);
-      } else {
-        newSet.add(key);
-      }
-      return newSet;
-    });
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent, callback: () => void) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      callback();
-    }
-  };
+    .filter(Boolean);
 
   return (
-    <nav
-      className={`${styles['krds-side-navigation']} ${className}`}
-      {...props}
-    >
+    <nav className={cn(styles['krds-side-navigation'], className)} {...props}>
       {/* 1st Depth: Title */}
       <h2 className={styles['lnb-tit']}>{title}</h2>
 
       {/* 2nd Depth: Sections */}
-      <ul className={styles['lnb-list']} role="menubar">
-        {sections.map((section, sectionIndex) => {
-          const isExpanded = expandedSections.has(sectionIndex);
-          const isActive =
-            section.active || section.children?.some((child) => child.active);
-          const hasChildren = section.children && section.children.length > 0;
+      <ul role="menubar" className={styles['lnb-list']}>
+        <Accordion.Root type="multiple" defaultValue={defaultValue}>
+          {sections.map((section, sectionIndex) => {
+            const isActive =
+              section.active || section.children?.some((child) => child.active);
+            const hasChildren = section.children && section.children.length > 0;
+            const value = `section-${sectionIndex}`;
 
-          return (
-            <li
-              key={sectionIndex}
-              className={`${styles['lnb-item']} ${isActive ? styles.active : ''}`}
-              role="none"
-            >
-              {hasChildren ? (
-                <>
-                  {/* Toggle button for sections with children */}
-                  <button
-                    type="button"
-                    className={`${styles['lnb-btn']} ${styles['lnb-toggle']}`}
-                    onClick={() => toggleSection(sectionIndex)}
-                    onKeyDown={(e) =>
-                      handleKeyDown(e, () => toggleSection(sectionIndex))
-                    }
-                    aria-expanded={isExpanded}
-                    aria-controls={`submenu-${sectionIndex}`}
-                    role="menuitem"
-                  >
-                    {section.label}
-                  </button>
+            return (
+              <Accordion.Item
+                key={sectionIndex}
+                value={value}
+                className={cn(styles['lnb-item'], isActive && styles.active)}
+              >
+                {hasChildren ? (
+                  <>
+                    {/* Toggle button for sections with children */}
+                    <Accordion.Header asChild>
+                      <Accordion.Trigger asChild>
+                        <button
+                          type="button"
+                          className={cn(
+                            styles['lnb-btn'],
+                            styles['lnb-toggle']
+                          )}
+                          role="menuitem"
+                        >
+                          {section.label}
+                        </button>
+                      </Accordion.Trigger>
+                    </Accordion.Header>
 
-                  {/* Submenu */}
-                  <div
-                    id={`submenu-${sectionIndex}`}
-                    className={styles['lnb-submenu']}
-                    style={{
-                      display: isExpanded ? 'grid' : 'none',
-                    }}
-                  >
-                    <ul role="menu">
-                      {section.children!.map((child, childIndex) => {
-                        const childKey = `${sectionIndex}-${childIndex}`;
-                        const hasGrandChildren =
-                          child.children && child.children.length > 0;
-                        const isChildExpanded = expandedSubItems.has(childKey);
+                    {/* Submenu */}
+                    <Accordion.Content className={styles['lnb-submenu']}>
+                      <ul role="menu">
+                        {section.children!.map((child, childIndex) => {
+                          const hasGrandChildren =
+                            child.children && child.children.length > 0;
+                          const childValue = `child-${sectionIndex}-${childIndex}`;
 
-                        return (
-                          <li
-                            key={childIndex}
-                            className={`${styles['lnb-subitem']} ${
-                              child.active ? styles.active : ''
-                            }`}
-                            role="none"
-                          >
-                            {hasGrandChildren ? (
-                              <>
-                                {/* 3rd depth with toggle */}
-                                <button
-                                  type="button"
-                                  className={`${styles['lnb-btn']} ${styles['lnb-toggle']} ${styles['lnb-btn-tit']}`}
-                                  onClick={() => toggleSubItem(childKey)}
-                                  onKeyDown={(e) =>
-                                    handleKeyDown(e, () =>
-                                      toggleSubItem(childKey)
-                                    )
+                          // For 3rd depth, we use a nested Accordion if it has children
+                          if (hasGrandChildren) {
+                            const isChildActive =
+                              child.active ||
+                              child.children?.some((c) => c.active);
+
+                            return (
+                              <li key={childIndex} role="none">
+                                <Accordion.Root
+                                  type="multiple"
+                                  defaultValue={
+                                    isChildActive ? [childValue] : []
                                   }
-                                  aria-expanded={isChildExpanded}
-                                  aria-controls={`submenu-lv2-${childKey}`}
-                                  aria-haspopup="true"
-                                  role="menuitem"
                                 >
-                                  {child.label}
-                                </button>
-
-                                {/* 4th depth submenu */}
-                                <div
-                                  id={`submenu-lv2-${childKey}`}
-                                  className={styles['lnb-submenu-lv2']}
-                                  style={{
-                                    display: isChildExpanded ? 'grid' : 'none',
-                                  }}
-                                >
-                                  <ul role="menu">
-                                    {child.children!.map(
-                                      (grandChild, grandChildIndex) => (
-                                        <li
-                                          key={grandChildIndex}
-                                          className={`${styles['lnb-subitem']} ${
-                                            grandChild.active
-                                              ? styles.active
-                                              : ''
-                                          }`}
-                                          role="none"
-                                        >
-                                          <a
-                                            href={grandChild.href}
-                                            className={`${styles['lnb-btn']} ${styles['lnb-link']}`}
-                                            aria-current={
-                                              grandChild.active
-                                                ? 'page'
-                                                : undefined
-                                            }
-                                            role="menuitem"
-                                          >
-                                            {grandChild.label}
-                                          </a>
-                                        </li>
-                                      )
+                                  <Accordion.Item
+                                    value={childValue}
+                                    className={cn(
+                                      styles['lnb-subitem'],
+                                      isChildActive && styles.active
                                     )}
-                                  </ul>
-                                </div>
-                              </>
-                            ) : (
-                              /* 3rd depth link */
+                                  >
+                                    <Accordion.Header asChild>
+                                      <Accordion.Trigger asChild>
+                                        <button
+                                          type="button"
+                                          className={cn(
+                                            styles['lnb-btn'],
+                                            styles['lnb-toggle-popup']
+                                          )}
+                                          role="menuitem"
+                                          aria-haspopup="true"
+                                        >
+                                          {child.label}
+                                        </button>
+                                      </Accordion.Trigger>
+                                    </Accordion.Header>
+
+                                    <Accordion.Content
+                                      className={styles['lnb-submenu-lv2']}
+                                    >
+                                      {/* 3Depth Title Button (Non-interactive visual title as per KRDS HTML) */}
+                                      <button
+                                        type="button"
+                                        className={styles['lnb-btn-tit']}
+                                      >
+                                        {child.label}
+                                      </button>
+                                      <ul role="menu">
+                                        {child.children!.map(
+                                          (grandChild, grandChildIndex) => (
+                                            <li
+                                              key={grandChildIndex}
+                                              role="none"
+                                            >
+                                              <a
+                                                href={grandChild.href}
+                                                className={cn(
+                                                  styles['lnb-btn'],
+                                                  grandChild.active &&
+                                                    styles.active
+                                                )}
+                                                role="menuitem"
+                                                aria-current={
+                                                  grandChild.active
+                                                    ? 'page'
+                                                    : undefined
+                                                }
+                                              >
+                                                {grandChild.label}
+                                              </a>
+                                            </li>
+                                          )
+                                        )}
+                                      </ul>
+                                    </Accordion.Content>
+                                  </Accordion.Item>
+                                </Accordion.Root>
+                              </li>
+                            );
+                          }
+
+                          return (
+                            <li
+                              key={childIndex}
+                              className={cn(
+                                styles['lnb-subitem'],
+                                child.active && styles.active
+                              )}
+                              role="none"
+                            >
                               <a
                                 href={child.href}
-                                className={`${styles['lnb-btn']} ${styles['lnb-link']}`}
+                                className={cn(
+                                  styles['lnb-btn'],
+                                  styles['lnb-link']
+                                )}
                                 aria-current={child.active ? 'page' : undefined}
                                 role="menuitem"
                               >
                                 {child.label}
                               </a>
-                            )}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                /* Section without children (simple link) */
-                <a
-                  href={section.href}
-                  className={`${styles['lnb-btn']} ${styles['lnb-link']}`}
-                  aria-current={section.active ? 'page' : undefined}
-                  role="menuitem"
-                >
-                  {section.label}
-                </a>
-              )}
-            </li>
-          );
-        })}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </Accordion.Content>
+                  </>
+                ) : (
+                  /* Section without children (simple link) */
+                  <a
+                    href={section.href}
+                    className={cn(styles['lnb-btn'], styles['lnb-link'])}
+                    aria-current={section.active ? 'page' : undefined}
+                    role="menuitem"
+                  >
+                    {section.label}
+                  </a>
+                )}
+              </Accordion.Item>
+            );
+          })}
+        </Accordion.Root>
       </ul>
     </nav>
   );
 }
+
+/**
+ * Sample Side Navigation Data
+ */
+export const SAMPLE_SIDE_NAVIGATION: SideNavSection[] = [
+  {
+    label: '2Depth-menu',
+    children: [
+      {
+        label: '3Depth-menu',
+        children: [
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+        ],
+      },
+      { label: '3Depth-link', href: '#' },
+      { label: '3Depth-link', href: '#' },
+    ],
+  },
+  {
+    label: '2Depth-menu',
+    children: [
+      {
+        label: '3Depth-menu',
+        children: [
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+        ],
+      },
+      { label: '3Depth-link', href: '#' },
+      { label: '3Depth-link', href: '#' },
+    ],
+  },
+  {
+    label: '2Depth-menu',
+    children: [
+      {
+        label: '3Depth-menu',
+        children: [
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+        ],
+      },
+      { label: '3Depth-link', href: '#' },
+      { label: '3Depth-link', href: '#' },
+    ],
+  },
+];

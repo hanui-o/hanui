@@ -143,7 +143,10 @@ export type { HeaderProps } from './components/Header/header';
 export { Footer } from './components/Footer/footer';
 export type { FooterProps } from './components/Footer/footer';
 
-export { SideNavigation } from './components/SideNavigation/side-navigation';
+export {
+  SideNavigation,
+  SAMPLE_SIDE_NAVIGATION,
+} from './components/SideNavigation/side-navigation';
 export type {
   SideNavigationProps,
   SideNavSection,

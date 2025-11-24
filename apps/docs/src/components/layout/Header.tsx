@@ -205,7 +205,7 @@ export function Header() {
           position: isFixed ? 'fixed' : 'absolute',
           top: isFixed ? '-56px' : '0',
         }}
-        className={`z-50 w-full bg-krds-white supports-[backdrop-filter]:bg-krds-white/95 ${isMainPage ? '' : 'border-b border-krds-gray-10'}`}
+        className={`z-50 w-full bg-krds-white supports-[backdrop-filter]:bg-krds-white/95 ${isMainPage ? '' : 'border-b border-krds-gray-5'}`}
       >
         {/* Main Header */}
         <Container maxWidth="full" className="h-14 flex items-center gap-4">
@@ -277,7 +277,7 @@ export function Header() {
               className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors bg-krds-gray-5"
             >
               <SearchIcon />
-              <span className="hidden lg:inline">Search...</span>
+              <span className="hidden lg:inline text-sm">Search...</span>
               <kbd className="hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-0 px-1.5 font-mono text-xs font-medium text-krds-gray-70 ml-auto">
                 <span className="text-xs">⌘</span>K
               </kbd>

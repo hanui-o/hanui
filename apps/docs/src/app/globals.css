@@ -11,7 +11,7 @@
 
   /* Typography Base Font Size (KRDS 기준) */
   /* spacing은 16px 기준, font-size는 17px 기준으로 분리 */
-  --base-font-size: 17px;
+  --base-font-size: 16px;
 
   /* KRDS Header Spacing Variables */
   --krds-gap-2: 0.5rem; /* 8px */
@@ -30,7 +30,7 @@
   --krds-container-padding-desktop: 2rem; /* 32px - lg:px-8 */
   --krds-container-xl: calc(
     1280px + var(--krds-container-padding-desktop) * 2
-  ); /* max-width xl */
+  ); /* max-width xl : 1280px + 32px = 1344px */
 
   /* KRDS Breakpoint Variables */
   --krds-breakpoint-xs: 360px;

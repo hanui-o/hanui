@@ -44,6 +44,7 @@ const tabsTriggerVariants = cva(
     'disabled:pointer-events-none',
     'disabled:opacity-50',
     'whitespace-nowrap',
+    'pointer',
   ].join(' '),
   {
     variants: {

@@ -36,32 +36,11 @@ export default function ButtonPage() {
       <Tabs defaultValue="overview">
         <TabsList>
           <TabsTrigger value="overview">개요</TabsTrigger>
-          <TabsTrigger value="api">API</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
-          <Section>
-            <ComponentPreview>
-              <div className="flex items-center gap-4">
-                <Button variant="primary">Primary Button</Button>
-                <Button variant="secondary">Secondary Button</Button>
-              </div>
-            </ComponentPreview>
-          </Section>
-
-          {/* Overview */}
-          <Section>
-            <SectionHeading level="h2" id="overview" title="개요">
-              <Body className="leading-relaxed">
-                버튼은 사용자가 서비스를 이용하는 과정에서 어떤 행동이 중요한지
-                알려주는 핵심 인터랙션 요소입니다. HANUI Button은{' '}
-                <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>를 준수하여
-                공공 웹사이트에 최적화된 접근성과 사용성을 제공합니다.
-              </Body>
-            </SectionHeading>
-          </Section>
-
           <Section>
             <SectionHeading
               level="h2"
@@ -81,6 +60,161 @@ export default function ButtonPage() {
 
 <Button variant="primary">Click me</Button>`}
             </Code>
+          </Section>
+
+          {/* 예제 섹션 */}
+          <Section>
+            <SectionHeading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="기본" />
+              <ComponentPreview>
+                <Button>Button</Button>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button>Button</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Size (크기)" />
+              <ComponentPreview>
+                <div className="flex items-center gap-4">
+                  <Button size="sm">Small</Button>
+                  <Button size="md">Medium</Button>
+                  <Button size="lg">Large</Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Primary" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button variant="primary">회원가입</Button>
+                  <Button variant="primary">결제하기</Button>
+                  <Button variant="primary">제출</Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button variant="primary">회원가입</Button>
+<Button variant="primary">결제하기</Button>
+<Button variant="primary">제출</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Secondary" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button variant="secondary">취소</Button>
+                  <Button variant="secondary">뒤로가기</Button>
+                  <Button variant="secondary">건너뛰기</Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button variant="secondary">취소</Button>
+<Button variant="secondary">뒤로가기</Button>
+<Button variant="secondary">건너뛰기</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Success & Danger" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button variant="success">승인</Button>
+                  <Button variant="danger">삭제</Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button variant="success">승인</Button>
+<Button variant="danger">삭제</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Outline" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button variant="outline">필터</Button>
+                  <Button variant="outline">설정</Button>
+                  <Button variant="outline">더보기</Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button variant="outline">필터</Button>
+<Button variant="outline">설정</Button>
+<Button variant="outline">더보기</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Ghost" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button variant="ghost">닫기</Button>
+                  <Button variant="ghost">접기</Button>
+                  <Button variant="ghost">편집</Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button variant="ghost">닫기</Button>
+<Button variant="ghost">접기</Button>
+<Button variant="ghost">편집</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Ghost Primary" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button variant="ghost-primary">자세히 보기</Button>
+                  <Button variant="ghost-primary">더 알아보기</Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button variant="ghost-primary">자세히 보기</Button>
+<Button variant="ghost-primary">더 알아보기</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="Loading" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button loading>처리 중...</Button>
+                  <Button loading disabled>
+                    제출 중...
+                  </Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button loading>처리 중...</Button>
+<Button loading disabled>제출 중...</Button>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <SectionHeading level="h3" title="비활성화" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button disabled>제출 불가</Button>
+                  <Button variant="outline" disabled>
+                    권한 없음
+                  </Button>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Button disabled>제출 불가</Button>
+<Button variant="outline" disabled>권한 없음</Button>`}
+              </Code>
+            </Subsection>
           </Section>
 
           {/* 가이드라인 섹션 */}
@@ -237,161 +371,6 @@ export default function ButtonPage() {
                   </Button>
                 </ComponentPreview>
               </DoCard>
-            </Subsection>
-          </Section>
-
-          {/* 예제 섹션 */}
-          <Section>
-            <SectionHeading level="h2" id="examples" title="예제" />
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="기본" />
-              <ComponentPreview>
-                <Button>Button</Button>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button>Button</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Size (크기)" />
-              <ComponentPreview>
-                <div className="flex items-center gap-4">
-                  <Button size="sm">Small</Button>
-                  <Button size="md">Medium</Button>
-                  <Button size="lg">Large</Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Primary" />
-              <ComponentPreview>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button variant="primary">회원가입</Button>
-                  <Button variant="primary">결제하기</Button>
-                  <Button variant="primary">제출</Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button variant="primary">회원가입</Button>
-<Button variant="primary">결제하기</Button>
-<Button variant="primary">제출</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Secondary" />
-              <ComponentPreview>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button variant="secondary">취소</Button>
-                  <Button variant="secondary">뒤로가기</Button>
-                  <Button variant="secondary">건너뛰기</Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button variant="secondary">취소</Button>
-<Button variant="secondary">뒤로가기</Button>
-<Button variant="secondary">건너뛰기</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Success & Danger" />
-              <ComponentPreview>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button variant="success">승인</Button>
-                  <Button variant="danger">삭제</Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button variant="success">승인</Button>
-<Button variant="danger">삭제</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Outline" />
-              <ComponentPreview>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button variant="outline">필터</Button>
-                  <Button variant="outline">설정</Button>
-                  <Button variant="outline">더보기</Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button variant="outline">필터</Button>
-<Button variant="outline">설정</Button>
-<Button variant="outline">더보기</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Ghost" />
-              <ComponentPreview>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button variant="ghost">닫기</Button>
-                  <Button variant="ghost">접기</Button>
-                  <Button variant="ghost">편집</Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button variant="ghost">닫기</Button>
-<Button variant="ghost">접기</Button>
-<Button variant="ghost">편집</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Ghost Primary" />
-              <ComponentPreview>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button variant="ghost-primary">자세히 보기</Button>
-                  <Button variant="ghost-primary">더 알아보기</Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button variant="ghost-primary">자세히 보기</Button>
-<Button variant="ghost-primary">더 알아보기</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="Loading" />
-              <ComponentPreview>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button loading>처리 중...</Button>
-                  <Button loading disabled>
-                    제출 중...
-                  </Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button loading>처리 중...</Button>
-<Button loading disabled>제출 중...</Button>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <SectionHeading level="h3" title="비활성화" />
-              <ComponentPreview>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button disabled>제출 불가</Button>
-                  <Button variant="outline" disabled>
-                    권한 없음
-                  </Button>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button disabled>제출 불가</Button>
-<Button variant="outline" disabled>권한 없음</Button>`}
-              </Code>
             </Subsection>
           </Section>
         </TabsContent>

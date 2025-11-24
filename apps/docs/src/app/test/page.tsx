@@ -7,16 +7,28 @@ import {
   AccordionTrigger,
   AccordionContent,
   Container,
+  SAMPLE_SIDE_NAVIGATION,
+  SkipLink,
 } from '@hanui/react';
 
 export default function TestPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div id="wrap" className="flex flex-col min-h-screen">
+      <SkipLink
+        links={[
+          { href: '#header', label: 'Skip to header' },
+          { href: '#main', label: 'Skip to main content' },
+          { href: '#footer', label: 'Skip to footer' },
+        ]}
+      />
       <Header />
       <main className="flex-1">
-        <Container>
-          <SideNavigation title="SideNavigation" sections={[]} />
-          <div className="p-8">
+        <Container className="flex justify-between gap-20">
+          <SideNavigation
+            title="1Depth-title"
+            sections={SAMPLE_SIDE_NAVIGATION}
+          />
+          <div className="grow">
             <Accordion>
               <AccordionItem value="item-1">
                 <AccordionTrigger>Section 1</AccordionTrigger>

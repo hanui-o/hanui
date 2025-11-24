@@ -82,6 +82,7 @@ export interface SkipLinkProps extends React.HTMLAttributes<HTMLDivElement> {
  * </body>
  * ```
  */
+
 export const SkipLink = React.forwardRef<HTMLDivElement, SkipLinkProps>(
   ({ links, variant = 'hidden', className, ...props }, ref) => {
     // Validate max 3 links

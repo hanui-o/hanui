@@ -11,7 +11,6 @@
 
     .inner {
       display: flex;
-      padding: 0;
 
       // 모바일
       @media (max-width: 1023px) {
@@ -236,19 +235,21 @@
     // Web (1280px 이상)
     @media (min-width: 1280px) {
       gap: var(--krds-gap-9, 3rem);
-      padding: var(--krds-padding-10, 2.5rem) 0 var(--krds-padding-8, 2rem);
+      padding-top: var(--krds-padding-10, 2.5rem);
+      padding-bottom: var(--krds-padding-8, 2rem);
     }
 
     // Large (1024px ~ 1279px)
     @media (min-width: 1024px) and (max-width: 1279px) {
-      padding: var(--krds-padding-10, 2.5rem) var(--krds-padding-6, 1.5rem)
-        var(--krds-padding-8, 2rem);
+      padding-top: var(--krds-padding-10, 2.5rem);
+      padding-bottom: var(--krds-padding-8, 2rem);
     }
 
     // 태블릿 & 모바일 (1023px 이하)
     @media (max-width: 1023px) {
       gap: var(--krds-gap-7, 2rem);
-      padding: var(--krds-padding-8, 2rem) var(--krds-padding-6, 1.5rem);
+      padding-top: var(--krds-padding-8, 2rem);
+      padding-bottom: var(--krds-padding-6, 1.5rem);
     }
   }
 

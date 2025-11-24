@@ -13,11 +13,12 @@ import { cn } from '@/lib/utils';
  * - full: 100% (no max-width constraint)
  */
 const maxWidthClasses = {
-  sm: 'max-w-screen-sm',
-  md: 'max-w-screen-md',
-  lg: 'max-w-screen-lg',
-  xl: 'max-w-screen-xl',
-  '2xl': 'max-w-screen-2xl',
+  xs: 'max-w-[var(--krds-container-xs)]',
+  sm: 'max-w-[var(--krds-container-sm)]',
+  md: 'max-w-[var(--krds-container-md)]',
+  lg: 'max-w-[var(--krds-container-lg)]',
+  xl: 'max-w-[var(--krds-container-xl)]',
+  '2xl': 'max-w-[var(--krds-container-2xl)]',
   full: 'max-w-full',
 } as const;
 
@@ -41,7 +42,7 @@ export interface ContainerProps {
    * - full: 100% - Full width with padding
    * - false: No max-width (padding only)
    */
-  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | false;
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full' | false;
 
   /**
    * Remove horizontal padding (gutters)

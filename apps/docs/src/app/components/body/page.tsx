@@ -43,8 +43,8 @@ export default function BodyPage() {
 
       <Tabs defaultValue="overview">
         <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="api">API Reference</TabsTrigger>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview">
@@ -58,7 +58,7 @@ export default function BodyPage() {
             />
 
             <Code variant="block" language="bash" showLineNumbers={false}>
-              {`npm install @hanui/react`}
+              {`npx @hanui/cli add body`}
             </Code>
           </Section>
 

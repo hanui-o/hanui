@@ -44,11 +44,25 @@ export default function BorderRadiusPage() {
 
       <Tabs defaultValue="overview">
         <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="api">API Reference</TabsTrigger>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview">
+          {/* Installation */}
+          <Section>
+            <SectionHeading
+              level="h2"
+              id="installation"
+              title="설치"
+              description="Body 컴포넌트는 @hanui/react 패키지에 포함되어 있습니다."
+            />
+
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              {`npx @hanui/cli add border-radius`}
+            </Code>
+          </Section>
+
           {/* What is it */}
           <Section>
             <SectionHeading
