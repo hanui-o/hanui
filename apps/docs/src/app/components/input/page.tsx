@@ -194,6 +194,102 @@ export default function InputPage() {
               </Code>
             </Subsection>
           </Section>
+
+          {/* Accessibility */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="Input 컴포넌트는 WCAG 2.1 AA 기준을 준수하며 완전한 접근성을 제공합니다."
+            />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="키보드 지원" />
+              <List variant="check" spacing="default">
+                <ListItem>
+                  <Code>Tab</Code> - 입력 필드로 포커스 이동
+                </ListItem>
+                <ListItem>
+                  <Code>Enter</Code> - 폼 제출 (form 내부인 경우)
+                </ListItem>
+                <ListItem>
+                  <Code>Escape</Code> - 입력 취소 (브라우저 기본 동작)
+                </ListItem>
+              </List>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="스크린 리더 지원" />
+              <List variant="check" spacing="default">
+                <ListItem>
+                  <Code>aria-invalid</Code> - 에러 상태를 자동으로 전달 (
+                  <Code>error</Code> prop 사용 시)
+                </ListItem>
+                <ListItem>
+                  <Code>aria-required</Code> - 필수 입력 표시 지원
+                </ListItem>
+                <ListItem>
+                  <Code>aria-describedby</Code> - 에러 메시지 연결 지원
+                </ListItem>
+                <ListItem>
+                  모든 HTML input 속성 지원 (<Code>id</Code>, <Code>name</Code>,{' '}
+                  <Code>disabled</Code> 등)
+                </ListItem>
+              </List>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="폼 통합 예제" />
+              <Code variant="block" language="tsx">
+                {`// 접근성을 고려한 폼 구성
+<form>
+  <label htmlFor="email" className="block mb-2 font-medium">
+    이메일 <span className="text-krds-danger-60">*</span>
+  </label>
+  <Input
+    id="email"
+    type="email"
+    placeholder="example@email.com"
+    aria-required="true"
+    aria-describedby="email-error"
+    error={!!errors.email}
+  />
+  {errors.email && (
+    <p id="email-error" className="mt-1 text-krds-danger-60">
+      {errors.email}
+    </p>
+  )}
+</form>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="모범 사례" />
+              <List variant="check">
+                <ListItem>
+                  항상 <Code>&lt;label&gt;</Code>을 사용하여 입력 필드의 목적을
+                  명확하게 표시하세요
+                </ListItem>
+                <ListItem>
+                  필수 입력 필드는 시각적(<Code>*</Code>)과 프로그래밍적(
+                  <Code>aria-required</Code>) 표시를 모두 제공하세요
+                </ListItem>
+                <ListItem>
+                  에러 메시지는 <Code>aria-describedby</Code>를 사용하여 입력
+                  필드와 연결하세요
+                </ListItem>
+                <ListItem>
+                  <Code>placeholder</Code>는 힌트로만 사용하고, 레이블을
+                  대체하지 마세요
+                </ListItem>
+                <ListItem>
+                  적절한 <Code>type</Code> 속성을 사용하여 모바일 키보드
+                  최적화와 브라우저 자동완성을 활용하세요
+                </ListItem>
+              </List>
+            </Subsection>
+          </Section>
         </TabsContent>
 
         <TabsContent value="api">
