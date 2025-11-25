@@ -9,9 +9,15 @@ import { cn } from '@/lib/utils';
 export interface MastheadProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Custom text for the masthead banner
-   * @default "This is an official website of the Republic of Korea"
+   * @default "이 누리집은 대한민국 공식 전자정부 누리집입니다"
    */
   text?: string;
+
+  /**
+   * Link URL for the masthead banner
+   * @default "https://www.gov.kr"
+   */
+  href?: string;
 
   /**
    * Additional CSS classes
@@ -20,41 +26,31 @@ export interface MastheadProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * Masthead Component
+ * Masthead Component (공식 배너 컴포넌트)
  *
- * **Foundation Layer Features:**
- * - Required CSS Selector: #krds-masthead (KRDS mandatory identifier)
- * - Skip Link Compatibility: Designed to work with skip links that precede it
- * - WCAG 2.1 / KWCAG 2.2 Compliance: Bypass Blocks (Level A)
- * - Semantic HTML: Uses semantic elements for accessibility
+ * 정부 웹사이트의 최상단에 위치하여 대한민국 공식 전자정부 누리집임을 나타내는 컴포넌트
  *
- * **KRDS Standards:**
- * - Must be positioned at the top of all government digital service pages
- * - Standard text: "This is an official website of the Republic of Korea"
- * - Visual design should not attract excessive attention
- * - Consistent styling across all government services
- * - Skip links must precede the masthead
- * - Required for official government digital services only
+ * **주요 기능:**
+ * - KRDS 필수 ID 자동 적용 (#krds-masthead)
+ * - SkipLink 호환성 (Bypass Blocks WCAG 2.1 / KWCAG 2.2 Level A 준수)
+ * - 대한민국 국기 아이콘 자동 표시
+ * - Semantic HTML 기반 접근성 지원
  *
- * @example
- * ```tsx
- * // Basic usage with default text
- * <Masthead />
+ * **KRDS 표준:**
+ * - 모든 정부 디지털 서비스 페이지 최상단 배치 필수
+ * - 표준 텍스트: "이 누리집은 대한민국 공식 전자정부 누리집입니다"
+ * - 시각적으로 과도한 주의를 끌지 않는 디자인
+ * - 모든 정부 서비스에서 일관된 스타일 유지
+ * - SkipLink가 Masthead보다 앞에 위치해야 함
+ * - 공식 정부 디지털 서비스에만 사용
  *
- * // With skip link (recommended)
- * <>
- *   <a href="#main-content" className="sr-only focus:not-sr-only">
- *     Skip to main content
- *   </a>
- *   <Masthead />
- *   <main id="main-content">...</main>
- * </>
- * ```
+ * **자세한 사용법:** /components/masthead 문서 참고
  */
 export const Masthead = React.forwardRef<HTMLDivElement, MastheadProps>(
   (
     {
-      text = 'This is an official website of the Republic of Korea',
+      text = '이 누리집은 대한민국 공식 전자정부 누리집입니다',
+      href = 'https://www.gov.kr',
       className,
       ...props
     },
@@ -64,20 +60,26 @@ export const Masthead = React.forwardRef<HTMLDivElement, MastheadProps>(
       <div
         ref={ref}
         id="krds-masthead"
-        className={cn(
-          'w-full',
-          'bg-gray-50 dark:bg-gray-900',
-          'border-b border-gray-200 dark:border-gray-800',
-          className
-        )}
+        className={cn('w-full', 'bg-krds-primary-5', className)}
+        role="banner"
         {...props}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center min-h-[40px] py-2">
-            <p className="text-xs sm:text-gray-700 dark:text-gray-300 font-medium">
+          <a
+            href={href}
+            className="flex items-center gap-2 min-h-8 py-1 transition-opacity hover:opacity-80"
+            aria-label="대한민국 정부포털 바로가기"
+          >
+            <img
+              src="https://www.krds.go.kr/resources/img/component/icon/ico_flag.svg"
+              alt=""
+              className="w-5 h-5 shrink-0"
+              aria-hidden="true"
+            />
+            <span className="text-krds-body-sm text-krds-gray-90 font-medium leading-[150%]">
               {text}
-            </p>
-          </div>
+            </span>
+          </a>
         </div>
       </div>
     );
