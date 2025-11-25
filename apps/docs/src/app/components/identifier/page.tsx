@@ -70,37 +70,8 @@ export default function IdentifierPage() {
             </Code>
           </Section>
 
-          <Installation componentName="identifier" />
-
-          {/* What is it */}
           <Section level="h2">
-            <Heading level="h2" id="what-is-it" title="Identifier란?" />
-
-            <Body className="text-krds-gray-70">
-              Identifier(운영기관 식별자)는 정부 디지털 서비스를 운영하는 기관을
-              명시하여 서비스의 신뢰성을 구축하는 컴포넌트입니다. KRDS 표준에
-              따라 Footer의 최종 섹션에 배치됩니다.
-            </Body>
-
-            <Card variant="info" className="mt-4">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>KRDS 표준 준수:</strong> .krds-identifier 클래스 자동
-                  적용
-                </ListItem>
-                <ListItem>
-                  <strong>유연한 로고 지원:</strong> 이미지 URL 또는 React
-                  엘리먼트
-                </ListItem>
-                <ListItem>
-                  <strong>텍스트 커스터마이징:</strong> {'{organization}'}{' '}
-                  플레이스홀더
-                </ListItem>
-                <ListItem>
-                  <strong>접근성:</strong> 로고 alt 텍스트 자동 검증
-                </ListItem>
-              </List>
-            </Card>
+            <Installation componentName="identifier" />
           </Section>
 
           {/* Usage */}

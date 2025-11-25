@@ -73,7 +73,9 @@ export default function ContainerPage() {
             </Code>
           </Section>
 
-          <Installation componentName="container" />
+          <Section level="h2">
+            <Installation componentName="container" />
+          </Section>
 
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />

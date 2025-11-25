@@ -73,7 +73,9 @@ export default function HeadingPage() {
           </Section>
 
           {/* 설치 */}
-          <Installation componentName="heading" />
+          <Section level="h2">
+            <Installation componentName="heading" />
+          </Section>
 
           {/* 사용법 */}
           <Section level="h2">

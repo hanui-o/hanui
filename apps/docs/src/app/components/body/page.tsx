@@ -62,7 +62,9 @@ export default function BodyPage() {
           </Section>
 
           {/* 설치 */}
-          <Installation componentName="body" />
+          <Section level="h2">
+            <Installation componentName="body" />
+          </Section>
 
           {/* 사용법 */}
           <Section level="h2">

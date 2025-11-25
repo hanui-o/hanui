@@ -87,7 +87,9 @@ export default function FileUploadPage() {
           </Section>
 
           {/* 설치 */}
-          <Installation componentName="file-upload" />
+          <Section level="h2">
+            <Installation componentName="file-upload" />
+          </Section>
 
           {/* 사용법 */}
           <Section level="h2">

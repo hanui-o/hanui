@@ -49,22 +49,18 @@ export default function HeaderPage() {
               className="sr-only"
             />
 
-            <div className="space-y-6">
-              {/* Desktop */}
-              <div>
-                <Body className="mb-2 font-semibold text-krds-gray-90">
-                  Desktop (1280px)
-                </Body>
-                <ComponentPreview className="h-[400px] overflow-hidden flex items-start justify-center">
-                  <div
-                    className="scale-[0.7] origin-top w-[1280px]"
-                    style={{ height: '571px' }}
-                  >
-                    <Header className="w-[1280px]" />
-                  </div>
-                </ComponentPreview>
+            {/* Desktop */}
+            <Body className="mb-2 font-semibold text-krds-gray-90">
+              Desktop (1280px)
+            </Body>
+            <ComponentPreview className="h-[400px] overflow-hidden">
+              <div
+                className="scale-[0.7] origin-top w-[1280px]"
+                style={{ height: '571px' }}
+              >
+                <Header className="w-[1280px]" />
               </div>
-            </div>
+            </ComponentPreview>
 
             <Code variant="block" language="tsx">
               {`import { Header } from '@hanui/react'
@@ -73,7 +69,9 @@ export default function HeaderPage() {
             </Code>
           </Section>
 
-          <Installation componentName="header" />
+          <Section level="h2">
+            <Installation componentName="header" />
+          </Section>
 
           {/* Usage */}
           <Section level="h2">

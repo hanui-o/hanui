@@ -71,7 +71,9 @@ export default function BreadcrumbPage() {
           </Section>
 
           {/* 설치 */}
-          <Installation componentName="breadcrumb" />
+          <Section level="h2">
+            <Installation componentName="breadcrumb" />
+          </Section>
 
           {/* 사용법 */}
           <Section level="h2">

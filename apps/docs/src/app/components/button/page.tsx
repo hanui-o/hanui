@@ -58,7 +58,9 @@ export default function ButtonPage() {
             </Code>
           </Section>
 
-          <Installation componentName="button" />
+          <Section level="h2">
+            <Installation componentName="button" />
+          </Section>
 
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />

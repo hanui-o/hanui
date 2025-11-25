@@ -73,7 +73,9 @@ export default function DisplayPage() {
             </Code>
           </Section>
 
-          <Installation componentName="display" />
+          <Section level="h2">
+            <Installation componentName="display" />
+          </Section>
 
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />

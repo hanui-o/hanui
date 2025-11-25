@@ -95,7 +95,9 @@ export default function CardPage() {
           </Section>
 
           {/* 설치 */}
-          <Installation componentName="card" />
+          <Section level="h2">
+            <Installation componentName="card" />
+          </Section>
 
           {/* 사용법 */}
           <Section level="h2">

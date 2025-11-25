@@ -40,6 +40,7 @@ export default function FooterPage() {
         </TabsList>
 
         <TabsContent value="overview">
+          {/* Overview */}
           <Section level="h2">
             <Heading
               level="h2"
@@ -48,7 +49,12 @@ export default function FooterPage() {
               className="sr-only"
             />
             <ComponentPreview>
-              <Footer />
+              <div
+                className="scale-[0.7] origin-top w-[1280px]"
+                style={{ height: '571px' }}
+              >
+                <Footer className="w-[1280px]" />
+              </div>
             </ComponentPreview>
             <Code variant="block" language="tsx">
               {`import { Footer } from '@hanui/react'
@@ -57,8 +63,9 @@ export default function FooterPage() {
             </Code>
           </Section>
 
-          <Installation componentName="footer">
-            <Card variant="info">
+          <Section level="h2">
+            <Installation componentName="footer" />
+            <Card variant="info" className="mt-6">
               <Body className="mb-3">설치 시 다음 파일이 추가됩니다:</Body>
               <List className="text-krds-gray-90">
                 <ListItem>
@@ -70,7 +77,7 @@ export default function FooterPage() {
                 </ListItem>
               </List>
             </Card>
-          </Installation>
+          </Section>
 
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />

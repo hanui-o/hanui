@@ -89,7 +89,9 @@ export default function AccordionPage() {
             </Code>
           </Section>
 
-          <Installation componentName="accordion" />
+          <Section level="h2">
+            <Installation componentName="accordion" />
+          </Section>
 
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />

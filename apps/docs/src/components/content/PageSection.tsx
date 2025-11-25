@@ -27,5 +27,9 @@ interface PageSectionProps {
  * ```
  */
 export function PageSection({ level, children }: PageSectionProps) {
-  return <section className="mb-10 md:mb-20">{children}</section>;
+  return (
+    <section className="mb-10 md:mb-20" data-level={level}>
+      {children}
+    </section>
+  );
 }

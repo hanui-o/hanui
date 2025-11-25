@@ -75,7 +75,9 @@ export default function CodePage() {
             </Code>
           </Section>
 
-          <Installation componentName="code" />
+          <Section level="h2">
+            <Installation componentName="code" />
+          </Section>
 
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
