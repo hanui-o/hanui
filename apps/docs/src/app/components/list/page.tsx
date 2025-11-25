@@ -1,3 +1,5 @@
+'use client';
+
 // Docs layout components
 import {
   PageSection as Section,
@@ -5,24 +7,20 @@ import {
   Subsection,
   PageNavigation,
 } from '@/components/content';
-
-// Docs helper components
-import { DoCard, DontCard } from '@/components/helpers';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
 import {
   List,
   ListItem,
   Code,
-  Body,
   Table,
   TableHeader,
   TableBody,
   TableRow,
   TableHead,
   TableCell,
-  Card,
-  Stack,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -35,7 +33,7 @@ export default function ListPage() {
       <Heading
         level="h1"
         title="List"
-        description="KRDS 준수 리스트 컴포넌트입니다. Unordered와 Ordered 리스트를 지원하며, 다양한 간격 옵션을 제공합니다."
+        description="항목들을 깔끔하게 나열하기 위한 리스트 컴포넌트"
       />
 
       <Tabs defaultValue="overview">
@@ -44,203 +42,185 @@ export default function ListPage() {
           <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
-        {/* 개요 탭 */}
+        {/* ========== 개요 탭 ========== */}
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <Heading level="h2" id="installation" title="설치">
-              <Body className="leading-relaxed">
-                다음 명령어로 List 컴포넌트를 설치합니다:
-              </Body>
-            </Heading>
-
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add list
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
+          {/* 1) 개요 - 기본 예제 */}
+          <Section level="h2">
             <Heading
               level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="List는 항목들을 깔끔하게 나열하기 위한 컴포넌트입니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-
-            <Card variant="info">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>4가지 Variant:</strong> unordered (•), ordered (1, 2,
-                  3), dash (−), check (✓) 리스트를 지원합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>2depth 중첩 리스트:</strong> ListItem 안에 List를
-                  넣으면 자동으로 2depth 중첩 리스트가 됩니다.
-                </ListItem>
-                <ListItem>
-                  <strong>간격 옵션:</strong> tight, default, loose 3가지 간격을
-                  제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>KRDS 색상:</strong> KRDS 디자인 시스템의 색상을
-                  준수합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>접근성:</strong> 시맨틱 HTML 요소를 사용하여 스크린
-                  리더 지원이 완벽합니다.
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
-
-          {/* Preview */}
-          <Section>
-            <Heading level="h2" id="preview" title="미리보기" />
-            <Card variant="outlined">
+            <ComponentPreview>
               <List>
                 <ListItem>첫 번째 항목</ListItem>
                 <ListItem>두 번째 항목</ListItem>
                 <ListItem>세 번째 항목</ListItem>
               </List>
-            </Card>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`<List>
+  <ListItem>첫 번째 항목</ListItem>
+  <ListItem>두 번째 항목</ListItem>
+  <ListItem>세 번째 항목</ListItem>
+</List>`}
+            </Code>
           </Section>
 
-          {/* Usage */}
-          <Section>
-            <Heading level="h2" id="usage" title="사용 방법" />
+          {/* 2) 설치 */}
+          <Section level="h2">
+            <Installation componentName="list" />
+          </Section>
 
-            <Subsection level="h3">
-              <Heading level="h3" title="기본 사용">
-                <Body className="leading-relaxed">
-                  <Code>List</Code>와 <Code>ListItem</Code>을 조합하여
-                  사용합니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { List, ListItem } from '@/components/hanui';
+          {/* 3) 사용법 */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Code variant="block" language="tsx">
+              {`import { List, ListItem } from '@/components/hanui/list'
 
 <List>
   <ListItem>첫 번째 항목</ListItem>
   <ListItem>두 번째 항목</ListItem>
   <ListItem>세 번째 항목</ListItem>
 </List>`}
-              </Code>
+            </Code>
+          </Section>
 
-              <Card variant="outlined" className="mt-3">
-                <List>
-                  <ListItem>첫 번째 항목</ListItem>
-                  <ListItem>두 번째 항목</ListItem>
-                  <ListItem>세 번째 항목</ListItem>
-                </List>
-              </Card>
-            </Subsection>
+          {/* 4) 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
 
+            {/* 순서 없는 목록 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Ordered List">
-                <Body className="leading-relaxed">
-                  <Code>variant="ordered"</Code>로 번호 리스트를 만들 수
-                  있습니다:
-                </Body>
-              </Heading>
+              <Heading level="h3" title="순서 없는 목록 (Unordered List)" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-8 w-full">
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Unordered (•) - 기본
+                    </div>
+                    <List>
+                      <ListItem>첫 번째 항목</ListItem>
+                      <ListItem>두 번째 항목</ListItem>
+                      <ListItem>세 번째 항목</ListItem>
+                    </List>
+                  </div>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<List variant="ordered">
-  <ListItem>단계 1</ListItem>
-  <ListItem>단계 2</ListItem>
-  <ListItem>단계 3</ListItem>
-</List>`}
-              </Code>
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Dash (−) - 보조 항목
+                    </div>
+                    <List variant="dash">
+                      <ListItem>대시 항목 1</ListItem>
+                      <ListItem>대시 항목 2</ListItem>
+                      <ListItem>대시 항목 3</ListItem>
+                    </List>
+                  </div>
 
-              <Card variant="outlined" className="mt-3">
-                <List variant="ordered">
-                  <ListItem>단계 1</ListItem>
-                  <ListItem>단계 2</ListItem>
-                  <ListItem>단계 3</ListItem>
-                </List>
-              </Card>
-            </Subsection>
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Check (✓) - 완료/체크 항목
+                    </div>
+                    <List variant="check">
+                      <ListItem>완료된 항목 1</ListItem>
+                      <ListItem>완료된 항목 2</ListItem>
+                      <ListItem>완료된 항목 3</ListItem>
+                    </List>
+                  </div>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`// Unordered (기본 - 동그라미)
+<List>
+  <ListItem>첫 번째 항목</ListItem>
+  <ListItem>두 번째 항목</ListItem>
+  <ListItem>세 번째 항목</ListItem>
+</List>
 
-            <Subsection level="h3">
-              <Heading level="h3" title="Dash List">
-                <Body className="leading-relaxed">
-                  <Code>variant="dash"</Code>로 대시(−) 리스트를 만들 수
-                  있습니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<List variant="dash">
+// Dash (대시)
+<List variant="dash">
   <ListItem>대시 항목 1</ListItem>
   <ListItem>대시 항목 2</ListItem>
   <ListItem>대시 항목 3</ListItem>
-</List>`}
-              </Code>
+</List>
 
-              <Card variant="outlined" className="mt-3">
-                <List variant="dash">
-                  <ListItem>대시 항목 1</ListItem>
-                  <ListItem>대시 항목 2</ListItem>
-                  <ListItem>대시 항목 3</ListItem>
-                </List>
-              </Card>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Check List">
-                <Body className="leading-relaxed">
-                  <Code>variant="check"</Code>로 체크(✓) 리스트를 만들 수
-                  있습니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<List variant="check">
+// Check (체크)
+<List variant="check">
   <ListItem>완료된 항목 1</ListItem>
   <ListItem>완료된 항목 2</ListItem>
   <ListItem>완료된 항목 3</ListItem>
 </List>`}
               </Code>
-
-              <Card variant="outlined" className="mt-3">
-                <List variant="check">
-                  <ListItem>완료된 항목 1</ListItem>
-                  <ListItem>완료된 항목 2</ListItem>
-                  <ListItem>완료된 항목 3</ListItem>
-                </List>
-              </Card>
             </Subsection>
 
+            {/* 순서 있는 목록 */}
             <Subsection level="h3">
-              <Heading level="h3" title="2depth 중첩 리스트">
-                <Body className="leading-relaxed">
-                  <Code>ListItem</Code> 안에 <Code>List</Code>를 넣으면 자동으로
-                  2depth 중첩 리스트가 됩니다. <Code>level=&#123;2&#125;</Code>
-                  나 <Code>variant="dash"</Code>를 지정하지 않아도 자동으로
-                  들여쓰기되고 dash(−) 아이콘을 사용합니다:
-                </Body>
-              </Heading>
+              <Heading level="h3" title="순서 있는 목록 (Ordered List)" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-8 w-full">
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Ordered (1, 2, 3...) - 숫자 순서
+                    </div>
+                    <List variant="ordered">
+                      <ListItem>첫 번째 단계</ListItem>
+                      <ListItem>두 번째 단계</ListItem>
+                      <ListItem>세 번째 단계</ListItem>
+                    </List>
+                  </div>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<List>
-  <ListItem>
-    사용자가 한 개의 항목을 선택할 수 있는 경우
-    <List>
-      <ListItem>라디오 버튼을 사용합니다</ListItem>
-    </List>
-  </ListItem>
-  <ListItem>
-    옵션을 선택하지마세요
-    <List>
-      <ListItem>토글 스위치를 사용합니다</ListItem>
-      <ListItem>부분적으로 옵션을 활성화할 수 있습니다</ListItem>
-    </List>
-  </ListItem>
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Ordered Alpha (a, b, c...) - 알파벳 순서
+                    </div>
+                    <List variant="ordered-alpha">
+                      <ListItem>첫 번째 항목</ListItem>
+                      <ListItem>두 번째 항목</ListItem>
+                      <ListItem>세 번째 항목</ListItem>
+                    </List>
+                  </div>
+
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Ordered Circle (①, ②, ③...) - 원형 번호
+                    </div>
+                    <List variant="ordered-circle">
+                      <ListItem>첫 번째 항목</ListItem>
+                      <ListItem>두 번째 항목</ListItem>
+                      <ListItem>세 번째 항목</ListItem>
+                    </List>
+                  </div>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`// Ordered (숫자)
+<List variant="ordered">
+  <ListItem>첫 번째 단계</ListItem>
+  <ListItem>두 번째 단계</ListItem>
+  <ListItem>세 번째 단계</ListItem>
+</List>
+
+// Ordered Alpha (알파벳)
+<List variant="ordered-alpha">
+  <ListItem>첫 번째 항목</ListItem>
+  <ListItem>두 번째 항목</ListItem>
+  <ListItem>세 번째 항목</ListItem>
+</List>
+
+// Ordered Circle (원형 번호)
+<List variant="ordered-circle">
+  <ListItem>첫 번째 항목</ListItem>
+  <ListItem>두 번째 항목</ListItem>
+  <ListItem>세 번째 항목</ListItem>
 </List>`}
               </Code>
+            </Subsection>
 
-              <Card variant="outlined" className="mt-3">
+            {/* 2depth 중첩 리스트 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="2depth 중첩 리스트" />
+              <ComponentPreview>
                 <List>
                   <ListItem>
                     사용자가 한 개의 항목을 선택할 수 있는 경우
@@ -249,7 +229,7 @@ export default function ListPage() {
                     </List>
                   </ListItem>
                   <ListItem>
-                    옵션을 선택하지마세요
+                    옵션을 선택하거나 해제하는 경우
                     <List>
                       <ListItem>토글 스위치를 사용합니다</ListItem>
                       <ListItem>
@@ -267,163 +247,177 @@ export default function ListPage() {
                     </List>
                   </ListItem>
                 </List>
-              </Card>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<List>
+  <ListItem>
+    사용자가 한 개의 항목을 선택할 수 있는 경우
+    <List>
+      <ListItem>라디오 버튼을 사용합니다</ListItem>
+    </List>
+  </ListItem>
+  <ListItem>
+    옵션을 선택하거나 해제하는 경우
+    <List>
+      <ListItem>토글 스위치를 사용합니다</ListItem>
+      <ListItem>부분적으로 옵션을 활성화할 수 있습니다</ListItem>
+    </List>
+  </ListItem>
+</List>`}
+              </Code>
             </Subsection>
 
+            {/* 3depth 중첩 리스트 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Spacing 옵션">
-                <Body className="leading-relaxed">
-                  <Code>spacing</Code> prop으로 항목 간 간격을 조절할 수
-                  있습니다:
-                </Body>
-              </Heading>
+              <Heading level="h3" title="3depth 중첩 리스트" />
+              <ComponentPreview>
+                <List>
+                  <ListItem>
+                    컴포넌트 설계 원칙
+                    <List>
+                      <ListItem>
+                        접근성을 최우선으로 고려
+                        <List>
+                          <ListItem>키보드 내비게이션 지원</ListItem>
+                          <ListItem>스크린 리더 호환성</ListItem>
+                          <ListItem>ARIA 속성 활용</ListItem>
+                        </List>
+                      </ListItem>
+                      <ListItem>
+                        일관된 디자인 시스템
+                        <List>
+                          <ListItem>KRDS 색상 팔레트 준수</ListItem>
+                          <ListItem>타이포그래피 규칙 적용</ListItem>
+                        </List>
+                      </ListItem>
+                    </List>
+                  </ListItem>
+                  <ListItem>
+                    개발 가이드
+                    <List>
+                      <ListItem>
+                        코드 품질 관리
+                        <List>
+                          <ListItem>TypeScript 타입 안정성</ListItem>
+                          <ListItem>ESLint 규칙 준수</ListItem>
+                        </List>
+                      </ListItem>
+                    </List>
+                  </ListItem>
+                </List>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<List>
+  <ListItem>
+    Level 1 항목 (•)
+    <List>
+      <ListItem>
+        Level 2 항목 (−)
+        <List>
+          <ListItem>Level 3 항목 (○)</ListItem>
+          <ListItem>Level 3 항목 2 (○)</ListItem>
+        </List>
+      </ListItem>
+    </List>
+  </ListItem>
+</List>`}
+              </Code>
+            </Subsection>
 
-              <Stack gap="md">
-                <div>
-                  <Body className="font-medium mb-2">Tight (space-y-1)</Body>
-                  <Card variant="outlined">
+            {/* Spacing */}
+            <Subsection level="h3">
+              <Heading level="h3" title="Spacing" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-8 w-full">
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Tight - 간격이 좁은 경우
+                    </div>
                     <List spacing="tight">
                       <ListItem>항목 1</ListItem>
                       <ListItem>항목 2</ListItem>
                       <ListItem>항목 3</ListItem>
                     </List>
-                  </Card>
-                </div>
+                  </div>
 
-                <div>
-                  <Body className="font-medium mb-2">Default (space-y-3)</Body>
-                  <Card variant="outlined">
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Default - 일반적인 경우
+                    </div>
                     <List spacing="default">
                       <ListItem>항목 1</ListItem>
                       <ListItem>항목 2</ListItem>
                       <ListItem>항목 3</ListItem>
                     </List>
-                  </Card>
-                </div>
+                  </div>
 
-                <div>
-                  <Body className="font-medium mb-2">Loose (space-y-4)</Body>
-                  <Card variant="outlined">
+                  <div>
+                    <div className="mb-2 text-sm font-medium text-krds-gray-70">
+                      Loose - 간격이 넓은 경우
+                    </div>
                     <List spacing="loose">
                       <ListItem>항목 1</ListItem>
                       <ListItem>항목 2</ListItem>
                       <ListItem>항목 3</ListItem>
                     </List>
-                  </Card>
+                  </div>
                 </div>
-              </Stack>
-            </Subsection>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`// Tight spacing
+<List spacing="tight">
+  <ListItem>항목 1</ListItem>
+</List>
 
-            <Subsection level="h3">
-              <Heading level="h3" title="커스텀 Indicator">
-                <Body className="leading-relaxed">
-                  <Code>showIndicator=&#123;false&#125;</Code>로 기본 불릿을
-                  숨기고 커스텀 아이콘을 사용할 수 있습니다:
-                </Body>
-              </Heading>
+// Default spacing
+<List spacing="default">
+  <ListItem>항목 1</ListItem>
+</List>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<List>
-  <ListItem showIndicator={false}>
-    <span className="text-green-600">✓</span>
-    <span>완료된 항목</span>
-  </ListItem>
-  <ListItem showIndicator={false}>
-    <span className="text-yellow-600">⚠</span>
-    <span>경고 항목</span>
-  </ListItem>
+// Loose spacing
+<List spacing="loose">
+  <ListItem>항목 1</ListItem>
 </List>`}
               </Code>
-
-              <Card variant="outlined" className="mt-3">
-                <List>
-                  <ListItem showIndicator={false}>
-                    <span className="text-green-600 font-bold">✓</span>
-                    <span>완료된 항목</span>
-                  </ListItem>
-                  <ListItem showIndicator={false}>
-                    <span className="text-yellow-600 font-bold">⚠</span>
-                    <span>경고 항목</span>
-                  </ListItem>
-                  <ListItem showIndicator={false}>
-                    <span className="text-red-600 font-bold">✗</span>
-                    <span>에러 항목</span>
-                  </ListItem>
-                </List>
-              </Card>
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
-            <Heading level="h2" id="best-practices" title="Best Practices" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하나요?" />
-              <DoCard title="List를 사용하기 적합한 경우">
-                <List variant="check">
-                  <ListItem>관련된 항목들을 순서대로 나열할 때</ListItem>
-                  <ListItem>단계별 절차를 설명할 때 (ordered)</ListItem>
-                  <ListItem>체크리스트를 표시할 때 (check)</ListItem>
-                  <ListItem>기능이나 특징을 나열할 때</ListItem>
-                  <ListItem>
-                    계층 구조가 있는 정보를 표시할 때 (2depth)
-                  </ListItem>
-                </List>
-              </DoCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
-              <DontCard title="List 사용을 피해야 하는 경우">
-                <List variant="dash">
-                  <ListItem>
-                    표 형태의 데이터를 표시할 때 (<Code>Table</Code> 컴포넌트
-                    사용)
-                  </ListItem>
-                  <ListItem>
-                    복잡한 데이터 구조를 표시할 때 (<Code>StructuredList</Code>{' '}
-                    컴포넌트 사용)
-                  </ListItem>
-                  <ListItem>
-                    3depth 이상의 깊은 중첩이 필요할 때 (다른 구조 고려)
-                  </ListItem>
-                </List>
-              </DontCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="사용 가이드라인" />
-              <List>
-                <ListItem>
-                  순서가 중요한 경우 <Code>variant="ordered"</Code>를
-                  사용하세요.
-                </ListItem>
-                <ListItem>
-                  완료/체크 상태를 나타낼 때는 <Code>variant="check"</Code>를
-                  사용하세요.
-                </ListItem>
-                <ListItem>
-                  항목 간 간격은 콘텐츠의 밀도에 따라 적절히 조절하세요.
-                </ListItem>
-                <ListItem>
-                  2depth 중첩 리스트는 자동으로 dash 아이콘을 사용하므로 별도
-                  지정이 불필요합니다.
-                </ListItem>
-              </List>
-            </Subsection>
+          {/* 5) 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="List는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>시맨틱 HTML:</strong> <Code>&lt;ul&gt;</Code>,{' '}
+                <Code>&lt;ol&gt;</Code>, <Code>&lt;li&gt;</Code> 태그를 사용하여
+                스크린 리더를 지원합니다.
+              </ListItem>
+              <ListItem>
+                <strong>자동 중첩 처리:</strong> ListItem 안에 List를 넣으면
+                자동으로 depth가 증가하며 적절한 들여쓰기와 아이콘을 제공합니다
+                (최대 3depth).
+              </ListItem>
+              <ListItem>
+                <strong>CSS ::before 활용:</strong> 인디케이터는{' '}
+                <Code>::before</Code> 가상 요소로 구현되어 깔끔한 마크업을
+                유지합니다.
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
-        {/* API 탭 */}
+        {/* ========== API 탭 ========== */}
         <TabsContent value="api">
-          <Section>
-            <Heading level="h2" id="api" title="API Reference" />
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
               <Heading level="h3" title="List Props" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
@@ -434,47 +428,56 @@ export default function ListPage() {
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">variant</TableCell>
                     <TableCell className="font-mono">
-                      &apos;unordered&apos; | &apos;ordered&apos; |
-                      &apos;dash&apos; | &apos;check&apos;
+                      <Code>variant</Code>
                     </TableCell>
-                    <TableCell className="font-mono">
-                      &apos;unordered&apos;
+                    <TableCell>
+                      <Code className="text-xs">
+                        'unordered' | 'ordered' | 'dash' | 'check'
+                      </Code>
                     </TableCell>
+                    <TableCell>'unordered'</TableCell>
                     <TableCell>리스트 타입</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">spacing</TableCell>
                     <TableCell className="font-mono">
-                      &apos;tight&apos; | &apos;default&apos; |
-                      &apos;loose&apos;
+                      <Code>spacing</Code>
                     </TableCell>
-                    <TableCell className="font-mono">
-                      &apos;default&apos;
+                    <TableCell>
+                      <Code className="text-xs">
+                        'tight' | 'default' | 'loose'
+                      </Code>
                     </TableCell>
+                    <TableCell>'default'</TableCell>
                     <TableCell>항목 간 간격</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">level</TableCell>
-                    <TableCell className="font-mono">1 | 2</TableCell>
                     <TableCell className="font-mono">
-                      1 (ListItem 안에서는 자동으로 2)
+                      <Code>level</Code>
                     </TableCell>
                     <TableCell>
-                      리스트 중첩 깊이 (ListItem 안에 넣으면 자동으로 2depth
-                      적용)
+                      <Code className="text-xs">1 | 2 | 3</Code>
                     </TableCell>
+                    <TableCell>1</TableCell>
+                    <TableCell>리스트 중첩 깊이 (자동 설정)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">className</TableCell>
-                    <TableCell className="font-mono">string</TableCell>
+                    <TableCell className="font-mono">
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>추가 CSS 클래스</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">children</TableCell>
-                    <TableCell className="font-mono">ReactNode</TableCell>
+                    <TableCell className="font-mono">
+                      <Code>children</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">ReactNode</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>자식 요소 (ListItem)</TableCell>
                   </TableRow>
@@ -484,8 +487,7 @@ export default function ListPage() {
 
             <Subsection level="h3">
               <Heading level="h3" title="ListItem Props" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
@@ -496,20 +498,32 @@ export default function ListPage() {
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">showIndicator</TableCell>
-                    <TableCell className="font-mono">boolean</TableCell>
-                    <TableCell className="font-mono">true</TableCell>
+                    <TableCell className="font-mono">
+                      <Code>showIndicator</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>true</TableCell>
                     <TableCell>불릿/번호 표시 여부</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">className</TableCell>
-                    <TableCell className="font-mono">string</TableCell>
+                    <TableCell className="font-mono">
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>추가 CSS 클래스</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">children</TableCell>
-                    <TableCell className="font-mono">ReactNode</TableCell>
+                    <TableCell className="font-mono">
+                      <Code>children</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">ReactNode</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>자식 요소</TableCell>
                   </TableRow>

@@ -11,7 +11,13 @@ export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
    * List variant
    * @default 'unordered'
    */
-  variant?: 'unordered' | 'ordered' | 'dash' | 'check';
+  variant?:
+    | 'unordered'
+    | 'ordered'
+    | 'ordered-alpha'
+    | 'ordered-circle'
+    | 'dash'
+    | 'check';
 
   /**
    * Spacing between items
@@ -23,15 +29,21 @@ export interface ListProps extends React.HTMLAttributes<HTMLUListElement> {
    * Nested level (for nested lists)
    * @default 1
    */
-  level?: 1 | 2;
+  level?: 1 | 2 | 3;
 }
 
 /**
  * List Context - variant와 level을 ListItem에 전달
  */
 interface ListContextValue {
-  variant: 'unordered' | 'ordered' | 'dash' | 'check';
-  level: 1 | 2;
+  variant:
+    | 'unordered'
+    | 'ordered'
+    | 'ordered-alpha'
+    | 'ordered-circle'
+    | 'dash'
+    | 'check';
+  level: 1 | 2 | 3;
   isNested: boolean;
 }
 
@@ -91,10 +103,22 @@ const spacingStyles = {
  *   </ListItem>
  * </List>
  *
- * // Ordered List
+ * // Ordered List (1, 2, 3...)
  * <List variant="ordered">
  *   <ListItem>단계 1</ListItem>
  *   <ListItem>단계 2</ListItem>
+ * </List>
+ *
+ * // Ordered List with Alphabets (a, b, c...)
+ * <List variant="ordered-alpha">
+ *   <ListItem>항목 a</ListItem>
+ *   <ListItem>항목 b</ListItem>
+ * </List>
+ *
+ * // Ordered List with Circles (①, ②, ③...)
+ * <List variant="ordered-circle">
+ *   <ListItem>첫 번째</ListItem>
+ *   <ListItem>두 번째</ListItem>
  * </List>
  *
  * // Dash List
@@ -133,12 +157,18 @@ export const List = React.forwardRef<
   ) => {
     const parentContext = React.useContext(ListContext);
 
-    // ListItem 내부에 중첩된 경우 자동으로 level=2, variant=dash 적용
+    // ListItem 내부에 중첩된 경우 자동으로 level 증가, variant=dash 적용
     const isNested = parentContext.isNested;
-    const level = userLevel ?? (isNested ? 2 : 1);
+    const level =
+      userLevel ??
+      (isNested ? (Math.min(parentContext.level + 1, 3) as 1 | 2 | 3) : 1);
     const variant = userVariant ?? (isNested ? 'dash' : 'unordered');
 
-    const Component = variant === 'ordered' ? 'ol' : 'ul';
+    const isOrderedVariant =
+      variant === 'ordered' ||
+      variant === 'ordered-alpha' ||
+      variant === 'ordered-circle';
+    const Component = isOrderedVariant ? 'ol' : 'ul';
 
     return (
       <ListContext.Provider value={{ variant, level, isNested: false }}>
@@ -146,11 +176,21 @@ export const List = React.forwardRef<
           ref={ref as any}
           className={cn(
             'text-krds-gray-90',
-            level === 2 && 'ml-6 mt-2',
+            level === 2 && 'mt-2',
+            level === 3 && 'mt-2',
             variant === 'ordered' && 'list-decimal list-inside',
+            variant === 'ordered-alpha' && 'list-none',
+            variant === 'ordered-circle' && 'list-none',
             spacingStyles[spacing],
             className
           )}
+          style={
+            variant === 'ordered-alpha'
+              ? { counterReset: 'alpha-counter' }
+              : variant === 'ordered-circle'
+                ? { counterReset: 'circle-counter' }
+                : undefined
+          }
           {...props}
         >
           {children}
@@ -179,57 +219,124 @@ export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   ({ showIndicator = true, className, children, ...props }, ref) => {
     const { variant, level } = React.useContext(ListContext);
     const isOrdered = variant === 'ordered';
+    const isOrderedAlpha = variant === 'ordered-alpha';
+    const isOrderedCircle = variant === 'ordered-circle';
     const isDash = variant === 'dash';
     const isCheck = variant === 'check';
 
-    // ordered list의 경우 기본 번호를 사용
-    if (isOrdered && showIndicator) {
+    // ordered list (1, 2, 3...)
+    if (isOrdered) {
       return (
-        <li ref={ref} className={cn(className)} {...props}>
-          {children}
-        </li>
+        <ListContext.Provider value={{ variant, level, isNested: true }}>
+          <li
+            ref={ref}
+            className={cn(
+              showIndicator && 'list-decimal',
+              !showIndicator && 'list-none',
+              className
+            )}
+            {...props}
+          >
+            {children}
+          </li>
+        </ListContext.Provider>
       );
     }
 
-    // 2depth의 경우 다른 아이콘 사용
-    const getIndicator = () => {
-      if (level === 2) {
-        return isDash ? '−' : '−'; // 2depth는 항상 dash
+    // ordered-alpha list (a, b, c...)
+    if (isOrderedAlpha) {
+      return (
+        <ListContext.Provider value={{ variant, level, isNested: true }}>
+          <li
+            ref={ref}
+            className={cn(
+              'list-none relative pl-6',
+              showIndicator &&
+                "before:absolute before:left-0 before:font-medium before:text-krds-gray-90 before:content-[counter(alpha-counter,lower-alpha)'.']",
+              className
+            )}
+            style={
+              showIndicator ? { counterIncrement: 'alpha-counter' } : undefined
+            }
+            {...props}
+          >
+            {children}
+          </li>
+        </ListContext.Provider>
+      );
+    }
+
+    // ordered-circle list (①, ②, ③...) - using Unicode circled numbers
+    if (isOrderedCircle) {
+      return (
+        <ListContext.Provider value={{ variant, level, isNested: true }}>
+          <li
+            ref={ref}
+            className={cn(
+              'list-none relative pl-6',
+              showIndicator &&
+                'before:absolute before:left-0 before:font-medium before:text-krds-gray-90 [counter-increment:circle-counter] before:content-[counter(circle-counter,circled-decimal)]',
+              className
+            )}
+            {...props}
+          >
+            {children}
+          </li>
+        </ListContext.Provider>
+      );
+    }
+
+    // showIndicator=false인 경우
+    if (!showIndicator) {
+      return (
+        <ListContext.Provider value={{ variant, level, isNested: true }}>
+          <li ref={ref} className={cn('list-none', className)} {...props}>
+            {children}
+          </li>
+        </ListContext.Provider>
+      );
+    }
+
+    // depth별 indicator 스타일
+    const getIndicatorClass = () => {
+      // Level 1
+      if (level === 1) {
+        if (isCheck) {
+          return "before:content-['✓'] before:text-krds-gray-70 before:left-0";
+        }
+        if (isDash) {
+          return "before:content-['−'] before:text-krds-gray-70 before:left-0";
+        }
+        // 채워진 동그라미 (6px)
+        return "before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-krds-gray-70 before:top-[7px] before:left-0";
       }
-      return isCheck ? '✓' : isDash ? '−' : '•';
+
+      // Level 2 - 항상 dash
+      if (level === 2) {
+        return "before:content-['−'] before:text-krds-gray-60 before:left-0";
+      }
+
+      // Level 3 - 빈 동그라미 (6px border)
+      return "before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:border before:border-krds-gray-50 before:top-[7px] before:left-0";
     };
 
-    // ListItem의 children을 Context로 감싸서 내부 List가 중첩임을 알림
-    const wrappedChildren = (
-      <ListContext.Provider value={{ variant, level, isNested: true }}>
-        {children}
-      </ListContext.Provider>
-    );
-
-    // unordered, dash, check list 또는 showIndicator=false인 경우
+    // unordered, dash, check list
     return (
-      <li
-        ref={ref}
-        className={cn(
-          'flex items-start gap-3',
-          isOrdered && 'list-none', // ordered에서 showIndicator=false면 번호 숨김
-          className
-        )}
-        {...props}
-      >
-        {showIndicator && !isOrdered && (
-          <span
-            className={cn(
-              'font-bold w-3 flex-shrink-0',
-              level === 2 ? 'text-krds-gray-60' : 'text-krds-gray-70'
-            )}
-            aria-hidden="true"
-          >
-            {getIndicator()}
-          </span>
-        )}
-        <span className="flex-1">{wrappedChildren}</span>
-      </li>
+      <ListContext.Provider value={{ variant, level, isNested: true }}>
+        <li
+          ref={ref}
+          className={cn(
+            'list-none relative pl-5',
+            level === 3 && 'text-[15px]',
+            'before:absolute before:font-bold',
+            getIndicatorClass(),
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </li>
+      </ListContext.Provider>
     );
   }
 );
