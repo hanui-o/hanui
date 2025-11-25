@@ -562,3 +562,11 @@ pre {
 code .line {
   line-height: 1.75;
 }
+
+/* Custom Counter Style for Circled Numbers (①, ②, ③...) */
+@counter-style circled-decimal {
+  system: fixed;
+  symbols: '①' '②' '③' '④' '⑤' '⑥' '⑦' '⑧' '⑨' '⑩' '⑪' '⑫' '⑬' '⑭' '⑮' '⑯' '⑰'
+    '⑱' '⑲' '⑳';
+  suffix: ' ';
+}

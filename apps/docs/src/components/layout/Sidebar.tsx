@@ -26,17 +26,17 @@ const getStartedNavigation = [
   },
 ];
 
-// const designSystemNavigation = [
-//   {
-//     title: 'Design System',
-//     items: [
-//       { title: 'Colors', href: '/design-system/colors' },
-//       { title: 'Typography', href: '/design-system/typography' },
-//       { title: 'Spacing', href: '/design-system/spacing' },
-//       { title: 'Breakpoints', href: '/design-system/breakpoints' },
-//     ],
-//   },
-// ];
+const designSystemNavigation = [
+  {
+    title: 'Design System',
+    items: [
+      { title: 'Colors', href: '/design-system/colors' },
+      { title: 'Typography', href: '/design-system/typography' },
+      { title: 'Spacing', href: '/design-system/spacing' },
+      { title: 'Breakpoints', href: '/design-system/breakpoints' },
+    ],
+  },
+];
 
 const componentsNavigation = [
   {

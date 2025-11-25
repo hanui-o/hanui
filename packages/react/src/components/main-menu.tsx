@@ -152,7 +152,6 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
     ref
   ) => {
     const [openDropdown, setOpenDropdown] = React.useState<number | null>(null);
-    const [focusedItem, setFocusedItem] = React.useState<number>(-1);
     const menuRef = React.useRef<HTMLUListElement>(null);
 
     // Close dropdown on outside click
@@ -208,16 +207,9 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
           }
           break;
         case 'ArrowRight':
-          if (orientation === 'horizontal') {
-            event.preventDefault();
-            setFocusedItem((index + 1) % items.length);
-          }
-          break;
         case 'ArrowLeft':
-          if (orientation === 'horizontal') {
-            event.preventDefault();
-            setFocusedItem((index - 1 + items.length) % items.length);
-          }
+          // Arrow key navigation for menu items
+          // Future enhancement: focus management
           break;
       }
     };
@@ -253,11 +245,10 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                         'gnb-main-trigger',
                         'px-4 py-2 font-medium rounded-md',
                         'transition-colors duration-200',
-                        'hover:bg-gray-100 dark:hover:bg-gray-800',
-                        'focus:outline-none focus:ring-2 focus:ring-blue-500',
-                        isActive &&
-                          'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-                        isOpen && 'bg-gray-100 dark:bg-gray-800'
+                        'hover:bg-krds-gray-10',
+                        'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
+                        isActive && 'bg-krds-primary-10 text-krds-primary-60',
+                        isOpen && 'bg-krds-gray-10'
                       )}
                       onClick={() => toggleDropdown(index)}
                       onKeyDown={(e) => handleKeyDown(e, index, true)}
@@ -290,8 +281,8 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                         className={cn(
                           'absolute top-full left-0 mt-2 z-50',
                           'min-w-[280px] max-w-[400px]',
-                          'bg-white dark:bg-gray-900',
-                          'border border-gray-200 dark:border-gray-700',
+                          'bg-krds-white',
+                          'border border-krds-gray-20',
                           'rounded-lg shadow-lg',
                           'animate-in fade-in-0 zoom-in-95 duration-200'
                         )}
@@ -302,12 +293,11 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                             key={sIndex}
                             className={cn(
                               'p-4',
-                              sIndex > 0 &&
-                                'border-t border-gray-200 dark:border-gray-700'
+                              sIndex > 0 && 'border-t border-krds-gray-20'
                             )}
                           >
                             {section.title && (
-                              <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
+                              <h3 className="text-xs font-semibold text-krds-gray-60 uppercase tracking-wide mb-3">
                                 {section.title}
                               </h3>
                             )}
@@ -320,9 +310,9 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                                     className={cn(
                                       'block px-3 py-2 rounded-md',
                                       'transition-colors',
-                                      'hover:bg-gray-50 dark:hover:bg-gray-800',
+                                      'hover:bg-krds-gray-5',
                                       link.active &&
-                                        'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                                        'bg-krds-primary-10 text-krds-primary-60'
                                     )}
                                     aria-current={
                                       link.active ? 'page' : undefined
@@ -332,7 +322,7 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                                       {link.label}
                                     </div>
                                     {link.description && (
-                                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                      <div className="text-xs text-krds-gray-60 mt-1">
                                         {link.description}
                                       </div>
                                     )}
@@ -344,14 +334,14 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                             {/* Utility links */}
                             {section.utilityLinks &&
                               section.utilityLinks.length > 0 && (
-                                <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+                                <div className="mt-3 pt-3 border-t border-krds-gray-10">
                                   <ul className="space-y-1">
                                     {section.utilityLinks.map(
                                       (utilityLink, uIndex) => (
                                         <li key={uIndex}>
                                           <a
                                             href={utilityLink.href}
-                                            className="block px-3 py-1.5 text-xs font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                                            className="block px-3 py-1.5 text-xs font-medium text-krds-primary-60 hover:underline"
                                           >
                                             {utilityLink.label} →
                                           </a>
@@ -375,9 +365,9 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                                     className={cn(
                                       'block px-3 py-2 rounded-md',
                                       'transition-colors',
-                                      'hover:bg-gray-50 dark:hover:bg-gray-800',
+                                      'hover:bg-krds-gray-5',
                                       child.active &&
-                                        'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                                        'bg-krds-primary-10 text-krds-primary-60'
                                     )}
                                     aria-current={
                                       child.active ? 'page' : undefined
@@ -400,10 +390,9 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                     className={cn(
                       'block px-4 py-2 font-medium rounded-md',
                       'transition-colors duration-200',
-                      'hover:bg-gray-100 dark:hover:bg-gray-800',
-                      'focus:outline-none focus:ring-2 focus:ring-blue-500',
-                      isActive &&
-                        'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300'
+                      'hover:bg-krds-gray-10',
+                      'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
+                      isActive && 'bg-krds-primary-10 text-krds-primary-60'
                     )}
                     onKeyDown={(e) => handleKeyDown(e, index, false)}
                     aria-current={isActive ? 'page' : undefined}

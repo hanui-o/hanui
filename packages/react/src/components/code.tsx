@@ -46,9 +46,9 @@ export interface CodeProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const sizeStyles = {
-  sm: 'text-xs px-1 py-0.5',
-  default: 'px-1.5 py-0.5',
-  lg: 'text-base px-2 py-1',
+  sm: 'text-krds-body-xs px-1 py-0.5',
+  default: 'text-krds-body-sm px-1.5 py-0.5',
+  lg: 'text-krds-body-md px-2 py-1',
 } as const;
 
 /**
