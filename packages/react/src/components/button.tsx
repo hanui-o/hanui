@@ -52,9 +52,9 @@ const buttonVariants = cva(
        * - icon: Square shape for icon-only buttons
        */
       size: {
-        sm: 'h-8 px-4 text-[15px] leading-[150%]',
-        md: 'h-10 px-4 text-[17px] leading-[150%]',
-        lg: 'h-12 px-6 text-[19px] leading-[150%]',
+        sm: 'h-8 px-4 [font-size:var(--krds-font-size-body-sm)] leading-[var(--krds-line-height-body)]',
+        md: 'h-10 px-4 [font-size:var(--krds-font-size-body-md)] leading-[var(--krds-line-height-body)]',
+        lg: 'h-12 px-6 [font-size:var(--krds-font-size-body-lg)] leading-[var(--krds-line-height-body)]',
         icon: 'h-10 w-10',
       },
     },

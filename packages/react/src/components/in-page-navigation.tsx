@@ -198,7 +198,7 @@ export function InPageNavigation({
                     'hover:text-krds-primary-60 hover:bg-krds-primary-5',
                     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-primary-60 focus-visible:outline-offset-2',
                     activeLink === link.href &&
-                      'text-krds-primary-60 bg-krds-primary-5 font-bold before:content-[""] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[3px] before:h-5 before:bg-krds-primary-60 before:rounded-r'
+                      'text-krds-primary-80 bg-krds-primary-5 font-bold'
                   )}
                   onClick={(e) => handleLinkClick(e, link.href)}
                   aria-current={

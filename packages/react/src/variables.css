@@ -20,6 +20,41 @@
   /* spacing은 16px 기준, font-size는 17px 기준으로 분리 */
   --base-font-size: 17px;
 
+  /* ============================================
+   * KRDS Typography - Font Sizes & Line Heights
+   * ============================================ */
+
+  /* Display (특대 제목) */
+  --krds-font-size-display-xl: 48px;
+  --krds-font-size-display-lg: 42px;
+  --krds-font-size-display-md: 36px;
+  --krds-font-size-display-sm: 32px;
+
+  /* Title (제목) */
+  --krds-font-size-title-xl: 32px;
+  --krds-font-size-title-lg: 28px;
+  --krds-font-size-title-md: 24px;
+  --krds-font-size-title-sm: 20px;
+  --krds-font-size-title-xs: 18px;
+
+  /* Body (본문) */
+  --krds-font-size-body-lg: 19px;
+  --krds-font-size-body-md: 17px;
+  --krds-font-size-body-sm: 15px;
+  --krds-font-size-body-xs: 13px;
+
+  /* Label (레이블) */
+  --krds-font-size-label-lg: 17px;
+  --krds-font-size-label-md: 15px;
+  --krds-font-size-label-sm: 13px;
+  --krds-font-size-label-xs: 11px;
+
+  /* Line Heights */
+  --krds-line-height-display: 130%;
+  --krds-line-height-title: 140%;
+  --krds-line-height-body: 150%;
+  --krds-line-height-label: 140%;
+
   /* KRDS Header Spacing Variables */
   --krds-gap-2: 0.5rem; /* 8px */
   --krds-gap-3: 0.75rem; /* 12px */
