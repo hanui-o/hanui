@@ -63,21 +63,20 @@ export default function FooterPage() {
             </Code>
           </Section>
 
-          <Section level="h2">
-            <Installation componentName="footer" />
-            <Card variant="info" className="mt-6">
-              <Body className="mb-3">설치 시 다음 파일이 추가됩니다:</Body>
-              <List className="text-krds-gray-90">
-                <ListItem>
-                  <Code>components/hanui/footer.tsx</Code> - Footer 컴포넌트
-                </ListItem>
-                <ListItem>
-                  <Code>components/hanui/footer.module.scss</Code> - CSS Modules
-                  스타일
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
+          <Installation componentName="footer" />
+
+          <Card variant="info" className="mt-6">
+            <Body className="mb-3">설치 시 다음 파일이 추가됩니다:</Body>
+            <List className="text-krds-gray-90">
+              <ListItem>
+                <Code>components/hanui/footer.tsx</Code> - Footer 컴포넌트
+              </ListItem>
+              <ListItem>
+                <Code>components/hanui/footer.module.scss</Code> - CSS Modules
+                스타일
+              </ListItem>
+            </List>
+          </Card>
 
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
@@ -105,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Body className="mb-4">
                 Footer는 KRDS 표준 레이아웃 구조를 따릅니다:
               </Body>
-              <List variant="check" spacing="normal" className="mb-4">
+              <List variant="check" className="mb-4">
                 <ListItem>
                   <Body size="sm" weight="bold" as="span">
                     Quick Links (footQuick)
@@ -281,7 +280,7 @@ export function Footer({ className }: FooterProps) {
           <Section level="h2">
             <Heading level="h2" id="accessibility" title="접근성" />
 
-            <List variant="check" spacing="normal">
+            <List variant="check">
               <ListItem>
                 <Body size="sm" weight="bold" as="span">
                   시맨틱 HTML
@@ -421,7 +420,7 @@ export function Footer({ className }: FooterProps) {
 
             <Subsection level="h3">
               <Heading level="h3" title="KRDS 준수사항" />
-              <List variant="check" spacing="normal">
+              <List variant="check">
                 <ListItem>
                   <Body size="sm" weight="bold" as="span">
                     필수 ID

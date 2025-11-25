@@ -78,7 +78,7 @@ export default function InPageNavigationPage() {
                 caption="이 페이지의 구성"
                 title="장애아동수당"
                 links={basicLinks}
-                className="!static !w-full"
+                className="!static"
               />
             </ComponentPreview>
 
@@ -100,7 +100,9 @@ const links = [
             </Code>
           </Section>
 
-          <Installation componentName="in-page-navigation" />
+          <Section level="h2">
+            <Installation componentName="in-page-navigation" />
+          </Section>
 
           {/* Usage */}
           <Section level="h2">
@@ -141,30 +143,6 @@ const links = [
 />`}
               </Code>
             </Subsection>
-          </Section>
-
-          {/* Best Practices */}
-          <Section level="h2">
-            <Heading level="h2" id="best-practices" title="모범 사례" />
-
-            <List variant="unordered">
-              <ListItem>
-                <strong>앵커 ID 필수:</strong> 연결하려는 섹션 요소에 반드시
-                ID를 설정하세요
-              </ListItem>
-              <ListItem>
-                <strong>데스크탑 레이아웃:</strong> Fixed positioning을 고려하여
-                레이아웃을 설계하세요
-              </ListItem>
-              <ListItem>
-                <strong>초기 활성 링크:</strong> active 속성으로 초기 활성
-                링크를 지정하세요
-              </ListItem>
-              <ListItem>
-                <strong>긴 페이지에 적합:</strong> 여러 섹션이 있는 긴 페이지에
-                사용하세요
-              </ListItem>
-            </List>
           </Section>
 
           {/* Accessibility */}

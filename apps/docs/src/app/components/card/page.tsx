@@ -3,8 +3,8 @@
 // Docs layout components
 import {
   PageSection as Section,
-  Heading,
   Subsection,
+  Heading,
   PageNavigation,
 } from '@/components/content';
 import { Installation } from '@/components/content/Installation';
