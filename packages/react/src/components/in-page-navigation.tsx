@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import styles from './in-page-navigation.module.scss';
+import { cn } from '../lib/utils';
 
 /**
  * In-page Navigation Link Item
@@ -165,27 +165,41 @@ export function InPageNavigation({
 
   return (
     <div
-      className={`${styles['krds-in-page-navigation-type']} ${className}`}
+      className={cn(
+        'relative w-full',
+        'lg:fixed lg:top-[120px] lg:right-0 lg:w-[280px] lg:z-[100]',
+        'xl:w-[320px]',
+        'max-lg:static max-lg:w-full max-lg:mb-8',
+        'print:hidden',
+        className
+      )}
       {...props}
     >
-      <div className={styles['krds-in-page-navigation-area']}>
+      <div className="bg-krds-white p-6">
         {/* Header */}
-        <div className={styles['in-page-navigation-header']}>
-          <p className={styles['quick-caption']}>{caption}</p>
-          <p className={styles['quick-title']}>{title}</p>
+        <div className="mb-5 pb-4 border-b border-krds-gray-20">
+          <p className="text-[13px] font-medium text-krds-gray-70 m-0 mb-2 tracking-tight">
+            {caption}
+          </p>
+          <p className="text-lg font-bold text-krds-gray-90 m-0 leading-[1.4] tracking-tight">
+            {title}
+          </p>
         </div>
 
         {/* Navigation List */}
-        <nav
-          className={styles['in-page-navigation-list']}
-          aria-label="In-page navigation"
-        >
-          <ul>
+        <nav className="mb-5" aria-label="In-page navigation">
+          <ul className="list-none p-0 m-0">
             {links.map((link, index) => (
-              <li key={index}>
+              <li key={index} className="m-0 p-0 last:mb-0 mb-1">
                 <a
                   href={link.href}
-                  className={activeLink === link.href ? styles.active : ''}
+                  className={cn(
+                    'block py-2.5 px-3 text-[15px] font-medium text-krds-gray-70 no-underline rounded-md transition-all leading-[1.5] tracking-tight relative',
+                    'hover:text-krds-primary-60 hover:bg-krds-primary-5',
+                    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-primary-60 focus-visible:outline-offset-2',
+                    activeLink === link.href &&
+                      'text-krds-primary-60 bg-krds-primary-5 font-bold before:content-[""] before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[3px] before:h-5 before:bg-krds-primary-60 before:rounded-r'
+                  )}
                   onClick={(e) => handleLinkClick(e, link.href)}
                   aria-current={
                     activeLink === link.href ? 'location' : undefined
@@ -200,17 +214,17 @@ export function InPageNavigation({
 
         {/* Action */}
         {action && (
-          <div className={styles['in-page-navigation-action']}>
+          <div className="pt-4 border-t border-krds-gray-20">
             <button
               type="button"
-              className="krds-btn medium"
+              className="w-full inline-flex items-center justify-center px-4 py-3 text-[15px] font-semibold text-white bg-krds-primary-60 rounded-md hover:bg-krds-primary-70 active:bg-krds-primary-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-primary-60 focus-visible:outline-offset-2 transition-all tracking-tight"
               onClick={action.onClick}
             >
               {action.label}
             </button>
             {action.info && (
               <p
-                className={styles['quick-info']}
+                className="text-[13px] text-krds-gray-70 mt-2 mb-0 text-center leading-[1.4]"
                 dangerouslySetInnerHTML={{ __html: action.info }}
               />
             )}

@@ -156,11 +156,11 @@ export type {
   SideNavLink,
 } from './components/SideNavigation/side-navigation';
 
-export { InPageNavigation } from './components/InPageNavigation/in-page-navigation';
+export { InPageNavigation } from './components/in-page-navigation';
 export type {
   InPageNavigationProps,
   InPageNavLink,
-} from './components/InPageNavigation/in-page-navigation';
+} from './components/in-page-navigation';
 
 export { TabBars } from './components/TabBars';
 export type { TabBarsProps, TabBarItem } from './components/TabBars';
