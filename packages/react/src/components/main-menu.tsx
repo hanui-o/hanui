@@ -1,228 +1,73 @@
 'use client';
 
 import * as React from 'react';
+import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /**
- * Main Menu Link Item
+ * Main Menu Link Item (메뉴 링크 항목)
  */
 export interface MainMenuLink {
-  /**
-   * Link label
-   */
-  label: string;
-
-  /**
-   * Link URL
-   */
-  href: string;
-
-  /**
-   * Description (optional)
-   */
-  description?: string;
-
-  /**
-   * Active state
-   */
-  active?: boolean;
+  label: string; // 링크 라벨
+  href: string; // 링크 URL
+  description?: string; // 설명 (선택)
+  active?: boolean; // 활성 상태
 }
 
 /**
- * Main Menu Section (for dropdown with sections)
+ * Main Menu Section (드롭다운 섹션)
  */
 export interface MainMenuSection {
-  /**
-   * Section title
-   */
-  title?: string;
-
-  /**
-   * Links in this section
-   */
-  links: MainMenuLink[];
-
-  /**
-   * Utility links (e.g., "View All")
-   */
-  utilityLinks?: MainMenuLink[];
+  title?: string; // 섹션 제목
+  links: MainMenuLink[]; // 섹션 내 링크 목록
+  utilityLinks?: MainMenuLink[]; // 유틸리티 링크 (예: "모두 보기")
 }
 
 /**
- * Main Menu Item
+ * Main Menu Item (메뉴 항목)
  */
 export interface MainMenuItem {
-  /**
-   * Menu label
-   */
-  label: string;
-
-  /**
-   * Menu URL (for simple link without dropdown)
-   */
-  href?: string;
-
-  /**
-   * Active state
-   */
-  active?: boolean;
-
-  /**
-   * Sub-menu sections (for dropdown)
-   */
-  sections?: MainMenuSection[];
-
-  /**
-   * Simple children links (alternative to sections)
-   */
-  children?: MainMenuLink[];
+  label: string; // 메뉴 라벨
+  href?: string; // 메뉴 URL (드롭다운 없는 단순 링크용)
+  active?: boolean; // 활성 상태
+  sections?: MainMenuSection[]; // 드롭다운 섹션 목록
+  children?: MainMenuLink[]; // 간단한 자식 링크 (sections 대신 사용)
+  dropdownWidth?: string; // 드롭다운 너비 (예: "w-[400px]", "w-96", 기본값: "w-[200px]")
 }
 
 /**
- * Main Menu Props
+ * Main Menu Props (메뉴 속성)
  */
-export interface MainMenuProps extends React.HTMLAttributes<HTMLElement> {
-  /**
-   * Menu items
-   */
-  items: MainMenuItem[];
-
-  /**
-   * Current active path (for aria-current)
-   */
-  currentPath?: string;
-
-  /**
-   * Additional CSS classes
-   */
-  className?: string;
-
-  /**
-   * Orientation
-   * @default "horizontal"
-   */
-  orientation?: 'horizontal' | 'vertical';
+export interface MainMenuProps {
+  items: MainMenuItem[]; // 메뉴 항목 배열
+  currentPath?: string; // 현재 활성 경로 (aria-current 설정용)
+  className?: string; // 추가 CSS 클래스
+  orientation?: 'horizontal' | 'vertical'; // 메뉴 방향 (기본값: "horizontal")
 }
 
 /**
- * Main Menu Component
+ * Main Menu Component (주 메뉴 컴포넌트)
  *
- * **Foundation Layer Features:**
- * - Required CSS Class: .krds-main-menu (KRDS mandatory)
- * - Keyboard Navigation: Tab, Enter, Esc
- * - WCAG 2.1 / KWCAG 2.2 Compliance
- * - Hierarchical structure with proper ARIA
- * - Focus management
+ * Radix UI Navigation Menu 기반의 접근성 완벽 지원 메뉴 컴포넌트
  *
- * **KRDS Standards:**
- * - Primary navigation for service information structure
- * - Supports simple links and multi-level dropdowns
- * - Maximum 3 levels recommended
- * - Dropdown with titles and descriptions
- * - Utility links for related pages
+ * **주요 기능:**
+ * - 자동 접근성 처리 (WCAG 2.1 / KWCAG 2.2 준수)
+ * - 키보드 네비게이션 완벽 지원 (Tab, Enter, Esc, Arrow keys)
+ * - 단순 링크 및 다단계 드롭다운 지원
+ * - 수평/수직 방향 설정 가능
  *
- * @example
- * ```tsx
- * // Simple horizontal menu
- * <MainMenu
- *   items={[
- *     { label: 'Home', href: '/', active: true },
- *     { label: 'About', href: '/about' },
- *     {
- *       label: 'Services',
- *       sections: [
- *         {
- *           title: 'Popular Services',
- *           links: [
- *             { label: 'Service A', href: '/services/a', description: 'Description' }
- *           ],
- *           utilityLinks: [
- *             { label: 'View All Services', href: '/services' }
- *           ]
- *         }
- *       ]
- *     }
- *   ]}
- * />
- * ```
+ * **자세한 사용법:** /components/mainmenu 문서 참고
  */
 export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
-  (
-    { items, currentPath, className, orientation = 'horizontal', ...props },
-    ref
-  ) => {
-    const [openDropdown, setOpenDropdown] = React.useState<number | null>(null);
-    const menuRef = React.useRef<HTMLUListElement>(null);
-
-    // Close dropdown on outside click
-    React.useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (
-          menuRef.current &&
-          !menuRef.current.contains(event.target as Node)
-        ) {
-          setOpenDropdown(null);
-        }
-      };
-
-      document.addEventListener('mousedown', handleClickOutside);
-      return () =>
-        document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-    // Handle ESC key
-    React.useEffect(() => {
-      const handleEscape = (event: KeyboardEvent) => {
-        if (event.key === 'Escape') {
-          setOpenDropdown(null);
-          setFocusedItem(-1);
-        }
-      };
-
-      document.addEventListener('keydown', handleEscape);
-      return () => document.removeEventListener('keydown', handleEscape);
-    }, []);
-
-    const toggleDropdown = (index: number) => {
-      setOpenDropdown(openDropdown === index ? null : index);
-    };
-
-    const handleKeyDown = (
-      event: React.KeyboardEvent,
-      index: number,
-      hasDropdown: boolean
-    ) => {
-      switch (event.key) {
-        case 'Enter':
-        case ' ':
-          if (hasDropdown) {
-            event.preventDefault();
-            toggleDropdown(index);
-          }
-          break;
-        case 'ArrowDown':
-          if (hasDropdown && openDropdown !== index) {
-            event.preventDefault();
-            setOpenDropdown(index);
-          }
-          break;
-        case 'ArrowRight':
-        case 'ArrowLeft':
-          // Arrow key navigation for menu items
-          // Future enhancement: focus management
-          break;
-      }
-    };
-
+  ({ items, currentPath, className, orientation = 'horizontal' }, ref) => {
     return (
-      <nav
-        ref={ref}
-        className={cn('krds-main-menu', className)}
-        aria-label="Main navigation"
-        {...props}
+      <NavigationMenu.Root
+        ref={ref as React.Ref<HTMLDivElement>}
+        className={cn('krds-main-menu', 'relative', className)}
+        orientation={orientation}
       >
-        <ul
-          ref={menuRef}
+        <NavigationMenu.List
           className={cn(
             'flex',
             orientation === 'horizontal'
@@ -230,65 +75,48 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
               : 'flex-col gap-1'
           )}
         >
-          {items.map((item, index) => {
+          {items.map((item: MainMenuItem, index: number) => {
             const hasDropdown = Boolean(item.sections || item.children);
-            const isOpen = openDropdown === index;
             const isActive = item.active || item.href === currentPath;
 
             return (
-              <li key={index} className="relative">
+              <NavigationMenu.Item key={index}>
                 {hasDropdown ? (
                   <>
-                    {/* Dropdown trigger */}
-                    <button
+                    {/* 드롭다운 트리거 */}
+                    <NavigationMenu.Trigger
                       className={cn(
-                        'gnb-main-trigger',
+                        'group inline-flex items-center gap-1',
                         'px-4 py-2 font-medium rounded-md',
                         'transition-colors duration-200',
                         'hover:bg-krds-gray-10',
                         'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                        isActive && 'bg-krds-primary-10 text-krds-primary-60',
-                        isOpen && 'bg-krds-gray-10'
+                        'data-[state=open]:bg-krds-gray-10'
                       )}
-                      onClick={() => toggleDropdown(index)}
-                      onKeyDown={(e) => handleKeyDown(e, index, true)}
-                      aria-expanded={isOpen}
-                      aria-haspopup="true"
-                      aria-current={isActive ? 'page' : undefined}
                     >
-                      <span>{item.label}</span>
-                      <svg
-                        className={cn(
-                          'inline-block ml-1 w-4 h-4 transition-transform',
-                          isOpen && 'rotate-180'
-                        )}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </button>
+                      {item.label}
+                      <ChevronDown
+                        className="relative top-[1px] transition-transform duration-200 group-data-[state=open]:rotate-180"
+                        size={16}
+                        aria-hidden
+                      />
+                    </NavigationMenu.Trigger>
 
-                    {/* Dropdown content */}
-                    {isOpen && (
-                      <div
-                        className={cn(
-                          'absolute top-full left-0 mt-2 z-50',
-                          'min-w-[280px] max-w-[400px]',
-                          'bg-krds-white',
-                          'border border-krds-gray-20',
-                          'rounded-lg shadow-lg',
-                          'animate-in fade-in-0 zoom-in-95 duration-200'
-                        )}
-                      >
-                        {/* Render sections */}
-                        {item.sections?.map((section, sIndex) => (
+                    {/* 드롭다운 콘텐츠 */}
+                    <NavigationMenu.Content
+                      className={cn(
+                        item.dropdownWidth || 'w-[200px]',
+                        'data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out',
+                        'data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out',
+                        'data-[motion=from-end]:slide-in-from-right-52',
+                        'data-[motion=from-start]:slide-in-from-left-52',
+                        'data-[motion=to-end]:slide-out-to-right-52',
+                        'data-[motion=to-start]:slide-out-to-left-52'
+                      )}
+                    >
+                      {/* 섹션 렌더링 */}
+                      {item.sections?.map(
+                        (section: MainMenuSection, sIndex: number) => (
                           <div
                             key={sIndex}
                             className={cn(
@@ -303,48 +131,58 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                             )}
 
                             <ul className="space-y-2">
-                              {section.links.map((link, lIndex) => (
-                                <li key={lIndex}>
-                                  <a
-                                    href={link.href}
-                                    className={cn(
-                                      'block px-3 py-2 rounded-md',
-                                      'transition-colors',
-                                      'hover:bg-krds-gray-5',
-                                      link.active &&
-                                        'bg-krds-primary-10 text-krds-primary-60'
-                                    )}
-                                    aria-current={
-                                      link.active ? 'page' : undefined
-                                    }
-                                  >
-                                    <div className="font-medium">
-                                      {link.label}
-                                    </div>
-                                    {link.description && (
-                                      <div className="text-xs text-krds-gray-60 mt-1">
-                                        {link.description}
-                                      </div>
-                                    )}
-                                  </a>
-                                </li>
-                              ))}
+                              {section.links.map(
+                                (link: MainMenuLink, lIndex: number) => (
+                                  <li key={lIndex}>
+                                    <NavigationMenu.Link asChild>
+                                      <a
+                                        href={link.href}
+                                        className={cn(
+                                          'block px-3 py-2 rounded-md',
+                                          'transition-colors',
+                                          'hover:bg-krds-gray-5',
+                                          'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
+                                          link.active &&
+                                            'bg-krds-primary-10 text-krds-primary-60'
+                                        )}
+                                        aria-current={
+                                          link.active ? 'page' : undefined
+                                        }
+                                      >
+                                        <div className="font-medium text-krds-gray-90">
+                                          {link.label}
+                                        </div>
+                                        {link.description && (
+                                          <div className="text-xs text-krds-gray-60 mt-1">
+                                            {link.description}
+                                          </div>
+                                        )}
+                                      </a>
+                                    </NavigationMenu.Link>
+                                  </li>
+                                )
+                              )}
                             </ul>
 
-                            {/* Utility links */}
+                            {/* 유틸리티 링크 */}
                             {section.utilityLinks &&
                               section.utilityLinks.length > 0 && (
                                 <div className="mt-3 pt-3 border-t border-krds-gray-10">
                                   <ul className="space-y-1">
                                     {section.utilityLinks.map(
-                                      (utilityLink, uIndex) => (
+                                      (
+                                        utilityLink: MainMenuLink,
+                                        uIndex: number
+                                      ) => (
                                         <li key={uIndex}>
-                                          <a
-                                            href={utilityLink.href}
-                                            className="block px-3 py-1.5 text-xs font-medium text-krds-primary-60 hover:underline"
-                                          >
-                                            {utilityLink.label} →
-                                          </a>
+                                          <NavigationMenu.Link asChild>
+                                            <a
+                                              href={utilityLink.href}
+                                              className="block px-3 py-1.5 text-xs font-medium text-krds-primary-60 hover:underline focus:outline-none focus:ring-2 focus:ring-krds-primary-60 rounded"
+                                            >
+                                              {utilityLink.label} →
+                                            </a>
+                                          </NavigationMenu.Link>
                                         </li>
                                       )
                                     )}
@@ -352,59 +190,71 @@ export const MainMenu = React.forwardRef<HTMLElement, MainMenuProps>(
                                 </div>
                               )}
                           </div>
-                        ))}
+                        )
+                      )}
 
-                        {/* Simple children (alternative to sections) */}
-                        {item.children && !item.sections && (
-                          <div className="p-2">
-                            <ul className="space-y-1">
-                              {item.children.map((child, cIndex) => (
+                      {/* 간단한 자식 링크 (sections 대신) */}
+                      {item.children && !item.sections && (
+                        <div className="p-2">
+                          <ul className="space-y-1">
+                            {item.children.map(
+                              (child: MainMenuLink, cIndex: number) => (
                                 <li key={cIndex}>
-                                  <a
-                                    href={child.href}
-                                    className={cn(
-                                      'block px-3 py-2 rounded-md',
-                                      'transition-colors',
-                                      'hover:bg-krds-gray-5',
-                                      child.active &&
-                                        'bg-krds-primary-10 text-krds-primary-60'
-                                    )}
-                                    aria-current={
-                                      child.active ? 'page' : undefined
-                                    }
-                                  >
-                                    {child.label}
-                                  </a>
+                                  <NavigationMenu.Link asChild>
+                                    <a
+                                      href={child.href}
+                                      className={cn(
+                                        'block px-3 py-2 rounded-md',
+                                        'text-krds-gray-90',
+                                        'transition-colors',
+                                        'hover:bg-krds-gray-5',
+                                        'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
+                                        child.active &&
+                                          'bg-krds-primary-10 text-krds-primary-60'
+                                      )}
+                                      aria-current={
+                                        child.active ? 'page' : undefined
+                                      }
+                                    >
+                                      {child.label}
+                                    </a>
+                                  </NavigationMenu.Link>
                                 </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                    )}
+                              )
+                            )}
+                          </ul>
+                        </div>
+                      )}
+                    </NavigationMenu.Content>
                   </>
                 ) : (
-                  /* Simple link */
-                  <a
-                    href={item.href}
-                    className={cn(
-                      'block px-4 py-2 font-medium rounded-md',
-                      'transition-colors duration-200',
-                      'hover:bg-krds-gray-10',
-                      'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                      isActive && 'bg-krds-primary-10 text-krds-primary-60'
-                    )}
-                    onKeyDown={(e) => handleKeyDown(e, index, false)}
-                    aria-current={isActive ? 'page' : undefined}
-                  >
-                    {item.label}
-                  </a>
+                  /* 단순 링크 */
+                  <NavigationMenu.Link asChild>
+                    <a
+                      href={item.href}
+                      className={cn(
+                        'block px-4 py-2 font-medium rounded-md',
+                        'transition-colors duration-200',
+                        'hover:bg-krds-gray-10',
+                        'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
+                        isActive && 'bg-krds-primary-10 text-krds-primary-60'
+                      )}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  </NavigationMenu.Link>
                 )}
-              </li>
+              </NavigationMenu.Item>
             );
           })}
-        </ul>
-      </nav>
+        </NavigationMenu.List>
+
+        {/* Viewport for positioning dropdown content */}
+        <div className="absolute top-full left-1/2 -translate-x-1/2 flex justify-center">
+          <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] origin-top-center overflow-visible rounded-lg border border-krds-gray-20 bg-krds-white shadow-lg transition-[width,height] duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90" />
+        </div>
+      </NavigationMenu.Root>
     );
   }
 );
