@@ -71,7 +71,7 @@ export default function SimpleGridPage() {
               description="SimpleGrid는 CSS Grid를 기반으로 반응형 레이아웃을 쉽게 만들 수 있는 유틸리티 컴포넌트입니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>고정 열 개수:</strong> columns prop으로 1~12개의
@@ -451,7 +451,7 @@ export default function SimpleGridPage() {
           <Section>
             <Heading level="h2" id="accessibility" title="접근성" />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>시맨틱 마크업:</strong> SimpleGrid는 의미론적으로

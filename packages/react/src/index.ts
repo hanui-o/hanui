@@ -15,6 +15,21 @@ export type { ButtonProps } from './components/button';
 export { Input, inputVariants } from './components/input';
 export type { InputProps } from './components/input';
 
+export { Textarea, textareaVariants } from './components/textarea';
+export type { TextareaProps } from './components/textarea';
+
+export {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+  checkboxVariants,
+} from './components/checkbox';
+export type {
+  CheckboxProps,
+  CheckboxGroupProps,
+  CheckboxGroupItemProps,
+} from './components/checkbox';
+
 export {
   Card,
   CardHeader,
@@ -156,12 +171,12 @@ export type { IdentifierProps } from './components/identifier';
 export {
   SideNavigation,
   SAMPLE_SIDE_NAVIGATION,
-} from './components/SideNavigation/side-navigation';
+} from './components/side-navigation';
 export type {
   SideNavigationProps,
   SideNavSection,
   SideNavLink,
-} from './components/SideNavigation/side-navigation';
+} from './components/side-navigation';
 
 export { InPageNavigation } from './components/in-page-navigation';
 export type {
@@ -174,6 +189,31 @@ export type { TabBarsProps, TabBarItem } from './components/TabBars';
 
 // Utils
 export { cn } from './lib/utils';
+
+export { Wrap } from './components/wrap';
+export type { WrapProps } from './components/wrap';
+
+export { Flex } from './components/flex';
+export type { FlexProps } from './components/flex';
+
+export { Grid, GridItem } from './components/grid';
+export type { GridProps, GridItemProps } from './components/grid';
+
+export { SimpleGrid } from './components/simple-grid';
+export type { SimpleGridProps } from './components/simple-grid';
+
+export { Center, Circle, Square } from './components/center';
+export type {
+  CenterProps,
+  CircleProps,
+  SquareProps,
+} from './components/center';
+
+export { AspectRatio } from './components/aspect-ratio';
+export type { AspectRatioProps } from './components/aspect-ratio';
+
+export { Image } from './components/image';
+export type { ImageProps } from './components/image';
 
 export {
   FormField,

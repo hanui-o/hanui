@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
-import { cn } from '../../lib/utils';
+import { cn } from '../lib/utils';
 
 /**
  * 사이드 네비게이션 링크 아이템 (3/4단계)
@@ -45,6 +45,74 @@ export interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 /**
+ * 3단계 메뉴 아이템 (하위 메뉴 있음)
+ */
+function ThirdLevelMenuItem({ child }: { child: SideNavLink }) {
+  const isChildActive = child.active || child.children?.some((c) => c.active);
+  const [isOpen, setIsOpen] = useState(isChildActive);
+
+  return (
+    <li role="none">
+      {/* 3단계 토글 버튼 */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={cn(
+          'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent rounded-md',
+          'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+          'transition-all duration-200 ease-in-out',
+          'relative',
+          // 불릿 포인트
+          'before:content-["•"] before:inline-block',
+          // 호버
+          'hover:bg-krds-primary-5',
+          // 셰브론 아이콘
+          'after:content-[""] after:inline-block after:w-5 after:h-5 after:flex-shrink-0 after:ml-auto',
+          'after:bg-[url("https://www.krds.go.kr/resources/img/component/icon/ico_angle.svg")]',
+          'after:bg-no-repeat after:bg-center after:bg-contain',
+          'after:transition-transform after:duration-200 after:ease-in-out',
+          isOpen && 'after:rotate-180'
+        )}
+        role="menuitem"
+        aria-haspopup="true"
+        aria-expanded={isOpen}
+      >
+        {child.label}
+      </button>
+
+      {/* 4단계 하위 메뉴 */}
+      {isOpen && (
+        <ul role="menu" className="list-none p-0 m-0">
+          {child.children!.map((grandChild, grandChildIndex) => (
+            <li key={grandChildIndex} role="none">
+              <a
+                href={grandChild.href}
+                className={cn(
+                  'flex items-center gap-2 w-full py-2 px-4 pl-13 bg-transparent',
+                  'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                  'relative',
+                  // 불릿 포인트
+                  'before:content-["•"] before:absolute before:left-9 before:text-krds-gray-60',
+                  // 호버
+                  'hover:bg-krds-primary-5',
+                  // 활성 상태
+                  grandChild.active &&
+                    'font-bold text-krds-blue-60 underline before:text-krds-blue-60'
+                )}
+                role="menuitem"
+                aria-current={grandChild.active ? 'page' : undefined}
+              >
+                {grandChild.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
+/**
  * 사이드 네비게이션 컴포넌트
  *
  * KRDS 표준을 따르는 다단계 사이드 네비게이션
@@ -71,12 +139,23 @@ export function SideNavigation({
   return (
     <nav
       className={cn('w-full max-w-[296px] py-10 pr-10 bg-white', className)}
+      aria-labelledby="side-nav-title"
       {...props}
     >
-      {/* 1단계: 제목 */}
-      <h2 className="px-3 pb-6 m-0 border-b border-krds-gray-50 text-2xl font-bold leading-[1.4] text-krds-gray-90">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          1Depth-title: 네비게이션 최상단 제목
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          스타일 커스터마이징:
+          - 텍스트: text-2xl font-bold text-krds-gray-90
+          - 간격: px-2 pb-4
+          - 보더: border-b border-krds-gray-50
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div
+        id="side-nav-title"
+        className="px-2 pb-4 m-0 border-b border-krds-gray-50 text-2xl font-bold leading-[1.4] text-krds-gray-90"
+      >
         {title}
-      </h2>
+      </div>
 
       {/* 2단계: 섹션 */}
       <ul role="menubar" className="list-none p-0 m-0">
@@ -91,18 +170,30 @@ export function SideNavigation({
               <Accordion.Item
                 key={sectionIndex}
                 value={value}
-                className={cn('relative', isActive && 'active')}
+                className={cn(
+                  'relative border-b border-krds-gray-30',
+                  isActive && 'active'
+                )}
               >
                 {hasChildren ? (
                   <>
-                    {/* 하위 메뉴가 있는 섹션의 토글 버튼 */}
+                    {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        2Depth-title: 섹션 토글 버튼 (하위 메뉴 있음)
+                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        스타일 커스터마이징:
+                        - 텍스트: text-[17px] font-bold text-krds-gray-90
+                        - 간격: px-2 pt-4 pb-2
+                        - 보더: border-b border-krds-gray-20
+                        - 호버: hover:bg-krds-primary-5
+                        - 아이콘: after:... (화살표, 열림시 180도 회전)
+                     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
                     <Accordion.Header asChild>
                       <Accordion.Trigger asChild>
                         <button
                           type="button"
                           className={cn(
                             // 기본 버튼 스타일
-                            'flex items-center justify-between w-full py-3 px-3 border-0 border-b border-krds-gray-20 bg-transparent',
+                            'flex items-center justify-between w-full px-2 pt-4 pb-2 border-0 bg-transparent',
                             'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                             'transition-all duration-200 ease-in-out',
                             // 토글 버튼 스타일
@@ -110,12 +201,11 @@ export function SideNavigation({
                             // 하단 밑줄 효과
                             'before:content-[""] before:inline-flex before:absolute before:bottom-[-1px] before:left-0 before:w-0 before:h-[3px] before:bg-[#063a74] before:transition-all before:duration-[400ms] before:ease-in-out',
                             // 호버
-                            'hover:bg-krds-gray-10 hover:before:w-full',
+                            'hover:bg-krds-primary-5 hover:before:w-full',
                             // 포커스
                             'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
                             // 활성 상태
-                            isActive &&
-                              'border-2 border-krds-blue-60 rounded-lg py-4 px-2 mb-1',
+                            isActive && 'border-none mb-1',
                             // 셰브론 아이콘
                             'after:content-[""] after:inline-block after:w-5 after:h-5 after:flex-shrink-0',
                             'after:bg-[url("https://www.krds.go.kr/resources/img/component/icon/ico_angle.svg")]',
@@ -142,117 +232,18 @@ export function SideNavigation({
                         {section.children!.map((child, childIndex) => {
                           const hasGrandChildren =
                             child.children && child.children.length > 0;
-                          const childValue = `child-${sectionIndex}-${childIndex}`;
 
-                          // 3단계에 하위가 있으면 중첩 Accordion 사용
+                          // 3단계에 하위가 있으면 ThirdLevelMenuItem 사용
                           if (hasGrandChildren) {
-                            const isChildActive =
-                              child.active ||
-                              child.children?.some((c) => c.active);
-
                             return (
-                              <li key={childIndex} role="none">
-                                <Accordion.Root
-                                  type="multiple"
-                                  defaultValue={
-                                    isChildActive ? [childValue] : []
-                                  }
-                                >
-                                  <Accordion.Item
-                                    value={childValue}
-                                    className={cn(
-                                      'relative',
-                                      isChildActive && 'active'
-                                    )}
-                                  >
-                                    <Accordion.Header asChild>
-                                      <Accordion.Trigger asChild>
-                                        <button
-                                          type="button"
-                                          className={cn(
-                                            // 기본 버튼 스타일
-                                            'flex items-center justify-between w-full py-3 px-3 pl-10 border-0 bg-transparent',
-                                            'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
-                                            'transition-all duration-200 ease-in-out',
-                                            // 3단계 토글 버튼
-                                            'relative',
-                                            // 불릿 포인트
-                                            'before:content-["•"] before:absolute before:left-3 before:text-2xl before:text-krds-gray-60',
-                                            // 호버
-                                            'hover:bg-transparent hover:underline',
-                                            // 셰브론 아이콘
-                                            'after:content-[""] after:inline-block after:w-5 after:h-5 after:flex-shrink-0',
-                                            'after:bg-[url("https://www.krds.go.kr/resources/img/component/icon/ico_angle.svg")]',
-                                            'after:bg-no-repeat after:bg-center after:bg-contain',
-                                            'after:transition-transform after:duration-200 after:ease-in-out',
-                                            'data-[state=open]:after:rotate-180'
-                                          )}
-                                          role="menuitem"
-                                          aria-haspopup="true"
-                                        >
-                                          {child.label}
-                                        </button>
-                                      </Accordion.Trigger>
-                                    </Accordion.Header>
-
-                                    <Accordion.Content
-                                      className={cn(
-                                        'overflow-hidden',
-                                        'data-[state=open]:animate-slideDown',
-                                        'data-[state=closed]:animate-slideUp'
-                                      )}
-                                    >
-                                      {/* 3단계 제목 버튼 (시각적 전용, KRDS HTML 기준) */}
-                                      <button
-                                        type="button"
-                                        className="block w-full py-2 px-3 pl-16 text-[17px] font-medium leading-[1.5] text-krds-gray-90 text-left bg-transparent border-0 cursor-default"
-                                      >
-                                        {child.label}
-                                      </button>
-                                      <ul
-                                        role="menu"
-                                        className="list-none p-0 m-0"
-                                      >
-                                        {child.children!.map(
-                                          (grandChild, grandChildIndex) => (
-                                            <li
-                                              key={grandChildIndex}
-                                              role="none"
-                                            >
-                                              <a
-                                                href={grandChild.href}
-                                                className={cn(
-                                                  'flex items-center justify-between w-full py-3 px-3 pl-16 border-0 bg-transparent',
-                                                  'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
-                                                  'relative',
-                                                  // 불릿 포인트
-                                                  'before:content-["•"] before:absolute before:left-10 before:text-2xl before:text-krds-gray-60',
-                                                  // 호버
-                                                  'hover:bg-transparent hover:underline',
-                                                  // 활성 상태
-                                                  grandChild.active &&
-                                                    'font-bold text-krds-blue-60 underline before:text-krds-blue-60'
-                                                )}
-                                                role="menuitem"
-                                                aria-current={
-                                                  grandChild.active
-                                                    ? 'page'
-                                                    : undefined
-                                                }
-                                              >
-                                                {grandChild.label}
-                                              </a>
-                                            </li>
-                                          )
-                                        )}
-                                      </ul>
-                                    </Accordion.Content>
-                                  </Accordion.Item>
-                                </Accordion.Root>
-                              </li>
+                              <ThirdLevelMenuItem
+                                key={childIndex}
+                                child={child}
+                              />
                             );
                           }
 
+                          // 3단계 링크 (하위 없음)
                           return (
                             <li
                               key={childIndex}
@@ -262,16 +253,26 @@ export function SideNavigation({
                               )}
                               role="none"
                             >
+                              {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                  3Depth-menu: 링크 (하위 메뉴 없음)
+                                  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                  스타일 커스터마이징:
+                                  - 텍스트: text-[17px] font-normal text-krds-gray-90
+                                  - 간격: py-2 px-4
+                                  - 불릿: before:content-["•"]
+                                  - 호버: hover:bg-krds-primary-5
+                                  - 활성: font-bold text-krds-blue-60
+                               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
                               <a
                                 href={child.href}
                                 className={cn(
-                                  'flex items-center justify-between w-full py-3 px-3 pl-10 border-0 bg-transparent',
+                                  'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent',
                                   'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                                   'relative',
                                   // 불릿 포인트
-                                  'before:content-["•"] before:absolute before:left-3 before:text-2xl before:text-krds-gray-60',
+                                  'before:content-["•"] before:inline-block',
                                   // 호버
-                                  'hover:bg-transparent hover:underline',
+                                  'hover:bg-krds-primary-5',
                                   // 활성 상태
                                   child.active &&
                                     'font-bold text-krds-blue-60 before:text-krds-blue-60'
@@ -288,7 +289,15 @@ export function SideNavigation({
                     </Accordion.Content>
                   </>
                 ) : (
-                  /* 하위 메뉴가 없는 섹션 (단순 링크) */
+                  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                      2Depth: 섹션 링크 (하위 메뉴 없음)
+                      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                      스타일 커스터마이징:
+                      - 텍스트: text-[17px] font-normal text-krds-gray-90
+                      - 간격: py-3 px-3
+                      - 보더: border-b border-krds-gray-20
+                      - 호버: hover:bg-krds-gray-10
+                   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
                   <a
                     href={section.href}
                     className={cn(

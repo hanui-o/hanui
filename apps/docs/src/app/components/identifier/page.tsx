@@ -158,7 +158,7 @@ export default function IdentifierPage() {
           <Section level="h2">
             <Heading level="h2" id="krds-standards" title="KRDS 표준" />
 
-            <Card variant="info">
+            <Card variant="filled">
               <Body className="font-semibold mb-3">준수하는 KRDS 표준:</Body>
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>

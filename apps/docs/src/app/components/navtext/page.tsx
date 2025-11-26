@@ -68,7 +68,7 @@ export default function NavTextPage() {
               title="무엇인가요?"
               description="NavText는 KRDS 타이포그래피 시스템의 네비게이션 전용 스타일입니다. 메뉴 제목과 하위 메뉴 항목을 구분하여 계층적인 네비게이션 구조를 명확히 표현합니다."
             />
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>Title 변형:</strong> tit-lg, tit-sm으로 메뉴 제목을
@@ -471,7 +471,7 @@ export default function NavTextPage() {
               title="접근성"
               description="NavText는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
             />
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>시맨틱 HTML:</strong> nav 태그와 함께 사용하여 구조를
@@ -671,7 +671,7 @@ export default function NavTextPage() {
             {/* KRDS Compliance */}
             <Subsection level="h3">
               <Heading level="h3" id="krds-compliance" title="KRDS 준수사항" />
-              <Card variant="info">
+              <Card variant="filled">
                 <List variant="check" className="text-krds-gray-90">
                   <ListItem>tit 변형은 Bold (700) 폰트 굵기</ListItem>
                   <ListItem>depth 변형은 Regular (400) 폰트 굵기</ListItem>

@@ -285,7 +285,7 @@ export default function RootLayout({ children }) {
             />
             <Body>SkipLink 컴포넌트는 다음 기능들을 자동으로 처리합니다:</Body>
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check">
                 <ListItem>
                   <strong>KRDS ID 자동 적용:</strong>{' '}

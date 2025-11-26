@@ -219,7 +219,7 @@ export default function CardPage() {
               <Heading level="h3" title="Semantic Variants" />
               <ComponentPreview>
                 <div className="grid grid-cols-2 gap-6">
-                  <Card variant="info">
+                  <Card variant="filled">
                     <CardHeader>
                       <CardTitle as="h4">정보</CardTitle>
                       <CardDescription>일반 알림</CardDescription>
@@ -282,7 +282,7 @@ export default function CardPage() {
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<Card variant="info">
+                {`<Card variant="filled">
   <CardHeader>
     <CardTitle>정보</CardTitle>
   </CardHeader>

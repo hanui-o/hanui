@@ -14,6 +14,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import {
   Label as LabelComponent,
   Input,
+  Body,
   Code,
   Tabs,
   TabsList,
@@ -97,6 +98,121 @@ export default function LabelPage() {
 <Label htmlFor="input-id" size="md">라벨 텍스트</Label>
 <Input id="input-id" type="text" />`}
             </Code>
+          </Section>
+
+          {/* Label vs FormLabel */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="label-vs-formlabel"
+              title="Label vs FormLabel"
+            />
+            <Body className="mb-4">
+              HANUI는 두 가지 라벨 컴포넌트를 제공합니다. 각각의 용도와 차이점을
+              이해하고 상황에 맞게 사용하세요.
+            </Body>
+
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>구분</TableHead>
+                  <TableHead>Label</TableHead>
+                  <TableHead>FormLabel</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <strong>용도</strong>
+                  </TableCell>
+                  <TableCell>독립적인 폼 필드 라벨</TableCell>
+                  <TableCell>FormField 컨텍스트 내에서 사용</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <strong>연결 방식</strong>
+                  </TableCell>
+                  <TableCell>
+                    <Code>htmlFor</Code> prop으로 수동 연결
+                  </TableCell>
+                  <TableCell>FormField의 id로 자동 연결</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <strong>필수 표시</strong>
+                  </TableCell>
+                  <TableCell>직접 구현 필요</TableCell>
+                  <TableCell>
+                    FormField의 <Code>required</Code>로 자동 표시
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <strong>접근성</strong>
+                  </TableCell>
+                  <TableCell>aria 속성 수동 관리</TableCell>
+                  <TableCell>aria 속성 자동 연결</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <strong>사용 시기</strong>
+                  </TableCell>
+                  <TableCell>
+                    간단한 폼, 체크박스/라디오 그룹, FormField 미사용 시
+                  </TableCell>
+                  <TableCell>
+                    복잡한 폼, 에러 처리 필요 시, 일관된 폼 UX 제공 시
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Label 사용 예제" />
+              <Body className="mb-4">
+                간단한 폼이나 FormField 통합이 필요 없을 때 사용합니다.
+              </Body>
+              <Code variant="block" language="tsx">
+                {`import { Label, Input } from '@hanui/react';
+
+// 간단한 검색 폼
+<div className="flex items-center gap-2">
+  <Label htmlFor="search" size="sm">검색</Label>
+  <Input id="search" type="text" placeholder="검색어 입력" />
+</div>
+
+// 체크박스
+<div className="flex items-center gap-2">
+  <input id="agree" type="checkbox" />
+  <Label htmlFor="agree">이용약관에 동의합니다</Label>
+</div>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="FormLabel 사용 예제 (권장)" />
+              <Body className="mb-4">
+                FormField와 함께 사용하면 접근성과 에러 처리가 자동으로
+                연결됩니다.
+              </Body>
+              <Code variant="block" language="tsx">
+                {`import { FormField, FormLabel, FormError, FormHelperText, Input } from '@hanui/react';
+
+// 복잡한 폼 - 에러 처리 포함 (권장)
+<FormField id="email" required status="error">
+  <FormLabel>이메일</FormLabel>
+  <Input type="email" placeholder="example@email.com" />
+  <FormError>유효한 이메일을 입력해주세요</FormError>
+  <FormHelperText>회원가입 시 사용한 이메일을 입력하세요</FormHelperText>
+</FormField>
+
+// 필수 표시 자동 처리
+<FormField id="username" required>
+  <FormLabel>사용자명</FormLabel>
+  <Input type="text" />
+</FormField>`}
+              </Code>
+            </Subsection>
           </Section>
 
           {/* 4) 예제 */}

@@ -82,7 +82,7 @@ export default function HeadingPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
 
-            <Card variant="info">
+            <Card variant="filled">
               <Body className="font-bold mb-3">
                 ⚠️ 중요: Heading vs Display
               </Body>

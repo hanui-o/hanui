@@ -7,15 +7,17 @@ import {
   Subsection,
   PageNavigation,
 } from '@/components/content';
-
-// Docs helper components
-import { DoCard, DontCard } from '@/components/helpers';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
 import {
   Select as SelectComponent,
+  FormField,
+  FormLabel,
+  FormError,
+  FormHelperText,
   Body,
-  Stack,
   Card,
   Code,
   List,
@@ -50,7 +52,7 @@ export default function SelectPage() {
       <Heading
         level="h1"
         title="Select"
-        description="접근성을 고려한 선택 목록 컴포넌트입니다."
+        description="Radix UI 기반의 접근성을 고려한 선택 목록 컴포넌트입니다. 키보드 네비게이션과 스크린 리더를 완전히 지원합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -60,52 +62,20 @@ export default function SelectPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <Heading level="h2" id="installation" title="설치">
-              <Body className="leading-relaxed">
-                다음 명령어로 Select 컴포넌트를 설치합니다:
-              </Body>
-            </Heading>
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add select
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
+          {/* 1. 개요 */}
+          <Section level="h2">
             <Heading
               level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="Select는 여러 옵션 중 하나 또는 여러 개를 선택할 수 있는 컴포넌트입니다. Radix UI를 기반으로 구축되어 완전한 접근성과 키보드 네비게이션을 제공합니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-            <Card variant="info">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>Radix UI 기반:</strong> @radix-ui/react-select를
-                  사용하여 완전한 접근성을 보장합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>다중 선택:</strong> multiple prop으로 여러 항목을
-                  동시에 선택할 수 있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>키보드 네비게이션:</strong> Arrow, Enter, Escape 키로
-                  완전한 키보드 탐색을 지원합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>에러 상태:</strong> error prop으로 유효성 검사 결과를
-                  표시합니다.
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
-
-          {/* Preview */}
-          <Section>
-            <Heading level="h2" id="preview" title="미리보기" />
-            <Card>
+            <Body className="mb-3">
+              Select는 여러 옵션 중 하나를 선택할 수 있는 컴포넌트입니다. Radix
+              UI를 기반으로 구축되어 완전한 접근성과 키보드 네비게이션을
+              제공합니다.
+            </Body>
+            <ComponentPreview>
               <div className="max-w-md">
                 <SelectComponent
                   options={options}
@@ -116,11 +86,12 @@ export default function SelectPage() {
                   placeholder="과일을 선택하세요"
                 />
               </div>
-            </Card>
+            </ComponentPreview>
             <Code variant="block" language="tsx">
               {`const options = [
   { value: 'apple', label: '사과' },
   { value: 'banana', label: '바나나' },
+  { value: 'orange', label: '오렌지' },
 ];
 
 <Select
@@ -132,19 +103,94 @@ export default function SelectPage() {
             </Code>
           </Section>
 
-          {/* Usage */}
-          <Section>
-            <Heading level="h2" id="usage" title="사용 방법" />
+          {/* 2. 설치 */}
+          <Section level="h2">
+            <Installation componentName="select" />
+          </Section>
 
-            {/* With Label */}
+          {/* 3. 사용법 */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Body className="mb-3">
+              Select 컴포넌트를 import하여 사용합니다. options prop으로 선택
+              가능한 항목들을 전달하고, value와 onChange로 상태를 관리합니다.
+            </Body>
+            <Code variant="block" language="tsx">
+              {`import { Select } from '@hanui/react'
+
+const options = [
+  { value: 'seoul', label: '서울' },
+  { value: 'busan', label: '부산' },
+  { value: 'daegu', label: '대구' },
+];
+
+<Select
+  options={options}
+  value={value}
+  onChange={setValue}
+  placeholder="도시를 선택하세요"
+/>`}
+            </Code>
+          </Section>
+
+          {/* 4. 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            {/* FormField와 함께 사용 (권장) */}
             <Subsection level="h3">
-              <Heading
-                level="h3"
-                id="with-label"
-                title="라벨 포함"
-                description="모든 선택 목록에는 명확한 레이블이 필요합니다."
-              />
-              <Card>
+              <Heading level="h3" title="FormField와 함께 사용 (권장)" />
+              <Body className="mb-3">
+                FormField를 사용하면 label, error, helper text를 일관되게
+                관리하고 접근성 속성이 자동으로 연결됩니다. 폼에서 Select를
+                사용할 때 권장하는 방법입니다.
+              </Body>
+              <ComponentPreview>
+                <div className="max-w-md">
+                  <FormField id="fruit-field" required>
+                    <FormLabel>좋아하는 과일</FormLabel>
+                    <SelectComponent
+                      options={options}
+                      value={selectedValue}
+                      onChange={(value) =>
+                        setSelectedValue(
+                          Array.isArray(value) ? value[0] : value
+                        )
+                      }
+                      placeholder="과일을 선택하세요"
+                    />
+                    <FormHelperText>
+                      가장 좋아하는 과일을 하나 선택해주세요.
+                    </FormHelperText>
+                  </FormField>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`import { Select, FormField, FormLabel, FormHelperText } from '@hanui/react';
+
+<FormField id="fruit" required>
+  <FormLabel>좋아하는 과일</FormLabel>
+  <Select
+    options={options}
+    value={value}
+    onChange={setValue}
+    placeholder="과일을 선택하세요"
+  />
+  <FormHelperText>
+    가장 좋아하는 과일을 하나 선택해주세요.
+  </FormHelperText>
+</FormField>`}
+              </Code>
+            </Subsection>
+
+            {/* 라벨 포함 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="라벨 포함" />
+              <Body className="mb-3">
+                모든 선택 목록에는 명확한 레이블이 필요합니다. label prop을
+                사용하거나 별도의 label 요소를 추가할 수 있습니다.
+              </Body>
+              <ComponentPreview>
                 <div className="max-w-md space-y-2">
                   <label htmlFor="fruit-select" className="block font-medium">
                     좋아하는 과일
@@ -156,9 +202,9 @@ export default function SelectPage() {
                     placeholder="과일을 선택하세요"
                   />
                 </div>
-              </Card>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<label className="block font-medium">
+                {`<label htmlFor="fruit-select" className="block font-medium">
   좋아하는 과일
 </label>
 <Select
@@ -170,15 +216,14 @@ export default function SelectPage() {
               </Code>
             </Subsection>
 
-            {/* Multiple Selection */}
+            {/* 다중 선택 */}
             <Subsection level="h3">
-              <Heading
-                level="h3"
-                id="multiple"
-                title="다중 선택"
-                description="여러 항목을 동시에 선택해야 할 때 사용합니다."
-              />
-              <Card>
+              <Heading level="h3" title="다중 선택 (현재 미지원)" />
+              <Body className="mb-3">
+                Radix UI Select는 현재 다중 선택을 기본으로 지원하지 않습니다.
+                다중 선택이 필요한 경우 별도의 구현이 필요합니다.
+              </Body>
+              <ComponentPreview>
                 <div className="max-w-md">
                   <SelectComponent
                     options={options}
@@ -190,7 +235,7 @@ export default function SelectPage() {
                     multiple
                   />
                 </div>
-              </Card>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<Select
   options={options}
@@ -202,49 +247,57 @@ export default function SelectPage() {
               </Code>
             </Subsection>
 
-            {/* Error State */}
+            {/* 에러 상태 */}
             <Subsection level="h3">
-              <Heading
-                level="h3"
-                id="error"
-                title="에러 상태"
-                description="필수 선택 항목이 선택되지 않았거나 유효하지 않을 때 표시합니다."
-              />
-              <Card>
-                <div className="max-w-md space-y-2">
-                  <SelectComponent
-                    options={options}
-                    value=""
-                    onChange={() => {}}
-                    placeholder="과일을 선택하세요"
-                    error
-                  />
-                  <Body size="sm" className="text-krds-danger-text">
-                    필수 선택 항목입니다.
-                  </Body>
+              <Heading level="h3" title="에러 상태" />
+              <Body className="mb-3">
+                FormField의 status prop과 FormError를 사용하여 필수 선택 항목이
+                선택되지 않았거나 유효하지 않을 때 에러 상태를 표시할 수
+                있습니다. 에러 메시지가 자동으로 aria-describedby에 연결되어
+                스크린 리더가 읽을 수 있습니다.
+              </Body>
+              <ComponentPreview>
+                <div className="max-w-md">
+                  <FormField id="city-field" required status="error">
+                    <FormLabel>도시</FormLabel>
+                    <SelectComponent
+                      options={[
+                        { value: 'seoul', label: '서울' },
+                        { value: 'busan', label: '부산' },
+                        { value: 'daegu', label: '대구' },
+                      ]}
+                      value=""
+                      onChange={() => {}}
+                      placeholder="도시를 선택하세요"
+                    />
+                    <FormError>필수 선택 항목입니다.</FormError>
+                  </FormField>
                 </div>
-              </Card>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<Select
-  options={options}
-  value=""
-  onChange={() => {}}
-  placeholder="과일을 선택하세요"
-  error
-/>
-<p className="text-krds-danger-text">필수 선택 항목입니다.</p>`}
+                {`import { Select, FormField, FormLabel, FormError } from '@hanui/react';
+
+<FormField id="city" required status="error">
+  <FormLabel>도시</FormLabel>
+  <Select
+    options={cities}
+    value={value}
+    onChange={setValue}
+    placeholder="도시를 선택하세요"
+  />
+  <FormError>필수 선택 항목입니다.</FormError>
+</FormField>`}
               </Code>
             </Subsection>
 
-            {/* Disabled */}
+            {/* 비활성화 */}
             <Subsection level="h3">
-              <Heading
-                level="h3"
-                id="disabled"
-                title="비활성화"
-                description="특정 조건이 충족되지 않아 선택을 받을 수 없을 때 사용합니다."
-              />
-              <Card>
+              <Heading level="h3" title="비활성화" />
+              <Body className="mb-3">
+                disabled prop으로 특정 조건이 충족되지 않아 선택을 받을 수 없을
+                때 비활성화 상태를 표시할 수 있습니다.
+              </Body>
+              <ComponentPreview>
                 <div className="max-w-md">
                   <SelectComponent
                     options={options}
@@ -254,7 +307,7 @@ export default function SelectPage() {
                     disabled
                   />
                 </div>
-              </Card>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<Select
   options={options}
@@ -265,42 +318,31 @@ export default function SelectPage() {
 />`}
               </Code>
             </Subsection>
-          </Section>
 
-          {/* Best Practices */}
-          <Section>
-            <Heading level="h2" id="best-practices" title="모범 사례" />
-            <Stack gap="md">
-              <DoCard title="Select를 사용하기 적합한 경우">
-                <List variant="check">
+            {/* 사용 가이드 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="사용 가이드" />
+              <Body className="mb-4">
+                Select를 효과적으로 사용하기 위한 가이드입니다:
+              </Body>
+
+              <Card variant="filled" className="mb-4">
+                <Body weight="bold" className="mb-2">
+                  Select를 사용하기 적합한 경우:
+                </Body>
+                <List variant="unordered" spacing="tight">
                   <ListItem>옵션이 5개 이상인 경우</ListItem>
                   <ListItem>국가, 도시 등 많은 선택지가 있는 경우</ListItem>
                   <ListItem>카테고리, 분류를 선택할 때</ListItem>
                   <ListItem>정렬 옵션 선택 (최신순, 인기순 등)</ListItem>
                 </List>
-              </DoCard>
-
-              <Card variant="warning">
-                <Heading level="h3" id="caution" title="주의사항" />
-                <List variant="check" className="text-krds-gray-90">
-                  <ListItem>
-                    <strong>논리적 순서:</strong> 알파벳순, 가나다순 등 예측
-                    가능한 순서로 정렬하세요.
-                  </ListItem>
-                  <ListItem>
-                    <strong>명확한 레이블:</strong> &quot;선택하세요&quot;가
-                    아닌 &quot;배송 국가를 선택하세요&quot;처럼 구체적으로
-                    작성하세요.
-                  </ListItem>
-                  <ListItem>
-                    <strong>레이블 필수:</strong> label 요소로 명확한 레이블을
-                    제공하세요.
-                  </ListItem>
-                </List>
               </Card>
 
-              <DontCard title="Select를 사용하지 말아야 하는 경우">
-                <List variant="cross">
+              <Card variant="outlined" className="mb-4">
+                <Body weight="bold" className="mb-2">
+                  Select를 사용하지 말아야 하는 경우:
+                </Body>
+                <List variant="unordered" spacing="tight">
                   <ListItem>
                     선택지가 3개 이하인 경우 (Radio Button 사용)
                   </ListItem>
@@ -311,49 +353,79 @@ export default function SelectPage() {
                     텍스트 입력이 필요한 경우 (Input with Autocomplete 사용)
                   </ListItem>
                 </List>
-              </DontCard>
-            </Stack>
+              </Card>
+
+              <Card variant="filled">
+                <Body weight="bold" className="mb-2">
+                  주의사항:
+                </Body>
+                <List variant="unordered" spacing="tight">
+                  <ListItem>
+                    <strong>논리적 순서:</strong> 알파벳순, 가나다순 등 예측
+                    가능한 순서로 정렬하세요.
+                  </ListItem>
+                  <ListItem>
+                    <strong>명확한 레이블:</strong> "선택하세요"가 아닌 "배송
+                    국가를 선택하세요"처럼 구체적으로 작성하세요.
+                  </ListItem>
+                  <ListItem>
+                    <strong>레이블 필수:</strong> label 요소로 명확한 레이블을
+                    제공하세요.
+                  </ListItem>
+                </List>
+              </Card>
+            </Subsection>
           </Section>
 
-          {/* Accessibility */}
-          <Section>
+          {/* 5. 접근성 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="accessibility"
               title="접근성"
               description="Select는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
             />
-            <Card variant="info">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>Radix UI 기반:</strong> 완전한 접근성과 ARIA 속성을
-                  자동으로 제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>키보드 네비게이션:</strong> Arrow, Enter, Escape,
-                  Space 키로 탐색할 수 있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>스크린 리더:</strong> role=&quot;combobox&quot; 및
-                  aria-expanded로 상태를 전달합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>Focus Management:</strong> 자동 포커스 관리 및 focus
-                  trap을 제공합니다.
-                </ListItem>
-              </List>
-            </Card>
+            <List variant="check">
+              <ListItem>
+                <strong>Radix UI 기반:</strong> @radix-ui/react-select를
+                사용하여 완전한 접근성과 ARIA 속성을 자동으로 제공합니다.
+              </ListItem>
+              <ListItem>
+                <strong>FormField 통합:</strong> FormField와 함께 사용하면
+                aria-invalid, aria-required, aria-describedby 속성이 자동으로
+                연결되어 에러 메시지와 도움말을 스크린 리더가 읽을 수 있습니다.
+              </ListItem>
+              <ListItem>
+                <strong>키보드 네비게이션:</strong> Arrow Up/Down (옵션 이동),
+                Enter (선택), Escape (닫기), Space (열기) 키로 완전한 키보드
+                탐색을 지원합니다.
+              </ListItem>
+              <ListItem>
+                <strong>스크린 리더:</strong> role="combobox" 및 aria-expanded로
+                드롭다운 상태를 전달하며, 선택된 옵션을 명확히 알립니다.
+              </ListItem>
+              <ListItem>
+                <strong>Focus Management:</strong> 드롭다운 열기/닫기 시 자동
+                포커스 관리 및 focus trap을 제공합니다.
+              </ListItem>
+              <ListItem>
+                <strong>Type-ahead:</strong> 키보드 입력으로 옵션을 빠르게
+                검색할 수 있습니다.
+              </ListItem>
+              <ListItem>
+                명도 대비 4.5:1 이상을 준수하여 시각적 접근성을 보장합니다.
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
         <TabsContent value="api">
-          <Section>
-            <Heading level="h2" id="api-reference" title="API 레퍼런스" />
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API Reference" />
 
-            {/* Props */}
             <Subsection level="h3">
-              <Heading level="h3" id="props" title="Props" />
-              <Table>
+              <Heading level="h3" title="Props" />
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
@@ -368,17 +440,19 @@ export default function SelectPage() {
                       <Code>options</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>{`Array<{value: T, label: string}>`}</Code>
+                      <Code className="text-xs">
+                        {`Array<{value: T, label: string}>`}
+                      </Code>
                     </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>선택 가능한 옵션 목록</TableCell>
+                    <TableCell>선택 가능한 옵션 목록 (필수)</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>value</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>T | T[]</Code>
+                      <Code className="text-xs">T | T[]</Code>
                     </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>현재 선택된 값 (단일 또는 다중)</TableCell>
@@ -388,7 +462,7 @@ export default function SelectPage() {
                       <Code>onChange</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>{`(value: T | T[]) => void`}</Code>
+                      <Code className="text-xs">{`(value: T | T[]) => void`}</Code>
                     </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>값 변경 시 호출되는 함수</TableCell>
@@ -398,9 +472,11 @@ export default function SelectPage() {
                       <Code>placeholder</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>string</Code>
+                      <Code className="text-xs">string</Code>
                     </TableCell>
-                    <TableCell>-</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">&apos;선택하세요&apos;</Code>
+                    </TableCell>
                     <TableCell>
                       값이 선택되지 않았을 때 표시되는 텍스트
                     </TableCell>
@@ -410,65 +486,92 @@ export default function SelectPage() {
                       <Code>multiple</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>boolean</Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>false</Code>
+                      <Code className="text-xs">false</Code>
                     </TableCell>
-                    <TableCell>다중 선택 가능 여부</TableCell>
+                    <TableCell>다중 선택 가능 여부 (현재 미지원)</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>searchable</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>boolean</Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>false</Code>
+                      <Code className="text-xs">false</Code>
                     </TableCell>
-                    <TableCell>검색/필터 기능 활성화</TableCell>
+                    <TableCell>검색/필터 기능 활성화 (현재 미지원)</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>disabled</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>boolean</Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>false</Code>
+                      <Code className="text-xs">false</Code>
                     </TableCell>
                     <TableCell>비활성화 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>status</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;error&apos; | &apos;success&apos; |
+                        &apos;info&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>
+                      상태 표시 (error: 에러, success: 성공, info: 정보)
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>error</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>boolean</Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>false</Code>
+                      <Code className="text-xs">false</Code>
                     </TableCell>
-                    <TableCell>에러 상태 표시</TableCell>
+                    <TableCell>
+                      <span className="line-through opacity-60">
+                        에러 상태 표시
+                      </span>{' '}
+                      <Code className="text-xs">deprecated</Code> -
+                      status=&quot;error&quot; 사용 권장
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>label</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>string</Code>
+                      <Code className="text-xs">string</Code>
                     </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>선택 목록의 레이블</TableCell>
+                    <TableCell>
+                      <span className="line-through opacity-60">
+                        선택 목록의 레이블
+                      </span>{' '}
+                      <Code className="text-xs">deprecated</Code> - FormLabel
+                      컴포넌트 사용 권장
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>className</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>string</Code>
+                      <Code className="text-xs">string</Code>
                     </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>추가 CSS 클래스</TableCell>
@@ -477,54 +580,45 @@ export default function SelectPage() {
               </Table>
             </Subsection>
 
-            {/* Radix UI Features */}
             <Subsection level="h3">
-              <Heading level="h3" id="radix-features" title="Radix UI 기능" />
-              <Card variant="info">
-                <List variant="check" className="text-krds-gray-90">
-                  <ListItem>
-                    <strong>@radix-ui/react-select:</strong> Radix UI Select
-                    Primitive를 기반으로 구축되었습니다.
-                  </ListItem>
-                  <ListItem>
-                    <strong>자동 ARIA:</strong> role, aria-expanded,
-                    aria-controls 등이 자동으로 적용됩니다.
-                  </ListItem>
-                  <ListItem>
-                    <strong>포커스 관리:</strong> 드롭다운 열기/닫기 시 자동
-                    포커스 관리
-                  </ListItem>
-                  <ListItem>
-                    <strong>키보드 단축키:</strong> Arrow Up/Down (옵션 이동),
-                    Enter (선택), Escape (닫기), Space (열기)
-                  </ListItem>
-                  <ListItem>
-                    <strong>Type-ahead:</strong> 키보드 입력으로 옵션 검색
-                  </ListItem>
-                </List>
-              </Card>
+              <Heading level="h3" title="SelectOption Type" />
+              <Code variant="block" language="tsx">
+                {`interface SelectOption<T = string> {
+  value: T;           // 옵션 값
+  label: string;      // 표시될 텍스트
+  disabled?: boolean; // 비활성화 여부
+  group?: string;     // 그룹 이름 (선택사항)
+}`}
+              </Code>
             </Subsection>
 
-            {/* KRDS Compliance */}
             <Subsection level="h3">
-              <Heading level="h3" id="krds-compliance" title="KRDS 준수사항" />
-              <Card variant="info">
-                <List variant="check" className="text-krds-gray-90">
-                  <ListItem>Radix UI 기반으로 완전한 접근성 보장</ListItem>
-                  <ListItem>
-                    키보드 네비게이션 완전 지원 (Arrow, Enter, Escape)
-                  </ListItem>
-                  <ListItem>
-                    스크린 리더 완전 지원 (ARIA 속성 자동 적용)
-                  </ListItem>
-                  <ListItem>
-                    Focus indicator로 현재 포커스 위치 명확히 표시
-                  </ListItem>
-                  <ListItem>
-                    명도 대비 4.5:1 이상 (WCAG 2.1 / KWCAG 2.2 Level AA)
-                  </ListItem>
-                </List>
-              </Card>
+              <Heading level="h3" title="Radix UI 기능" />
+              <Body className="mb-3">
+                Select 컴포넌트는 @radix-ui/react-select를 기반으로 다음
+                기능들을 자동으로 제공합니다:
+              </Body>
+              <List variant="unordered" spacing="tight">
+                <ListItem>
+                  <strong>자동 ARIA:</strong> role, aria-expanded, aria-controls
+                  등이 자동으로 적용됩니다.
+                </ListItem>
+                <ListItem>
+                  <strong>포커스 관리:</strong> 드롭다운 열기/닫기 시 자동
+                  포커스 관리
+                </ListItem>
+                <ListItem>
+                  <strong>키보드 단축키:</strong> Arrow Up/Down (옵션 이동),
+                  Enter (선택), Escape (닫기), Space (열기)
+                </ListItem>
+                <ListItem>
+                  <strong>Type-ahead:</strong> 키보드 입력으로 옵션 검색
+                </ListItem>
+                <ListItem>
+                  <strong>Portal 렌더링:</strong> 드롭다운이 올바른 z-index로
+                  표시됨
+                </ListItem>
+              </List>
             </Subsection>
           </Section>
         </TabsContent>
@@ -535,7 +629,7 @@ export default function SelectPage() {
           title: 'Section Heading System',
           href: '/components/section-heading-system',
         }}
-        next={{ title: 'Side Navigation', href: '/components/sidenavigation' }}
+        next={{ title: 'Side Navigation', href: '/components/side-navigation' }}
       />
     </>
   );

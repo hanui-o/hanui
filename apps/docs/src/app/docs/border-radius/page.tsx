@@ -72,7 +72,7 @@ export default function BorderRadiusPage() {
               description="Border Radius는 UI 요소에 적용되는 모서리 둥글기로 브랜드의 시각적 아이덴티티를 표현합니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>표준형 스타일:</strong> 2px~12px의 체계적인 5단계

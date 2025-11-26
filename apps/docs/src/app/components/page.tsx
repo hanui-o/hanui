@@ -128,6 +128,18 @@ const navigationLinkComponents = [
 const presentationComponents = [
   // Layout 컴포넌트들
   {
+    name: 'AspectRatio',
+    description: '종횡비 유지 컨테이너',
+    href: '/components/aspect-ratio',
+    updated: true,
+  },
+  {
+    name: 'Center',
+    description: '중앙 정렬 컨테이너',
+    href: '/components/center',
+    updated: true,
+  },
+  {
     name: 'Container',
     description: '컨테이너',
     href: '/components/container',
@@ -137,6 +149,18 @@ const presentationComponents = [
     name: 'Stack',
     description: '스택 레이아웃',
     href: '/components/stack',
+    updated: true,
+  },
+  {
+    name: 'Flex',
+    description: 'Flexbox 레이아웃',
+    href: '/components/flex',
+    updated: true,
+  },
+  {
+    name: 'Grid',
+    description: 'Grid 레이아웃',
+    href: '/components/grid',
     updated: true,
   },
   {
@@ -173,6 +197,12 @@ const presentationComponents = [
     name: 'Code',
     description: '인라인/블록 코드',
     href: '/components/code',
+    updated: true,
+  },
+  {
+    name: 'Image',
+    description: '이미지',
+    href: '/components/image',
     updated: true,
   },
   // Presentation 컴포넌트들

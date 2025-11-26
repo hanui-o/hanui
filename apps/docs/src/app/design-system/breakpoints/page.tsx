@@ -54,7 +54,7 @@ export default function BreakpointsPage() {
               description="Breakpoints는 화면 크기에 따라 레이아웃이 변경되는 지점을 정의합니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>하이브리드 시스템:</strong> Tailwind 기본값과 KRDS

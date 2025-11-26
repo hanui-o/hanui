@@ -1,54 +1,65 @@
-import {
-  Footer,
-  Header,
-  SideNavigation,
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-  Container,
-  SAMPLE_SIDE_NAVIGATION,
-  SkipLink,
-  Breadcrumb,
-} from '@hanui/react';
+import { Container, Heading, Card, Link, Body } from '@hanui/react';
 
-export default function TestPage() {
+interface TemplateCardProps {
+  title: string;
+  description: string;
+  href: string;
+  tags: string[];
+}
+
+function TemplateCard({ title, description, href, tags }: TemplateCardProps) {
   return (
-    <div id="wrap" className="flex flex-col min-h-screen">
-      <SkipLink />
-      <Header />
-      <main className="flex-1 min-h-[600px]">
-        <Container className="flex justify-between gap-20">
-          <SideNavigation
-            title="1Depth-title"
-            sections={SAMPLE_SIDE_NAVIGATION}
-          />
-          <div className="grow">
-            <Breadcrumb
-              items={[
-                { label: '홈', href: '/' },
-                { label: '2Depth-title', href: '/' },
-                { label: '3Depth-title', href: '/' },
-              ]}
-            />
-            <Accordion>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Section 1</AccordionTrigger>
-                <AccordionContent>Content 1</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>Section 2</AccordionTrigger>
-                <AccordionContent>Content 2</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Section 3</AccordionTrigger>
-                <AccordionContent>Content 3</AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </Container>
-      </main>
-      <Footer />
-    </div>
+    <Link href={href} className="no-underline">
+      <Card className="p-6 h-full hover:shadow-lg transition-shadow">
+        <Heading level="h3" className="mb-2">
+          {title}
+        </Heading>
+        <Body className="text-krds-gray-70 mb-4">{description}</Body>
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-3 py-1 text-sm bg-krds-primary-5 text-krds-primary-60 rounded"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </Card>
+    </Link>
+  );
+}
+
+export default function TemplatesPage() {
+  return (
+    <Container className="py-12">
+      <Heading level="h1" className="mb-4">
+        템플릿
+      </Heading>
+      <Body className="text-krds-gray-70 mb-8">
+        HANUI 컴포넌트 조합 예시 - 복붙해서 사용하세요
+      </Body>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        <TemplateCard
+          title="Hero Section"
+          description="랜딩 페이지 히어로 섹션"
+          href="/templates/hero-section"
+          tags={['Container', 'Heading', 'Button']}
+        />
+        <TemplateCard
+          title="List + Table"
+          description="검색 + 테이블 + 페이지네이션"
+          href="/templates/list-table"
+          tags={['Table', 'Pagination', 'Search']}
+        />
+        <TemplateCard
+          title="Form Layout"
+          description="신청 폼 레이아웃"
+          href="/templates/form-layout"
+          tags={['Input', 'Select', 'FileUpload']}
+        />
+      </div>
+    </Container>
   );
 }

@@ -24,7 +24,8 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "pnpm build && changeset publish",
-    "hanui": "node packages/cli/dist/hanui.mjs"
+    "hanui": "node packages/cli/dist/hanui.mjs",
+    "optimize-images": "node scripts/optimize-images.js"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

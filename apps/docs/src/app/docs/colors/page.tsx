@@ -88,7 +88,7 @@ export default function ColorsPage() {
               </Body>
             </Heading>
 
-            <Card variant="info">
+            <Card variant="filled">
               <Body>
                 <strong>핵심:</strong> <Code>krds-</Code> 접두사를 사용하면
                 Tailwind 기본 색상과 KRDS 색상이 공존할 수 있습니다. 필요에 따라
@@ -267,7 +267,7 @@ export default function ColorsPage() {
                   </List>
                 </Card>
 
-                <Card variant="info">
+                <Card variant="filled">
                   <Body>
                     <strong>참고:</strong> Tailwind 기본 색상(gray-50, red-500
                     등)도 그대로 사용할 수 있습니다. KRDS 색상은{' '}
@@ -958,7 +958,7 @@ function App() {
                   </Body>
                 </Card>
 
-                <Card variant="info">
+                <Card variant="filled">
                   <Body>
                     <strong>핵심:</strong> 모든 KRDS 색상(숫자 스케일, semantic
                     변수, `krds-white`/`krds-black` 모두)은 CSS 변수를 통해 자동
@@ -1404,7 +1404,7 @@ function App() {
                 KRDS 색상은 CSS 변수를 통해 다크 모드를 자동으로 지원합니다.
               </Body>
 
-              <Card variant="info">
+              <Card variant="filled">
                 <Heading level="h4" title="작동 원리" />
                 <List variant="check" className="mt-2 text-krds-gray-90">
                   <ListItem>

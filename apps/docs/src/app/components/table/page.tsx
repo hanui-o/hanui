@@ -87,7 +87,7 @@ export default function TablePage() {
               description="Table은 정형 데이터를 표 형식으로 표시하는 컴포넌트입니다. Compound pattern을 사용하여 유연하고 접근성 높은 테이블을 구성합니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>시맨틱 HTML:</strong> 적절한 table, thead, tbody,
@@ -454,7 +454,7 @@ const handleSort = (column: string) => {
           <Section>
             <Heading level="h2" id="accessibility" title="접근성" />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check">
                 <ListItem>
                   <strong>시맨틱 HTML:</strong> 적절한 table, thead, tbody,

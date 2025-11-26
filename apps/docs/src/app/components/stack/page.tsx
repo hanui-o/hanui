@@ -71,7 +71,7 @@ export default function StackPage() {
               description="Stack은 요소들을 수직 또는 수평으로 정렬하는 단순하고 직관적인 레이아웃 컴포넌트입니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>Stack:</strong> 기본 수직 레이아웃 (direction="row"로

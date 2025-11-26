@@ -1886,7 +1886,7 @@ export default function SpacingPage() {
                   </Code>
                 </Card>
 
-                <Card variant="info">
+                <Card variant="filled">
                   <Body>
                     <strong>핵심 원칙:</strong> 간격은 시각적 계층과 관계를
                     나타냅니다. 관련된 요소는 가깝게, 독립적인 요소는 멀리

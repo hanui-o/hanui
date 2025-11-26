@@ -69,7 +69,7 @@ npx @hanui/cli init`}
               description="Typography는 KRDS 디자인 시스템을 준수하는 타이포그래피 스타일을 제공합니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>Pretendard GOV 폰트:</strong> 한국 정부 웹사이트를

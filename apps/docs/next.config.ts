@@ -14,6 +14,19 @@ const nextConfig: NextConfig = {
   },
   transpilePackages: ['@hanui/react'],
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+    qualities: [85],
+  },
   // NOTE: optimizePackageImports disabled - it incorrectly tries to bundle
   // content components (PageSection, SectionHeading) with @hanui/react
   // experimental: {

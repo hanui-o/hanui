@@ -70,7 +70,7 @@ export default function WrapPage() {
               description="Wrap은 요소들에 간격을 추가하고 공간이 부족할 때 자동으로 줄바꿈하는 레이아웃 컴포넌트입니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>자동 줄바꿈:</strong> 공간이 부족하면 자동으로 다음
@@ -376,7 +376,7 @@ export default function WrapPage() {
           <Section>
             <Heading level="h2" id="accessibility" title="접근성" />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>시맨틱 마크업:</strong> 의미론적으로 중립적인{' '}

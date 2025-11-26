@@ -1,8 +1,10 @@
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 interface PageSectionProps {
   level?: 'h2' | 'h3';
   children: ReactNode;
+  className?: string;
 }
 
 /**
@@ -26,9 +28,9 @@ interface PageSectionProps {
  * </PageSection>
  * ```
  */
-export function PageSection({ level, children }: PageSectionProps) {
+export function PageSection({ level, children, className }: PageSectionProps) {
   return (
-    <section className="mb-10 md:mb-20" data-level={level}>
+    <section className={cn('mb-10 md:mb-20', className)} data-level={level}>
       {children}
     </section>
   );

@@ -400,7 +400,7 @@ const buttonVariants = cva(
           description="HANUI는 Radix UI Primitives 기반으로 구축되어 웹 접근성을 기본으로 제공합니다:"
         />
 
-        <Card variant="info">
+        <Card variant="filled">
           <List variant="check" className="text-krds-gray-90">
             <ListItem>
               <strong>Radix UI 기반:</strong> WAI-ARIA 표준을 준수하는 Headless

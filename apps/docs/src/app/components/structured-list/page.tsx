@@ -117,7 +117,7 @@ export default function StructuredListPage() {
               description="Structured List는 배지, 타이틀, 설명, 날짜, 태그, 액션 버튼 등 다양한 정보를 포함하는 복잡한 콘텐츠를 카드 형식으로 정리하여 표시하는 컴포넌트입니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>반응형 그리드:</strong> 데스크탑 3열, 태블릿 2열,

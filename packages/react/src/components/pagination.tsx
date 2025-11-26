@@ -282,7 +282,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>( // KRD
                 isDisabled={isFirstPage}
                 aria-label={`${first} ${page}`}
               >
-                <ChevronsLeft className="w-4 h-4" />
+                <ChevronsLeft className="w-4 h-4 mr-1" />
                 {first}
               </PaginationButton>
             )}
@@ -293,7 +293,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>( // KRD
                 isDisabled={isFirstPage}
                 aria-label={`${previous} ${page}`}
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-4 h-4 mr-1" />
                 {previous}
               </PaginationButton>
             )}
@@ -343,7 +343,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>( // KRD
                 aria-label={`${next} ${page}`}
               >
                 {next}
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-4 h-4 ml-1" />
               </PaginationButton>
             )}
 
@@ -354,7 +354,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>( // KRD
                 aria-label={`${last} ${page}`}
               >
                 {last}
-                <ChevronsRight className="w-4 h-4" />
+                <ChevronsRight className="w-4 h-4 ml-1" />
               </PaginationButton>
             )}
           </div>
@@ -401,7 +401,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>( // KRD
               isDisabled={isFirstPage}
               aria-label={`${first} ${page}`}
             >
-              <ChevronsLeft className="w-4 h-4" />
+              <ChevronsLeft className="w-4 h-4 mr-1" />
               {first}
             </PaginationButton>
           )}
@@ -412,7 +412,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>( // KRD
               isDisabled={isFirstPage}
               aria-label={`${previous} ${page}`}
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-4 h-4 mr-1" />
               {previous}
             </PaginationButton>
           )}
@@ -451,7 +451,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>( // KRD
               aria-label={`${next} ${page}`}
             >
               {next}
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4 ml-1" />
             </PaginationButton>
           )}
 
@@ -462,7 +462,7 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>( // KRD
               aria-label={`${last} ${page}`}
             >
               {last}
-              <ChevronsRight className="w-4 h-4" />
+              <ChevronsRight className="w-4 h-4 ml-1" />
             </PaginationButton>
           )}
         </nav>

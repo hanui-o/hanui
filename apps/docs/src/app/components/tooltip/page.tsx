@@ -498,7 +498,7 @@ export default function MyComponent() {
               필요 없이, 컴포넌트가 모든 접근성 기능을 자동으로 처리합니다.
             </Body>
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check">
                 <ListItem>
                   <strong>ARIA Automation:</strong> <Code>aria-labelledby</Code>{' '}

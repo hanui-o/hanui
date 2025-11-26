@@ -1,0 +1,2 @@
+- 해당 컴포넌트 메뉴 추가
+  - sidebar(apps/docs/src/components/layout/Sidebar.tsx), 컴포넌트 리스트 페이지(apps/docs/src/app/components/page.tsx) 에 메뉴 추가

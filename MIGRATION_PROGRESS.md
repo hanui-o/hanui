@@ -260,7 +260,7 @@ export default function ComponentPage() {
             />
             <Body>컴포넌트가 자동으로 처리하는 기능들...</Body>
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check">
                 <ListItem>
                   <strong>Auto feature 1:</strong> Description
@@ -412,7 +412,7 @@ import * as RadixTabs from '@radix-ui/react-tabs';
 ```tsx
 <Subsection level="h3">
   <SectionHeading level="h3" id="radix-features" title="Radix UI 기능" />
-  <Card variant="info">
+  <Card variant="filled">
     <List variant="check" className="text-krds-gray-90">
       <ListItem>
         <strong>@radix-ui/react-component:</strong> 설명...

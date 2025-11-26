@@ -25,44 +25,43 @@ import { SideNavigation } from '@hanui/react';
 export default function SideNavigationPage() {
   const exampleSections = [
     {
-      label: '건강보험',
+      label: '2Depth-title',
       active: true,
       children: [
         {
-          label: '보험료 조회',
-          href: '#',
+          label: '3Depth-menu',
           children: [
-            { label: '보험료 조회', href: '#', active: true },
-            { label: '보험료 납부', href: '#' },
-            { label: '보험료 환급', href: '#' },
+            { label: '4Depth-menu', href: '#', active: true },
+            { label: '4Depth-menu', href: '#' },
+            { label: '4Depth-menu', href: '#' },
           ],
         },
-        { label: '자격 득실 확인', href: '#' },
-        { label: '민원 신청', href: '#' },
+        { label: '3Depth-menu', href: '#' },
+        { label: '3Depth-menu', href: '#' },
       ],
     },
     {
-      label: '장기요양',
+      label: '2Depth-title',
       children: [
         {
-          label: '등급 판정',
+          label: '3Depth-menu',
           href: '#',
           children: [
-            { label: '등급 신청', href: '#' },
-            { label: '등급 조회', href: '#' },
-            { label: '등급 변경', href: '#' },
+            { label: '4Depth-menu', href: '#' },
+            { label: '4Depth-menu', href: '#' },
+            { label: '4Depth-menu', href: '#' },
           ],
         },
-        { label: '장기요양 급여', href: '#' },
-        { label: '장기요양 기관', href: '#' },
+        { label: '3Depth-menu', href: '#' },
+        { label: '3Depth-menu', href: '#' },
       ],
     },
     {
-      label: '건강검진',
+      label: '2Depth-title',
       children: [
-        { label: '검진 대상 조회', href: '#' },
-        { label: '검진 기관 찾기', href: '#' },
-        { label: '검진 결과 조회', href: '#' },
+        { label: '3Depth-menu', href: '#' },
+        { label: '3Depth-menu', href: '#' },
+        { label: '3Depth-menu', href: '#' },
       ],
     },
   ];
@@ -146,8 +145,8 @@ export default function SideNavigationPage() {
           </Section>
 
           <Section className="border border-krds-gray-10 p-6">
-            <div className="w-[320px]">
-              <SideNavigation title="주요 서비스" sections={exampleSections} />
+            <div className="w-[320px] mx-auto">
+              <SideNavigation title="1Depth-title" sections={exampleSections} />
             </div>
           </Section>
 
@@ -173,7 +172,7 @@ export default function SideNavigationPage() {
 export default function Page() {
   return (
     <SideNavigation
-      title="주요 서비스"
+      title="주요 메뉴"
       sections={[
         {
           label: '건강보험',
@@ -206,7 +205,7 @@ export default function Page() {
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<SideNavigation
-  title="주요 서비스"
+  title="1Depth-title"
   sections={[
     {
       label: '건강보험',
@@ -237,7 +236,7 @@ export default function Page() {
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<SideNavigation
-  title="주요 서비스"
+  title="1Depth-title"
   sections={[
     {
       label: '건강보험',
@@ -319,13 +318,18 @@ export default function Page() {
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`// 예시: 컴포넌트 내부의 Tailwind 클래스
-<h2 className="px-3 pb-6 border-b border-krds-gray-50 text-2xl font-bold text-krds-gray-90">
-  {title}
-</h2>
+<nav aria-labelledby="side-nav-title">
+  <div
+    id="side-nav-title"
+    className="px-3 pb-6 border-b border-krds-gray-50 text-2xl font-bold text-krds-gray-90"
+  >
+    {title}
+  </div>
 
-<button className="py-3 px-3 border-b border-krds-gray-20 text-krds-gray-90 hover:bg-krds-gray-10">
-  {section.label}
-</button>`}
+  <button className="py-3 px-3 border-b border-krds-gray-20 text-krds-gray-90 hover:bg-krds-gray-10">
+    {section.label}
+  </button>
+</nav>`}
               </Code>
             </Subsection>
 
@@ -338,7 +342,7 @@ export default function Page() {
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<SideNavigation
-  title="주요 서비스"
+  title="1Depth-title"
   sections={sections}
   className="shadow-lg rounded-lg" // 추가 Tailwind 클래스
 />`}
@@ -363,39 +367,6 @@ data-[state=open]:after:rotate-180`}
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
-            <Heading
-              level="h2"
-              id="best-practices"
-              title="모범 사례"
-              description="Side Navigation을 효과적으로 사용하기 위한 가이드입니다."
-            />
-
-            <List variant="unordered">
-              <ListItem>
-                <strong>적절한 Depth:</strong> 3~4단계를 권장하며, 너무 깊은
-                계층은 피하세요
-              </ListItem>
-              <ListItem>
-                <strong>명확한 라벨:</strong> 각 링크는 명확하고 간결한 라벨을
-                사용하세요
-              </ListItem>
-              <ListItem>
-                <strong>Active 상태 유지:</strong> 현재 페이지에 active: true를
-                설정하여 사용자 위치를 표시하세요
-              </ListItem>
-              <ListItem>
-                <strong>일관된 그룹화:</strong> 관련된 링크는 같은 섹션으로
-                그룹화하세요
-              </ListItem>
-              <ListItem>
-                <strong>최대 너비 제한:</strong> 사이드바는 320px 내외로
-                유지하는 것을 권장합니다
-              </ListItem>
-            </List>
-          </Section>
-
           {/* Accessibility */}
           <Section>
             <Heading
@@ -408,11 +379,12 @@ data-[state=open]:after:rotate-180`}
             <List variant="unordered">
               <ListItem>
                 <strong>Semantic HTML:</strong> nav, ul, li, button, a 등 시맨틱
-                요소 사용
+                요소 사용. 네비게이션 제목은 페이지 heading 구조와 분리하기 위해
+                div + aria-labelledby 방식 사용
               </ListItem>
               <ListItem>
                 <strong>ARIA 속성:</strong> role, aria-expanded, aria-controls,
-                aria-current 자동 설정
+                aria-current, aria-labelledby 자동 설정
               </ListItem>
               <ListItem>
                 <strong>키보드 네비게이션:</strong> Enter, Space 키로 토글 및
@@ -427,45 +399,6 @@ data-[state=open]:after:rotate-180`}
                 레이블
               </ListItem>
             </List>
-          </Section>
-
-          {/* KRDS Standards */}
-          <Section>
-            <Heading
-              level="h2"
-              id="krds-standards"
-              title="KRDS 표준"
-              description="Side Navigation이 준수하는 KRDS 표준입니다."
-            />
-
-            <Card variant="filled">
-              <Body className="font-semibold mb-3">준수하는 KRDS 표준:</Body>
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>4단계 Depth:</strong> Title → Section → Link → SubLink
-                  계층 구조
-                </ListItem>
-                <ListItem>
-                  <strong>시맨틱 HTML:</strong> nav, ul, li, button, a 등 시맨틱
-                  요소 사용
-                </ListItem>
-                <ListItem>
-                  <strong>토글 인터랙션:</strong> 확장/축소 버튼 및 아이콘
-                  애니메이션
-                </ListItem>
-                <ListItem>
-                  <strong>Active 상태:</strong> 현재 페이지 표시 및 부모 섹션
-                  자동 확장
-                </ListItem>
-                <ListItem>
-                  <strong>CSS Variables:</strong> KRDS 디자인 토큰 활용
-                  (--krds-spacing-*, --krds-color-*, --krds-font-*)
-                </ListItem>
-                <ListItem>
-                  <strong>반응형:</strong> 고대비 모드 및 다크 모드 지원
-                </ListItem>
-              </List>
-            </Card>
           </Section>
         </TabsContent>
 
@@ -494,7 +427,7 @@ data-[state=open]:after:rotate-180`}
               </List>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<SideNavigation title="주요 서비스" sections={[...]} />`}
+                {`<SideNavigation title="1Depth-title" sections={[...]} />`}
               </Code>
             </Subsection>
 
@@ -529,7 +462,7 @@ data-[state=open]:after:rotate-180`}
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<SideNavigation
-  title="주요 서비스"
+  title="1Depth-title"
   sections={[...]}
   className="custom-nav"
 />`}

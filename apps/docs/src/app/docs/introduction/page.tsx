@@ -122,7 +122,7 @@ export default function Page() {
             </Body>
           </Heading>
 
-          <Card variant="info">
+          <Card variant="filled">
             <List variant="check" className="text-krds-gray-90">
               <ListItem>
                 <strong>접근성 자동 보장:</strong> WCAG 2.1 AA 기준을 자동으로
@@ -156,7 +156,7 @@ export default function Page() {
             </Body>
           </Heading>
 
-          <Card variant="info">
+          <Card variant="filled">
             <List variant="check" className="text-krds-gray-90">
               <ListItem>
                 <strong>완전한 소유권:</strong> 컴포넌트 소스 코드가 프로젝트에

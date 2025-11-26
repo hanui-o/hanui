@@ -76,8 +76,8 @@ export function Header() {
     {
       label: 'Templates',
       href: '/templates',
-      target: '_blank' as const,
-      icon: <SquareArrowOutUpRight className="w-4 h-4 text-krds-gray-70" />,
+      // target: '_blank' as const,
+      // icon: <SquareArrowOutUpRight className="w-4 h-4 text-krds-gray-70" />,
       isActive: pathname?.startsWith('/templates'),
     },
     {

@@ -70,7 +70,7 @@ export default function TabsPage() {
               description="Tabs는 관련된 콘텐츠를 여러 패널로 나누어 공간을 효율적으로 활용하는 네비게이션 컴포넌트입니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>ARIA 자동화:</strong> role, aria-selected,
@@ -309,7 +309,7 @@ export default function TabsPage() {
           <Section>
             <Heading level="h2" id="accessibility" title="접근성" />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check">
                 <ListItem>
                   <strong>ARIA 자동화:</strong> role="tablist", role="tab",
