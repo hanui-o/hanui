@@ -254,6 +254,32 @@ const hanUIPreset = {
       borderRadius: {
         DEFAULT: '0.5rem', // 8px
       },
+      keyframes: {
+        slideDown: {
+          from: {
+            height: '0',
+            opacity: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+            opacity: '1',
+          },
+        },
+        slideUp: {
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+            opacity: '1',
+          },
+          to: {
+            height: '0',
+            opacity: '0',
+          },
+        },
+      },
+      animation: {
+        slideDown: 'slideDown 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+        slideUp: 'slideUp 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+      },
     },
   },
 };
