@@ -72,7 +72,7 @@ export default function SideNavigationPage() {
       <Heading
         level="h1"
         title="Side Navigation"
-        description="KRDS 표준을 따르는 사이드 네비게이션 컴포넌트입니다. 최대 4단계 depth를 지원하며, Props 기반 API와 CSS Modules로 구현되었습니다."
+        description="KRDS 표준을 따르는 사이드 네비게이션 컴포넌트입니다. 최대 4단계 depth를 지원하며, Props 기반 API와 Tailwind CSS로 구현되었습니다."
       />
 
       <Tabs defaultValue="overview">
@@ -95,16 +95,12 @@ export default function SideNavigationPage() {
               npx hanui add side-navigation
             </Code>
 
-            <Card variant="info" className="mt-6">
+            <Card variant="filled" className="mt-6">
               <Body className="mb-3">설치 시 다음 파일이 추가됩니다:</Body>
               <List className="text-krds-gray-90">
                 <ListItem>
                   <Code>components/hanui/side-navigation.tsx</Code> - Side
-                  Navigation 컴포넌트
-                </ListItem>
-                <ListItem>
-                  <Code>components/hanui/side-navigation.module.scss</Code> -
-                  CSS Modules 스타일
+                  Navigation 컴포넌트 (Tailwind CSS 기반)
                 </ListItem>
               </List>
             </Card>
@@ -119,7 +115,7 @@ export default function SideNavigationPage() {
               description="다단계 콘텐츠 구조를 위한 사이드 네비게이션 컴포넌트입니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
                   <strong>Props 기반 API:</strong> TypeScript 인터페이스로 타입
@@ -134,14 +130,15 @@ export default function SideNavigationPage() {
                   자동 처리
                 </ListItem>
                 <ListItem>
-                  <strong>CSS Modules:</strong> SCSS를 활용한 독립적인 스타일
-                  관리
+                  <strong>Tailwind CSS:</strong> KRDS 변수를 활용한 유틸리티
+                  기반 스타일링
                 </ListItem>
                 <ListItem>
-                  <strong>접근성:</strong> ARIA 속성, 키보드 네비게이션 지원
+                  <strong>Radix UI:</strong> 접근성이 보장된 Accordion 컴포넌트
+                  기반
                 </ListItem>
                 <ListItem>
-                  <strong>KRDS 디자인 토큰:</strong> CSS 변수를 통한 일관된
+                  <strong>KRDS 디자인 토큰:</strong> Tailwind 변수를 통한 일관된
                   스타일 적용
                 </ListItem>
               </List>
@@ -310,73 +307,58 @@ export default function Page() {
               level="h2"
               id="styling"
               title="스타일 커스터마이징"
-              description="CSS Modules를 활용한 스타일 수정 방법입니다."
+              description="Tailwind CSS를 활용한 스타일 수정 방법입니다."
             />
 
             <Subsection level="h3">
-              <Heading level="h3" title="KRDS 디자인 토큰 활용" />
+              <Heading level="h3" title="KRDS Tailwind 변수 활용" />
               <Body className="mb-4 text-krds-gray-70">
-                side-navigation.module.scss에서 KRDS CSS 변수를 사용합니다.
+                컴포넌트는 KRDS Tailwind 변수를 사용하여 일관된 디자인을
+                유지합니다.
               </Body>
 
-              <Code variant="block" language="scss" showLineNumbers={false}>
-                {`.krds-side-navigation {
-  .lnb-tit {
-    padding-bottom: var(--krds-spacing-10);
-    border-bottom: 1px solid var(--krds-color-divider-gray);
-    font-size: var(--krds-font-size-md);
-    font-weight: var(--krds-font-weight-bold);
-    color: var(--krds-color-text-primary);
-  }
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`// 예시: 컴포넌트 내부의 Tailwind 클래스
+<h2 className="px-3 pb-6 border-b border-krds-gray-50 text-2xl font-bold text-krds-gray-90">
+  {title}
+</h2>
 
-  .lnb-btn {
-    padding: var(--krds-spacing-6) var(--krds-spacing-3);
-    background-color: var(--krds-color-action-secondary);
-    border-radius: var(--krds-border-radius-sm);
-    font-size: var(--krds-font-size-sm);
-  }
-}`}
+<button className="py-3 px-3 border-b border-krds-gray-20 text-krds-gray-90 hover:bg-krds-gray-10">
+  {section.label}
+</button>`}
               </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="토글 아이콘 애니메이션" />
+              <Heading level="h3" title="커스텀 스타일 추가" />
               <Body className="mb-4 text-krds-gray-70">
-                chevron 아이콘은 확장 시 180도 회전합니다.
+                <Code>className</Code> prop을 사용하여 추가 스타일을 적용할 수
+                있습니다.
               </Body>
 
-              <Code variant="block" language="scss" showLineNumbers={false}>
-                {`.lnb-toggle {
-  &::after {
-    content: '';
-    background-image: url("data:image/svg+xml...");
-    transition: transform 0.2s ease;
-  }
-
-  &[aria-expanded='true']::after {
-    transform: rotate(180deg);
-  }
-}`}
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<SideNavigation
+  title="주요 서비스"
+  sections={sections}
+  className="shadow-lg rounded-lg" // 추가 Tailwind 클래스
+/>`}
               </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Grid 기반 확장 애니메이션" />
+              <Heading level="h3" title="애니메이션" />
               <Body className="mb-4 text-krds-gray-70">
-                서브메뉴는 CSS Grid를 활용하여 부드럽게 확장/축소됩니다.
+                컴포넌트는 Radix UI의 data 속성을 사용하여 부드러운 애니메이션을
+                제공합니다.
               </Body>
 
-              <Code variant="block" language="scss" showLineNumbers={false}>
-                {`.lnb-submenu {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s ease;
-  overflow: hidden;
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`// Accordion 애니메이션 (Tailwind preset에 정의됨)
+data-[state=open]:animate-slideDown
+data-[state=closed]:animate-slideUp
 
-  &[style*='display: grid'] {
-    grid-template-rows: 1fr;
-  }
-}`}
+// 토글 아이콘 회전
+data-[state=open]:after:rotate-180`}
               </Code>
             </Subsection>
           </Section>
@@ -456,7 +438,7 @@ export default function Page() {
               description="Side Navigation이 준수하는 KRDS 표준입니다."
             />
 
-            <Card variant="info">
+            <Card variant="filled">
               <Body className="font-semibold mb-3">준수하는 KRDS 표준:</Body>
               <List variant="check" className="text-krds-gray-90">
                 <ListItem>
@@ -658,62 +640,62 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
             </Subsection>
           </Section>
 
-          {/* CSS Modules Classes */}
+          {/* Tailwind Classes */}
           <Section>
             <Heading
               level="h2"
-              id="css-modules"
-              title="CSS Modules 클래스"
-              description="side-navigation.module.scss의 클래스 목록입니다."
+              id="tailwind-classes"
+              title="주요 Tailwind 클래스"
+              description="컴포넌트에서 사용되는 주요 Tailwind 유틸리티 클래스입니다."
             />
 
             <Subsection level="h3">
-              <Heading level="h3" title="메인 구조" />
+              <Heading level="h3" title="KRDS 컬러 클래스" />
               <List variant="unordered">
                 <ListItem>
-                  <Code>.krds-side-navigation</Code> - 메인 컨테이너
+                  <Code>text-krds-gray-90</Code> - 기본 텍스트 색상
                 </ListItem>
                 <ListItem>
-                  <Code>.lnb-tit</Code> - 1st Depth 제목
+                  <Code>text-krds-blue-60</Code> - 활성 상태 색상 (primary)
                 </ListItem>
                 <ListItem>
-                  <Code>.lnb-list</Code> - 2nd Depth 리스트
+                  <Code>border-krds-gray-20</Code> - 기본 보더 색상
                 </ListItem>
                 <ListItem>
-                  <Code>.lnb-item</Code> - 2nd Depth 아이템
+                  <Code>border-krds-gray-50</Code> - 제목 하단 보더
+                </ListItem>
+                <ListItem>
+                  <Code>bg-krds-gray-10</Code> - 호버 배경색
                 </ListItem>
               </List>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="버튼 및 링크" />
+              <Heading level="h3" title="레이아웃 & 간격" />
               <List variant="unordered">
                 <ListItem>
-                  <Code>.lnb-btn</Code> - 기본 버튼/링크 스타일
+                  <Code>max-w-[296px]</Code> - 컨테이너 최대 너비
                 </ListItem>
                 <ListItem>
-                  <Code>.lnb-toggle</Code> - 토글 버튼 (chevron 아이콘 포함)
+                  <Code>py-3 px-3</Code> - 버튼 패딩
                 </ListItem>
                 <ListItem>
-                  <Code>.lnb-link</Code> - 일반 링크
+                  <Code>pl-10</Code> - 3단계 메뉴 왼쪽 패딩
                 </ListItem>
                 <ListItem>
-                  <Code>.lnb-btn-tit</Code> - 3rd Depth 제목 버튼
+                  <Code>pl-16</Code> - 4단계 메뉴 왼쪽 패딩
                 </ListItem>
               </List>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="서브메뉴" />
+              <Heading level="h3" title="타이포그래피" />
               <List variant="unordered">
                 <ListItem>
-                  <Code>.lnb-submenu</Code> - 3rd Depth 서브메뉴 컨테이너
+                  <Code>text-2xl font-bold</Code> - 제목 스타일
                 </ListItem>
                 <ListItem>
-                  <Code>.lnb-subitem</Code> - 3rd Depth 아이템
-                </ListItem>
-                <ListItem>
-                  <Code>.lnb-submenu-lv2</Code> - 4th Depth 서브메뉴 컨테이너
+                  <Code>text-[17px] leading-[1.5]</Code> - 본문 스타일
                 </ListItem>
               </List>
             </Subsection>
@@ -722,71 +704,17 @@ const childKey = \`\${sectionIndex}-\${childIndex}\`;`}
               <Heading level="h3" title="상태 클래스" />
               <List variant="unordered">
                 <ListItem>
-                  <Code>.active</Code> - 활성화 상태
+                  <Code>hover:bg-krds-gray-10</Code> - 호버 배경
                 </ListItem>
                 <ListItem>
-                  <Code>[aria-current='page']</Code> - 현재 페이지 표시
+                  <Code>focus-visible:outline-krds-blue-60</Code> - 포커스
+                  아웃라인
                 </ListItem>
                 <ListItem>
-                  <Code>[aria-expanded='true']</Code> - 확장된 상태
+                  <Code>data-[state=open]:after:rotate-180</Code> - 열림 상태
+                  아이콘 회전
                 </ListItem>
               </List>
-            </Subsection>
-          </Section>
-
-          {/* CSS Variables */}
-          <Section>
-            <Heading
-              level="h2"
-              id="css-variables"
-              title="CSS 변수"
-              description="사용되는 KRDS 디자인 토큰입니다."
-            />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Spacing" />
-              <Code variant="block" language="css" showLineNumbers={false}>
-                {`--krds-spacing-3
---krds-spacing-6
---krds-spacing-9
---krds-spacing-10`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Colors" />
-              <Code variant="block" language="css" showLineNumbers={false}>
-                {`--krds-color-text-primary
---krds-color-divider-gray
---krds-color-border
---krds-color-focus
---krds-color-action-secondary
---krds-color-action-secondary-hover
---krds-color-action-secondary-pressed
---krds-color-action-secondary-selected
---krds-color-action-secondary-active`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Typography" />
-              <Code variant="block" language="css" showLineNumbers={false}>
-                {`--krds-font-size-xs
---krds-font-size-sm
---krds-font-size-md
---krds-font-weight-regular
---krds-font-weight-medium
---krds-font-weight-bold
---krds-line-height-sm
---krds-line-height-md`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Border Radius" />
-              <Code variant="block" language="css" showLineNumbers={false}>
-                {`--krds-border-radius-sm`}
-              </Code>
             </Subsection>
           </Section>
         </TabsContent>
