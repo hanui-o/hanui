@@ -102,11 +102,11 @@ export function Header() {
       />
       <header
         id="header"
-        style={{
-          position: isFixed ? 'fixed' : 'absolute',
-          top: isFixed ? '-56px' : '0',
-        }}
-        className={`z-50 w-full bg-krds-white supports-[backdrop-filter]:bg-krds-white/95 ${isMainPage ? '' : 'border-b border-krds-gray-5'}`}
+        // style={{
+        //   position: isFixed ? 'fixed' : 'absolute',
+        //   top: isFixed ? '-56px' : '0',
+        // }}
+        className={`fixed top-0 z-50 w-full bg-krds-white supports-[backdrop-filter]:bg-krds-white/95 ${isMainPage ? '' : 'border-b border-krds-gray-5'}`}
       >
         {/* Main Header */}
         <Container maxWidth="full" className="h-14 flex items-center gap-4">

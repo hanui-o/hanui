@@ -6,55 +6,51 @@ import * as Slot from '@radix-ui/react-slot';
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-/**
- * Button Variants Definition
- *
- * Uses class-variance-authority (cva) for type-safe variant management
- * Radix UI Slot pattern for polymorphic components
- */
+const isDev = () => {
+  // 개발 모드 체크 헬퍼 함수
+  try {
+    return (
+      typeof process !== 'undefined' &&
+      (process.env as { NODE_ENV?: string }).NODE_ENV === 'development'
+    );
+  } catch {
+    return false;
+  }
+};
+
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  // Button 스타일 variants (cva로 타입 안전한 variant 관리)
+  'inline-flex items-center justify-center gap-2 min-w-20 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
-      /**
-       * Visual style variants
-       *
-       * KRDS Primary Colors:
-       * - base: #256ef4 (primary-60)
-       * - hover: #0b50d0 (primary-70)
-       * - active: #083891 (primary-80)
-       */
       variant: {
+        // 시각적 스타일 variants (primary, secondary, tertiary 등)
         primary:
-          'bg-krds-primary-base text-krds-white hover:bg-krds-primary-70 active:bg-krds-primary-80 focus-visible:ring-krds-primary-base',
+          'bg-krds-primary-50 text-krds-white hover:bg-krds-primary-60 active:bg-krds-primary-70 focus-visible:ring-krds-primary-50',
         secondary:
-          'bg-krds-gray-20 text-krds-gray-95 hover:bg-krds-gray-30 active:bg-krds-gray-40 focus-visible:ring-krds-gray-40',
+          'border border-krds-primary-50 bg-krds-primary-5 text-krds-primary-base hover:bg-krds-primary-10 active:bg-krds-primary-20 focus-visible:ring-krds-primary-base',
+        tertiary:
+          'border border-krds-gray-40 bg-krds-gray-0 text-krds-gray-95 hover:bg-krds-gray-5 active:bg-krds-gray-10 focus-visible:ring-krds-gray-40',
         success:
-          'bg-krds-success-base text-krds-white hover:bg-krds-success-70 active:bg-krds-success-80 focus-visible:ring-krds-success-base',
+          'bg-krds-success-base text-krds-white hover:bg-krds-success-60 active:bg-krds-success-70 focus-visible:ring-krds-success-base',
         danger:
-          'bg-krds-danger-base text-krds-white hover:bg-krds-danger-70 active:bg-krds-danger-80 focus-visible:ring-krds-danger-base',
+          'bg-krds-danger-base text-krds-white hover:bg-krds-danger-60 active:bg-krds-danger-70 focus-visible:ring-krds-danger-base',
         ghost:
           'bg-transparent text-krds-gray-95 hover:bg-krds-gray-5 active:bg-krds-gray-10 focus-visible:ring-krds-gray-95',
         'ghost-primary':
           'bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10 focus-visible:ring-krds-primary-base',
         outline:
-          'border-2 border-krds-primary-base bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10 focus-visible:ring-krds-primary-base',
+          'border border-krds-primary-base bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10 focus-visible:ring-krds-primary-base',
         black:
           'bg-krds-gray-95 text-krds-white hover:bg-krds-gray-90 active:bg-krds-gray-80 focus-visible:ring-krds-gray-95',
       },
-      /**
-       * Size variants
-       *
-       * KRDS Typography Scale:
-       * - sm: 15px (body-sm) - 32px height
-       * - md: 17px (body-md) - 40px height (default)
-       * - lg: 19px (body-lg) - 48px height
-       * - icon: Square shape for icon-only buttons
-       */
       size: {
-        sm: 'h-8 px-4 [font-size:var(--krds-font-size-body-sm)] leading-[var(--krds-line-height-body)]',
-        md: 'h-10 px-4 [font-size:var(--krds-font-size-body-md)] leading-[var(--krds-line-height-body)]',
-        lg: 'h-12 px-6 [font-size:var(--krds-font-size-body-lg)] leading-[var(--krds-line-height-body)]',
+        // 크기 variants (xs~xl, icon)
+        xs: 'h-8 px-3 [font-size:var(--krds-size-body-sm)] leading-[var(--krds-leading-body)]',
+        sm: 'h-10 px-4 [font-size:var(--krds-size-body-sm)] leading-[var(--krds-leading-body)]',
+        md: 'h-12 px-5 [font-size:var(--krds-size-body-md)] leading-[var(--krds-leading-body)]',
+        lg: 'h-14 px-6 [font-size:var(--krds-size-body-lg)] leading-[var(--krds-leading-body)]',
+        xl: 'h-16 px-8 [font-size:var(--krds-size-body-lg)] leading-[var(--krds-leading-body)]',
         icon: 'h-10 w-10',
       },
     },
@@ -65,128 +61,31 @@ const buttonVariants = cva(
   }
 );
 
-/**
- * Button Props Interface
- *
- * Extends native button attributes with HANUI-specific props
- * Supports Radix UI Slot pattern for polymorphic components
- */
-export interface ButtonProps
+export interface ButtonProps // Button Props (네이티브 button 속성 + HANUI 확장 기능)
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  /**
-   * Render as a child component (Radix Slot pattern)
-   * Useful for rendering as Link or other interactive elements
-   *
-   * @example
-   * ```tsx
-   * <Button asChild>
-   *   <Link href="/about">About</Link>
-   * </Button>
-   * ```
-   */
-  asChild?: boolean;
+  asChild?: boolean; // Radix Slot 패턴으로 자식 컴포넌트로 렌더링 (Link 등)
 
-  /**
-   * Loading state
-   * Shows loading spinner and disables interaction
-   * Sets aria-busy for screen readers
-   */
-  loading?: boolean;
+  loading?: boolean; // 로딩 상태 (스피너 표시, 상호작용 비활성화, aria-busy 설정)
 
-  /**
-   * Icon to display before children
-   *
-   * @example
-   * ```tsx
-   * <Button iconLeft={<ChevronLeftIcon />}>Previous</Button>
-   * ```
-   */
-  iconLeft?: React.ReactNode;
+  iconLeft?: React.ReactNode; // 왼쪽 아이콘
 
-  /**
-   * Icon to display after children
-   *
-   * @example
-   * ```tsx
-   * <Button iconRight={<ChevronRightIcon />}>Next</Button>
-   * ```
-   */
-  iconRight?: React.ReactNode;
+  iconRight?: React.ReactNode; // 오른쪽 아이콘
 
-  /**
-   * URL for link button
-   * When provided, renders as <a> tag instead of <button>
-   *
-   * @example
-   * ```tsx
-   * <Button href="/about">About</Button>
-   * <Button href="https://example.com" target="_blank">External</Button>
-   * ```
-   */
-  href?: string;
+  href?: string; // 링크 URL (제공 시 <a> 태그로 렌더링)
 
-  /**
-   * Link target attribute (only used with href)
-   */
-  target?: string;
+  target?: string; // 링크 target 속성 (href와 함께 사용)
 
-  /**
-   * Link rel attribute (only used with href)
-   */
-  rel?: string;
+  rel?: string; // 링크 rel 속성 (href와 함께 사용)
 }
 
-/**
- * Loading Spinner Component
- * Uses lucide-react Loader2 icon with spin animation
- * Hidden from screen readers with aria-hidden
- */
 const LoadingSpinner = () => (
+  // 로딩 스피너 컴포넌트 (Loader2 아이콘, aria-hidden)
   <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
 );
 
-/**
- * Button Component
- *
- * KRDS-compliant accessible button component with:
- * - Radix UI Slot pattern for polymorphic rendering
- * - Full ARIA support (aria-busy, aria-disabled)
- * - Loading state with spinner
- * - Icon support (left/right)
- * - WCAG 2.1 AA compliant focus indicators
- *
- * @example
- * ```tsx
- * // Basic usage
- * <Button>확인</Button>
- *
- * // With variants
- * <Button variant="primary">주요 버튼</Button>
- * <Button variant="secondary">부차 버튼</Button>
- * <Button variant="danger">삭제</Button>
- *
- * // With sizes
- * <Button size="sm">작은 버튼</Button>
- * <Button size="lg">큰 버튼</Button>
- *
- * // With loading state
- * <Button loading>저장 중...</Button>
- *
- * // With icons
- * <Button iconLeft={<ChevronLeftIcon />}>이전</Button>
- * <Button iconRight={<ChevronRightIcon />}>다음</Button>
- *
- * // Icon-only (requires aria-label)
- * <Button size="icon" iconLeft={<SearchIcon />} aria-label="검색" />
- *
- * // As Link (Radix Slot pattern)
- * <Button asChild>
- *   <Link href="/about">소개</Link>
- * </Button>
- * ```
- */
 export const Button = React.forwardRef<
+  // KRDS 기반 Button 컴포넌트 (ARIA, 로딩, 아이콘, 링크 지원)
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
 >(
@@ -212,10 +111,10 @@ export const Button = React.forwardRef<
     const isDisabled = disabled || loading;
     const isIconOnly = !children && (iconLeft || iconRight);
 
-    // Development warning: icon-only buttons must have aria-label
     React.useEffect(() => {
+      // 개발 모드: 아이콘 전용 버튼 aria-label 경고
       if (
-        process.env.NODE_ENV === 'development' &&
+        isDev() &&
         isIconOnly &&
         !props['aria-label'] &&
         !props['aria-labelledby']
@@ -227,49 +126,43 @@ export const Button = React.forwardRef<
       }
     }, [isIconOnly, props]);
 
-    // Development warning: href and asChild cannot be used together
     React.useEffect(() => {
-      if (
-        typeof process !== 'undefined' &&
-        process.env.NODE_ENV === 'development' &&
-        href &&
-        asChild
-      ) {
+      // 개발 모드: href와 asChild 동시 사용 경고
+      if (isDev() && href && asChild) {
         console.warn(
           '[HANUI Button] href and asChild props cannot be used together. Use either href or asChild, not both.'
         );
       }
     }, [href, asChild]);
 
-    // Determine the component to render
-    const Comp = asChild ? Slot.Root : href ? 'a' : 'button';
+    const Comp = asChild ? Slot.Root : href ? 'a' : 'button'; // 렌더링할 컴포넌트 결정
 
-    // Common content
-    const content = (
-      <>
-        {loading && <LoadingSpinner />}
-        {!loading && iconLeft && (
-          <span
-            className="inline-flex"
-            aria-hidden={isIconOnly ? 'true' : undefined}
-          >
-            {iconLeft}
-          </span>
-        )}
-        {children}
-        {!loading && iconRight && (
-          <span
-            className="inline-flex"
-            aria-hidden={isIconOnly ? 'true' : undefined}
-          >
-            {iconRight}
-          </span>
-        )}
-      </>
-    );
+    const content = // 공통 콘텐츠 (로딩 스피너, 아이콘, children)
+      (
+        <>
+          {loading && <LoadingSpinner />}
+          {!loading && iconLeft && (
+            <span
+              className="inline-flex"
+              aria-hidden={isIconOnly ? 'true' : undefined}
+            >
+              {iconLeft}
+            </span>
+          )}
+          {children}
+          {!loading && iconRight && (
+            <span
+              className="inline-flex"
+              aria-hidden={isIconOnly ? 'true' : undefined}
+            >
+              {iconRight}
+            </span>
+          )}
+        </>
+      );
 
-    // Render as link
     if (href && !asChild) {
+      // 링크로 렌더링
       return (
         <a
           className={cn(buttonVariants({ variant, size }), className)}
@@ -285,18 +178,18 @@ export const Button = React.forwardRef<
       );
     }
 
-    // Render as button or Slot
     return (
+      // 버튼 또는 Slot으로 렌더링
       <Comp
         className={cn(buttonVariants({ variant, size }), className)}
-        ref={ref as any}
+        ref={ref as React.Ref<any>}
         {...(!asChild && {
           type,
           disabled: isDisabled,
           'aria-busy': loading,
           'aria-disabled': isDisabled,
         })}
-        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+        {...(props as any)}
       >
         {content}
       </Comp>
@@ -306,20 +199,4 @@ export const Button = React.forwardRef<
 
 Button.displayName = 'Button';
 
-/**
- * Export buttonVariants for extending or creating custom button-like components
- *
- * @example
- * ```tsx
- * import { buttonVariants } from '@hanui/react';
- *
- * function CustomButton() {
- *   return (
- *     <div className={buttonVariants({ variant: 'primary', size: 'lg' })}>
- *       Custom
- *     </div>
- *   );
- * }
- * ```
- */
-export { buttonVariants };
+export { buttonVariants }; // buttonVariants 내보내기 (커스텀 버튼 스타일 확장용)

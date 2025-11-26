@@ -6,90 +6,24 @@ import { codeToHtml } from 'shiki';
 import { File, Copy, Check } from 'lucide-react';
 import { cn } from '../lib/utils';
 
-/**
- * Code Props
- */
 export interface CodeProps extends React.HTMLAttributes<HTMLElement> {
-  /**
-   * Code variant
-   * @default 'inline'
-   */
-  variant?: 'inline' | 'block';
-
-  /**
-   * Size variant (inline only)
-   * @default 'default'
-   */
-  size?: 'sm' | 'default' | 'lg';
-
-  /**
-   * Programming language for syntax highlighting (block only)
-   */
-  language?: string;
-
-  /**
-   * Show line numbers (block with language only)
-   * @default true
-   */
-  showLineNumbers?: boolean;
-
-  /**
-   * File name to display (block with language only)
-   */
-  fileName?: string;
-
-  /**
-   * Shiki theme (block with language only)
-   * @default 'github-dark'
-   */
-  theme?: string;
+  // Code Props
+  variant?: 'inline' | 'block'; // 코드 타입 (기본값: inline)
+  size?: 'sm' | 'default' | 'lg'; // 크기 (inline 전용, 기본값: default)
+  language?: string; // 프로그래밍 언어 (Syntax highlighting, block 전용)
+  showLineNumbers?: boolean; // 줄 번호 표시 (block + language 전용, 기본값: true)
+  fileName?: string; // 파일명 표시 (block + language 전용)
+  theme?: string; // Shiki 테마 (block + language 전용, 기본값: github-dark)
 }
 
 const sizeStyles = {
+  // 인라인 코드 크기 스타일
   sm: 'text-krds-body-xs px-1 py-0.5',
   default: 'text-krds-body-sm px-1.5 py-0.5',
   lg: 'text-krds-body-md px-2 py-1',
 } as const;
 
-/**
- * Code - KRDS 준수 코드 컴포넌트
- *
- * ## Features
- * - 인라인 및 블록 코드 표시
- * - 선택적 Syntax highlighting (Shiki)
- * - 블록 코드 복사 버튼 (hover 시 표시)
- * - 3가지 크기 옵션 (inline)
- * - 줄 번호 표시 옵션 (block with language)
- * - 파일명 표시 옵션 (block with language)
- * - KRDS 색상 시스템 준수
- *
- * @example
- * ```tsx
- * // Inline code
- * <Code>const greeting = "Hello"</Code>
- *
- * // Block code (simple)
- * <Code variant="block">
- *   npm install @hanui/react
- * </Code>
- *
- * // Block code with syntax highlighting
- * <Code variant="block" language="typescript">
- *   const hello = 'world';
- * </Code>
- *
- * // With file name
- * <Code variant="block" language="javascript" fileName="example.js">
- *   console.log('Hello');
- * </Code>
- *
- * // Without line numbers
- * <Code variant="block" language="bash" showLineNumbers={false}>
- *   npm install @hanui/react
- * </Code>
- * ```
- */
-export const Code = React.forwardRef<HTMLElement, CodeProps>(
+export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴포넌트 (인라인/블록, Syntax highlighting, 복사 기능)
   (
     {
       variant = 'inline',
@@ -109,8 +43,8 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
 
     const code = typeof children === 'string' ? children : '';
 
-    // Syntax highlighting for block variant with language
     useEffect(() => {
+      // Syntax highlighting (block + language)
       if (variant === 'block' && language) {
         const highlightCode = async () => {
           const highlighted = await codeToHtml(code, {
@@ -130,8 +64,8 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
       setTimeout(() => setCopied(false), 2000);
     };
 
-    // Block variant with syntax highlighting
     if (variant === 'block' && language) {
+      // Block variant (Syntax highlighting 적용)
       if (!html) {
         return (
           <div className={cn('relative group', className)}>
@@ -184,15 +118,15 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
       );
     }
 
-    // Block variant (simple, no syntax highlighting)
     if (variant === 'block') {
+      // Block variant (단순, Syntax highlighting 없음)
       return (
         <div className="relative group">
           <pre
             ref={ref as React.Ref<HTMLPreElement>}
             className={cn(
-              'font-mono bg-krds-gray-5 rounded-lg p-4 overflow-x-auto',
-              'text-krds-gray-95 border border-krds-gray-20',
+              'font-mono bg-krds-primary-5 rounded-lg p-4 overflow-x-auto',
+              'text-krds-primary-70 border border-krds-primary-20',
               className
             )}
             {...props}
@@ -203,8 +137,8 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
             onClick={handleCopy}
             className={cn(
               'absolute top-3 right-3 p-2 rounded-md transition-all z-10',
-              'bg-krds-gray-10 hover:bg-krds-gray-20 border border-krds-gray-30',
-              'text-krds-gray-95 opacity-0 group-hover:opacity-100'
+              'bg-krds-primary-10 hover:bg-krds-primary-20 border border-krds-primary-30',
+              'text-krds-primary-70 opacity-0 group-hover:opacity-100'
             )}
             aria-label="Copy code"
           >
@@ -218,12 +152,12 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
       );
     }
 
-    // Inline variant
     return (
+      // Inline variant
       <code
         ref={ref}
         className={cn(
-          'font-mono bg-krds-gray-5 text-krds-gray-95 rounded border border-krds-gray-20',
+          'font-mono bg-krds-primary-5 text-krds-primary-70 rounded border border-krds-primary-20',
           sizeStyles[size],
           className
         )}

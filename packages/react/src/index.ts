@@ -37,13 +37,7 @@ export {
   TableCaption,
 } from './components/table';
 
-export {
-  Modal,
-  ModalTitle,
-  ModalBody,
-  ModalFooter,
-  ModalCloseButton,
-} from './components/modal';
+export { Modal, ModalTitle, ModalBody, ModalFooter } from './components/modal';
 export type { ModalProps } from './components/modal';
 
 export { Pagination } from './components/pagination';
@@ -122,13 +116,20 @@ export type {
 export { Masthead } from './components/masthead';
 export type { MastheadProps } from './components/masthead';
 
-export { MainMenu } from './components/main-menu';
+export { NavigationMenu } from './components/navigation-menu';
 export type {
-  MainMenuProps,
-  MainMenuItem,
-  MainMenuLink,
-  MainMenuSection,
-} from './components/main-menu';
+  NavigationMenuProps,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuSection,
+} from './components/navigation-menu';
+
+export { MegaMenu } from './components/mega-menu';
+export type {
+  MegaMenuProps,
+  MegaMenuColumn,
+  MegaMenuLink,
+} from './components/mega-menu';
 
 export { SkipLink } from './components/skip-link';
 export type {
@@ -137,8 +138,14 @@ export type {
   SkipLinkVariant,
 } from './components/skip-link';
 
-export { Header } from './components/Header/header';
-export type { HeaderProps } from './components/Header/header';
+export { HeaderWithMegaMenu } from './components/Header/HeaderWithMegaMenu';
+export type {
+  HeaderWithMegaMenuProps,
+  UtilityLink as HeaderUtilityLink,
+} from './components/Header/HeaderWithMegaMenu';
+
+export { HeaderWithNavigation } from './components/Header/HeaderWithNavigation';
+export type { HeaderWithNavigationProps } from './components/Header/HeaderWithNavigation';
 
 export { Footer } from './components/Footer/footer';
 export type { FooterProps } from './components/Footer/footer';
@@ -167,3 +174,17 @@ export type { TabBarsProps, TabBarItem } from './components/TabBars';
 
 // Utils
 export { cn } from './lib/utils';
+
+export {
+  FormField,
+  FormLabel,
+  FormError,
+  FormHelperText,
+  useFormField,
+} from './components/form-field';
+export type {
+  FormFieldProps,
+  FormLabelProps,
+  FormErrorProps,
+  FormHelperTextProps,
+} from './components/form-field';

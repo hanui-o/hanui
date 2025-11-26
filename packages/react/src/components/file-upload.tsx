@@ -1,7 +1,14 @@
 'use client';
 
 import * as React from 'react';
+import { Upload, X, Download, Eye, Loader2, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from './button';
+
+/**
+ * File upload status types
+ */
+export type FileUploadStatus = 'idle' | 'uploading' | 'complete' | 'error';
 
 /**
  * File with metadata
@@ -9,15 +16,27 @@ import { cn } from '@/lib/utils';
 export interface UploadedFile {
   file: File;
   id: string;
-  preview?: string;
+  status: FileUploadStatus;
   progress?: number;
   error?: string;
+  preview?: string;
 }
 
 /**
  * FileUpload Props Interface
  */
 export interface FileUploadProps {
+  /**
+   * Title for the file upload section
+   * @default "파일 첨부"
+   */
+  title?: string;
+
+  /**
+   * Description text below the title
+   */
+  description?: string;
+
   /**
    * Accept file types (e.g., ".pdf,.hwp,.jpg,.png")
    */
@@ -40,7 +59,7 @@ export interface FileUploadProps {
   multiple?: boolean;
 
   /**
-   * Callback when files are selected/dropped
+   * Callback when files are selected
    */
   onUpload?: (files: File[]) => void | Promise<void>;
 
@@ -55,9 +74,30 @@ export interface FileUploadProps {
   onError?: (error: string) => void;
 
   /**
+   * Callback when file is removed
+   */
+  onRemove?: (file: UploadedFile) => void;
+
+  /**
+   * Callback when file preview is requested
+   */
+  onPreview?: (file: UploadedFile) => void;
+
+  /**
+   * Callback when file download is requested
+   */
+  onDownload?: (file: UploadedFile) => void;
+
+  /**
    * Disabled state
    */
   disabled?: boolean;
+
+  /**
+   * Show bordered variant
+   * @default false
+   */
+  bordered?: boolean;
 
   /**
    * Additional className
@@ -65,26 +105,39 @@ export interface FileUploadProps {
   className?: string;
 
   /**
-   * Custom label text
+   * Upload button text
+   * @default "파일 선택"
    */
-  label?: string;
+  uploadButtonText?: string;
 
   /**
-   * Show file list
+   * Upload instruction text
+   * @default "파일을 선택하거나 끌어다 놓으세요"
+   */
+  instructionText?: string;
+
+  /**
+   * Show delete all button
    * @default true
    */
-  showFileList?: boolean;
+  showDeleteAll?: boolean;
+
+  /**
+   * Delete all button text
+   * @default "전체 삭제"
+   */
+  deleteAllText?: string;
 }
 
 /**
  * Format bytes to human readable size
  */
-function formatBytes(bytes: number, decimals = 2): string {
-  if (bytes === 0) return '0 Bytes';
+function formatBytes(bytes: number, decimals = 1): string {
+  if (bytes === 0) return '0 B';
 
   const k = 1024;
   const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const sizes = ['B', 'KB', 'MB', 'GB'];
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
@@ -108,35 +161,33 @@ function isImageFile(file: File): boolean {
 /**
  * FileUpload Component
  *
- * **Foundation Layer Features:**
- * - Semantic HTML: Proper button role and ARIA attributes
- * - WCAG 2.1 / KWCAG 2.2 Compliance: Keyboard navigation and focus management
- * - Screen Reader Support: Descriptive aria-labels and file list
- * - Drag & Drop: Native HTML5 drag and drop with visual feedback
- * - Dark Mode: Automatic dark mode support with optimized colors
- *
- * **Design Principles:**
- * - Client-side validation (file type, size, count)
- * - Image preview generation for uploaded images
- * - Progress tracking support
- * - Clear error states and messaging
- * - Keyboard accessible (Enter/Space to open file dialog)
+ * KRDS-compliant file upload component with:
+ * - Header section with title and description
+ * - Upload area with button and instructions
+ * - File list with status indicators (uploading, complete, error)
+ * - File actions (preview, download, delete)
+ * - Delete all functionality
+ * - Full accessibility support
  *
  * @example
  * ```tsx
  * <FileUpload
+ *   title="서류 첨부"
+ *   description="최대 5개 파일, 각 10MB 이하"
  *   accept=".pdf,.hwp,.jpg,.png"
  *   maxSize={10 * 1024 * 1024}
  *   maxFiles={5}
  *   multiple
+ *   bordered
  *   onUpload={(files) => console.log(files)}
- *   onError={(error) => console.error(error)}
  * />
  * ```
  */
 export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
   (
     {
+      title = '파일 첨부',
+      description,
       accept,
       maxSize,
       maxFiles = 5,
@@ -144,10 +195,16 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
       onUpload,
       onChange,
       onError,
+      onRemove,
+      onPreview,
+      onDownload,
       disabled = false,
+      bordered = false,
       className,
-      label = 'Drag files here or click to upload',
-      showFileList = true,
+      uploadButtonText = '파일 선택',
+      instructionText = '파일을 선택하거나 끌어다 놓으세요',
+      showDeleteAll = true,
+      deleteAllText = '전체 삭제',
     },
     ref
   ) => {
@@ -163,7 +220,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
       (file: File): string | null => {
         // Check file size
         if (maxSize && file.size > maxSize) {
-          return `File size exceeds ${formatBytes(maxSize)}.`;
+          return `파일 크기가 ${formatBytes(maxSize)} 를 초과합니다.`;
         }
 
         // Check file extension
@@ -178,7 +235,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           );
 
           if (!isAccepted) {
-            return `File type not allowed. (${acceptedExtensions.join(', ')})`;
+            return `허용되지 않는 파일 형식입니다. (${acceptedExtensions.join(', ')})`;
           }
         }
 
@@ -196,7 +253,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
         // Check max files limit
         if (files.length + fileArray.length > maxFiles) {
-          onError?.(`Maximum ${maxFiles} files allowed.`);
+          onError?.(`최대 ${maxFiles}개 파일만 업로드 가능합니다.`);
           return;
         }
 
@@ -206,11 +263,6 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
         for (const file of fileArray) {
           const error = validateFile(file);
 
-          if (error) {
-            onError?.(error);
-            continue;
-          }
-
           const id = `${file.name}-${Date.now()}-${Math.random()}`;
           let preview: string | undefined;
 
@@ -219,14 +271,25 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             preview = URL.createObjectURL(file);
           }
 
-          newFiles.push({
-            file,
-            id,
-            preview,
-            progress: 0,
-          });
-
-          validFiles.push(file);
+          if (error) {
+            newFiles.push({
+              file,
+              id,
+              status: 'error',
+              error,
+              preview,
+            });
+            onError?.(error);
+          } else {
+            newFiles.push({
+              file,
+              id,
+              status: 'uploading',
+              progress: 0,
+              preview,
+            });
+            validFiles.push(file);
+          }
         }
 
         if (newFiles.length > 0) {
@@ -234,21 +297,44 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           setFiles(updatedFiles);
           onChange?.(updatedFiles);
 
-          // Call onUpload callback
-          if (onUpload) {
+          // Call onUpload callback for valid files
+          if (onUpload && validFiles.length > 0) {
             try {
               await onUpload(validFiles);
-              // Update progress to 100% after successful upload
+              // Update status to complete after successful upload
               setFiles((prev) =>
                 prev.map((f) =>
-                  newFiles.some((nf) => nf.id === f.id)
-                    ? { ...f, progress: 100 }
+                  newFiles.some(
+                    (nf) => nf.id === f.id && nf.status === 'uploading'
+                  )
+                    ? {
+                        ...f,
+                        status: 'complete' as FileUploadStatus,
+                        progress: 100,
+                      }
                     : f
                 )
               );
             } catch (err) {
+              // Update status to error if upload fails
+              setFiles((prev) =>
+                prev.map((f) =>
+                  newFiles.some((nf) => nf.id === f.id)
+                    ? {
+                        ...f,
+                        status: 'error' as FileUploadStatus,
+                        error:
+                          err instanceof Error
+                            ? err.message
+                            : '파일 업로드에 실패했습니다.',
+                      }
+                    : f
+                )
+              );
               onError?.(
-                err instanceof Error ? err.message : 'File upload failed.'
+                err instanceof Error
+                  ? err.message
+                  : '파일 업로드에 실패했습니다.'
               );
             }
           }
@@ -310,35 +396,38 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
     /**
      * Handle click to open file dialog
      */
-    const handleClick = () => {
+    const handleUploadClick = () => {
       if (!disabled) {
         inputRef.current?.click();
       }
     };
 
     /**
-     * Handle keyboard navigation
-     */
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleClick();
-      }
-    };
-
-    /**
      * Remove file
      */
-    const removeFile = (id: string) => {
+    const removeFile = (uploadedFile: UploadedFile) => {
       setFiles((prev) => {
-        const file = prev.find((f) => f.id === id);
-        if (file?.preview) {
-          URL.revokeObjectURL(file.preview);
+        if (uploadedFile.preview) {
+          URL.revokeObjectURL(uploadedFile.preview);
         }
-        const updated = prev.filter((f) => f.id !== id);
+        const updated = prev.filter((f) => f.id !== uploadedFile.id);
         onChange?.(updated);
         return updated;
       });
+      onRemove?.(uploadedFile);
+    };
+
+    /**
+     * Remove all files
+     */
+    const removeAllFiles = () => {
+      files.forEach((file) => {
+        if (file.preview) {
+          URL.revokeObjectURL(file.preview);
+        }
+      });
+      setFiles([]);
+      onChange?.([]);
     };
 
     /**
@@ -355,37 +444,39 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
     }, [files]);
 
     return (
-      <div ref={ref} className={cn('w-full', className)}>
-        {/* Drop Zone */}
+      <div
+        ref={ref}
+        className={cn(
+          'krds-file-upload',
+          bordered && 'line border border-krds-gray-30 rounded-lg p-6',
+          className
+        )}
+      >
+        {/* Header Section */}
+        <div className="file-head mb-4">
+          <h3 className="[font-size:var(--krds-size-body-lg)] font-semibold text-krds-gray-95 mb-2">
+            {title}
+          </h3>
+          {description && (
+            <p className="[font-size:var(--krds-size-body-sm)] text-krds-gray-70">
+              {description}
+            </p>
+          )}
+        </div>
+
+        {/* Upload Area */}
         <div
-          role="button"
-          tabIndex={disabled ? -1 : 0}
-          aria-label="File upload"
-          aria-disabled={disabled}
           className={cn(
-            'relative border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer',
-            'focus:outline-none focus:ring-2',
-            'focus:ring-krds-primary-base',
-            'focus:border-transparent',
+            'file-upload border-2 border-dashed rounded-lg p-6 text-center transition-colors',
             isDragging &&
-              !disabled && [
-                'border-krds-primary-base',
-                'bg-krds-primary-base/5',
-              ],
-            !isDragging &&
-              !disabled && ['border-krds-gray-30', 'hover:border-krds-gray-40'],
-            disabled && [
-              'border-krds-gray-20',
-              'bg-krds-gray-5',
-              'cursor-not-allowed opacity-60',
-            ]
+              !disabled && ['border-krds-primary-50', 'bg-krds-primary-5'],
+            !isDragging && !disabled && 'border-krds-gray-30',
+            disabled && ['border-krds-gray-20', 'bg-krds-gray-5', 'opacity-60']
           )}
           onDragEnter={handleDragEnter}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          onClick={handleClick}
-          onKeyDown={handleKeyDown}
         >
           <input
             ref={inputRef}
@@ -396,142 +487,157 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             disabled={disabled}
             className="sr-only"
             aria-hidden="true"
+            id="file-upload-input"
           />
 
-          {/* Upload Icon */}
-          <svg
-            className={cn(
-              'mx-auto h-12 w-12 mb-4',
-              disabled ? 'text-krds-gray-30' : 'text-krds-gray-50'
-            )}
-            stroke="currentColor"
-            fill="none"
-            viewBox="0 0 48 48"
-            aria-hidden="true"
-          >
-            <path
-              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-
-          {/* Label */}
-          <p
-            className={cn(
-              'text-sm',
-              disabled ? 'text-krds-gray-50' : 'text-krds-gray-70'
-            )}
-          >
-            {label}
+          <p className="[font-size:var(--krds-size-body-md)] text-krds-gray-70 mb-4">
+            {instructionText}
           </p>
+
+          <Button
+            size="md"
+            variant="primary"
+            iconLeft={<Upload size={16} />}
+            onClick={handleUploadClick}
+            disabled={disabled}
+            aria-label="파일 선택"
+          >
+            {uploadButtonText}
+          </Button>
 
           {/* File Info */}
           {(accept || maxSize) && (
-            <p className="mt-2 text-xs text-krds-gray-60">
-              {accept && <span>Format: {accept}</span>}
+            <p className="mt-3 [font-size:var(--krds-size-body-sm)] text-krds-gray-60">
+              {accept && <span>형식: {accept}</span>}
               {accept && maxSize && <span> · </span>}
-              {maxSize && <span>Max size: {formatBytes(maxSize)}</span>}
+              {maxSize && <span>최대 크기: {formatBytes(maxSize)}</span>}
             </p>
           )}
         </div>
 
         {/* File List */}
-        {showFileList && files.length > 0 && (
-          <ul className="mt-4 space-y-2" aria-label="Uploaded files list">
-            {files.map((uploadedFile) => (
-              <li
-                key={uploadedFile.id}
-                className={cn(
-                  'flex items-center gap-3 p-3 rounded-md border',
-                  uploadedFile.error
-                    ? 'border-krds-error bg-krds-error/5'
-                    : 'border-krds-gray-20 bg-krds-gray-5'
-                )}
-              >
-                {/* Preview or Icon */}
-                {uploadedFile.preview ? (
-                  <img
-                    src={uploadedFile.preview}
-                    alt=""
-                    className="h-12 w-12 object-cover rounded"
-                  />
-                ) : (
-                  <div className="h-12 w-12 flex items-center justify-center bg-krds-gray-10 rounded">
-                    <svg
-                      className="h-6 w-6 text-krds-gray-60"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
-                    </svg>
-                  </div>
-                )}
+        {files.length > 0 && (
+          <div className="file-list mt-6">
+            <ul
+              className="upload-list space-y-3"
+              aria-label="업로드된 파일 목록"
+            >
+              {files.map((uploadedFile) => (
+                <li
+                  key={uploadedFile.id}
+                  className={cn(
+                    'flex items-center gap-4 p-4 rounded-lg border',
+                    uploadedFile.status === 'error'
+                      ? 'border-krds-danger-base bg-krds-danger-5 is-error'
+                      : 'border-krds-gray-30 bg-krds-gray-5'
+                  )}
+                >
+                  {/* File Info Section */}
+                  <div className="file-info flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium [font-size:var(--krds-size-body-md)] text-krds-gray-95 truncate">
+                        {uploadedFile.file.name}
+                      </p>
 
-                {/* File Info */}
-                <div className="flex-1 min-w-0">
-                  <p className="font-medium text-krds-gray-95 truncate">
-                    {uploadedFile.file.name}
-                  </p>
-                  <p className="text-xs text-krds-gray-60">
-                    {formatBytes(uploadedFile.file.size)}
-                  </p>
-
-                  {/* Progress Bar */}
-                  {uploadedFile.progress !== undefined &&
-                    uploadedFile.progress < 100 && (
-                      <div className="mt-1 w-full bg-krds-gray-20 rounded-full h-1.5">
-                        <div
-                          className="bg-krds-primary-base h-1.5 rounded-full transition-all"
-                          style={{ width: `${uploadedFile.progress}%` }}
+                      {/* Status Icons */}
+                      {uploadedFile.status === 'uploading' && (
+                        <Loader2
+                          className="h-4 w-4 animate-spin text-krds-primary-50"
+                          aria-label="업로드 중"
                         />
-                      </div>
+                      )}
+                      {uploadedFile.status === 'complete' && (
+                        <CheckCircle2
+                          className="h-4 w-4 text-krds-success-base"
+                          aria-label="완료"
+                        />
+                      )}
+                    </div>
+
+                    <p className="[font-size:var(--krds-size-body-sm)] text-krds-gray-60 mt-1">
+                      {formatBytes(uploadedFile.file.size)}
+                    </p>
+
+                    {/* Progress Bar */}
+                    {uploadedFile.status === 'uploading' &&
+                      uploadedFile.progress !== undefined && (
+                        <div className="mt-2 w-full bg-krds-gray-20 rounded-full h-1.5">
+                          <div
+                            className="bg-krds-primary-50 h-1.5 rounded-full transition-all"
+                            style={{ width: `${uploadedFile.progress}%` }}
+                            role="progressbar"
+                            aria-valuenow={uploadedFile.progress}
+                            aria-valuemin={0}
+                            aria-valuemax={100}
+                          />
+                        </div>
+                      )}
+
+                    {/* Error Message */}
+                    {uploadedFile.error && (
+                      <p className="file-hint-invalid mt-2 [font-size:var(--krds-size-body-sm)] text-krds-danger-base">
+                        {uploadedFile.error}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="btn-wrap flex items-center gap-2">
+                    {/* Preview Button (for images) */}
+                    {uploadedFile.preview && onPreview && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        iconLeft={<Eye size={16} />}
+                        onClick={() => onPreview(uploadedFile)}
+                        aria-label={`${uploadedFile.file.name} 미리보기`}
+                      >
+                        미리보기
+                      </Button>
                     )}
 
-                  {/* Error Message */}
-                  {uploadedFile.error && (
-                    <p className="mt-1 text-xs text-krds-error">
-                      {uploadedFile.error}
-                    </p>
-                  )}
-                </div>
+                    {/* Download Button (for completed files) */}
+                    {uploadedFile.status === 'complete' && onDownload && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        iconLeft={<Download size={16} />}
+                        onClick={() => onDownload(uploadedFile)}
+                        aria-label={`${uploadedFile.file.name} 다운로드`}
+                      >
+                        다운로드
+                      </Button>
+                    )}
 
-                {/* Remove Button */}
-                <button
-                  type="button"
-                  onClick={() => removeFile(uploadedFile.id)}
-                  className={cn(
-                    'p-1 rounded-md',
-                    'text-krds-gray-50',
-                    'hover:text-krds-gray-70',
-                    'hover:bg-krds-gray-10',
-                    'focus:outline-none focus:ring-2',
-                    'focus:ring-krds-primary-base'
-                  )}
-                  aria-label={`Remove ${uploadedFile.file.name}`}
+                    {/* Delete Button */}
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      iconLeft={<X size={16} />}
+                      onClick={() => removeFile(uploadedFile)}
+                      aria-label={`${uploadedFile.file.name} 삭제`}
+                    >
+                      삭제
+                    </Button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            {/* Delete All Button */}
+            {showDeleteAll && files.length > 1 && (
+              <div className="mt-4 flex justify-end">
+                <Button
+                  size="sm"
+                  variant="tertiary"
+                  onClick={removeAllFiles}
+                  aria-label="모든 파일 삭제"
                 >
-                  <svg
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </li>
-            ))}
-          </ul>
+                  {deleteAllText}
+                </Button>
+              </div>
+            )}
+          </div>
         )}
       </div>
     );

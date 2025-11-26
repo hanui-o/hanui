@@ -41,8 +41,39 @@ export default function SectionPage() {
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
-          {/* Installation */}
-          <SectionComponent level="h2">
+          {/* What is it (개요) */}
+          <SectionComponent>
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              description="Section은 페이지의 논리적 구역을 나타내는 의미론적 컴포넌트입니다."
+            />
+
+            <Card variant="info">
+              <List variant="check" className="text-krds-gray-90">
+                <ListItem>
+                  <strong>KRDS 준수:</strong> KRDS 수직 간격 기준을 준수하며,
+                  반응형 패딩을 제공합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>의미론적 프리셋:</strong> page-section, content-area,
+                  card-large 등 용도별 패딩 프리셋을 제공합니다.
+                </ListItem>
+                <ListItem>
+                  <strong>시맨틱 HTML:</strong> section, header, footer, main 등
+                  적절한 HTML 태그로 렌더링하여 접근성을 향상시킵니다.
+                </ListItem>
+                <ListItem>
+                  <strong>배경색 옵션:</strong> white, gray, primary,
+                  transparent 4가지 배경색을 지원합니다.
+                </ListItem>
+              </List>
+            </Card>
+          </SectionComponent>
+
+          {/* Installation (설치) */}
+          <SectionComponent>
             <Heading level="h2" id="installation" title="설치">
               <Body className="leading-relaxed">
                 다음 명령어로 Section 컴포넌트를 설치합니다:
@@ -54,68 +85,19 @@ export default function SectionPage() {
             </Code>
           </SectionComponent>
 
-          {/* What is it */}
-          <SectionComponent level="h2">
-            <Heading
-              level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="Section은 페이지의 논리적 구역을 나타내는 의미론적 컴포넌트입니다."
-            />
-
-            <Card variant="info">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>KRDS 준수:</strong> KRDS(한국형 웹 콘텐츠 접근성
-                  지침)의 수직 간격 기준을 준수합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>패딩 프리셋:</strong> page-section, content-area,
-                  card-large, card-medium, card-small 5가지 패딩 프리셋을
-                  제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>배경색 옵션:</strong> white, gray, primary,
-                  transparent 4가지 배경색 옵션을 제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>시맨틱 HTML:</strong> as prop으로 section, div,
-                  header, main 등 다양한 시맨틱 태그로 렌더링할 수 있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>반응형:</strong> 모바일과 데스크탑에서 자동으로 적절한
-                  패딩을 적용합니다.
-                </ListItem>
-              </List>
-            </Card>
-          </SectionComponent>
-
-          {/* Preview */}
-          <SectionComponent level="h2">
-            <Heading level="h2" id="preview" title="미리보기" />
-            <Card variant="outlined">
-              <SectionComponent padding="page-section" background="gray">
-                <h2 className="text-xl font-semibold mb-4">섹션 제목</h2>
-                <p className="text-krds-gray-70">
-                  Section 컴포넌트는 KRDS 기준에 따라 일관된 패딩을 제공합니다.
-                </p>
-              </SectionComponent>
-            </Card>
-          </SectionComponent>
-
-          {/* Usage */}
-          <SectionComponent level="h2">
-            <Heading level="h2" id="usage" title="사용 방법" />
+          {/* Usage (사용법) */}
+          <SectionComponent>
+            <Heading level="h2" id="usage" title="사용법" />
 
             <Subsection level="h3">
               <Heading level="h3" title="기본 사용">
                 <Body className="leading-relaxed">
-                  기본적인 Section 사용 예시입니다:
+                  Section 컴포넌트를 import하여 사용합니다:
                 </Body>
               </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Section } from '@/components/hanui';
+                {`import { Section } from '@hanui/react';
 
 <Section padding="page-section">
   <h2>섹션 제목</h2>
@@ -127,49 +109,75 @@ export default function SectionPage() {
             <Subsection level="h3">
               <Heading level="h3" title="패딩 프리셋">
                 <Body className="leading-relaxed">
-                  다양한 패딩 프리셋을 사용할 수 있습니다:
+                  용도에 맞는 의미론적 패딩 프리셋을 사용합니다:
                 </Body>
               </Heading>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// 메인 페이지 섹션용
-<Section padding="page-section">
-  <h2>주요 기능</h2>
-</Section>
-
-// 일반 콘텐츠 영역용
-<Section padding="content-area">
-  <h3>소개</h3>
-</Section>
-
-// 카드용 (large, medium, small)
-<Section padding="card-medium">
-  <h4>카드 제목</h4>
-</Section>`}
-              </Code>
-
-              <Card variant="outlined" className="mt-3">
-                <SectionComponent padding="page-section" background="white">
-                  <h3 className="text-xl font-bold mb-2">Page Section</h3>
-                  <p className="text-krds-gray-70">
-                    메인 페이지 섹션용 넉넉한 패딩
-                  </p>
-                </SectionComponent>
-              </Card>
+              <List variant="dash">
+                <ListItem>
+                  <Code>page-section</Code>: 메인 페이지 섹션 (16px/40px 모바일,
+                  24px/64px PC)
+                </ListItem>
+                <ListItem>
+                  <Code>content-area</Code>: 일반 콘텐츠 영역 (16px/32px 모바일,
+                  24px/48px PC)
+                </ListItem>
+                <ListItem>
+                  <Code>card-large</Code>, <Code>card-medium</Code>,{' '}
+                  <Code>card-small</Code>: 카드 컴포넌트용 패딩
+                </ListItem>
+              </List>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="배경색">
+              <Heading level="h3" title="시맨틱 HTML">
                 <Body className="leading-relaxed">
-                  4가지 배경색 옵션을 사용할 수 있습니다:
+                  <Code>as</Code> prop으로 적절한 HTML 태그를 지정합니다:
                 </Body>
               </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Section background="white">...</Section>
-<Section background="gray">...</Section>
-<Section background="primary">...</Section>
-<Section background="transparent">...</Section>`}
+                {`// 헤더 섹션
+<Section as="header" padding="header">
+  <h1>사이트 제목</h1>
+</Section>
+
+// 메인 콘텐츠
+<Section as="main" padding="page-section">
+  <h2>메인 콘텐츠</h2>
+</Section>
+
+// 푸터
+<Section as="footer" padding="footer">
+  <p>저작권 정보</p>
+</Section>`}
+              </Code>
+            </Subsection>
+          </SectionComponent>
+
+          {/* Examples (예제) */}
+          <SectionComponent level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="배경색 변경">
+                <Body className="leading-relaxed">
+                  배경색을 지정하여 섹션을 시각적으로 구분할 수 있습니다:
+                </Body>
+              </Heading>
+
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`<Section padding="card-medium" background="white">
+  <h3>White 배경</h3>
+</Section>
+
+<Section padding="card-medium" background="gray">
+  <h3>Gray 배경</h3>
+</Section>
+
+<Section padding="card-medium" background="primary">
+  <h3>Primary 배경</h3>
+</Section>`}
               </Code>
 
               <Card variant="outlined" className="mt-3">
@@ -194,24 +202,21 @@ export default function SectionPage() {
             <Subsection level="h3">
               <Heading level="h3" title="여러 섹션 조합">
                 <Body className="leading-relaxed">
-                  여러 섹션을 조합하여 페이지를 구성할 수 있습니다:
+                  배경색을 번갈아 사용하여 페이지를 구성할 수 있습니다:
                 </Body>
               </Heading>
 
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`<Section padding="content-area" background="white">
   <h2>소개</h2>
-  <p>내용</p>
 </Section>
 
 <Section padding="content-area" background="gray">
   <h2>기능</h2>
-  <p>내용</p>
 </Section>
 
 <Section padding="content-area" background="white">
   <h2>연락처</h2>
-  <p>내용</p>
 </Section>`}
               </Code>
 
@@ -231,28 +236,6 @@ export default function SectionPage() {
                   </SectionComponent>
                 </div>
               </Card>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="시맨틱 HTML">
-                <Body className="leading-relaxed">
-                  as prop으로 다양한 시맨틱 태그로 렌더링할 수 있습니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Section as="header" padding="page-section">
-  <h1>페이지 헤더</h1>
-</Section>
-
-<Section as="main" padding="content-area">
-  <h2>메인 콘텐츠</h2>
-</Section>
-
-<Section as="footer" padding="content-area">
-  <p>푸터 내용</p>
-</Section>`}
-              </Code>
             </Subsection>
           </SectionComponent>
 

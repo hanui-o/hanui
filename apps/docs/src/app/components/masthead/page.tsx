@@ -1,21 +1,23 @@
 'use client';
 
-import { Masthead } from '@hanui/react';
+import { Masthead as MastheadComponent } from '@hanui/react';
+
 // Docs layout components
 import {
   PageSection as Section,
   Subsection,
   Heading,
   PageNavigation,
+  Installation,
+  ComponentPreview,
 } from '@/components/content';
 
 // Docs helper components
-import { DoCard } from '@/components/helpers';
+import { DoCard, DontCard } from '@/components/helpers';
 
 // UI components - from @hanui/react
 import {
   Body,
-  Card,
   Code,
   List,
   ListItem,
@@ -33,10 +35,9 @@ import {
 
 export default function MastheadPage() {
   return (
-    <Section>
+    <>
       <Heading
         level="h1"
-        id="masthead"
         title="Masthead"
         description="정부 웹사이트의 최상단에 위치하여 대한민국 공식 전자정부 누리집임을 나타내는 컴포넌트입니다. KRDS 표준에 따라 정부 서비스 전체의 통일성을 제공합니다."
       />
@@ -48,73 +49,44 @@ export default function MastheadPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
-          <Subsection level="h2">
-            <Heading level="h2" id="installation" title="설치" />
-            <Body>
-              CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
+          {/* Overview */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              className="sr-only"
+            />
+
+            <ComponentPreview>
+              <div className="w-full">
+                <MastheadComponent />
+              </div>
+            </ComponentPreview>
+
+            <Body className="mt-4">
+              <strong>Masthead(공식 배너)</strong>는 정부 웹사이트의 가장
+              최상단에 위치하여 대한민국 공식 전자정부 누리집임을 명시하는
+              컴포넌트입니다. KRDS 표준에 따라 모든 정부 웹사이트에서 일관된
+              형태로 표시되며, SkipLink 다음, Header보다 상위에 배치되어 정부
+              서비스 전체의 통일성을 제공합니다.
             </Body>
-            <Card>
-              <Code language="bash">npx @hanui/cli add masthead</Code>
-            </Card>
-          </Subsection>
+          </Section>
 
-          {/* What is it */}
-          <Subsection level="h2">
-            <Heading level="h2" id="what-is-it" title="Masthead란?" />
-            <Body>
-              Masthead(공식 배너)는 정부 웹사이트의 가장 최상단에 위치하여
-              대한민국 공식 전자정부 누리집임을 명시하는 컴포넌트입니다.
-            </Body>
-            <Body>
-              KRDS 표준에 따라 모든 정부 웹사이트에서 일관된 형태로 표시되며,
-              SkipLink 다음, Header보다 상위에 배치되어 정부 서비스 전체의
-              통일성을 제공합니다.
-            </Body>
-          </Subsection>
-
-          {/* Preview */}
-          <Subsection level="h2">
-            <Heading level="h2" id="preview" title="미리보기" />
-
-            <Subsection level="h3">
-              <Heading level="h3" id="basic" title="기본 사용" />
-              <Body>
-                기본 Masthead는 대한민국 공식 전자정부를 나타내는 표준 텍스트를
-                표시합니다.
-              </Body>
-              <Card>
-                <Masthead />
-              </Card>
-              <Card>
-                <Code language="tsx">{`<Masthead />`}</Code>
-              </Card>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" id="custom-text" title="커스텀 텍스트" />
-              <Body>필요한 경우 텍스트를 커스터마이징할 수 있습니다.</Body>
-              <Card>
-                <Masthead text="이 누리집은 대한민국 공식 전자정부 누리집입니다" />
-              </Card>
-              <Card>
-                <Code language="tsx">
-                  {`<Masthead text="이 누리집은 대한민국 공식 전자정부 누리집입니다" />`}
-                </Code>
-              </Card>
-            </Subsection>
-          </Subsection>
+          <Installation componentName="masthead" />
 
           {/* Usage */}
-          <Subsection level="h2">
-            <Heading level="h2" id="usage" title="사용 방법" />
-            <Body>
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+
+            <Body className="mb-4">
               Masthead는 페이지 레이아웃의 최상단에 배치하며, SkipLink 다음,
-              Header보다 앞에 위치해야 합니다.
+              Header보다 앞에 위치해야 합니다. 대한민국 국기 아이콘이 자동으로
+              표시되며, KRDS 표준 텍스트가 기본으로 제공됩니다.
             </Body>
-            <Card>
-              <Code language="tsx">
-                {`import { SkipLink, Masthead, Header } from '@hanui/react';
+
+            <Code variant="block" language="tsx">
+              {`import { SkipLink, Masthead, Header } from '@hanui/react';
 
 export default function Layout({ children }) {
   return (
@@ -126,7 +98,7 @@ export default function Layout({ children }) {
         ]}
       />
 
-      {/* 2. Masthead */}
+      {/* 2. Masthead (국기 아이콘 자동 표시) */}
       <Masthead />
 
       {/* 3. Header */}
@@ -141,256 +113,239 @@ export default function Layout({ children }) {
     </body>
   );
 }`}
+            </Code>
+          </Section>
+
+          {/* Examples */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="기본 사용" />
+              <Body className="mb-4">
+                기본 Masthead는 대한민국 국기 아이콘과 함께 표준 텍스트를
+                표시합니다.
+              </Body>
+              <ComponentPreview>
+                <div className="w-full">
+                  <MastheadComponent />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Masthead />`}
               </Code>
-            </Card>
-          </Subsection>
-
-          {/* Best Practices */}
-          <Subsection level="h2">
-            <Heading level="h2" id="best-practices" title="모범 사례" />
-
-            <Subsection level="h3">
-              <Heading level="h3" id="when-to-use" title="언제 사용하나요?" />
-              <DoCard>
-                <List variant="check">
-                  <ListItem>
-                    정부 공식 웹사이트 - 대한민국 정부 기관의 공식 누리집
-                  </ListItem>
-                  <ListItem>
-                    최상단 배치 - SkipLink 다음, Header보다 위에 배치
-                  </ListItem>
-                  <ListItem>
-                    일관된 표시 - 모든 페이지에서 동일한 Masthead 사용
-                  </ListItem>
-                  <ListItem>
-                    정부 브랜딩 - 정부 서비스 전체의 통일성 제공
-                  </ListItem>
-                </List>
-              </DoCard>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" id="implementation-tips" title="구현 팁" />
-              <List variant="disc">
-                <ListItem>
-                  <strong>최상단 고정:</strong> Masthead는 항상 페이지 최상단에
-                  배치합니다 (SkipLink 제외)
-                </ListItem>
-                <ListItem>
-                  <strong>Header 이전:</strong> Header 컴포넌트보다 앞에
-                  위치시킵니다
-                </ListItem>
-                <ListItem>
-                  <strong>시각적 절제:</strong> 지나치게 주의를 끌지 않는
-                  subtle한 표현을 사용합니다
-                </ListItem>
-                <ListItem>
-                  <strong>일관성 유지:</strong> 모든 페이지에서 동일한
-                  Masthead를 사용합니다
-                </ListItem>
-              </List>
+              <Heading level="h3" title="커스텀 텍스트" />
+              <Body className="mb-4">
+                필요한 경우 텍스트를 커스터마이징할 수 있습니다. 국기 아이콘은
+                자동으로 표시됩니다.
+              </Body>
+              <ComponentPreview>
+                <div className="w-full">
+                  <MastheadComponent text="대한민국 정부 공식 누리집" />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Masthead text="대한민국 정부 공식 누리집" />`}
+              </Code>
             </Subsection>
-          </Subsection>
 
-          {/* Accessibility */}
-          <Subsection level="h2">
-            <Heading level="h2" id="accessibility" title="접근성" />
-            <Body>
-              이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level A 기준을 준수합니다.
-            </Body>
+            <Subsection level="h3">
+              <Heading level="h3" title="페이지 레이아웃 예제" />
+              <Body className="mb-4">
+                실제 페이지 레이아웃에서의 Masthead 배치 예제입니다.
+              </Body>
+              <Code variant="block" language="tsx">
+                {`import { SkipLink, Masthead, Header, Footer } from '@hanui/react';
 
-            <List variant="disc">
-              <ListItem>
-                <strong>Semantic HTML:</strong> div 요소를 사용하여 명확한
-                구조를 제공합니다
-              </ListItem>
-              <ListItem>
-                <strong>Skip Link 호환:</strong> SkipLink와 함께 작동하도록
-                설계되어 Bypass Blocks (2.4.1) 준수를 지원합니다
-              </ListItem>
-              <ListItem>
-                <strong>명확한 텍스트:</strong> 스크린 리더가 공식 정부
-                누리집임을 명확히 전달합니다
-              </ListItem>
-              <ListItem>
-                <strong>시각적 피드백:</strong> 충분한 대비율로 텍스트를
-                표시합니다
-              </ListItem>
-            </List>
-          </Subsection>
+export default function RootLayout({ children }) {
+  return (
+    <html lang="ko">
+      <body>
+        {/* Skip Links */}
+        <SkipLink
+          links={[
+            { href: '#main-content', label: '본문 바로가기' },
+            { href: '#main-menu', label: '주메뉴 바로가기' },
+            { href: '#footer', label: '페이지 하단 바로가기' },
+          ]}
+        />
 
-          {/* Foundation Layer */}
-          <Subsection level="h2">
-            <Heading
-              level="h2"
-              id="foundation-layer"
-              title="Foundation Layer"
-            />
-            <Body>Masthead 컴포넌트는 다음 기능들을 자동으로 처리합니다:</Body>
+        {/* Masthead - 최상단 */}
+        <Masthead />
 
-            <Card variant="info">
-              <List variant="check">
-                <ListItem>
-                  <strong>KRDS 필수 ID:</strong> <Code>#krds-masthead</Code>{' '}
-                  ID가 자동으로 적용됩니다 (KRDS 필수 요구사항)
-                </ListItem>
-                <ListItem>
-                  <strong>기본 텍스트:</strong> "이 누리집은 대한민국 공식
-                  전자정부 누리집입니다" 텍스트가 기본으로 제공됩니다
-                </ListItem>
-                <ListItem>
-                  <strong>다크 모드:</strong> 라이트/다크 모드를 자동으로
-                  지원합니다
-                </ListItem>
-                <ListItem>
-                  <strong>반응형 디자인:</strong> 모든 화면 크기에서 최적화된
-                  표시를 제공합니다
-                </ListItem>
-                <ListItem>
-                  <strong>일관된 스타일:</strong> 정부 서비스 전체에서 일관된
-                  스타일을 유지합니다
-                </ListItem>
-              </List>
-            </Card>
-          </Subsection>
+        {/* Header with Main Menu */}
+        <Header>
+          <nav id="main-menu">
+            {/* 메인 메뉴 */}
+          </nav>
+        </Header>
 
-          {/* KRDS Standards */}
-          <Subsection level="h2">
-            <Heading level="h2" id="krds-standards" title="KRDS 표준" />
+        {/* Main Content */}
+        <main id="main-content" tabIndex={-1}>
+          {children}
+        </main>
 
-            <Card variant="warning">
-              <List variant="disc">
-                <ListItem>
-                  <strong>필수 ID:</strong> <Code>#krds-masthead</Code> ID 사용
-                  필수
-                </ListItem>
-                <ListItem>
-                  <strong>최상단 배치:</strong> 페이지 최상단에 배치 (SkipLink
-                  다음, Header보다 위)
-                </ListItem>
-                <ListItem>
-                  <strong>표준 텍스트:</strong> "이 누리집은 대한민국 공식
-                  전자정부 누리집입니다" 사용 권장
-                </ListItem>
-                <ListItem>
-                  <strong>시각적 절제:</strong> 지나치게 주의를 끌지 않는 디자인
-                </ListItem>
-                <ListItem>
-                  <strong>일관성:</strong> 모든 정부 웹사이트에서 동일한 형태로
-                  표시
-                </ListItem>
-                <ListItem>
-                  <strong>정부 전용:</strong> 정부 기관 웹사이트에만 사용
-                </ListItem>
-              </List>
-            </Card>
-          </Subsection>
+        {/* Footer */}
+        <Footer id="footer" />
+      </body>
+    </html>
+  );
+}`}
+              </Code>
+            </Subsection>
+          </Section>
         </TabsContent>
 
         <TabsContent value="api">
-          {/* API Reference */}
-          <Subsection level="h2">
-            <Heading level="h2" id="api-reference" title="API Reference" />
+          {/* MastheadProps */}
+          <Section level="h2">
+            <Heading level="h2" id="masthead-props" title="Masthead Props" />
+
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Prop</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Default</TableHead>
+                  <TableHead>Description</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <Code>text</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code>string</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code>
+                      &quot;이 누리집은 대한민국 공식 전자정부
+                      누리집입니다&quot;
+                    </Code>
+                  </TableCell>
+                  <TableCell>Masthead에 표시할 텍스트</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>className</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code>string</Code>
+                  </TableCell>
+                  <TableCell>-</TableCell>
+                  <TableCell>추가 CSS 클래스</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+
+            <Body className="mt-4">
+              <strong>참고:</strong> Masthead는 모든 표준 HTML div 속성을
+              지원합니다 (
+              <Code>React.HTMLAttributes&lt;HTMLDivElement&gt;</Code>).
+            </Body>
+          </Section>
+
+          {/* KRDS Standards */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="krds-standards"
+              title="KRDS 표준"
+              description="Masthead 컴포넌트가 자동으로 처리하는 KRDS 필수 요구사항입니다."
+            />
+
+            <List variant="check" spacing="default">
+              <ListItem>
+                <strong>KRDS 필수 ID:</strong> <Code>#krds-masthead</Code> ID가
+                자동으로 적용됩니다
+              </ListItem>
+              <ListItem>
+                <strong>국기 아이콘:</strong> 대한민국 국기 아이콘이 텍스트 앞에
+                자동으로 표시됩니다
+              </ListItem>
+              <ListItem>
+                <strong>표준 텍스트:</strong> &quot;이 누리집은 대한민국 공식
+                전자정부 누리집입니다&quot; 텍스트가 기본으로 제공됩니다
+              </ListItem>
+              <ListItem>
+                <strong>KRDS 색상:</strong> bg-krds-gray-5, border-krds-gray-20,
+                text-krds-gray-90 사용
+              </ListItem>
+              <ListItem>
+                <strong>KRDS 타이포그래피:</strong> 15px (KRDS body-sm), 150%
+                line-height, font-medium
+              </ListItem>
+              <ListItem>
+                <strong>반응형 디자인:</strong> 모든 화면 크기에서 최적화된
+                표시를 제공합니다
+              </ListItem>
+              <ListItem>
+                <strong>접근성:</strong> role=&quot;banner&quot;,
+                aria-label=&quot;대한민국 공식 전자정부 배너&quot; 자동 적용
+              </ListItem>
+            </List>
+
+            <Body className="mt-4">
+              <strong>중요:</strong> Masthead는 정부 기관 웹사이트에만 사용해야
+              합니다. 모든 페이지에서 일관된 Masthead를 사용하여 정부 서비스
+              전체의 통일성을 유지하세요.
+            </Body>
+          </Section>
+
+          {/* Styling */}
+          <Section level="h2">
+            <Heading level="h2" id="styling" title="스타일링" />
 
             <Subsection level="h3">
-              <Heading level="h3" id="props" title="Props" />
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>
-                      <Code>text</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code>string</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code>&quot;이 누리집은...&quot;</Code>
-                    </TableCell>
-                    <TableCell>Masthead에 표시할 텍스트</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>className</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code>string</Code>
-                    </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>추가 CSS 클래스</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+              <Heading level="h3" title="기본 스타일" />
+              <Code variant="block" language="css">
+                {`/* 배경 및 테두리 */
+background-color: var(--krds-color-light-gray-5);
+border-bottom: 1px solid var(--krds-color-light-gray-20);
+
+/* 컨테이너 */
+min-height: 40px;
+padding: 8px 16px;
+
+/* 텍스트 */
+font-size: 15px;           /* KRDS body-sm */
+line-height: 150%;
+font-weight: 500;          /* medium */
+color: var(--krds-color-light-gray-90);
+
+/* 국기 아이콘 */
+width: 20px;
+height: 20px;
+flex-shrink: 0;
+gap: 8px;                  /* 아이콘과 텍스트 사이 간격 */`}
+              </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" id="examples" title="사용 예제" />
+              <Heading level="h3" title="Tailwind 클래스" />
+              <Code variant="block" language="css">
+                {`/* 컨테이너 */
+.w-full
+.bg-krds-gray-5
+.border-b .border-krds-gray-20
 
-              <Body className="font-medium mb-2">기본 사용:</Body>
-              <Card>
-                <Code language="tsx">{`<Masthead />`}</Code>
-              </Card>
+/* 레이아웃 */
+.container .mx-auto .px-4 .sm:px-6 .lg:px-8
+.flex .items-center .gap-2
+.min-h-[40px] .py-2
 
-              <Body className="font-medium mb-2 mt-4">커스텀 텍스트:</Body>
-              <Card>
-                <Code language="tsx">
-                  {`<Masthead text="이 누리집은 대한민국 공식 전자정부 누리집입니다" />`}
-                </Code>
-              </Card>
+/* 아이콘 */
+.w-5 .h-5 .shrink-0
 
-              <Body className="font-medium mb-2 mt-4">
-                SkipLink와 함께 사용 (권장):
-              </Body>
-              <Card>
-                <Code language="tsx">
-                  {`import { SkipLink, Masthead } from '@hanui/react';
-
-<>
-  <SkipLink
-    links={[
-      { href: '#main-content', label: '본문 바로가기' },
-    ]}
-  />
-  <Masthead />
-  <main id="main-content" tabIndex={-1}>
-    {/* 콘텐츠 */}
-  </main>
-</>`}
-                </Code>
-              </Card>
+/* 텍스트 */
+.text-[15px] .text-krds-gray-90 .font-medium .leading-[150%]`}
+              </Code>
             </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" id="krds-note" title="KRDS 표준 준수" />
-              <Card variant="warning">
-                <Body className="font-medium mb-2">중요사항:</Body>
-                <List variant="disc">
-                  <ListItem>
-                    Masthead는 자동으로 <Code>#krds-masthead</Code> ID를
-                    적용하여 KRDS 표준을 준수합니다
-                  </ListItem>
-                  <ListItem>
-                    반드시 페이지 최상단에 배치해야 합니다 (SkipLink 다음)
-                  </ListItem>
-                  <ListItem>정부 기관 웹사이트에만 사용해야 합니다</ListItem>
-                  <ListItem>
-                    모든 페이지에서 일관된 Masthead를 사용해야 합니다
-                  </ListItem>
-                  <ListItem>
-                    SkipLink와 함께 사용하여 Bypass Blocks (2.4.1) 기준을
-                    준수하세요
-                  </ListItem>
-                </List>
-              </Card>
-            </Subsection>
-          </Subsection>
+          </Section>
         </TabsContent>
       </Tabs>
 
@@ -398,6 +353,6 @@ export default function Layout({ children }) {
         prev={{ title: 'Main Menu', href: '/components/mainmenu' }}
         next={{ title: 'Modal', href: '/components/modal' }}
       />
-    </Section>
+    </>
   );
 }

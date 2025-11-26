@@ -53,21 +53,21 @@ const componentsNavigation = [
       { title: 'Display', href: '/components/display' },
       { title: 'File Upload', href: '/components/file-upload' },
       { title: 'Footer', href: '/components/footer' },
+      { title: 'Form Field', href: '/components/form-field' },
       { title: 'Header', href: '/components/header' },
       { title: 'Heading', href: '/components/heading' },
       { title: 'Identifier', href: '/components/identifier' },
       { title: 'In-page Navigation', href: '/components/inpagenavigation' },
-      { title: 'Input', href: '/components/input' },
-      { title: 'Label', href: '/components/label' },
+      // { title: 'Input', href: '/components/input' },
+      // { title: 'Label', href: '/components/label' },
       { title: 'Link', href: '/components/link' },
       { title: 'List', href: '/components/list' },
       { title: 'Main Menu', href: '/components/mainmenu' },
       { title: 'Masthead', href: '/components/masthead' },
       { title: 'Modal', href: '/components/modal' },
-      { title: 'NavText', href: '/components/navtext' },
       { title: 'Pagination', href: '/components/pagination' },
       { title: 'Section', href: '/components/section' },
-      { title: 'Heading', href: '/components/section-heading' },
+      // { title: 'Heading', href: '/components/section-heading' },
       {
         title: 'Section Heading System',
         href: '/components/section-heading-system',
@@ -180,7 +180,7 @@ export function Sidebar() {
     <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-krds-gray-5">
       <nav
         ref={navRef}
-        className="sticky top-12 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide"
+        className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide"
       >
         <div className="space-y-8">
           {navigation.map((section) => (

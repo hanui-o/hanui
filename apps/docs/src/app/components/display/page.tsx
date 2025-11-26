@@ -59,17 +59,19 @@ export default function DisplayPage() {
             />
             <ComponentPreview>
               <Stack gap="lg">
-                <DisplayComponent size="lg">환영합니다</DisplayComponent>
-                <DisplayComponent size="md">공공서비스 플랫폼</DisplayComponent>
-                <DisplayComponent size="sm">
+                <DisplayComponent size="xl">환영합니다</DisplayComponent>
+                <DisplayComponent size="lg">공공서비스 플랫폼</DisplayComponent>
+                <DisplayComponent size="md">
                   HANUI 디자인 시스템
                 </DisplayComponent>
+                <DisplayComponent size="sm">특별 할인</DisplayComponent>
               </Stack>
             </ComponentPreview>
             <Code variant="block" language="tsx">
-              {`<Display size="lg">환영합니다</Display>
-<Display size="md">공공서비스 플랫폼</Display>
-<Display size="sm">HANUI 디자인 시스템</Display>`}
+              {`<Display size="xl">환영합니다</Display>
+<Display size="lg">공공서비스 플랫폼</Display>
+<Display size="md">HANUI 디자인 시스템</Display>
+<Display size="sm">특별 할인</Display>`}
             </Code>
           </Section>
 
@@ -102,8 +104,10 @@ export default function DisplayPage() {
               {`import { Display } from '@hanui/react'
 
 // ✅ 올바른 사용
-<Display size="lg">환영합니다</Display>
-<Display size="md">봄맞이 특별 할인 50%</Display>
+<Display size="xl">환영합니다</Display>
+<Display size="lg">봄맞이 특별 할인 50%</Display>
+<Display size="md">신제품 출시</Display>
+<Display size="sm">특별 프로모션</Display>
 
 // ❌ 잘못된 사용 - Heading을 사용하세요
 <Display as="h1">페이지 제목</Display>
@@ -120,9 +124,18 @@ export default function DisplayPage() {
               <ComponentPreview>
                 <Stack gap="lg">
                   <Stack gap="sm">
+                    <DisplayComponent size="xl">
+                      Extra Large Display
+                    </DisplayComponent>
+                    <Body size="sm" className="text-krds-gray-70">
+                      32px (Mobile) / 48px (Desktop) · 700 (Bold) · 130% 줄 간격
+                    </Body>
+                  </Stack>
+
+                  <Stack gap="sm">
                     <DisplayComponent size="lg">Large Display</DisplayComponent>
                     <Body size="sm" className="text-krds-gray-70">
-                      60px (PC) / 44px (Mobile) · 700 (Bold) · 150% 줄 간격
+                      28px (Mobile) / 42px (Desktop) · 700 (Bold) · 130% 줄 간격
                     </Body>
                   </Stack>
 
@@ -131,22 +144,23 @@ export default function DisplayPage() {
                       Medium Display
                     </DisplayComponent>
                     <Body size="sm" className="text-krds-gray-70">
-                      44px (PC) / 32px (Mobile) · 700 (Bold) · 150% 줄 간격
+                      24px (Mobile) / 36px (Desktop) · 700 (Bold) · 130% 줄 간격
                     </Body>
                   </Stack>
 
                   <Stack gap="sm">
                     <DisplayComponent size="sm">Small Display</DisplayComponent>
                     <Body size="sm" className="text-krds-gray-70">
-                      36px (PC) / 28px (Mobile) · 700 (Bold) · 150% 줄 간격
+                      20px (Mobile) / 32px (Desktop) · 700 (Bold) · 130% 줄 간격
                     </Body>
                   </Stack>
                 </Stack>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<Display size="lg">최대 강조 텍스트</Display>
-<Display size="md">주요 제목</Display>
-<Display size="sm">보조 제목</Display>`}
+                {`<Display size="xl">최대 강조 텍스트</Display>
+<Display size="lg">큰 강조 텍스트</Display>
+<Display size="md">중간 강조 텍스트</Display>
+<Display size="sm">작은 강조 텍스트</Display>`}
               </Code>
             </Subsection>
 
@@ -188,7 +202,8 @@ export default function DisplayPage() {
                     </TableCell>
                     <TableCell>
                       <Code>
-                        &quot;lg&quot; | &quot;md&quot; | &quot;sm&quot;
+                        &quot;xl&quot; | &quot;lg&quot; | &quot;md&quot; |
+                        &quot;sm&quot;
                       </Code>
                     </TableCell>
                     <TableCell>
@@ -241,8 +256,8 @@ export default function DisplayPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Size</TableHead>
-                    <TableHead>PC</TableHead>
                     <TableHead>Mobile</TableHead>
+                    <TableHead>Desktop (md+)</TableHead>
                     <TableHead>Font Weight</TableHead>
                     <TableHead>Line Height</TableHead>
                   </TableRow>
@@ -250,30 +265,39 @@ export default function DisplayPage() {
                 <TableBody>
                   <TableRow>
                     <TableCell>
+                      <Code>xl</Code>
+                    </TableCell>
+                    <TableCell>32px</TableCell>
+                    <TableCell>48px</TableCell>
+                    <TableCell>700 (Bold)</TableCell>
+                    <TableCell>130%</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
                       <Code>lg</Code>
                     </TableCell>
-                    <TableCell>60px</TableCell>
-                    <TableCell>44px</TableCell>
+                    <TableCell>28px</TableCell>
+                    <TableCell>42px</TableCell>
                     <TableCell>700 (Bold)</TableCell>
-                    <TableCell>150%</TableCell>
+                    <TableCell>130%</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>md</Code>
                     </TableCell>
-                    <TableCell>44px</TableCell>
-                    <TableCell>32px</TableCell>
+                    <TableCell>24px</TableCell>
+                    <TableCell>36px</TableCell>
                     <TableCell>700 (Bold)</TableCell>
-                    <TableCell>150%</TableCell>
+                    <TableCell>130%</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>sm</Code>
                     </TableCell>
-                    <TableCell>36px</TableCell>
-                    <TableCell>28px</TableCell>
+                    <TableCell>20px</TableCell>
+                    <TableCell>32px</TableCell>
                     <TableCell>700 (Bold)</TableCell>
-                    <TableCell>150%</TableCell>
+                    <TableCell>130%</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

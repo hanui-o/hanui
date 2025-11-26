@@ -36,12 +36,6 @@ const typographyComponents = [
     href: '/components/navtext',
     updated: true,
   },
-  {
-    name: 'Heading',
-    description: '페이지/섹션 제목',
-    href: '/components/section-heading',
-    updated: true,
-  },
 ];
 
 // 1. 아이덴티티 (Identity) - 알파벳 순
@@ -255,6 +249,12 @@ const helpComponents = [
 
 // 8. 입력 (Input)
 const inputComponents = [
+  {
+    name: 'FormField',
+    description: '폼 필드 그룹 (Label, Input, Error, Helper)',
+    href: '/components/form-field',
+    updated: true,
+  },
   {
     name: 'Label',
     description: '라벨',

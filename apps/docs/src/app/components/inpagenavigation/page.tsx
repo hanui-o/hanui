@@ -130,6 +130,20 @@ const links = [
 
             <Subsection level="h3">
               <Heading level="h3" title="액션 버튼 포함" />
+              <ComponentPreview>
+                <InPageNavigation
+                  caption="이 페이지의 구성"
+                  title="장애아동수당"
+                  links={actionLinks}
+                  action={{
+                    label: '온라인 신청하기',
+                    onClick: handleApply,
+                    info: '장애아동수당 외 <strong>1건</strong>',
+                  }}
+                  className="!static"
+                />
+              </ComponentPreview>
+
               <Code variant="block" language="tsx">
                 {`<InPageNavigation
   caption="이 페이지의 구성"
@@ -138,7 +152,7 @@ const links = [
   action={{
     label: '온라인 신청하기',
     onClick: () => console.log('Apply'),
-    info: '청년 주거지원 외 2건',
+    info: '청년 주거지원 외 <strong>2건</strong>',
   }}
 />`}
               </Code>
@@ -309,7 +323,7 @@ const links = [
 
       <PageNavigation
         prev={{ title: 'Identifier', href: '/components/identifier' }}
-        next={{ title: 'Input', href: '/components/input' }}
+        next={{ title: 'Link', href: '/components/link' }}
       />
     </>
   );

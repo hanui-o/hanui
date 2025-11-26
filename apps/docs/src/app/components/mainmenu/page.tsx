@@ -1,6 +1,6 @@
 'use client';
 
-import { MainMenu } from '@hanui/react';
+import { NavigationMenu, MegaMenu } from '@hanui/react';
 // Docs layout components
 import {
   PageSection as Section,
@@ -37,7 +37,7 @@ export default function MainMenuPage() {
       <Heading
         level="h1"
         title="Main Menu"
-        description="Radix UI Navigation Menu 기반의 주요 네비게이션 컴포넌트입니다. 자동 접근성 처리, 키보드 네비게이션, 드롭다운 메뉴를 지원합니다."
+        description="주요 네비게이션을 위한 2가지 독립적인 컴포넌트를 제공합니다: NavigationMenu와 MegaMenu. 각각 다른 용도와 설치 방법을 가지고 있습니다."
       />
 
       <Tabs defaultValue="overview">
@@ -53,11 +53,60 @@ export default function MainMenuPage() {
               level="h2"
               id="overview"
               title="개요"
-              className="sr-only"
+              description="용도에 따라 선택할 수 있는 2가지 독립적인 메인 메뉴 컴포넌트"
             />
 
+            <Body className="mb-6">
+              HANUI는 웹사이트의 주요 네비게이션을 위한{' '}
+              <strong>2가지 독립적인 컴포넌트</strong>를 제공합니다:
+            </Body>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+              <Card>
+                <div className="p-6">
+                  <Heading level="h3" title="NavigationMenu" />
+                  <Body className="mb-4">
+                    <strong>Radix UI 기반</strong>의 일반적인 네비게이션 메뉴.
+                    일부 항목에만 드롭다운이 필요하거나 간단한 메뉴 구조에
+                    적합합니다.
+                  </Body>
+                  <Code variant="inline">
+                    npx hanui@latest add navigation-menu
+                  </Code>
+                </div>
+              </Card>
+              <Card>
+                <div className="p-6">
+                  <Heading level="h3" title="MegaMenu" />
+                  <Body className="mb-4">
+                    <strong>순수 React 기반</strong>의 메가메뉴 스타일
+                    네비게이션. 모든 메뉴에 서브메뉴가 있고 복잡한 구조에
+                    적합합니다.
+                  </Body>
+                  <Code variant="inline">npx hanui@latest add mega-menu</Code>
+                </div>
+              </Card>
+            </div>
+          </Section>
+
+          {/* NavigationMenu */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="navigation-menu"
+              title="NavigationMenu"
+              description="Radix UI 기반의 일반적인 네비게이션 메뉴"
+            />
+
+            <Body className="mb-4">
+              <strong>NavigationMenu</strong>는 Radix UI Navigation Menu
+              기반으로 자동 접근성 처리, 키보드 네비게이션, 드롭다운 메뉴를
+              지원합니다. 일부 항목에만 드롭다운이 필요하거나 간단한 사이트
+              구조에 적합합니다.
+            </Body>
+
             <ComponentPreview className="h-[400px]">
-              <MainMenu
+              <NavigationMenu
                 items={[
                   { label: '홈', href: '/', active: true },
                   { label: '소개', href: '/about' },
@@ -78,9 +127,9 @@ export default function MainMenuPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { MainMenu } from '@hanui/react'
+              {`import { NavigationMenu } from '@hanui/react'
 
-<MainMenu
+<NavigationMenu
   items={[
     { label: '홈', href: '/', active: true },
     { label: '소개', href: '/about' },
@@ -96,15 +145,20 @@ export default function MainMenuPage() {
   ]}
 />`}
             </Code>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="설치" />
+              <Installation componentName="navigation-menu" />
+            </Subsection>
           </Section>
 
+          {/* NavigationMenu Usage */}
           <Section level="h2">
-            <Installation componentName="main-menu" />
-          </Section>
-
-          {/* Usage */}
-          <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="navigation-menu-usage"
+              title="NavigationMenu 사용법"
+            />
 
             <Body className="mb-4">
               <strong>Radix UI Navigation Menu 기반</strong>으로 제작된 주 메뉴
@@ -131,16 +185,20 @@ export default function Layout() {
 
   return (
     <Header>
-      <MainMenu items={menuItems} />
+      <NavigationMenu items={menuItems} />
     </Header>
   )
 }`}
             </Code>
           </Section>
 
-          {/* Examples */}
+          {/* NavigationMenu Examples */}
           <Section level="h2">
-            <Heading level="h2" id="examples" title="예제" />
+            <Heading
+              level="h2"
+              id="navigation-menu-examples"
+              title="NavigationMenu 예제"
+            />
 
             <Subsection level="h3">
               <Heading level="h3" title="기본 사용" />
@@ -148,7 +206,7 @@ export default function Layout() {
                 items prop으로 메뉴 항목을 전달합니다.
               </Body>
               <ComponentPreview>
-                <MainMenu
+                <NavigationMenu
                   items={[
                     { label: '홈', href: '/', active: true },
                     { label: '소개', href: '/about' },
@@ -158,7 +216,7 @@ export default function Layout() {
                 />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<MainMenu
+                {`<NavigationMenu
   items={[
     { label: '홈', href: '/', active: true },
     { label: '소개', href: '/about' },
@@ -176,7 +234,7 @@ export default function Layout() {
                 있습니다.
               </Body>
               <ComponentPreview className="h-[400px]">
-                <MainMenu
+                <NavigationMenu
                   items={[
                     { label: '홈', href: '/' },
                     {
@@ -195,7 +253,7 @@ export default function Layout() {
                 />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<MainMenu
+                {`<NavigationMenu
   items={[
     { label: '홈', href: '/' },
     {
@@ -222,7 +280,7 @@ export default function Layout() {
                 풍부한 드롭다운을 만들 수 있습니다.
               </Body>
               <ComponentPreview className="h-[600px]">
-                <MainMenu
+                <NavigationMenu
                   items={[
                     { label: '홈', href: '/' },
                     {
@@ -259,7 +317,7 @@ export default function Layout() {
                 />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<MainMenu
+                {`<NavigationMenu
   items={[
     { label: '홈', href: '/' },
     {
@@ -298,7 +356,7 @@ export default function Layout() {
                 여러 섹션으로 구분된 복잡한 드롭다운 메뉴를 만들 수 있습니다.
               </Body>
               <Code variant="block" language="tsx">
-                {`<MainMenu
+                {`<NavigationMenu
   items={[
     { label: '홈', href: '/', active: true },
     {
@@ -330,6 +388,200 @@ export default function Layout() {
             </Subsection>
           </Section>
 
+          {/* Mega Menu */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="mega-menu"
+              title="MegaMenu"
+              description="순수 React 기반의 메가메뉴 스타일 네비게이션 (별도 설치)"
+            />
+
+            <Body className="mb-4">
+              <strong>MegaMenu</strong>는 NavigationMenu와 완전히 독립적인
+              컴포넌트로, 순수 React로 구현되어 있습니다. 모든 서브메뉴가 마우스
+              호버 시 전체 너비 배경과 함께 한번에 표시되는 메가메뉴 스타일로,
+              대규모 사이트나 복잡한 메뉴 구조를 가진 웹사이트에 적합합니다.
+            </Body>
+
+            <Body className="mb-4">
+              <strong>별도 설치가 필요합니다:</strong>
+            </Body>
+            <Code variant="block" language="bash">
+              {`npx hanui@latest add mega-menu`}
+            </Code>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="기본 메가메뉴" />
+              <Body className="mb-4">
+                모든 메뉴에 서브메뉴가 있고, 호버 시 전체 너비로 모든 메뉴가
+                한번에 표시됩니다.
+              </Body>
+              <ComponentPreview className="h-[500px]">
+                <MegaMenu
+                  columns={[
+                    {
+                      title: '건강보험',
+                      href: '/insurance',
+                      links: [
+                        { label: '보험료', href: '/insurance/premium' },
+                        { label: '급여', href: '/insurance/benefits' },
+                        { label: '요양기관', href: '/insurance/medical' },
+                        { label: '건강검진', href: '/insurance/checkup' },
+                      ],
+                    },
+                    {
+                      title: '장기요양',
+                      href: '/long-term-care',
+                      links: [
+                        {
+                          label: '장기요양보험',
+                          href: '/long-term-care/insurance',
+                        },
+                        {
+                          label: '장기요양인정',
+                          href: '/long-term-care/certification',
+                        },
+                        {
+                          label: '장기요양기관',
+                          href: '/long-term-care/facility',
+                        },
+                        {
+                          label: '장기요양급여',
+                          href: '/long-term-care/benefits',
+                        },
+                      ],
+                    },
+                    {
+                      title: '민원·증명서',
+                      href: '/civil-affairs',
+                      links: [
+                        { label: '민원신청', href: '/civil-affairs/apply' },
+                        {
+                          label: '증명서발급',
+                          href: '/civil-affairs/certificate',
+                        },
+                        {
+                          label: '민원처리결과',
+                          href: '/civil-affairs/result',
+                        },
+                      ],
+                    },
+                    {
+                      title: '건강정보',
+                      href: '/health-info',
+                      links: [
+                        { label: '건강정보', href: '/health-info/general' },
+                        { label: '질병정보', href: '/health-info/disease' },
+                        { label: '의학정보', href: '/health-info/medical' },
+                      ],
+                    },
+                    {
+                      title: '건강IN',
+                      href: '/health-in',
+                      active: true,
+                      links: [
+                        { label: '건강관리', href: '/health-in/management' },
+                        { label: '건강검진', href: '/health-in/checkup' },
+                        {
+                          label: '진료내역',
+                          href: '/health-in/medical-history',
+                        },
+                        { label: '약제비', href: '/health-in/medication' },
+                      ],
+                    },
+                    {
+                      title: '병원·약국',
+                      href: '/medical',
+                      links: [
+                        { label: '병원찾기', href: '/medical/hospital' },
+                        { label: '약국찾기', href: '/medical/pharmacy' },
+                        { label: '응급실찾기', href: '/medical/emergency' },
+                      ],
+                    },
+                    {
+                      title: '소개',
+                      href: '/about',
+                      links: [
+                        { label: '공단소개', href: '/about/overview' },
+                        {
+                          label: '조직·업무',
+                          href: '/about/organization',
+                        },
+                        { label: '채용정보', href: '/about/careers' },
+                        { label: '알림·소식', href: '/about/news' },
+                      ],
+                    },
+                  ]}
+                />
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`import { MegaMenu } from '@hanui/react'
+
+<MegaMenu
+  columns={[
+    {
+      title: '건강보험',
+      href: '/insurance',
+      links: [
+        { label: '보험료', href: '/insurance/premium' },
+        { label: '급여', href: '/insurance/benefits' },
+        { label: '요양기관', href: '/insurance/medical' },
+        { label: '건강검진', href: '/insurance/checkup' },
+      ],
+    },
+    {
+      title: '장기요양',
+      href: '/long-term-care',
+      links: [
+        { label: '장기요양보험', href: '/long-term-care/insurance' },
+        { label: '장기요양인정', href: '/long-term-care/certification' },
+        { label: '장기요양기관', href: '/long-term-care/facility' },
+        { label: '장기요양급여', href: '/long-term-care/benefits' },
+      ],
+    },
+    // ... 더 많은 컬럼
+  ]}
+/>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="어떤 컴포넌트를 선택해야 할까?" />
+              <Body className="mb-4">
+                NavigationMenu와 MegaMenu는{' '}
+                <strong>완전히 독립적인 컴포넌트</strong>입니다. 프로젝트
+                요구사항에 따라 하나를 선택하여 설치하세요.
+              </Body>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <DoCard title="NavigationMenu를 선택하세요">
+                  <ul className="list-disc list-inside space-y-1 text-sm">
+                    <li>메뉴 항목이 5개 이하인 경우</li>
+                    <li>일부 메뉴만 드롭다운이 필요한 경우</li>
+                    <li>간단한 사이트 구조</li>
+                    <li>모바일 우선 디자인</li>
+                    <li>Radix UI 접근성 기능이 필요한 경우</li>
+                  </ul>
+                  <Code variant="block" language="bash" className="mt-4">
+                    {`npx hanui@latest add navigation-menu`}
+                  </Code>
+                </DoCard>
+                <DoCard title="MegaMenu를 선택하세요">
+                  <ul className="list-disc list-inside space-y-1 text-sm">
+                    <li>메뉴 항목이 6개 이상인 경우</li>
+                    <li>모든 메뉴에 서브메뉴가 있는 경우</li>
+                    <li>복잡한 사이트 구조 (정부기관, 대학 등)</li>
+                    <li>전체 메뉴를 한눈에 보여줘야 하는 경우</li>
+                    <li>순수 React 구현이 필요한 경우</li>
+                  </ul>
+                  <Code variant="block" language="bash" className="mt-4">
+                    {`npx hanui@latest add mega-menu`}
+                  </Code>
+                </DoCard>
+              </div>
+            </Subsection>
+          </Section>
+
           {/* Accessibility */}
           <Section level="h2">
             <Heading
@@ -348,6 +600,12 @@ export default function Layout() {
 
             <Subsection level="h3">
               <Heading level="h3" title="키보드 네비게이션" />
+              <Body className="mb-4">
+                <strong>Tab 키는 1depth 메뉴 항목들만 순회합니다.</strong>{' '}
+                사용자가 의도적으로 Enter/Space/Arrow Down을 눌렀을 때만 2depth
+                드롭다운으로 진입합니다. 이는 사용자가 메뉴를 빠르게 건너뛸 수
+                있게 하여 접근성을 향상시킵니다.
+              </Body>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -395,74 +653,85 @@ export default function Layout() {
         </TabsContent>
 
         <TabsContent value="api">
-          {/* Props */}
+          <Body className="mb-8">
+            NavigationMenu와 MegaMenu는 <strong>독립적인 컴포넌트</strong>로
+            각각 다른 Props를 가지고 있습니다.
+          </Body>
+
+          {/* NavigationMenu Props */}
           <Section level="h2">
-            <Heading level="h2" id="props" title="Props" />
+            <Heading
+              level="h2"
+              id="navigation-menu-props"
+              title="NavigationMenu"
+              description="NavigationMenu 컴포넌트 API 레퍼런스"
+            />
 
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Prop</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Default</TableHead>
-                  <TableHead>Description</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <Code>items</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>MainMenuItem[]</Code>
-                  </TableCell>
-                  <TableCell>
-                    <strong>필수</strong>
-                  </TableCell>
-                  <TableCell>메뉴 항목 배열</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>currentPath</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>string</Code>
-                  </TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell>현재 활성 경로 (aria-current 설정용)</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>orientation</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>&quot;horizontal&quot; | &quot;vertical&quot;</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>&quot;horizontal&quot;</Code>
-                  </TableCell>
-                  <TableCell>메뉴 방향</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>className</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>string</Code>
-                  </TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell>추가 CSS 클래스</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Section>
+            <Subsection level="h3">
+              <Heading level="h3" title="Props" />
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>items</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>NavigationMenuItem[]</Code>
+                    </TableCell>
+                    <TableCell>
+                      <strong>필수</strong>
+                    </TableCell>
+                    <TableCell>메뉴 항목 배열</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>currentPath</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>현재 활성 경로 (aria-current 설정용)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>orientation</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;horizontal&quot; | &quot;vertical&quot;</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;horizontal&quot;</Code>
+                    </TableCell>
+                    <TableCell>메뉴 방향</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-          {/* MainMenuItem Type */}
-          <Section level="h2">
-            <Heading level="h2" id="mainmenuitem" title="MainMenuItem Type" />
+            <Subsection level="h3">
+              <Heading level="h3" title="NavigationMenuItem Type" />
 
-            <Code variant="block" language="tsx">
-              {`export interface MainMenuItem {
+              <Code variant="block" language="tsx">
+                {`export interface NavigationMenuItem {
   /**
    * 메뉴 라벨
    */
@@ -481,12 +750,12 @@ export default function Layout() {
   /**
    * 드롭다운 섹션 (제목, 설명, 유틸리티 링크 포함)
    */
-  sections?: MainMenuSection[];
+  sections?: NavigationMenuSection[];
 
   /**
    * 간단한 서브메뉴 링크 (sections 대신 사용)
    */
-  children?: MainMenuLink[];
+  children?: NavigationMenuLink[];
 
   /**
    * 드롭다운 너비 (Tailwind 클래스 또는 커스텀 값)
@@ -495,19 +764,14 @@ export default function Layout() {
    */
   dropdownWidth?: string;
 }`}
-            </Code>
-          </Section>
+              </Code>
+            </Subsection>
 
-          {/* MainMenuSection Type */}
-          <Section level="h2">
-            <Heading
-              level="h2"
-              id="mainmenusection"
-              title="MainMenuSection Type"
-            />
+            <Subsection level="h3">
+              <Heading level="h3" title="NavigationMenuSection Type" />
 
-            <Code variant="block" language="tsx">
-              {`export interface MainMenuSection {
+              <Code variant="block" language="tsx">
+                {`export interface NavigationMenuSection {
   /**
    * 섹션 제목
    */
@@ -516,22 +780,21 @@ export default function Layout() {
   /**
    * 섹션 내 링크들
    */
-  links: MainMenuLink[];
+  links: NavigationMenuLink[];
 
   /**
    * "모두 보기" 등 추가 링크
    */
-  utilityLinks?: MainMenuLink[];
+  utilityLinks?: NavigationMenuLink[];
 }`}
-            </Code>
-          </Section>
+              </Code>
+            </Subsection>
 
-          {/* MainMenuLink Type */}
-          <Section level="h2">
-            <Heading level="h2" id="mainmenulink" title="MainMenuLink Type" />
+            <Subsection level="h3">
+              <Heading level="h3" title="NavigationMenuLink Type" />
 
-            <Code variant="block" language="tsx">
-              {`export interface MainMenuLink {
+              <Code variant="block" language="tsx">
+                {`export interface NavigationMenuLink {
   /**
    * 링크 텍스트
    */
@@ -552,7 +815,142 @@ export default function Layout() {
    */
   active?: boolean;
 }`}
-            </Code>
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* MegaMenu Props */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="mega-menu-api"
+              title="MegaMenu"
+              description="MegaMenu 컴포넌트 API 레퍼런스"
+            />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Props" />
+
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>columns</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>MegaMenuColumn[]</Code>
+                    </TableCell>
+                    <TableCell>
+                      <strong>필수</strong>
+                    </TableCell>
+                    <TableCell>메뉴 컬럼 배열</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>currentPath</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>현재 활성 경로 (aria-current 설정용)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>dropdownBgColor</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;bg-krds-white&quot;</Code>
+                    </TableCell>
+                    <TableCell>드롭다운 배경색 (Tailwind 클래스)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>dropdownBorderColor</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;border-krds-gray-20&quot;</Code>
+                    </TableCell>
+                    <TableCell>드롭다운 테두리색 (Tailwind 클래스)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="MegaMenuColumn Type" />
+
+              <Code variant="block" language="tsx">
+                {`export interface MegaMenuColumn {
+  /**
+   * 메인 메뉴 타이틀
+   */
+  title: string;
+
+  /**
+   * 메인 메뉴 링크 (선택)
+   */
+  href?: string;
+
+  /**
+   * 서브 메뉴 링크 목록
+   */
+  links: MegaMenuLink[];
+
+  /**
+   * 활성 상태
+   */
+  active?: boolean;
+}`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="MegaMenuLink Type" />
+
+              <Code variant="block" language="tsx">
+                {`export interface MegaMenuLink {
+  /**
+   * 링크 텍스트
+   */
+  label: string;
+
+  /**
+   * 링크 URL
+   */
+  href: string;
+
+  /**
+   * 활성 상태
+   */
+  active?: boolean;
+}`}
+              </Code>
+            </Subsection>
           </Section>
         </TabsContent>
       </Tabs>

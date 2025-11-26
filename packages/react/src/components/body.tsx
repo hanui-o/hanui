@@ -19,14 +19,14 @@ import { cn } from '@/lib/utils';
  */
 const bodyVariants = cva(
   // Base styles - KRDS 명도 대비 4.5:1 이상을 만족하는 기본 색상
-  'leading-[var(--krds-line-height-body)]',
+  'leading-[var(--krds-leading-body)]',
   {
     variants: {
       size: {
-        lg: '[font-size:var(--krds-font-size-body-lg)]',
-        md: '[font-size:var(--krds-font-size-body-md)]',
-        sm: '[font-size:var(--krds-font-size-body-sm)]',
-        xs: '[font-size:var(--krds-font-size-body-xs)]',
+        lg: '[font-size:var(--krds-size-body-lg)]',
+        md: '[font-size:var(--krds-size-body-md)]',
+        sm: '[font-size:var(--krds-size-body-sm)]',
+        xs: '[font-size:var(--krds-size-body-xs)]',
       },
       weight: {
         normal: 'font-normal text-krds-gray-90', // 400 = normal

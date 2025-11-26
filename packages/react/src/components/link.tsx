@@ -42,9 +42,9 @@ const linkVariants = cva(
        * Size - Font size
        */
       size: {
-        small: '[font-size:var(--krds-font-size-body-sm)]',
-        medium: '[font-size:var(--krds-font-size-body-md)]',
-        large: '[font-size:var(--krds-font-size-body-lg)]',
+        small: '[font-size:var(--krds-size-body-sm)]',
+        medium: '[font-size:var(--krds-size-body-md)]',
+        large: '[font-size:var(--krds-size-body-lg)]',
       },
     },
     defaultVariants: {

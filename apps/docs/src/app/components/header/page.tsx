@@ -7,7 +7,6 @@ import {
   Heading,
   PageNavigation,
 } from '@/components/content';
-import { Installation } from '@/components/content/Installation';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
@@ -21,8 +20,68 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  Header,
+  HeaderWithMegaMenu,
+  HeaderWithNavigation,
+  NavigationMenuItem,
+  MegaMenuColumn,
 } from '@hanui/react';
+
+// Sample data for menu examples
+const NAVIGATION_ITEMS: NavigationMenuItem[] = [
+  { label: '홈', href: '/', active: true },
+  { label: '소개', href: '/about' },
+  {
+    label: '서비스',
+    children: [
+      { label: '건강검진', href: '/services/checkup' },
+      { label: '보험료 조회', href: '/services/premium' },
+      { label: '민원서류 발급', href: '/services/documents' },
+    ],
+  },
+  { label: '고객지원', href: '/support' },
+];
+
+const MEGA_COLUMNS: MegaMenuColumn[] = [
+  {
+    title: '건강보험',
+    href: '/insurance',
+    links: [
+      { label: '보험료', href: '/insurance/premium' },
+      { label: '급여', href: '/insurance/benefits' },
+      { label: '요양기관', href: '/insurance/medical' },
+      { label: '건강검진', href: '/insurance/checkup' },
+    ],
+  },
+  {
+    title: '장기요양',
+    href: '/long-term-care',
+    links: [
+      { label: '장기요양보험', href: '/long-term-care/insurance' },
+      { label: '장기요양인정', href: '/long-term-care/certification' },
+      { label: '장기요양기관', href: '/long-term-care/facility' },
+      { label: '장기요양급여', href: '/long-term-care/benefits' },
+    ],
+  },
+  {
+    title: '민원·증명서',
+    href: '/civil-affairs',
+    links: [
+      { label: '민원신청', href: '/civil-affairs/apply' },
+      { label: '증명서발급', href: '/civil-affairs/certificate' },
+      { label: '민원처리결과', href: '/civil-affairs/result' },
+    ],
+  },
+  {
+    title: '건강정보',
+    href: '/health-info',
+    active: true,
+    links: [
+      { label: '건강정보', href: '/health-info/general' },
+      { label: '질병정보', href: '/health-info/disease' },
+      { label: '의학정보', href: '/health-info/medical' },
+    ],
+  },
+];
 
 export default function HeaderPage() {
   return (
@@ -30,7 +89,7 @@ export default function HeaderPage() {
       <Heading
         level="h1"
         title="Header"
-        description="KRDS 표준 3단계 구조(Utility Bar / Branding / Main Menu)를 따르는 정부 서비스 헤더 컴포넌트입니다."
+        description="KRDS 표준 3단계 구조(Utility Bar / Branding / Main Menu)를 따르는 정부 서비스 헤더 컴포넌트입니다. 메뉴 타입에 따라 2가지 버전을 제공합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -42,182 +101,180 @@ export default function HeaderPage() {
         <TabsContent value="overview">
           {/* Overview */}
           <Section level="h2">
+            <Heading level="h2" id="overview" title="개요" />
+
+            <Body className="mb-4">
+              Header는 사용하는 메뉴 타입에 따라 <strong>2가지 버전</strong>을
+              제공합니다:
+            </Body>
+
+            <Card variant="filled" className="mb-6">
+              <List spacing="tight">
+                <ListItem>
+                  <Body size="sm" weight="bold" as="span">
+                    HeaderWithMegaMenu:
+                  </Body>
+                  <Body size="sm" as="span">
+                    {' '}
+                    Inline 레이아웃 (logo | MegaMenu | Actions)
+                  </Body>
+                </ListItem>
+                <ListItem>
+                  <Body size="sm" weight="bold" as="span">
+                    HeaderWithNavigation:
+                  </Body>
+                  <Body size="sm" as="span">
+                    {' '}
+                    Stacked 레이아웃 ((logo | Actions) / NavigationMenu)
+                  </Body>
+                </ListItem>
+              </List>
+            </Card>
+          </Section>
+
+          {/* HeaderWithMegaMenu */}
+          <Section level="h2">
             <Heading
               level="h2"
-              id="overview"
-              title="개요"
-              className="sr-only"
+              id="header-with-megamenu"
+              title="HeaderWithMegaMenu"
+              description="Inline 레이아웃: logo | MegaMenu | Actions (한 줄)"
             />
 
-            {/* Desktop */}
-            <Body className="mb-2 font-semibold text-krds-gray-90">
-              Desktop (1280px)
+            <Body className="mb-4">
+              모든 메뉴에 서브메뉴가 있고, 로고와 메뉴, 액션이 한 줄에
+              배치됩니다. 정부기관처럼 메뉴가 많은 사이트에 적합합니다.
             </Body>
+
+            <ComponentPreview className="h-[500px] overflow-hidden">
+              <div
+                className="scale-[0.7] origin-top w-[1280px]"
+                style={{ height: '714px' }}
+              >
+                <HeaderWithMegaMenu
+                  className="w-[1280px]"
+                  megaColumns={MEGA_COLUMNS}
+                />
+              </div>
+            </ComponentPreview>
+
+            <Code variant="block" language="tsx" className="mb-4">
+              {`import { HeaderWithMegaMenu, MegaMenuColumn } from '@hanui/react'
+
+const megaColumns: MegaMenuColumn[] = [
+  {
+    title: '건강보험',
+    href: '/insurance',
+    links: [
+      { label: '보험료', href: '/insurance/premium' },
+      { label: '급여', href: '/insurance/benefits' },
+      { label: '요양기관', href: '/insurance/medical' },
+      { label: '건강검진', href: '/insurance/checkup' },
+    ],
+  },
+  // ... more columns
+]
+
+<HeaderWithMegaMenu megaColumns={megaColumns} />`}
+            </Code>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="설치" />
+              <Code variant="block" language="bash">
+                {`npx hanui@latest add header-with-megamenu`}
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* HeaderWithNavigation */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="header-with-navigation"
+              title="HeaderWithNavigation"
+              description="Stacked 레이아웃: (logo | Actions) / NavigationMenu (두 줄)"
+            />
+
+            <Body className="mb-4">
+              로고와 액션이 첫 번째 줄에, NavigationMenu가 두 번째 줄에
+              배치됩니다. 메뉴가 적거나 간결한 헤더가 필요한 경우 적합합니다.
+            </Body>
+
             <ComponentPreview className="h-[400px] overflow-hidden">
               <div
                 className="scale-[0.7] origin-top w-[1280px]"
                 style={{ height: '571px' }}
               >
-                <Header className="w-[1280px]" />
+                <HeaderWithNavigation
+                  className="w-[1280px]"
+                  navigationItems={NAVIGATION_ITEMS}
+                />
               </div>
             </ComponentPreview>
 
-            <Code variant="block" language="tsx">
-              {`import { Header } from '@hanui/react'
+            <Code variant="block" language="tsx" className="mb-4">
+              {`import { HeaderWithNavigation, NavigationMenuItem } from '@hanui/react'
 
-<Header />`}
+const navigationItems: NavigationMenuItem[] = [
+  { label: '홈', href: '/', active: true },
+  { label: '소개', href: '/about' },
+  {
+    label: '서비스',
+    children: [
+      { label: '건강검진', href: '/services/checkup' },
+      { label: '보험료 조회', href: '/services/premium' },
+    ],
+  },
+  { label: '고객지원', href: '/support' },
+]
+
+<HeaderWithNavigation navigationItems={navigationItems} />`}
             </Code>
-          </Section>
 
-          <Section level="h2">
-            <Installation componentName="header" />
-          </Section>
-
-          {/* Usage */}
-          <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
-            <Code variant="block" language="tsx">
-              {`import { Header } from '@hanui/react'
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="ko">
-      <body>
-        <Header />
-        {children}
-      </body>
-    </html>
-  );
-}`}
-            </Code>
-          </Section>
-
-          {/* Examples */}
-          <Section level="h2">
-            <Heading level="h2" id="examples" title="예제" />
-
-            {/* 레이아웃 구조 */}
             <Subsection level="h3">
-              <Heading level="h3" title="레이아웃 구조" />
-              <Body className="mb-4">
-                Header는 KRDS 표준에 따라 3단계 구조로 구성됩니다:
-              </Body>
-
-              <Card variant="info">
-                <List variant="check" spacing="tight">
-                  <ListItem>
-                    <Body size="sm" weight="bold" as="span">
-                      Utility Bar:
-                    </Body>
-                    <Body size="sm" as="span">
-                      {' '}
-                      로그인, 회원가입, 언어 선택 등 (Desktop만 표시)
-                    </Body>
-                  </ListItem>
-                  <ListItem>
-                    <Body size="sm" weight="bold" as="span">
-                      Branding:
-                    </Body>
-                    <Body size="sm" as="span">
-                      {' '}
-                      로고, 슬로건, 검색 및 모바일 메뉴 버튼
-                    </Body>
-                  </ListItem>
-                  <ListItem>
-                    <Body size="sm" weight="bold" as="span">
-                      Main Menu:
-                    </Body>
-                    <Body size="sm" as="span">
-                      {' '}
-                      주요 네비게이션 및 서브메뉴
-                    </Body>
-                  </ListItem>
-                </List>
-              </Card>
-
-              <Code variant="block" language="tsx" className="mt-4">
-                {`<header className={styles.header}>
-  {/* 1. Utility Bar - Desktop만 표시 */}
-  <div className={styles.headerUtility}>
-    <ul className={styles.utilityList}>
-      <li><button>로그인</button></li>
-      <li><button>회원가입</button></li>
-    </ul>
-  </div>
-
-  {/* 2. Branding - 로고 및 액션 */}
-  <div className={styles.headerBranding}>
-    <h1 className={styles.logo}>
-      <a href="/"><img src="/logo.svg" alt="서비스명" /></a>
-    </h1>
-    <div className={styles.headerActions}>
-      <button className={styles.searchBtn}><Search /></button>
-      <button className={styles.menuBtn}><Menu /></button>
-    </div>
-  </div>
-
-  {/* 3. Main Menu - Desktop: 드롭다운, Mobile: 전체화면 */}
-  <nav className={styles.mainMenu}>
-    <ul className={styles.menuList}>
-      <li className={styles.menuItem}>
-        <button className={styles.menuLink}>
-          건강보험 <ChevronDown />
-        </button>
-        {/* 서브메뉴 */}
-      </li>
-    </ul>
-  </nav>
-</header>`}
+              <Heading level="h3" title="설치" />
+              <Code variant="block" language="bash">
+                {`npx hanui@latest add header-with-navigation`}
               </Code>
             </Subsection>
+          </Section>
 
-            {/* 커스터마이징 */}
+          {/* Customization */}
+          <Section level="h2">
+            <Heading level="h2" id="customization" title="Props 커스터마이징" />
+
             <Subsection level="h3">
-              <Heading level="h3" title="커스터마이징" />
+              <Heading level="h3" title="로고 및 유틸리티 링크 변경" />
               <Body className="mb-4">
-                설치된 <Code>components/hanui/header.tsx</Code> 및{' '}
-                <Code>header.module.scss</Code> 파일을 직접 수정하여
+                두 컴포넌트 모두 동일한 props로 로고, 유틸리티 링크 등을
                 커스터마이징할 수 있습니다.
               </Body>
 
-              <Card variant="info">
-                <Body className="mb-3">설치 시 추가되는 파일:</Body>
-                <List spacing="tight">
-                  <ListItem>
-                    <Code>components/hanui/header.tsx</Code> - Header 컴포넌트
-                  </ListItem>
-                  <ListItem>
-                    <Code>components/hanui/header.module.scss</Code> - CSS
-                    Modules 스타일
-                  </ListItem>
-                </List>
-              </Card>
+              <Code variant="block" language="tsx">
+                {`<HeaderWithMegaMenu
+  megaColumns={MEGA_COLUMNS}
+  logo="/my-logo.svg"
+  logoAlt="우리 기관"
+  logoHref="/"
+  utilityLinks={[
+    { label: '로그인', href: '/login' },
+    { label: '회원가입', href: '/signup' },
+    { label: 'ENGLISH', href: '/en' },
+  ]}
+  relatedSites={[
+    { label: '관련 사이트 1', href: 'https://example.com' },
+    { label: '관련 사이트 2', href: 'https://example2.com' },
+  ]}
+/>
 
-              <Code variant="block" language="tsx" className="mt-4">
-                {`// components/hanui/header.tsx
-export function Header({ className }: HeaderProps) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-
-  return (
-    <header className={\`\${styles.header} \${className || ''}\`}>
-      {/* 로고 수정 */}
-      <h1 className={styles.logo}>
-        <a href="/">
-          <img src="/your-logo.svg" alt="귀하의 서비스명" />
-        </a>
-      </h1>
-
-      {/* 메뉴 항목 수정 */}
-      <ul className={styles.menuList}>
-        <li>
-          <button className={styles.menuLink}>
-            첫 번째 메뉴
-          </button>
-        </li>
-      </ul>
-    </header>
-  );
-}`}
+// HeaderWithNavigation도 동일한 props 사용
+<HeaderWithNavigation
+  navigationItems={NAVIGATION_ITEMS}
+  logo="/my-logo.svg"
+  logoAlt="우리 기관"
+  utilityLinks={[...]}
+  relatedSites={[...]}
+/>`}
               </Code>
             </Subsection>
 
@@ -294,7 +351,7 @@ export function Header({ className }: HeaderProps) {
               Header는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다.
             </Body>
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" spacing="tight">
                 <ListItem>
                   <Body size="sm" weight="bold" as="span">
@@ -352,46 +409,88 @@ export function Header({ className }: HeaderProps) {
             <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="Header Props" />
+              <Heading level="h3" title="HeaderWithMegaMenu Props" />
               <List variant="unordered" spacing="tight">
                 <ListItem>
-                  <Code>className</Code> (optional): 추가 CSS 클래스명
+                  <Code>megaColumns</Code> (필수): <Code>MegaMenuColumn[]</Code>{' '}
+                  - MegaMenu 컬럼 데이터
+                </ListItem>
+                <ListItem>
+                  <Code>utilityLinks</Code>: <Code>UtilityLink[]</Code> - 상단
+                  유틸리티 링크 (기본값: 로그인, 회원가입, ENGLISH)
+                </ListItem>
+                <ListItem>
+                  <Code>relatedSites</Code>: <Code>UtilityLink[]</Code> - 관련
+                  사이트 드롭다운 (기본값: 건강iN 등 4개)
+                </ListItem>
+                <ListItem>
+                  <Code>logo</Code>: <Code>string</Code> - 로고 이미지 URL
+                  (기본값: KRDS 로고)
+                </ListItem>
+                <ListItem>
+                  <Code>logoAlt</Code>: <Code>string</Code> - 로고 대체 텍스트
+                  (기본값: "대한민국정부")
+                </ListItem>
+                <ListItem>
+                  <Code>logoHref</Code>: <Code>string</Code> - 로고 클릭 시 이동
+                  URL (기본값: "/")
+                </ListItem>
+                <ListItem>
+                  <Code>slogan</Code>: <Code>React.ReactNode</Code> - 슬로건
+                  내용
+                </ListItem>
+                <ListItem>
+                  <Code>className</Code>: <Code>string</Code> - 추가 CSS
+                  클래스명
                 </ListItem>
               </List>
-
-              <Code variant="block" language="tsx" className="mt-4">
-                {`<Header className="custom-header-class" />`}
-              </Code>
             </Subsection>
-          </Section>
-
-          {/* State Management */}
-          <Section level="h2">
-            <Heading level="h2" id="state-management" title="상태 관리" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="isMobileMenuOpen" />
-              <Body className="mb-4">
-                모바일 메뉴의 열림/닫힘 상태를 관리하는 React state입니다.
-              </Body>
+              <Heading level="h3" title="HeaderWithNavigation Props" />
+              <List variant="unordered" spacing="tight">
+                <ListItem>
+                  <Code>navigationItems</Code> (필수):{' '}
+                  <Code>NavigationMenuItem[]</Code> - NavigationMenu 항목 데이터
+                </ListItem>
+                <ListItem>
+                  <Code>utilityLinks</Code>: <Code>UtilityLink[]</Code> - 상단
+                  유틸리티 링크 (기본값: 로그인, 회원가입, ENGLISH)
+                </ListItem>
+                <ListItem>
+                  <Code>relatedSites</Code>: <Code>UtilityLink[]</Code> - 관련
+                  사이트 드롭다운 (기본값: 건강iN 등 4개)
+                </ListItem>
+                <ListItem>
+                  <Code>logo</Code>: <Code>string</Code> - 로고 이미지 URL
+                  (기본값: KRDS 로고)
+                </ListItem>
+                <ListItem>
+                  <Code>logoAlt</Code>: <Code>string</Code> - 로고 대체 텍스트
+                  (기본값: "대한민국정부")
+                </ListItem>
+                <ListItem>
+                  <Code>logoHref</Code>: <Code>string</Code> - 로고 클릭 시 이동
+                  URL (기본값: "/")
+                </ListItem>
+                <ListItem>
+                  <Code>slogan</Code>: <Code>React.ReactNode</Code> - 슬로건
+                  내용
+                </ListItem>
+                <ListItem>
+                  <Code>className</Code>: <Code>string</Code> - 추가 CSS
+                  클래스명
+                </ListItem>
+              </List>
+            </Subsection>
 
+            <Subsection level="h3">
+              <Heading level="h3" title="UtilityLink Type" />
               <Code variant="block" language="tsx">
-                {`const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-
-// 메뉴 버튼 클릭 시 토글
-<button
-  className={styles.menuBtn}
-  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
->
-  {isMobileMenuOpen ? <X /> : <Menu />}
-</button>
-
-// 조건부 렌더링
-{isMobileMenuOpen && (
-  <nav className={styles.mainMenuMobile}>
-    {/* 모바일 메뉴 내용 */}
-  </nav>
-)}`}
+                {`interface UtilityLink {
+  label: string;  // 링크 텍스트
+  href: string;   // 링크 URL
+}`}
               </Code>
             </Subsection>
           </Section>
@@ -400,7 +499,7 @@ export function Header({ className }: HeaderProps) {
           <Section level="h2">
             <Heading level="h2" id="krds-standards" title="KRDS 준수사항" />
 
-            <Card variant="info">
+            <Card variant="filled">
               <List variant="check" spacing="tight">
                 <ListItem>
                   3단계 구조: Utility Bar / Branding / Main Menu

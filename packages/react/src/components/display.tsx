@@ -6,21 +6,24 @@ import { cn } from '@/lib/utils';
  * Display Variants Definition
  *
  * KRDS Typography - Display style (for banners/marketing)
- * - Large: 60px(PC) / 44px(Mobile) - Maximum emphasis
- * - Medium: 44px(PC) / 32px(Mobile) - Main title
- * - Small: 36px(PC) / 28px(Mobile) - Subtitle
- * - All levels bold (700), line spacing 150%
+ * Uses KRDS CSS variables for consistent theming with responsive sizing:
+ * - xl: 32px (mobile) → 48px (desktop) - Extra large emphasis
+ * - lg: 28px (mobile) → 42px (desktop) - Large emphasis
+ * - md: 24px (mobile) → 36px (desktop) - Medium emphasis
+ * - sm: 20px (mobile) → 32px (desktop) - Small emphasis
+ * - All levels bold (700), line spacing 130%
  * - Default color: gray-95 (bolder) - KRDS contrast 4.5:1 compliant, auto dark mode
  */
 const displayVariants = cva(
   // Base styles - Default color that meets KRDS contrast 4.5:1 or higher
-  'font-bold leading-[150%] text-krds-gray-95',
+  'font-bold leading-[var(--krds-leading-display)] text-krds-gray-95',
   {
     variants: {
       size: {
-        lg: 'text-[44px] md:text-[60px]',
-        md: 'text-[32px] md:text-[44px]',
-        sm: 'text-[28px] md:text-[36px]',
+        xl: 'text-krds-display-xl md:text-krds-display-xl',
+        lg: 'text-krds-display-lg md:text-krds-display-lg',
+        md: 'text-krds-display-md md:text-krds-display-md',
+        sm: 'text-krds-display-sm md:text-krds-display-sm',
       },
     },
     defaultVariants: {
@@ -39,7 +42,7 @@ export interface DisplayProps
    * Display size
    * @default "md"
    */
-  size?: 'lg' | 'md' | 'sm';
+  size?: 'xl' | 'lg' | 'md' | 'sm';
 
   /**
    * HTML tag (default: h1)
@@ -72,8 +75,10 @@ export interface DisplayProps
  * @example
  * ```tsx
  * // ✅ Correct usage
- * <Display size="lg">Welcome to Our Service</Display>
- * <Display size="md">Spring Sale 50% Off</Display>
+ * <Display size="xl">Welcome to Our Service</Display>
+ * <Display size="lg">Spring Sale 50% Off</Display>
+ * <Display size="md">New Products</Display>
+ * <Display size="sm">Special Offer</Display>
  *
  * // ❌ Wrong usage - Use SectionHeading instead
  * <Display as="h1">Page Title</Display>

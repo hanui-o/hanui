@@ -81,8 +81,7 @@ export default function ButtonPage() {
                 <div className="flex flex-wrap items-center gap-3">
                   <Button variant="primary">Primary</Button>
                   <Button variant="secondary">Secondary</Button>
-                  <Button variant="success">Success</Button>
-                  <Button variant="danger">Danger</Button>
+                  <Button variant="tertiary">Tertiary</Button>
                   <Button variant="outline">Outline</Button>
                   <Button variant="ghost">Ghost</Button>
                   <Button variant="ghost-primary">Ghost Primary</Button>
@@ -91,8 +90,7 @@ export default function ButtonPage() {
               <Code variant="block" language="tsx">
                 {`<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
-<Button variant="success">Success</Button>
-<Button variant="danger">Danger</Button>
+<Button variant="tertiary">Tertiary</Button>
 <Button variant="outline">Outline</Button>
 <Button variant="ghost">Ghost</Button>
 <Button variant="ghost-primary">Ghost Primary</Button>`}
@@ -103,15 +101,19 @@ export default function ButtonPage() {
               <Heading level="h3" title="Size" />
               <ComponentPreview>
                 <div className="flex items-center gap-4">
+                  <Button size="xs">x-Small</Button>
                   <Button size="sm">Small</Button>
                   <Button size="md">Medium</Button>
                   <Button size="lg">Large</Button>
+                  <Button size="xl">x-Large</Button>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<Button size="sm">Small</Button>
+                {`<Button size="xs">x-Small</Button>
+<Button size="sm">Small</Button>
 <Button size="md">Medium</Button>
-<Button size="lg">Large</Button>`}
+<Button size="lg">Large</Button>
+<Button size="xl">x-Large</Button>`}
               </Code>
             </Subsection>
 
@@ -214,8 +216,9 @@ export default function ButtonPage() {
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">
-                        'primary' | 'secondary' | 'success' | 'danger' | 'ghost'
-                        | 'ghost-primary' | 'outline' | 'black'
+                        'primary' | 'secondary' | 'tertiary' | 'success' |
+                        'danger' | 'ghost' | 'ghost-primary' | 'outline' |
+                        'black'
                       </Code>
                     </TableCell>
                     <TableCell>'primary'</TableCell>
@@ -227,7 +230,7 @@ export default function ButtonPage() {
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">
-                        'sm' | 'md' | 'lg' | 'icon'
+                        'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon'
                       </Code>
                     </TableCell>
                     <TableCell>'md'</TableCell>

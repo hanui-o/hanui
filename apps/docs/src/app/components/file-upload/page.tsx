@@ -31,8 +31,10 @@ import {
 export default function FileUploadPage() {
   const [files, setFiles] = useState<UploadedFile[]>([]);
 
-  const handleUpload = (files: File[]) => {
+  const handleUpload = async (files: File[]) => {
     console.log('Uploading files:', files);
+    // 실제 업로드 로직 시뮬레이션
+    await new Promise((resolve) => setTimeout(resolve, 2000));
   };
 
   const handleChange = (files: UploadedFile[]) => {
@@ -45,12 +47,31 @@ export default function FileUploadPage() {
     alert(error);
   };
 
+  const handlePreview = (file: UploadedFile) => {
+    console.log('Preview file:', file);
+    // 이미지 미리보기 로직
+    if (file.preview) {
+      window.open(file.preview, '_blank');
+    }
+  };
+
+  const handleDownload = (file: UploadedFile) => {
+    console.log('Download file:', file);
+    // 다운로드 로직
+    const url = URL.createObjectURL(file.file);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = file.file.name;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <>
       <Heading
         level="h1"
         title="FileUpload"
-        description="드래그 앤 드롭과 파일 검증을 지원하는 KRDS 기반 파일 업로드 컴포넌트입니다."
+        description="드래그 앤 드롭과 파일 검증을 지원하는 KRDS 기반 파일 업로드 컴포넌트"
       />
 
       <Tabs defaultValue="overview">
@@ -59,8 +80,8 @@ export default function FileUploadPage() {
           <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
+        {/* 개요 탭 */}
         <TabsContent value="overview">
-          {/* 개요 */}
           <Section level="h2">
             <Heading
               level="h2"
@@ -69,13 +90,11 @@ export default function FileUploadPage() {
               className="sr-only"
             />
             <ComponentPreview>
-              <div className="max-w-md">
-                <FileUpload
-                  onUpload={handleUpload}
-                  onChange={handleChange}
-                  onError={handleError}
-                />
-              </div>
+              <FileUpload
+                onUpload={handleUpload}
+                onChange={handleChange}
+                onError={handleError}
+              />
             </ComponentPreview>
             <Code variant="block" language="tsx">
               {`<FileUpload
@@ -86,12 +105,10 @@ export default function FileUploadPage() {
             </Code>
           </Section>
 
-          {/* 설치 */}
           <Section level="h2">
             <Installation componentName="file-upload" />
           </Section>
 
-          {/* 사용법 */}
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
@@ -101,9 +118,9 @@ import { useState } from 'react'
 export default function MyComponent() {
   const [files, setFiles] = useState<UploadedFile[]>([])
 
-  const handleUpload = (files: File[]) => {
-    console.log('Uploading:', files)
+  const handleUpload = async (files: File[]) => {
     // 실제 업로드 로직 구현
+    console.log('Uploading:', files)
   }
 
   const handleChange = (files: UploadedFile[]) => {
@@ -117,6 +134,8 @@ export default function MyComponent() {
 
   return (
     <FileUpload
+      title="파일 첨부"
+      description="최대 5개 파일, 각 10MB 이하"
       accept="image/*,.pdf"
       maxSize={10 * 1024 * 1024}
       maxFiles={5}
@@ -130,76 +149,86 @@ export default function MyComponent() {
             </Code>
           </Section>
 
-          {/* 예제 */}
+          {/* 예제 섹션 */}
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
 
-            {/* Accept Types */}
             <Subsection level="h3">
-              <Heading level="h3" title="파일 타입 제한" />
+              <Heading level="h3" title="기본 사용" />
               <ComponentPreview>
-                <div className="flex flex-col gap-6">
-                  <div className="max-w-md">
-                    <FileUpload
-                      label="이미지만 업로드"
-                      accept="image/*"
-                      onUpload={handleUpload}
-                      onChange={handleChange}
-                      onError={handleError}
-                    />
-                  </div>
-                  <div className="max-w-md">
-                    <FileUpload
-                      label="PDF만 업로드"
-                      accept=".pdf"
-                      onUpload={handleUpload}
-                      onChange={handleChange}
-                      onError={handleError}
-                    />
-                  </div>
-                  <div className="max-w-md">
-                    <FileUpload
-                      label="문서 파일 업로드"
-                      accept=".doc,.docx,.pdf,.txt"
-                      onUpload={handleUpload}
-                      onChange={handleChange}
-                      onError={handleError}
-                    />
-                  </div>
-                </div>
+                <FileUpload
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`// 이미지만 허용
-<FileUpload
-  label="이미지만 업로드"
-  accept="image/*"
+                {`<FileUpload
   onUpload={handleUpload}
-/>
-
-// PDF만 허용
-<FileUpload
-  label="PDF만 업로드"
-  accept=".pdf"
-  onUpload={handleUpload}
-/>
-
-// 특정 문서 파일만 허용
-<FileUpload
-  label="문서 파일 업로드"
-  accept=".doc,.docx,.pdf,.txt"
-  onUpload={handleUpload}
+  onChange={handleChange}
+  onError={handleError}
 />`}
               </Code>
             </Subsection>
 
-            {/* File Size Limit */}
             <Subsection level="h3">
-              <Heading level="h3" title="파일 크기 제한" />
+              <Heading level="h3" title="제목과 설명" />
               <ComponentPreview>
-                <div className="max-w-md">
+                <FileUpload
+                  title="서류 첨부"
+                  description="최대 5개 파일, 각 10MB 이하"
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                />
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FileUpload
+  title="서류 첨부"
+  description="최대 5개 파일, 각 10MB 이하"
+  onUpload={handleUpload}
+  onChange={handleChange}
+  onError={handleError}
+/>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="테두리 스타일" />
+              <ComponentPreview>
+                <FileUpload
+                  bordered
+                  title="테두리가 있는 파일 업로드"
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                />
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FileUpload
+  bordered
+  title="테두리가 있는 파일 업로드"
+  onUpload={handleUpload}
+  onChange={handleChange}
+  onError={handleError}
+/>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="파일 타입 제한" />
+              <ComponentPreview>
+                <div className="space-y-6">
                   <FileUpload
-                    label="최대 5MB 파일 업로드"
-                    maxSize={5 * 1024 * 1024}
+                    title="이미지만 업로드"
+                    accept="image/*"
+                    onUpload={handleUpload}
+                    onChange={handleChange}
+                    onError={handleError}
+                  />
+                  <FileUpload
+                    title="문서 파일 업로드"
+                    accept=".pdf,.doc,.docx,.hwp"
                     onUpload={handleUpload}
                     onChange={handleChange}
                     onError={handleError}
@@ -207,8 +236,36 @@ export default function MyComponent() {
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
+                {`// 이미지만 허용
+<FileUpload
+  title="이미지만 업로드"
+  accept="image/*"
+  onUpload={handleUpload}
+/>
+
+// 특정 문서 파일만 허용
+<FileUpload
+  title="문서 파일 업로드"
+  accept=".pdf,.doc,.docx,.hwp"
+  onUpload={handleUpload}
+/>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="파일 크기 제한" />
+              <ComponentPreview>
+                <FileUpload
+                  title="최대 5MB 파일 업로드"
+                  maxSize={5 * 1024 * 1024}
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                />
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
                 {`<FileUpload
-  label="최대 5MB 파일 업로드"
+  title="최대 5MB 파일 업로드"
   maxSize={5 * 1024 * 1024} // 5MB
   onUpload={handleUpload}
   onChange={handleChange}
@@ -217,24 +274,23 @@ export default function MyComponent() {
               </Code>
             </Subsection>
 
-            {/* Multiple Files */}
             <Subsection level="h3">
               <Heading level="h3" title="다중 파일 업로드" />
               <ComponentPreview>
-                <div className="max-w-md">
-                  <FileUpload
-                    label="여러 파일 업로드 (최대 5개)"
-                    multiple
-                    maxFiles={5}
-                    onUpload={handleUpload}
-                    onChange={handleChange}
-                    onError={handleError}
-                  />
-                </div>
+                <FileUpload
+                  title="여러 파일 업로드"
+                  description="최대 5개 파일"
+                  multiple
+                  maxFiles={5}
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                />
               </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<FileUpload
-  label="여러 파일 업로드 (최대 5개)"
+  title="여러 파일 업로드"
+  description="최대 5개 파일"
   multiple
   maxFiles={5}
   onUpload={handleUpload}
@@ -244,67 +300,63 @@ export default function MyComponent() {
               </Code>
             </Subsection>
 
-            {/* Show/Hide File List */}
             <Subsection level="h3">
-              <Heading level="h3" title="파일 목록 표시/숨김" />
+              <Heading level="h3" title="파일 액션 (미리보기, 다운로드)" />
               <ComponentPreview>
-                <div className="flex flex-col gap-6">
-                  <div className="max-w-md">
-                    <FileUpload
-                      label="파일 목록 표시"
-                      multiple
-                      showFileList
-                      onUpload={handleUpload}
-                      onChange={handleChange}
-                      onError={handleError}
-                    />
-                  </div>
-                  <div className="max-w-md">
-                    <FileUpload
-                      label="파일 목록 숨김"
-                      showFileList={false}
-                      onUpload={handleUpload}
-                      onChange={handleChange}
-                      onError={handleError}
-                    />
-                  </div>
-                </div>
+                <FileUpload
+                  title="파일 미리보기 및 다운로드"
+                  accept="image/*,.pdf"
+                  multiple
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                  onPreview={handlePreview}
+                  onDownload={handleDownload}
+                />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`// 파일 목록 표시 (기본값)
-<FileUpload
-  label="파일 목록 표시"
-  multiple
-  showFileList
-  onUpload={handleUpload}
-/>
+                {`const handlePreview = (file: UploadedFile) => {
+  if (file.preview) {
+    window.open(file.preview, '_blank')
+  }
+}
 
-// 파일 목록 숨김
+const handleDownload = (file: UploadedFile) => {
+  const url = URL.createObjectURL(file.file)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = file.file.name
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
 <FileUpload
-  label="파일 목록 숨김"
-  showFileList={false}
+  title="파일 미리보기 및 다운로드"
+  accept="image/*,.pdf"
+  multiple
   onUpload={handleUpload}
+  onChange={handleChange}
+  onError={handleError}
+  onPreview={handlePreview}
+  onDownload={handleDownload}
 />`}
               </Code>
             </Subsection>
 
-            {/* Disabled */}
             <Subsection level="h3">
               <Heading level="h3" title="비활성화" />
               <ComponentPreview>
-                <div className="max-w-md">
-                  <FileUpload
-                    label="비활성화된 업로드"
-                    disabled
-                    onUpload={handleUpload}
-                    onChange={handleChange}
-                    onError={handleError}
-                  />
-                </div>
+                <FileUpload
+                  title="비활성화된 업로드"
+                  disabled
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                />
               </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<FileUpload
-  label="비활성화된 업로드"
+  title="비활성화된 업로드"
   disabled
   onUpload={handleUpload}
   onChange={handleChange}
@@ -313,53 +365,114 @@ export default function MyComponent() {
               </Code>
             </Subsection>
 
-            {/* Complete Example */}
             <Subsection level="h3">
-              <Heading level="h3" title="완전한 예제" />
+              <Heading level="h3" title="커스텀 텍스트" />
               <ComponentPreview>
-                <div className="max-w-md">
-                  <FileUpload
-                    label="프로젝트 파일 업로드"
-                    accept="image/*,.pdf,.doc,.docx"
-                    maxSize={10 * 1024 * 1024}
-                    maxFiles={3}
-                    multiple
-                    showFileList
-                    onUpload={handleUpload}
-                    onChange={handleChange}
-                    onError={handleError}
-                  />
-                  <p className="mt-2 text-[13px] text-krds-gray-60">
-                    이미지, PDF, 문서 파일만 업로드 가능합니다. (최대 10MB, 3개)
-                  </p>
-                </div>
+                <FileUpload
+                  title="프로젝트 파일"
+                  uploadButtonText="파일 찾기"
+                  instructionText="여기를 클릭하거나 파일을 드래그하세요"
+                  deleteAllText="모두 삭제"
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                />
               </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<FileUpload
-  label="프로젝트 파일 업로드"
-  accept="image/*,.pdf,.doc,.docx"
-  maxSize={10 * 1024 * 1024} // 10MB
-  maxFiles={3}
-  multiple
-  showFileList
+  title="프로젝트 파일"
+  uploadButtonText="파일 찾기"
+  instructionText="여기를 클릭하거나 파일을 드래그하세요"
+  deleteAllText="모두 삭제"
   onUpload={handleUpload}
   onChange={handleChange}
   onError={handleError}
-/>
-<p className="mt-2 text-sm text-krds-gray-60">
-  이미지, PDF, 문서 파일만 업로드 가능합니다. (최대 10MB, 3개)
-</p>`}
+/>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="완전한 예제" />
+              <ComponentPreview>
+                <FileUpload
+                  bordered
+                  title="프로젝트 서류 제출"
+                  description="이미지, PDF, 문서 파일만 업로드 가능합니다"
+                  accept="image/*,.pdf,.doc,.docx,.hwp"
+                  maxSize={10 * 1024 * 1024}
+                  maxFiles={3}
+                  multiple
+                  onUpload={handleUpload}
+                  onChange={handleChange}
+                  onError={handleError}
+                  onPreview={handlePreview}
+                  onDownload={handleDownload}
+                />
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FileUpload
+  bordered
+  title="프로젝트 서류 제출"
+  description="이미지, PDF, 문서 파일만 업로드 가능합니다"
+  accept="image/*,.pdf,.doc,.docx,.hwp"
+  maxSize={10 * 1024 * 1024} // 10MB
+  maxFiles={3}
+  multiple
+  onUpload={handleUpload}
+  onChange={handleChange}
+  onError={handleError}
+  onPreview={handlePreview}
+  onDownload={handleDownload}
+/>`}
               </Code>
             </Subsection>
           </Section>
+
+          {/* 접근성 섹션 */}
+          <Section level="h2">
+            <Heading level="h2" id="accessibility" title="접근성" />
+            <p className="[font-size:var(--krds-size-body-md)] text-krds-gray-80 mb-4">
+              FileUpload 컴포넌트는 WCAG 2.1 및 KWCAG 2.2 접근성 지침을
+              준수합니다.
+            </p>
+            <ul className="list-disc list-inside space-y-2 [font-size:var(--krds-size-body-md)] text-krds-gray-80">
+              <li>
+                <strong>키보드 접근성:</strong> 파일 입력은 숨겨져 있지만{' '}
+                <Code>sr-only</Code> 클래스를 사용하여 스크린 리더에 접근
+                가능합니다
+              </li>
+              <li>
+                <strong>드래그 앤 드롭:</strong> 마우스 없이도 버튼을 통해 파일
+                선택이 가능합니다
+              </li>
+              <li>
+                <strong>상태 표시:</strong> 업로드 중, 완료, 에러 상태가 시각적
+                아이콘과 텍스트로 명확히 표시됩니다
+              </li>
+              <li>
+                <strong>ARIA 속성:</strong> 진행률 표시줄에{' '}
+                <Code>role=&quot;progressbar&quot;</Code>와 적절한 aria 속성이
+                적용됩니다
+              </li>
+              <li>
+                <strong>파일 정보:</strong> 각 파일의 이름, 크기, 상태가 명확히
+                표시됩니다
+              </li>
+              <li>
+                <strong>에러 처리:</strong> 검증 실패 시 명확한 에러 메시지를
+                제공합니다
+              </li>
+            </ul>
+          </Section>
         </TabsContent>
 
+        {/* API 탭 */}
         <TabsContent value="api">
           <Section level="h2">
             <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="FileUpload" />
+              <Heading level="h3" title="Props" />
               <Table small>
                 <TableHeader>
                   <TableRow>
@@ -372,13 +485,35 @@ export default function MyComponent() {
                 <TableBody>
                   <TableRow>
                     <TableCell className="font-mono">
+                      <Code>title</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>'파일 첨부'</TableCell>
+                    <TableCell>파일 업로드 섹션의 제목</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>description</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>제목 아래 표시할 설명 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
                       <Code>accept</Code>
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">string</Code>
                     </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>허용할 파일 유형</TableCell>
+                    <TableCell>
+                      허용할 파일 유형 (예: &quot;image/*,.pdf&quot;)
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
@@ -420,7 +555,7 @@ export default function MyComponent() {
                       </Code>
                     </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>파일 선택/드롭 시 호출</TableCell>
+                    <TableCell>파일 선택/드롭 시 호출되는 콜백</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
@@ -432,7 +567,7 @@ export default function MyComponent() {
                       </Code>
                     </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>파일 추가/삭제 시 호출</TableCell>
+                    <TableCell>파일 추가/삭제 시 호출되는 콜백</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
@@ -444,7 +579,43 @@ export default function MyComponent() {
                       </Code>
                     </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>검증 에러 발생 시 호출</TableCell>
+                    <TableCell>검증 에러 발생 시 호출되는 콜백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>onRemove</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (file: UploadedFile) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>파일 삭제 시 호출되는 콜백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>onPreview</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (file: UploadedFile) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>파일 미리보기 시 호출되는 콜백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>onDownload</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (file: UploadedFile) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>파일 다운로드 시 호출되는 콜백</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
@@ -458,6 +629,16 @@ export default function MyComponent() {
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
+                      <Code>bordered</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>테두리 스타일 표시 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
                       <Code>className</Code>
                     </TableCell>
                     <TableCell>
@@ -468,37 +649,62 @@ export default function MyComponent() {
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
-                      <Code>label</Code>
+                      <Code>uploadButtonText</Code>
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">string</Code>
                     </TableCell>
-                    <TableCell>'Drag files here or click to upload'</TableCell>
-                    <TableCell>업로드 영역 라벨 텍스트</TableCell>
+                    <TableCell>'파일 선택'</TableCell>
+                    <TableCell>업로드 버튼 텍스트</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
-                      <Code>showFileList</Code>
+                      <Code>instructionText</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>'파일을 선택하거나 끌어다 놓으세요'</TableCell>
+                    <TableCell>업로드 영역 안내 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>showDeleteAll</Code>
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">boolean</Code>
                     </TableCell>
                     <TableCell>true</TableCell>
-                    <TableCell>파일 목록 표시 여부</TableCell>
+                    <TableCell>전체 삭제 버튼 표시 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>deleteAllText</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>'전체 삭제'</TableCell>
+                    <TableCell>전체 삭제 버튼 텍스트</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="UploadedFile" />
+              <Heading level="h3" title="Types" />
               <Code variant="block" language="tsx">
-                {`interface UploadedFile {
-  file: File           // 네이티브 File 객체
-  id: string           // 고유 식별자
-  preview?: string     // 이미지 미리보기 URL (이미지 파일만)
-  progress?: number    // 업로드 진행률 (0-100)
-  error?: string       // 에러 메시지
+                {`// 파일 업로드 상태
+type FileUploadStatus = 'idle' | 'uploading' | 'complete' | 'error'
+
+// 업로드된 파일 정보
+interface UploadedFile {
+  file: File                    // 네이티브 File 객체
+  id: string                    // 고유 식별자
+  status: FileUploadStatus      // 파일 상태
+  progress?: number             // 업로드 진행률 (0-100)
+  error?: string                // 에러 메시지
+  preview?: string              // 이미지 미리보기 URL (이미지만)
 }`}
               </Code>
             </Subsection>
