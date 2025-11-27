@@ -54,13 +54,15 @@ export default function FormLayoutTemplate() {
             {/* 민원 유형 */}
             <FormField required>
               <FormLabel>민원 유형</FormLabel>
-              <Select>
-                <option value="">선택하세요</option>
-                <option>일반 문의</option>
-                <option>불편 신고</option>
-                <option>제안</option>
-                <option>칭찬</option>
-              </Select>
+              <Select
+                options={[
+                  { value: 'general', label: '일반 문의' },
+                  { value: 'complaint', label: '불편 신고' },
+                  { value: 'suggestion', label: '제안' },
+                  { value: 'compliment', label: '칭찬' },
+                ]}
+                placeholder="선택하세요"
+              />
             </FormField>
 
             {/* 내용 */}
@@ -188,12 +190,14 @@ export function FormLayoutExample() {
           {/* 민원 유형 */}
           <FormField required>
             <FormLabel>민원 유형</FormLabel>
-            <Select>
-              <option value="">선택하세요</option>
-              <option>일반 문의</option>
-              <option>불편 신고</option>
-              <option>제안</option>
-            </Select>
+            <Select
+              options={[
+                { value: 'general', label: '일반 문의' },
+                { value: 'complaint', label: '불편 신고' },
+                { value: 'suggestion', label: '제안' },
+              ]}
+              placeholder="선택하세요"
+            />
           </FormField>
 
           {/* 첨부파일 */}

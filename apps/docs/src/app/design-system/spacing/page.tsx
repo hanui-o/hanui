@@ -64,9 +64,11 @@ export default function SpacingPage() {
 
             <Stack gap="lg" className="mt-2 md:mt-4">
               <div className="bg-krds-gray-5 p-6 rounded-lg">
-                <Heading level="h5" className="mb-4">
-                  레벨별 margin-bottom 값:
-                </Heading>
+                <Heading
+                  level="h5"
+                  title="레벨별 margin-bottom 값:"
+                  className="mb-4"
+                />
                 <ul className="space-y-2 text-body-sm">
                   <li>h1: 48px (mb-12)</li>
                   <li>h2: 40px (mb-10)</li>
@@ -77,9 +79,7 @@ export default function SpacingPage() {
               </div>
 
               <div>
-                <Heading level="h5" className="mb-3">
-                  사용 예시:
-                </Heading>
+                <Heading level="h5" title="사용 예시:" className="mb-3" />
                 <ComponentPreview>
                   <Stack gap="sm">
                     <Heading
@@ -213,9 +213,11 @@ export default function SpacingPage() {
                   />
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Heading level="h5" className="mb-2">
-                        가로형 조합
-                      </Heading>
+                      <Heading
+                        level="h5"
+                        title="가로형 조합"
+                        className="mb-2"
+                      />
                       <ComponentPreview>
                         <HStack gap="md">
                           <Input placeholder="이름" />
@@ -233,9 +235,11 @@ export default function SpacingPage() {
                       />
                     </div>
                     <div>
-                      <Heading level="h5" className="mb-2">
-                        세로형 조합
-                      </Heading>
+                      <Heading
+                        level="h5"
+                        title="세로형 조합"
+                        className="mb-2"
+                      />
                       <ComponentPreview>
                         <Stack gap="md">
                           <Input placeholder="이름" />
@@ -263,9 +267,11 @@ export default function SpacingPage() {
                   />
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Heading level="h5" className="mb-2">
-                        리스트 형태
-                      </Heading>
+                      <Heading
+                        level="h5"
+                        title="리스트 형태"
+                        className="mb-2"
+                      />
                       <ComponentPreview>
                         <Stack gap="md">
                           <label className="flex items-center gap-2">
@@ -284,9 +290,7 @@ export default function SpacingPage() {
                       </ComponentPreview>
                     </div>
                     <div>
-                      <Heading level="h5" className="mb-2">
-                        가로형
-                      </Heading>
+                      <Heading level="h5" title="가로형" className="mb-2" />
                       <ComponentPreview>
                         <HStack gap="lg">
                           <label className="flex items-center gap-2">
@@ -329,9 +333,11 @@ export default function SpacingPage() {
                   />
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Heading level="h5" className="mb-2">
-                        PC (24px / 32px)
-                      </Heading>
+                      <Heading
+                        level="h5"
+                        title="PC (24px / 32px)"
+                        className="mb-2"
+                      />
                       <ComponentPreview>
                         <Section
                           padding="card-md"
@@ -349,9 +355,11 @@ export default function SpacingPage() {
                       </ComponentPreview>
                     </div>
                     <div>
-                      <Heading level="h5" className="mb-2">
-                        Mobile (24px)
-                      </Heading>
+                      <Heading
+                        level="h5"
+                        title="Mobile (24px)"
+                        className="mb-2"
+                      />
                       <ComponentPreview>
                         <Section
                           padding="card-md"

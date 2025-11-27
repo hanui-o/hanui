@@ -53,10 +53,9 @@ export default function ShowcasePage() {
               <div className="flex items-start justify-between mb-3">
                 <Heading
                   level="h3"
+                  title="HANUI Starter Kit"
                   className="text-krds-gray-95 group-hover:text-krds-primary-base transition-colors"
-                >
-                  HANUI Starter Kit
-                </Heading>
+                />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -100,9 +99,11 @@ export default function ShowcasePage() {
               <Body className="text-krds-gray-50">Coming Soon</Body>
             </div>
             <div className="p-6">
-              <Heading level="h3" className="text-krds-gray-70 mb-3">
-                Your Project Here
-              </Heading>
+              <Heading
+                level="h3"
+                title="Your Project Here"
+                className="text-krds-gray-70 mb-3"
+              />
               <Body size="sm" className="text-krds-gray-50">
                 HANUI를 사용한 프로젝트를 소개해주세요. GitHub에 이슈를
                 남겨주시면 Showcase에 추가해드립니다.
@@ -112,9 +113,11 @@ export default function ShowcasePage() {
         </div>
 
         <div className="mt-12 p-6 bg-krds-gray-5 rounded-lg border border-krds-gray-20">
-          <Heading level="h3" className="text-krds-gray-90 mb-3">
-            프로젝트 등록하기
-          </Heading>
+          <Heading
+            level="h3"
+            title="프로젝트 등록하기"
+            className="text-krds-gray-90 mb-3"
+          />
           <Body className="text-krds-gray-70 mb-4">
             HANUI로 만든 프로젝트가 있으신가요? Showcase에 등록하고 다른
             개발자들과 공유해보세요.

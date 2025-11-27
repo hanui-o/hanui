@@ -36,11 +36,15 @@ export default function ListTableTemplate() {
 
         {/* Search Bar */}
         <div className="flex gap-3 mb-6">
-          <Select className="w-32">
-            <option>전체</option>
-            <option>제목</option>
-            <option>내용</option>
-          </Select>
+          <Select
+            options={[
+              { value: 'all', label: '전체' },
+              { value: 'title', label: '제목' },
+              { value: 'content', label: '내용' },
+            ]}
+            placeholder="전체"
+            className="w-32"
+          />
           <Input placeholder="검색어를 입력하세요" className="flex-1" />
           <Button>검색</Button>
         </div>
@@ -155,11 +159,15 @@ export function ListTableExample() {
 
       {/* Search Bar */}
       <div className="flex gap-3 mb-6">
-        <Select className="w-32">
-          <option>전체</option>
-          <option>제목</option>
-          <option>내용</option>
-        </Select>
+        <Select
+          options={[
+            { value: 'all', label: '전체' },
+            { value: 'title', label: '제목' },
+            { value: 'content', label: '내용' },
+          ]}
+          placeholder="전체"
+          className="w-32"
+        />
         <Input placeholder="검색어를 입력하세요" className="flex-1" />
         <Button>검색</Button>
       </div>

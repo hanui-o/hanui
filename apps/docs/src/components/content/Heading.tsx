@@ -8,9 +8,9 @@ interface HeadingProps {
   level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
   /**
-   * 제목 텍스트
+   * 제목 텍스트 (선택사항 - children으로도 전달 가능)
    */
-  title: string;
+  title?: string;
 
   /**
    * 설명 텍스트 (선택사항)
@@ -24,7 +24,7 @@ interface HeadingProps {
   id?: string;
 
   /**
-   * 커스텀 설명 콘텐츠 (description 대신 사용 가능)
+   * 커스텀 설명 콘텐츠 또는 제목 텍스트 (title 대신 사용 가능)
    */
   children?: ReactNode;
 
@@ -32,17 +32,33 @@ interface HeadingProps {
    * 추가 className
    */
   className?: string;
+
+  /**
+   * 배지 텍스트 (선택사항)
+   * 예: "New", "Beta" 등
+   */
+  badge?: string;
 }
 
 /**
  * Generate a URL-friendly ID from text
  */
-function generateId(text: string): string {
+function generateId(text: string | undefined): string {
+  if (!text) return '';
   return text
     .toLowerCase()
     .replace(/[^\w\s가-힣-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Extract text content from ReactNode (only if it's a simple string)
+ */
+function getTextFromChildren(children: ReactNode): string | undefined {
+  if (typeof children === 'string') return children;
+  if (typeof children === 'number') return String(children);
+  return undefined;
 }
 
 /**
@@ -110,10 +126,19 @@ export function Heading({
   id,
   children,
   className,
+  badge,
 }: HeadingProps) {
   const Tag = level;
-  const headingId = id || generateId(title);
-  const hasDescription = Boolean(description || children);
+
+  // title이 없으면 children을 제목으로 사용 (children이 문자열인 경우)
+  const titleText = title || getTextFromChildren(children);
+  const headingId = id || generateId(titleText);
+
+  // title이 제공되면 children은 description으로, 아니면 children이 title
+  const hasTitle = Boolean(title);
+  const hasDescription = hasTitle
+    ? Boolean(description || children)
+    : Boolean(description);
 
   const headingClasses = cn(
     'font-bold leading-[150%] text-krds-gray-95',
@@ -123,15 +148,22 @@ export function Heading({
   const descriptionClasses = 'text-krds-gray-70 leading-relaxed text-[17px]';
   const spacing = getSpacing(level);
 
+  const badgeElement = badge && (
+    <span className="ml-2 inline-flex items-center rounded-full bg-krds-func-info px-2.5 py-0.5 text-xs font-medium text-white">
+      {badge}
+    </span>
+  );
+
   // With description: use flex column with spacing
   if (hasDescription) {
     return (
       <div className={cn('flex flex-col', spacing, className)}>
         <Tag id={headingId} className={headingClasses}>
-          {title}
+          {titleText}
+          {badgeElement}
         </Tag>
         {description && <p className={descriptionClasses}>{description}</p>}
-        {children}
+        {hasTitle && children}
       </div>
     );
   }
@@ -140,7 +172,8 @@ export function Heading({
   return (
     <div className={cn(spacing, className)}>
       <Tag id={headingId} className={headingClasses}>
-        {title}
+        {titleText || children}
+        {badgeElement}
       </Tag>
     </div>
   );

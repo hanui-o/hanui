@@ -38,9 +38,11 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <Heading level="h4" className="text-krds-gray-90 mb-1">
-                  GitHub Issues
-                </Heading>
+                <Heading
+                  level="h4"
+                  title="GitHub Issues"
+                  className="text-krds-gray-90 mb-1"
+                />
                 <Body size="sm" className="text-krds-gray-70">
                   버그 리포트, 기능 요청, 질문을 남겨주세요
                 </Body>
@@ -85,9 +87,11 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <Heading level="h4" className="text-krds-gray-90 mb-1">
-                  GitHub Discussions
-                </Heading>
+                <Heading
+                  level="h4"
+                  title="GitHub Discussions"
+                  className="text-krds-gray-90 mb-1"
+                />
                 <Body size="sm" className="text-krds-gray-70">
                   일반적인 질문과 토론을 나눠보세요
                 </Body>
@@ -133,9 +137,11 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <Heading level="h4" className="text-krds-gray-90 mb-1">
-                  GitHub 저장소
-                </Heading>
+                <Heading
+                  level="h4"
+                  title="GitHub 저장소"
+                  className="text-krds-gray-90 mb-1"
+                />
                 <Body size="sm" className="text-krds-gray-70">
                   소스 코드 확인 및 기여하기
                 </Body>
@@ -180,9 +186,11 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <Heading level="h4" className="text-krds-gray-90 mb-1">
-                  Star 받기
-                </Heading>
+                <Heading
+                  level="h4"
+                  title="Star 받기"
+                  className="text-krds-gray-90 mb-1"
+                />
                 <Body size="sm" className="text-krds-gray-70">
                   프로젝트에 관심이 있으시다면 Star를 눌러주세요
                 </Body>
@@ -227,9 +235,11 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <Heading level="h4" className="text-krds-gray-90 mb-1">
-                  Velog 블로그
-                </Heading>
+                <Heading
+                  level="h4"
+                  title="Velog 블로그"
+                  className="text-krds-gray-90 mb-1"
+                />
                 <Body size="sm" className="text-krds-gray-70">
                   HANUI 개발 과정과 팁을 공유합니다
                 </Body>
@@ -273,9 +283,11 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <Heading level="h4" className="text-krds-gray-90 mb-1">
-                  이메일 연락
-                </Heading>
+                <Heading
+                  level="h4"
+                  title="이메일 연락"
+                  className="text-krds-gray-90 mb-1"
+                />
                 <Body size="sm" className="text-krds-gray-70">
                   직접 연락이 필요한 경우 이메일로 보내주세요
                 </Body>
