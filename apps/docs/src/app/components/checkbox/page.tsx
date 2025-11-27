@@ -17,7 +17,7 @@ import {
   FormHelperText,
   FormError,
 } from '@hanui/react';
-import { CodeBlock } from '@/components/CodeBlock';
+import { CodeBlock } from '@/components/content/CodeBlock';
 
 export default function CheckboxPage() {
   const [singleChecked, setSingleChecked] = useState(false);

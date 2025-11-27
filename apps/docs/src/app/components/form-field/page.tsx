@@ -17,6 +17,14 @@ import {
   FormError,
   FormHelperText,
   Input,
+  Textarea,
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+  RadioGroup,
+  Radio,
+  Switch,
+  Select,
   Body,
   Code,
   List,
@@ -94,7 +102,7 @@ export default function FormFieldPage() {
                 <Code>FormLabel</Code> - 레이블, 필수 표시 자동
               </ListItem>
               <ListItem>
-                <Code>Input</Code> (또는 다른 입력 컴포넌트) - 입력 필드
+                입력 컴포넌트 - Input, Textarea, Select, Checkbox, Radio, Switch
               </ListItem>
               <ListItem>
                 <Code>FormError</Code> 또는 <Code>FormHelperText</Code> - 에러
@@ -111,6 +119,186 @@ export default function FormFieldPage() {
   <FormHelperText>도움말 (선택)</FormHelperText>
 </FormField>`}
             </Code>
+          </Section>
+
+          {/* Supported Components */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="supported-components"
+              title="지원 컴포넌트"
+            />
+            <Body className="mb-4">
+              FormField는 다양한 폼 입력 컴포넌트와 함께 사용할 수 있습니다. 각
+              컴포넌트는 <Code>useFormField</Code> 훅을 통해 자동으로
+              FormField와 연결됩니다.
+            </Body>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Textarea" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-6 max-w-md">
+                  <FormFieldComponent id="description" required>
+                    <FormLabel>설명</FormLabel>
+                    <Textarea placeholder="상세한 설명을 입력하세요" rows={4} />
+                    <FormHelperText>최소 10자 이상 작성해주세요</FormHelperText>
+                  </FormFieldComponent>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FormField id="description" required>
+  <FormLabel>설명</FormLabel>
+  <Textarea placeholder="상세한 설명을 입력하세요" rows={4} />
+  <FormHelperText>최소 10자 이상 작성해주세요</FormHelperText>
+</FormField>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Select" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-6 max-w-md">
+                  <FormFieldComponent id="category" required>
+                    <FormLabel>카테고리</FormLabel>
+                    <Select
+                      placeholder="카테고리를 선택하세요"
+                      options={[
+                        { value: 'tech', label: '기술' },
+                        { value: 'design', label: '디자인' },
+                        { value: 'business', label: '비즈니스' },
+                      ]}
+                    />
+                    <FormHelperText>
+                      적절한 카테고리를 선택해주세요
+                    </FormHelperText>
+                  </FormFieldComponent>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FormField id="category" required>
+  <FormLabel>카테고리</FormLabel>
+  <Select
+    placeholder="카테고리를 선택하세요"
+    options={[
+      { value: 'tech', label: '기술' },
+      { value: 'design', label: '디자인' },
+      { value: 'business', label: '비즈니스' },
+    ]}
+  />
+  <FormHelperText>적절한 카테고리를 선택해주세요</FormHelperText>
+</FormField>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Checkbox / CheckboxGroup" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-6 max-w-md">
+                  <FormFieldComponent id="terms" required>
+                    <div className="flex items-center gap-2">
+                      <Checkbox />
+                      <FormLabel className="cursor-pointer">
+                        이용약관에 동의합니다 *
+                      </FormLabel>
+                    </div>
+                    <FormHelperText>
+                      서비스 이용을 위해 필수 동의가 필요합니다
+                    </FormHelperText>
+                  </FormFieldComponent>
+
+                  <FormFieldComponent id="interests" required>
+                    <FormLabel>관심 분야</FormLabel>
+                    <CheckboxGroup>
+                      <CheckboxGroupItem value="frontend" label="프론트엔드" />
+                      <CheckboxGroupItem value="backend" label="백엔드" />
+                      <CheckboxGroupItem value="devops" label="DevOps" />
+                    </CheckboxGroup>
+                    <FormHelperText>최소 1개 이상 선택해주세요</FormHelperText>
+                  </FormFieldComponent>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`// 단일 체크박스
+<FormField id="terms" required>
+  <div className="flex items-center gap-2">
+    <Checkbox />
+    <FormLabel className="cursor-pointer">이용약관에 동의합니다 *</FormLabel>
+  </div>
+  <FormHelperText>서비스 이용을 위해 필수 동의가 필요합니다</FormHelperText>
+</FormField>
+
+// 체크박스 그룹
+<FormField id="interests" required>
+  <FormLabel>관심 분야</FormLabel>
+  <CheckboxGroup>
+    <CheckboxGroupItem value="frontend" label="프론트엔드" />
+    <CheckboxGroupItem value="backend" label="백엔드" />
+    <CheckboxGroupItem value="devops" label="DevOps" />
+  </CheckboxGroup>
+  <FormHelperText>최소 1개 이상 선택해주세요</FormHelperText>
+</FormField>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Radio / RadioGroup" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-6 max-w-md">
+                  <FormFieldComponent id="gender" required>
+                    <FormLabel>성별</FormLabel>
+                    <RadioGroup defaultValue="male">
+                      <Radio value="male" label="남성" />
+                      <Radio value="female" label="여성" />
+                      <Radio value="other" label="기타" />
+                    </RadioGroup>
+                    <FormHelperText>
+                      서비스 이용 통계에 활용됩니다
+                    </FormHelperText>
+                  </FormFieldComponent>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FormField id="gender" required>
+  <FormLabel>성별</FormLabel>
+  <RadioGroup defaultValue="male">
+    <Radio value="male" label="남성" />
+    <Radio value="female" label="여성" />
+    <Radio value="other" label="기타" />
+  </RadioGroup>
+  <FormHelperText>서비스 이용 통계에 활용됩니다</FormHelperText>
+</FormField>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Switch" />
+              <ComponentPreview>
+                <div className="flex flex-col gap-6 max-w-md">
+                  <FormFieldComponent id="notifications">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <FormLabel>알림 설정</FormLabel>
+                        <FormHelperText>
+                          새로운 소식을 알림으로 받습니다
+                        </FormHelperText>
+                      </div>
+                      <Switch defaultChecked />
+                    </div>
+                  </FormFieldComponent>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FormField id="notifications">
+  <div className="flex items-center justify-between">
+    <div>
+      <FormLabel>알림 설정</FormLabel>
+      <FormHelperText>새로운 소식을 알림으로 받습니다</FormHelperText>
+    </div>
+    <Switch defaultChecked />
+  </div>
+</FormField>`}
+              </Code>
+            </Subsection>
           </Section>
 
           {/* Examples */}
