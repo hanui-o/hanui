@@ -39,18 +39,19 @@
       "require": "./dist/index.js"
     },
     "./styles.css": "./dist/react.css",
-    "./variables.css": "./dist/variables.css",
+    "./variables.css": "./src/variables.css",
     "./tailwind.preset": "./tailwind.preset.ts"
   },
   "files": [
     "dist",
+    "src/variables.css",
     "tailwind.preset.ts",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vite build && cp src/variables.css dist/variables.css",
+    "build": "vite build",
     "lint": "eslint src --ext .ts,.tsx",
     "clean": "rm -rf dist"
   },
