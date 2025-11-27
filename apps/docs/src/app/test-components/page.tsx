@@ -635,12 +635,7 @@ function NavigationTab() {
             Tab 키를 눌러 포커스하면 건너뛰기 링크가 나타납니다.
           </Body>
           <div className="relative p-4 border border-krds-gray-20 rounded-lg">
-            <SkipLink
-              items={[
-                { id: 'main-content', label: '본문 바로가기' },
-                { id: 'navigation', label: '메뉴 바로가기' },
-              ]}
-            />
+            <SkipLink />
             <Body>건너뛰기 링크 테스트 영역</Body>
           </div>
         </CardBody>
@@ -833,13 +828,13 @@ function ActionTab() {
             <Tooltip content="위쪽 툴팁">
               <Button variant="outline">위</Button>
             </Tooltip>
-            <Tooltip content="오른쪽 툴팁" side="right">
+            <Tooltip content="오른쪽 툴팁" position="right">
               <Button variant="outline">오른쪽</Button>
             </Tooltip>
-            <Tooltip content="아래쪽 툴팁" side="bottom">
+            <Tooltip content="아래쪽 툴팁" position="bottom">
               <Button variant="outline">아래</Button>
             </Tooltip>
-            <Tooltip content="왼쪽 툴팁" side="left">
+            <Tooltip content="왼쪽 툴팁" position="left">
               <Button variant="outline">왼쪽</Button>
             </Tooltip>
           </div>
