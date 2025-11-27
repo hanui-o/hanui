@@ -107,46 +107,78 @@ export default function BadgePage() {
               <Heading
                 level="h3"
                 title="유형"
-                description="default, primary, secondary, success, warning, error, info 등 다양한 유형을 지원합니다."
+                description="Subtle(연한 배경), Solid(진한 배경), Outline(테두리) 세 가지 스타일을 제공합니다."
               />
               <ComponentPreview>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>기본</Badge>
-                  <Badge variant="primary">Primary</Badge>
-                  <Badge variant="secondary">Secondary</Badge>
-                  <Badge variant="success">성공</Badge>
-                  <Badge variant="warning">경고</Badge>
-                  <Badge variant="error">오류</Badge>
-                  <Badge variant="info">정보</Badge>
+                <div className="grid grid-cols-3 gap-4">
+                  {/* Subtle (연한 배경) */}
+                  <div className="flex flex-col gap-2 items-start">
+                    <span className="text-xs text-krds-gray-50 mb-1">
+                      Subtle
+                    </span>
+                    <Badge>Label</Badge>
+                    <Badge variant="primary">Label</Badge>
+                    <Badge variant="success">Label</Badge>
+                    <Badge variant="warning">Label</Badge>
+                    <Badge variant="error">Label</Badge>
+                    <Badge variant="info">Label</Badge>
+                  </div>
+                  {/* Solid (진한 배경) */}
+                  <div className="flex flex-col gap-2 items-start">
+                    <span className="text-xs text-krds-gray-50 mb-1">
+                      Solid
+                    </span>
+                    <Badge variant="secondary">Label</Badge>
+                    <Badge className="bg-krds-primary-base text-white">
+                      Label
+                    </Badge>
+                    <Badge className="bg-krds-success-base text-white">
+                      Label
+                    </Badge>
+                    <Badge className="bg-krds-warning-base text-white">
+                      Label
+                    </Badge>
+                    <Badge className="bg-krds-danger-base text-white">
+                      Label
+                    </Badge>
+                    <Badge className="bg-krds-info-base text-white">
+                      Label
+                    </Badge>
+                  </div>
+                  {/* Outline (테두리) */}
+                  <div className="flex flex-col gap-2 items-start">
+                    <span className="text-xs text-krds-gray-50 mb-1">
+                      Outline
+                    </span>
+                    <Badge variant="outline">Label</Badge>
+                    <Badge variant="outline-primary">Label</Badge>
+                    <Badge className="border border-krds-success-base bg-transparent text-krds-success-base">
+                      Label
+                    </Badge>
+                    <Badge className="border border-krds-warning-base bg-transparent text-krds-warning-base">
+                      Label
+                    </Badge>
+                    <Badge className="border border-krds-danger-base bg-transparent text-krds-danger-base">
+                      Label
+                    </Badge>
+                    <Badge className="border border-krds-info-base bg-transparent text-krds-info-base">
+                      Label
+                    </Badge>
+                  </div>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<Badge>기본</Badge>
-<Badge variant="primary">Primary</Badge>
-<Badge variant="secondary">Secondary</Badge>
-<Badge variant="success">성공</Badge>
-<Badge variant="warning">경고</Badge>
-<Badge variant="error">오류</Badge>
-<Badge variant="info">정보</Badge>`}
-              </Code>
-            </Subsection>
+                {`{/* Subtle (연한 배경) */}
+<Badge>Label</Badge>
+<Badge variant="primary">Label</Badge>
+<Badge variant="success">Label</Badge>
 
-            {/* 아웃라인 */}
-            <Subsection level="h3">
-              <Heading
-                level="h3"
-                title="아웃라인"
-                description="테두리만 있는 아웃라인 스타일을 지원합니다."
-              />
-              <ComponentPreview>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline">Outline</Badge>
-                  <Badge variant="outline-primary">Primary Outline</Badge>
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Badge variant="outline">Outline</Badge>
-<Badge variant="outline-primary">Primary Outline</Badge>`}
+{/* Solid (진한 배경) - className으로 커스텀 */}
+<Badge className="bg-krds-primary-base text-white">Label</Badge>
+
+{/* Outline (테두리) */}
+<Badge variant="outline">Label</Badge>
+<Badge variant="outline-primary">Label</Badge>`}
               </Code>
             </Subsection>
 
