@@ -119,7 +119,7 @@ export function SideNavigation({
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div
         id="side-nav-title"
-        className="px-2 pb-4 m-0 border-b border-krds-gray-50 text-2xl font-bold leading-[1.4] text-krds-gray-90"
+        className="px-2 pb-4 m-0 border-b border-krds-gray-40 text-2xl font-bold leading-[1.4] text-krds-gray-90"
       >
         {title}
       </div>
@@ -137,8 +137,8 @@ export function SideNavigation({
               key={sectionIndex}
               role="none"
               className={cn(
-                'relative border-b border-krds-gray-30',
-                isActive && 'active'
+                'relative border-b border-krds-gray-20',
+                isActive && 'active border-krds-gray-30'
               )}
             >
               {hasChildren ? (
@@ -150,8 +150,8 @@ export function SideNavigation({
                     type="button"
                     onClick={() => toggleSection(sectionIndex)}
                     className={cn(
-                      'flex items-center justify-between w-full px-2 pt-4 pb-2 border-0 bg-transparent',
-                      'text-[17px] font-bold leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
+                      'flex items-center justify-between w-full px-2 py-4 border-0 bg-transparent',
+                      'text-krds-body-md font-bold leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
                       'transition-all duration-200 ease-in-out',
                       'relative',
                       // 하단 밑줄 효과
@@ -180,7 +180,7 @@ export function SideNavigation({
                     <ul
                       role="menu"
                       id={`section-menu-${sectionIndex}`}
-                      className="list-none p-0 m-0"
+                      className="list-none p-0 pb-2 m-0"
                     >
                       {section.children!.map((child, childIndex) => {
                         const hasGrandChildren =
@@ -206,8 +206,9 @@ export function SideNavigation({
                                     toggleChild(sectionIndex, childIndex)
                                   }
                                   className={cn(
+                                    'overflow-hidden',
                                     'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent rounded-md',
-                                    'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
+                                    'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
                                     'transition-all duration-200',
                                     // 불릿
                                     'before:content-["•"] before:inline-block',
@@ -253,17 +254,17 @@ export function SideNavigation({
                                           <a
                                             href={grandChild.href}
                                             className={cn(
-                                              'flex items-center gap-2 w-full py-2 px-4 pl-13 bg-transparent',
-                                              'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                                              'flex items-center gap-2 w-full py-2 px-4 pl-13 bg-transparent rounded-md',
+                                              'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                                               // 불릿
                                               'before:content-["•"] before:inline-block before:text-krds-gray-60',
                                               // 호버
                                               'hover:bg-krds-primary-5',
                                               // 포커스
                                               'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
-                                              // 활성 상태
+                                              // 활성 상태 - ring outline 스타일
                                               grandChild.active &&
-                                                'font-bold text-krds-blue-60 underline before:text-krds-blue-60'
+                                                'font-bold text-krds-blue-60 ring-2 ring-krds-blue-60 rounded-md before:text-krds-blue-60'
                                             )}
                                             role="menuitem"
                                             aria-current={
@@ -287,17 +288,17 @@ export function SideNavigation({
                               <a
                                 href={child.href}
                                 className={cn(
-                                  'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent',
-                                  'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                                  'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent rounded-md',
+                                  'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                                   // 불릿
                                   'before:content-["•"] before:inline-block',
                                   // 호버
                                   'hover:bg-krds-primary-5',
                                   // 포커스
                                   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
-                                  // 활성 상태
+                                  // 활성 상태 - ring outline 스타일
                                   child.active &&
-                                    'font-bold text-krds-blue-60 before:text-krds-blue-60'
+                                    'font-bold text-krds-blue-60 ring-2 ring-krds-blue-60 rounded-md before:text-krds-blue-60'
                                 )}
                                 aria-current={child.active ? 'page' : undefined}
                                 role="menuitem"
@@ -319,7 +320,7 @@ export function SideNavigation({
                   href={section.href}
                   className={cn(
                     'flex items-center justify-between w-full py-3 px-3 border-0 bg-transparent',
-                    'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                    'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                     'transition-all duration-200',
                     // 하단 밑줄 효과
                     'relative before:content-[""] before:absolute before:bottom-[-1px] before:left-0 before:w-0 before:h-[3px] before:bg-[#063a74] before:transition-all before:duration-[400ms]',

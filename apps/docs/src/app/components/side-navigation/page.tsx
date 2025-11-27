@@ -31,13 +31,13 @@ export default function SideNavigationPage() {
         {
           label: '3Depth-menu',
           children: [
-            { label: '4Depth-menu', href: '#', active: true },
-            { label: '4Depth-menu', href: '#' },
-            { label: '4Depth-menu', href: '#' },
+            { label: '4Depth', href: '#', active: true },
+            { label: '4Depth', href: '#' },
+            { label: '4Depth', href: '#' },
           ],
         },
-        { label: '3Depth-menu', href: '#' },
-        { label: '3Depth-menu', href: '#' },
+        { label: '3Depth-link', href: '#' },
+        { label: '3Depth-link', href: '#' },
       ],
     },
     {
@@ -47,21 +47,21 @@ export default function SideNavigationPage() {
           label: '3Depth-menu',
           href: '#',
           children: [
-            { label: '4Depth-menu', href: '#' },
-            { label: '4Depth-menu', href: '#' },
-            { label: '4Depth-menu', href: '#' },
+            { label: '4Depth', href: '#' },
+            { label: '4Depth', href: '#' },
+            { label: '4Depth', href: '#' },
           ],
         },
-        { label: '3Depth-menu', href: '#' },
-        { label: '3Depth-menu', href: '#' },
+        { label: '3Depth-link', href: '#' },
+        { label: '3Depth-link', href: '#' },
       ],
     },
     {
       label: '2Depth-title',
       children: [
-        { label: '3Depth-menu', href: '#' },
-        { label: '3Depth-menu', href: '#' },
-        { label: '3Depth-menu', href: '#' },
+        { label: '3Depth-link', href: '#' },
+        { label: '3Depth-link', href: '#' },
+        { label: '3Depth-link', href: '#' },
       ],
     },
   ];
