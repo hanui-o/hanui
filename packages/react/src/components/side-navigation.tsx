@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import * as Accordion from '@radix-ui/react-accordion';
 import { cn } from '../lib/utils';
 
 /**
@@ -45,80 +44,13 @@ export interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 /**
- * 3단계 메뉴 아이템 (하위 메뉴 있음)
- */
-function ThirdLevelMenuItem({ child }: { child: SideNavLink }) {
-  const isChildActive = child.active || child.children?.some((c) => c.active);
-  const [isOpen, setIsOpen] = useState(isChildActive);
-
-  return (
-    <li role="none">
-      {/* 3단계 토글 버튼 */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent rounded-md',
-          'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
-          'transition-all duration-200 ease-in-out',
-          'relative',
-          // 불릿 포인트
-          'before:content-["•"] before:inline-block',
-          // 호버
-          'hover:bg-krds-primary-5',
-          // 셰브론 아이콘
-          'after:content-[""] after:inline-block after:w-5 after:h-5 after:flex-shrink-0 after:ml-auto',
-          'after:bg-[url("https://www.krds.go.kr/resources/img/component/icon/ico_angle.svg")]',
-          'after:bg-no-repeat after:bg-center after:bg-contain',
-          'after:transition-transform after:duration-200 after:ease-in-out',
-          isOpen && 'after:rotate-180'
-        )}
-        role="menuitem"
-        aria-haspopup="true"
-        aria-expanded={isOpen}
-      >
-        {child.label}
-      </button>
-
-      {/* 4단계 하위 메뉴 */}
-      {isOpen && (
-        <ul role="menu" className="list-none p-0 m-0">
-          {child.children!.map((grandChild, grandChildIndex) => (
-            <li key={grandChildIndex} role="none">
-              <a
-                href={grandChild.href}
-                className={cn(
-                  'flex items-center gap-2 w-full py-2 px-4 pl-13 bg-transparent',
-                  'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
-                  'relative',
-                  // 불릿 포인트
-                  'before:content-["•"] before:absolute before:left-9 before:text-krds-gray-60',
-                  // 호버
-                  'hover:bg-krds-primary-5',
-                  // 활성 상태
-                  grandChild.active &&
-                    'font-bold text-krds-blue-60 underline before:text-krds-blue-60'
-                )}
-                role="menuitem"
-                aria-current={grandChild.active ? 'page' : undefined}
-              >
-                {grandChild.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-    </li>
-  );
-}
-
-/**
  * 사이드 네비게이션 컴포넌트
  *
  * KRDS 표준을 따르는 다단계 사이드 네비게이션
  * - 최대 4단계 깊이 지원
  * - 토글 버튼으로 확장 가능한 섹션
  * - 활성 상태 표시
+ * - 올바른 ul > li 시맨틱 HTML 구조
  * - WCAG 2.1 / KWCAG 2.2 준수
  */
 export function SideNavigation({
@@ -127,14 +59,54 @@ export function SideNavigation({
   className = '',
   ...props
 }: SideNavigationProps) {
-  // 활성 상태 기반으로 기본 열림 항목 계산
-  const defaultValue = sections
-    .map((section, index) =>
-      section.active || section.children?.some((child) => child.active)
-        ? `section-${index}`
-        : ''
-    )
-    .filter(Boolean);
+  // 2단계 섹션 열림 상태 (활성 상태 기반으로 초기화)
+  const [openSections, setOpenSections] = useState<Set<number>>(() => {
+    const initial = new Set<number>();
+    sections.forEach((section, index) => {
+      if (section.active || section.children?.some((child) => child.active)) {
+        initial.add(index);
+      }
+    });
+    return initial;
+  });
+
+  // 3단계 메뉴 열림 상태 (활성 상태 기반으로 초기화)
+  const [openChildren, setOpenChildren] = useState<Set<string>>(() => {
+    const initial = new Set<string>();
+    sections.forEach((section, sectionIndex) => {
+      section.children?.forEach((child, childIndex) => {
+        if (child.active || child.children?.some((c) => c.active)) {
+          initial.add(`${sectionIndex}-${childIndex}`);
+        }
+      });
+    });
+    return initial;
+  });
+
+  const toggleSection = (index: number) => {
+    setOpenSections((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
+
+  const toggleChild = (sectionIndex: number, childIndex: number) => {
+    const key = `${sectionIndex}-${childIndex}`;
+    setOpenChildren((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  };
 
   return (
     <nav
@@ -144,12 +116,7 @@ export function SideNavigation({
     >
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           1Depth-title: 네비게이션 최상단 제목
-          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          스타일 커스터마이징:
-          - 텍스트: text-2xl font-bold text-krds-gray-90
-          - 간격: px-2 pb-4
-          - 보더: border-b border-krds-gray-50
-       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div
         id="side-nav-title"
         className="px-2 pb-4 m-0 border-b border-krds-gray-50 text-2xl font-bold leading-[1.4] text-krds-gray-90"
@@ -157,122 +124,177 @@ export function SideNavigation({
         {title}
       </div>
 
-      {/* 2단계: 섹션 */}
+      {/* 메뉴 리스트 - 순수 ul > li 구조 */}
       <ul role="menubar" className="list-none p-0 m-0">
-        <Accordion.Root type="multiple" defaultValue={defaultValue}>
-          {sections.map((section, sectionIndex) => {
-            const isActive =
-              section.active || section.children?.some((child) => child.active);
-            const hasChildren = section.children && section.children.length > 0;
-            const value = `section-${sectionIndex}`;
+        {sections.map((section, sectionIndex) => {
+          const isActive =
+            section.active || section.children?.some((child) => child.active);
+          const hasChildren = section.children && section.children.length > 0;
+          const isSectionOpen = openSections.has(sectionIndex);
 
-            return (
-              <Accordion.Item
-                key={sectionIndex}
-                value={value}
-                className={cn(
-                  'relative border-b border-krds-gray-30',
-                  isActive && 'active'
-                )}
-              >
-                {hasChildren ? (
-                  <>
-                    {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                        2Depth-title: 섹션 토글 버튼 (하위 메뉴 있음)
-                        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                        스타일 커스터마이징:
-                        - 텍스트: text-[17px] font-bold text-krds-gray-90
-                        - 간격: px-2 pt-4 pb-2
-                        - 보더: border-b border-krds-gray-20
-                        - 호버: hover:bg-krds-primary-5
-                        - 아이콘: after:... (화살표, 열림시 180도 회전)
-                     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-                    <Accordion.Header asChild>
-                      <Accordion.Trigger asChild>
-                        <button
-                          type="button"
-                          className={cn(
-                            // 기본 버튼 스타일
-                            'flex items-center justify-between w-full px-2 pt-4 pb-2 border-0 bg-transparent',
-                            'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
-                            'transition-all duration-200 ease-in-out',
-                            // 토글 버튼 스타일
-                            'relative font-bold',
-                            // 하단 밑줄 효과
-                            'before:content-[""] before:inline-flex before:absolute before:bottom-[-1px] before:left-0 before:w-0 before:h-[3px] before:bg-[#063a74] before:transition-all before:duration-[400ms] before:ease-in-out',
-                            // 호버
-                            'hover:bg-krds-primary-5 hover:before:w-full',
-                            // 포커스
-                            'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
-                            // 활성 상태
-                            isActive && 'border-none mb-1',
-                            // 셰브론 아이콘
-                            'after:content-[""] after:inline-block after:w-5 after:h-5 after:flex-shrink-0',
-                            'after:bg-[url("https://www.krds.go.kr/resources/img/component/icon/ico_angle.svg")]',
-                            'after:bg-no-repeat after:bg-center after:bg-contain',
-                            'after:transition-transform after:duration-200 after:ease-in-out',
-                            'data-[state=open]:after:rotate-180'
-                          )}
-                          role="menuitem"
-                        >
-                          {section.label}
-                        </button>
-                      </Accordion.Trigger>
-                    </Accordion.Header>
+          return (
+            <li
+              key={sectionIndex}
+              role="none"
+              className={cn(
+                'relative border-b border-krds-gray-30',
+                isActive && 'active'
+              )}
+            >
+              {hasChildren ? (
+                <>
+                  {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                      2Depth-title: 섹션 토글 버튼 (하위 메뉴 있음)
+                      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+                  <button
+                    type="button"
+                    onClick={() => toggleSection(sectionIndex)}
+                    className={cn(
+                      'flex items-center justify-between w-full px-2 pt-4 pb-2 border-0 bg-transparent',
+                      'text-[17px] font-bold leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
+                      'transition-all duration-200 ease-in-out',
+                      'relative',
+                      // 하단 밑줄 효과
+                      'before:content-[""] before:absolute before:bottom-[-1px] before:left-0 before:w-0 before:h-[3px] before:bg-[#063a74] before:transition-all before:duration-[400ms]',
+                      // 호버
+                      'hover:bg-krds-primary-5 hover:before:w-full',
+                      // 포커스
+                      'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
+                      // 셰브론 아이콘
+                      'after:content-[""] after:inline-block after:w-5 after:h-5 after:flex-shrink-0',
+                      'after:bg-[url("https://www.krds.go.kr/resources/img/component/icon/ico_angle.svg")]',
+                      'after:bg-no-repeat after:bg-center after:bg-contain',
+                      'after:transition-transform after:duration-200',
+                      isSectionOpen && 'after:rotate-180'
+                    )}
+                    role="menuitem"
+                    aria-expanded={isSectionOpen}
+                    aria-haspopup="true"
+                    aria-controls={`section-menu-${sectionIndex}`}
+                  >
+                    {section.label}
+                  </button>
 
-                    {/* 하위 메뉴 */}
-                    <Accordion.Content
-                      className={cn(
-                        'overflow-hidden',
-                        'data-[state=open]:animate-slideDown',
-                        'data-[state=closed]:animate-slideUp'
-                      )}
+                  {/* 3단계 하위 메뉴 */}
+                  {isSectionOpen && (
+                    <ul
+                      role="menu"
+                      id={`section-menu-${sectionIndex}`}
+                      className="list-none p-0 m-0"
                     >
-                      <ul role="menu" className="list-none p-0 m-0">
-                        {section.children!.map((child, childIndex) => {
-                          const hasGrandChildren =
-                            child.children && child.children.length > 0;
+                      {section.children!.map((child, childIndex) => {
+                        const hasGrandChildren =
+                          child.children && child.children.length > 0;
+                        const isChildOpen = openChildren.has(
+                          `${sectionIndex}-${childIndex}`
+                        );
 
-                          // 3단계에 하위가 있으면 ThirdLevelMenuItem 사용
-                          if (hasGrandChildren) {
-                            return (
-                              <ThirdLevelMenuItem
-                                key={childIndex}
-                                child={child}
-                              />
-                            );
-                          }
+                        return (
+                          <li
+                            key={childIndex}
+                            role="none"
+                            className={cn('relative', child.active && 'active')}
+                          >
+                            {hasGrandChildren ? (
+                              <>
+                                {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                    3Depth-menu: 토글 버튼 (4단계 하위 있음)
+                                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    toggleChild(sectionIndex, childIndex)
+                                  }
+                                  className={cn(
+                                    'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent rounded-md',
+                                    'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
+                                    'transition-all duration-200',
+                                    // 불릿
+                                    'before:content-["•"] before:inline-block',
+                                    // 호버
+                                    'hover:bg-krds-primary-5',
+                                    // 포커스
+                                    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
+                                    // 셰브론 아이콘
+                                    'after:content-[""] after:inline-block after:w-5 after:h-5 after:flex-shrink-0 after:ml-auto',
+                                    'after:bg-[url("https://www.krds.go.kr/resources/img/component/icon/ico_angle.svg")]',
+                                    'after:bg-no-repeat after:bg-center after:bg-contain',
+                                    'after:transition-transform after:duration-200',
+                                    isChildOpen && 'after:rotate-180'
+                                  )}
+                                  role="menuitem"
+                                  aria-expanded={isChildOpen}
+                                  aria-haspopup="true"
+                                  aria-controls={`child-menu-${sectionIndex}-${childIndex}`}
+                                >
+                                  {child.label}
+                                </button>
 
-                          // 3단계 링크 (하위 없음)
-                          return (
-                            <li
-                              key={childIndex}
-                              className={cn(
-                                'relative',
-                                child.active && 'active'
-                              )}
-                              role="none"
-                            >
-                              {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                {/* 4단계 하위 메뉴 */}
+                                {isChildOpen && (
+                                  <ul
+                                    role="menu"
+                                    id={`child-menu-${sectionIndex}-${childIndex}`}
+                                    className="list-none p-0 m-0"
+                                  >
+                                    {child.children!.map(
+                                      (grandChild, grandChildIndex) => (
+                                        <li
+                                          key={grandChildIndex}
+                                          role="none"
+                                          className={cn(
+                                            'relative',
+                                            grandChild.active && 'active'
+                                          )}
+                                        >
+                                          {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                              4Depth-menu: 최하위 링크
+                                              ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+                                          <a
+                                            href={grandChild.href}
+                                            className={cn(
+                                              'flex items-center gap-2 w-full py-2 px-4 pl-13 bg-transparent',
+                                              'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                                              // 불릿
+                                              'before:content-["•"] before:inline-block before:text-krds-gray-60',
+                                              // 호버
+                                              'hover:bg-krds-primary-5',
+                                              // 포커스
+                                              'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
+                                              // 활성 상태
+                                              grandChild.active &&
+                                                'font-bold text-krds-blue-60 underline before:text-krds-blue-60'
+                                            )}
+                                            role="menuitem"
+                                            aria-current={
+                                              grandChild.active
+                                                ? 'page'
+                                                : undefined
+                                            }
+                                          >
+                                            {grandChild.label}
+                                          </a>
+                                        </li>
+                                      )
+                                    )}
+                                  </ul>
+                                )}
+                              </>
+                            ) : (
+                              /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
                                   3Depth-menu: 링크 (하위 메뉴 없음)
-                                  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                                  스타일 커스터마이징:
-                                  - 텍스트: text-[17px] font-normal text-krds-gray-90
-                                  - 간격: py-2 px-4
-                                  - 불릿: before:content-["•"]
-                                  - 호버: hover:bg-krds-primary-5
-                                  - 활성: font-bold text-krds-blue-60
-                               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+                                  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
                               <a
                                 href={child.href}
                                 className={cn(
                                   'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent',
                                   'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
-                                  'relative',
-                                  // 불릿 포인트
+                                  // 불릿
                                   'before:content-["•"] before:inline-block',
                                   // 호버
                                   'hover:bg-krds-primary-5',
+                                  // 포커스
+                                  'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
                                   // 활성 상태
                                   child.active &&
                                     'font-bold text-krds-blue-60 before:text-krds-blue-60'
@@ -282,47 +304,41 @@ export function SideNavigation({
                               >
                                 {child.label}
                               </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </Accordion.Content>
-                  </>
-                ) : (
-                  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                      2Depth: 섹션 링크 (하위 메뉴 없음)
-                      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                      스타일 커스터마이징:
-                      - 텍스트: text-[17px] font-normal text-krds-gray-90
-                      - 간격: py-3 px-3
-                      - 보더: border-b border-krds-gray-20
-                      - 호버: hover:bg-krds-gray-10
-                   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-                  <a
-                    href={section.href}
-                    className={cn(
-                      'flex items-center justify-between w-full py-3 px-3 border-0 border-b border-krds-gray-20 bg-transparent',
-                      'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
-                      'transition-all duration-200 ease-in-out',
-                      // 하단 밑줄 효과
-                      'relative before:content-[""] before:inline-flex before:absolute before:bottom-[-1px] before:left-0 before:w-0 before:h-[3px] before:bg-[#063a74] before:transition-all before:duration-[400ms] before:ease-in-out',
-                      // 호버
-                      'hover:bg-krds-gray-10 hover:before:w-full',
-                      // 포커스
-                      'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
-                      // 활성 상태
-                      section.active && 'font-bold text-krds-blue-60'
-                    )}
-                    aria-current={section.active ? 'page' : undefined}
-                    role="menuitem"
-                  >
-                    {section.label}
-                  </a>
-                )}
-              </Accordion.Item>
-            );
-          })}
-        </Accordion.Root>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </>
+              ) : (
+                /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                    2Depth: 섹션 링크 (하위 메뉴 없음)
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+                <a
+                  href={section.href}
+                  className={cn(
+                    'flex items-center justify-between w-full py-3 px-3 border-0 bg-transparent',
+                    'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                    'transition-all duration-200',
+                    // 하단 밑줄 효과
+                    'relative before:content-[""] before:absolute before:bottom-[-1px] before:left-0 before:w-0 before:h-[3px] before:bg-[#063a74] before:transition-all before:duration-[400ms]',
+                    // 호버
+                    'hover:bg-krds-gray-10 hover:before:w-full',
+                    // 포커스
+                    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-krds-blue-60 focus-visible:outline-offset-[-2px]',
+                    // 활성 상태
+                    section.active && 'font-bold text-krds-blue-60'
+                  )}
+                  aria-current={section.active ? 'page' : undefined}
+                  role="menuitem"
+                >
+                  {section.label}
+                </a>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
