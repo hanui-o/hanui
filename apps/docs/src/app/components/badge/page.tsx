@@ -15,7 +15,6 @@ import {
   NumberBadge,
   DotBadge,
   BadgeGroup,
-  Button,
   Code,
   Tabs,
   TabsList,
@@ -27,6 +26,8 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  List,
+  ListItem,
 } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { Bell, Check, Star, Mail, User } from 'lucide-react';
@@ -48,11 +49,13 @@ export default function BadgePage() {
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
+          {/* 1. 개요 */}
           <Section level="h2">
             <Heading
               level="h2"
               id="overview"
               title="개요"
+              description="Badge는 상태, 카테고리, 알림 개수를 표시하는 컴포넌트입니다. Badge, NumberBadge, DotBadge, BadgeGroup 네 가지 종류를 제공합니다."
               className="sr-only"
             />
             <ComponentPreview>
@@ -73,12 +76,19 @@ export default function BadgePage() {
             </Code>
           </Section>
 
+          {/* 2. 설치 */}
           <Section level="h2">
             <Installation componentName="badge" />
           </Section>
 
+          {/* 3. 사용법 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Badge, NumberBadge, DotBadge를 import하여 사용합니다. BadgeGroup으로 아이콘에 뱃지를 오버레이할 수 있습니다."
+            />
             <Code variant="block" language="tsx">
               {`import { Badge, NumberBadge, DotBadge, BadgeGroup } from '@hanui/react'
 
@@ -88,12 +98,17 @@ export default function BadgePage() {
             </Code>
           </Section>
 
-          {/* 예제 섹션 */}
+          {/* 4. 예제 */}
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
 
+            {/* 유형 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Variant" />
+              <Heading
+                level="h3"
+                title="유형"
+                description="default, primary, secondary, success, warning, error, info 등 다양한 유형을 지원합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap gap-2">
                   <Badge>기본</Badge>
@@ -116,8 +131,13 @@ export default function BadgePage() {
               </Code>
             </Subsection>
 
+            {/* 아웃라인 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Outline" />
+              <Heading
+                level="h3"
+                title="아웃라인"
+                description="테두리만 있는 아웃라인 스타일을 지원합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="outline">Outline</Badge>
@@ -130,8 +150,13 @@ export default function BadgePage() {
               </Code>
             </Subsection>
 
+            {/* 크기 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Size" />
+              <Heading
+                level="h3"
+                title="크기"
+                description="sm, md, lg 세 가지 크기를 지원합니다. 기본값은 md입니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge size="sm" variant="primary">
@@ -152,8 +177,13 @@ export default function BadgePage() {
               </Code>
             </Subsection>
 
+            {/* 모양 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Shape" />
+              <Heading
+                level="h3"
+                title="모양"
+                description="rounded(기본), pill(둥근), square(직각) 세 가지 모양을 지원합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge shape="rounded" variant="success">
@@ -174,8 +204,13 @@ export default function BadgePage() {
               </Code>
             </Subsection>
 
+            {/* 아이콘 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Icon" />
+              <Heading
+                level="h3"
+                title="아이콘"
+                description="icon prop으로 아이콘을 추가하고, iconPosition으로 위치를 지정할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge variant="success" icon={<Check className="h-3 w-3" />}>
@@ -202,8 +237,13 @@ export default function BadgePage() {
               </Code>
             </Subsection>
 
+            {/* 숫자 뱃지 */}
             <Subsection level="h3">
-              <Heading level="h3" title="NumberBadge" />
+              <Heading
+                level="h3"
+                title="숫자 뱃지 (NumberBadge)"
+                description="알림 개수 등 숫자를 표시합니다. max prop으로 최대 표시 숫자를 제한할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-4">
                   <NumberBadge count={5} />
@@ -224,8 +264,13 @@ export default function BadgePage() {
               </Code>
             </Subsection>
 
+            {/* 도트 뱃지 */}
             <Subsection level="h3">
-              <Heading level="h3" title="DotBadge" />
+              <Heading
+                level="h3"
+                title="도트 뱃지 (DotBadge)"
+                description="새로운 알림이 있음을 표시하는 작은 점입니다. pulse prop으로 애니메이션을 추가할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-6">
                   <div className="flex items-center gap-2">
@@ -254,8 +299,13 @@ export default function BadgePage() {
               </Code>
             </Subsection>
 
+            {/* 뱃지 그룹 */}
             <Subsection level="h3">
-              <Heading level="h3" title="BadgeGroup" />
+              <Heading
+                level="h3"
+                title="뱃지 그룹 (BadgeGroup)"
+                description="아이콘이나 아바타에 뱃지를 오버레이합니다. position prop으로 위치를 지정할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-8">
                   <BadgeGroup>
@@ -312,6 +362,33 @@ export default function BadgePage() {
 </BadgeGroup>`}
               </Code>
             </Subsection>
+          </Section>
+
+          {/* 5. 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="Badge는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>장식적 아이콘:</strong> Badge 내 아이콘은
+                aria-hidden=&quot;true&quot;로 스크린리더가 무시합니다.
+              </ListItem>
+              <ListItem>
+                <strong>NumberBadge:</strong> aria-label로 숫자 정보를
+                제공합니다 (예: &quot;5개&quot;).
+              </ListItem>
+              <ListItem>
+                <strong>DotBadge:</strong> 순수하게 장식적이므로
+                aria-hidden=&quot;true&quot;가 적용됩니다.
+              </ListItem>
+              <ListItem>
+                명도 대비 4.5:1 이상을 준수하여 시각적 접근성을 보장합니다.
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
