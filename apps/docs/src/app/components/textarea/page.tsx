@@ -10,6 +10,9 @@ import {
 import { Installation } from '@/components/content/Installation';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
 // UI components - from @hanui/react
 import {
   Textarea as TextareaComponent,
@@ -17,8 +20,6 @@ import {
   FormLabel,
   FormError,
   FormHelperText,
-  Body,
-  Card,
   Code,
   List,
   ListItem,
@@ -40,7 +41,7 @@ export default function TextareaPage() {
       <Heading
         level="h1"
         title="Textarea"
-        description="다양한 스타일과 크기를 지원하는 여러 줄 입력 필드 컴포넌트입니다. 자동 높이 조절 기능과 FormField 자동 통합을 제공하며, KRDS 표준을 준수합니다."
+        description="다양한 스타일과 크기를 지원하는 여러 줄 입력 필드 컴포넌트입니다. 자동 높이 조절 기능과 FormField 자동 통합을 제공합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -50,12 +51,13 @@ export default function TextareaPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Overview */}
+          {/* 1. 개요 */}
           <Section level="h2">
             <Heading
               level="h2"
               id="overview"
               title="개요"
+              description="Textarea는 여러 줄의 텍스트 입력에 사용됩니다. 자동 높이 조절, FormField 통합, 다양한 상태 표시를 지원합니다."
               className="sr-only"
             />
 
@@ -81,11 +83,19 @@ export default function TextareaPage() {
             </Code>
           </Section>
 
-          <Installation componentName="textarea" />
-
-          {/* Usage */}
+          {/* 2. 설치 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Installation componentName="textarea" />
+          </Section>
+
+          {/* 3. 사용법 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Textarea 컴포넌트를 import하여 사용합니다. rows 속성으로 초기 높이를 설정할 수 있습니다."
+            />
             <Code variant="block" language="tsx">
               {`import { Textarea } from '@hanui/react'
 
@@ -93,12 +103,16 @@ export default function TextareaPage() {
             </Code>
           </Section>
 
-          {/* Examples */}
+          {/* 4. 예제 */}
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="Size" />
+              <Heading
+                level="h3"
+                title="Size"
+                description="sm, md(기본값), lg 세 가지 크기를 제공합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4 max-w-md">
                   <TextareaComponent
@@ -123,7 +137,11 @@ export default function TextareaPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Variant" />
+              <Heading
+                level="h3"
+                title="Variant"
+                description="default(테두리)와 filled(배경) 스타일을 제공합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4 max-w-md">
                   <TextareaComponent
@@ -143,11 +161,11 @@ export default function TextareaPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="자동 높이 조절 (Auto Resize)" />
-              <Body className="mb-4">
-                autoResize prop을 사용하면 입력 내용에 따라 높이가 자동으로
-                조절됩니다. maxRows로 최대 높이를 제한할 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="자동 높이 조절 (Auto Resize)"
+                description="autoResize prop을 사용하면 입력 내용에 따라 높이가 자동으로 조절됩니다. maxRows로 최대 높이를 제한할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4 max-w-md">
                   <TextareaComponent
@@ -171,11 +189,11 @@ export default function TextareaPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Status (상태)" />
-              <Body className="mb-4">
-                입력 필드의 상태를 시각적으로 표시합니다. 에러, 성공, 정보
-                상태를 지원하며, 각 상태에 맞는 border 색상이 적용됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="Status (상태)"
+                description="status prop으로 에러, 성공, 정보 상태를 시각적으로 표시합니다. 각 상태에 맞는 border 색상이 적용됩니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4 max-w-md">
                   <TextareaComponent
@@ -203,11 +221,11 @@ export default function TextareaPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="FormField와 함께 사용 (권장)" />
-              <Body className="mb-4">
-                FormField 컴포넌트와 함께 사용하면 레이블, 에러 메시지, 도움말이
-                자동으로 연결됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="FormField와 함께 사용"
+                description="FormField 컴포넌트와 함께 사용하면 레이블, 에러 메시지, 도움말이 자동으로 연결됩니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-6 max-w-md">
                   <FormField id="description" required>
@@ -256,40 +274,31 @@ export default function TextareaPage() {
   <FormLabel>코멘트</FormLabel>
   <Textarea placeholder="코멘트를 입력하세요" autoResize maxRows={6} />
   <FormError>필수 입력 항목입니다</FormError>
-</FormField>
-
-// 자동 높이 조절
-<FormField id="feedback">
-  <FormLabel>피드백</FormLabel>
-  <Textarea placeholder="피드백을 남겨주세요" autoResize />
-  <FormHelperText>자유롭게 의견을 작성해주세요</FormHelperText>
 </FormField>`}
               </Code>
             </Subsection>
+          </Section>
+
+          {/* 5. 사용 가이드라인 */}
+          <Section level="h2">
+            <Heading level="h2" id="best-practices" title="사용 가이드라인" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="사용 가이드" />
-              <Body className="mb-4">
-                Textarea를 효과적으로 사용하기 위한 가이드입니다:
-              </Body>
-
-              <Card variant="filled" className="mb-4">
-                <Body weight="bold" className="mb-2">
-                  Textarea를 사용하기 적합한 경우:
-                </Body>
-                <List variant="unordered" spacing="tight">
+              <Heading level="h3" title="언제 사용하나요?" />
+              <DoCard title="Textarea 사용이 적합한 경우">
+                <List variant="check">
                   <ListItem>여러 줄의 텍스트 입력이 필요한 경우</ListItem>
                   <ListItem>댓글, 리뷰, 피드백 작성</ListItem>
                   <ListItem>상세한 설명이나 내용 입력</ListItem>
                   <ListItem>메모, 노트 작성</ListItem>
                 </List>
-              </Card>
+              </DoCard>
+            </Subsection>
 
-              <Card variant="outlined" className="mb-4">
-                <Body weight="bold" className="mb-2">
-                  Textarea를 사용하지 말아야 하는 경우:
-                </Body>
-                <List variant="unordered" spacing="tight">
+            <Subsection level="h3">
+              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <DontCard title="Textarea 사용을 피해야 하는 경우">
+                <List variant="dash">
                   <ListItem>한 줄의 짧은 텍스트 입력 (Input 사용)</ListItem>
                   <ListItem>
                     이메일, 전화번호, URL 등 형식이 정해진 입력 (Input 사용)
@@ -298,86 +307,93 @@ export default function TextareaPage() {
                     선택 목록이 있는 경우 (Select, Radio 사용)
                   </ListItem>
                 </List>
-              </Card>
+              </DontCard>
+            </Subsection>
 
-              <Card variant="filled">
-                <Body weight="bold" className="mb-2">
-                  주의사항:
-                </Body>
-                <List variant="unordered" spacing="tight">
-                  <ListItem>
-                    <strong>적절한 크기:</strong> rows 속성으로 초기 높이를
-                    설정하세요 (기본 3-5줄 권장)
-                  </ListItem>
-                  <ListItem>
-                    <strong>자동 높이 조절:</strong> 긴 텍스트가 예상되면
-                    autoResize를 사용하고 maxRows로 제한하세요
-                  </ListItem>
-                  <ListItem>
-                    <strong>명확한 레이블:</strong> FormLabel로 입력 목적을
-                    명확히 표시하세요
-                  </ListItem>
-                  <ListItem>
-                    <strong>글자 수 제한:</strong> maxLength와 FormHelperText로
-                    제한 사항을 알려주세요
-                  </ListItem>
-                </List>
-              </Card>
+            <Subsection level="h3">
+              <Heading level="h3" title="주의사항" />
+              <List>
+                <ListItem>
+                  <strong>적절한 크기:</strong> rows 속성으로 초기 높이를
+                  설정하세요 (기본 3-5줄 권장)
+                </ListItem>
+                <ListItem>
+                  <strong>자동 높이 조절:</strong> 긴 텍스트가 예상되면
+                  autoResize를 사용하고 maxRows로 제한하세요
+                </ListItem>
+                <ListItem>
+                  <strong>명확한 레이블:</strong> FormLabel로 입력 목적을 명확히
+                  표시하세요
+                </ListItem>
+                <ListItem>
+                  <strong>글자 수 제한:</strong> maxLength와 FormHelperText로
+                  제한 사항을 알려주세요
+                </ListItem>
+              </List>
             </Subsection>
           </Section>
 
-          {/* Accessibility */}
+          {/* 6. 접근성 */}
           <Section level="h2">
             <Heading
               level="h2"
               id="accessibility"
               title="접근성"
-              description="Textarea 컴포넌트는 WCAG 2.1 AA 기준을 준수하며 완전한 접근성을 제공합니다."
+              description="WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
             />
 
             <Subsection level="h3">
               <Heading level="h3" title="키보드 지원" />
-              <List variant="check" spacing="default">
-                <ListItem>
-                  <Code>Tab</Code> - 입력 필드로 포커스 이동
-                </ListItem>
-                <ListItem>
-                  <Code>Enter</Code> - 새 줄 추가
-                </ListItem>
-                <ListItem>
-                  <Code>Escape</Code> - 입력 취소 (브라우저 기본 동작)
-                </ListItem>
-              </List>
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>키</TableHead>
+                    <TableHead>동작</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Tab</Code>
+                    </TableCell>
+                    <TableCell>입력 필드로 포커스 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Enter</Code>
+                    </TableCell>
+                    <TableCell>새 줄 추가</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Escape</Code>
+                    </TableCell>
+                    <TableCell>입력 취소 (브라우저 기본 동작)</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="스크린 리더 지원" />
-              <List variant="check" spacing="default">
+              <Heading level="h3" title="ARIA 속성" />
+              <List>
                 <ListItem>
-                  <Code>aria-invalid</Code> - 에러 상태를 자동으로 전달 (
-                  <Code>status=&quot;error&quot;</Code> 사용 시)
+                  <Code>aria-invalid</Code>: 에러 상태를 자동으로 전달
                 </ListItem>
                 <ListItem>
-                  <Code>aria-required</Code> - 필수 입력 표시 지원
+                  <Code>aria-required</Code>: 필수 입력 표시 지원
                 </ListItem>
                 <ListItem>
-                  <Code>aria-describedby</Code> - 에러 메시지 및 도움말 연결
-                  지원
+                  <Code>aria-describedby</Code>: 에러 메시지 및 도움말 연결
                 </ListItem>
                 <ListItem>
-                  모든 HTML textarea 속성 지원 (<Code>id</Code>,{' '}
-                  <Code>name</Code>, <Code>disabled</Code>,{' '}
-                  <Code>readOnly</Code> 등)
+                  FormField와 함께 사용 시 모든 접근성 속성 자동 연결
                 </ListItem>
               </List>
             </Subsection>
 
             <Subsection level="h3">
               <Heading level="h3" title="폼 통합 예제" />
-              <Body className="mb-4">
-                <strong>권장 방법:</strong> FormField 컴포넌트를 사용하면 접근성
-                속성이 자동으로 연결됩니다.
-              </Body>
               <Code variant="block" language="tsx">
                 {`// ✅ 권장: FormField 사용 (자동 접근성)
 import { FormField, FormLabel, FormError, Textarea } from '@hanui/react'
@@ -388,11 +404,9 @@ import { FormField, FormLabel, FormError, Textarea } from '@hanui/react'
   <FormError>메시지를 입력해주세요</FormError>
 </FormField>
 
-// ⚠️  수동 방법 (직접 aria 속성 관리)
+// ⚠️ 수동 방법 (직접 aria 속성 관리)
 <form>
-  <label htmlFor="message" className="block mb-2 font-medium">
-    메시지 <span className="text-krds-danger-60">*</span>
-  </label>
+  <label htmlFor="message">메시지 *</label>
   <Textarea
     id="message"
     placeholder="메시지를 입력하세요"
@@ -400,9 +414,7 @@ import { FormField, FormLabel, FormError, Textarea } from '@hanui/react'
     aria-describedby="message-error"
     status="error"
   />
-  <p id="message-error" className="mt-1 text-krds-danger-60">
-    메시지를 입력해주세요
-  </p>
+  <p id="message-error">메시지를 입력해주세요</p>
 </form>`}
               </Code>
             </Subsection>
@@ -410,147 +422,126 @@ import { FormField, FormLabel, FormError, Textarea } from '@hanui/react'
         </TabsContent>
 
         <TabsContent value="api">
-          {/* Props */}
           <Section level="h2">
             <Heading level="h2" id="props" title="Props" />
 
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Prop</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Default</TableHead>
-                  <TableHead>Description</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <Code>size</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>
-                      &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;
-                    </Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>&quot;md&quot;</Code>
-                  </TableCell>
-                  <TableCell>
-                    입력 필드 크기 (min-h: 80px / 96px / 128px)
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>variant</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>&quot;default&quot; | &quot;filled&quot;</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>&quot;default&quot;</Code>
-                  </TableCell>
-                  <TableCell>입력 필드 스타일</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>status</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>
-                      &quot;error&quot; | &quot;success&quot; | &quot;info&quot;
-                    </Code>
-                  </TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell>입력 상태 표시 (border 색상 변경)</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>autoResize</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>boolean</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>false</Code>
-                  </TableCell>
-                  <TableCell>입력 내용에 따라 높이 자동 조절</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>maxRows</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>number</Code>
-                  </TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell>
-                    최대 행 수 (autoResize 사용 시에만 적용)
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>disabled</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>boolean</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>false</Code>
-                  </TableCell>
-                  <TableCell>비활성화 상태</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>readOnly</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>boolean</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>false</Code>
-                  </TableCell>
-                  <TableCell>읽기 전용 상태 (값 수정 불가)</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>rows</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>number</Code>
-                  </TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell>초기 행 수</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>placeholder</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>string</Code>
-                  </TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell>플레이스홀더 텍스트</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>className</Code>
-                  </TableCell>
-                  <TableCell>
-                    <Code>string</Code>
-                  </TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell>추가 CSS 클래스 (layout only)</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+            <Subsection level="h3">
+              <Heading level="h3" title="Textarea Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
+                    <TableCell>
+                      입력 필드 크기 (min-h: 80px / 96px / 128px)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'default' | 'filled'</Code>
+                    </TableCell>
+                    <TableCell>'default'</TableCell>
+                    <TableCell>입력 필드 스타일</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>status</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'error' | 'success' | 'info'
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>입력 상태 표시 (border 색상 변경)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>autoResize</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>입력 내용에 따라 높이 자동 조절</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>maxRows</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>
+                      최대 행 수 (autoResize 사용 시에만 적용)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>비활성화 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>readOnly</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>읽기 전용 상태 (값 수정 불가)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>rows</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>초기 행 수</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>placeholder</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>플레이스홀더 텍스트</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
           </Section>
 
-          {/* Size Variants */}
           <Section level="h2">
             <Heading level="h2" id="size-variants" title="Size Variants" />
 
-            <Table>
+            <Table small>
               <TableHeader>
                 <TableRow>
                   <TableHead>Size</TableHead>
@@ -591,8 +582,8 @@ import { FormField, FormLabel, FormError, Textarea } from '@hanui/react'
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Table', href: '/components/table' }}
-        next={{ title: 'Tooltip', href: '/components/tooltip' }}
+        prev={{ title: 'Tabs', href: '/components/tabs' }}
+        next={{ title: 'Toast', href: '/components/toast' }}
       />
     </>
   );
