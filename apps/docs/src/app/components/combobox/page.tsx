@@ -1,11 +1,24 @@
 'use client';
 
 import React, { useState } from 'react';
+
+// Docs layout components
+import {
+  PageSection as Section,
+  Heading,
+  Subsection,
+  PageNavigation,
+} from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+
+// UI components - from @hanui/react
 import {
   Combobox,
-  Body,
   Code,
-  Heading,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
   Table,
   TableHeader,
   TableBody,
@@ -14,6 +27,7 @@ import {
   TableCell,
   type ComboboxOption,
 } from '@hanui/react';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 import {
   Palette,
   Code as CodeIcon,
@@ -73,13 +87,6 @@ const descriptionOptions: ComboboxOption[] = [
   },
 ];
 
-// 비활성화 옵션 포함
-const disabledOptions: ComboboxOption[] = [
-  { value: 'option1', label: '선택 가능' },
-  { value: 'option2', label: '선택 불가', disabled: true },
-  { value: 'option3', label: '선택 가능' },
-];
-
 export default function ComboboxPage() {
   const [value1, setValue1] = useState('');
   const [value2, setValue2] = useState('');
@@ -90,30 +97,57 @@ export default function ComboboxPage() {
 
   return (
     <>
-      <Heading level="h1">Combobox</Heading>
-      <Body className="text-krds-gray-60 mb-8">
-        검색 가능한 드롭다운 선택 컴포넌트입니다. 많은 옵션 중에서 빠르게
-        검색하여 선택할 수 있습니다.
-      </Body>
+      <Heading
+        level="h1"
+        title="Combobox"
+        description="검색 가능한 드롭다운 선택 컴포넌트입니다. 많은 옵션 중에서 빠르게 검색하여 선택할 수 있습니다."
+      />
 
-      {/* 기본 사용 */}
-      <section className="space-y-4">
-        <Heading level="h2">기본 사용</Heading>
-        <Body className="mb-4">검색 가능한 드롭다운 선택 컴포넌트입니다.</Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex flex-col items-center justify-center min-h-[200px]">
-          <div className="max-w-xs">
-            <Combobox
-              options={basicOptions}
-              value={value1}
-              onValueChange={setValue1}
-              placeholder="프레임워크 선택"
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
+        </TabsList>
+
+        {/* 개요 탭 */}
+        <TabsContent value="overview">
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-          </div>
-          <Body className="mt-2 text-sm text-krds-gray-50">
-            선택된 값: {value1 || '없음'}
-          </Body>
-        </div>
-        <Code variant="block" language="tsx">{`const options = [
+            <ComponentPreview>
+              <div className="max-w-xs">
+                <Combobox
+                  options={basicOptions}
+                  value={value1}
+                  onValueChange={setValue1}
+                  placeholder="프레임워크 선택"
+                />
+              </div>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`<Combobox
+  options={options}
+  value={value}
+  onValueChange={setValue}
+  placeholder="프레임워크 선택"
+/>`}
+            </Code>
+          </Section>
+
+          <Section level="h2">
+            <Installation componentName="combobox" />
+          </Section>
+
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Code variant="block" language="tsx">
+              {`import { Combobox, type ComboboxOption } from '@hanui/react'
+
+const options: ComboboxOption[] = [
   { value: 'react', label: 'React' },
   { value: 'vue', label: 'Vue' },
   { value: 'angular', label: 'Angular' },
@@ -124,46 +158,56 @@ export default function ComboboxPage() {
   value={value}
   onValueChange={setValue}
   placeholder="프레임워크 선택"
-/>`}</Code>
-      </section>
+/>`}
+            </Code>
+          </Section>
 
-      {/* 크기 */}
-      <section className="space-y-4">
-        <Heading level="h2">크기</Heading>
-        <Body className="mb-4">sm, md, lg 세 가지 크기를 지원합니다.</Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[200px]">
-          <div className="max-w-xs space-y-3">
-            <Combobox options={basicOptions} placeholder="Small" size="sm" />
-            <Combobox options={basicOptions} placeholder="Medium" size="md" />
-            <Combobox options={basicOptions} placeholder="Large" size="lg" />
-          </div>
-        </div>
-        <Code
-          variant="block"
-          language="tsx"
-        >{`<Combobox options={options} placeholder="Small" size="sm" />
+          {/* 예제 섹션 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Size" />
+              <ComponentPreview>
+                <div className="max-w-xs space-y-3">
+                  <Combobox
+                    options={basicOptions}
+                    placeholder="Small"
+                    size="sm"
+                  />
+                  <Combobox
+                    options={basicOptions}
+                    placeholder="Medium"
+                    size="md"
+                  />
+                  <Combobox
+                    options={basicOptions}
+                    placeholder="Large"
+                    size="lg"
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Combobox options={options} placeholder="Small" size="sm" />
 <Combobox options={options} placeholder="Medium" size="md" />
-<Combobox options={options} placeholder="Large" size="lg" />`}</Code>
-      </section>
+<Combobox options={options} placeholder="Large" size="lg" />`}
+              </Code>
+            </Subsection>
 
-      {/* 아이콘 포함 */}
-      <section className="space-y-4">
-        <Heading level="h2">아이콘 포함</Heading>
-        <Body className="mb-4">각 옵션에 아이콘을 추가할 수 있습니다.</Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[200px]">
-          <div className="max-w-xs">
-            <Combobox
-              options={iconOptions}
-              value={value2}
-              onValueChange={setValue2}
-              placeholder="카테고리 선택"
-            />
-          </div>
-        </div>
-        <Code
-          variant="block"
-          language="tsx"
-        >{`import { Palette, Code, FileText } from 'lucide-react';
+            <Subsection level="h3">
+              <Heading level="h3" title="Icon" />
+              <ComponentPreview>
+                <div className="max-w-xs">
+                  <Combobox
+                    options={iconOptions}
+                    value={value2}
+                    onValueChange={setValue2}
+                    placeholder="카테고리 선택"
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`import { Palette, Code, FileText } from 'lucide-react';
 
 const options = [
   { value: 'design', label: '디자인', icon: <Palette className="h-4 w-4" /> },
@@ -175,26 +219,24 @@ const options = [
   value={value}
   onValueChange={setValue}
   placeholder="카테고리 선택"
-/>`}</Code>
-      </section>
+/>`}
+              </Code>
+            </Subsection>
 
-      {/* 그룹화 */}
-      <section className="space-y-4">
-        <Heading level="h2">그룹화</Heading>
-        <Body className="mb-4">
-          옵션을 그룹별로 정리하여 표시할 수 있습니다.
-        </Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[200px]">
-          <div className="max-w-xs">
-            <Combobox
-              options={groupedOptions}
-              value={value3}
-              onValueChange={setValue3}
-              placeholder="지역 선택"
-            />
-          </div>
-        </div>
-        <Code variant="block" language="tsx">{`const options = [
+            <Subsection level="h3">
+              <Heading level="h3" title="Group" />
+              <ComponentPreview>
+                <div className="max-w-xs">
+                  <Combobox
+                    options={groupedOptions}
+                    value={value3}
+                    onValueChange={setValue3}
+                    placeholder="지역 선택"
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`const options = [
   { value: 'seoul', label: '서울', group: '수도권' },
   { value: 'busan', label: '부산', group: '영남권' },
 ];
@@ -204,24 +246,24 @@ const options = [
   value={value}
   onValueChange={setValue}
   placeholder="지역 선택"
-/>`}</Code>
-      </section>
+/>`}
+              </Code>
+            </Subsection>
 
-      {/* 설명 포함 */}
-      <section className="space-y-4">
-        <Heading level="h2">설명 포함</Heading>
-        <Body className="mb-4">각 옵션에 설명을 추가할 수 있습니다.</Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[200px]">
-          <div className="max-w-sm">
-            <Combobox
-              options={descriptionOptions}
-              value={value4}
-              onValueChange={setValue4}
-              placeholder="요금제 선택"
-            />
-          </div>
-        </div>
-        <Code variant="block" language="tsx">{`const options = [
+            <Subsection level="h3">
+              <Heading level="h3" title="Description" />
+              <ComponentPreview>
+                <div className="max-w-sm">
+                  <Combobox
+                    options={descriptionOptions}
+                    value={value4}
+                    onValueChange={setValue4}
+                    placeholder="요금제 선택"
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`const options = [
   {
     value: 'standard',
     label: '표준 요금제',
@@ -229,185 +271,210 @@ const options = [
   },
 ];
 
-<Combobox options={options} placeholder="요금제 선택" />`}</Code>
-      </section>
+<Combobox options={options} placeholder="요금제 선택" />`}
+              </Code>
+            </Subsection>
 
-      {/* Clearable */}
-      <section className="space-y-4">
-        <Heading level="h2">선택 해제 가능</Heading>
-        <Body className="mb-4">
-          clearable prop으로 선택 해제 버튼을 표시할 수 있습니다.
-        </Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[200px]">
-          <div className="max-w-xs">
-            <Combobox
-              options={basicOptions}
-              value={value5}
-              onValueChange={setValue5}
-              placeholder="프레임워크 선택"
-              clearable
-            />
-          </div>
-        </div>
-        <Code variant="block" language="tsx">{`<Combobox
+            <Subsection level="h3">
+              <Heading level="h3" title="Clearable" />
+              <ComponentPreview>
+                <div className="max-w-xs">
+                  <Combobox
+                    options={basicOptions}
+                    value={value5}
+                    onValueChange={setValue5}
+                    placeholder="프레임워크 선택"
+                    clearable
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Combobox
   options={options}
   value={value}
   onValueChange={setValue}
   placeholder="프레임워크 선택"
   clearable
-/>`}</Code>
-      </section>
+/>`}
+              </Code>
+            </Subsection>
 
-      {/* 상태 */}
-      <section className="space-y-4">
-        <Heading level="h2">상태</Heading>
-        <Body className="mb-4">
-          에러, 비활성화, 로딩 상태를 표시할 수 있습니다.
-        </Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[200px]">
-          <div className="max-w-xs space-y-3">
-            <Combobox
-              options={basicOptions}
-              placeholder="에러 상태"
-              variant="error"
-            />
-            <Combobox options={basicOptions} placeholder="비활성화" disabled />
-            <Combobox
-              options={basicOptions}
-              value={value6}
-              onValueChange={setValue6}
-              placeholder="로딩 상태"
-              loading
-            />
-          </div>
-        </div>
-        <Code
-          variant="block"
-          language="tsx"
-        >{`<Combobox options={options} placeholder="에러 상태" variant="error" />
+            <Subsection level="h3">
+              <Heading level="h3" title="State" />
+              <ComponentPreview>
+                <div className="max-w-xs space-y-3">
+                  <Combobox
+                    options={basicOptions}
+                    placeholder="에러 상태"
+                    variant="error"
+                  />
+                  <Combobox
+                    options={basicOptions}
+                    placeholder="비활성화"
+                    disabled
+                  />
+                  <Combobox
+                    options={basicOptions}
+                    value={value6}
+                    onValueChange={setValue6}
+                    placeholder="로딩 상태"
+                    loading
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Combobox options={options} placeholder="에러 상태" variant="error" />
 <Combobox options={options} placeholder="비활성화" disabled />
-<Combobox options={options} placeholder="로딩 상태" loading />`}</Code>
-      </section>
+<Combobox options={options} placeholder="로딩 상태" loading />`}
+              </Code>
+            </Subsection>
+          </Section>
+        </TabsContent>
 
-      {/* Props 테이블 */}
-      <section className="space-y-4">
-        <Heading level="h2">Props</Heading>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Prop</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Default</TableHead>
-              <TableHead>Description</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Code>options</Code>
-              </TableCell>
-              <TableCell>
-                <Code>ComboboxOption[]</Code>
-              </TableCell>
-              <TableCell>필수</TableCell>
-              <TableCell>옵션 목록</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>value</Code>
-              </TableCell>
-              <TableCell>
-                <Code>string</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>선택된 값</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>onValueChange</Code>
-              </TableCell>
-              <TableCell>
-                <Code>(value: string) =&gt; void</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>값 변경 콜백</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>placeholder</Code>
-              </TableCell>
-              <TableCell>
-                <Code>string</Code>
-              </TableCell>
-              <TableCell>&quot;선택해주세요&quot;</TableCell>
-              <TableCell>플레이스홀더</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>variant</Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;default&quot; | &quot;error&quot;</Code>
-              </TableCell>
-              <TableCell>&quot;default&quot;</TableCell>
-              <TableCell>스타일 variant</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>size</Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</Code>
-              </TableCell>
-              <TableCell>&quot;md&quot;</TableCell>
-              <TableCell>크기</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>disabled</Code>
-              </TableCell>
-              <TableCell>
-                <Code>boolean</Code>
-              </TableCell>
-              <TableCell>false</TableCell>
-              <TableCell>비활성화</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>clearable</Code>
-              </TableCell>
-              <TableCell>
-                <Code>boolean</Code>
-              </TableCell>
-              <TableCell>false</TableCell>
-              <TableCell>선택 해제 버튼 표시</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>loading</Code>
-              </TableCell>
-              <TableCell>
-                <Code>boolean</Code>
-              </TableCell>
-              <TableCell>false</TableCell>
-              <TableCell>로딩 상태</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </section>
+        {/* API 탭 */}
+        <TabsContent value="api">
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
-      {/* ComboboxOption 인터페이스 */}
-      <section className="space-y-4">
-        <Heading level="h2">ComboboxOption 인터페이스</Heading>
-        <Code variant="block" language="typescript">{`interface ComboboxOption {
+            <Subsection level="h3">
+              <Heading level="h3" title="Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>options</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">ComboboxOption[]</Code>
+                    </TableCell>
+                    <TableCell>필수</TableCell>
+                    <TableCell>옵션 목록</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>value</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>선택된 값</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>onValueChange</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (value: string) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>값 변경 콜백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>placeholder</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>'선택해주세요'</TableCell>
+                    <TableCell>플레이스홀더</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'default' | 'error'</Code>
+                    </TableCell>
+                    <TableCell>'default'</TableCell>
+                    <TableCell>스타일 variant</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
+                    <TableCell>크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>비활성화</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>clearable</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>선택 해제 버튼 표시</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>loading</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>로딩 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="ComboboxOption Interface" />
+              <Code variant="block" language="typescript">
+                {`interface ComboboxOption {
   value: string;        // 옵션 값
   label: string;        // 표시될 레이블
   disabled?: boolean;   // 비활성화 여부
   group?: string;       // 그룹 (선택적)
   icon?: React.ReactNode; // 아이콘 (선택적)
   description?: string; // 설명 (선택적)
-}`}</Code>
-      </section>
+}`}
+              </Code>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'Checkbox', href: '/components/checkbox' }}
+        next={{ title: 'DropdownMenu', href: '/components/dropdown-menu' }}
+      />
     </>
   );
 }

@@ -5,9 +5,9 @@ import {
   PageSection as Section,
   Heading,
   Subsection,
+  PageNavigation,
 } from '@/components/content';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
+import { Installation } from '@/components/content/Installation';
 
 // UI components - from @hanui/react
 import {
@@ -16,8 +16,11 @@ import {
   DotBadge,
   BadgeGroup,
   Button,
-  Body,
   Code,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
   Table,
   TableHeader,
   TableBody,
@@ -25,6 +28,7 @@ import {
   TableHead,
   TableCell,
 } from '@hanui/react';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 import { Bell, Check, Star, Mail, User } from 'lucide-react';
 
 export default function BadgePage() {
@@ -36,253 +40,256 @@ export default function BadgePage() {
         description="상태, 카테고리, 알림 개수 등을 표시하는 작은 라벨 컴포넌트입니다."
       />
 
-      {/* 기본 Badge */}
-      <Section level="h2">
-        <Heading level="h2" id="basic" title="기본 Badge" />
-        <Body className="mb-4">
-          상태나 카테고리를 표시하는 기본 뱃지입니다.
-        </Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap gap-2">
-            <Badge>기본</Badge>
-            <Badge variant="primary">Primary</Badge>
-            <Badge variant="secondary">Secondary</Badge>
-            <Badge variant="success">성공</Badge>
-            <Badge variant="warning">경고</Badge>
-            <Badge variant="error">오류</Badge>
-            <Badge variant="info">정보</Badge>
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`<Badge>기본</Badge>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
+        </TabsList>
+
+        {/* 개요 탭 */}
+        <TabsContent value="overview">
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              className="sr-only"
+            />
+            <ComponentPreview>
+              <div className="flex flex-wrap gap-2">
+                <Badge>기본</Badge>
+                <Badge variant="primary">Primary</Badge>
+                <Badge variant="success">성공</Badge>
+                <Badge variant="warning">경고</Badge>
+                <Badge variant="error">오류</Badge>
+              </div>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`<Badge>기본</Badge>
+<Badge variant="primary">Primary</Badge>
+<Badge variant="success">성공</Badge>
+<Badge variant="warning">경고</Badge>
+<Badge variant="error">오류</Badge>`}
+            </Code>
+          </Section>
+
+          <Section level="h2">
+            <Installation componentName="badge" />
+          </Section>
+
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Code variant="block" language="tsx">
+              {`import { Badge, NumberBadge, DotBadge, BadgeGroup } from '@hanui/react'
+
+<Badge variant="success">완료</Badge>
+<NumberBadge count={5} />
+<DotBadge variant="error" pulse />`}
+            </Code>
+          </Section>
+
+          {/* 예제 섹션 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Variant" />
+              <ComponentPreview>
+                <div className="flex flex-wrap gap-2">
+                  <Badge>기본</Badge>
+                  <Badge variant="primary">Primary</Badge>
+                  <Badge variant="secondary">Secondary</Badge>
+                  <Badge variant="success">성공</Badge>
+                  <Badge variant="warning">경고</Badge>
+                  <Badge variant="error">오류</Badge>
+                  <Badge variant="info">정보</Badge>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Badge>기본</Badge>
 <Badge variant="primary">Primary</Badge>
 <Badge variant="secondary">Secondary</Badge>
 <Badge variant="success">성공</Badge>
 <Badge variant="warning">경고</Badge>
 <Badge variant="error">오류</Badge>
 <Badge variant="info">정보</Badge>`}
-          language="tsx"
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* Outline Badge */}
-      <Section level="h2">
-        <Heading level="h2" id="outline" title="Outline Badge" />
-        <Body className="mb-4">외곽선만 있는 뱃지입니다.</Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="outline">Outline</Badge>
-            <Badge variant="outline-primary">Primary Outline</Badge>
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`<Badge variant="outline">Outline</Badge>
+            <Subsection level="h3">
+              <Heading level="h3" title="Outline" />
+              <ComponentPreview>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="outline">Outline</Badge>
+                  <Badge variant="outline-primary">Primary Outline</Badge>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Badge variant="outline">Outline</Badge>
 <Badge variant="outline-primary">Primary Outline</Badge>`}
-          language="tsx"
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* 크기 */}
-      <Section level="h2">
-        <Heading level="h2" id="size" title="크기" />
-        <Body className="mb-4">
-          뱃지는 sm, md, lg 세 가지 크기를 지원합니다.
-        </Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge size="sm" variant="primary">
-              Small
-            </Badge>
-            <Badge size="md" variant="primary">
-              Medium
-            </Badge>
-            <Badge size="lg" variant="primary">
-              Large
-            </Badge>
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`<Badge size="sm" variant="primary">Small</Badge>
+            <Subsection level="h3">
+              <Heading level="h3" title="Size" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge size="sm" variant="primary">
+                    Small
+                  </Badge>
+                  <Badge size="md" variant="primary">
+                    Medium
+                  </Badge>
+                  <Badge size="lg" variant="primary">
+                    Large
+                  </Badge>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Badge size="sm" variant="primary">Small</Badge>
 <Badge size="md" variant="primary">Medium</Badge>
 <Badge size="lg" variant="primary">Large</Badge>`}
-          language="tsx"
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* 모양 */}
-      <Section level="h2">
-        <Heading level="h2" id="shape" title="모양" />
-        <Body className="mb-4">
-          rounded, pill, square 세 가지 모양을 지원합니다.
-        </Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge shape="rounded" variant="success">
-              Rounded
-            </Badge>
-            <Badge shape="pill" variant="success">
-              Pill
-            </Badge>
-            <Badge shape="square" variant="success">
-              Square
-            </Badge>
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`<Badge shape="rounded" variant="success">Rounded</Badge>
+            <Subsection level="h3">
+              <Heading level="h3" title="Shape" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge shape="rounded" variant="success">
+                    Rounded
+                  </Badge>
+                  <Badge shape="pill" variant="success">
+                    Pill
+                  </Badge>
+                  <Badge shape="square" variant="success">
+                    Square
+                  </Badge>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Badge shape="rounded" variant="success">Rounded</Badge>
 <Badge shape="pill" variant="success">Pill</Badge>
 <Badge shape="square" variant="success">Square</Badge>`}
-          language="tsx"
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* 아이콘 포함 */}
-      <Section level="h2">
-        <Heading level="h2" id="with-icon" title="아이콘 포함" />
-        <Body className="mb-4">뱃지에 아이콘을 추가할 수 있습니다.</Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="success" icon={<Check className="h-3 w-3" />}>
-              완료
-            </Badge>
-            <Badge variant="warning" icon={<Star className="h-3 w-3" />}>
-              즐겨찾기
-            </Badge>
-            <Badge
-              variant="info"
-              icon={<Mail className="h-3 w-3" />}
-              iconPosition="right"
-            >
-              메일
-            </Badge>
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`import { Check, Star, Mail } from 'lucide-react';
+            <Subsection level="h3">
+              <Heading level="h3" title="Icon" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="success" icon={<Check className="h-3 w-3" />}>
+                    완료
+                  </Badge>
+                  <Badge variant="warning" icon={<Star className="h-3 w-3" />}>
+                    즐겨찾기
+                  </Badge>
+                  <Badge
+                    variant="info"
+                    icon={<Mail className="h-3 w-3" />}
+                    iconPosition="right"
+                  >
+                    메일
+                  </Badge>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`import { Check, Star, Mail } from 'lucide-react';
 
-<Badge variant="success" icon={<Check className="h-3 w-3" />}>
-  완료
-</Badge>
-<Badge variant="warning" icon={<Star className="h-3 w-3" />}>
-  즐겨찾기
-</Badge>
-<Badge
-  variant="info"
-  icon={<Mail className="h-3 w-3" />}
-  iconPosition="right"
->
-  메일
-</Badge>`}
-          language="tsx"
-        />
-      </Section>
+<Badge variant="success" icon={<Check className="h-3 w-3" />}>완료</Badge>
+<Badge variant="warning" icon={<Star className="h-3 w-3" />}>즐겨찾기</Badge>
+<Badge variant="info" icon={<Mail className="h-3 w-3" />} iconPosition="right">메일</Badge>`}
+              </Code>
+            </Subsection>
 
-      {/* NumberBadge */}
-      <Section level="h2">
-        <Heading level="h2" id="number-badge" title="NumberBadge" />
-        <Body className="mb-4">
-          알림 개수 등 숫자를 표시하는 뱃지입니다. max 값을 초과하면
-          &quot;99+&quot;와 같이 표시됩니다.
-        </Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap items-center gap-4">
-            <NumberBadge count={5} />
-            <NumberBadge count={42} variant="primary" />
-            <NumberBadge count={100} max={99} />
-            <NumberBadge count={0} showZero />
-            <NumberBadge count={8} size="sm" />
-            <NumberBadge count={8} size="lg" />
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`<NumberBadge count={5} />
+            <Subsection level="h3">
+              <Heading level="h3" title="NumberBadge" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-4">
+                  <NumberBadge count={5} />
+                  <NumberBadge count={42} variant="primary" />
+                  <NumberBadge count={100} max={99} />
+                  <NumberBadge count={0} showZero />
+                  <NumberBadge count={8} size="sm" />
+                  <NumberBadge count={8} size="lg" />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<NumberBadge count={5} />
 <NumberBadge count={42} variant="primary" />
 <NumberBadge count={100} max={99} />  {/* 99+로 표시 */}
 <NumberBadge count={0} showZero />
 <NumberBadge count={8} size="sm" />
 <NumberBadge count={8} size="lg" />`}
-          language="tsx"
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* DotBadge */}
-      <Section level="h2">
-        <Heading level="h2" id="dot-badge" title="DotBadge" />
-        <Body className="mb-4">새 알림이 있음을 표시하는 작은 점입니다.</Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap items-center gap-6">
-            <div className="flex items-center gap-2">
-              <DotBadge />
-              <span className="text-sm">기본</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <DotBadge variant="success" />
-              <span className="text-sm">성공</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <DotBadge variant="warning" pulse />
-              <span className="text-sm">펄스</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <DotBadge size="lg" variant="primary" />
-              <span className="text-sm">Large</span>
-            </div>
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`<DotBadge />
+            <Subsection level="h3">
+              <Heading level="h3" title="DotBadge" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <DotBadge />
+                    <span className="text-sm">기본</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DotBadge variant="success" />
+                    <span className="text-sm">성공</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DotBadge variant="warning" pulse />
+                    <span className="text-sm">펄스</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <DotBadge size="lg" variant="primary" />
+                    <span className="text-sm">Large</span>
+                  </div>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<DotBadge />
 <DotBadge variant="success" />
 <DotBadge variant="warning" pulse />
 <DotBadge size="lg" variant="primary" />`}
-          language="tsx"
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* BadgeGroup */}
-      <Section level="h2">
-        <Heading level="h2" id="badge-group" title="BadgeGroup" />
-        <Body className="mb-4">
-          아이콘이나 버튼에 뱃지를 오버레이할 때 사용합니다.
-        </Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap items-center gap-8">
-            {/* 아이콘 + NumberBadge */}
-            <BadgeGroup>
-              <div className="p-2 bg-krds-gray-10 rounded-full">
-                <Bell className="h-6 w-6 text-krds-gray-70" />
-              </div>
-              <NumberBadge count={5} size="sm" />
-            </BadgeGroup>
+            <Subsection level="h3">
+              <Heading level="h3" title="BadgeGroup" />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-8">
+                  <BadgeGroup>
+                    <div className="p-2 bg-krds-gray-10 rounded-full">
+                      <Bell className="h-6 w-6 text-krds-gray-70" />
+                    </div>
+                    <NumberBadge count={5} size="sm" />
+                  </BadgeGroup>
 
-            {/* 아이콘 + DotBadge */}
-            <BadgeGroup>
-              <div className="p-2 bg-krds-gray-10 rounded-full">
-                <Mail className="h-6 w-6 text-krds-gray-70" />
-              </div>
-              <DotBadge variant="error" pulse />
-            </BadgeGroup>
+                  <BadgeGroup>
+                    <div className="p-2 bg-krds-gray-10 rounded-full">
+                      <Mail className="h-6 w-6 text-krds-gray-70" />
+                    </div>
+                    <DotBadge variant="error" pulse />
+                  </BadgeGroup>
 
-            {/* 아바타 + NumberBadge */}
-            <BadgeGroup>
-              <div className="h-10 w-10 bg-krds-primary-20 rounded-full flex items-center justify-center">
-                <User className="h-5 w-5 text-krds-primary-base" />
-              </div>
-              <NumberBadge count={3} variant="primary" size="sm" />
-            </BadgeGroup>
+                  <BadgeGroup>
+                    <div className="h-10 w-10 bg-krds-primary-20 rounded-full flex items-center justify-center">
+                      <User className="h-5 w-5 text-krds-primary-base" />
+                    </div>
+                    <NumberBadge count={3} variant="primary" size="sm" />
+                  </BadgeGroup>
 
-            {/* 다른 위치 */}
-            <BadgeGroup position="bottom-right">
-              <div className="p-2 bg-krds-gray-10 rounded-full">
-                <Bell className="h-6 w-6 text-krds-gray-70" />
-              </div>
-              <DotBadge variant="success" />
-            </BadgeGroup>
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`import { Bell, Mail, User } from 'lucide-react';
+                  <BadgeGroup position="bottom-right">
+                    <div className="p-2 bg-krds-gray-10 rounded-full">
+                      <Bell className="h-6 w-6 text-krds-gray-70" />
+                    </div>
+                    <DotBadge variant="success" />
+                  </BadgeGroup>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`import { Bell, Mail, User } from 'lucide-react';
 
-{/* 아이콘 + NumberBadge */}
 <BadgeGroup>
   <div className="p-2 bg-krds-gray-10 rounded-full">
     <Bell className="h-6 w-6 text-krds-gray-70" />
@@ -290,7 +297,6 @@ export default function BadgePage() {
   <NumberBadge count={5} size="sm" />
 </BadgeGroup>
 
-{/* 아이콘 + DotBadge */}
 <BadgeGroup>
   <div className="p-2 bg-krds-gray-10 rounded-full">
     <Mail className="h-6 w-6 text-krds-gray-70" />
@@ -298,276 +304,212 @@ export default function BadgePage() {
   <DotBadge variant="error" pulse />
 </BadgeGroup>
 
-{/* 다른 위치 */}
 <BadgeGroup position="bottom-right">
   <div className="p-2 bg-krds-gray-10 rounded-full">
     <Bell className="h-6 w-6 text-krds-gray-70" />
   </div>
   <DotBadge variant="success" />
 </BadgeGroup>`}
-          language="tsx"
-        />
-      </Section>
+              </Code>
+            </Subsection>
+          </Section>
+        </TabsContent>
 
-      {/* 활용 예시 */}
-      <Section level="h2">
-        <Heading level="h2" id="examples" title="활용 예시" />
-        <Body className="mb-4">버튼과 함께 사용하는 예시입니다.</Body>
-        <ComponentPreview>
-          <div className="flex flex-wrap items-center gap-4">
-            <Button variant="outline">
-              알림
-              <Badge variant="error" size="sm" shape="pill" className="ml-2">
-                3
-              </Badge>
-            </Button>
+        {/* API 탭 */}
+        <TabsContent value="api">
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
-            <Button variant="outline">
-              <BadgeGroup>
-                <Bell className="h-4 w-4 mr-2" />
-                <DotBadge size="sm" />
-              </BadgeGroup>
-              알림
-            </Button>
+            <Subsection level="h3">
+              <Heading level="h3" title="Badge Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'default' | 'primary' | 'secondary' | 'success' |
+                        'warning' | 'error' | 'info' | 'outline' |
+                        'outline-primary'
+                      </Code>
+                    </TableCell>
+                    <TableCell>'default'</TableCell>
+                    <TableCell>뱃지 스타일</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
+                    <TableCell>뱃지 크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>shape</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'rounded' | 'pill' | 'square'
+                      </Code>
+                    </TableCell>
+                    <TableCell>'rounded'</TableCell>
+                    <TableCell>뱃지 모양</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>icon</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">React.ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>아이콘</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>iconPosition</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'left' | 'right'</Code>
+                    </TableCell>
+                    <TableCell>'left'</TableCell>
+                    <TableCell>아이콘 위치</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-            <Button>
-              메시지
-              <Badge
-                variant="outline"
-                size="sm"
-                className="ml-2 bg-white/20 border-white/50 text-white"
-              >
-                NEW
-              </Badge>
-            </Button>
-          </div>
-        </ComponentPreview>
-        <CodeBlock
-          code={`<Button variant="outline">
-  알림
-  <Badge variant="error" size="sm" shape="pill" className="ml-2">3</Badge>
-</Button>
+            <Subsection level="h3">
+              <Heading level="h3" title="NumberBadge Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>count</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>필수</TableCell>
+                    <TableCell>표시할 숫자</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>max</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>99</TableCell>
+                    <TableCell>최대 표시 숫자 (초과 시 max+ 표시)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>showZero</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>0일 때도 표시할지 여부</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-<Button variant="outline">
-  <BadgeGroup>
-    <Bell className="h-4 w-4 mr-2" />
-    <DotBadge size="sm" />
-  </BadgeGroup>
-  알림
-</Button>
+            <Subsection level="h3">
+              <Heading level="h3" title="DotBadge Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>show</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>true</TableCell>
+                    <TableCell>표시 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>pulse</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>펄스 애니메이션</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-<Button>
-  메시지
-  <Badge variant="outline" size="sm" className="ml-2 bg-white/20 border-white/50 text-white">
-    NEW
-  </Badge>
-</Button>`}
-          language="tsx"
-        />
-      </Section>
+            <Subsection level="h3">
+              <Heading level="h3" title="BadgeGroup Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>position</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'top-right' | 'top-left' | 'bottom-right' |
+                        'bottom-left'
+                      </Code>
+                    </TableCell>
+                    <TableCell>'top-right'</TableCell>
+                    <TableCell>뱃지 위치</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
 
-      {/* Props 테이블 */}
-      <Section level="h2">
-        <Heading level="h2" id="badge-props" title="Badge Props" />
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Prop</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Default</TableHead>
-              <TableHead>Description</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Code>variant</Code>
-              </TableCell>
-              <TableCell>
-                <Code>
-                  &quot;default&quot; | &quot;primary&quot; |
-                  &quot;secondary&quot; | &quot;success&quot; |
-                  &quot;warning&quot; | &quot;error&quot; | &quot;info&quot; |
-                  &quot;outline&quot; | &quot;outline-primary&quot;
-                </Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;default&quot;</Code>
-              </TableCell>
-              <TableCell>뱃지 스타일</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>size</Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;md&quot;</Code>
-              </TableCell>
-              <TableCell>뱃지 크기</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>shape</Code>
-              </TableCell>
-              <TableCell>
-                <Code>
-                  &quot;rounded&quot; | &quot;pill&quot; | &quot;square&quot;
-                </Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;rounded&quot;</Code>
-              </TableCell>
-              <TableCell>뱃지 모양</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>icon</Code>
-              </TableCell>
-              <TableCell>
-                <Code>React.ReactNode</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>아이콘</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>iconPosition</Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;left&quot; | &quot;right&quot;</Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;left&quot;</Code>
-              </TableCell>
-              <TableCell>아이콘 위치</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Section>
-
-      <Section level="h2">
-        <Heading level="h2" id="number-badge-props" title="NumberBadge Props" />
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Prop</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Default</TableHead>
-              <TableHead>Description</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Code>count</Code>
-              </TableCell>
-              <TableCell>
-                <Code>number</Code>
-              </TableCell>
-              <TableCell>필수</TableCell>
-              <TableCell>표시할 숫자</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>max</Code>
-              </TableCell>
-              <TableCell>
-                <Code>number</Code>
-              </TableCell>
-              <TableCell>
-                <Code>99</Code>
-              </TableCell>
-              <TableCell>최대 표시 숫자 (초과 시 max+ 표시)</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>showZero</Code>
-              </TableCell>
-              <TableCell>
-                <Code>boolean</Code>
-              </TableCell>
-              <TableCell>
-                <Code>false</Code>
-              </TableCell>
-              <TableCell>0일 때도 표시할지 여부</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Section>
-
-      <Section level="h2">
-        <Heading level="h2" id="dot-badge-props" title="DotBadge Props" />
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Prop</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Default</TableHead>
-              <TableHead>Description</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Code>show</Code>
-              </TableCell>
-              <TableCell>
-                <Code>boolean</Code>
-              </TableCell>
-              <TableCell>
-                <Code>true</Code>
-              </TableCell>
-              <TableCell>표시 여부</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>pulse</Code>
-              </TableCell>
-              <TableCell>
-                <Code>boolean</Code>
-              </TableCell>
-              <TableCell>
-                <Code>false</Code>
-              </TableCell>
-              <TableCell>펄스 애니메이션</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Section>
-
-      <Section level="h2">
-        <Heading level="h2" id="badge-group-props" title="BadgeGroup Props" />
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Prop</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Default</TableHead>
-              <TableHead>Description</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Code>position</Code>
-              </TableCell>
-              <TableCell>
-                <Code>
-                  &quot;top-right&quot; | &quot;top-left&quot; |
-                  &quot;bottom-right&quot; | &quot;bottom-left&quot;
-                </Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;top-right&quot;</Code>
-              </TableCell>
-              <TableCell>뱃지 위치</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Section>
+      <PageNavigation
+        prev={{ title: 'AlertDialog', href: '/components/alert-dialog' }}
+        next={{ title: 'Breadcrumb', href: '/components/breadcrumb' }}
+      />
     </>
   );
 }

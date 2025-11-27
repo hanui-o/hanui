@@ -79,7 +79,7 @@ const componentsNavigation = [
       { title: 'Pagination', href: '/components/pagination' },
       { title: 'Progress', href: '/components/progress' },
       { title: 'Radio', href: '/components/radio' },
-      { title: 'Section', href: '/components/section' },
+      // { title: 'Section', href: '/components/section' },
       {
         title: 'Section Heading System',
         href: '/components/section-heading-system',
