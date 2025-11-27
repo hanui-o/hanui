@@ -32,6 +32,7 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  Label,
 } from '@hanui/react';
 import { useState } from 'react';
 
@@ -79,9 +80,7 @@ export default function SelectPage() {
                 <SelectComponent
                   options={options}
                   value={selectedValue}
-                  onChange={(value) =>
-                    setSelectedValue(Array.isArray(value) ? value[0] : value)
-                  }
+                  onChange={setSelectedValue}
                   placeholder="과일을 선택하세요"
                 />
               </div>
@@ -182,39 +181,6 @@ const options = [
               </Code>
             </Subsection>
 
-            {/* 라벨 포함 */}
-            <Subsection level="h3">
-              <Heading level="h3" title="라벨 포함" />
-              <Body className="mb-3">
-                모든 선택 목록에는 명확한 레이블이 필요합니다. label prop을
-                사용하거나 별도의 label 요소를 추가할 수 있습니다.
-              </Body>
-              <ComponentPreview>
-                <div className="max-w-md space-y-2">
-                  <label htmlFor="fruit-select" className="block font-medium">
-                    좋아하는 과일
-                  </label>
-                  <SelectComponent
-                    options={options}
-                    value=""
-                    onChange={() => {}}
-                    placeholder="과일을 선택하세요"
-                  />
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<label htmlFor="fruit-select" className="block font-medium">
-  좋아하는 과일
-</label>
-<Select
-  options={options}
-  value={value}
-  onChange={setValue}
-  placeholder="과일을 선택하세요"
-/>`}
-              </Code>
-            </Subsection>
-
             {/* 에러 상태 */}
             <Subsection level="h3">
               <Heading level="h3" title="에러 상태" />
@@ -255,6 +221,60 @@ const options = [
   />
   <FormError>필수 선택 항목입니다.</FormError>
 </FormField>`}
+              </Code>
+            </Subsection>
+
+            {/* 크기 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="크기" />
+              <Body className="mb-3">
+                size prop으로 Select의 높이를 조절할 수 있습니다. 기본값은
+                lg(56px)입니다.
+              </Body>
+              <ComponentPreview>
+                <div className="max-w-md space-y-4">
+                  <div className="space-y-1">
+                    <Label className="text-sm text-krds-gray-60">
+                      Large (56px) - 기본
+                    </Label>
+                    <SelectComponent
+                      options={options}
+                      value=""
+                      onChange={() => {}}
+                      placeholder="lg 사이즈"
+                      size="lg"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-sm text-krds-gray-60">
+                      Medium (48px)
+                    </Label>
+                    <SelectComponent
+                      options={options}
+                      value=""
+                      onChange={() => {}}
+                      placeholder="md 사이즈"
+                      size="md"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-sm text-krds-gray-60">
+                      Small (40px)
+                    </Label>
+                    <SelectComponent
+                      options={options}
+                      value=""
+                      onChange={() => {}}
+                      placeholder="sm 사이즈"
+                      size="sm"
+                    />
+                  </div>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Select options={options} size="lg" />  {/* 56px - 기본값 */}
+<Select options={options} size="md" />  {/* 48px */}
+<Select options={options} size="sm" />  {/* 40px */}`}
               </Code>
             </Subsection>
 
@@ -420,17 +440,17 @@ const options = [
                       <Code>value</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">T | T[]</Code>
+                      <Code className="text-xs">T</Code>
                     </TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>현재 선택된 값 (단일 또는 다중)</TableCell>
+                    <TableCell>현재 선택된 값</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>onChange</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">{`(value: T | T[]) => void`}</Code>
+                      <Code className="text-xs">{`(value: T) => void`}</Code>
                     </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>값 변경 시 호출되는 함수</TableCell>
@@ -460,6 +480,20 @@ const options = [
                       <Code className="text-xs">false</Code>
                     </TableCell>
                     <TableCell>비활성화 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;lg&apos; | &apos;md&apos; | &apos;sm&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">&apos;lg&apos;</Code>
+                    </TableCell>
+                    <TableCell>크기 (lg: 56px, md: 48px, sm: 40px)</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
