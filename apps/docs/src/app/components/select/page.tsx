@@ -37,7 +37,6 @@ import { useState } from 'react';
 
 export default function SelectPage() {
   const [selectedValue, setSelectedValue] = useState('');
-  const [multipleValues, setMultipleValues] = useState<string[]>([]);
 
   const options = [
     { value: 'apple', label: '사과' },
@@ -212,37 +211,6 @@ const options = [
   value={value}
   onChange={setValue}
   placeholder="과일을 선택하세요"
-/>`}
-              </Code>
-            </Subsection>
-
-            {/* 다중 선택 */}
-            <Subsection level="h3">
-              <Heading level="h3" title="다중 선택 (현재 미지원)" />
-              <Body className="mb-3">
-                Radix UI Select는 현재 다중 선택을 기본으로 지원하지 않습니다.
-                다중 선택이 필요한 경우 별도의 구현이 필요합니다.
-              </Body>
-              <ComponentPreview>
-                <div className="max-w-md">
-                  <SelectComponent
-                    options={options}
-                    value={multipleValues}
-                    onChange={(value) =>
-                      setMultipleValues(Array.isArray(value) ? value : [value])
-                    }
-                    placeholder="여러 과일을 선택하세요"
-                    multiple
-                  />
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Select
-  options={options}
-  value={multipleValues}
-  onChange={setMultipleValues}
-  placeholder="여러 과일을 선택하세요"
-  multiple
 />`}
               </Code>
             </Subsection>
@@ -480,30 +448,6 @@ const options = [
                     <TableCell>
                       값이 선택되지 않았을 때 표시되는 텍스트
                     </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>multiple</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">boolean</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">false</Code>
-                    </TableCell>
-                    <TableCell>다중 선택 가능 여부 (현재 미지원)</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>searchable</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">boolean</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">false</Code>
-                    </TableCell>
-                    <TableCell>검색/필터 기능 활성화 (현재 미지원)</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>

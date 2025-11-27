@@ -24,26 +24,14 @@ export interface SelectProps<T = string> {
   options: SelectOption<T>[];
 
   /**
-   * 선택된 값 (다중 선택 시 배열)
+   * 선택된 값
    */
-  value?: T | T[];
+  value?: T;
 
   /**
    * 값 변경 핸들러
    */
-  onChange?: (value: T | T[]) => void;
-
-  /**
-   * 검색/필터 기능 활성화
-   * @default false
-   */
-  searchable?: boolean;
-
-  /**
-   * 다중 선택 허용
-   * @default false
-   */
-  multiple?: boolean;
+  onChange?: (value: T) => void;
 
   /**
    * 플레이스홀더 텍스트
@@ -84,46 +72,40 @@ export interface SelectProps<T = string> {
 }
 
 /**
- * 표시 값 가져오기
- */
-function getDisplayValue<T>(
-  options: SelectOption<T>[],
-  value: T | T[] | undefined,
-  multiple: boolean,
-  placeholder?: string
-): string {
-  if (value === undefined || (Array.isArray(value) && value.length === 0)) {
-    return placeholder || '선택하세요';
-  }
-
-  if (multiple && Array.isArray(value)) {
-    const selectedOptions = options.filter((opt) => value.includes(opt.value));
-    if (selectedOptions.length === 0) return placeholder || '선택하세요';
-    return `${selectedOptions.length}개 선택됨`;
-  }
-
-  const selectedOption = options.find((opt) => opt.value === value);
-  return selectedOption?.label || placeholder || '선택하세요';
-}
-
-/**
- * 배열에서 값 제거
- */
-function removeValue<T>(values: T[], valueToRemove: T): T[] {
-  return values.filter((v) => v !== valueToRemove);
-}
-
-/**
- * Select 컴포넌트 (기본 - Radix UI Select)
+ * Select 컴포넌트
  *
  * KRDS 준수 Select 컴포넌트 (Radix UI Select 기반, 완전한 접근성 제공)
- * 참고: Radix UI Select는 다중 선택 및 검색 기능을 지원하지 않음
+ *
+ * @example
+ * ```tsx
+ * // 기본 Select (독립 사용)
+ * <Select
+ *   options={[
+ *     { value: '1', label: '서울' },
+ *     { value: '2', label: '부산' }
+ *   ]}
+ *   value={value}
+ *   onChange={setValue}
+ *   placeholder="도시를 선택하세요"
+ * />
+ *
+ * // FormField와 함께 사용 (권장)
+ * <FormField id="city" required status="error">
+ *   <FormLabel>도시</FormLabel>
+ *   <Select
+ *     options={cities}
+ *     value={value}
+ *     onChange={setValue}
+ *     placeholder="도시를 선택하세요"
+ *   />
+ *   <FormError>도시를 선택해주세요</FormError>
+ * </FormField>
+ * ```
  */
-function BasicSelect<T = string>({
+export function Select<T = string>({
   options,
   value,
   onChange,
-  multiple = false,
   placeholder,
   disabled = false,
   error = false,
@@ -131,45 +113,13 @@ function BasicSelect<T = string>({
   className,
   renderOption,
   label,
-}: Omit<SelectProps<T>, 'searchable'>) {
+}: SelectProps<T>) {
   // FormField 컨텍스트 (선택적)
   let formField: ReturnType<typeof useFormField> | null = null;
   try {
     formField = useFormField();
   } catch {
     // FormField 없음, 독립 모드
-  }
-
-  const selectedValue = value ?? (multiple ? [] : undefined);
-
-  // Warn if multiple is used (Radix UI Select doesn't support multiple)
-  React.useEffect(() => {
-    if (multiple) {
-      console.warn(
-        'Select: Radix UI Select does not support multiple selection. Please use a different approach or wait for future implementation.'
-      );
-    }
-  }, [multiple]);
-
-  // For multiple, show warning and return placeholder
-  if (multiple) {
-    return (
-      <div className={cn('relative', className)}>
-        {label && (
-          <label className="block text-[15px] leading-[150%] font-medium text-krds-gray-70 mb-1">
-            {label}
-          </label>
-        )}
-        <div className="relative w-full cursor-not-allowed rounded-md border border-krds-gray-30 bg-krds-gray-5 py-2 pl-3 pr-10 text-left text-krds-gray-40">
-          <span className="block truncate">
-            {getDisplayValue(options, selectedValue, multiple, placeholder)}
-          </span>
-        </div>
-        <p className="mt-1 text-xs text-krds-danger-text">
-          Multiple selection is not yet supported with Radix UI Select
-        </p>
-      </div>
-    );
   }
 
   // 최종 status 결정 (우선순위: Select status > FormField status > error prop)
@@ -185,9 +135,7 @@ function BasicSelect<T = string>({
     onChange?.(newValue as T);
   };
 
-  const currentValue = selectedValue as T | undefined;
-  const stringValue =
-    currentValue !== undefined ? String(currentValue) : undefined;
+  const stringValue = value !== undefined ? String(value) : undefined;
 
   return (
     <SelectPrimitive.Root
@@ -197,7 +145,7 @@ function BasicSelect<T = string>({
     >
       <div className={cn('relative', className)}>
         {label && (
-          <label className="block text-[15px] leading-[150%] font-medium text-krds-gray-70 mb-1">
+          <label className="block text-krds-body-sm leading-[150%] font-medium text-krds-gray-70 mb-1">
             {label}
           </label>
         )}
@@ -212,11 +160,11 @@ function BasicSelect<T = string>({
               .join(' ') || undefined
           }
           className={cn(
-            'flex h-10 w-full items-center justify-between rounded-md border bg-krds-white px-3 py-2 text-[17px] leading-[150%] shadow-sm transition-colors',
+            'flex h-14 w-full items-center justify-between rounded-md border bg-krds-white pl-4 pr-12 py-2 text-krds-body-lg leading-[150%] shadow-sm transition-colors',
             'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
             hasError
               ? 'border-krds-danger-60 focus:ring-krds-danger-60'
-              : 'border-krds-gray-30 hover:border-krds-gray-40',
+              : 'border-krds-gray-60 hover:border-krds-gray-40',
             finalDisabled &&
               'cursor-not-allowed bg-krds-gray-5 text-krds-gray-40',
             'data-[placeholder]:text-krds-gray-50'
@@ -224,14 +172,14 @@ function BasicSelect<T = string>({
         >
           <SelectPrimitive.Value placeholder={placeholder || '선택하세요'} />
           <SelectPrimitive.Icon>
-            <ChevronDownIcon className="h-4 w-4 opacity-50" />
+            <ChevronDownIcon className="h-6 w-6 absolute right-4 top-1/2 -translate-y-1/2" />
           </SelectPrimitive.Icon>
         </SelectPrimitive.Trigger>
 
         <SelectPrimitive.Portal>
           <SelectPrimitive.Content
             className={cn(
-              'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-krds-white text-[17px] leading-[150%] shadow-md',
+              'relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-krds-white text-krds-body-md leading-[150%] shadow-md',
               'data-[state=open]:animate-in data-[state=closed]:animate-out',
               'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
               'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
@@ -267,93 +215,6 @@ function BasicSelect<T = string>({
       </div>
     </SelectPrimitive.Root>
   );
-}
-
-/**
- * Select 컴포넌트 (검색 가능)
- *
- * 참고: Radix UI Select는 기본적으로 검색 기능을 지원하지 않음.
- * 경고를 표시하고 기본 Select로 폴백됨.
- */
-function SearchableSelect<T = string>({
-  options,
-  value,
-  onChange,
-  placeholder,
-  disabled = false,
-  error = false,
-  status,
-  className,
-  renderOption,
-  label,
-}: Omit<SelectProps<T>, 'searchable' | 'multiple'>) {
-  React.useEffect(() => {
-    console.warn(
-      'Select: Radix UI Select does not support searchable functionality. Using basic select instead.'
-    );
-  }, []);
-
-  // 기본 Select로 폴백
-  return (
-    <BasicSelect
-      options={options}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      disabled={disabled}
-      error={error}
-      status={status}
-      className={className}
-      renderOption={renderOption}
-      label={label}
-    />
-  );
-}
-
-/**
- * Select 컴포넌트
- *
- * Radix UI 기반 접근성을 고려한 선택 목록 컴포넌트
- * FormField와 통합하여 label, error, helper text를 일관되게 관리할 수 있음
- *
- * @example
- * ```tsx
- * // 기본 Select (독립 사용)
- * <Select
- *   options={[
- *     { value: '1', label: '서울' },
- *     { value: '2', label: '부산' }
- *   ]}
- *   value={value}
- *   onChange={setValue}
- *   placeholder="도시를 선택하세요"
- * />
- *
- * // FormField와 함께 사용 (권장)
- * <FormField id="city" required status="error">
- *   <FormLabel>도시</FormLabel>
- *   <Select
- *     options={cities}
- *     value={value}
- *     onChange={setValue}
- *     placeholder="도시를 선택하세요"
- *   />
- *   <FormError>도시를 선택해주세요</FormError>
- * </FormField>
- * ```
- */
-export function Select<T = string>(props: SelectProps<T>) {
-  if (props.searchable) {
-    if (props.multiple) {
-      console.warn(
-        'Select: searchable + multiple is not supported. Using basic multiple select.'
-      );
-      return <BasicSelect {...props} />;
-    }
-    return <SearchableSelect {...props} />;
-  }
-
-  return <BasicSelect {...props} />;
 }
 
 Select.displayName = 'Select';
