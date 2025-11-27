@@ -14,7 +14,6 @@ import { Installation } from '@/components/content/Installation';
 // UI components - from @hanui/react
 import {
   Alert,
-  Body,
   Button,
   Code,
   Tabs,
@@ -58,13 +57,9 @@ export default function AlertPage() {
               level="h2"
               id="overview"
               title="개요"
+              description="Alert는 사용자에게 중요한 정보를 전달하는 정적 메시지 컴포넌트입니다. 정보, 성공, 경고, 오류 네 가지 유형을 지원하며, role 속성으로 스크린리더 동작을 제어할 수 있습니다."
               className="sr-only"
             />
-            <Body className="mb-3">
-              Alert는 사용자에게 중요한 정보를 전달하는 정적 메시지
-              컴포넌트입니다. 정보, 성공, 경고, 오류 네 가지 유형을 지원하며,
-              role 속성으로 스크린리더 동작을 제어할 수 있습니다.
-            </Body>
             <ComponentPreview>
               <div className="w-full max-w-lg space-y-4">
                 <Alert variant="info" title="정보">
@@ -113,11 +108,11 @@ export default function AlertPage() {
 
             {/* 유형 */}
             <Subsection level="h3">
-              <Heading level="h3" title="유형" />
-              <Body className="mb-3">
-                info, success, warning, error 네 가지 유형을 지원합니다. 각
-                유형에 맞는 색상과 기본 아이콘이 적용됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="유형"
+                description="info, success, warning, error 네 가지 유형을 지원합니다. 각 유형에 맞는 색상과 기본 아이콘이 적용됩니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-lg space-y-4">
                   <Alert variant="info" title="정보">
@@ -144,10 +139,11 @@ export default function AlertPage() {
 
             {/* 제목만 */}
             <Subsection level="h3">
-              <Heading level="h3" title="제목만" />
-              <Body className="mb-3">
-                간단한 메시지는 title만 사용하여 표시할 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="제목만"
+                description="간단한 메시지는 title만 사용하여 표시할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-lg space-y-4">
                   <Alert variant="info" title="새로운 알림이 있습니다." />
@@ -162,10 +158,11 @@ export default function AlertPage() {
 
             {/* 설명만 */}
             <Subsection level="h3">
-              <Heading level="h3" title="설명만" />
-              <Body className="mb-3">
-                title 없이 children만 사용하여 상세 설명을 표시할 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="설명만"
+                description="title 없이 children만 사용하여 상세 설명을 표시할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-lg space-y-4">
                   <Alert variant="info">
@@ -188,11 +185,11 @@ export default function AlertPage() {
 
             {/* 닫기 버튼 */}
             <Subsection level="h3">
-              <Heading level="h3" title="닫기 버튼" />
-              <Body className="mb-3">
-                closable prop으로 닫기 버튼을 표시하고, onClose 콜백으로 닫기
-                이벤트를 처리합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="닫기 버튼"
+                description="closable prop으로 닫기 버튼을 표시하고, onClose 콜백으로 닫기 이벤트를 처리합니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-lg space-y-4">
                   {showClosable ? (
@@ -228,11 +225,11 @@ export default function AlertPage() {
 
             {/* 커스텀 아이콘 */}
             <Subsection level="h3">
-              <Heading level="h3" title="커스텀 아이콘" />
-              <Body className="mb-3">
-                icon prop으로 커스텀 아이콘을 지정하거나
-                icon=&#123;false&#125;로 아이콘을 숨길 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="커스텀 아이콘"
+                description="icon prop으로 커스텀 아이콘을 지정하거나 icon={false}로 아이콘을 숨길 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-lg space-y-4">
                   <Alert
@@ -278,11 +275,11 @@ export default function AlertPage() {
 
             {/* Role 속성 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Role 속성" />
-              <Body className="mb-3">
-                role prop으로 스크린리더의 동작을 제어합니다. alert는 즉시
-                읽히고, status는 대기 후 읽힙니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="Role 속성"
+                description="role prop으로 스크린리더의 동작을 제어합니다. alert는 즉시 읽히고, status는 대기 후 읽힙니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-lg space-y-4">
                   <Alert variant="error" title="긴급 알림" role="alert">
