@@ -197,8 +197,8 @@ export const Progress = React.forwardRef<
           className={cn(progressVariants({ size, variant }), className)}
           value={isIndeterminate ? null : normalizedValue}
           max={max}
-          aria-label={label}
-          aria-labelledby={label ? `${props.id}-label` : undefined}
+          aria-label={label || '진행률'}
+          aria-labelledby={label && props.id ? `${props.id}-label` : undefined}
           aria-busy={isIndeterminate}
           {...props}
         >
@@ -318,7 +318,7 @@ export const CircularProgress = React.forwardRef<
         aria-valuenow={isIndeterminate ? undefined : normalizedValue}
         aria-valuemin={0}
         aria-valuemax={max}
-        aria-label={label}
+        aria-label={label || '진행률'}
         aria-busy={isIndeterminate}
       >
         <svg

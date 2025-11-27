@@ -176,6 +176,9 @@ function FeedbackTab() {
 
   return (
     <div className="space-y-8">
+      <Heading level="h2" className="sr-only">
+        피드백 및 상태 컴포넌트
+      </Heading>
       {/* Alert */}
       <Card>
         <CardHeader>
@@ -352,6 +355,9 @@ function FormTab() {
 
   return (
     <div className="space-y-8">
+      <Heading level="h2" className="sr-only">
+        폼 입력 컴포넌트
+      </Heading>
       {/* Input */}
       <Card>
         <CardHeader>
@@ -551,6 +557,9 @@ function NavigationTab() {
 
   return (
     <div className="space-y-8">
+      <Heading level="h2" className="sr-only">
+        네비게이션 컴포넌트
+      </Heading>
       {/* Breadcrumb */}
       <Card>
         <CardHeader>
@@ -654,6 +663,9 @@ function ActionTab() {
 
   return (
     <div className="space-y-8">
+      <Heading level="h2" className="sr-only">
+        액션 및 오버레이 컴포넌트
+      </Heading>
       {/* Button */}
       <Card>
         <CardHeader>
@@ -879,6 +891,9 @@ function ActionTab() {
 function DataTab() {
   return (
     <div className="space-y-8">
+      <Heading level="h2" className="sr-only">
+        데이터 표시 컴포넌트
+      </Heading>
       {/* Table */}
       <Card>
         <CardHeader>
@@ -936,7 +951,7 @@ function DataTab() {
           </div>
           <div>
             <Body className="font-medium mb-2">순서 있는 목록</Body>
-            <List as="ol">
+            <List variant="ordered">
               <ListItem>첫 번째 단계</ListItem>
               <ListItem>두 번째 단계</ListItem>
               <ListItem>세 번째 단계</ListItem>
@@ -960,7 +975,7 @@ function DataTab() {
                 <Body>그림자가 있는 카드입니다.</Body>
               </CardBody>
             </Card>
-            <Card variant="outline">
+            <Card variant="outlined">
               <CardHeader>
                 <CardTitle>Outline Card</CardTitle>
               </CardHeader>
@@ -1124,39 +1139,44 @@ function AccessibilityChecklist() {
   ];
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>접근성 체크리스트 (KWCAG 2.2 AA)</CardTitle>
-      </CardHeader>
-      <CardBody>
-        <div className="overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>컴포넌트</TableHead>
-                <TableHead>ARIA 속성</TableHead>
-                <TableHead>키보드</TableHead>
-                <TableHead>포커스</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {items.map((item) => (
-                <TableRow key={item.component}>
-                  <TableCell className="font-medium">
-                    {item.component}
-                  </TableCell>
-                  <TableCell className="text-sm font-mono">
-                    {item.aria}
-                  </TableCell>
-                  <TableCell>{item.keyboard}</TableCell>
-                  <TableCell>{item.focus}</TableCell>
+    <>
+      <Heading level="h2" className="sr-only">
+        접근성 체크리스트
+      </Heading>
+      <Card>
+        <CardHeader>
+          <CardTitle>접근성 체크리스트 (KWCAG 2.2 AA)</CardTitle>
+        </CardHeader>
+        <CardBody>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>컴포넌트</TableHead>
+                  <TableHead>ARIA 속성</TableHead>
+                  <TableHead>키보드</TableHead>
+                  <TableHead>포커스</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </CardBody>
-    </Card>
+              </TableHeader>
+              <TableBody>
+                {items.map((item) => (
+                  <TableRow key={item.component}>
+                    <TableCell className="font-medium">
+                      {item.component}
+                    </TableCell>
+                    <TableCell className="text-sm font-mono">
+                      {item.aria}
+                    </TableCell>
+                    <TableCell>{item.keyboard}</TableCell>
+                    <TableCell>{item.focus}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </CardBody>
+      </Card>
+    </>
   );
 }
 
