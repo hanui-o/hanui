@@ -35,6 +35,8 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  List,
+  ListItem,
 } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
@@ -78,11 +80,13 @@ export default function AlertDialogPage() {
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
+          {/* 1. 개요 */}
           <Section level="h2">
             <Heading
               level="h2"
               id="overview"
               title="개요"
+              description="Radix UI를 기반으로 구축되어 완전한 키보드 접근성, 포커스 트래핑, Escape 키 닫기를 지원합니다. 삭제, 로그아웃 등 사용자 확인이 필요한 중요한 작업에 사용합니다."
               className="sr-only"
             />
             <ComponentPreview>
@@ -107,12 +111,19 @@ export default function AlertDialogPage() {
             </Code>
           </Section>
 
+          {/* 2. 설치 */}
           <Section level="h2">
             <Installation componentName="alert-dialog" />
           </Section>
 
+          {/* 3. 사용법 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="SimpleAlertDialog로 간단히 사용하거나, 개별 컴포넌트를 조합하여 커스텀할 수 있습니다."
+            />
             <Code variant="block" language="tsx">
               {`import { SimpleAlertDialog, Button } from '@hanui/react'
 
@@ -126,12 +137,17 @@ export default function AlertDialogPage() {
             </Code>
           </Section>
 
-          {/* 예제 섹션 */}
+          {/* 4. 예제 */}
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
 
+            {/* 유형 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Variant" />
+              <Heading
+                level="h3"
+                title="유형"
+                description="info, success, warning, danger 등 다양한 유형을 지원합니다. variant에 따라 테두리 색상과 아이콘이 자동 적용됩니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap gap-3">
                   <SimpleAlertDialog
@@ -183,8 +199,13 @@ export default function AlertDialogPage() {
               </Code>
             </Subsection>
 
+            {/* 제어 모드 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Controlled" />
+              <Heading
+                level="h3"
+                title="제어 모드"
+                description="open과 onOpenChange로 다이얼로그의 열림/닫힘 상태를 직접 제어할 수 있습니다."
+              />
               <ComponentPreview>
                 <ControlledAlertDialog />
               </ComponentPreview>
@@ -205,8 +226,13 @@ export default function AlertDialogPage() {
               </Code>
             </Subsection>
 
+            {/* 컴포넌트 조합 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Composition" />
+              <Heading
+                level="h3"
+                title="컴포넌트 조합"
+                description="개별 컴포넌트를 조합하여 리스트, 폼 등 복잡한 콘텐츠를 포함할 수 있습니다."
+              />
               <ComponentPreview>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
@@ -260,8 +286,13 @@ export default function AlertDialogPage() {
               </Code>
             </Subsection>
 
+            {/* 아이콘 없음 */}
             <Subsection level="h3">
-              <Heading level="h3" title="Without Icon" />
+              <Heading
+                level="h3"
+                title="아이콘 없음"
+                description="showIcon={false}로 아이콘 없이 텍스트만 표시할 수 있습니다."
+              />
               <ComponentPreview>
                 <SimpleAlertDialog
                   trigger={<Button variant="tertiary">로그아웃</Button>}
@@ -281,6 +312,37 @@ export default function AlertDialogPage() {
 />`}
               </Code>
             </Subsection>
+          </Section>
+
+          {/* 5. 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="AlertDialog는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>Radix UI 기반:</strong> role=&quot;alertdialog&quot;와
+                aria-modal=&quot;true&quot;가 자동 적용됩니다.
+              </ListItem>
+              <ListItem>
+                <strong>포커스 트래핑:</strong> 다이얼로그 열림 시 포커스가
+                내부에 갇히고, 닫힘 시 트리거로 복귀합니다.
+              </ListItem>
+              <ListItem>
+                <strong>키보드 접근:</strong> Escape로 닫기, Tab으로 버튼 간
+                이동이 가능합니다.
+              </ListItem>
+              <ListItem>
+                <strong>스크린리더:</strong> aria-labelledby와
+                aria-describedby로 제목/설명이 연결됩니다.
+              </ListItem>
+              <ListItem>
+                명도 대비 4.5:1 이상을 준수하여 시각적 접근성을 보장합니다.
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
@@ -420,49 +482,64 @@ export default function AlertDialogPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Accessibility" />
-              <div className="space-y-4 mt-4">
-                <div className="rounded-lg border border-krds-gray-20 p-4">
-                  <h4 className="font-semibold text-krds-gray-95 mb-2">
-                    ARIA 속성
-                  </h4>
-                  <ul className="list-disc pl-5 space-y-1 text-sm text-krds-gray-70">
-                    <li>
-                      <Code>role="alertdialog"</Code>: 중요한 알림
-                      다이얼로그임을 명시
-                    </li>
-                    <li>
-                      <Code>aria-modal="true"</Code>: 모달 다이얼로그임을 명시
-                    </li>
-                    <li>
-                      <Code>aria-labelledby</Code>: 제목과 연결
-                    </li>
-                    <li>
-                      <Code>aria-describedby</Code>: 설명과 연결
-                    </li>
-                  </ul>
-                </div>
-                <div className="rounded-lg border border-krds-gray-20 p-4">
-                  <h4 className="font-semibold text-krds-gray-95 mb-2">
-                    키보드 접근성
-                  </h4>
-                  <ul className="list-disc pl-5 space-y-1 text-sm text-krds-gray-70">
-                    <li>
-                      <Code>Tab</Code>: 버튼 간 이동
-                    </li>
-                    <li>
-                      <Code>Shift + Tab</Code>: 역방향 이동
-                    </li>
-                    <li>
-                      <Code>Escape</Code>: 다이얼로그 닫기
-                    </li>
-                    <li>
-                      <Code>Enter</Code>/<Code>Space</Code>: 버튼 활성화
-                    </li>
-                    <li>포커스 트래핑: 다이얼로그 외부로 포커스 이동 방지</li>
-                  </ul>
-                </div>
-              </div>
+              <Heading level="h3" title="키보드 접근성" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>키</TableHead>
+                    <TableHead>동작</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Tab</Code>
+                    </TableCell>
+                    <TableCell>버튼 간 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Shift + Tab</Code>
+                    </TableCell>
+                    <TableCell>역방향 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Escape</Code>
+                    </TableCell>
+                    <TableCell>다이얼로그 닫기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Enter</Code> / <Code>Space</Code>
+                    </TableCell>
+                    <TableCell>버튼 활성화</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="ARIA 속성" />
+              <List variant="check">
+                <ListItem>
+                  <Code>role=&quot;alertdialog&quot;</Code> - 중요한 알림
+                  다이얼로그임을 명시
+                </ListItem>
+                <ListItem>
+                  <Code>aria-modal=&quot;true&quot;</Code> - 모달 다이얼로그임을
+                  명시
+                </ListItem>
+                <ListItem>
+                  <Code>aria-labelledby</Code> - 제목과 연결
+                </ListItem>
+                <ListItem>
+                  <Code>aria-describedby</Code> - 설명과 연결
+                </ListItem>
+                <ListItem>
+                  포커스 트래핑 - 다이얼로그 외부로 포커스 이동 방지
+                </ListItem>
+              </List>
             </Subsection>
           </Section>
         </TabsContent>
