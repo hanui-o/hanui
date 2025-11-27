@@ -420,18 +420,9 @@ function FormTab() {
             onValueChange={setCheckboxGroupValue}
           >
             <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <CheckboxGroupItem value="option1" id="cb-1" />
-                <Label htmlFor="cb-1">옵션 1</Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckboxGroupItem value="option2" id="cb-2" />
-                <Label htmlFor="cb-2">옵션 2</Label>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckboxGroupItem value="option3" id="cb-3" />
-                <Label htmlFor="cb-3">옵션 3</Label>
-              </div>
+              <CheckboxGroupItem value="option1" label="옵션 1" />
+              <CheckboxGroupItem value="option2" label="옵션 2" />
+              <CheckboxGroupItem value="option3" label="옵션 3" />
             </div>
           </CheckboxGroup>
           <Body className="text-sm text-krds-gray-50">
@@ -627,8 +618,8 @@ function NavigationTab() {
             </Link>
           </div>
           <div>
-            <Link href="/" variant="subtle">
-              서브틀 링크
+            <Link href="/" variant="plain">
+              플레인 링크
             </Link>
           </div>
         </CardBody>
