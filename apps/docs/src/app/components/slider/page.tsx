@@ -1,11 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
+import {
+  PageSection as Section,
+  Heading,
+  Subsection,
+  PageNavigation,
+} from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
+
 import {
   Slider,
   Body,
   Code,
-  Heading,
+  List,
+  ListItem,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
   Table,
   TableHeader,
   TableBody,
@@ -17,122 +31,178 @@ import {
 export default function SliderPage() {
   const [value1, setValue1] = useState<number>(50);
   const [value2, setValue2] = useState<number>(30);
-  const [value3, setValue3] = useState<number[]>([20, 80]);
-  const [value4, setValue4] = useState<number>(50);
+  const [rangeValue, setRangeValue] = useState<number[]>([20, 80]);
+  const [stepValue, setStepValue] = useState<number>(50);
 
   return (
     <>
-      <Heading level="h1">Slider</Heading>
-      <Body className="text-krds-gray-60 mb-8">
-        범위 내에서 값을 선택할 수 있는 슬라이더 컴포넌트입니다. 단일 값 또는
-        범위 선택을 지원합니다.
-      </Body>
+      <Heading
+        level="h1"
+        title="Slider"
+        description="범위 내에서 값을 선택할 수 있는 슬라이더 컴포넌트입니다. 단일 값 또는 범위 선택을 지원합니다."
+      />
 
-      {/* 기본 사용 */}
-      <section className="space-y-4">
-        <Heading level="h2">기본 사용</Heading>
-        <Body className="mb-4">기본 슬라이더입니다.</Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex flex-col items-center justify-center min-h-[200px]">
-          <div className="w-full max-w-md">
-            <Slider
-              value={value1}
-              onValueChange={(v) => setValue1(v as number)}
-              showValue
-              label="볼륨"
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="overview">
+          {/* 1. 개요 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-          </div>
-        </div>
-        <Code
-          variant="block"
-          language="tsx"
-        >{`const [value, setValue] = useState(50);
+            <Body className="mb-3">
+              Slider는 Radix UI를 기반으로 구축되어 완전한 키보드 접근성과 ARIA
+              속성을 자동으로 지원합니다. 볼륨, 밝기, 가격 범위 등 다양한 값
+              선택에 활용됩니다.
+            </Body>
+            <ComponentPreview>
+              <div className="w-full max-w-md">
+                <Slider
+                  value={value1}
+                  onValueChange={(v) => setValue1(v as number)}
+                  showValue
+                  label="볼륨"
+                />
+              </div>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`const [value, setValue] = useState(50);
 
 <Slider
   value={value}
   onValueChange={setValue}
   showValue
   label="볼륨"
-/>`}</Code>
-      </section>
+/>`}
+            </Code>
+          </Section>
 
-      {/* 크기 */}
-      <section className="space-y-4">
-        <Heading level="h2">크기</Heading>
-        <Body className="mb-4">sm, md, lg 세 가지 크기를 지원합니다.</Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[200px]">
-          <div className="w-full max-w-md space-y-6">
-            <Slider defaultValue={30} size="sm" label="Small" showValue />
-            <Slider defaultValue={50} size="md" label="Medium" showValue />
-            <Slider defaultValue={70} size="lg" label="Large" showValue />
-          </div>
-        </div>
-        <Code
-          variant="block"
-          language="tsx"
-        >{`<Slider defaultValue={30} size="sm" label="Small" showValue />
+          {/* 2. 설치 */}
+          <Section level="h2">
+            <Installation componentName="slider" />
+          </Section>
+
+          {/* 3. 사용법 */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Body className="mb-3">
+              Slider 컴포넌트를 import하여 사용합니다. value와 onValueChange로
+              제어하거나 defaultValue로 비제어 모드로 사용합니다.
+            </Body>
+            <Code variant="block" language="tsx">
+              {`import { Slider } from '@hanui/react';
+
+// 제어 컴포넌트
+const [value, setValue] = useState(50);
+<Slider value={value} onValueChange={setValue} />
+
+// 비제어 컴포넌트
+<Slider defaultValue={50} />
+
+// 범위 선택
+const [range, setRange] = useState([20, 80]);
+<Slider value={range} onValueChange={setRange} />`}
+            </Code>
+          </Section>
+
+          {/* 4. 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            {/* 크기 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="크기" />
+              <Body className="mb-3">
+                sm, md, lg 세 가지 크기를 지원합니다. 기본값은 md입니다.
+              </Body>
+              <ComponentPreview>
+                <div className="w-full max-w-md space-y-6">
+                  <Slider defaultValue={30} size="sm" label="Small" showValue />
+                  <Slider
+                    defaultValue={50}
+                    size="md"
+                    label="Medium"
+                    showValue
+                  />
+                  <Slider defaultValue={70} size="lg" label="Large" showValue />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Slider defaultValue={30} size="sm" label="Small" showValue />
 <Slider defaultValue={50} size="md" label="Medium" showValue />
-<Slider defaultValue={70} size="lg" label="Large" showValue />`}</Code>
-      </section>
+<Slider defaultValue={70} size="lg" label="Large" showValue />`}
+              </Code>
+            </Subsection>
 
-      {/* 색상 */}
-      <section className="space-y-4">
-        <Heading level="h2">색상</Heading>
-        <Body className="mb-4">
-          primary, secondary, success, danger 네 가지 색상을 지원합니다.
-        </Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[280px]">
-          <div className="w-full max-w-md space-y-6">
-            <Slider
-              defaultValue={50}
-              color="primary"
-              label="Primary"
-              showValue
-            />
-            <Slider
-              defaultValue={50}
-              color="secondary"
-              label="Secondary"
-              showValue
-            />
-            <Slider
-              defaultValue={50}
-              color="success"
-              label="Success"
-              showValue
-            />
-            <Slider defaultValue={50} color="danger" label="Danger" showValue />
-          </div>
-        </div>
-        <Code
-          variant="block"
-          language="tsx"
-        >{`<Slider defaultValue={50} color="primary" label="Primary" showValue />
+            {/* 색상 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="색상" />
+              <Body className="mb-3">
+                primary, secondary, success, danger 네 가지 색상을 지원합니다.
+              </Body>
+              <ComponentPreview>
+                <div className="w-full max-w-md space-y-6">
+                  <Slider
+                    defaultValue={50}
+                    color="primary"
+                    label="Primary"
+                    showValue
+                  />
+                  <Slider
+                    defaultValue={50}
+                    color="secondary"
+                    label="Secondary"
+                    showValue
+                  />
+                  <Slider
+                    defaultValue={50}
+                    color="success"
+                    label="Success"
+                    showValue
+                  />
+                  <Slider
+                    defaultValue={50}
+                    color="danger"
+                    label="Danger"
+                    showValue
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Slider defaultValue={50} color="primary" label="Primary" showValue />
 <Slider defaultValue={50} color="secondary" label="Secondary" showValue />
 <Slider defaultValue={50} color="success" label="Success" showValue />
-<Slider defaultValue={50} color="danger" label="Danger" showValue />`}</Code>
-      </section>
+<Slider defaultValue={50} color="danger" label="Danger" showValue />`}
+              </Code>
+            </Subsection>
 
-      {/* 범위 선택 */}
-      <section className="space-y-4">
-        <Heading level="h2">범위 선택</Heading>
-        <Body className="mb-4">
-          배열 값을 사용하여 범위를 선택할 수 있습니다.
-        </Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex flex-col items-center justify-center min-h-[200px]">
-          <div className="w-full max-w-md">
-            <Slider
-              value={value3}
-              onValueChange={(v) => setValue3(v as number[])}
-              showValue
-              label="가격 범위"
-              formatValue={(v) => `${v.toLocaleString()}원`}
-            />
-          </div>
-        </div>
-        <Code
-          variant="block"
-          language="tsx"
-        >{`const [range, setRange] = useState([20, 80]);
+            {/* 범위 선택 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="범위 선택" />
+              <Body className="mb-3">
+                배열 값을 사용하여 시작과 끝 두 지점의 범위를 선택할 수
+                있습니다.
+              </Body>
+              <ComponentPreview>
+                <div className="w-full max-w-md">
+                  <Slider
+                    value={rangeValue}
+                    onValueChange={(v) => setRangeValue(v as number[])}
+                    showValue
+                    label="가격 범위"
+                    formatValue={(v) => `${v.toLocaleString()}원`}
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`const [range, setRange] = useState([20, 80]);
 
 <Slider
   value={range}
@@ -140,233 +210,331 @@ export default function SliderPage() {
   showValue
   label="가격 범위"
   formatValue={(v) => \`\${v.toLocaleString()}원\`}
-/>`}</Code>
-      </section>
+/>`}
+              </Code>
+            </Subsection>
 
-      {/* 값 포맷팅 */}
-      <section className="space-y-4">
-        <Heading level="h2">값 포맷팅</Heading>
-        <Body className="mb-4">
-          formatValue prop으로 표시되는 값을 포맷할 수 있습니다.
-        </Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex flex-col items-center justify-center min-h-[200px]">
-          <div className="w-full max-w-md">
-            <Slider
-              value={value2}
-              onValueChange={(v) => setValue2(v as number)}
-              showValue
-              label="할인율"
-              formatValue={(v) => `${v}%`}
-            />
-          </div>
-        </div>
-        <Code variant="block" language="tsx">{`<Slider
+            {/* 값 포맷팅 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="값 포맷팅" />
+              <Body className="mb-3">
+                formatValue prop으로 표시되는 값을 커스텀 포맷할 수 있습니다.
+              </Body>
+              <ComponentPreview>
+                <div className="w-full max-w-md">
+                  <Slider
+                    value={value2}
+                    onValueChange={(v) => setValue2(v as number)}
+                    showValue
+                    label="할인율"
+                    formatValue={(v) => `${v}%`}
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Slider
   value={value}
   onValueChange={setValue}
   showValue
   label="할인율"
   formatValue={(v) => \`\${v}%\`}
-/>`}</Code>
-      </section>
+/>`}
+              </Code>
+            </Subsection>
 
-      {/* Step */}
-      <section className="space-y-4">
-        <Heading level="h2">단계 설정</Heading>
-        <Body className="mb-4">step prop으로 값의 증가 단위를 설정합니다.</Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex flex-col items-center justify-center min-h-[200px]">
-          <div className="w-full max-w-md">
-            <Slider
-              value={value4}
-              onValueChange={(v) => setValue4(v as number)}
-              step={10}
-              showValue
-              label="10 단위"
-            />
-          </div>
-        </div>
-        <Code variant="block" language="tsx">{`<Slider
+            {/* 단계 설정 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="단계 설정" />
+              <Body className="mb-3">
+                step prop으로 값의 증가 단위를 설정합니다. 기본값은 1입니다.
+              </Body>
+              <ComponentPreview>
+                <div className="w-full max-w-md">
+                  <Slider
+                    value={stepValue}
+                    onValueChange={(v) => setStepValue(v as number)}
+                    step={10}
+                    showValue
+                    label="10 단위 조절"
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Slider
   value={value}
   onValueChange={setValue}
   step={10}
   showValue
-  label="10 단위"
-/>`}</Code>
-      </section>
+  label="10 단위 조절"
+/>`}
+              </Code>
+            </Subsection>
 
-      {/* 비활성화 */}
-      <section className="space-y-4">
-        <Heading level="h2">비활성화</Heading>
-        <Body className="mb-4">
-          disabled prop으로 슬라이더를 비활성화합니다.
-        </Body>
-        <div className="p-6 border border-krds-gray-20 rounded-lg flex items-center justify-center min-h-[200px]">
-          <div className="w-full max-w-md">
-            <Slider defaultValue={50} disabled showValue label="비활성화됨" />
-          </div>
-        </div>
-        <Code
-          variant="block"
-          language="tsx"
-        >{`<Slider defaultValue={50} disabled showValue label="비활성화됨" />`}</Code>
-      </section>
+            {/* 비활성화 */}
+            <Subsection level="h3">
+              <Heading level="h3" title="비활성화" />
+              <Body className="mb-3">
+                disabled prop으로 슬라이더를 비활성화합니다.
+              </Body>
+              <ComponentPreview>
+                <div className="w-full max-w-md">
+                  <Slider
+                    defaultValue={50}
+                    disabled
+                    showValue
+                    label="비활성화됨"
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Slider defaultValue={50} disabled showValue label="비활성화됨" />`}
+              </Code>
+            </Subsection>
+          </Section>
 
-      {/* Props 테이블 */}
-      <section className="space-y-4">
-        <Heading level="h2">Props</Heading>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Prop</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead>Default</TableHead>
-              <TableHead>Description</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Code>value</Code>
-              </TableCell>
-              <TableCell>
-                <Code>number | number[]</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>현재 값 (제어 컴포넌트)</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>defaultValue</Code>
-              </TableCell>
-              <TableCell>
-                <Code>number | number[]</Code>
-              </TableCell>
-              <TableCell>min</TableCell>
-              <TableCell>기본 값 (비제어 컴포넌트)</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>onValueChange</Code>
-              </TableCell>
-              <TableCell>
-                <Code>(value: number | number[]) =&gt; void</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>값 변경 콜백</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>min</Code>
-              </TableCell>
-              <TableCell>
-                <Code>number</Code>
-              </TableCell>
-              <TableCell>0</TableCell>
-              <TableCell>최소값</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>max</Code>
-              </TableCell>
-              <TableCell>
-                <Code>number</Code>
-              </TableCell>
-              <TableCell>100</TableCell>
-              <TableCell>최대값</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>step</Code>
-              </TableCell>
-              <TableCell>
-                <Code>number</Code>
-              </TableCell>
-              <TableCell>1</TableCell>
-              <TableCell>증가 단위</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>size</Code>
-              </TableCell>
-              <TableCell>
-                <Code>&quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;</Code>
-              </TableCell>
-              <TableCell>&quot;md&quot;</TableCell>
-              <TableCell>크기</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>color</Code>
-              </TableCell>
-              <TableCell>
-                <Code>
-                  &quot;primary&quot; | &quot;secondary&quot; |
-                  &quot;success&quot; | &quot;danger&quot;
-                </Code>
-              </TableCell>
-              <TableCell>&quot;primary&quot;</TableCell>
-              <TableCell>색상</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>showValue</Code>
-              </TableCell>
-              <TableCell>
-                <Code>boolean</Code>
-              </TableCell>
-              <TableCell>false</TableCell>
-              <TableCell>값 표시 여부</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>formatValue</Code>
-              </TableCell>
-              <TableCell>
-                <Code>(value: number) =&gt; string</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>값 포맷터</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>label</Code>
-              </TableCell>
-              <TableCell>
-                <Code>string</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>라벨</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>disabled</Code>
-              </TableCell>
-              <TableCell>
-                <Code>boolean</Code>
-              </TableCell>
-              <TableCell>false</TableCell>
-              <TableCell>비활성화</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </section>
+          {/* 5. 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="Slider는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>Radix UI 기반:</strong> role=&quot;slider&quot;가 자동
+                적용되고 aria-valuenow, aria-valuemin, aria-valuemax가 자동으로
+                설정됩니다.
+              </ListItem>
+              <ListItem>
+                <strong>키보드 네비게이션:</strong> 좌/우 화살표로 값을
+                조절하고, Home/End로 최소/최대값으로 이동합니다.
+              </ListItem>
+              <ListItem>
+                <strong>포커스 표시:</strong> focus-visible 시 링 스타일로
+                명확한 시각적 피드백을 제공합니다.
+              </ListItem>
+              <ListItem>
+                <strong>레이블 연결:</strong> label prop과 aria-labelledby로
+                스크린 리더가 목적을 인식할 수 있습니다.
+              </ListItem>
+              <ListItem>
+                명도 대비 4.5:1 이상을 준수하여 시각적 접근성을 보장합니다.
+              </ListItem>
+            </List>
+          </Section>
+        </TabsContent>
 
-      {/* 접근성 */}
-      <section className="space-y-4">
-        <Heading level="h2">접근성</Heading>
-        <Body>Slider 컴포넌트는 WCAG 2.2 AA 기준을 준수합니다:</Body>
-        <ul className="list-disc list-inside space-y-2 text-krds-gray-70">
-          <li>
-            <Code>role=&quot;slider&quot;</Code> 역할이 자동으로 적용됩니다.
-          </li>
-          <li>
-            <Code>aria-valuenow</Code>, <Code>aria-valuemin</Code>,{' '}
-            <Code>aria-valuemax</Code>가 자동으로 설정됩니다.
-          </li>
-          <li>키보드로 조작할 수 있습니다 (화살표 키).</li>
-          <li>포커스 시 시각적 피드백이 제공됩니다.</li>
-          <li>label과 연결하여 스크린 리더 지원이 가능합니다.</li>
-        </ul>
-      </section>
+        <TabsContent value="api">
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API Reference" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>value</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number | number[]</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>현재 값 (제어 컴포넌트)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>defaultValue</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number | number[]</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">min</Code>
+                    </TableCell>
+                    <TableCell>기본 값 (비제어 컴포넌트)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>onValueChange</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (value: number | number[]) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>값 변경 시 호출되는 콜백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>min</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">0</Code>
+                    </TableCell>
+                    <TableCell>최소값</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>max</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">100</Code>
+                    </TableCell>
+                    <TableCell>최대값</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>step</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">1</Code>
+                    </TableCell>
+                    <TableCell>증가 단위</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">&apos;md&apos;</Code>
+                    </TableCell>
+                    <TableCell>크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>color</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;primary&apos; | &apos;secondary&apos; |
+                        &apos;success&apos; | &apos;danger&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">&apos;primary&apos;</Code>
+                    </TableCell>
+                    <TableCell>색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>showValue</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">false</Code>
+                    </TableCell>
+                    <TableCell>값 표시 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>formatValue</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (value: number) =&gt; string
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>값 표시 포맷 함수</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>label</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>슬라이더 라벨</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">false</Code>
+                    </TableCell>
+                    <TableCell>비활성화 상태</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="키보드 단축키" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>키</TableHead>
+                    <TableHead>동작</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>←</Code> / <Code>→</Code>
+                    </TableCell>
+                    <TableCell>값을 step만큼 감소/증가</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Home</Code>
+                    </TableCell>
+                    <TableCell>최소값으로 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>End</Code>
+                    </TableCell>
+                    <TableCell>최대값으로 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Page Up</Code> / <Code>Page Down</Code>
+                    </TableCell>
+                    <TableCell>값을 큰 단위로 증가/감소</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'Skeleton', href: '/components/skeleton' }}
+        next={{ title: 'Spinner', href: '/components/spinner' }}
+      />
     </>
   );
 }
