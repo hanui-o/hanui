@@ -247,25 +247,99 @@ const actionComponents = [
     href: '/components/button',
     updated: true,
   },
+  {
+    name: 'DropdownMenu',
+    description: '드롭다운 메뉴',
+    href: '/components/dropdown-menu',
+    updated: true,
+  },
 ];
 
 // 5. 선택 (Selection)
 const selectionComponents = [
+  {
+    name: 'Combobox',
+    description: '검색 가능한 드롭다운',
+    href: '/components/combobox',
+    updated: true,
+  },
+  {
+    name: 'Checkbox',
+    description: '체크박스 (단일/그룹)',
+    href: '/components/checkbox',
+    updated: true,
+  },
+  {
+    name: 'Radio',
+    description: '라디오 버튼',
+    href: '/components/radio',
+    updated: true,
+  },
   {
     name: 'Select',
     description: '셀렉트',
     href: '/components/select',
     updated: true,
   },
+  {
+    name: 'Slider',
+    description: '범위 선택 슬라이더',
+    href: '/components/slider',
+    updated: true,
+  },
+  {
+    name: 'Switch',
+    description: '토글 스위치',
+    href: '/components/switch',
+    updated: true,
+  },
 ];
 
 // 6. 피드백 (Feedback)
-const feedbackComponents: Array<{
-  name: string;
-  description?: string;
-  href: string;
-  updated: boolean;
-}> = [];
+const feedbackComponents = [
+  {
+    name: 'Badge',
+    description: '상태/알림 뱃지',
+    href: '/components/badge',
+    updated: true,
+  },
+  {
+    name: 'Alert',
+    description: '정적 알림 메시지',
+    href: '/components/alert',
+    updated: true,
+  },
+  {
+    name: 'AlertDialog',
+    description: '확인/취소 다이얼로그',
+    href: '/components/alert-dialog',
+    updated: true,
+  },
+  {
+    name: 'Progress',
+    description: '진행률 표시',
+    href: '/components/progress',
+    updated: true,
+  },
+  {
+    name: 'Skeleton',
+    description: '로딩 플레이스홀더',
+    href: '/components/skeleton',
+    updated: true,
+  },
+  {
+    name: 'Spinner',
+    description: '로딩 스피너',
+    href: '/components/spinner',
+    updated: true,
+  },
+  {
+    name: 'Toast',
+    description: '일시적 알림',
+    href: '/components/toast',
+    updated: true,
+  },
+];
 
 // 7. 도움 (Help)
 const helpComponents = [
@@ -295,6 +369,12 @@ const inputComponents = [
     name: 'Text Input',
     description: '텍스트 입력 필드',
     href: '/components/input',
+    updated: true,
+  },
+  {
+    name: 'Textarea',
+    description: '여러 줄 텍스트 입력',
+    href: '/components/textarea',
     updated: true,
   },
   {
@@ -460,6 +540,13 @@ export default function ComponentsPage() {
         description="사용자가 옵션을 선택하는 데 사용하는 입력 컴포넌트"
         components={selectionComponents}
         id="selection"
+      />
+
+      <ComponentSection
+        title="피드백"
+        description="사용자에게 상태와 결과를 알려주는 컴포넌트"
+        components={feedbackComponents}
+        id="feedback"
       />
 
       <ComponentSection

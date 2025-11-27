@@ -22,6 +22,7 @@
     "@radix-ui/react-slot": "latest",
     "@types/mdx": "^2.0.13",
     "@types/react-copy-to-clipboard": "^5.0.7",
+    "axe-core": "^4.11.0",
     "class-variance-authority": "latest",
     "clsx": "latest",
     "lucide-react": "^0.553.0",
