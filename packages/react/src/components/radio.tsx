@@ -60,7 +60,7 @@ export const RadioGroup = React.forwardRef<
       status,
       error = false,
       disabled,
-      orientation = 'vertical',
+      orientation = 'horizontal',
       ...props
     },
     ref

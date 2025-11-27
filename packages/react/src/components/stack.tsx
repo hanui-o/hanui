@@ -4,16 +4,10 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
-/**
- * Stack Variants Definition
- *
- * Simple directional spacing system with gap utilities
- */
+// Stack 스타일 변형 정의
 const stackVariants = cva('flex', {
   variants: {
-    /**
-     * Gap spacing (Tailwind gap utilities)
-     */
+    // 간격 (Tailwind gap 유틸리티)
     gap: {
       none: 'gap-0', // 0px
       xs: 'gap-1', // 4px
@@ -25,25 +19,19 @@ const stackVariants = cva('flex', {
       '3xl': 'gap-12', // 48px
       '4xl': 'gap-16', // 64px
     },
-    /**
-     * Direction - flex direction
-     */
+    // 방향 (flex direction)
     direction: {
       row: 'flex-row',
       column: 'flex-col',
     },
-    /**
-     * Align items
-     */
+    // 교차축 정렬 (align-items)
     align: {
       start: 'items-start',
       center: 'items-center',
       end: 'items-end',
       stretch: 'items-stretch',
     },
-    /**
-     * Justify content
-     */
+    // 주축 정렬 (justify-content)
     justify: {
       start: 'justify-start',
       center: 'justify-center',
@@ -58,16 +46,11 @@ const stackVariants = cva('flex', {
   },
 });
 
-/**
- * Stack Props Interface
- */
+// Stack Props 인터페이스
 export interface StackProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'gap'>,
     VariantProps<typeof stackVariants> {
-  /**
-   * Gap spacing
-   * @default "none"
-   */
+  /** 간격 @default "none" */
   gap?:
     | 'none'
     | 'xs'
@@ -81,53 +64,22 @@ export interface StackProps
     | `${number}`
     | number;
 
-  /**
-   * Flex direction
-   * @default "column"
-   */
+  /** 방향 @default "column" */
   direction?: 'row' | 'column';
 
-  /**
-   * Align items
-   */
+  /** 교차축 정렬 */
   align?: 'start' | 'center' | 'end' | 'stretch';
 
-  /**
-   * Justify content
-   */
+  /** 주축 정렬 */
   justify?: 'start' | 'center' | 'end' | 'between' | 'around';
 
-  /**
-   * Element to render as
-   * @default "div"
-   */
+  /** 렌더링할 HTML 요소 @default "div" */
   as?: 'div' | 'section' | 'article' | 'main' | 'aside' | 'header' | 'footer';
 }
 
 /**
- * Stack Component
- *
- * Simple flex container with gap-based spacing
- *
- * @example
- * ```tsx
- * // Vertical stack (default)
- * <Stack gap="md">
- *   <div>First</div>
- *   <div>Second</div>
- * </Stack>
- *
- * // Horizontal stack
- * <Stack direction="row" gap="lg">
- *   <div>Left</div>
- *   <div>Right</div>
- * </Stack>
- *
- * // Custom numeric gap
- * <Stack gap="10">
- *   <div>Custom</div>
- * </Stack>
- * ```
+ * Stack 컴포넌트
+ * gap 기반 간격을 가진 flex 컨테이너
  */
 export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
   (
@@ -143,7 +95,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
     },
     ref
   ) => {
-    // Handle numeric gap values (e.g., 10 or "10" → gap-10)
+    // 숫자 gap 값 처리 (예: 10 또는 "10" → gap-10)
     const isNumericGap =
       typeof gap === 'number' ||
       (typeof gap === 'string' &&
@@ -152,7 +104,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
 
     const gapClass = isNumericGap ? `gap-${gap}` : undefined;
 
-    // Use variant gap if not numeric
+    // 숫자가 아닌 경우 variant gap 사용
     const variantGap = isNumericGap
       ? undefined
       : (gap as VariantProps<typeof stackVariants>['gap']);
@@ -175,17 +127,8 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
 Stack.displayName = 'Stack';
 
 /**
- * VStack Component - Vertical Stack
- *
- * Alias for Stack with column direction
- *
- * @example
- * ```tsx
- * <VStack gap="md">
- *   <div>First</div>
- *   <div>Second</div>
- * </VStack>
- * ```
+ * VStack 컴포넌트 - 수직 스택
+ * column 방향이 고정된 Stack
  */
 export const VStack = React.forwardRef<
   HTMLDivElement,
@@ -196,17 +139,8 @@ export const VStack = React.forwardRef<
 VStack.displayName = 'VStack';
 
 /**
- * HStack Component - Horizontal Stack
- *
- * Horizontal stack with row direction
- *
- * @example
- * ```tsx
- * <HStack gap="md">
- *   <div>Left</div>
- *   <div>Right</div>
- * </HStack>
- * ```
+ * HStack 컴포넌트 - 수평 스택
+ * row 방향이 고정된 Stack (기본 align="center")
  */
 export const HStack = React.forwardRef<
   HTMLDivElement,
@@ -216,7 +150,5 @@ export const HStack = React.forwardRef<
 });
 HStack.displayName = 'HStack';
 
-/**
- * Export stackVariants for extending
- */
+// stackVariants 확장용 export
 export { stackVariants };

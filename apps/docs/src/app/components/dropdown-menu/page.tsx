@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 // Docs layout components
 import {
-  PageSection as Section,
+  PageSection,
   Heading,
   Subsection,
   PageNavigation,
@@ -56,6 +56,8 @@ import {
   Trash2,
   Copy,
   Edit,
+  Globe,
+  RefreshCw,
 } from 'lucide-react';
 
 export default function DropdownMenuPage() {
@@ -63,6 +65,24 @@ export default function DropdownMenuPage() {
   const [showActivityBar, setShowActivityBar] = useState(false);
   const [showPanel, setShowPanel] = useState(false);
   const [position, setPosition] = useState('bottom');
+  const [language, setLanguage] = useState('ko');
+  const [fontSize, setFontSize] = useState('medium');
+
+  const languages = [
+    { value: 'ko', label: '한국어' },
+    { value: 'en', label: 'English (영어)' },
+    { value: 'zh', label: '中文 (중국어)' },
+    { value: 'ja', label: '日本語 (일본어)' },
+    { value: 'fr', label: 'français (프랑스어)' },
+  ];
+
+  const fontSizes = [
+    { value: 'small', label: '작게' },
+    { value: 'medium', label: '보통' },
+    { value: 'large', label: '조금 크게' },
+    { value: 'xlarge', label: '크게' },
+    { value: 'xxlarge', label: '가장크게' },
+  ];
 
   return (
     <>
@@ -80,40 +100,69 @@ export default function DropdownMenuPage() {
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
-          <Section level="h2">
+          <PageSection level="h2">
             <Heading
               level="h2"
               id="overview"
               title="개요"
+              description="DropdownMenu는 Radix UI 기반의 접근성이 보장된 드롭다운 메뉴입니다. 키보드 탐색, 체크박스/라디오 선택, 하위 메뉴를 지원합니다."
               className="sr-only"
             />
             <ComponentPreview>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline">메뉴 열기</Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  <DropdownMenuLabel>내 계정</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem icon={<User className="h-4 w-4" />}>
-                    프로필
-                  </DropdownMenuItem>
-                  <DropdownMenuItem icon={<Settings className="h-4 w-4" />}>
-                    설정
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    icon={<LogOut className="h-4 w-4" />}
-                    destructive
-                  >
-                    로그아웃
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <div className="flex items-center gap-10">
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      iconLeft={<Globe className="h-4 w-4" />}
+                    >
+                      언어 변경
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent showArrow className="w-48">
+                    <DropdownMenuLabel>
+                      {languages.find((l) => l.value === language)?.label}
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {languages.map((lang) => (
+                      <DropdownMenuItem
+                        key={lang.value}
+                        onSelect={() => setLanguage(lang.value)}
+                        selected={language === lang.value}
+                      >
+                        {lang.label}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <Button variant="outline">메뉴 열기</Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56">
+                    <DropdownMenuLabel>내 계정</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem icon={<User className="h-4 w-4" />}>
+                      프로필
+                    </DropdownMenuItem>
+                    <DropdownMenuItem icon={<Settings className="h-4 w-4" />}>
+                      설정
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      icon={<LogOut className="h-4 w-4" />}
+                      destructive
+                    >
+                      로그아웃
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </ComponentPreview>
             <Code variant="block" language="tsx">
               {`<DropdownMenu>
-  <DropdownMenuTrigger asChild>
+  <DropdownMenuTrigger>
     <Button variant="outline">메뉴 열기</Button>
   </DropdownMenuTrigger>
   <DropdownMenuContent>
@@ -126,14 +175,19 @@ export default function DropdownMenuPage() {
   </DropdownMenuContent>
 </DropdownMenu>`}
             </Code>
-          </Section>
+          </PageSection>
 
-          <Section level="h2">
+          <PageSection level="h2">
             <Installation componentName="dropdown-menu" />
-          </Section>
+          </PageSection>
 
-          <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+          <PageSection level="h2">
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="DropdownMenu 컴포넌트들을 import하여 사용합니다. Button을 Trigger의 자식으로 사용하면 화살표가 자동으로 추가됩니다."
+            />
             <Code variant="block" language="tsx">
               {`import {
   DropdownMenu,
@@ -145,8 +199,9 @@ export default function DropdownMenuPage() {
   Button,
 } from '@hanui/react'
 
+{/* Button을 자식으로 사용하면 화살표가 자동으로 추가됩니다 */}
 <DropdownMenu>
-  <DropdownMenuTrigger asChild>
+  <DropdownMenuTrigger>
     <Button variant="outline">메뉴 열기</Button>
   </DropdownMenuTrigger>
   <DropdownMenuContent>
@@ -157,17 +212,57 @@ export default function DropdownMenuPage() {
   </DropdownMenuContent>
 </DropdownMenu>`}
             </Code>
-          </Section>
+          </PageSection>
 
           {/* 예제 섹션 */}
-          <Section level="h2">
+          <PageSection level="h2">
             <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="기본 트리거 (자동 화살표)"
+                description="asChild 없이 사용하면 화살표가 자동으로 추가됩니다."
+              />
+              <ComponentPreview>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="rounded-md border border-krds-gray-30 px-4 py-2 text-sm hover:bg-krds-gray-5">
+                    메뉴 선택
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-48">
+                    <DropdownMenuItem>옵션 1</DropdownMenuItem>
+                    <DropdownMenuItem>옵션 2</DropdownMenuItem>
+                    <DropdownMenuItem>옵션 3</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`{/* asChild 없이 사용하면 화살표가 자동으로 추가됩니다 */}
+<DropdownMenu>
+  <DropdownMenuTrigger className="...">
+    메뉴 선택
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>옵션 1</DropdownMenuItem>
+    <DropdownMenuItem>옵션 2</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+{/* 화살표를 숨기려면 hideArrow prop 사용 */}
+<DropdownMenuTrigger hideArrow>메뉴</DropdownMenuTrigger>
+
+{/* asChild 사용 시 Button의 iconRight로 화살표 추가 */}
+<DropdownMenuTrigger asChild>
+  <Button iconRight={<ChevronDown />}>메뉴</Button>
+</DropdownMenuTrigger>`}
+              </Code>
+            </Subsection>
 
             <Subsection level="h3">
               <Heading level="h3" title="Shortcut" />
               <ComponentPreview>
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
+                  <DropdownMenuTrigger>
                     <Button variant="outline">편집</Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-56">
@@ -204,7 +299,7 @@ export default function DropdownMenuPage() {
               <ComponentPreview>
                 <div className="flex flex-col items-center gap-2">
                   <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
+                    <DropdownMenuTrigger>
                       <Button variant="outline">보기 설정</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56">
@@ -254,7 +349,7 @@ export default function DropdownMenuPage() {
               <ComponentPreview>
                 <div className="flex flex-col items-center gap-2">
                   <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
+                    <DropdownMenuTrigger>
                       <Button variant="outline">패널 위치</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56">
@@ -300,7 +395,7 @@ export default function DropdownMenuPage() {
               <Heading level="h3" title="Submenu" />
               <ComponentPreview>
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
+                  <DropdownMenuTrigger>
                     <Button variant="outline">더 보기</Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-56">
@@ -350,7 +445,7 @@ export default function DropdownMenuPage() {
               <Heading level="h3" title="Group" />
               <ComponentPreview>
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
+                  <DropdownMenuTrigger>
                     <Button variant="outline">계정</Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-56">
@@ -450,13 +545,177 @@ export default function DropdownMenuPage() {
 </DropdownMenu>`}
               </Code>
             </Subsection>
-          </Section>
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="언어 변경"
+                description="언어 선택 드롭다운 예제입니다. showArrow prop으로 화살표를 표시합니다."
+              />
+              <ComponentPreview>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <Button
+                      variant="ghost"
+                      size="xs"
+                      iconLeft={<Globe className="h-4 w-4" />}
+                    >
+                      언어 변경
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent showArrow className="w-48">
+                    <DropdownMenuLabel>
+                      {languages.find((l) => l.value === language)?.label}
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {languages.map((lang) => (
+                      <DropdownMenuItem
+                        key={lang.value}
+                        onSelect={() => setLanguage(lang.value)}
+                        selected={language === lang.value}
+                      >
+                        {lang.label}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<DropdownMenu>
+  <DropdownMenuTrigger>
+    <Button variant="ghost" size="xs" iconLeft={<Globe className="h-4 w-4" />}>
+      언어 변경
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent showArrow className="w-48">
+    <DropdownMenuLabel>한국어</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>한국어</DropdownMenuItem>
+    <DropdownMenuItem>English (영어)</DropdownMenuItem>
+    <DropdownMenuItem>中文 (중국어)</DropdownMenuItem>
+    <DropdownMenuItem>日本語 (일본어)</DropdownMenuItem>
+    <DropdownMenuItem>français (프랑스어)</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="화면크기 조정"
+                description="화면 크기/글꼴 크기 조정 드롭다운 예제입니다."
+              />
+              <ComponentPreview>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <Button variant="ghost" size="xs">
+                      화면크기
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent showArrow className="w-36">
+                    {fontSizes.map((size) => (
+                      <DropdownMenuItem
+                        key={size.value}
+                        onSelect={() => setFontSize(size.value)}
+                        className="gap-3"
+                      >
+                        <span
+                          className={`flex h-6 w-6 items-center justify-center rounded border text-sm font-medium ${
+                            fontSize === size.value
+                              ? 'border-krds-primary-base bg-krds-primary-5 text-krds-primary-base'
+                              : 'border-krds-gray-30 text-krds-gray-70'
+                          }`}
+                        >
+                          가
+                        </span>
+                        {size.label}
+                      </DropdownMenuItem>
+                    ))}
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      onSelect={() => setFontSize('medium')}
+                      className="gap-2 text-krds-gray-50"
+                    >
+                      <RefreshCw className="h-4 w-4" />
+                      초기화
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<DropdownMenu>
+  <DropdownMenuTrigger>
+    <Button variant="ghost" size="xs">
+      화면크기
+    </Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent showArrow className="w-36">
+    <DropdownMenuItem>
+      <span className="flex h-6 w-6 items-center justify-center rounded border">가</span>
+      작게
+    </DropdownMenuItem>
+    <DropdownMenuItem>
+      <span className="flex h-6 w-6 items-center justify-center rounded border border-krds-primary-base bg-krds-primary-5 text-krds-primary-base">가</span>
+      보통
+    </DropdownMenuItem>
+    {/* ... */}
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>
+      <RefreshCw className="h-4 w-4" />
+      초기화
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`}
+              </Code>
+            </Subsection>
+          </PageSection>
         </TabsContent>
 
         {/* API 탭 */}
         <TabsContent value="api">
-          <Section level="h2">
+          <PageSection level="h2">
             <Heading level="h2" id="api" title="API 레퍼런스" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="DropdownMenuTrigger Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>hideArrow</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>
+                      화살표 아이콘 숨김 (asChild 미사용 시)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>asChild</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>
+                      자식 컴포넌트를 트리거로 사용 (화살표 자동 추가 안됨)
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
             <Subsection level="h3">
               <Heading level="h3" title="DropdownMenuItem Props" />
@@ -464,9 +723,9 @@ export default function DropdownMenuPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -537,6 +796,74 @@ export default function DropdownMenuPage() {
             </Subsection>
 
             <Subsection level="h3">
+              <Heading level="h3" title="DropdownMenuContent Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>showArrow</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>화살표 표시 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>arrowWidth</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>10</TableCell>
+                    <TableCell>화살표 너비 (px)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>arrowHeight</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>5</TableCell>
+                    <TableCell>화살표 높이 (px)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>align</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'start' | 'center' | 'end'
+                      </Code>
+                    </TableCell>
+                    <TableCell>'start'</TableCell>
+                    <TableCell>정렬 위치</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>sideOffset</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>4</TableCell>
+                    <TableCell>트리거와의 간격 (px)</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
               <Heading level="h3" title="Available Components" />
               <Code variant="block" language="typescript">
                 {`// 기본 구성
@@ -567,13 +894,13 @@ DropdownMenuSubContent // 하위 메뉴 콘텐츠
 DropdownMenuPortal // 포털 (Content에 내장)`}
               </Code>
             </Subsection>
-          </Section>
+          </PageSection>
         </TabsContent>
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Combobox', href: '/components/combobox' }}
-        next={{ title: 'Form', href: '/components/form' }}
+        prev={{ title: 'Display', href: '/components/display' }}
+        next={{ title: 'File Upload', href: '/components/file-upload' }}
       />
     </>
   );

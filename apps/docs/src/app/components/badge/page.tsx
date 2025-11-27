@@ -110,74 +110,60 @@ export default function BadgePage() {
                 description="Subtle(연한 배경), Solid(진한 배경), Outline(테두리) 세 가지 스타일을 제공합니다."
               />
               <ComponentPreview>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   {/* Subtle (연한 배경) */}
-                  <div className="flex flex-col gap-2 items-start">
-                    <span className="text-xs text-krds-gray-50 mb-1">
+                  <div className="flex gap-2 items-center">
+                    <span className="w-10 text-xs text-krds-gray-50 mb-1">
                       Subtle
                     </span>
-                    <Badge>Label</Badge>
                     <Badge variant="primary">Label</Badge>
+                    <Badge variant="secondary">Label</Badge>
                     <Badge variant="success">Label</Badge>
                     <Badge variant="warning">Label</Badge>
                     <Badge variant="error">Label</Badge>
                     <Badge variant="info">Label</Badge>
+                    <Badge variant="gray">Label</Badge>
                   </div>
                   {/* Solid (진한 배경) */}
-                  <div className="flex flex-col gap-2 items-start">
-                    <span className="text-xs text-krds-gray-50 mb-1">
+                  <div className="flex gap-2 items-center">
+                    <span className="w-10 text-xs text-krds-gray-50 mb-1">
                       Solid
                     </span>
-                    <Badge variant="secondary">Label</Badge>
-                    <Badge className="bg-krds-primary-base text-white">
-                      Label
-                    </Badge>
-                    <Badge className="bg-krds-success-base text-white">
-                      Label
-                    </Badge>
-                    <Badge className="bg-krds-warning-base text-white">
-                      Label
-                    </Badge>
-                    <Badge className="bg-krds-danger-base text-white">
-                      Label
-                    </Badge>
-                    <Badge className="bg-krds-info-base text-white">
-                      Label
-                    </Badge>
+                    <Badge variant="solid-primary">Label</Badge>
+                    <Badge variant="solid-secondary">Label</Badge>
+                    <Badge variant="solid-success">Label</Badge>
+                    <Badge variant="solid-warning">Label</Badge>
+                    <Badge variant="solid-error">Label</Badge>
+                    <Badge variant="solid-info">Label</Badge>
+                    <Badge variant="solid-gray">Label</Badge>
                   </div>
                   {/* Outline (테두리) */}
-                  <div className="flex flex-col gap-2 items-start">
-                    <span className="text-xs text-krds-gray-50 mb-1">
+                  <div className="flex gap-2 items-center">
+                    <span className="w-10 text-xs text-krds-gray-50 mb-1">
                       Outline
                     </span>
-                    <Badge variant="outline">Label</Badge>
                     <Badge variant="outline-primary">Label</Badge>
-                    <Badge className="border border-krds-success-base bg-transparent text-krds-success-base">
-                      Label
-                    </Badge>
-                    <Badge className="border border-krds-warning-base bg-transparent text-krds-warning-base">
-                      Label
-                    </Badge>
-                    <Badge className="border border-krds-danger-base bg-transparent text-krds-danger-base">
-                      Label
-                    </Badge>
-                    <Badge className="border border-krds-info-base bg-transparent text-krds-info-base">
-                      Label
-                    </Badge>
+                    <Badge variant="outline-secondary">Label</Badge>
+                    <Badge variant="outline-success">Label</Badge>
+                    <Badge variant="outline-warning">Label</Badge>
+                    <Badge variant="outline-error">Label</Badge>
+                    <Badge variant="outline-info">Label</Badge>
+                    <Badge variant="outline-gray">Label</Badge>
                   </div>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`{/* Subtle (연한 배경) */}
-<Badge>Label</Badge>
+<Badge variant="gray">Label</Badge>
 <Badge variant="primary">Label</Badge>
 <Badge variant="success">Label</Badge>
 
-{/* Solid (진한 배경) - className으로 커스텀 */}
-<Badge className="bg-krds-primary-base text-white">Label</Badge>
+{/* Solid (진한 배경) */}
+<Badge variant="solid-gray">Label</Badge>
+<Badge variant="solid-primary">Label</Badge>
 
 {/* Outline (테두리) */}
-<Badge variant="outline">Label</Badge>
+<Badge variant="outline-gray">Label</Badge>
 <Badge variant="outline-primary">Label</Badge>`}
               </Code>
             </Subsection>
@@ -187,13 +173,10 @@ export default function BadgePage() {
               <Heading
                 level="h3"
                 title="크기"
-                description="sm, md, lg 세 가지 크기를 지원합니다. 기본값은 md입니다."
+                description="md, lg 두 가지 크기를 지원합니다. 기본값은 md입니다."
               />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge size="sm" variant="primary">
-                    Small
-                  </Badge>
                   <Badge size="md" variant="primary">
                     Medium
                   </Badge>
@@ -203,8 +186,7 @@ export default function BadgePage() {
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<Badge size="sm" variant="primary">Small</Badge>
-<Badge size="md" variant="primary">Medium</Badge>
+                {`<Badge size="md" variant="primary">Medium</Badge>
 <Badge size="lg" variant="primary">Large</Badge>`}
               </Code>
             </Subsection>
@@ -282,7 +264,6 @@ export default function BadgePage() {
                   <NumberBadge count={42} variant="primary" />
                   <NumberBadge count={100} max={99} />
                   <NumberBadge count={0} showZero />
-                  <NumberBadge count={8} size="sm" />
                   <NumberBadge count={8} size="lg" />
                 </div>
               </ComponentPreview>
@@ -291,7 +272,6 @@ export default function BadgePage() {
 <NumberBadge count={42} variant="primary" />
 <NumberBadge count={100} max={99} />  {/* 99+로 표시 */}
 <NumberBadge count={0} showZero />
-<NumberBadge count={8} size="sm" />
 <NumberBadge count={8} size="lg" />`}
               </Code>
             </Subsection>
@@ -344,7 +324,7 @@ export default function BadgePage() {
                     <div className="p-2 bg-krds-gray-10 rounded-full">
                       <Bell className="h-6 w-6 text-krds-gray-70" />
                     </div>
-                    <NumberBadge count={5} size="sm" />
+                    <NumberBadge count={5} />
                   </BadgeGroup>
 
                   <BadgeGroup>
@@ -358,7 +338,7 @@ export default function BadgePage() {
                     <div className="h-10 w-10 bg-krds-primary-20 rounded-full flex items-center justify-center">
                       <User className="h-5 w-5 text-krds-primary-base" />
                     </div>
-                    <NumberBadge count={3} variant="primary" size="sm" />
+                    <NumberBadge count={3} variant="primary" />
                   </BadgeGroup>
 
                   <BadgeGroup position="bottom-right">
@@ -376,7 +356,7 @@ export default function BadgePage() {
   <div className="p-2 bg-krds-gray-10 rounded-full">
     <Bell className="h-6 w-6 text-krds-gray-70" />
   </div>
-  <NumberBadge count={5} size="sm" />
+  <NumberBadge count={5} />
 </BadgeGroup>
 
 <BadgeGroup>
@@ -447,20 +427,19 @@ export default function BadgePage() {
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">
-                        'default' | 'primary' | 'secondary' | 'success' |
-                        'warning' | 'error' | 'info' | 'outline' |
-                        'outline-primary'
+                        'gray' | 'primary' | 'secondary' | 'success' | 'warning'
+                        | 'error' | 'info' | 'solid-*' | 'outline-*'
                       </Code>
                     </TableCell>
-                    <TableCell>'default'</TableCell>
-                    <TableCell>뱃지 스타일</TableCell>
+                    <TableCell>'primary'</TableCell>
+                    <TableCell>뱃지 스타일 (Subtle/Solid/Outline)</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
                       <Code>size</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
+                      <Code className="text-xs">'md' | 'lg'</Code>
                     </TableCell>
                     <TableCell>'md'</TableCell>
                     <TableCell>뱃지 크기</TableCell>
@@ -543,6 +522,29 @@ export default function BadgePage() {
                     <TableCell>false</TableCell>
                     <TableCell>0일 때도 표시할지 여부</TableCell>
                   </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'gray' | 'primary' | 'secondary' | 'success' | 'warning'
+                        | 'error' | 'info'
+                      </Code>
+                    </TableCell>
+                    <TableCell>'primary'</TableCell>
+                    <TableCell>뱃지 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'md' | 'lg'</Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
+                    <TableCell>뱃지 크기</TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </Subsection>
@@ -578,6 +580,29 @@ export default function BadgePage() {
                     </TableCell>
                     <TableCell>false</TableCell>
                     <TableCell>펄스 애니메이션</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'gray' | 'primary' | 'secondary' | 'success' | 'warning'
+                        | 'error' | 'info'
+                      </Code>
+                    </TableCell>
+                    <TableCell>'primary'</TableCell>
+                    <TableCell>도트 색상</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'md' | 'lg'</Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
+                    <TableCell>도트 크기</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -616,8 +641,8 @@ export default function BadgePage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'AlertDialog', href: '/components/alert-dialog' }}
-        next={{ title: 'Breadcrumb', href: '/components/breadcrumb' }}
+        prev={{ title: 'AspectRatio', href: '/components/aspect-ratio' }}
+        next={{ title: 'Body', href: '/components/body' }}
       />
     </>
   );

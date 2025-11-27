@@ -196,7 +196,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         onSelect={handleSelect}
         disabled={option.disabled}
         className={cn(
-          'relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
+          'relative flex cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm outline-none',
           'data-[selected=true]:bg-krds-gray-10 data-[selected=true]:text-krds-gray-95',
           'data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
           'hover:bg-krds-gray-5'
@@ -286,7 +286,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
               'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
               'data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2'
             )}
-            style={{ width: getPopoverWidth() }}
+            style={{ minWidth: getPopoverWidth(), width: 'auto' }}
             sideOffset={4}
             align="start"
           >
@@ -318,7 +318,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
               {/* 옵션 리스트 */}
               {!loading && (
                 <CommandPrimitive.List
-                  className="overflow-auto p-1"
+                  className="overflow-auto p-2"
                   style={{ maxHeight }}
                 >
                   <CommandPrimitive.Empty className="py-6 text-center text-sm text-krds-gray-50">

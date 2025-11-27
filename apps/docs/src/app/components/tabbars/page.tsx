@@ -1,22 +1,35 @@
 'use client';
 
-// Docs layout components
-import { PageSection, Heading, PageNavigation } from '@/components/content';
+import { useState } from 'react';
+import {
+  PageSection as Section,
+  Heading,
+  Subsection,
+  PageNavigation,
+} from '@/components/content';
+import { Installation } from '@/components/content/Installation';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
-import { CodeBlock } from '@/components/content/CodeBlock';
 
-// UI components - from @hanui/react
 import {
   TabBars,
   TabBarItem,
   Body,
+  Code,
+  List,
+  ListItem,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
 } from '@hanui/react';
 
-// Simple icon components for example
+// 예제용 아이콘 컴포넌트
 const HomeIcon = () => (
   <svg
     width="24"
@@ -101,7 +114,8 @@ const MenuIcon = () => (
 );
 
 export default function TabBarsPage() {
-  // Basic example
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const basicItems: TabBarItem[] = [
     {
       label: '홈',
@@ -135,6 +149,7 @@ export default function TabBarsPage() {
   ];
 
   const handleItemClick = (item: TabBarItem, index: number) => {
+    setActiveIndex(index);
     console.log('Clicked:', item.label, 'at index', index);
   };
 
@@ -142,54 +157,51 @@ export default function TabBarsPage() {
     <>
       <Heading
         level="h1"
+        id="tabbars"
         title="Tab Bars"
         description="모바일 및 태블릿에서 주요 화면 간 빠른 이동을 위한 하단 고정 네비게이션입니다."
       />
 
-      <PageSection>
-        <Tabs defaultValue="overview">
-          <TabsList>
-            <TabsTrigger value="overview">개요</TabsTrigger>
-            <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
-          </TabsList>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
+        </TabsList>
 
-          <TabsContent value="overview">
-            <PageSection>
-              <ComponentPreview className="pb-20">
-                <TabBars
-                  items={basicItems}
-                  onItemClick={handleItemClick}
-                  className="!absolute !bottom-0"
-                />
-              </ComponentPreview>
-            </PageSection>
-
-            <Heading level="h2" id="overview" title="개요">
-              <Body className="leading-relaxed">
-                Tab Bars는 모바일 및 태블릿에서 화면 하단에 고정되어 주요 서비스
-                화면 간 빠른 이동을 제공하는 네비게이션 컴포넌트입니다.
-                <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>을 준수하여
-                공공 모바일 서비스에 최적화된 접근성과 사용성을 제공합니다.
-              </Body>
-            </Heading>
-
-            <Heading level="h2" id="installation" title="설치" />
-            <CodeBlock code="npx hanui add tab-bars" language="bash" />
-            <Body className="text-krds-gray-70 mt-2">
-              이 명령은 컴포넌트 파일을 자동으로 설치합니다. Tab Bars는 Tailwind
-              CSS를 사용합니다.
+        <TabsContent value="overview">
+          {/* 개요 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              className="sr-only"
+            />
+            <Body className="mb-3">
+              Tab Bars는 모바일 및 태블릿에서 화면 하단에 고정되어 주요 서비스
+              화면 간 빠른 이동을 제공하는 네비게이션 컴포넌트입니다.{' '}
+              <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>을 준수하여
+              공공 모바일 서비스에 최적화된 접근성과 사용성을 제공합니다.
             </Body>
+            <ComponentPreview className="pb-20">
+              <TabBars
+                items={basicItems}
+                onItemClick={handleItemClick}
+                className="!absolute !bottom-0"
+              />
+            </ComponentPreview>
+          </Section>
 
-            <Heading level="h2" id="examples" title="예제" />
+          {/* 설치 */}
+          <Section level="h2">
+            <Installation componentName="tab-bars" />
+          </Section>
 
-            <Heading level="h3" id="basic-example" title="기본 Tab Bars">
-              <Body>
-                기본적인 Tab Bars입니다. 아이콘과 라벨을 함께 사용하며, 최대
-                5개의 메뉴를 권장합니다.
-              </Body>
-            </Heading>
-            <CodeBlock
-              code={`import { TabBars, TabBarItem } from '@hanui/react';
+          {/* 사용법 */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Code variant="block" language="tsx">
+              {`import { TabBars, TabBarItem } from '@hanui/react';
 
 const items: TabBarItem[] = [
   {
@@ -211,164 +223,245 @@ const items: TabBarItem[] = [
     href: '/notifications',
     badge: 3,
   },
-  {
-    label: '내 정보',
-    icon: <UserIcon />,
-    href: '/profile',
-  },
-  {
-    label: '전체 메뉴',
-    icon: <MenuIcon />,
-    href: '/menu',
-  },
 ];
 
-<TabBars items={items} onItemClick={(item) => console.log(item)} />`}
-              language="tsx"
-            />
+<TabBars items={items} onItemClick={(item, index) => console.log(item)} />`}
+            </Code>
+          </Section>
 
+          {/* 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="기본 사용"
+                description="아이콘과 라벨을 함께 사용하며, 최대 5개의 메뉴를 권장합니다."
+              />
+              <ComponentPreview className="pb-20">
+                <TabBars
+                  items={basicItems}
+                  onItemClick={handleItemClick}
+                  className="!absolute !bottom-0"
+                />
+              </ComponentPreview>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="Badge 표시"
+                description="알림 개수 등을 표시할 수 있습니다. 99 이상은 '99+'로 표시됩니다."
+              />
+              <Code variant="block" language="tsx">
+                {`{
+  label: '알림',
+  icon: <BellIcon />,
+  activeIcon: <BellFilledIcon />,
+  href: '/notifications',
+  badge: 3, // Badge 숫자
+}`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="활성 아이콘"
+                description="선택 상태에서 다른 아이콘(filled)을 표시하려면 activeIcon을 설정합니다."
+              />
+              <Code variant="block" language="tsx">
+                {`{
+  label: '홈',
+  icon: <HomeIcon />,        // line 아이콘
+  activeIcon: <HomeFilledIcon />, // filled 아이콘
+  href: '/',
+  active: true,
+}`}
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* 주요 기능 */}
+          <Section level="h2">
             <Heading level="h2" id="key-features" title="주요 기능" />
-            <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
-              <li>
+            <List variant="disc">
+              <ListItem>
                 <strong>하단 고정:</strong> 화면 하단에 고정되어 스크롤 시에도
                 항상 접근 가능합니다
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>최대 5개 메뉴:</strong> KRDS 가이드라인에 따라 최대 5개
                 메뉴를 권장합니다
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>아이콘 + 라벨:</strong> 아이콘과 라벨을 함께 사용하여
                 명확한 의미 전달
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>선택 상태 표시:</strong> 활성 메뉴는 filled 아이콘과
                 색상 변화로 구분됩니다
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>Badge 지원:</strong> 알림 개수 등을 표시할 수 있는 배지
                 기능
-              </li>
-              <li>
-                <strong>Tailwind CSS:</strong> 외부 의존성 없이 Tailwind만으로
-                구현되었습니다
-              </li>
-            </ul>
+              </ListItem>
+            </List>
+          </Section>
 
-            <Heading level="h2" id="guidelines" title="디자인 가이드라인" />
-            <Body>KRDS Tab Bars 가이드라인을 준수합니다:</Body>
-            <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90 mt-2">
-              <li>홈 버튼은 가장 왼쪽, 전체 메뉴 버튼은 가장 오른쪽에 배치</li>
-              <li>라벨 텍스트는 1-2단어로 간결하게 유지</li>
-              <li>모든 메뉴의 크기와 높이를 동일하게 유지</li>
-              <li>선택/비선택 상태를 명확히 구분 (filled/line 아이콘)</li>
-              <li>최소 터치 영역 44x44px 이상 확보</li>
-            </ul>
-
-            <Heading level="h2" id="accessibility" title="접근성" />
-            <Body>
-              Tab Bars 컴포넌트는 WCAG 2.1 / KWCAG 2.2 AA 레벨 준수를 목표로
-              합니다:
-            </Body>
-            <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90 mt-2">
-              <li>
-                <strong>Semantic HTML:</strong> `&lt;nav&gt;` 요소를 사용하여
-                네비게이션 영역을 명확히 표시합니다
-              </li>
-              <li>
-                <strong>ARIA Current:</strong> `aria-current="page"`로 현재
-                선택된 메뉴를 표시합니다
-              </li>
-              <li>
-                <strong>Keyboard Navigation:</strong> Tab 키로 모든 메뉴에 접근
-                가능하며, Enter 키로 활성화할 수 있습니다
-              </li>
-              <li>
-                <strong>Focus Visible:</strong> 키보드 포커스 시 명확한
-                아웃라인을 표시합니다
-              </li>
-              <li>
-                <strong>Badge Accessibility:</strong> 배지 숫자는 `aria-label`로
-                스크린 리더에 전달됩니다
-              </li>
-            </ul>
-          </TabsContent>
-
-          <TabsContent value="api">
-            <Heading level="h2" id="tab-bars-props" title="TabBars Props" />
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b-2 border-krds-gray-30">
-                    <th className="text-left p-3 font-semibold">Prop</th>
-                    <th className="text-left p-3 font-semibold">Type</th>
-                    <th className="text-left p-3 font-semibold">Default</th>
-                    <th className="text-left p-3 font-semibold">Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">items</td>
-                    <td className="p-3 font-mono">TabBarItem[]</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3">
-                      탭 바 메뉴 아이템 배열 (최대 5개 권장)
-                    </td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">onItemClick?</td>
-                    <td className="p-3 font-mono">(item, index) =&gt; void</td>
-                    <td className="p-3 font-mono">-</td>
-                    <td className="p-3">아이템 클릭 시 호출되는 핸들러</td>
-                  </tr>
-                  <tr className="border-b border-krds-gray-20">
-                    <td className="p-3 font-mono">className?</td>
-                    <td className="p-3 font-mono">string</td>
-                    <td className="p-3 font-mono">''</td>
-                    <td className="p-3">
-                      Additional CSS classes for custom styling
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <Heading level="h2" id="tab-bar-item-type" title="TabBarItem Type">
-              <Body>Tab Bar 아이템의 타입입니다:</Body>
-            </Heading>
-            <CodeBlock
-              code={`export interface TabBarItem {
-  label: string;           // 메뉴 라벨 (1-2 단어 권장)
-  icon: React.ReactNode;   // 메뉴 아이콘 (line icon)
-  activeIcon?: React.ReactNode; // 선택된 상태의 아이콘 (filled icon)
-  href: string;            // 메뉴 href
-  badge?: number;          // Badge 숫자 (선택사항)
-  active?: boolean;        // 초기 활성 상태
-}`}
-              language="tsx"
+          {/* 디자인 가이드라인 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="guidelines"
+              title="디자인 가이드라인"
+              description="KRDS Tab Bars 가이드라인을 준수합니다."
             />
+            <List variant="disc">
+              <ListItem>
+                홈 버튼은 가장 왼쪽, 전체 메뉴 버튼은 가장 오른쪽에 배치
+              </ListItem>
+              <ListItem>라벨 텍스트는 1-2단어로 간결하게 유지</ListItem>
+              <ListItem>모든 메뉴의 크기와 높이를 동일하게 유지</ListItem>
+              <ListItem>
+                선택/비선택 상태를 명확히 구분 (filled/line 아이콘)
+              </ListItem>
+              <ListItem>최소 터치 영역 44x44px 이상 확보</ListItem>
+            </List>
+          </Section>
 
-            <Heading level="h2" id="usage-notes" title="사용 시 주의사항" />
-            <ul className="list-disc pl-6 space-y-2 text-base text-krds-gray-90">
-              <li>메뉴는 최대 5개까지 권장합니다 (KRDS 가이드라인)</li>
-              <li>
-                `icon`과 `activeIcon`을 함께 제공하여 선택 상태를 명확히
-                구분하세요
-              </li>
-              <li>라벨 텍스트는 1-2단어로 간결하게 작성하세요</li>
-              <li>홈 메뉴는 가장 왼쪽, 전체 메뉴는 가장 오른쪽에 배치하세요</li>
-              <li>Badge는 99 이상일 경우 "99+"로 표시됩니다</li>
-              <li>
-                Tab Bars는 화면 하단에 고정되므로, 페이지 하단에 충분한
-                여백(padding-bottom)을 확보하세요
-              </li>
-            </ul>
-          </TabsContent>
-        </Tabs>
-      </PageSection>
+          {/* 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="WCAG 2.1 / KWCAG 2.2 AA 레벨을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>Semantic HTML:</strong> <Code>&lt;nav&gt;</Code> 요소를
+                사용하여 네비게이션 영역을 명확히 표시합니다
+              </ListItem>
+              <ListItem>
+                <strong>ARIA Current:</strong>{' '}
+                <Code>aria-current=&quot;page&quot;</Code>로 현재 선택된 메뉴를
+                표시합니다
+              </ListItem>
+              <ListItem>
+                <strong>키보드 네비게이션:</strong> Tab 키로 모든 메뉴에 접근
+                가능하며, Enter 키로 활성화합니다
+              </ListItem>
+              <ListItem>
+                <strong>포커스 표시:</strong> 키보드 포커스 시 명확한 아웃라인을
+                표시합니다
+              </ListItem>
+              <ListItem>
+                <strong>Badge 접근성:</strong> 배지 숫자는{' '}
+                <Code>aria-label</Code>로 스크린 리더에 전달됩니다
+              </ListItem>
+            </List>
+          </Section>
+        </TabsContent>
+
+        <TabsContent value="api">
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API Reference" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="TabBars Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>items</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">TabBarItem[]</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>
+                      탭 바 메뉴 아이템 배열 (최대 5개 권장)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>onItemClick</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (item: TabBarItem, index: number) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>아이템 클릭 시 호출되는 핸들러</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>추가 CSS 클래스</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="TabBarItem Type" />
+              <Code variant="block" language="tsx">
+                {`interface TabBarItem {
+  label: string;             // 메뉴 라벨 (1-2 단어 권장)
+  icon: React.ReactNode;     // 메뉴 아이콘 (line icon)
+  activeIcon?: React.ReactNode; // 선택된 상태의 아이콘 (filled icon)
+  href: string;              // 메뉴 링크
+  badge?: number;            // Badge 숫자 (선택사항)
+  active?: boolean;          // 초기 활성 상태
+}`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="사용 시 주의사항" />
+              <List variant="disc">
+                <ListItem>
+                  메뉴는 최대 5개까지 권장합니다 (KRDS 가이드라인)
+                </ListItem>
+                <ListItem>
+                  <Code>icon</Code>과 <Code>activeIcon</Code>을 함께 제공하여
+                  선택 상태를 명확히 구분하세요
+                </ListItem>
+                <ListItem>라벨 텍스트는 1-2단어로 간결하게 작성하세요</ListItem>
+                <ListItem>
+                  홈 메뉴는 가장 왼쪽, 전체 메뉴는 가장 오른쪽에 배치하세요
+                </ListItem>
+                <ListItem>
+                  Badge는 99 이상일 경우 &quot;99+&quot;로 표시됩니다
+                </ListItem>
+                <ListItem>
+                  Tab Bars는 화면 하단에 고정되므로, 페이지 하단에 충분한
+                  여백(padding-bottom)을 확보하세요
+                </ListItem>
+              </List>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Structured List', href: '/components/structured-list' }}
+        prev={{ title: 'Switch', href: '/components/switch' }}
         next={{ title: 'Table', href: '/components/table' }}
       />
     </>

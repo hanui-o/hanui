@@ -24,8 +24,6 @@ import {
   TableHead,
   TableCell,
   AspectRatio,
-  Body,
-  Card,
   List,
   ListItem,
 } from '@hanui/react';
@@ -79,12 +77,17 @@ export default function ImagePage() {
           </Section>
 
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Image 컴포넌트를 import하여 사용합니다."
+            />
             <Code variant="block" language="tsx">
-              {`import { Image } from '@/components/hanui/image'
+              {`import { Image } from '@hanui/react'
 
-<Image 
-  src="/photo.jpg" 
+<Image
+  src="/photo.jpg"
   alt="Photo"
   width={800}
   height={600}
@@ -97,7 +100,11 @@ export default function ImagePage() {
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="기본 사용" />
+              <Heading
+                level="h3"
+                title="기본 사용"
+                description="기본적인 이미지 렌더링 예제입니다."
+              />
               <ComponentPreview>
                 <Image
                   src="https://picsum.photos/600/400"
@@ -117,7 +124,11 @@ export default function ImagePage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Object Fit" />
+              <Heading
+                level="h3"
+                title="Object Fit"
+                description="fit prop으로 이미지가 컨테이너에 맞춰지는 방식을 제어합니다."
+              />
               <ComponentPreview>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="space-y-2">
@@ -169,7 +180,11 @@ export default function ImagePage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="AspectRatio와 함께 사용" />
+              <Heading
+                level="h3"
+                title="AspectRatio와 함께 사용"
+                description="AspectRatio 컴포넌트와 조합하여 일관된 비율을 유지합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-md">
                   <AspectRatio ratio={16 / 9}>
@@ -199,7 +214,11 @@ export default function ImagePage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Fallback 처리" />
+              <Heading
+                level="h3"
+                title="Fallback 처리"
+                description="이미지 로드 실패 시 대체 이미지나 컴포넌트를 표시합니다."
+              />
               <ComponentPreview>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -218,8 +237,8 @@ export default function ImagePage() {
                     <Image
                       src="https://invalid-url.com/image.jpg"
                       fallback={
-                        <div className="w-[300px] h-[200px] bg-gray-100 flex items-center justify-center">
-                          <span className="text-gray-500">
+                        <div className="w-[300px] h-[200px] bg-krds-gray-10 flex items-center justify-center">
+                          <span className="text-krds-gray-60">
                             이미지 로드 실패
                           </span>
                         </div>
@@ -252,7 +271,11 @@ export default function ImagePage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="반응형 이미지 (srcSet)" />
+              <Heading
+                level="h3"
+                title="반응형 이미지 (srcSet)"
+                description="srcSet과 sizes를 사용하여 다양한 화면 크기에 적합한 이미지를 제공합니다."
+              />
               <ComponentPreview>
                 <Image
                   src="https://picsum.photos/800/600"
@@ -275,7 +298,11 @@ export default function ImagePage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Loading 전략" />
+              <Heading
+                level="h3"
+                title="Loading 전략"
+                description="lazy 또는 eager 로딩 전략을 선택할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="space-y-4">
                   <div>
@@ -313,28 +340,26 @@ export default function ImagePage() {
                 level="h2"
                 id="optimization-script"
                 title="이미지 최적화 스크립트"
+                description="일반 React 환경이나 정적 사이트에서 반응형 이미지를 위해 여러 크기의 이미지를 생성해야 할 때, 제공되는 스크립트를 사용하여 이미지를 자동으로 리사이징하고 WebP 포맷으로 변환할 수 있습니다."
               />
-              <Body className="mb-4">
-                일반 React 환경이나 정적 사이트에서 반응형 이미지를 위해 여러
-                크기의 이미지를 생성해야 할 때, 제공되는 스크립트를 사용하여
-                이미지를 자동으로 리사이징하고 WebP 포맷으로 변환할 수 있습니다.
-              </Body>
 
               <Subsection level="h3">
-                <Heading level="h3" title="1. 사전 준비" />
-                <Body className="mb-2">
-                  이미지 처리를 위해 <Code>sharp</Code> 라이브러리가 필요합니다.
-                </Body>
+                <Heading
+                  level="h3"
+                  title="1. 사전 준비"
+                  description="이미지 처리를 위해 sharp 라이브러리가 필요합니다."
+                />
                 <Code variant="block" language="bash">
                   pnpm add -D sharp
                 </Code>
               </Subsection>
 
               <Subsection level="h3">
-                <Heading level="h3" title="2. 스크립트 실행" />
-                <Body className="mb-2">
-                  다음 명령어로 특정 디렉토리의 이미지를 최적화할 수 있습니다.
-                </Body>
+                <Heading
+                  level="h3"
+                  title="2. 스크립트 실행"
+                  description="다음 명령어로 특정 디렉토리의 이미지를 최적화할 수 있습니다."
+                />
                 <Code variant="block" language="bash">
                   {`# 기본 실행 (public/images 폴더 처리)
 pnpm optimize-images
@@ -342,10 +367,10 @@ pnpm optimize-images
 # 입력/출력 디렉토리 지정
 pnpm optimize-images ./src/assets/images ./public/optimized`}
                 </Code>
-                <Body className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 text-sm text-krds-gray-60">
                   스크립트는 다음 작업을 수행합니다:
-                </Body>
-                <ul className="list-disc list-inside mt-1 ml-2 text-sm text-gray-600">
+                </p>
+                <ul className="list-disc list-inside mt-1 ml-2 text-sm text-krds-gray-60">
                   <li>이미지를 640px, 768px, 1024px, 1280px 너비로 리사이징</li>
                   <li>WebP 포맷으로 변환 (품질 80%)</li>
                   <li>원본 파일명 유지 (예: image-640.webp)</li>
@@ -362,33 +387,31 @@ pnpm optimize-images ./src/assets/images ./public/optimized`}
               title="접근성"
               description="WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다."
             />
-            <Card variant="filled">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>대체 텍스트 (필수):</strong> 모든 이미지에 의미 있는{' '}
-                  <Code>alt</Code> 속성을 제공해야 합니다. 장식적 이미지는{' '}
-                  <Code>alt=""</Code> 사용
-                </ListItem>
-                <ListItem>
-                  <strong>로딩 전략:</strong> LCP(Largest Contentful Paint)
-                  이미지는 <Code>priority</Code> 또는{' '}
-                  <Code>loading="eager"</Code> 사용하여 성능 최적화
-                </ListItem>
-                <ListItem>
-                  <strong>반응형 이미지:</strong> <Code>srcSet</Code>과{' '}
-                  <Code>sizes</Code>를 사용하여 다양한 화면 크기에 적합한 이미지
-                  제공
-                </ListItem>
-                <ListItem>
-                  <strong>에러 처리:</strong> <Code>fallbackSrc</Code>나{' '}
-                  <Code>fallback</Code>으로 이미지 로드 실패 시 대체 콘텐츠 제공
-                </ListItem>
-                <ListItem>
-                  <strong>비동기 디코딩:</strong> 일반 img 태그는 자동으로{' '}
-                  <Code>decoding="async"</Code>가 적용되어 렌더링 차단 방지
-                </ListItem>
-              </List>
-            </Card>
+            <List variant="check" className="text-krds-gray-90">
+              <ListItem>
+                <strong>대체 텍스트 (필수):</strong> 모든 이미지에 의미 있는{' '}
+                <Code>alt</Code> 속성을 제공해야 합니다. 장식적 이미지는{' '}
+                <Code>alt=""</Code> 사용
+              </ListItem>
+              <ListItem>
+                <strong>로딩 전략:</strong> LCP(Largest Contentful Paint)
+                이미지는 <Code>priority</Code> 또는 <Code>loading="eager"</Code>{' '}
+                사용하여 성능 최적화
+              </ListItem>
+              <ListItem>
+                <strong>반응형 이미지:</strong> <Code>srcSet</Code>과{' '}
+                <Code>sizes</Code>를 사용하여 다양한 화면 크기에 적합한 이미지
+                제공
+              </ListItem>
+              <ListItem>
+                <strong>에러 처리:</strong> <Code>fallbackSrc</Code>나{' '}
+                <Code>fallback</Code>으로 이미지 로드 실패 시 대체 콘텐츠 제공
+              </ListItem>
+              <ListItem>
+                <strong>비동기 디코딩:</strong> 일반 img 태그는 자동으로{' '}
+                <Code>decoding="async"</Code>가 적용되어 렌더링 차단 방지
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
@@ -403,9 +426,9 @@ pnpm optimize-images ./src/assets/images ./public/optimized`}
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -587,9 +610,13 @@ pnpm optimize-images ./src/assets/images ./public/optimized`}
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="환경별 동작" />
+              <Heading
+                level="h3"
+                title="환경별 동작"
+                description="Next.js와 일반 React 환경에서 자동으로 다르게 동작합니다."
+              />
               <div className="space-y-4">
-                <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="p-4 bg-krds-info-5 border border-krds-info-30 rounded-lg">
                   <h4 className="font-semibold mb-2">
                     Next.js 환경 (자동 감지)
                   </h4>
@@ -601,7 +628,7 @@ pnpm optimize-images ./src/assets/images ./public/optimized`}
                     <li>quality 기본값: 85%</li>
                   </ul>
                 </div>
-                <div className="p-4 bg-gray-50 border border-gray-200 rounded-lg">
+                <div className="p-4 bg-krds-gray-5 border border-krds-gray-20 rounded-lg">
                   <h4 className="font-semibold mb-2">일반 React 환경</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
                     <li>표준 {'<img>'} 태그 사용</li>
@@ -618,8 +645,11 @@ pnpm optimize-images ./src/assets/images ./public/optimized`}
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'AspectRatio', href: '/components/aspect-ratio' }}
-        next={{ title: 'Card', href: '/components/card' }}
+        prev={{ title: 'Identifier', href: '/components/identifier' }}
+        next={{
+          title: 'In-page Navigation',
+          href: '/components/in-page-navigation',
+        }}
       />
     </>
   );

@@ -6,7 +6,9 @@ import {
   Heading,
   Subsection,
   PageNavigation,
+  Installation,
 } from '@/components/content';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // Docs helper components
 import { DoCard, DontCard } from '@/components/helpers';
@@ -17,10 +19,8 @@ import {
   VStack,
   HStack,
   Code,
-  Card,
   List,
   ListItem,
-  Body,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -39,7 +39,7 @@ export default function StackPage() {
       <Heading
         level="h1"
         title="Stack, VStack, HStack"
-        description="요소들을 수직 또는 수평으로 정렬하고 간격을 관리하는 간단한 레이아웃 컴포넌트입니다."
+        description="요소들을 수직 또는 수평으로 정렬하고 간격을 관리하는 레이아웃 컴포넌트입니다."
       />
 
       <Tabs defaultValue="overview">
@@ -49,55 +49,15 @@ export default function StackPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <Heading level="h2" id="installation" title="설치">
-              <Body className="leading-relaxed">
-                다음 명령어로 Stack 컴포넌트를 설치합니다:
-              </Body>
-            </Heading>
-
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add stack
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
+          {/* 개요 */}
+          <Section level="h2">
             <Heading
               level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="Stack은 요소들을 수직 또는 수평으로 정렬하는 단순하고 직관적인 레이아웃 컴포넌트입니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-
-            <Card variant="filled">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>Stack:</strong> 기본 수직 레이아웃 (direction="row"로
-                  수평 변경 가능)
-                </ListItem>
-                <ListItem>
-                  <strong>VStack:</strong> 항상 수직 방향
-                </ListItem>
-                <ListItem>
-                  <strong>HStack:</strong> 항상 수평 방향 (기본 align="center")
-                </ListItem>
-                <ListItem>
-                  <strong>간격 조절:</strong> gap prop으로 8px ~ 64px 간격 설정
-                </ListItem>
-                <ListItem>
-                  <strong>정렬 옵션:</strong> align, justify로 자유로운 정렬
-                  가능
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
-
-          {/* Preview */}
-          <Section>
-            <Heading level="h2" id="preview" title="미리보기" />
-            <Card variant="outlined">
+            <ComponentPreview>
               <StackComponent gap="md">
                 <div className="bg-krds-primary-10 p-4 rounded">
                   첫 번째 아이템
@@ -109,31 +69,77 @@ export default function StackPage() {
                   세 번째 아이템
                 </div>
               </StackComponent>
-            </Card>
+            </ComponentPreview>
+
+            <Code variant="block" language="tsx">
+              {`import { Stack, VStack, HStack } from '@hanui/react';
+
+<Stack gap="md">
+  <div>첫 번째</div>
+  <div>두 번째</div>
+  <div>세 번째</div>
+</Stack>`}
+            </Code>
           </Section>
 
-          {/* Usage */}
-          <Section>
-            <Heading level="h2" id="usage" title="사용 방법" />
+          {/* 설치 */}
+          <Installation componentName="stack" />
 
-            <Subsection level="h3">
-              <Heading level="h3" title="VStack - 수직 레이아웃">
-                <Body className="leading-relaxed">
-                  요소를 수직으로 쌓아 올립니다:
-                </Body>
-              </Heading>
+          {/* 사용법 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Stack은 기본 수직 레이아웃, VStack은 항상 수직, HStack은 항상 수평 방향입니다."
+            />
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { VStack } from '@/components/hanui';
+            <List variant="check" className="mb-4">
+              <ListItem>
+                <strong>Stack:</strong> 기본 수직 레이아웃
+                (direction=&quot;row&quot;로 수평 변경 가능)
+              </ListItem>
+              <ListItem>
+                <strong>VStack:</strong> 항상 수직 방향
+              </ListItem>
+              <ListItem>
+                <strong>HStack:</strong> 항상 수평 방향 (기본
+                align=&quot;center&quot;)
+              </ListItem>
+            </List>
 
+            <Code variant="block" language="tsx">
+              {`// 수직 스택 (기본)
 <VStack gap="md">
   <div>위</div>
-  <div>중간</div>
   <div>아래</div>
-</VStack>`}
-              </Code>
+</VStack>
 
-              <Card variant="outlined" className="mt-3">
+// 수평 스택
+<HStack gap="md">
+  <div>왼쪽</div>
+  <div>오른쪽</div>
+</HStack>
+
+// Stack으로 방향 전환
+<Stack direction="row" gap="md">
+  <div>왼쪽</div>
+  <div>오른쪽</div>
+</Stack>`}
+            </Code>
+          </Section>
+
+          {/* 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="VStack - 수직 레이아웃"
+                description="요소를 수직으로 쌓아 올립니다."
+              />
+              <ComponentPreview>
                 <VStack gap="md">
                   <div className="bg-krds-success-10 p-4 rounded w-full text-center">
                     첫 번째
@@ -145,27 +151,23 @@ export default function StackPage() {
                     세 번째
                   </div>
                 </VStack>
-              </Card>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<VStack gap="md">
+  <div>첫 번째</div>
+  <div>두 번째</div>
+  <div>세 번째</div>
+</VStack>`}
+              </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="HStack - 수평 레이아웃">
-                <Body className="leading-relaxed">
-                  요소를 수평으로 나란히 배치합니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { HStack } from '@/components/hanui';
-
-<HStack gap="sm">
-  <div>왼쪽</div>
-  <div>중앙</div>
-  <div>오른쪽</div>
-</HStack>`}
-              </Code>
-
-              <Card variant="outlined" className="mt-3">
+              <Heading
+                level="h3"
+                title="HStack - 수평 레이아웃"
+                description="요소를 수평으로 나란히 배치합니다."
+              />
+              <ComponentPreview>
                 <HStack gap="md">
                   <div className="bg-krds-primary-10 px-4 py-2 rounded">
                     왼쪽
@@ -177,94 +179,109 @@ export default function StackPage() {
                     오른쪽
                   </div>
                 </HStack>
-              </Card>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Stack - 방향 전환 가능">
-                <Body className="leading-relaxed">
-                  Stack은 기본 수직이지만 direction="row"로 수평으로 변경할 수
-                  있습니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Stack } from '@/components/hanui';
-
-// 수직 (기본)
-<Stack gap="md">
-  <div>위</div>
-  <div>아래</div>
-</Stack>
-
-// 수평
-<Stack direction="row" gap="md">
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<HStack gap="md">
   <div>왼쪽</div>
+  <div>중앙</div>
   <div>오른쪽</div>
-</Stack>`}
+</HStack>`}
               </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="간격 조절 (Gap)">
-                <Body className="leading-relaxed">
-                  gap prop으로 요소 간 간격을 조절합니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// 간격 옵션
-<VStack gap="xs">  {/* 8px */}
-<VStack gap="sm">  {/* 12px */}
-<VStack gap="md">  {/* 16px - 기본값 */}
-<VStack gap="lg">  {/* 24px */}
-<VStack gap="xl">  {/* 32px */}
-<VStack gap="2xl"> {/* 40px */}
-<VStack gap="3xl"> {/* 64px */}
-
-// 간격 없음
-<VStack gap="none"> {/* 0px */}`}
+              <Heading
+                level="h3"
+                title="Gap"
+                description="gap prop으로 요소 간 간격을 조절합니다. xs(4px)부터 4xl(64px)까지 지원합니다."
+              />
+              <ComponentPreview>
+                <StackComponent gap="md">
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      sm (8px)
+                    </p>
+                    <VStack gap="sm">
+                      <div className="bg-krds-accent-10 p-3 rounded w-full">
+                        Item 1
+                      </div>
+                      <div className="bg-krds-accent-10 p-3 rounded w-full">
+                        Item 2
+                      </div>
+                    </VStack>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      lg (24px)
+                    </p>
+                    <VStack gap="lg">
+                      <div className="bg-krds-warning-10 p-3 rounded w-full">
+                        Item 1
+                      </div>
+                      <div className="bg-krds-warning-10 p-3 rounded w-full">
+                        Item 2
+                      </div>
+                    </VStack>
+                  </div>
+                </StackComponent>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<VStack gap="none"> {/* 0px */}
+<VStack gap="xs">   {/* 4px */}
+<VStack gap="sm">   {/* 8px */}
+<VStack gap="md">   {/* 16px */}
+<VStack gap="lg">   {/* 24px */}
+<VStack gap="xl">   {/* 32px */}
+<VStack gap="2xl">  {/* 40px */}
+<VStack gap="3xl">  {/* 48px */}
+<VStack gap="4xl">  {/* 64px */}`}
               </Code>
-
-              <StackComponent gap="md" className="mt-3">
-                <Card variant="outlined">
-                  <Body className="font-medium mb-2">
-                    Small Gap (sm - 12px)
-                  </Body>
-                  <VStack gap="sm">
-                    <div className="bg-krds-accent-10 p-3 rounded w-full">
-                      Item 1
-                    </div>
-                    <div className="bg-krds-accent-10 p-3 rounded w-full">
-                      Item 2
-                    </div>
-                  </VStack>
-                </Card>
-
-                <Card variant="outlined">
-                  <Body className="font-medium mb-2">
-                    Large Gap (lg - 24px)
-                  </Body>
-                  <VStack gap="lg">
-                    <div className="bg-krds-warning-10 p-3 rounded w-full">
-                      Item 1
-                    </div>
-                    <div className="bg-krds-warning-10 p-3 rounded w-full">
-                      Item 2
-                    </div>
-                  </VStack>
-                </Card>
-              </StackComponent>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="정렬 (Align & Justify)">
-                <Body className="leading-relaxed">
-                  align과 justify로 요소를 정렬합니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Heading
+                level="h3"
+                title="Align & Justify"
+                description="align과 justify로 요소를 정렬합니다."
+              />
+              <ComponentPreview>
+                <StackComponent gap="lg">
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      VStack - Center Align
+                    </p>
+                    <VStack
+                      align="center"
+                      gap="sm"
+                      className="border border-krds-gray-20 rounded p-4"
+                    >
+                      <div className="bg-krds-accent-10 px-4 py-2 rounded">
+                        중앙 정렬
+                      </div>
+                      <div className="bg-krds-accent-10 px-4 py-2 rounded">
+                        아이템
+                      </div>
+                    </VStack>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      HStack - Space Between
+                    </p>
+                    <HStack
+                      justify="between"
+                      className="border border-krds-gray-20 rounded p-4"
+                    >
+                      <div className="bg-krds-warning-10 px-4 py-2 rounded">
+                        왼쪽
+                      </div>
+                      <div className="bg-krds-warning-10 px-4 py-2 rounded">
+                        오른쪽
+                      </div>
+                    </HStack>
+                  </div>
+                </StackComponent>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
                 {`// 가운데 정렬
 <VStack align="center" gap="sm">
   <div>중앙 정렬</div>
@@ -274,67 +291,21 @@ export default function StackPage() {
 <HStack justify="between">
   <div>왼쪽</div>
   <div>오른쪽</div>
-</HStack>
-
-// 가운데 정렬 + 중앙 배치
-<HStack justify="center" align="center" gap="md">
-  <Button>취소</Button>
-  <Button>확인</Button>
 </HStack>`}
               </Code>
-
-              <StackComponent gap="md" className="mt-3">
-                <Card variant="outlined">
-                  <Body className="font-medium mb-2">
-                    VStack - Center Align
-                  </Body>
-                  <VStack
-                    align="center"
-                    gap="sm"
-                    className="border border-krds-gray-20 rounded p-4"
-                  >
-                    <div className="bg-krds-accent-10 px-4 py-2 rounded">
-                      중앙 정렬
-                    </div>
-                    <div className="bg-krds-accent-10 px-4 py-2 rounded">
-                      아이템
-                    </div>
-                  </VStack>
-                </Card>
-
-                <Card variant="outlined">
-                  <Body className="font-medium mb-2">
-                    HStack - Space Between
-                  </Body>
-                  <HStack
-                    justify="between"
-                    className="border border-krds-gray-20 rounded p-4"
-                  >
-                    <div className="bg-krds-warning-10 px-4 py-2 rounded">
-                      왼쪽
-                    </div>
-                    <div className="bg-krds-warning-10 px-4 py-2 rounded">
-                      오른쪽
-                    </div>
-                  </HStack>
-                </Card>
-              </StackComponent>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="실제 사용 예시">
-                <Body className="leading-relaxed">
-                  폼 레이아웃과 버튼 그룹 예시입니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Heading
+                level="h3"
+                title="실제 사용 예시"
+                description="폼 레이아웃과 버튼 그룹 예시입니다."
+              />
+              <Code variant="block" language="tsx">
                 {`// 폼 레이아웃
 <VStack gap="md">
   <Input label="이름" />
   <Input label="이메일" />
-  <Input label="비밀번호" type="password" />
-
   <HStack justify="end" gap="sm">
     <Button variant="outline">취소</Button>
     <Button>제출</Button>
@@ -345,25 +316,23 @@ export default function StackPage() {
 <VStack gap="lg">
   <Card>카드 1</Card>
   <Card>카드 2</Card>
-  <Card>카드 3</Card>
 </VStack>`}
               </Code>
             </Subsection>
           </Section>
 
           {/* Best Practices */}
-          <Section>
-            <Heading level="h2" id="best-practices" title="Best Practices" />
+          <Section level="h2">
+            <Heading level="h2" id="best-practices" title="사용 가이드라인" />
 
             <Subsection level="h3">
               <Heading level="h3" title="언제 사용하나요?" />
-              <DoCard title="Stack을 사용하기 적합한 경우">
+              <DoCard title="Stack 사용이 적합한 경우">
                 <List variant="check">
                   <ListItem>여러 요소를 수직 또는 수평으로 나열할 때</ListItem>
                   <ListItem>요소 간 일관된 간격이 필요할 때</ListItem>
                   <ListItem>폼 레이아웃을 구성할 때</ListItem>
                   <ListItem>버튼 그룹을 정렬할 때</ListItem>
-                  <ListItem>카드나 리스트 아이템을 배치할 때</ListItem>
                 </List>
               </DoCard>
             </Subsection>
@@ -384,94 +353,88 @@ export default function StackPage() {
                 </List>
               </DontCard>
             </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="사용 가이드라인" />
-              <List>
-                <ListItem>
-                  VStack과 HStack은 명확한 의도 표현에 좋습니다
-                </ListItem>
-                <ListItem>
-                  HStack은 기본적으로 align="center"가 적용되어 수평 정렬이
-                  자연스럽습니다
-                </ListItem>
-                <ListItem>
-                  복잡한 레이아웃은 Stack을 중첩하여 구성할 수 있습니다
-                </ListItem>
-                <ListItem>
-                  간격은 콘텐츠의 밀도에 따라 sm, md, lg 중 선택하세요
-                </ListItem>
-              </List>
-            </Subsection>
           </Section>
         </TabsContent>
 
         <TabsContent value="api">
-          <Section>
-            <Heading level="h2" id="api" title="API Reference" />
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
               <Heading level="h3" title="Stack Props" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">gap</TableCell>
-                    <TableCell className="font-mono">
-                      StackGap | number
+                    <TableCell>
+                      <Code>gap</Code>
                     </TableCell>
-                    <TableCell className="font-mono">
-                      &apos;none&apos;
+                    <TableCell>
+                      <Code>StackGap | number</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;none&quot;</Code>
                     </TableCell>
                     <TableCell>요소 간 간격</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">direction</TableCell>
-                    <TableCell className="font-mono">
-                      &apos;row&apos; | undefined
-                    </TableCell>
-                    <TableCell className="font-mono">
-                      undefined (수직)
+                    <TableCell>
+                      <Code>direction</Code>
                     </TableCell>
                     <TableCell>
-                      스택 방향 (Stack만 사용 가능, VStack/HStack은 고정)
+                      <Code>&quot;row&quot; | &quot;column&quot;</Code>
                     </TableCell>
+                    <TableCell>
+                      <Code>&quot;column&quot;</Code>
+                    </TableCell>
+                    <TableCell>스택 방향</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">align</TableCell>
-                    <TableCell className="font-mono">
-                      &apos;start&apos; | &apos;center&apos; | &apos;end&apos; |
-                      &apos;stretch&apos;
+                    <TableCell>
+                      <Code>align</Code>
                     </TableCell>
-                    <TableCell className="font-mono">
-                      - (HStack: &apos;center&apos;)
+                    <TableCell>
+                      <Code>
+                        &quot;start&quot; | &quot;center&quot; | &quot;end&quot;
+                        | &quot;stretch&quot;
+                      </Code>
                     </TableCell>
+                    <TableCell>-</TableCell>
                     <TableCell>교차축 정렬</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">justify</TableCell>
-                    <TableCell className="font-mono">
-                      &apos;start&apos; | &apos;center&apos; | &apos;end&apos; |
-                      &apos;between&apos; | &apos;around&apos;
+                    <TableCell>
+                      <Code>justify</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>
+                        &quot;start&quot; | &quot;center&quot; | &quot;end&quot;
+                        | &quot;between&quot; | &quot;around&quot;
+                      </Code>
                     </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>주축 정렬</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">as</TableCell>
-                    <TableCell className="font-mono">
-                      &apos;div&apos; | &apos;section&apos; |
-                      &apos;article&apos; | ...
+                    <TableCell>
+                      <Code>as</Code>
                     </TableCell>
-                    <TableCell className="font-mono">&apos;div&apos;</TableCell>
+                    <TableCell>
+                      <Code>
+                        &quot;div&quot; | &quot;section&quot; |
+                        &quot;article&quot; | ...
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>&quot;div&quot;</Code>
+                    </TableCell>
                     <TableCell>렌더링할 HTML 요소</TableCell>
                   </TableRow>
                 </TableBody>
@@ -480,8 +443,7 @@ export default function StackPage() {
 
             <Subsection level="h3">
               <Heading level="h3" title="Gap Options" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>값</TableHead>
@@ -491,76 +453,104 @@ export default function StackPage() {
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">none</TableCell>
+                    <TableCell>
+                      <Code>none</Code>
+                    </TableCell>
                     <TableCell>0px</TableCell>
                     <TableCell>간격 없음</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">xs</TableCell>
-                    <TableCell>8px</TableCell>
+                    <TableCell>
+                      <Code>xs</Code>
+                    </TableCell>
+                    <TableCell>4px</TableCell>
                     <TableCell>매우 작은 간격</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">sm</TableCell>
-                    <TableCell>12px</TableCell>
+                    <TableCell>
+                      <Code>sm</Code>
+                    </TableCell>
+                    <TableCell>8px</TableCell>
                     <TableCell>작은 간격</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">md</TableCell>
+                    <TableCell>
+                      <Code>md</Code>
+                    </TableCell>
                     <TableCell>16px</TableCell>
                     <TableCell>중간 간격 (권장)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">lg</TableCell>
+                    <TableCell>
+                      <Code>lg</Code>
+                    </TableCell>
                     <TableCell>24px</TableCell>
                     <TableCell>큰 간격</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">xl</TableCell>
+                    <TableCell>
+                      <Code>xl</Code>
+                    </TableCell>
                     <TableCell>32px</TableCell>
                     <TableCell>매우 큰 간격</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">2xl</TableCell>
+                    <TableCell>
+                      <Code>2xl</Code>
+                    </TableCell>
                     <TableCell>40px</TableCell>
                     <TableCell>2배 큰 간격</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">3xl</TableCell>
-                    <TableCell>64px</TableCell>
+                    <TableCell>
+                      <Code>3xl</Code>
+                    </TableCell>
+                    <TableCell>48px</TableCell>
                     <TableCell>3배 큰 간격</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>4xl</Code>
+                    </TableCell>
+                    <TableCell>64px</TableCell>
+                    <TableCell>4배 큰 간격</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Component 비교" />
-
-              <Table>
+              <Heading level="h3" title="컴포넌트 비교" />
+              <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Component</TableHead>
-                    <TableHead>Direction</TableHead>
-                    <TableHead>Default Align</TableHead>
+                    <TableHead>컴포넌트</TableHead>
+                    <TableHead>방향</TableHead>
+                    <TableHead>기본 align</TableHead>
                     <TableHead>사용 시점</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">Stack</TableCell>
-                    <TableCell>수직 (direction="row"로 변경 가능)</TableCell>
+                    <TableCell>
+                      <Code>Stack</Code>
+                    </TableCell>
+                    <TableCell>수직 (변경 가능)</TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>방향이 동적으로 변경되어야 할 때</TableCell>
+                    <TableCell>방향이 동적으로 변경될 때</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">VStack</TableCell>
+                    <TableCell>
+                      <Code>VStack</Code>
+                    </TableCell>
                     <TableCell>항상 수직</TableCell>
                     <TableCell>-</TableCell>
-                    <TableCell>명확하게 수직 레이아웃임을 표현</TableCell>
+                    <TableCell>수직 레이아웃임을 명확히 표현</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">HStack</TableCell>
+                    <TableCell>
+                      <Code>HStack</Code>
+                    </TableCell>
                     <TableCell>항상 수평</TableCell>
                     <TableCell>center</TableCell>
                     <TableCell>버튼 그룹 등 수평 정렬</TableCell>
@@ -573,7 +563,7 @@ export default function StackPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Spacing', href: '/components/spacing' }}
+        prev={{ title: 'Spinner', href: '/components/spinner' }}
         next={{ title: 'Structured List', href: '/components/structured-list' }}
       />
     </>

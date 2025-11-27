@@ -12,13 +12,8 @@ import {
 } from '@/components/content';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
-// Docs helper components
-import { DoCard, DontCard } from '@/components/helpers';
-
 // UI components - from @hanui/react
 import {
-  Body,
-  Card,
   Code,
   List,
   ListItem,
@@ -116,11 +111,11 @@ export default function MyComponent() {
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="많은 페이지" />
-              <Body>
-                페이지가 많을 때는 생략 부호(...)를 사용하여 간결하게
-                표시됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="많은 페이지"
+                description="페이지가 많을 때는 생략 부호(...)를 사용하여 간결하게 표시됩니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col items-center gap-4">
                   <Pagination
@@ -128,9 +123,9 @@ export default function MyComponent() {
                     totalPages={20}
                     onPageChange={setCurrentPage2}
                   />
-                  <Body size="sm" className="text-krds-gray-70">
+                  <p className="text-sm text-krds-gray-70">
                     총 20페이지 중 {currentPage2}페이지
-                  </Body>
+                  </p>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
@@ -143,17 +138,17 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Sibling Count" />
-              <Body>
-                siblingCount로 현재 페이지 양쪽에 표시할 페이지 수를 조정할 수
-                있습니다. 기본값은 1입니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="Sibling Count"
+                description="siblingCount로 현재 페이지 양쪽에 표시할 페이지 수를 조정할 수 있습니다. 기본값은 1입니다."
+              />
               <ComponentPreview>
                 <div className="space-y-6">
                   <div className="flex flex-col items-center gap-2">
-                    <Body size="sm" className="text-krds-gray-70">
+                    <p className="text-sm text-krds-gray-70">
                       siblingCount = 1 (기본값)
-                    </Body>
+                    </p>
                     <Pagination
                       currentPage={currentPage3}
                       totalPages={20}
@@ -162,9 +157,9 @@ export default function MyComponent() {
                     />
                   </div>
                   <div className="flex flex-col items-center gap-2">
-                    <Body size="sm" className="text-krds-gray-70">
+                    <p className="text-sm text-krds-gray-70">
                       siblingCount = 2
-                    </Body>
+                    </p>
                     <Pagination
                       currentPage={currentPage4}
                       totalPages={20}
@@ -194,10 +189,11 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="직접 이동" />
-              <Body>
-                페이지 번호를 직접 입력하여 원하는 페이지로 이동할 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="직접 이동"
+                description="페이지 번호를 직접 입력하여 원하는 페이지로 이동할 수 있습니다."
+              />
               <ComponentPreview>
                 <Pagination
                   variant="direct-input"
@@ -217,11 +213,11 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="목록 확장" />
-              <Body>
-                더 보기 버튼을 클릭하여 다음 페이지를 로드합니다. 무한
-                스크롤이나 점진적 로딩에 적합합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="목록 확장"
+                description="더 보기 버튼을 클릭하여 다음 페이지를 로드합니다. 무한 스크롤이나 점진적 로딩에 적합합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4">
                   <Pagination
@@ -239,11 +235,11 @@ export default function MyComponent() {
                     hasMore={currentPage2 < 10}
                     isLoading={isLoading}
                   />
-                  <Body size="sm" className="text-krds-gray-70 text-center">
+                  <p className="text-sm text-krds-gray-70 text-center">
                     {isLoading
                       ? '콘텐츠를 불러오는 중...'
                       : `${currentPage2}페이지 로드됨`}
-                  </Body>
+                  </p>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
@@ -272,11 +268,11 @@ const handleLoadMore = () => {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="적은 페이지" />
-              <Body>
-                페이지가 적을 때는 생략 부호(...) 없이 모든 페이지 번호가
-                표시됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="적은 페이지"
+                description="페이지가 적을 때는 생략 부호(...) 없이 모든 페이지 번호가 표시됩니다."
+              />
               <ComponentPreview>
                 <Pagination
                   currentPage={currentPage5}
@@ -294,8 +290,11 @@ const handleLoadMore = () => {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="매우 많은 페이지" />
-              <Body>100페이지 이상의 경우에도 간결하게 표시됩니다.</Body>
+              <Heading
+                level="h3"
+                title="매우 많은 페이지"
+                description="100페이지 이상의 경우에도 간결하게 표시됩니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col items-center gap-4">
                   <Pagination
@@ -303,9 +302,9 @@ const handleLoadMore = () => {
                     totalPages={100}
                     onPageChange={setCurrentPage6}
                   />
-                  <Body size="sm" className="text-krds-gray-70">
+                  <p className="text-sm text-krds-gray-70">
                     총 100페이지 중 {currentPage6}페이지
-                  </Body>
+                  </p>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
@@ -318,11 +317,11 @@ const handleLoadMore = () => {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="실제 사용 예제" />
-              <Body>
-                실제 데이터 목록과 함께 사용하는 예제입니다. 페이지 변경 시
-                목록이 업데이트됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="실제 사용 예제"
+                description="실제 데이터 목록과 함께 사용하는 예제입니다. 페이지 변경 시 목록이 업데이트됩니다."
+              />
               <ComponentPreview>
                 <div className="space-y-4">
                   <div className="space-y-2">
@@ -331,12 +330,12 @@ const handleLoadMore = () => {
                         key={i}
                         className="p-4 bg-krds-white rounded-lg border border-krds-gray-20"
                       >
-                        <Body className="font-semibold text-krds-gray-95">
+                        <p className="font-semibold text-krds-gray-95">
                           항목 {(currentPage7 - 1) * 5 + i + 1}
-                        </Body>
-                        <Body size="sm" className="text-krds-gray-70 mt-1">
+                        </p>
+                        <p className="text-sm text-krds-gray-70 mt-1">
                           페이지 {currentPage7}의 항목입니다.
-                        </Body>
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -420,7 +419,7 @@ return (
 
         <TabsContent value="api">
           <Section level="h2">
-            <Heading level="h2" id="api-reference" title="API Reference" />
+            <Heading level="h2" id="api-reference" title="API 레퍼런스" />
 
             <Subsection level="h3">
               <Heading level="h3" title="Props" />
@@ -428,9 +427,9 @@ return (
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -588,7 +587,7 @@ return (
 
       <PageNavigation
         prev={{ title: 'Modal', href: '/components/modal' }}
-        next={{ title: 'Section', href: '/components/section' }}
+        next={{ title: 'Progress', href: '/components/progress' }}
       />
     </>
   );

@@ -15,7 +15,6 @@ import {
   SkeletonAvatar,
   SkeletonCard,
   SkeletonTable,
-  Body,
   Code,
   List,
   ListItem,
@@ -47,7 +46,7 @@ export default function SkeletonPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* 1. 개요 */}
+          {/* 개요 */}
           <Section level="h2">
             <Heading
               level="h2"
@@ -55,11 +54,6 @@ export default function SkeletonPage() {
               title="개요"
               className="sr-only"
             />
-            <Body className="mb-3">
-              Skeleton은 콘텐츠 로딩 중 레이아웃을 유지하면서 사용자에게 로딩
-              상태를 알려주는 컴포넌트입니다. 다양한 형태의 프리셋 컴포넌트를
-              제공합니다.
-            </Body>
             <ComponentPreview>
               <div className="flex flex-col gap-4 max-w-md">
                 <Skeleton width={200} height={20} />
@@ -74,18 +68,17 @@ export default function SkeletonPage() {
             </Code>
           </Section>
 
-          {/* 2. 설치 */}
-          <Section level="h2">
-            <Installation componentName="skeleton" />
-          </Section>
+          {/* 설치 */}
+          <Installation componentName="skeleton" />
 
-          {/* 3. 사용법 */}
+          {/* 사용법 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
-            <Body className="mb-3">
-              Skeleton 컴포넌트를 import하여 사용합니다. width, height로 크기를
-              지정하고 variant로 형태를 선택합니다.
-            </Body>
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Skeleton 컴포넌트를 import하여 사용합니다. width, height로 크기를 지정하고 variant로 형태를 선택합니다."
+            />
             <Code variant="block" language="tsx">
               {`import {
   Skeleton,
@@ -112,33 +105,36 @@ export default function SkeletonPage() {
             </Code>
           </Section>
 
-          {/* 4. 예제 */}
+          {/* 예제 */}
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
 
             {/* 변형 */}
             <Subsection level="h3">
-              <Heading level="h3" title="변형 (Variant)" />
-              <Body className="mb-3">
-                rectangular, rounded, circular, text 네 가지 변형을 지원합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="Variant"
+                description="rectangular, rounded, circular, text 네 가지 변형을 지원합니다."
+              />
               <ComponentPreview>
                 <div className="flex items-center gap-6">
                   <div className="text-center">
                     <Skeleton variant="rectangular" width={80} height={80} />
-                    <Body className="mt-2 text-sm">Rectangular</Body>
+                    <p className="mt-2 text-sm text-krds-gray-70">
+                      Rectangular
+                    </p>
                   </div>
                   <div className="text-center">
                     <Skeleton variant="rounded" width={80} height={80} />
-                    <Body className="mt-2 text-sm">Rounded</Body>
+                    <p className="mt-2 text-sm text-krds-gray-70">Rounded</p>
                   </div>
                   <div className="text-center">
                     <Skeleton variant="circular" width={80} height={80} />
-                    <Body className="mt-2 text-sm">Circular</Body>
+                    <p className="mt-2 text-sm text-krds-gray-70">Circular</p>
                   </div>
                   <div className="text-center w-32">
                     <Skeleton variant="text" />
-                    <Body className="mt-2 text-sm">Text</Body>
+                    <p className="mt-2 text-sm text-krds-gray-70">Text</p>
                   </div>
                 </div>
               </ComponentPreview>
@@ -152,11 +148,11 @@ export default function SkeletonPage() {
 
             {/* SkeletonText */}
             <Subsection level="h3">
-              <Heading level="h3" title="SkeletonText" />
-              <Body className="mb-3">
-                여러 줄의 텍스트 플레이스홀더를 생성합니다. lines로 줄 수를,
-                lastLineWidth로 마지막 줄 너비를 조절합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="SkeletonText"
+                description="여러 줄의 텍스트 플레이스홀더를 생성합니다. lines로 줄 수를, lastLineWidth로 마지막 줄 너비를 조절합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-md">
                   <SkeletonText lines={4} lastLineWidth={60} />
@@ -169,28 +165,28 @@ export default function SkeletonPage() {
 
             {/* SkeletonAvatar */}
             <Subsection level="h3">
-              <Heading level="h3" title="SkeletonAvatar" />
-              <Body className="mb-3">
-                아바타 형태의 원형 플레이스홀더입니다. sm, md, lg, xl 네 가지
-                크기를 지원합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="SkeletonAvatar"
+                description="아바타 형태의 원형 플레이스홀더입니다. sm, md, lg, xl 네 가지 크기를 지원합니다."
+              />
               <ComponentPreview>
                 <div className="flex items-center gap-4">
                   <div className="text-center">
                     <SkeletonAvatar size="sm" />
-                    <Body className="mt-2 text-sm">32px</Body>
+                    <p className="mt-2 text-sm text-krds-gray-70">32px</p>
                   </div>
                   <div className="text-center">
                     <SkeletonAvatar size="md" />
-                    <Body className="mt-2 text-sm">40px</Body>
+                    <p className="mt-2 text-sm text-krds-gray-70">40px</p>
                   </div>
                   <div className="text-center">
                     <SkeletonAvatar size="lg" />
-                    <Body className="mt-2 text-sm">48px</Body>
+                    <p className="mt-2 text-sm text-krds-gray-70">48px</p>
                   </div>
                   <div className="text-center">
                     <SkeletonAvatar size="xl" />
-                    <Body className="mt-2 text-sm">64px</Body>
+                    <p className="mt-2 text-sm text-krds-gray-70">64px</p>
                   </div>
                 </div>
               </ComponentPreview>
@@ -204,11 +200,11 @@ export default function SkeletonPage() {
 
             {/* SkeletonCard */}
             <Subsection level="h3">
-              <Heading level="h3" title="SkeletonCard" />
-              <Body className="mb-3">
-                카드 형태의 복합 플레이스홀더입니다. 이미지, 아바타, 텍스트를
-                조합하여 사용합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="SkeletonCard"
+                description="카드 형태의 복합 플레이스홀더입니다. 이미지, 아바타, 텍스트를 조합하여 사용합니다."
+              />
               <ComponentPreview>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
                   <SkeletonCard />
@@ -226,11 +222,11 @@ export default function SkeletonPage() {
 
             {/* SkeletonTable */}
             <Subsection level="h3">
-              <Heading level="h3" title="SkeletonTable" />
-              <Body className="mb-3">
-                테이블 형태의 플레이스홀더입니다. 행(rows)과 열(columns) 수를
-                지정할 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="SkeletonTable"
+                description="테이블 형태의 플레이스홀더입니다. rows와 columns로 행/열 수를 지정할 수 있습니다."
+              />
               <ComponentPreview>
                 <SkeletonTable rows={4} columns={3} />
               </ComponentPreview>
@@ -241,23 +237,23 @@ export default function SkeletonPage() {
 
             {/* 애니메이션 비활성화 */}
             <Subsection level="h3">
-              <Heading level="h3" title="애니메이션 비활성화" />
-              <Body className="mb-3">
-                disableAnimation prop으로 펄스 애니메이션을 비활성화할 수
-                있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="애니메이션 비활성화"
+                description="disableAnimation prop으로 펄스 애니메이션을 비활성화할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex gap-8">
                   <div className="flex-1">
-                    <Body className="mb-2 text-sm font-medium">
+                    <p className="mb-2 text-sm font-medium text-krds-gray-90">
                       애니메이션 활성화
-                    </Body>
+                    </p>
                     <Skeleton width="100%" height={40} />
                   </div>
                   <div className="flex-1">
-                    <Body className="mb-2 text-sm font-medium">
+                    <p className="mb-2 text-sm font-medium text-krds-gray-90">
                       애니메이션 비활성화
-                    </Body>
+                    </p>
                     <Skeleton width="100%" height={40} disableAnimation />
                   </div>
                 </div>
@@ -301,7 +297,7 @@ export default function SkeletonPage() {
 
         <TabsContent value="api">
           <Section level="h2">
-            <Heading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
             {/* Skeleton Props */}
             <Subsection level="h3">
@@ -310,9 +306,9 @@ export default function SkeletonPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -374,9 +370,9 @@ export default function SkeletonPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -429,9 +425,9 @@ export default function SkeletonPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -461,9 +457,9 @@ export default function SkeletonPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -526,9 +522,9 @@ export default function SkeletonPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

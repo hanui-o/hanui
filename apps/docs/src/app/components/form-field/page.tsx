@@ -1004,7 +1004,7 @@ gap: 8px;                  /* 요소 간 간격 */`}
 
       <PageNavigation
         prev={{ title: 'Footer', href: '/components/footer' }}
-        next={{ title: 'Header', href: '/components/header' }}
+        next={{ title: 'Grid', href: '/components/grid' }}
       />
     </>
   );

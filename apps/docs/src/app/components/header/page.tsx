@@ -244,11 +244,11 @@ const navigationItems: NavigationMenuItem[] = [
             <Heading level="h2" id="customization" title="Props 커스터마이징" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="로고 및 유틸리티 링크 변경" />
-              <Body className="mb-4">
-                두 컴포넌트 모두 동일한 props로 로고, 유틸리티 링크 등을
-                커스터마이징할 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="로고 및 유틸리티 링크 변경"
+                description="두 컴포넌트 모두 동일한 props로 로고, 유틸리티 링크 등을 커스터마이징할 수 있습니다."
+              />
 
               <Code variant="block" language="tsx">
                 {`<HeaderWithMegaMenu
@@ -280,11 +280,11 @@ const navigationItems: NavigationMenuItem[] = [
 
             {/* 반응형 동작 */}
             <Subsection level="h3">
-              <Heading level="h3" title="반응형 동작" />
-              <Body className="mb-4">
-                Desktop(1024px+)과 Mobile(1023px 이하) 두 가지 브레이크포인트로
-                자동 대응합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="반응형 동작"
+                description="Desktop(1024px+)과 Mobile(1023px 이하) 두 가지 브레이크포인트로 자동 대응합니다."
+              />
 
               <Card variant="outlined">
                 <List spacing="tight">
@@ -346,60 +346,60 @@ const navigationItems: NavigationMenuItem[] = [
 
           {/* 접근성 */}
           <Section level="h2">
-            <Heading level="h2" id="accessibility" title="접근성" />
-            <Body className="mb-4">
-              Header는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다.
-            </Body>
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="Header는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
 
-            <Card variant="filled">
-              <List variant="check" spacing="tight">
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    시맨틱 HTML:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    header, nav, ul, li 등 시맨틱 요소 사용
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    키보드 네비게이션:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    모든 링크와 버튼에 키보드로 접근 가능
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    ARIA 레이블:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    적절한 ARIA 속성으로 구조 명확화
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    포커스 관리:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    모바일 메뉴 포커스 트랩 자동 처리
-                  </Body>
-                </ListItem>
-                <ListItem>
-                  <Body size="sm" weight="bold" as="span">
-                    로고 alt 텍스트:
-                  </Body>
-                  <Body size="sm" as="span">
-                    {' '}
-                    이미지 alt 속성 필수 제공
-                  </Body>
-                </ListItem>
-              </List>
-            </Card>
+            <List variant="check" spacing="tight">
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  시맨틱 HTML:
+                </Body>
+                <Body size="sm" as="span">
+                  {' '}
+                  header, nav, ul, li 등 시맨틱 요소 사용
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  키보드 네비게이션:
+                </Body>
+                <Body size="sm" as="span">
+                  {' '}
+                  모든 링크와 버튼에 키보드로 접근 가능
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  ARIA 레이블:
+                </Body>
+                <Body size="sm" as="span">
+                  {' '}
+                  적절한 ARIA 속성으로 구조 명확화
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  포커스 관리:
+                </Body>
+                <Body size="sm" as="span">
+                  {' '}
+                  모바일 메뉴 포커스 트랩 자동 처리
+                </Body>
+              </ListItem>
+              <ListItem>
+                <Body size="sm" weight="bold" as="span">
+                  로고 alt 텍스트:
+                </Body>
+                <Body size="sm" as="span">
+                  {' '}
+                  이미지 alt 속성 필수 제공
+                </Body>
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
@@ -533,7 +533,7 @@ const navigationItems: NavigationMenuItem[] = [
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'File Upload', href: '/components/file-upload' }}
+        prev={{ title: 'Grid', href: '/components/grid' }}
         next={{ title: 'Heading', href: '/components/heading' }}
       />
     </>

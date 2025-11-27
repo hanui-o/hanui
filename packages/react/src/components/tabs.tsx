@@ -5,70 +5,46 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 /**
- * Tabs Variants Definition
- *
- * KRDS-compliant tabs with accessibility automation
- * Foundation Layer: ARIA automation + Keyboard navigation + Focus management
+ * Tabs Variants
+ * KRDS 접근성 자동화를 포함한 탭 컴포넌트
  */
-const tabsListVariants = cva(
-  ['flex', 'border-b', 'border-gray-200', 'dark:border-gray-800', 'mb-10'].join(
-    ' '
-  ),
-  {
-    variants: {
-      variant: {
-        default: '',
-        pills: 'border-0 gap-2',
-      },
+const tabsListVariants = cva('flex border-b border-krds-gray-20 mb-10', {
+  variants: {
+    variant: {
+      default: '',
+      pills: 'border-0 gap-2',
     },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+});
 
 const tabsTriggerVariants = cva(
   [
-    'inline-flex',
-    'items-center',
-    'justify-center',
-    'px-4',
-    'py-2',
-    'font-medium',
-    'transition-colors',
-    'focus-visible:outline-none',
-    'focus-visible:ring-2',
-    'focus-visible:ring-blue-500',
-    'focus-visible:ring-offset-2',
-    'disabled:pointer-events-none',
-    'disabled:opacity-50',
-    'whitespace-nowrap',
-    'pointer',
+    'inline-flex items-center justify-center',
+    'px-4 py-2 font-medium',
+    'transition-colors whitespace-nowrap cursor-pointer',
+    'focus-visible:outline-none focus-visible:ring-2',
+    'focus-visible:ring-krds-func-info focus-visible:ring-offset-2',
+    'disabled:pointer-events-none disabled:opacity-50',
   ].join(' '),
   {
     variants: {
       variant: {
         default: [
-          'border-b-2',
-          'border-transparent',
-          '-mb-px',
-          'data-[state=active]:border-blue-600',
-          'data-[state=active]:text-blue-600',
-          'data-[state=active]:dark:text-blue-400',
-          'data-[state=active]:dark:border-blue-400',
-          'data-[state=inactive]:text-gray-600',
-          'data-[state=inactive]:dark:text-gray-400',
-          'data-[state=inactive]:hover:text-gray-900',
-          'data-[state=inactive]:dark:hover:text-gray-100',
+          'border-b-2 border-transparent -mb-px',
+          'data-[state=active]:border-krds-primary-base',
+          'data-[state=active]:text-krds-primary-base',
+          'data-[state=inactive]:text-krds-gray-60',
+          'data-[state=inactive]:hover:text-krds-gray-90',
         ].join(' '),
         pills: [
           'rounded-md',
-          'data-[state=active]:bg-blue-600',
+          'data-[state=active]:bg-krds-primary-base',
           'data-[state=active]:text-white',
-          'data-[state=inactive]:text-gray-600',
-          'data-[state=inactive]:dark:text-gray-400',
-          'data-[state=inactive]:hover:bg-gray-100',
-          'data-[state=inactive]:dark:hover:bg-gray-800',
+          'data-[state=inactive]:text-krds-gray-60',
+          'data-[state=inactive]:hover:bg-krds-gray-10',
         ].join(' '),
       },
     },
@@ -82,34 +58,17 @@ const tabsTriggerVariants = cva(
  * Tabs Root Props
  */
 export interface TabsProps {
-  /**
-   * Default active tab value
-   */
+  /** 초기 활성 탭 (비제어 모드) */
   defaultValue?: string;
-
-  /**
-   * Controlled active tab value
-   */
+  /** 활성 탭 (제어 모드) */
   value?: string;
-
-  /**
-   * Callback when tab changes
-   */
+  /** 탭 변경 시 콜백 */
   onValueChange?: (value: string) => void;
-
-  /**
-   * Visual variant
-   */
+  /** 스타일 변형 */
   variant?: 'default' | 'pills';
-
-  /**
-   * Additional CSS classes
-   */
+  /** 추가 CSS 클래스 */
   className?: string;
-
-  /**
-   * Child elements (TabsList, TabsContent)
-   */
+  /** 자식 요소 */
   children: React.ReactNode;
 }
 
@@ -126,9 +85,11 @@ export interface TabsListProps extends VariantProps<typeof tabsListVariants> {
  */
 export interface TabsTriggerProps
   extends VariantProps<typeof tabsTriggerVariants> {
+  /** 탭 식별자 (필수) */
   value: string;
   children: React.ReactNode;
   className?: string;
+  /** 비활성화 여부 */
   disabled?: boolean;
 }
 
@@ -136,6 +97,7 @@ export interface TabsTriggerProps
  * TabsContent Props
  */
 export interface TabsContentProps {
+  /** 연결된 탭 식별자 (필수) */
   value: string;
   children: React.ReactNode;
   className?: string;
@@ -163,34 +125,25 @@ const useTabsContext = () => {
 };
 
 /**
- * Tabs Root Component
+ * Tabs - KRDS 탭 네비게이션 컴포넌트
  *
- * **Foundation Layer Features:**
- * - ARIA Automation: role="tablist", role="tab", role="tabpanel"
- * - Keyboard Navigation: Arrow keys, Home, End
- * - Focus Management: Auto-focus on active tab
- * - WCAG 2.1 Compliance: Keyboard access, Focus visibility
+ * ARIA 자동화, 키보드 네비게이션, 포커스 관리를 자동으로 처리합니다.
  *
- * **KRDS Standards:**
- * - role="tablist" for tab container
- * - role="tab" for each tab button
- * - role="tabpanel" for content areas
- * - aria-selected="true/false" for selection state
- * - aria-controls and aria-labelledby for tab-panel linking
- * - Keyboard: Tab/Shift+Tab, Enter for selection
- * - Color independence: Border/background changes, not color alone
+ * 접근성 기능:
+ * - role="tablist", "tab", "tabpanel" 자동 적용
+ * - aria-selected, aria-controls 자동 관리
+ * - Arrow, Home, End 키보드 네비게이션
+ * - 색상 독립적 선택 상태 표시
  *
  * @example
- * ```tsx
  * <Tabs defaultValue="tab1">
  *   <TabsList>
- *     <TabsTrigger value="tab1">Tab 1</TabsTrigger>
- *     <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+ *     <TabsTrigger value="tab1">탭 1</TabsTrigger>
+ *     <TabsTrigger value="tab2">탭 2</TabsTrigger>
  *   </TabsList>
- *   <TabsContent value="tab1">Content 1</TabsContent>
- *   <TabsContent value="tab2">Content 2</TabsContent>
+ *   <TabsContent value="tab1">콘텐츠 1</TabsContent>
+ *   <TabsContent value="tab2">콘텐츠 2</TabsContent>
  * </Tabs>
- * ```
  */
 export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   (
@@ -237,11 +190,9 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
 Tabs.displayName = 'Tabs';
 
 /**
- * TabsList Component
+ * TabsList - 탭 버튼 컨테이너
  *
- * **Foundation Layer:**
- * - Auto-applies role="tablist"
- * - Manages keyboard navigation across tabs
+ * role="tablist"와 키보드 네비게이션을 자동으로 처리합니다.
  */
 export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
   ({ children, className, variant: variantProp, ...props }, ref) => {
@@ -250,10 +201,7 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
     const internalRef = React.useRef<HTMLDivElement>(null);
     const tabsListRef = ref || internalRef;
 
-    /**
-     * Foundation Layer: Keyboard Navigation
-     * Arrow Left/Right, Home, End keys
-     */
+    // 키보드 네비게이션: Arrow Left/Right, Home, End
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
       const tabsList = 'current' in tabsListRef ? tabsListRef.current : null;
       if (!tabsList) return;
@@ -312,12 +260,9 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
 TabsList.displayName = 'TabsList';
 
 /**
- * TabsTrigger Component
+ * TabsTrigger - 개별 탭 버튼
  *
- * **Foundation Layer:**
- * - Auto-applies role="tab"
- * - Auto-manages aria-selected
- * - Auto-generates aria-controls
+ * role="tab", aria-selected, aria-controls를 자동으로 관리합니다.
  */
 export const TabsTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -361,12 +306,9 @@ export const TabsTrigger = React.forwardRef<
 TabsTrigger.displayName = 'TabsTrigger';
 
 /**
- * TabsContent Component
+ * TabsContent - 탭 콘텐츠 패널
  *
- * **Foundation Layer:**
- * - Auto-applies role="tabpanel"
- * - Auto-manages aria-labelledby
- * - Auto-shows/hides based on active tab
+ * role="tabpanel", aria-labelledby를 자동으로 관리합니다.
  */
 export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
   ({ value: contentValue, children, className, ...props }, ref) => {

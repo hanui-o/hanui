@@ -2,12 +2,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
-/**
- * Tooltip Variants Definition
- *
- * KRDS-compliant tooltip with accessibility automation
- * Foundation Layer: Focus management + ARIA automation + Keyboard navigation
- */
+// Tooltip 스타일 변형 정의 - KRDS 접근성 자동화 지원
 const tooltipVariants = cva(
   [
     'absolute',
@@ -26,19 +21,17 @@ const tooltipVariants = cva(
   ].join(' '),
   {
     variants: {
-      /**
-       * Variant - Visual style
-       * KRDS default: dark tooltip with white text
-       */
+      // 스타일 변형 - KRDS 기본: 다크 배경 + 흰색 텍스트
       variant: {
-        default: ['bg-gray-900', 'text-white'].join(' '),
-        light: ['bg-white', 'text-gray-900', 'border', 'border-gray-200'].join(
-          ' '
-        ),
+        default: ['bg-krds-gray-90', 'text-white'].join(' '),
+        light: [
+          'bg-white',
+          'text-krds-gray-90',
+          'border',
+          'border-krds-gray-20',
+        ].join(' '),
       },
-      /**
-       * Position - Tooltip placement
-       */
+      // 위치 설정
       position: {
         top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
         bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
@@ -53,76 +46,33 @@ const tooltipVariants = cva(
   }
 );
 
-/**
- * Tooltip Props Interface
- *
- * Foundation Layer auto-implementation:
- * - aria-labelledby auto-connection (KRDS 2.2 requirement)
- * - Focus management (mouse hover + keyboard focus)
- * - ESC key handler with focus restoration
- */
+// Tooltip Props 인터페이스
 export interface TooltipProps extends VariantProps<typeof tooltipVariants> {
-  /**
-   * Tooltip content text
-   */
+  /** 툴팁 콘텐츠 */
   content: React.ReactNode;
 
-  /**
-   * Child element that triggers the tooltip
-   */
+  /** 툴팁을 트리거할 자식 요소 */
   children: React.ReactElement;
 
-  /**
-   * Delay before showing tooltip (ms)
-   * @default 200
-   */
+  /** 툴팁 표시 지연 시간 (ms) @default 200 */
   delay?: number;
 
-  /**
-   * Whether tooltip is disabled
-   * @default false
-   */
+  /** 툴팁 비활성화 여부 @default false */
   disabled?: boolean;
 
-  /**
-   * Additional CSS classes for tooltip container
-   */
+  /** 툴팁 컨테이너 추가 CSS 클래스 */
   className?: string;
 
-  /**
-   * Additional CSS classes for wrapper
-   */
+  /** 래퍼 추가 CSS 클래스 */
   wrapperClassName?: string;
 }
 
 /**
- * Tooltip Component
- *
- * **Foundation Layer Features:**
- * - Focus Management: Mouse hover + keyboard focus detection + Blur handling
- * - ARIA Automation: aria-labelledby auto-connection (KRDS 2.2)
- * - Keyboard Navigation: ESC key closes tooltip and restores focus
- * - WCAG 2.2 Compliance: 1.4.13 Content on Hover or Focus
- *
- * **KRDS 2.2 Standards:**
- * - aria-labelledby connects activation button to tooltip content
- * - Blur: Tab/Shift+Tab moves focus and hides tooltip
- * - ESC: Closes tooltip and returns focus to activation button
- * - Dark background with white text (contrast ratio >7:1)
- *
- * @example
- * ```tsx
- * <Tooltip content="Save your changes">
- *   <Button>Save</Button>
- * </Tooltip>
- * ```
- *
- * @example
- * ```tsx
- * <Tooltip content="Delete item" position="right" variant="light">
- *   <Button variant="danger">Delete</Button>
- * </Tooltip>
- * ```
+ * Tooltip 컴포넌트
+ * KRDS 2.2 접근성 가이드라인 준수 (WCAG 2.1 / KWCAG 2.2 AA)
+ * - aria-labelledby 자동 연결
+ * - ESC 키로 닫기 및 포커스 복원
+ * - 마우스 호버 + 키보드 포커스 지원
  */
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   (
@@ -147,10 +97,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     const wrapperRef = React.useRef<HTMLDivElement>(null);
     const buttonRef = React.useRef<HTMLElement | null>(null);
 
-    /**
-     * Foundation Layer: Focus Management
-     * Show tooltip on mouse enter or focus
-     */
+    // 마우스 진입 또는 포커스 시 툴팁 표시
     const handleShow = React.useCallback(() => {
       if (disabled) return;
 
@@ -163,10 +110,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       }, delay);
     }, [disabled, delay]);
 
-    /**
-     * Foundation Layer: Focus Management
-     * Hide tooltip on mouse leave or blur
-     */
+    // 마우스 이탈 또는 블러 시 툴팁 숨김
     const handleHide = React.useCallback(() => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -174,15 +118,12 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       setIsVisible(false);
     }, []);
 
-    /**
-     * Foundation Layer: Keyboard Navigation
-     * ESC key closes tooltip and restores focus to activation button (KRDS 2.2)
-     */
+    // ESC 키로 툴팁 닫기 및 포커스 복원 (KRDS 2.2)
     const handleKeyDown = React.useCallback(
       (event: KeyboardEvent) => {
         if (event.key === 'Escape' && isVisible) {
           handleHide();
-          // KRDS: Restore focus to activation button after ESC
+          // 활성화 버튼으로 포커스 복원
           if (buttonRef.current) {
             buttonRef.current.focus();
           }
@@ -191,10 +132,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       [isVisible, handleHide]
     );
 
-    /**
-     * Foundation Layer: Event Listeners Setup
-     * Mouse hover + keyboard focus + blur + ESC key
-     */
+    // 이벤트 리스너 설정 (마우스 호버 + 키보드 포커스 + ESC)
     React.useEffect(() => {
       const wrapper = wrapperRef.current;
       if (!wrapper) return;
@@ -202,18 +140,18 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       const child = wrapper.firstElementChild as HTMLElement;
       if (!child) return;
 
-      // Store reference to activation button for ESC focus restoration
+      // ESC 포커스 복원을 위한 활성화 버튼 참조 저장
       buttonRef.current = child;
 
-      // Mouse events (KRDS: Mouseover/Mouseleave)
+      // 마우스 이벤트
       child.addEventListener('mouseenter', handleShow);
       child.addEventListener('mouseleave', handleHide);
 
-      // Focus events (KRDS: Focus shows, Blur hides on Tab/Shift+Tab)
+      // 포커스 이벤트
       child.addEventListener('focus', handleShow);
       child.addEventListener('blur', handleHide);
 
-      // ESC key handler (KRDS: Close and restore focus)
+      // ESC 키 이벤트
       document.addEventListener('keydown', handleKeyDown);
 
       return () => {
@@ -229,10 +167,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       };
     }, [handleShow, handleHide, handleKeyDown]);
 
-    /**
-     * Foundation Layer: ARIA Automation
-     * Clone child with aria-labelledby auto-connection (KRDS 2.2 requirement)
-     */
+    // aria-labelledby 자동 연결 (KRDS 2.2)
     const childWithAria = React.cloneElement(children, {
       'aria-labelledby': isVisible ? tooltipId : undefined,
     } as React.HTMLAttributes<HTMLElement>);
@@ -245,7 +180,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       >
         {childWithAria}
 
-        {/* Tooltip Content */}
+        {/* 툴팁 콘텐츠 */}
         {isVisible && !disabled && (
           <div
             ref={ref}

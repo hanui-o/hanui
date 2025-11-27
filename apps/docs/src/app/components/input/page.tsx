@@ -17,8 +17,6 @@ import {
   FormLabel,
   FormError,
   FormHelperText,
-  Body,
-  Card,
   Code,
   List,
   ListItem,
@@ -180,11 +178,11 @@ export default function InputPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Status (상태)" />
-              <Body className="mb-4">
-                입력 필드의 상태를 시각적으로 표시합니다. 에러, 성공, 정보
-                상태를 지원하며, 각 상태에 맞는 border 색상이 적용됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="Status (상태)"
+                description="입력 필드의 상태를 시각적으로 표시합니다. 에러, 성공, 정보 상태를 지원하며, 각 상태에 맞는 border 색상이 적용됩니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4 max-w-md">
                   <InputComponent
@@ -229,11 +227,11 @@ export default function InputPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Clearable (지우기 버튼)" />
-              <Body className="mb-4">
-                입력값이 있을 때 X 버튼을 표시하여 빠르게 지울 수 있습니다.
-                비밀번호 입력에서는 보안상 표시되지 않습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="Clearable (지우기 버튼)"
+                description="입력값이 있을 때 X 버튼을 표시하여 빠르게 지울 수 있습니다. 비밀번호 입력에서는 보안상 표시되지 않습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4 max-w-md">
                   <InputComponent
@@ -287,11 +285,11 @@ function SearchInput() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Input Types" />
-              <Body className="mb-4">
-                Input 컴포넌트는 다양한 입력 타입을 지원하며, 각 타입에 최적화된
-                기능을 제공합니다:
-              </Body>
+              <Heading
+                level="h3"
+                title="Input Types"
+                description="Input 컴포넌트는 다양한 입력 타입을 지원하며, 각 타입에 최적화된 기능을 제공합니다."
+              />
               <List variant="check" spacing="default" className="mb-4">
                 <ListItem>
                   <strong>Password</strong>: 자동으로 비밀번호 표시/숨김 토글
@@ -338,11 +336,11 @@ function SearchInput() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="FormField와 함께 사용 (권장)" />
-              <Body className="mb-4">
-                FormField 컴포넌트와 함께 사용하면 레이블, 에러 메시지, 도움말이
-                자동으로 연결됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="FormField와 함께 사용 (권장)"
+                description="FormField 컴포넌트와 함께 사용하면 레이블, 에러 메시지, 도움말이 자동으로 연결됩니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-6 max-w-md">
                   <FormField id="username" required>
@@ -463,11 +461,11 @@ function SearchInput() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="폼 통합 예제" />
-              <Body className="mb-4">
-                <strong>권장 방법:</strong> FormField 컴포넌트를 사용하면 접근성
-                속성이 자동으로 연결됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="폼 통합 예제"
+                description="권장 방법: FormField 컴포넌트를 사용하면 접근성 속성이 자동으로 연결됩니다."
+              />
               <Code variant="block" language="tsx">
                 {`// ✅ 권장: FormField 사용 (자동 접근성)
 import { FormField, FormLabel, FormError, Input } from '@hanui/react'
@@ -574,9 +572,9 @@ import { FormField, FormLabel, FormError, Input } from '@hanui/react'
               <TableHeader>
                 <TableRow>
                   <TableHead>Prop</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Default</TableHead>
-                  <TableHead>Description</TableHead>
+                  <TableHead>타입</TableHead>
+                  <TableHead>기본값</TableHead>
+                  <TableHead>설명</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -747,10 +745,10 @@ import { FormField, FormLabel, FormError, Input } from '@hanui/react'
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Size</TableHead>
-                  <TableHead>Height</TableHead>
-                  <TableHead>Font Size</TableHead>
-                  <TableHead>Padding</TableHead>
+                  <TableHead>크기</TableHead>
+                  <TableHead>높이</TableHead>
+                  <TableHead>폰트 크기</TableHead>
+                  <TableHead>패딩</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

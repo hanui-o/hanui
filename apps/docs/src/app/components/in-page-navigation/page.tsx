@@ -322,8 +322,8 @@ const links = [
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Identifier', href: '/components/identifier' }}
-        next={{ title: 'Link', href: '/components/link' }}
+        prev={{ title: 'Image', href: '/components/image' }}
+        next={{ title: 'Input', href: '/components/input' }}
       />
     </>
   );

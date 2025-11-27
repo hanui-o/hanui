@@ -588,7 +588,7 @@ export default function AccordionPage() {
 
       <PageNavigation
         prev={{ title: 'Overview', href: '/components' }}
-        next={{ title: 'Body', href: '/components/body' }}
+        next={{ title: 'Alert', href: '/components/alert' }}
       />
     </>
   );

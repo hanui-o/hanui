@@ -85,7 +85,7 @@ export const AspectRatio = React.forwardRef<HTMLDivElement, AspectRatioProps>(
     return (
       <div
         ref={ref}
-        className={cn(responsiveClasses, className)}
+        className={cn('w-full', responsiveClasses, className)}
         style={{ ...containerStyle, ...style }}
         {...props}
       >

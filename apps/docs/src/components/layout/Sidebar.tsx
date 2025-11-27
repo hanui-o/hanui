@@ -46,8 +46,8 @@ const componentsNavigation = [
       { title: 'Accordion', href: '/components/accordion' },
       { title: 'Alert', href: '/components/alert' },
       { title: 'AlertDialog', href: '/components/alert-dialog' },
-      { title: 'Badge', href: '/components/badge' },
       { title: 'AspectRatio', href: '/components/aspect-ratio' },
+      { title: 'Badge', href: '/components/badge' },
       { title: 'Body', href: '/components/body' },
       { title: 'Breadcrumb', href: '/components/breadcrumb' },
       { title: 'Button', href: '/components/button' },
@@ -68,7 +68,7 @@ const componentsNavigation = [
       { title: 'Heading', href: '/components/heading' },
       { title: 'Identifier', href: '/components/identifier' },
       { title: 'Image', href: '/components/image' },
-      { title: 'In-page Navigation', href: '/components/inpagenavigation' },
+      { title: 'In-page Navigation', href: '/components/in-page-navigation' },
       { title: 'Input', href: '/components/input' },
       { title: 'Label', href: '/components/label' },
       { title: 'Link', href: '/components/link' },
@@ -86,10 +86,10 @@ const componentsNavigation = [
       },
       { title: 'Select', href: '/components/select' },
       { title: 'Side Navigation', href: '/components/side-navigation' },
-      { title: 'Skeleton', href: '/components/skeleton' },
-      { title: 'Slider', href: '/components/slider' },
       { title: 'SimpleGrid', href: '/components/simple-grid' },
+      { title: 'Skeleton', href: '/components/skeleton' },
       { title: 'SkipLink', href: '/components/skiplink' },
+      { title: 'Slider', href: '/components/slider' },
       { title: 'Spinner', href: '/components/spinner' },
       { title: 'Stack', href: '/components/stack' },
       { title: 'Structured List', href: '/components/structured-list' },
@@ -170,7 +170,7 @@ export function Sidebar() {
 
   const navigation = getNavigation();
 
-  // Save scroll position before navigation
+  // 스크롤 위치 저장 (링크 클릭 시)
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
@@ -183,14 +183,18 @@ export function Sidebar() {
     return () => nav.removeEventListener('click', handleClick);
   }, []);
 
-  // Restore scroll position after navigation
+  // 스크롤 위치 복원 (페이지 전환 후)
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
 
     const savedScroll = sessionStorage.getItem('sidebar-scroll');
     if (savedScroll) {
-      nav.scrollTop = parseInt(savedScroll, 10);
+      // 브라우저 스크롤 초기화 이후에 복원하기 위해 지연
+      const timeoutId = setTimeout(() => {
+        nav.scrollTop = parseInt(savedScroll, 10);
+      }, 0);
+      return () => clearTimeout(timeoutId);
     }
   }, [pathname]);
 

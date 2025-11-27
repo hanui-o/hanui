@@ -486,8 +486,8 @@ export function Footer({ className }: FooterProps) {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'File Upload', href: '/components/file-upload' }}
-        next={{ title: 'Header', href: '/components/header' }}
+        prev={{ title: 'Flex', href: '/components/flex' }}
+        next={{ title: 'Form Field', href: '/components/form-field' }}
       />
     </>
   );

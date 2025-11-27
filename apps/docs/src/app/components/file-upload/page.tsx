@@ -1,6 +1,5 @@
 'use client';
 
-import { FileUpload, type UploadedFile } from '@hanui/react';
 import { useState } from 'react';
 
 // Docs layout components
@@ -26,6 +25,10 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  List,
+  ListItem,
+  FileUpload,
+  type UploadedFile,
 } from '@hanui/react';
 
 export default function FileUploadPage() {
@@ -110,7 +113,12 @@ export default function FileUploadPage() {
           </Section>
 
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="FileUpload와 UploadedFile 타입을 import하여 사용합니다. onUpload, onChange, onError 콜백으로 파일 업로드 상태를 관리합니다."
+            />
             <Code variant="block" language="tsx">
               {`import { FileUpload, type UploadedFile } from '@hanui/react'
 import { useState } from 'react'
@@ -154,7 +162,11 @@ export default function MyComponent() {
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="기본 사용" />
+              <Heading
+                level="h3"
+                title="기본"
+                description="필수 콜백만으로 간단하게 사용할 수 있습니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   onUpload={handleUpload}
@@ -172,7 +184,11 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="제목과 설명" />
+              <Heading
+                level="h3"
+                title="제목과 설명"
+                description="title과 description prop으로 안내 문구를 제공합니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   title="서류 첨부"
@@ -194,7 +210,11 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="테두리 스타일" />
+              <Heading
+                level="h3"
+                title="테두리 스타일"
+                description="bordered prop으로 테두리가 있는 스타일을 적용합니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   bordered
@@ -216,7 +236,11 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="파일 타입 제한" />
+              <Heading
+                level="h3"
+                title="파일 타입 제한"
+                description="accept prop으로 허용할 파일 유형을 지정합니다."
+              />
               <ComponentPreview>
                 <div className="space-y-6">
                   <FileUpload
@@ -253,7 +277,11 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="파일 크기 제한" />
+              <Heading
+                level="h3"
+                title="파일 크기 제한"
+                description="maxSize prop으로 최대 파일 크기를 바이트 단위로 제한합니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   title="최대 5MB 파일 업로드"
@@ -275,7 +303,11 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="다중 파일 업로드" />
+              <Heading
+                level="h3"
+                title="다중 파일 업로드"
+                description="multiple과 maxFiles prop으로 여러 파일 업로드를 허용합니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   title="여러 파일 업로드"
@@ -301,7 +333,11 @@ export default function MyComponent() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="파일 액션 (미리보기, 다운로드)" />
+              <Heading
+                level="h3"
+                title="파일 액션"
+                description="onPreview, onDownload 콜백으로 미리보기와 다운로드 기능을 제공합니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   title="파일 미리보기 및 다운로드"
@@ -344,7 +380,11 @@ const handleDownload = (file: UploadedFile) => {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="비활성화" />
+              <Heading
+                level="h3"
+                title="비활성화"
+                description="disabled prop으로 업로드 기능을 비활성화합니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   title="비활성화된 업로드"
@@ -366,7 +406,11 @@ const handleDownload = (file: UploadedFile) => {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="커스텀 텍스트" />
+              <Heading
+                level="h3"
+                title="커스텀 텍스트"
+                description="버튼 텍스트와 안내 문구를 커스터마이징할 수 있습니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   title="프로젝트 파일"
@@ -392,7 +436,11 @@ const handleDownload = (file: UploadedFile) => {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="완전한 예제" />
+              <Heading
+                level="h3"
+                title="완전한 예제"
+                description="모든 주요 prop을 조합한 실제 사용 예제입니다."
+              />
               <ComponentPreview>
                 <FileUpload
                   bordered
@@ -430,39 +478,35 @@ const handleDownload = (file: UploadedFile) => {
 
           {/* 접근성 섹션 */}
           <Section level="h2">
-            <Heading level="h2" id="accessibility" title="접근성" />
-            <p className="[font-size:var(--krds-size-body-md)] text-krds-gray-80 mb-4">
-              FileUpload 컴포넌트는 WCAG 2.1 및 KWCAG 2.2 접근성 지침을
-              준수합니다.
-            </p>
-            <ul className="list-disc list-inside space-y-2 [font-size:var(--krds-size-body-md)] text-krds-gray-80">
-              <li>
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다."
+            />
+            <List variant="check" className="text-krds-gray-90">
+              <ListItem>
                 <strong>키보드 접근성:</strong> 파일 입력은 숨겨져 있지만{' '}
                 <Code>sr-only</Code> 클래스를 사용하여 스크린 리더에 접근
                 가능합니다
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>드래그 앤 드롭:</strong> 마우스 없이도 버튼을 통해 파일
                 선택이 가능합니다
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>상태 표시:</strong> 업로드 중, 완료, 에러 상태가 시각적
                 아이콘과 텍스트로 명확히 표시됩니다
-              </li>
-              <li>
+              </ListItem>
+              <ListItem>
                 <strong>ARIA 속성:</strong> 진행률 표시줄에{' '}
-                <Code>role=&quot;progressbar&quot;</Code>와 적절한 aria 속성이
-                적용됩니다
-              </li>
-              <li>
-                <strong>파일 정보:</strong> 각 파일의 이름, 크기, 상태가 명확히
-                표시됩니다
-              </li>
-              <li>
+                <Code>role="progressbar"</Code>와 적절한 aria 속성이 적용됩니다
+              </ListItem>
+              <ListItem>
                 <strong>에러 처리:</strong> 검증 실패 시 명확한 에러 메시지를
                 제공합니다
-              </li>
-            </ul>
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
@@ -476,10 +520,10 @@ const handleDownload = (file: UploadedFile) => {
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -713,8 +757,8 @@ interface UploadedFile {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Display', href: '/components/display' }}
-        next={{ title: 'Header', href: '/components/header' }}
+        prev={{ title: 'DropdownMenu', href: '/components/dropdown-menu' }}
+        next={{ title: 'Flex', href: '/components/flex' }}
       />
     </>
   );

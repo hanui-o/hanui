@@ -308,7 +308,7 @@ export default function DisplayPage() {
 
       <PageNavigation
         prev={{ title: 'Container', href: '/components/container' }}
-        next={{ title: 'File Upload', href: '/components/file-upload' }}
+        next={{ title: 'DropdownMenu', href: '/components/dropdown-menu' }}
       />
     </>
   );

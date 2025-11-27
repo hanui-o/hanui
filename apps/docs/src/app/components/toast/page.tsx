@@ -8,6 +8,7 @@ import {
   PageNavigation,
 } from '@/components/content';
 import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
 import {
@@ -28,8 +29,9 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  List,
+  ListItem,
 } from '@hanui/react';
-import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 function ToastDemo() {
   const { toast } = useToast();
@@ -148,7 +150,7 @@ export default function ToastPage() {
       <Heading
         level="h1"
         title="Toast"
-        description="사용자에게 일시적인 알림 메시지를 표시하는 컴포넌트입니다."
+        description="사용자에게 일시적인 알림 메시지를 표시하는 컴포넌트입니다. Radix UI 기반으로 접근성이 보장됩니다."
       />
 
       <Tabs defaultValue="overview">
@@ -159,11 +161,13 @@ export default function ToastPage() {
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
+          {/* 1. 개요 */}
           <Section level="h2">
             <Heading
               level="h2"
               id="overview"
               title="개요"
+              description="Toast는 작업 완료, 오류, 경고 등 사용자에게 일시적인 피드백을 제공합니다. useToast 훅을 통해 프로그래밍 방식으로 표시할 수 있습니다."
               className="sr-only"
             />
             <ComponentPreview>
@@ -180,12 +184,19 @@ toast({
             </Code>
           </Section>
 
+          {/* 2. 설치 */}
           <Section level="h2">
             <Installation componentName="toast" />
           </Section>
 
+          {/* 3. 사용법 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="ToastProvider로 앱을 감싸고, useToast 훅으로 toast 함수를 호출합니다. Toaster 컴포넌트는 Toast를 렌더링합니다."
+            />
             <Code variant="block" language="tsx">
               {`import { ToastProvider, Toaster, useToast, Button } from '@hanui/react'
 
@@ -218,12 +229,16 @@ function MyComponent() {
             </Code>
           </Section>
 
-          {/* 예제 섹션 */}
+          {/* 4. 예제 */}
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="Action" />
+              <Heading
+                level="h3"
+                title="Action"
+                description="action prop으로 Toast에 버튼을 추가할 수 있습니다."
+              />
               <ComponentPreview>
                 <ToastWithActionDemo />
               </ComponentPreview>
@@ -244,7 +259,11 @@ toast({
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Duration" />
+              <Heading
+                level="h3"
+                title="Duration"
+                description="duration prop으로 Toast 표시 시간을 조절할 수 있습니다. 기본값은 5000ms입니다."
+              />
               <ComponentPreview>
                 <ToastDurationDemo />
               </ComponentPreview>
@@ -264,7 +283,11 @@ toast({
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Static Toast" />
+              <Heading
+                level="h3"
+                title="Static Toast"
+                description="Toast 컴포넌트를 직접 렌더링하여 정적인 알림을 표시할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-md space-y-4">
                   <Toast variant="info" title="정보" open>
@@ -286,7 +309,11 @@ toast({
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Position" />
+              <Heading
+                level="h3"
+                title="Position"
+                description="ToastProvider의 position prop으로 Toast 표시 위치를 지정할 수 있습니다."
+              />
               <Code variant="block" language="tsx">
                 {`// 오른쪽 상단에 Toast 표시
 <ToastProvider position="top-right">
@@ -300,6 +327,78 @@ toast({
   <Toaster />
 </ToastProvider>`}
               </Code>
+            </Subsection>
+          </Section>
+
+          {/* 5. 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="ARIA 속성" />
+              <List>
+                <ListItem>
+                  <Code>aria-live=&quot;polite&quot;</Code>: 스크린리더에 변경
+                  사항 알림
+                </ListItem>
+                <ListItem>
+                  <Code>role=&quot;status&quot;</Code>: 상태 메시지임을 명시
+                </ListItem>
+                <ListItem>
+                  닫기 버튼에 <Code>aria-label=&quot;닫기&quot;</Code> 적용
+                </ListItem>
+              </List>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="사용자 제어" />
+              <List>
+                <ListItem>마우스 호버 시 타이머 일시 정지</ListItem>
+                <ListItem>스와이프로 닫기 지원 (모바일)</ListItem>
+                <ListItem>키보드로 닫기 버튼 접근 가능</ListItem>
+                <ListItem>
+                  <Code>duration: Infinity</Code>로 자동 닫힘 비활성화 가능
+                </ListItem>
+              </List>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="키보드 지원" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>키</TableHead>
+                    <TableHead>동작</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Tab</Code>
+                    </TableCell>
+                    <TableCell>
+                      닫기 버튼 또는 액션 버튼으로 포커스 이동
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Enter</Code> / <Code>Space</Code>
+                    </TableCell>
+                    <TableCell>버튼 활성화</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Escape</Code>
+                    </TableCell>
+                    <TableCell>Toast 닫기</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </Subsection>
           </Section>
         </TabsContent>
@@ -322,7 +421,7 @@ toast({
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">
+                    <TableCell>
                       <Code>position</Code>
                     </TableCell>
                     <TableCell>
@@ -351,7 +450,7 @@ toast({
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">
+                    <TableCell>
                       <Code>variant</Code>
                     </TableCell>
                     <TableCell>
@@ -363,7 +462,7 @@ toast({
                     <TableCell>알림 유형</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">
+                    <TableCell>
                       <Code>title</Code>
                     </TableCell>
                     <TableCell>
@@ -373,7 +472,7 @@ toast({
                     <TableCell>알림 제목</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">
+                    <TableCell>
                       <Code>description</Code>
                     </TableCell>
                     <TableCell>
@@ -383,7 +482,7 @@ toast({
                     <TableCell>알림 설명</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">
+                    <TableCell>
                       <Code>icon</Code>
                     </TableCell>
                     <TableCell>
@@ -393,7 +492,7 @@ toast({
                     <TableCell>커스텀 아이콘</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">
+                    <TableCell>
                       <Code>action</Code>
                     </TableCell>
                     <TableCell>
@@ -403,7 +502,7 @@ toast({
                     <TableCell>액션 버튼</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">
+                    <TableCell>
                       <Code>duration</Code>
                     </TableCell>
                     <TableCell>
@@ -432,49 +531,13 @@ const { id, dismiss, update } = toast({
 dismiss(id);`}
               </Code>
             </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Accessibility" />
-              <div className="space-y-4 mt-4">
-                <div className="rounded-lg border border-krds-gray-20 p-4">
-                  <h4 className="font-semibold text-krds-gray-95 mb-2">
-                    ARIA 속성
-                  </h4>
-                  <ul className="list-disc pl-5 space-y-1 text-sm text-krds-gray-70">
-                    <li>
-                      <Code>aria-live="polite"</Code>: 스크린리더에 변경 사항
-                      알림
-                    </li>
-                    <li>
-                      <Code>role="status"</Code>: 상태 메시지임을 명시
-                    </li>
-                    <li>
-                      닫기 버튼에 <Code>aria-label="닫기"</Code> 적용
-                    </li>
-                  </ul>
-                </div>
-                <div className="rounded-lg border border-krds-gray-20 p-4">
-                  <h4 className="font-semibold text-krds-gray-95 mb-2">
-                    사용자 제어
-                  </h4>
-                  <ul className="list-disc pl-5 space-y-1 text-sm text-krds-gray-70">
-                    <li>마우스 호버 시 타이머 일시 정지</li>
-                    <li>스와이프로 닫기 지원 (모바일)</li>
-                    <li>키보드로 닫기 버튼 접근 가능</li>
-                    <li>
-                      <Code>duration: Infinity</Code>로 자동 닫힘 비활성화 가능
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </Subsection>
           </Section>
         </TabsContent>
       </Tabs>
 
       <PageNavigation
         prev={{ title: 'Textarea', href: '/components/textarea' }}
-        next={{ title: 'Toggle', href: '/components/toggle' }}
+        next={{ title: 'Tooltip', href: '/components/tooltip' }}
       />
 
       <Toaster />

@@ -25,6 +25,8 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  List,
+  ListItem,
   type ComboboxOption,
 } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
@@ -143,7 +145,12 @@ export default function ComboboxPage() {
           </Section>
 
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Combobox와 ComboboxOption 타입을 import하여 사용합니다. options 배열과 value/onValueChange로 상태를 관리합니다."
+            />
             <Code variant="block" language="tsx">
               {`import { Combobox, type ComboboxOption } from '@hanui/react'
 
@@ -167,7 +174,11 @@ const options: ComboboxOption[] = [
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="Size" />
+              <Heading
+                level="h3"
+                title="크기"
+                description="sm, md, lg 세 가지 크기를 제공합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-xs space-y-3">
                   <Combobox
@@ -195,7 +206,11 @@ const options: ComboboxOption[] = [
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Icon" />
+              <Heading
+                level="h3"
+                title="아이콘"
+                description="옵션에 아이콘을 추가하여 시각적 구분을 제공합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-xs">
                   <Combobox
@@ -224,7 +239,11 @@ const options = [
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Group" />
+              <Heading
+                level="h3"
+                title="그룹"
+                description="옵션을 그룹별로 분류하여 표시합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-xs">
                   <Combobox
@@ -251,7 +270,11 @@ const options = [
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Description" />
+              <Heading
+                level="h3"
+                title="설명"
+                description="옵션에 추가 설명을 표시합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-sm">
                   <Combobox
@@ -276,7 +299,11 @@ const options = [
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Clearable" />
+              <Heading
+                level="h3"
+                title="선택 해제"
+                description="clearable 속성으로 선택 해제 버튼을 표시합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-xs">
                   <Combobox
@@ -300,7 +327,11 @@ const options = [
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="State" />
+              <Heading
+                level="h3"
+                title="상태"
+                description="에러, 비활성화, 로딩 등 다양한 상태를 표현합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-xs space-y-3">
                   <Combobox
@@ -328,6 +359,38 @@ const options = [
 <Combobox options={options} placeholder="로딩 상태" loading />`}
               </Code>
             </Subsection>
+          </Section>
+
+          {/* 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다."
+            />
+            <List variant="check" className="text-krds-gray-90">
+              <ListItem>
+                <strong>ARIA 속성:</strong> <Code>role="combobox"</Code>,{' '}
+                <Code>aria-expanded</Code>, <Code>aria-haspopup</Code> 적용
+              </ListItem>
+              <ListItem>
+                <strong>키보드 탐색:</strong> 화살표 키로 옵션 탐색, Enter로
+                선택, Escape로 닫기
+              </ListItem>
+              <ListItem>
+                <strong>검색 기능:</strong> 많은 옵션에서 빠르게 필터링하여 선택
+                가능
+              </ListItem>
+              <ListItem>
+                <strong>포커스 관리:</strong> 팝오버 열림/닫힘 시 적절한 포커스
+                이동
+              </ListItem>
+              <ListItem>
+                <strong>레이블 연결:</strong> <Code>aria-label</Code> 또는{' '}
+                <Code>aria-labelledby</Code>로 레이블 연결 지원
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
@@ -472,8 +535,8 @@ const options = [
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Checkbox', href: '/components/checkbox' }}
-        next={{ title: 'DropdownMenu', href: '/components/dropdown-menu' }}
+        prev={{ title: 'Code', href: '/components/code' }}
+        next={{ title: 'Container', href: '/components/container' }}
       />
     </>
   );

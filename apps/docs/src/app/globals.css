@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'pretendard/dist/web/static/pretendard.css';
 @import '@hanui/react/variables.css';
 
 :root {

@@ -75,9 +75,14 @@ export default function ListPage() {
 
           {/* 3) 사용법 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="List와 ListItem을 import하여 사용합니다. variant로 리스트 스타일을 지정합니다."
+            />
             <Code variant="block" language="tsx">
-              {`import { List, ListItem } from '@/components/hanui/list'
+              {`import { List, ListItem } from '@hanui/react'
 
 <List>
   <ListItem>첫 번째 항목</ListItem>
@@ -93,7 +98,11 @@ export default function ListPage() {
 
             {/* 순서 없는 목록 */}
             <Subsection level="h3">
-              <Heading level="h3" title="순서 없는 목록 (Unordered List)" />
+              <Heading
+                level="h3"
+                title="순서 없는 목록"
+                description="unordered, dash, check 세 가지 variant를 제공합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-8 w-full">
                   <div>
@@ -156,7 +165,11 @@ export default function ListPage() {
 
             {/* 순서 있는 목록 */}
             <Subsection level="h3">
-              <Heading level="h3" title="순서 있는 목록 (Ordered List)" />
+              <Heading
+                level="h3"
+                title="순서 있는 목록"
+                description="ordered, ordered-alpha, ordered-circle 세 가지 variant를 제공합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-8 w-full">
                   <div>
@@ -219,7 +232,11 @@ export default function ListPage() {
 
             {/* 2depth 중첩 리스트 */}
             <Subsection level="h3">
-              <Heading level="h3" title="2depth 중첩 리스트" />
+              <Heading
+                level="h3"
+                title="2depth 중첩 리스트"
+                description="ListItem 내부에 List를 중첩하면 자동으로 dash 스타일이 적용됩니다."
+              />
               <ComponentPreview>
                 <List>
                   <ListItem>
@@ -269,7 +286,11 @@ export default function ListPage() {
 
             {/* 3depth 중첩 리스트 */}
             <Subsection level="h3">
-              <Heading level="h3" title="3depth 중첩 리스트" />
+              <Heading
+                level="h3"
+                title="3depth 중첩 리스트"
+                description="최대 3단계까지 중첩이 가능하며, 각 레벨마다 다른 인디케이터가 적용됩니다."
+              />
               <ComponentPreview>
                 <List>
                   <ListItem>
@@ -326,7 +347,11 @@ export default function ListPage() {
 
             {/* Spacing */}
             <Subsection level="h3">
-              <Heading level="h3" title="Spacing" />
+              <Heading
+                level="h3"
+                title="간격"
+                description="spacing prop으로 항목 간 간격을 조절합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-8 w-full">
                   <div>
@@ -420,10 +445,10 @@ export default function ListPage() {
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -433,7 +458,8 @@ export default function ListPage() {
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">
-                        'unordered' | 'ordered' | 'dash' | 'check'
+                        'unordered' | 'ordered' | 'ordered-alpha' |
+                        'ordered-circle' | 'dash' | 'check'
                       </Code>
                     </TableCell>
                     <TableCell>'unordered'</TableCell>
@@ -490,10 +516,10 @@ export default function ListPage() {
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

@@ -12,21 +12,39 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-krds-gray-10 text-krds-gray-70',
-        primary: 'bg-krds-primary-10 text-krds-primary-base',
-        secondary: 'bg-krds-gray-20 text-krds-gray-80',
-        success: 'bg-krds-success-10 text-krds-success-base',
-        warning: 'bg-krds-warning-10 text-krds-warning-base',
-        error: 'bg-krds-danger-10 text-krds-danger-base',
-        info: 'bg-krds-info-10 text-krds-info-base',
-        outline: 'border border-krds-gray-30 bg-transparent text-krds-gray-70',
+        gray: 'bg-krds-gray-5 text-krds-gray-90',
+        primary: 'bg-krds-primary-5 text-krds-primary-base',
+        secondary: 'bg-krds-gray-10 text-krds-gray-80',
+        success: 'bg-krds-success-5 text-krds-success-base',
+        warning: 'bg-krds-warning-5 text-krds-warning-40',
+        error: 'bg-krds-danger-5 text-krds-danger-base',
+        info: 'bg-krds-info-5 text-krds-info-base',
+        'outline-gray':
+          'border border-krds-gray-30 bg-transparent text-krds-gray-90',
         'outline-primary':
           'border border-krds-primary-base bg-transparent text-krds-primary-base',
+        'outline-secondary':
+          'border border-krds-gray-50 bg-transparent text-krds-gray-90',
+        'outline-success':
+          'border border-krds-success-base bg-transparent text-krds-success-base',
+        'outline-warning':
+          'border border-krds-warning-base bg-transparent text-krds-warning-base',
+        'outline-error':
+          'border border-krds-danger-base bg-transparent text-krds-danger-base',
+        'outline-info':
+          'border border-krds-info-base bg-transparent text-krds-info-base',
+        // Solid variants
+        'solid-gray': 'bg-krds-gray-60 text-white',
+        'solid-primary': 'bg-krds-primary-base text-white',
+        'solid-secondary': 'bg-krds-gray-50 text-white',
+        'solid-success': 'bg-krds-success-base text-white',
+        'solid-warning': 'bg-krds-warning-base text-krds-gray-90',
+        'solid-error': 'bg-krds-danger-base text-white',
+        'solid-info': 'bg-krds-info-base text-white',
       },
       size: {
-        sm: 'text-xs px-1.5 py-0.5 rounded',
-        md: 'text-xs px-2 py-0.5 rounded-md',
-        lg: 'text-sm px-2.5 py-1 rounded-md',
+        md: 'text-[15px] h-6 px-2 rounded-[4px]',
+        lg: 'text-[17px] h-8 px-2.5 rounded-[4px]',
       },
       shape: {
         rounded: '',
@@ -35,7 +53,7 @@ const badgeVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'primary',
       size: 'md',
       shape: 'rounded',
     },
@@ -46,11 +64,11 @@ const badgeVariants = cva(
  * 숫자 뱃지 스타일
  */
 const numberBadgeVariants = cva(
-  'inline-flex items-center justify-center font-medium rounded-full min-w-[1.25rem] tabular-nums',
+  'inline-flex items-center justify-center font-bold rounded-full min-w-[1.25rem] tabular-nums',
   {
     variants: {
       variant: {
-        default: 'bg-krds-gray-60 text-white',
+        gray: 'bg-krds-gray-60 text-white',
         primary: 'bg-krds-primary-base text-white',
         secondary: 'bg-krds-gray-40 text-white',
         success: 'bg-krds-success-base text-white',
@@ -59,13 +77,12 @@ const numberBadgeVariants = cva(
         info: 'bg-krds-info-base text-white',
       },
       size: {
-        sm: 'text-[10px] h-4 px-1',
-        md: 'text-xs h-5 px-1.5',
-        lg: 'text-sm h-6 px-2',
+        md: 'text-[15px] h-5 px-2',
+        lg: 'text-[15px] h-6 px-2',
       },
     },
     defaultVariants: {
-      variant: 'error',
+      variant: 'primary',
       size: 'md',
     },
   }
@@ -77,7 +94,7 @@ const numberBadgeVariants = cva(
 const dotBadgeVariants = cva('rounded-full', {
   variants: {
     variant: {
-      default: 'bg-krds-gray-60',
+      gray: 'bg-krds-gray-60',
       primary: 'bg-krds-primary-base',
       secondary: 'bg-krds-gray-40',
       success: 'bg-krds-success-base',
@@ -86,13 +103,12 @@ const dotBadgeVariants = cva('rounded-full', {
       info: 'bg-krds-info-base',
     },
     size: {
-      sm: 'h-1.5 w-1.5',
       md: 'h-2 w-2',
       lg: 'h-2.5 w-2.5',
     },
   },
   defaultVariants: {
-    variant: 'error',
+    variant: 'primary',
     size: 'md',
   },
 });

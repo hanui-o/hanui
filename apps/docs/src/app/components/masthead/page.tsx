@@ -77,13 +77,12 @@ export default function MastheadPage() {
 
           {/* Usage */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
-
-            <Body className="mb-4">
-              Masthead는 페이지 레이아웃의 최상단에 배치하며, SkipLink 다음,
-              Header보다 앞에 위치해야 합니다. 대한민국 국기 아이콘이 자동으로
-              표시되며, KRDS 표준 텍스트가 기본으로 제공됩니다.
-            </Body>
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Masthead는 페이지 레이아웃의 최상단에 배치하며, SkipLink 다음, Header보다 앞에 위치해야 합니다."
+            />
 
             <Code variant="block" language="tsx">
               {`import { SkipLink, Masthead, Header } from '@hanui/react';
@@ -121,11 +120,11 @@ export default function Layout({ children }) {
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="기본 사용" />
-              <Body className="mb-4">
-                기본 Masthead는 대한민국 국기 아이콘과 함께 표준 텍스트를
-                표시합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="기본 사용"
+                description="기본 Masthead는 대한민국 국기 아이콘과 함께 표준 텍스트를 표시합니다."
+              />
               <ComponentPreview>
                 <div className="w-full">
                   <MastheadComponent />
@@ -137,11 +136,11 @@ export default function Layout({ children }) {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="커스텀 텍스트" />
-              <Body className="mb-4">
-                필요한 경우 텍스트를 커스터마이징할 수 있습니다. 국기 아이콘은
-                자동으로 표시됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="커스텀 텍스트"
+                description="필요한 경우 텍스트를 커스터마이징할 수 있습니다. 국기 아이콘은 자동으로 표시됩니다."
+              />
               <ComponentPreview>
                 <div className="w-full">
                   <MastheadComponent text="대한민국 정부 공식 누리집" />
@@ -153,10 +152,11 @@ export default function Layout({ children }) {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="페이지 레이아웃 예제" />
-              <Body className="mb-4">
-                실제 페이지 레이아웃에서의 Masthead 배치 예제입니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="페이지 레이아웃 예제"
+                description="실제 페이지 레이아웃에서의 Masthead 배치 예제입니다."
+              />
               <Code variant="block" language="tsx">
                 {`import { SkipLink, Masthead, Header, Footer } from '@hanui/react';
 
@@ -207,10 +207,10 @@ export default function RootLayout({ children }) {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Prop</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Default</TableHead>
-                  <TableHead>Description</TableHead>
+                  <TableHead>속성</TableHead>
+                  <TableHead>타입</TableHead>
+                  <TableHead>기본값</TableHead>
+                  <TableHead>설명</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

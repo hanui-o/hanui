@@ -13,8 +13,6 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 // UI components - from @hanui/react
 import {
   Link as LinkComponent,
-  Body,
-  Card,
   Code,
   List,
   ListItem,
@@ -30,33 +28,13 @@ import {
   TableCell,
 } from '@hanui/react';
 
-// Example icon
-const ExternalIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="inline-block"
-  >
-    <path
-      d="M12.5 5.5L12.5 2.5L9.5 2.5M12.3536 2.64645L7.5 7.5M11.5 9.5V12.5C11.5 13.0523 11.0523 13.5 10.5 13.5H3.5C2.94772 13.5 2.5 13.0523 2.5 12.5V5.5C2.5 4.94772 2.94772 4.5 3.5 4.5H6.5"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 export default function LinkPage() {
   return (
     <>
       <Heading
         level="h1"
         title="Link"
-        description="하이퍼링크를 표시하는 기본 링크 컴포넌트입니다. KRDS 색상 시스템을 사용하며 3가지 variant와 외부 링크 처리를 지원합니다."
+        description="하이퍼링크를 표시하는 기본 링크 컴포넌트입니다. KRDS 색상 시스템을 사용하며 2가지 variant와 외부 링크 처리를 지원합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -81,8 +59,8 @@ export default function LinkPage() {
                 <LinkComponent variant="primary" href="/primary">
                   Primary 파란색 링크
                 </LinkComponent>
-                <LinkComponent variant="plain" href="/plain">
-                  밑줄 없음
+                <LinkComponent underline href="/underline">
+                  밑줄 링크
                 </LinkComponent>
                 <LinkComponent href="https://github.com" external>
                   외부 링크
@@ -95,7 +73,7 @@ export default function LinkPage() {
 
 <Link href="/docs">기본 링크</Link>
 <Link variant="primary" href="/primary">Primary 파란색 링크</Link>
-<Link variant="plain" href="/plain">밑줄 없음</Link>
+<Link underline href="/underline">밑줄 링크</Link>
 <Link href="https://github.com" external>외부 링크</Link>`}
             </Code>
           </Section>
@@ -117,17 +95,17 @@ export default function LinkPage() {
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="Variant" />
-              <Body className="mb-4">링크는 세 가지 variant를 지원합니다:</Body>
+              <Heading
+                level="h3"
+                title="Variant"
+                description="링크는 두 가지 variant를 지원합니다: default, primary"
+              />
               <List className="mb-4">
                 <ListItem>
-                  <Code>default</Code>
+                  <Code>default</Code> - 검은색 (gray-90)
                 </ListItem>
                 <ListItem>
-                  <Code>primary</Code>
-                </ListItem>
-                <ListItem>
-                  <Code>plain</Code>
+                  <Code>primary</Code> - Primary 파란색
                 </ListItem>
               </List>
               <ComponentPreview>
@@ -138,26 +116,58 @@ export default function LinkPage() {
                   <LinkComponent variant="primary" href="/primary">
                     Primary 링크
                   </LinkComponent>
-                  <LinkComponent variant="plain" href="/plain">
-                    Plain 링크
-                  </LinkComponent>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`// 기본 링크 - 검은색 + 밑줄, hover: Primary
+                {`// 기본 링크 - 검은색, hover: Primary
 <Link variant="default" href="/home">Default 링크</Link>
 
-// Primary 링크 - Primary 파란색 + 밑줄, hover: 더 진한 Primary
-<Link variant="primary" href="/primary">Primary 링크</Link>
-
-// 밑줄 없음 - 검은색, hover: Primary
-<Link variant="plain" href="/plain">Plain 링크</Link>`}
+// Primary 링크 - Primary 파란색, hover: 더 진한 Primary
+<Link variant="primary" href="/primary">Primary 링크</Link>`}
               </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Size" />
-              <Body className="mb-4">링크는 세 가지 크기를 지원합니다:</Body>
+              <Heading
+                level="h3"
+                title="Underline"
+                description="underline prop을 사용하여 밑줄을 추가할 수 있습니다. 기본적으로 밑줄이 없습니다."
+              />
+              <ComponentPreview>
+                <div className="flex flex-col gap-4">
+                  <LinkComponent href="/no-underline">
+                    기본 링크 (밑줄 없음)
+                  </LinkComponent>
+                  <LinkComponent underline href="/underline">
+                    밑줄 링크
+                  </LinkComponent>
+                  <LinkComponent
+                    variant="primary"
+                    underline
+                    href="/primary-underline"
+                  >
+                    Primary 밑줄 링크
+                  </LinkComponent>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`// 기본 링크 (밑줄 없음)
+<Link href="/no-underline">기본 링크</Link>
+
+// 밑줄 링크
+<Link underline href="/underline">밑줄 링크</Link>
+
+// Primary 밑줄 링크
+<Link variant="primary" underline href="/primary-underline">Primary 밑줄 링크</Link>`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="Size"
+                description="링크는 세 가지 크기를 지원합니다: small(15px), medium(17px), large(19px)"
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4">
                   <LinkComponent size="small" href="/small">
@@ -179,13 +189,11 @@ export default function LinkPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="외부 링크" />
-              <Body className="mb-4">
-                <Code>external</Code> prop을 사용하면 자동으로{' '}
-                <Code>target=&quot;_blank&quot;</Code>,{' '}
-                <Code>rel=&quot;noopener noreferrer&quot;</Code>가 추가되고 새창
-                열기 아이콘이 자동으로 표시됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="외부 링크"
+                description="external prop을 사용하면 자동으로 target='_blank', rel='noopener noreferrer'가 추가되고 새창 열기 아이콘이 자동으로 표시됩니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4">
                   <LinkComponent href="https://github.com" external>
@@ -241,17 +249,18 @@ export default function LinkPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="커스텀 스타일" />
-              <Body className="mb-4">
-                <Code>className</Code>으로 추가 스타일을 적용할 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="커스텀 스타일"
+                description="className으로 추가 스타일을 적용할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4">
                   <LinkComponent href="/custom" className="text-lg font-bold">
                     큰 볼드 링크
                   </LinkComponent>
-                  <LinkComponent href="/no-underline" className="no-underline">
-                    밑줄 없는 링크
+                  <LinkComponent href="/italic" className="italic">
+                    이탤릭 링크
                   </LinkComponent>
                 </div>
               </ComponentPreview>
@@ -260,8 +269,8 @@ export default function LinkPage() {
   큰 볼드 링크
 </Link>
 
-<Link href="/no-underline" className="no-underline">
-  밑줄 없는 링크
+<Link href="/italic" className="italic">
+  이탤릭 링크
 </Link>`}
               </Code>
             </Subsection>
@@ -299,8 +308,12 @@ export default function LinkPage() {
                   자동으로 링크임을 인식
                 </ListItem>
                 <ListItem>
-                  외부 링크는 <Code>target=&quot;_blank&quot;</Code>로 새 탭에서
-                  열림을 전달
+                  외부 링크 아이콘에 <Code>aria-hidden=&quot;true&quot;</Code>{' '}
+                  적용하여 중복 읽기 방지
+                </ListItem>
+                <ListItem>
+                  외부 링크에 <Code>sr-only</Code> 텍스트로 &quot;(새 창
+                  열림)&quot; 안내 제공
                 </ListItem>
                 <ListItem>
                   <Code>rel=&quot;noopener noreferrer&quot;</Code>로 보안 강화
@@ -313,11 +326,12 @@ export default function LinkPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="링크 vs 버튼" />
-              <Card variant="warning" className="mb-4">
-                <Body weight="bold" className="mb-2">
-                  언제 링크를 사용하고, 언제 버튼을 사용해야 할까요?
-                </Body>
+              <Heading
+                level="h3"
+                title="링크 vs 버튼"
+                description="언제 링크를 사용하고, 언제 버튼을 사용해야 할까요?"
+              />
+              <div className="p-4 bg-krds-warning-5 border border-krds-warning-30 rounded-lg mb-4">
                 <List spacing="default">
                   <ListItem>
                     <strong>Link 사용:</strong> 페이지 이동, 외부 리소스 참조
@@ -327,7 +341,7 @@ export default function LinkPage() {
                     함수 실행
                   </ListItem>
                 </List>
-              </Card>
+              </div>
               <Code variant="block" language="tsx">
                 {`// ✅ 올바른 사용
 <Link href="/profile">프로필 보기</Link>
@@ -350,9 +364,9 @@ export default function LinkPage() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Prop</TableHead>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Default</TableHead>
-                  <TableHead>Description</TableHead>
+                  <TableHead>타입</TableHead>
+                  <TableHead>기본값</TableHead>
+                  <TableHead>설명</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -371,10 +385,7 @@ export default function LinkPage() {
                     <Code>variant</Code>
                   </TableCell>
                   <TableCell>
-                    <Code>
-                      &quot;default&quot; | &quot;primary&quot; |
-                      &quot;plain&quot;
-                    </Code>
+                    <Code>&quot;default&quot; | &quot;primary&quot;</Code>
                   </TableCell>
                   <TableCell>
                     <Code>&quot;default&quot;</Code>
@@ -394,6 +405,18 @@ export default function LinkPage() {
                     <Code>&quot;medium&quot;</Code>
                   </TableCell>
                   <TableCell>링크 크기</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>underline</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code>boolean</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code>false</Code>
+                  </TableCell>
+                  <TableCell>밑줄 표시 여부</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>
@@ -442,7 +465,6 @@ export default function LinkPage() {
                 <TableRow>
                   <TableHead>Variant</TableHead>
                   <TableHead>색상</TableHead>
-                  <TableHead>밑줄</TableHead>
                   <TableHead>Hover</TableHead>
                   <TableHead>사용 사례</TableHead>
                 </TableRow>
@@ -453,7 +475,6 @@ export default function LinkPage() {
                     <Code>default</Code>
                   </TableCell>
                   <TableCell>검은색 (gray-90)</TableCell>
-                  <TableCell>있음</TableCell>
                   <TableCell>Primary 파란색</TableCell>
                   <TableCell>일반적인 모든 링크 (기본값)</TableCell>
                 </TableRow>
@@ -462,21 +483,18 @@ export default function LinkPage() {
                     <Code>primary</Code>
                   </TableCell>
                   <TableCell>Primary 파란색</TableCell>
-                  <TableCell>있음</TableCell>
                   <TableCell>더 진한 Primary</TableCell>
                   <TableCell>강조되어야 하는 Primary 링크</TableCell>
                 </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>plain</Code>
-                  </TableCell>
-                  <TableCell>검은색 (gray-90)</TableCell>
-                  <TableCell>없음</TableCell>
-                  <TableCell>Primary 파란색</TableCell>
-                  <TableCell>네비게이션, 메뉴 등</TableCell>
-                </TableRow>
               </TableBody>
             </Table>
+
+            <div className="mt-4 p-4 bg-krds-gray-5 border border-krds-gray-20 rounded-lg">
+              <p className="text-sm text-krds-gray-70">
+                <strong>참고:</strong> 밑줄은 기본적으로 없으며,{' '}
+                <Code>underline</Code> prop을 사용하여 추가할 수 있습니다.
+              </p>
+            </div>
           </Section>
 
           {/* Size Details */}
@@ -486,8 +504,8 @@ export default function LinkPage() {
             <Table small>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Size</TableHead>
-                  <TableHead>Font Size</TableHead>
+                  <TableHead>크기</TableHead>
+                  <TableHead>폰트 크기</TableHead>
                   <TableHead>사용 사례</TableHead>
                 </TableRow>
               </TableHeader>
@@ -523,24 +541,22 @@ export default function LinkPage() {
 
             <Code variant="block" language="css">
               {`/* KRDS 색상 변수 - Variant */
---krds-color-light-gray-90     /* Default/Plain 기본 색상 (검은색) */
+--krds-color-light-gray-90     /* Default 기본 색상 (검은색) */
 --krds-color-light-primary-50  /* Primary 기본 색상, Default hover 색상 (파란색) */
 --krds-color-light-primary-60  /* Primary hover 색상 (더 진한 파란색) */
 
 /* Tailwind 클래스 - Variant */
 /* default */
 [color:var(--krds-color-light-gray-90)]       /* 기본 색상 (검은색) */
-.underline                                     /* 밑줄 */
 hover:[color:var(--krds-color-light-primary-50)] /* hover Primary */
 
 /* primary */
 [color:var(--krds-color-light-primary-50)]    /* 기본 색상 (파란색) */
-.underline                                     /* 밑줄 */
 hover:[color:var(--krds-color-light-primary-60)] /* hover 더 진한 Primary */
 
-/* plain */
-[color:var(--krds-color-light-gray-90)]       /* 기본 색상 (검은색) */
-hover:[color:var(--krds-color-light-primary-50)] /* hover Primary */
+/* Underline prop */
+.underline                     /* 밑줄 (underline prop 사용 시) */
+.underline-offset-4            /* 밑줄 간격 */
 
 /* Size */
 .text-krds-body-sm             /* Small (15px) */

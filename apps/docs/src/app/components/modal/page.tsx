@@ -135,7 +135,11 @@ export default function ModalPage() {
 
             {/* Size */}
             <Subsection level="h3">
-              <Heading level="h3" title="Size" />
+              <Heading
+                level="h3"
+                title="Size"
+                description="모달은 5가지 크기를 지원합니다: sm, md, lg, xl, full"
+              />
               <ComponentPreview className="max-w-full">
                 <div className="flex flex-col gap-6 w-full">
                   {/* Small */}
@@ -374,9 +378,9 @@ export default function ModalPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -439,12 +443,12 @@ export default function ModalPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Sub-components" />
+              <Heading level="h3" title="하위 컴포넌트" />
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Component</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>컴포넌트</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

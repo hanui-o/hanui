@@ -109,30 +109,6 @@ export default function IdentifierPage() {
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section level="h2">
-            <Heading level="h2" id="best-practices" title="모범 사례" />
-
-            <List variant="unordered">
-              <ListItem>
-                <strong>Footer 최종 섹션:</strong> 반드시 Footer 내 마지막
-                콘텐츠 영역으로 배치합니다
-              </ListItem>
-              <ListItem>
-                <strong>운영 기관 로고:</strong> 서비스 로고가 아닌 운영 기관
-                로고를 사용합니다
-              </ListItem>
-              <ListItem>
-                <strong>Alt 텍스트 필수:</strong> 로고 이미지 사용 시 logoAlt
-                prop을 반드시 제공합니다
-              </ListItem>
-              <ListItem>
-                <strong>정부 서비스 전용:</strong> 정부 공식 디지털 서비스에만
-                사용합니다
-              </ListItem>
-            </List>
-          </Section>
-
           {/* Accessibility */}
           <Section level="h2">
             <Heading level="h2" id="accessibility" title="접근성" />
@@ -152,32 +128,6 @@ export default function IdentifierPage() {
                 <strong>WCAG 2.1 준수:</strong> Level A 기준 완전 준수
               </ListItem>
             </List>
-          </Section>
-
-          {/* KRDS Standards */}
-          <Section level="h2">
-            <Heading level="h2" id="krds-standards" title="KRDS 표준" />
-
-            <Card variant="filled">
-              <Body className="font-semibold mb-3">준수하는 KRDS 표준:</Body>
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>필수 클래스:</strong> <Code>.krds-identifier</Code>{' '}
-                  클래스 자동 적용
-                </ListItem>
-                <ListItem>
-                  <strong>Footer 배치:</strong> Footer 내 최종 섹션 배치 (KRDS
-                  레이아웃 표준)
-                </ListItem>
-                <ListItem>
-                  <strong>KRDS 색상 시스템:</strong> var(--krds-color-*) CSS
-                  변수 사용
-                </ListItem>
-                <ListItem>
-                  <strong>반응형:</strong> 모바일 텍스트 줄바꿈 최적화
-                </ListItem>
-              </List>
-            </Card>
           </Section>
         </TabsContent>
 
@@ -314,8 +264,8 @@ export default function IdentifierPage() {
       <PageNavigation
         prev={{ title: 'Heading', href: '/components/section-heading' }}
         next={{
-          title: 'In-page Navigation',
-          href: '/components/inpagenavigation',
+          title: 'Image',
+          href: '/components/image',
         }}
       />
     </>

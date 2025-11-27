@@ -257,7 +257,7 @@ export default function HeadingPage() {
                     네비게이션 메뉴
                   </Body>
                   <Body size="sm" as="span">
-                    : NavText 컴포넌트 사용
+                    : NavigationMenu, MegaMenu 컴포넌트 사용
                   </Body>
                 </ListItem>
               </List>

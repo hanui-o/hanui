@@ -7,6 +7,7 @@
   - krds 변수 사용 (tailwind.config.js 참조) - 컬러, 폰트 사이즈 등
   - dark 분기 사용하지 않음. 있으면 삭제
   - radix ui 기능을 주입해야 하는 컴포넌트인지 확인 후 적용 : 접속성, 접근성
+  - 일반 코딩이면 접근성 체크
   - 사용하지 않는 변수 삭제
   - 이외 언급하지 않았지만 개선해야 할 것들을 수정
   - 주석을 한글로, 간결하고 정확하게 작성, 필요하지 않은 주석은 삭제
@@ -16,3 +17,5 @@
   - hanui 컴포넌트 사용 (Section Heading System, card, code, table, list 등)
   - 개요, 설치, 사용법, 예제, 접근성 순서로 작성
   - 간단한 문서화가 되어 있는지 확인
+  - Body 따로 만들지 말고 Heading description 에 넣는걸 추천. 다만 태그가 포함된 경우는 Body 사용
+  - PageNavigation 순서 확인 및 수정

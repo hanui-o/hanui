@@ -57,22 +57,23 @@ export default function AspectRatioPage() {
             <ComponentPreview>
               <AspectRatio
                 ratio={16 / 9}
-                className="bg-gray-100 rounded-lg overflow-hidden"
+                className="bg-krds-gray-10 rounded-lg overflow-hidden"
               >
-                <iframe
-                  title="naruto"
-                  src="https://www.youtube.com/embed/QhBnZ6NPOY0"
-                  allowFullScreen
-                  className="w-full h-full"
+                <Image
+                  src="https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&h=450&fit=crop"
+                  alt="16:9 비율 이미지 예제"
+                  width={800}
+                  height={450}
+                  className="w-full h-full object-cover"
                 />
               </AspectRatio>
             </ComponentPreview>
             <Code variant="block" language="tsx">
               {`<AspectRatio ratio={16 / 9}>
-  <iframe
-    title="naruto"
-    src="https://www.youtube.com/embed/QhBnZ6NPOY0"
-    allowFullScreen
+  <Image
+    src="/image.jpg"
+    alt="16:9 비율 이미지"
+    className="object-cover"
   />
 </AspectRatio>`}
             </Code>
@@ -83,12 +84,17 @@ export default function AspectRatioPage() {
           </Section>
 
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="AspectRatio와 Image를 import하여 사용합니다. ratio prop으로 종횡비를 설정합니다."
+            />
             <Code variant="block" language="tsx">
-              {`import { AspectRatio } from '@/components/hanui/aspect-ratio'
+              {`import { AspectRatio, Image } from '@hanui/react'
 
 <AspectRatio ratio={4 / 3}>
-  <Image src="/image.jpg" alt="Image" />
+  <Image src="/image.jpg" alt="이미지 설명" />
 </AspectRatio>`}
             </Code>
           </Section>
@@ -98,7 +104,11 @@ export default function AspectRatioPage() {
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="이미지 종횡비 유지" />
+              <Heading
+                level="h3"
+                title="이미지 종횡비 유지"
+                description="이미지가 부모 컨테이너에 맞춰 종횡비를 유지합니다."
+              />
               <ComponentPreview>
                 <div className="w-[300px]">
                   <AspectRatio ratio={4 / 3}>
@@ -124,7 +134,11 @@ export default function AspectRatioPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="지도 임베드" />
+              <Heading
+                level="h3"
+                title="지도 임베드"
+                description="Google Maps 등 iframe 콘텐츠를 16:9 비율로 표시합니다."
+              />
               <ComponentPreview>
                 <AspectRatio ratio={16 / 9}>
                   <iframe
@@ -146,28 +160,32 @@ export default function AspectRatioPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="반응형 비율" />
+              <Heading
+                level="h3"
+                title="반응형 비율"
+                description="브레이크포인트별로 다른 종횡비를 적용할 수 있습니다."
+              />
               <ComponentPreview>
                 <AspectRatio
                   ratio={{ base: 1, md: 16 / 9, lg: 21 / 9 }}
-                  className="bg-blue-100 rounded-lg flex items-center justify-center"
+                  className="bg-krds-info-5 rounded-lg flex items-center justify-center"
                 >
                   <div className="text-center p-4">
-                    <p className="font-bold text-blue-800">
-                      Resize window to see ratio change
+                    <p className="font-bold text-krds-info-base">
+                      화면 크기를 조절해 비율 변화를 확인하세요
                     </p>
-                    <p className="text-sm text-blue-600">
+                    <p className="text-sm text-krds-gray-60">
                       Base: 1:1, MD: 16:9, LG: 21:9
                     </p>
                   </div>
                 </AspectRatio>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<AspectRatio 
-  ratio={{ base: 1, md: 16 / 9, lg: 21 / 9 }} 
-  className="bg-blue-100 rounded-lg"
+                {`<AspectRatio
+  ratio={{ base: 1, md: 16 / 9, lg: 21 / 9 }}
+  className="bg-krds-info-5 rounded-lg"
 >
-  {/* Content */}
+  {/* 콘텐츠 */}
 </AspectRatio>`}
               </Code>
             </Subsection>
@@ -181,28 +199,26 @@ export default function AspectRatioPage() {
               title="접근성"
               description="WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다."
             />
-            <Card variant="filled">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>시맨틱 마크업:</strong> AspectRatio는 의미론적으로
-                  중립적인 <Code>&lt;div&gt;</Code> 래퍼를 사용합니다. 내부
-                  콘텐츠에 적절한 시맨틱 태그 사용 권장
-                </ListItem>
-                <ListItem>
-                  <strong>임베드 콘텐츠:</strong> iframe, video 등을 사용할 때는
-                  적절한 <Code>title</Code> 속성을 제공하여 스크린 리더
-                  사용자에게 콘텐츠를 설명
-                </ListItem>
-                <ListItem>
-                  <strong>이미지 대체 텍스트:</strong> AspectRatio 내부의
-                  이미지는 반드시 <Code>alt</Code> 속성을 포함해야 합니다
-                </ListItem>
-                <ListItem>
-                  <strong>반응형 비율:</strong> 반응형 비율 사용 시 모든
-                  브레이크포인트에서 콘텐츠가 적절히 표시되는지 확인
-                </ListItem>
-              </List>
-            </Card>
+            <List variant="check" className="text-krds-gray-90">
+              <ListItem>
+                <strong>시맨틱 마크업:</strong> AspectRatio는 의미론적으로
+                중립적인 <Code>&lt;div&gt;</Code> 래퍼를 사용합니다. 내부
+                콘텐츠에 적절한 시맨틱 태그 사용 권장
+              </ListItem>
+              <ListItem>
+                <strong>임베드 콘텐츠:</strong> iframe, video 등을 사용할 때는
+                적절한 <Code>title</Code> 속성을 제공하여 스크린 리더 사용자에게
+                콘텐츠를 설명
+              </ListItem>
+              <ListItem>
+                <strong>이미지 대체 텍스트:</strong> AspectRatio 내부의 이미지는
+                반드시 <Code>alt</Code> 속성을 포함해야 합니다
+              </ListItem>
+              <ListItem>
+                <strong>반응형 비율:</strong> 반응형 비율 사용 시 모든
+                브레이크포인트에서 콘텐츠가 적절히 표시되는지 확인
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
@@ -265,8 +281,8 @@ export default function AspectRatioPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Wrap', href: '/components/wrap' }}
-        next={{ title: 'Image', href: '/components/image' }}
+        prev={{ title: 'AlertDialog', href: '/components/alert-dialog' }}
+        next={{ title: 'Badge', href: '/components/badge' }}
       />
     </>
   );

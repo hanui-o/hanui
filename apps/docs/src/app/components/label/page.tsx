@@ -14,7 +14,6 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import {
   Label as LabelComponent,
   Input,
-  Body,
   Code,
   Tabs,
   TabsList,
@@ -91,9 +90,14 @@ export default function LabelPage() {
 
           {/* 3) 사용법 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Label과 Input을 import하여 사용합니다. htmlFor와 id로 라벨과 입력 요소를 연결합니다."
+            />
             <Code variant="block" language="tsx">
-              {`import { Label } from '@/components/hanui/label'
+              {`import { Label, Input } from '@hanui/react'
 
 <Label htmlFor="input-id" size="md">라벨 텍스트</Label>
 <Input id="input-id" type="text" />`}
@@ -106,11 +110,8 @@ export default function LabelPage() {
               level="h2"
               id="label-vs-formlabel"
               title="Label vs FormLabel"
+              description="HANUI는 두 가지 라벨 컴포넌트를 제공합니다. 각각의 용도와 차이점을 이해하고 상황에 맞게 사용하세요."
             />
-            <Body className="mb-4">
-              HANUI는 두 가지 라벨 컴포넌트를 제공합니다. 각각의 용도와 차이점을
-              이해하고 상황에 맞게 사용하세요.
-            </Body>
 
             <Table>
               <TableHeader>
@@ -168,10 +169,11 @@ export default function LabelPage() {
             </Table>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Label 사용 예제" />
-              <Body className="mb-4">
-                간단한 폼이나 FormField 통합이 필요 없을 때 사용합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="Label 사용 예제"
+                description="간단한 폼이나 FormField 통합이 필요 없을 때 사용합니다."
+              />
               <Code variant="block" language="tsx">
                 {`import { Label, Input } from '@hanui/react';
 
@@ -190,11 +192,11 @@ export default function LabelPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="FormLabel 사용 예제 (권장)" />
-              <Body className="mb-4">
-                FormField와 함께 사용하면 접근성과 에러 처리가 자동으로
-                연결됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="FormLabel 사용 예제 (권장)"
+                description="FormField와 함께 사용하면 접근성과 에러 처리가 자동으로 연결됩니다."
+              />
               <Code variant="block" language="tsx">
                 {`import { FormField, FormLabel, FormError, FormHelperText, Input } from '@hanui/react';
 
@@ -221,7 +223,11 @@ export default function LabelPage() {
 
             {/* Size */}
             <Subsection level="h3">
-              <Heading level="h3" title="Size" />
+              <Heading
+                level="h3"
+                title="크기"
+                description="size prop으로 라벨의 크기를 조절합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-6 w-full">
                   <div className="flex flex-col gap-2">
@@ -260,7 +266,11 @@ export default function LabelPage() {
 
             {/* 필수 필드 표시 */}
             <Subsection level="h3">
-              <Heading level="h3" title="필수 필드 표시" />
+              <Heading
+                level="h3"
+                title="필수 필드 표시"
+                description="필수 입력 항목임을 시각적으로 표시합니다."
+              />
               <ComponentPreview>
                 <div className="max-w-md">
                   <LabelComponent htmlFor="required-field">
@@ -285,7 +295,11 @@ export default function LabelPage() {
 
             {/* 체크박스 & 라디오 */}
             <Subsection level="h3">
-              <Heading level="h3" title="체크박스 & 라디오" />
+              <Heading
+                level="h3"
+                title="체크박스 & 라디오"
+                description="체크박스와 라디오 버튼의 라벨로 사용합니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center gap-2">
@@ -371,10 +385,10 @@ export default function LabelPage() {
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -426,15 +440,15 @@ export default function LabelPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Size Variants" />
+              <Heading level="h3" title="크기 변형" />
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Size</TableHead>
-                    <TableHead>Font Size</TableHead>
-                    <TableHead>Font Weight</TableHead>
-                    <TableHead>Line Height</TableHead>
-                    <TableHead>Use Case</TableHead>
+                    <TableHead>크기</TableHead>
+                    <TableHead>폰트 크기</TableHead>
+                    <TableHead>폰트 굵기</TableHead>
+                    <TableHead>줄 높이</TableHead>
+                    <TableHead>사용 사례</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

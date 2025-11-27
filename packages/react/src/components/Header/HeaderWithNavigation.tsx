@@ -89,7 +89,10 @@ export function HeaderWithNavigation({
                         onMouseLeave={() => setIsUtilityDropdownOpen(false)}
                       >
                         관련사이트
-                        <ChevronDown className={styles.dropdownIcon} />
+                        <ChevronDown
+                          className={styles.dropdownIcon}
+                          aria-hidden="true"
+                        />
                       </button>
                     </DropdownMenu.Trigger>
 
@@ -107,9 +110,12 @@ export function HeaderWithNavigation({
                               href={site.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              title="새 창 열기"
                             >
                               {site.label}
+                              <span className={styles.srOnly}>
+                                {' '}
+                                (새 창 열기)
+                              </span>
                             </a>
                           </DropdownMenu.Item>
                         ))}
@@ -151,7 +157,7 @@ export function HeaderWithNavigation({
                   className={styles.searchBtn}
                   aria-label="검색"
                 >
-                  <Search />
+                  <Search aria-hidden="true" />
                 </button>
               </Dialog.Trigger>
               <Dialog.Portal>
@@ -175,7 +181,7 @@ export function HeaderWithNavigation({
                       className={styles.searchClose}
                       aria-label="닫기"
                     >
-                      <X />
+                      <X aria-hidden="true" />
                     </button>
                   </Dialog.Close>
                 </Dialog.Content>
@@ -188,14 +194,18 @@ export function HeaderWithNavigation({
               aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X /> : <Menu />}
+              {isMobileMenuOpen ? (
+                <X aria-hidden="true" />
+              ) : (
+                <Menu aria-hidden="true" />
+              )}
             </button>
           </div>
         </Container>
       </div>
 
       {/* NavigationMenu (Line 2) */}
-      <nav id="gnb" className={styles.mainMenu}>
+      <nav id="gnb" className={styles.mainMenu} aria-label="주 메뉴">
         <Container className={styles.inner}>
           <NavigationMenu items={navigationItems} />
         </Container>

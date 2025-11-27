@@ -1,681 +1,729 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
+import {
+  Heading,
+  PageSection,
+  Subsection,
+  PageNavigation,
+} from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
+
 import {
   Checkbox,
   CheckboxGroup,
   CheckboxGroupItem,
-  Heading,
-  Body,
-  Container,
-  Section,
-  Card,
+  ChipCheckbox,
   Code,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
   Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  List,
+  ListItem,
   FormField,
   FormLabel,
   FormHelperText,
   FormError,
 } from '@hanui/react';
-import { CodeBlock } from '@/components/content/CodeBlock';
 
 export default function CheckboxPage() {
-  const [singleChecked, setSingleChecked] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
   const [basicSelected, setBasicSelected] = useState<string[]>(['option2']);
   const [horizontalSelected, setHorizontalSelected] = useState<string[]>([]);
   const [errorGroupValue, setErrorGroupValue] = useState<string[]>([]);
 
   return (
-    <Container className="py-8">
-      <Heading level="h1" id="checkbox" title="Checkbox" className="mb-4" />
-      <Body size="lg" className="mb-8">
-        KRDS 기반의 체크박스 컴포넌트입니다. 단일 선택 및 다중 선택을 지원하며
-        FormField와 통합되어 폼 검증 및 접근성을 제공합니다.
-      </Body>
+    <>
+      <Heading
+        level="h1"
+        id="checkbox"
+        title="Checkbox"
+        description="사용자가 여러 옵션 중 하나 이상을 선택할 수 있는 컴포넌트입니다."
+      />
 
-      {/* 단일 체크박스 */}
-      <Section level="h2">
-        <Heading level="h2" id="single-checkbox" title="단일 체크박스" />
-        <Body className="mb-4">
-          단일 체크박스는 예/아니오 또는 동의/비동의와 같은 이진 선택에
-          사용됩니다.
-        </Body>
-        <Card className="p-6 mb-4">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id="terms"
-                checked={termsChecked}
-                onCheckedChange={(checked) =>
-                  setTermsChecked(checked as boolean)
-                }
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
+        </TabsList>
+
+        {/* 개요 탭 */}
+        <TabsContent value="overview">
+          {/* 1. 개요 */}
+          <PageSection level="h2">
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              description="Checkbox는 단일 선택(동의/비동의) 및 다중 선택을 지원합니다. CheckboxGroup으로 여러 체크박스를 그룹화하고, FormField와 통합하여 폼 검증 및 접근성을 제공합니다."
+              className="sr-only"
+            />
+            <ComponentPreview>
+              <div className="flex flex-col gap-4">
+                <Checkbox
+                  label="이용약관에 동의합니다"
+                  checked={termsChecked}
+                  onCheckedChange={(checked) =>
+                    setTermsChecked(checked as boolean)
+                  }
+                />
+                <CheckboxGroup
+                  value={basicSelected}
+                  onValueChange={setBasicSelected}
+                  orientation="horizontal"
+                >
+                  <CheckboxGroupItem value="option1" label="옵션 1" />
+                  <CheckboxGroupItem value="option2" label="옵션 2" />
+                  <CheckboxGroupItem value="option3" label="옵션 3" />
+                </CheckboxGroup>
+              </div>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`<Checkbox
+  label="이용약관에 동의합니다"
+  checked={checked}
+  onCheckedChange={setChecked}
+/>
+
+<CheckboxGroup value={selected} onValueChange={setSelected}>
+  <CheckboxGroupItem value="option1" label="옵션 1" />
+  <CheckboxGroupItem value="option2" label="옵션 2" />
+</CheckboxGroup>`}
+            </Code>
+          </PageSection>
+
+          {/* 2. 설치 */}
+          <PageSection level="h2">
+            <Installation componentName="checkbox" />
+          </PageSection>
+
+          {/* 3. 사용법 */}
+          <PageSection level="h2">
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Checkbox, CheckboxGroup, CheckboxGroupItem을 import하여 사용합니다. FormField와 함께 사용하면 접근성과 폼 검증을 자동으로 처리합니다."
+            />
+            <Code variant="block" language="tsx">
+              {`import { Checkbox, CheckboxGroup, CheckboxGroupItem } from '@hanui/react'
+
+// 단일 체크박스 (label prop 사용)
+<Checkbox label="동의합니다" checked={checked} onCheckedChange={setChecked} />
+
+// 그룹 체크박스
+<CheckboxGroup value={selected} onValueChange={setSelected}>
+  <CheckboxGroupItem value="a" label="옵션 A" />
+  <CheckboxGroupItem value="b" label="옵션 B" />
+</CheckboxGroup>`}
+            </Code>
+          </PageSection>
+
+          {/* 4. 예제 */}
+          <PageSection level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            {/* 기본 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="기본"
+                description="체크박스의 기본 상태와 설명 텍스트를 표시합니다."
               />
-              <label
-                htmlFor="terms"
-                className="text-krds-body-md text-krds-gray-90 cursor-pointer"
-              >
-                이용약관에 동의합니다
-              </label>
-            </div>
-            <Body size="sm" className="text-krds-gray-70">
-              현재 상태: {termsChecked ? '동의함' : '동의하지 않음'}
-            </Body>
-          </div>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`const [checked, setChecked] = useState(false);
+              <ComponentPreview>
+                <div className="flex flex-col gap-6">
+                  {/* 상태 표시 */}
+                  <div className="flex flex-wrap items-center gap-4">
+                    <Checkbox label="기본" />
+                    <Checkbox label="선택됨" defaultChecked />
+                    <Checkbox label="비활성화" disabled />
+                    <Checkbox label="선택된 비활성화" disabled defaultChecked />
+                  </div>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Checkbox label="기본" />
+<Checkbox label="선택됨" defaultChecked />
+<Checkbox label="비활성화" disabled />
+<Checkbox label="선택된 비활성화" disabled defaultChecked />`}
+              </Code>
+            </Subsection>
 
-<div className="flex items-center gap-2">
-  <Checkbox
-    id="terms"
-    checked={checked}
-    onCheckedChange={(checked) => setChecked(checked as boolean)}
-  />
-  <label htmlFor="terms" className="text-krds-body-md text-krds-gray-90 cursor-pointer">
-    이용약관에 동의합니다
-  </label>
-</div>`}
-        />
-      </Section>
+            {/* 사이즈 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="사이즈"
+                description="md(20px), lg(24px) 두 가지 크기를 지원합니다."
+              />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-6">
+                  <Checkbox size="md" label="사이즈 : medium" />
+                  <Checkbox size="lg" label="사이즈 : large" />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Checkbox size="md" label="Medium" />  {/* 20px - 기본값 */}
+<Checkbox size="lg" label="Large" />   {/* 24px */}`}
+              </Code>
+            </Subsection>
 
-      {/* 크기 변형 */}
-      <Section level="h2">
-        <Heading level="h2" id="sizes" title="크기" />
-        <Body className="mb-4">
-          3가지 크기를 제공합니다: <Code>sm</Code> (16px), <Code>md</Code>{' '}
-          (20px), <Code>lg</Code> (24px).
-        </Body>
-        <Card className="p-6 mb-4">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <Checkbox size="sm" id="small" />
-              <label htmlFor="small" className="text-krds-body-sm">
-                Small (16px)
-              </label>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox size="md" id="medium" />
-              <label htmlFor="medium" className="text-krds-body-md">
-                Medium (20px) - 기본값
-              </label>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox size="lg" id="large" />
-              <label htmlFor="large" className="text-krds-body-lg">
-                Large (24px)
-              </label>
-            </div>
-          </div>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<Checkbox size="sm" id="small" />
-<Checkbox size="md" id="medium" /> {/* 기본값 */}
-<Checkbox size="lg" id="large" />`}
-        />
-      </Section>
+            {/* chip */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="chip"
+                description="칩 스타일의 체크박스로, 필터나 태그 선택에 적합합니다."
+              />
+              <ComponentPreview>
+                <div className="flex flex-wrap items-center gap-3">
+                  <ChipCheckbox
+                    label={
+                      <span>
+                        chip 상태 :<br />
+                        default
+                      </span>
+                    }
+                  />
+                  <ChipCheckbox
+                    label={
+                      <span>
+                        chip 상태 :<br />
+                        checked
+                      </span>
+                    }
+                    defaultChecked
+                  />
+                  <ChipCheckbox
+                    label={
+                      <span>
+                        chip 상태 :<br />
+                        disabled
+                      </span>
+                    }
+                    disabled
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`import { ChipCheckbox } from '@hanui/react'
 
-      {/* CheckboxGroup - 기본 */}
-      <Section level="h2">
-        <Heading level="h2" id="checkbox-group" title="CheckboxGroup" />
-        <Body className="mb-4">
-          <Code>CheckboxGroup</Code>은 여러 체크박스를 그룹화하여 관리합니다.
-          다중 선택이 가능합니다.
-        </Body>
-        <Card className="p-6 mb-4">
-          <CheckboxGroup value={basicSelected} onValueChange={setBasicSelected}>
-            <CheckboxGroupItem value="option1" label="옵션 1" />
-            <CheckboxGroupItem value="option2" label="옵션 2" />
-            <CheckboxGroupItem value="option3" label="옵션 3" />
-            <CheckboxGroupItem value="option4" label="옵션 4" />
-          </CheckboxGroup>
-          <Body size="sm" className="text-krds-gray-70 mt-4">
-            선택된 항목: {basicSelected.join(', ') || '없음'}
-          </Body>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`const [selected, setSelected] = useState<string[]>(['option2']);
+<ChipCheckbox label="기본" />
+<ChipCheckbox label="선택됨" defaultChecked />
+<ChipCheckbox label="비활성화" disabled />`}
+              </Code>
+            </Subsection>
+
+            {/* CheckboxGroup */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="CheckboxGroup"
+                description="여러 체크박스를 그룹화하여 다중 선택을 관리합니다."
+              />
+              <ComponentPreview>
+                <CheckboxGroup
+                  value={basicSelected}
+                  onValueChange={setBasicSelected}
+                >
+                  <CheckboxGroupItem value="option1" label="옵션 1" />
+                  <CheckboxGroupItem value="option2" label="옵션 2" />
+                  <CheckboxGroupItem value="option3" label="옵션 3" />
+                  <CheckboxGroupItem
+                    value="option4"
+                    label="옵션 4 (비활성화)"
+                    disabled
+                  />
+                </CheckboxGroup>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`const [selected, setSelected] = useState<string[]>(['option2']);
 
 <CheckboxGroup value={selected} onValueChange={setSelected}>
   <CheckboxGroupItem value="option1" label="옵션 1" />
   <CheckboxGroupItem value="option2" label="옵션 2" />
   <CheckboxGroupItem value="option3" label="옵션 3" />
-  <CheckboxGroupItem value="option4" label="옵션 4" />
+  <CheckboxGroupItem value="option4" label="옵션 4" disabled />
 </CheckboxGroup>`}
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* CheckboxGroup - 방향 */}
-      <Section level="h2">
-        <Heading
-          level="h2"
-          id="checkbox-group-orientation"
-          title="CheckboxGroup 방향"
-        />
-        <Body className="mb-4">
-          <Code>orientation</Code> prop으로 수직 또는 수평 배치를 선택할 수
-          있습니다.
-        </Body>
-        <Card className="p-6 mb-4">
-          <Body size="md" weight="semibold" className="mb-2">
-            수평 배치 (Horizontal)
-          </Body>
-          <CheckboxGroup
-            value={horizontalSelected}
-            onValueChange={setHorizontalSelected}
-            orientation="horizontal"
-          >
-            <CheckboxGroupItem value="mon" label="월" />
-            <CheckboxGroupItem value="tue" label="화" />
-            <CheckboxGroupItem value="wed" label="수" />
-            <CheckboxGroupItem value="thu" label="목" />
-            <CheckboxGroupItem value="fri" label="금" />
-          </CheckboxGroup>
-          <Body size="sm" className="text-krds-gray-70 mt-4">
-            선택된 요일: {horizontalSelected.join(', ') || '없음'}
-          </Body>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<CheckboxGroup
-  value={selected}
-  onValueChange={setSelected}
-  orientation="horizontal" // "vertical" | "horizontal"
->
+            {/* 방향 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="방향"
+                description="orientation prop으로 수직(vertical) 또는 수평(horizontal) 배치를 선택합니다."
+              />
+              <ComponentPreview>
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-sm text-krds-gray-60 mb-2">
+                      수평 (horizontal)
+                    </p>
+                    <CheckboxGroup
+                      value={horizontalSelected}
+                      onValueChange={setHorizontalSelected}
+                      orientation="horizontal"
+                    >
+                      <CheckboxGroupItem value="mon" label="월" />
+                      <CheckboxGroupItem value="tue" label="화" />
+                      <CheckboxGroupItem value="wed" label="수" />
+                      <CheckboxGroupItem value="thu" label="목" />
+                      <CheckboxGroupItem value="fri" label="금" />
+                    </CheckboxGroup>
+                  </div>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<CheckboxGroup orientation="horizontal">
   <CheckboxGroupItem value="mon" label="월" />
   <CheckboxGroupItem value="tue" label="화" />
   <CheckboxGroupItem value="wed" label="수" />
 </CheckboxGroup>`}
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* Status prop */}
-      <Section level="h2">
-        <Heading level="h2" id="status" title="Status" />
-        <Body className="mb-4">
-          <Code>status</Code> prop으로 에러 상태를 표시할 수 있습니다.
-        </Body>
-        <Card className="p-6 mb-4">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <Checkbox id="error" status="error" />
-              <label htmlFor="error" className="text-krds-body-md">
-                에러 상태
-              </label>
-            </div>
-            <div className="flex items-center gap-2">
-              <Checkbox id="error-checked" status="error" checked />
-              <label htmlFor="error-checked" className="text-krds-body-md">
-                에러 상태 (선택됨)
-              </label>
-            </div>
-          </div>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<Checkbox id="error" status="error" />
-<Checkbox id="error-checked" status="error" checked />`}
-        />
-      </Section>
-
-      {/* FormField 통합 */}
-      <Section level="h2">
-        <Heading
-          level="h2"
-          id="formfield-integration"
-          title="FormField 통합 (권장)"
-        />
-        <Body className="mb-4">
-          <Code>FormField</Code>와 함께 사용하면 자동으로 접근성 속성이 연결되며
-          폼 검증을 쉽게 구현할 수 있습니다.
-        </Body>
-
-        {/* 단일 체크박스 with FormField */}
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          단일 체크박스
-        </Body>
-        <Card className="p-6 mb-4">
-          <FormField id="single-checkbox" required>
-            <div className="flex items-center gap-2">
-              <Checkbox
-                checked={singleChecked}
-                onCheckedChange={(checked) =>
-                  setSingleChecked(checked as boolean)
-                }
+            {/* FormField 통합 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="FormField 통합"
+                description="FormField와 함께 사용하면 레이블, 도움말, 에러 메시지가 자동으로 연결됩니다."
               />
-              <FormLabel className="cursor-pointer">
-                개인정보 수집 및 이용에 동의합니다 *
-              </FormLabel>
-            </div>
-            <FormHelperText>
-              서비스 이용을 위해 필수적으로 동의해야 합니다
-            </FormHelperText>
-          </FormField>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<FormField id="terms" required>
-  <div className="flex items-center gap-2">
-    <Checkbox
-      checked={checked}
-      onCheckedChange={(checked) => setChecked(checked as boolean)}
-    />
-    <FormLabel className="cursor-pointer">
-      개인정보 수집 및 이용에 동의합니다 *
-    </FormLabel>
-  </div>
-  <FormHelperText>
-    서비스 이용을 위해 필수적으로 동의해야 합니다
-  </FormHelperText>
-</FormField>`}
-        />
+              <ComponentPreview>
+                <div className="space-y-6 w-full max-w-sm">
+                  <FormField id="interests" required>
+                    <FormLabel>관심 분야 *</FormLabel>
+                    <CheckboxGroup
+                      value={basicSelected}
+                      onValueChange={setBasicSelected}
+                    >
+                      <CheckboxGroupItem value="design" label="디자인" />
+                      <CheckboxGroupItem value="development" label="개발" />
+                      <CheckboxGroupItem value="marketing" label="마케팅" />
+                    </CheckboxGroup>
+                    <FormHelperText>최소 1개 이상 선택하세요</FormHelperText>
+                  </FormField>
 
-        {/* CheckboxGroup with FormField */}
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          CheckboxGroup
-        </Body>
-        <Card className="p-6 mb-4">
-          <FormField id="interests" required>
-            <FormLabel>관심 분야를 선택하세요 *</FormLabel>
-            <CheckboxGroup
-              value={basicSelected}
-              onValueChange={setBasicSelected}
-            >
-              <CheckboxGroupItem value="design" label="디자인" />
-              <CheckboxGroupItem value="development" label="개발" />
-              <CheckboxGroupItem value="marketing" label="마케팅" />
-              <CheckboxGroupItem value="business" label="비즈니스" />
-            </CheckboxGroup>
-            <FormHelperText>최소 1개 이상 선택해주세요</FormHelperText>
-          </FormField>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<FormField id="interests" required>
-  <FormLabel>관심 분야를 선택하세요 *</FormLabel>
+                  <FormField id="required-group" required status="error">
+                    <FormLabel>필수 선택 *</FormLabel>
+                    <CheckboxGroup
+                      value={errorGroupValue}
+                      onValueChange={setErrorGroupValue}
+                    >
+                      <CheckboxGroupItem value="item1" label="항목 1" />
+                      <CheckboxGroupItem value="item2" label="항목 2" />
+                    </CheckboxGroup>
+                    <FormError>필수 항목입니다</FormError>
+                  </FormField>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FormField id="interests" required>
+  <FormLabel>관심 분야 *</FormLabel>
   <CheckboxGroup value={selected} onValueChange={setSelected}>
     <CheckboxGroupItem value="design" label="디자인" />
     <CheckboxGroupItem value="development" label="개발" />
-    <CheckboxGroupItem value="marketing" label="마케팅" />
-    <CheckboxGroupItem value="business" label="비즈니스" />
   </CheckboxGroup>
-  <FormHelperText>최소 1개 이상 선택해주세요</FormHelperText>
-</FormField>`}
-        />
+  <FormHelperText>최소 1개 이상 선택하세요</FormHelperText>
+</FormField>
 
-        {/* 에러 상태 */}
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          에러 상태
-        </Body>
-        <Card className="p-6 mb-4">
-          <FormField id="error-group" required status="error">
-            <FormLabel>필수 항목 선택 *</FormLabel>
-            <CheckboxGroup
-              value={errorGroupValue}
-              onValueChange={setErrorGroupValue}
-            >
-              <CheckboxGroupItem value="item1" label="항목 1" />
-              <CheckboxGroupItem value="item2" label="항목 2" />
-              <CheckboxGroupItem value="item3" label="항목 3" />
-            </CheckboxGroup>
-            <FormError>최소 1개 이상 선택해야 합니다</FormError>
-          </FormField>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<FormField id="required" required status="error">
-  <FormLabel>필수 항목 선택 *</FormLabel>
+<FormField id="required" required status="error">
+  <FormLabel>필수 선택 *</FormLabel>
   <CheckboxGroup value={value} onValueChange={setValue}>
     <CheckboxGroupItem value="item1" label="항목 1" />
-    <CheckboxGroupItem value="item2" label="항목 2" />
-    <CheckboxGroupItem value="item3" label="항목 3" />
   </CheckboxGroup>
-  <FormError>최소 1개 이상 선택해야 합니다</FormError>
+  <FormError>필수 항목입니다</FormError>
 </FormField>`}
-        />
-      </Section>
+              </Code>
+            </Subsection>
+          </PageSection>
 
-      {/* 사용 가이드 */}
-      <Section level="h2">
-        <Heading level="h2" id="usage-guidelines" title="사용 가이드" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-          <Card className="p-4 border-l-4 border-krds-success-60">
-            <Body size="md" weight="semibold" className="mb-2">
-              ✓ 체크박스를 사용하는 경우
-            </Body>
-            <ul className="list-disc list-inside space-y-1 text-krds-body-md">
-              <li>다중 선택이 필요한 경우</li>
-              <li>예/아니오 선택이 필요한 경우</li>
-              <li>약관 동의나 옵션 설정</li>
-              <li>목록에서 여러 항목 선택</li>
-              <li>독립적인 선택 옵션들</li>
-            </ul>
-          </Card>
-          <Card className="p-4 border-l-4 border-krds-danger-60">
-            <Body size="md" weight="semibold" className="mb-2">
-              ✗ 체크박스를 사용하지 않는 경우
-            </Body>
-            <ul className="list-disc list-inside space-y-1 text-krds-body-md">
-              <li>단일 선택만 필요한 경우 (Radio 사용)</li>
-              <li>즉시 실행되는 토글 (Switch 사용)</li>
-              <li>너무 많은 옵션 (Select 사용)</li>
-              <li>상호 배타적인 선택</li>
-            </ul>
-          </Card>
-        </div>
-      </Section>
+          {/* 5. 접근성 */}
+          <PageSection level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="Checkbox는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>키보드 지원:</strong> Space로 선택/해제, Tab으로 포커스
+                이동이 가능합니다.
+              </ListItem>
+              <ListItem>
+                <strong>스크린리더:</strong> 체크박스 상태(선택됨/해제됨)를
+                정확히 전달합니다.
+              </ListItem>
+              <ListItem>
+                <strong>FormField 통합:</strong> aria-describedby로 도움말 및
+                에러 메시지가 자동 연결됩니다.
+              </ListItem>
+              <ListItem>
+                명도 대비 4.5:1 이상을 준수하여 시각적 접근성을 보장합니다.
+              </ListItem>
+            </List>
+          </PageSection>
+        </TabsContent>
 
-      {/* 접근성 */}
-      <Section level="h2">
-        <Heading level="h2" id="accessibility" title="접근성" />
-        <Body className="mb-4">WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다.</Body>
+        {/* API 탭 */}
+        <TabsContent value="api">
+          <PageSection level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
-        <Body size="md" weight="semibold" className="mb-2">
-          키보드 지원
-        </Body>
-        <Table className="mb-6">
-          <thead>
-            <tr>
-              <th>키</th>
-              <th>동작</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Code>Space</Code>
-              </td>
-              <td>체크박스 선택/해제</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>Tab</Code>
-              </td>
-              <td>다음 포커스 가능한 요소로 이동</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>Shift + Tab</Code>
-              </td>
-              <td>이전 포커스 가능한 요소로 이동</td>
-            </tr>
-          </tbody>
-        </Table>
+            <Subsection level="h3">
+              <Heading level="h3" title="Checkbox Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>label</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">React.ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>
+                      레이블 텍스트 (제공 시 label과 함께 렌더링)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>labelPosition</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'right' | 'left'</Code>
+                    </TableCell>
+                    <TableCell>'right'</TableCell>
+                    <TableCell>레이블 위치</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
+                    <TableCell>체크박스 크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>status</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'error' | 'success' | 'info'
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>상태 표시</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>checked</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>선택 상태 (제어)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>defaultChecked</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>초기 선택 상태 (비제어)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>onCheckedChange</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (checked: boolean) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>상태 변경 콜백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>비활성화</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-        <Body size="md" weight="semibold" className="mb-2">
-          스크린 리더 지원
-        </Body>
-        <ul className="list-disc list-inside space-y-1 text-krds-body-md mb-6">
-          <li>체크박스의 상태(선택됨/선택 안됨)를 정확히 전달</li>
-          <li>
-            <Code>FormField</Code>와 함께 사용 시 자동으로 label, error,
-            helperText 연결
-          </li>
-          <li>필수 필드 여부를 aria-required로 전달</li>
-          <li>에러 상태를 aria-invalid로 전달</li>
-        </ul>
+            <Subsection level="h3">
+              <Heading level="h3" title="CheckboxGroup Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>value</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string[]</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>선택된 값 배열 (제어)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>defaultValue</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string[]</Code>
+                    </TableCell>
+                    <TableCell>[]</TableCell>
+                    <TableCell>초기 선택 값 (비제어)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>onValueChange</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (value: string[]) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>값 변경 콜백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>orientation</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'vertical' | 'horizontal'</Code>
+                    </TableCell>
+                    <TableCell>'vertical'</TableCell>
+                    <TableCell>배치 방향</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
+                    <TableCell>그룹 내 체크박스 크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>전체 그룹 비활성화</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-        <Body size="md" weight="semibold" className="mb-2">
-          ARIA 속성
-        </Body>
-        <ul className="list-disc list-inside space-y-1 text-krds-body-md">
-          <li>
-            <Code>role="checkbox"</Code>: 체크박스 역할 명시
-          </li>
-          <li>
-            <Code>aria-checked</Code>: 선택 상태 전달
-          </li>
-          <li>
-            <Code>aria-invalid</Code>: 에러 상태 전달
-          </li>
-          <li>
-            <Code>aria-required</Code>: 필수 필드 여부 전달
-          </li>
-          <li>
-            <Code>aria-describedby</Code>: helper text, error 메시지 연결
-          </li>
-        </ul>
-      </Section>
+            <Subsection level="h3">
+              <Heading level="h3" title="CheckboxGroupItem Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>value</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>체크박스 값 (필수)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>label</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">React.ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>라벨 텍스트 (필수)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>개별 항목 비활성화</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-      {/* API Reference */}
-      <Section level="h2">
-        <Heading level="h2" id="api-reference" title="API Reference" />
+            <Subsection level="h3">
+              <Heading level="h3" title="ChipCheckbox Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>label</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">React.ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>체크박스 레이블 (필수)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>checked</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>선택 상태 (제어)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>defaultChecked</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>기본 선택 상태 (비제어)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>onCheckedChange</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (checked: boolean) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>상태 변경 콜백</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>비활성화</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>value</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>폼 제출용 값</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          Checkbox Props
-        </Body>
-        <Table className="mb-6">
-          <thead>
-            <tr>
-              <th>Prop</th>
-              <th>타입</th>
-              <th>기본값</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Code>size</Code>
-              </td>
-              <td>
-                <Code>"sm" | "md" | "lg"</Code>
-              </td>
-              <td>
-                <Code>"md"</Code>
-              </td>
-              <td>체크박스 크기</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>status</Code>
-              </td>
-              <td>
-                <Code>"error" | "success" | "info"</Code>
-              </td>
-              <td>-</td>
-              <td>체크박스 상태</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>checked</Code>
-              </td>
-              <td>
-                <Code>boolean</Code>
-              </td>
-              <td>-</td>
-              <td>선택 상태 (제어 컴포넌트)</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>defaultChecked</Code>
-              </td>
-              <td>
-                <Code>boolean</Code>
-              </td>
-              <td>-</td>
-              <td>초기 선택 상태 (비제어 컴포넌트)</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>onCheckedChange</Code>
-              </td>
-              <td>
-                <Code>(checked: boolean) =&gt; void</Code>
-              </td>
-              <td>-</td>
-              <td>선택 상태 변경 시 호출</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>disabled</Code>
-              </td>
-              <td>
-                <Code>boolean</Code>
-              </td>
-              <td>
-                <Code>false</Code>
-              </td>
-              <td>비활성화 상태</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>id</Code>
-              </td>
-              <td>
-                <Code>string</Code>
-              </td>
-              <td>-</td>
-              <td>체크박스 ID (label 연결용)</td>
-            </tr>
-          </tbody>
-        </Table>
+            <Subsection level="h3">
+              <Heading level="h3" title="키보드 접근성" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>키</TableHead>
+                    <TableHead>동작</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Space</Code>
+                    </TableCell>
+                    <TableCell>체크박스 선택/해제</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Tab</Code>
+                    </TableCell>
+                    <TableCell>다음 요소로 포커스 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Shift + Tab</Code>
+                    </TableCell>
+                    <TableCell>이전 요소로 포커스 이동</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </PageSection>
+        </TabsContent>
+      </Tabs>
 
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          CheckboxGroup Props
-        </Body>
-        <Table className="mb-6">
-          <thead>
-            <tr>
-              <th>Prop</th>
-              <th>타입</th>
-              <th>기본값</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Code>value</Code>
-              </td>
-              <td>
-                <Code>string[]</Code>
-              </td>
-              <td>-</td>
-              <td>선택된 값 배열 (제어 컴포넌트)</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>defaultValue</Code>
-              </td>
-              <td>
-                <Code>string[]</Code>
-              </td>
-              <td>
-                <Code>[]</Code>
-              </td>
-              <td>초기 선택된 값 배열</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>onValueChange</Code>
-              </td>
-              <td>
-                <Code>(value: string[]) =&gt; void</Code>
-              </td>
-              <td>-</td>
-              <td>값 변경 시 호출</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>orientation</Code>
-              </td>
-              <td>
-                <Code>"vertical" | "horizontal"</Code>
-              </td>
-              <td>
-                <Code>"vertical"</Code>
-              </td>
-              <td>배치 방향</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>disabled</Code>
-              </td>
-              <td>
-                <Code>boolean</Code>
-              </td>
-              <td>
-                <Code>false</Code>
-              </td>
-              <td>전체 그룹 비활성화</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>size</Code>
-              </td>
-              <td>
-                <Code>"sm" | "md" | "lg"</Code>
-              </td>
-              <td>
-                <Code>"md"</Code>
-              </td>
-              <td>그룹 내 모든 체크박스 크기</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>status</Code>
-              </td>
-              <td>
-                <Code>"error" | "success" | "info"</Code>
-              </td>
-              <td>-</td>
-              <td>그룹 상태</td>
-            </tr>
-          </tbody>
-        </Table>
-
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          CheckboxGroupItem Props
-        </Body>
-        <Table>
-          <thead>
-            <tr>
-              <th>Prop</th>
-              <th>타입</th>
-              <th>기본값</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Code>value</Code>
-              </td>
-              <td>
-                <Code>string</Code>
-              </td>
-              <td>-</td>
-              <td>체크박스 값 (필수)</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>label</Code>
-              </td>
-              <td>
-                <Code>React.ReactNode</Code>
-              </td>
-              <td>-</td>
-              <td>라벨 텍스트 (필수)</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>disabled</Code>
-              </td>
-              <td>
-                <Code>boolean</Code>
-              </td>
-              <td>
-                <Code>false</Code>
-              </td>
-              <td>개별 항목 비활성화</td>
-            </tr>
-          </tbody>
-        </Table>
-      </Section>
-    </Container>
+      <PageNavigation
+        prev={{ title: 'Center', href: '/components/center' }}
+        next={{ title: 'Code', href: '/components/code' }}
+      />
+    </>
   );
 }

@@ -1,92 +1,129 @@
+'use client';
+
 import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-export interface SimpleGridProps extends React.HTMLAttributes<HTMLDivElement> {
-  columns?:
-    | number
-    | { base?: number; sm?: number; md?: number; lg?: number; xl?: number };
-  spacing?: string | number;
-  spacingX?: string | number;
-  spacingY?: string | number;
+/**
+ * SimpleGrid Variants
+ * 그리드 간격 및 열 개수 설정
+ */
+const simpleGridVariants = cva('grid w-full', {
+  variants: {
+    gap: {
+      none: 'gap-0',
+      xs: 'gap-2', // 8px
+      sm: 'gap-4', // 16px
+      md: 'gap-6', // 24px
+      lg: 'gap-8', // 32px
+      xl: 'gap-10', // 40px
+    },
+    columns: {
+      1: 'grid-cols-1',
+      2: 'grid-cols-2',
+      3: 'grid-cols-3',
+      4: 'grid-cols-4',
+      5: 'grid-cols-5',
+      6: 'grid-cols-6',
+      7: 'grid-cols-7',
+      8: 'grid-cols-8',
+      9: 'grid-cols-9',
+      10: 'grid-cols-10',
+      11: 'grid-cols-11',
+      12: 'grid-cols-12',
+    },
+  },
+  defaultVariants: {
+    gap: 'md',
+    columns: 1,
+  },
+});
+
+export interface SimpleGridProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
+    Omit<VariantProps<typeof simpleGridVariants>, 'columns'> {
+  /**
+   * 그리드 열 개수 (1-12)
+   * minChildWidth 설정 시 무시됨
+   * @default 1
+   */
+  columns?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+
+  /**
+   * 각 자식 요소의 최소 너비
+   * 설정 시 auto-fit으로 자동 열 개수 조정
+   * @example "200px", "15rem"
+   */
   minChildWidth?: string;
-  children: React.ReactNode;
+
+  /**
+   * 그리드 아이템 간 간격
+   * @default "md"
+   */
+  gap?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+  /**
+   * 추가 CSS 클래스
+   */
   className?: string;
+
+  /**
+   * 그리드 내부 요소
+   */
+  children?: React.ReactNode;
 }
 
+/**
+ * SimpleGrid - 간단한 반응형 그리드 레이아웃
+ *
+ * CSS Grid 기반의 레이아웃 컴포넌트
+ * - columns: 고정 열 개수 설정 (1-12)
+ * - minChildWidth: 자동 반응형 그리드 (auto-fit)
+ * - gap: 아이템 간 간격 (none, xs, sm, md, lg, xl)
+ *
+ * @example
+ * // 고정 열 개수
+ * <SimpleGrid columns={3} gap="md">
+ *   <Card>Item 1</Card>
+ *   <Card>Item 2</Card>
+ * </SimpleGrid>
+ *
+ * // 자동 반응형
+ * <SimpleGrid minChildWidth="200px" gap="lg">
+ *   <Card>Item 1</Card>
+ *   <Card>Item 2</Card>
+ * </SimpleGrid>
+ */
 export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
   (
     {
-      columns,
-      spacing,
-      spacingX,
-      spacingY,
-      minChildWidth,
-      children,
       className,
+      columns = 1,
+      minChildWidth,
+      gap = 'md',
+      children,
       style,
       ...props
     },
     ref
   ) => {
-    // Gap 클래스 생성
-    const gapClass = spacing
-      ? typeof spacing === 'number'
-        ? `gap-[${spacing}px]`
-        : `gap-${spacing}`
-      : '';
+    // minChildWidth 설정 시 auto-fit 사용
+    const gridStyle = minChildWidth
+      ? {
+          ...style,
+          gridTemplateColumns: `repeat(auto-fit, minmax(${minChildWidth}, 1fr))`,
+        }
+      : style;
 
-    const gapXClass = spacingX
-      ? typeof spacingX === 'number'
-        ? `gap-x-[${spacingX}px]`
-        : `gap-x-${spacingX}`
-      : '';
-
-    const gapYClass = spacingY
-      ? typeof spacingY === 'number'
-        ? `gap-y-[${spacingY}px]`
-        : `gap-y-${spacingY}`
-      : '';
-
-    // Columns 처리
-    let gridTemplateColumns = '';
-    let responsiveClasses = '';
-
-    if (minChildWidth) {
-      // minChildWidth를 사용한 자동 반응형 그리드
-      gridTemplateColumns = `repeat(auto-fit, minmax(${minChildWidth}, 1fr))`;
-    } else if (typeof columns === 'number') {
-      // 고정 컬럼 수
-      gridTemplateColumns = `repeat(${columns}, minmax(0, 1fr))`;
-    } else if (typeof columns === 'object') {
-      // 반응형 컬럼 수 (Tailwind breakpoints)
-      const { base, sm, md, lg, xl } = columns;
-      const classes: string[] = [];
-
-      if (base) classes.push(`grid-cols-${base}`);
-      if (sm) classes.push(`sm:grid-cols-${sm}`);
-      if (md) classes.push(`md:grid-cols-${md}`);
-      if (lg) classes.push(`lg:grid-cols-${lg}`);
-      if (xl) classes.push(`xl:grid-cols-${xl}`);
-
-      responsiveClasses = classes.join(' ');
-    }
-
-    const gridStyle: React.CSSProperties = {
-      ...style,
-      ...(gridTemplateColumns && { gridTemplateColumns }),
-    };
+    // minChildWidth 설정 시 columns 클래스 제외
+    const gridClass = minChildWidth
+      ? simpleGridVariants({ gap })
+      : simpleGridVariants({ columns, gap });
 
     return (
       <div
         ref={ref}
-        className={cn(
-          'grid',
-          responsiveClasses,
-          gapClass,
-          gapXClass,
-          gapYClass,
-          className
-        )}
+        className={cn(gridClass, className)}
         style={gridStyle}
         {...props}
       >
@@ -97,3 +134,5 @@ export const SimpleGrid = React.forwardRef<HTMLDivElement, SimpleGridProps>(
 );
 
 SimpleGrid.displayName = 'SimpleGrid';
+
+export { simpleGridVariants };

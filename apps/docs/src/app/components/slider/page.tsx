@@ -334,10 +334,10 @@ const [range, setRange] = useState([20, 80]);
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -532,7 +532,7 @@ const [range, setRange] = useState([20, 80]);
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Skeleton', href: '/components/skeleton' }}
+        prev={{ title: 'SkipLink', href: '/components/skiplink' }}
         next={{ title: 'Spinner', href: '/components/spinner' }}
       />
     </>

@@ -4,18 +4,18 @@ import { SkipLink } from '@hanui/react';
 // Docs layout components
 import {
   PageSection as Section,
-  Subsection,
   Heading,
   PageNavigation,
 } from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // Docs helper components
-import { DoCard, DontCard } from '@/components/helpers';
+import { DoCard } from '@/components/helpers';
 
 // UI components - from @hanui/react
 import {
   Body,
-  Card,
   Code,
   List,
   ListItem,
@@ -33,7 +33,7 @@ import {
 
 export default function SkipLinkPage() {
   return (
-    <Section>
+    <>
       <Heading
         level="h1"
         id="skiplink"
@@ -49,41 +49,39 @@ export default function SkipLinkPage() {
 
         <TabsContent value="overview">
           {/* Installation */}
-          <Subsection level="h2">
-            <Heading level="h2" id="installation" title="설치" />
-            <Body>
-              CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다.
-            </Body>
-            <Card>
-              <Code language="bash">npx @hanui/cli add skiplink</Code>
-            </Card>
-          </Subsection>
+          <Section level="h2">
+            <Installation
+              packageName="skiplink"
+              description="CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다."
+            />
+          </Section>
 
           {/* What is it */}
-          <Subsection level="h2">
-            <Heading level="h2" id="what-is-it" title="SkipLink란?" />
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="what-is-it"
+              title="SkipLink란?"
+              description="SkipLink(건너뛰기 링크)는 키보드 사용자와 스크린 리더 사용자가 헤더, 네비게이션 등 반복적인 콘텐츠를 건너뛰고 페이지의 주요 콘텐츠로 바로 이동할 수 있도록 돕는 접근성 필수 컴포넌트입니다."
+            />
             <Body>
-              SkipLink(건너뛰기 링크)는 키보드 사용자와 스크린 리더 사용자가
-              헤더, 네비게이션 등 반복적인 콘텐츠를 건너뛰고 페이지의 주요
-              콘텐츠로 바로 이동할 수 있도록 돕는 접근성 필수 컴포넌트입니다.
+              WCAG 2.1 / KWCAG 2.2 Level A 기준 &quot;Bypass Blocks
+              (2.4.1)&quot;을 충족하기 위해 반드시 구현해야 하는 컴포넌트입니다.
             </Body>
-            <Body>
-              WCAG 2.1 / KWCAG 2.2 Level A 기준 "Bypass Blocks (2.4.1)"을
-              충족하기 위해 반드시 구현해야 하는 컴포넌트입니다.
-            </Body>
-          </Subsection>
+          </Section>
 
           {/* Preview */}
-          <Subsection level="h2">
+          <Section level="h2">
             <Heading level="h2" id="preview" title="미리보기" />
 
-            <Subsection level="h3">
-              <Heading level="h3" id="hidden" title="숨김 (기본)" />
-              <Body>
-                기본적으로 숨겨진 상태이며, Tab 키를 눌러 포커스를 받으면 화면에
-                나타납니다. 가장 일반적으로 사용하는 방식입니다.
-              </Body>
-              <Card>
+            <Section level="h3">
+              <Heading
+                level="h3"
+                id="hidden"
+                title="숨김 (기본)"
+                description="기본적으로 숨겨진 상태이며, Tab 키를 눌러 포커스를 받으면 화면에 나타납니다. 가장 일반적으로 사용하는 방식입니다."
+              />
+              <ComponentPreview>
                 <SkipLink
                   links={[
                     { href: '#main-content', label: '본문 바로가기' },
@@ -93,8 +91,8 @@ export default function SkipLinkPage() {
                 <Body className="text-krds-gray-70 text-center mt-4">
                   Tab 키를 눌러 포커스를 확인하세요
                 </Body>
-              </Card>
-              <Card>
+              </ComponentPreview>
+              <ComponentPreview>
                 <Code language="tsx">
                   {`<SkipLink
   links={[
@@ -103,15 +101,17 @@ export default function SkipLinkPage() {
   ]}
 />`}
                 </Code>
-              </Card>
-            </Subsection>
+              </ComponentPreview>
+            </Section>
 
-            <Subsection level="h3">
-              <Heading level="h3" id="visible" title="항상 표시" />
-              <Body>
-                variant를 "visible"로 설정하면 항상 화면에 표시됩니다.
-              </Body>
-              <Card>
+            <Section level="h3">
+              <Heading
+                level="h3"
+                id="visible"
+                title="항상 표시"
+                description='variant를 "visible"로 설정하면 항상 화면에 표시됩니다.'
+              />
+              <ComponentPreview>
                 <SkipLink
                   variant="visible"
                   links={[
@@ -120,8 +120,8 @@ export default function SkipLinkPage() {
                     { href: '#footer', label: '하단 메뉴 바로가기' },
                   ]}
                 />
-              </Card>
-              <Card>
+              </ComponentPreview>
+              <ComponentPreview>
                 <Code language="tsx">
                   {`<SkipLink
   variant="visible"
@@ -132,21 +132,22 @@ export default function SkipLinkPage() {
   ]}
 />`}
                 </Code>
-              </Card>
-            </Subsection>
+              </ComponentPreview>
+            </Section>
 
-            <Subsection level="h3">
-              <Heading level="h3" id="single" title="단일 링크 (권장)" />
-              <Body>
-                대부분의 경우 본문으로 바로가기 링크 하나만 제공하는 것이
-                충분합니다.
-              </Body>
-              <Card>
+            <Section level="h3">
+              <Heading
+                level="h3"
+                id="single"
+                title="단일 링크 (권장)"
+                description="대부분의 경우 본문으로 바로가기 링크 하나만 제공하는 것이 충분합니다."
+              />
+              <ComponentPreview>
                 <SkipLink
                   links={[{ href: '#main-content', label: '본문 바로가기' }]}
                 />
-              </Card>
-              <Card>
+              </ComponentPreview>
+              <ComponentPreview>
                 <Code language="tsx">
                   {`<SkipLink
   links={[
@@ -154,18 +155,19 @@ export default function SkipLinkPage() {
   ]}
 />`}
                 </Code>
-              </Card>
-            </Subsection>
-          </Subsection>
+              </ComponentPreview>
+            </Section>
+          </Section>
 
           {/* Usage */}
-          <Subsection level="h2">
-            <Heading level="h2" id="usage" title="사용 방법" />
-            <Body>
-              SkipLink는 페이지의 가장 첫 번째 요소로 배치해야 합니다 (쿠키
-              배너/모달 제외).
-            </Body>
-            <Card>
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용 방법"
+              description="SkipLink는 페이지의 가장 첫 번째 요소로 배치해야 합니다 (쿠키 배너/모달 제외)."
+            />
+            <ComponentPreview>
               <Code language="tsx">
                 {`import { SkipLink } from '@hanui/react';
 
@@ -192,14 +194,14 @@ export default function RootLayout({ children }) {
   );
 }`}
               </Code>
-            </Card>
-          </Subsection>
+            </ComponentPreview>
+          </Section>
 
           {/* Best Practices */}
-          <Subsection level="h2">
+          <Section level="h2">
             <Heading level="h2" id="best-practices" title="모범 사례" />
 
-            <Subsection level="h3">
+            <Section level="h3">
               <Heading level="h3" id="when-to-use" title="언제 사용하나요?" />
               <DoCard>
                 <List variant="check">
@@ -217,9 +219,9 @@ export default function RootLayout({ children }) {
                   </ListItem>
                 </List>
               </DoCard>
-            </Subsection>
+            </Section>
 
-            <Subsection level="h3">
+            <Section level="h3">
               <Heading level="h3" id="implementation-tips" title="구현 팁" />
               <List variant="disc">
                 <ListItem>
@@ -228,11 +230,12 @@ export default function RootLayout({ children }) {
                 </ListItem>
                 <ListItem>
                   <strong>단순하게 유지:</strong> 링크는 최대 3개까지만
-                  권장합니다. 대부분의 경우 "본문 바로가기" 하나면 충분합니다
+                  권장합니다. 대부분의 경우 &quot;본문 바로가기&quot; 하나면
+                  충분합니다
                 </ListItem>
                 <ListItem>
-                  <strong>명확한 라벨:</strong> "본문 바로가기", "주 메뉴
-                  바로가기" 등 명확한 한글 라벨을 사용하세요
+                  <strong>명확한 라벨:</strong> &quot;본문 바로가기&quot;,
+                  &quot;주 메뉴 바로가기&quot; 등 명확한 한글 라벨을 사용하세요
                 </ListItem>
                 <ListItem>
                   <strong>대상 요소 설정:</strong> 대상 요소(main, nav 등)에{' '}
@@ -240,18 +243,21 @@ export default function RootLayout({ children }) {
                 </ListItem>
                 <ListItem>
                   <strong>KRDS ID 필수:</strong> 컴포넌트는 자동으로{' '}
-                  <Code>id="krds-skip-link"</Code>를 가집니다 (KRDS 필수)
+                  <Code>id=&quot;krds-skip-link&quot;</Code>를 가집니다 (KRDS
+                  필수)
                 </ListItem>
               </List>
-            </Subsection>
-          </Subsection>
+            </Section>
+          </Section>
 
           {/* Accessibility */}
-          <Subsection level="h2">
-            <Heading level="h2" id="accessibility" title="접근성" />
-            <Body>
-              이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level A 기준을 준수합니다.
-            </Body>
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="이 컴포넌트는 WCAG 2.1 / KWCAG 2.2 Level A 기준을 준수합니다."
+            />
 
             <List variant="disc">
               <ListItem>
@@ -267,30 +273,30 @@ export default function RootLayout({ children }) {
               </ListItem>
               <ListItem>
                 <strong>시각적 피드백:</strong> 포커스 시 명확한 시각적 표시
-                (파란색 포커스 링)
+                (포커스 링)
               </ListItem>
               <ListItem>
                 <strong>Semantic HTML:</strong> <Code>nav</Code> 요소와 적절한
                 ARIA 속성 사용
               </ListItem>
             </List>
-          </Subsection>
+          </Section>
 
           {/* Foundation Layer */}
-          <Subsection level="h2">
+          <Section level="h2">
             <Heading
               level="h2"
               id="foundation-layer"
               title="Foundation Layer"
+              description="SkipLink 컴포넌트는 다음 기능들을 자동으로 처리합니다:"
             />
-            <Body>SkipLink 컴포넌트는 다음 기능들을 자동으로 처리합니다:</Body>
 
-            <Card variant="filled">
+            <ComponentPreview variant="muted">
               <List variant="check">
                 <ListItem>
                   <strong>KRDS ID 자동 적용:</strong>{' '}
-                  <Code>id="krds-skip-link"</Code>가 자동으로 설정됩니다 (KRDS
-                  필수 요구사항)
+                  <Code>id=&quot;krds-skip-link&quot;</Code>가 자동으로
+                  설정됩니다 (KRDS 필수 요구사항)
                 </ListItem>
                 <ListItem>
                   <strong>포커스 관리:</strong> 링크 클릭 시 대상 요소로
@@ -301,28 +307,28 @@ export default function RootLayout({ children }) {
                   지원합니다
                 </ListItem>
                 <ListItem>
-                  <strong>다크 모드:</strong> 라이트/다크 모드를 자동으로
-                  지원하며 충분한 대비율을 유지합니다
+                  <strong>시맨틱 HTML:</strong> nav 요소와 aria-label 속성으로
+                  스크린 리더 지원
                 </ListItem>
               </List>
-            </Card>
-          </Subsection>
+            </ComponentPreview>
+          </Section>
         </TabsContent>
 
         <TabsContent value="api">
           {/* API Reference */}
-          <Subsection level="h2">
+          <Section level="h2">
             <Heading level="h2" id="api-reference" title="API Reference" />
 
-            <Subsection level="h3">
+            <Section level="h3">
               <Heading level="h3" id="props" title="Props" />
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -343,10 +349,10 @@ export default function RootLayout({ children }) {
                       <Code>variant</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>"visible" | "hidden"</Code>
+                      <Code>&quot;visible&quot; | &quot;hidden&quot;</Code>
                     </TableCell>
                     <TableCell>
-                      <Code>"hidden"</Code>
+                      <Code>&quot;hidden&quot;</Code>
                     </TableCell>
                     <TableCell>표시 방식 (숨김/항상 표시)</TableCell>
                   </TableRow>
@@ -364,31 +370,31 @@ export default function RootLayout({ children }) {
                   </TableRow>
                 </TableBody>
               </Table>
-            </Subsection>
+            </Section>
 
-            <Subsection level="h3">
+            <Section level="h3">
               <Heading
                 level="h3"
                 id="skiplink-item"
                 title="SkipLinkItem Type"
               />
-              <Card>
+              <ComponentPreview>
                 <Code language="tsx">
                   {`interface SkipLinkItem {
   href: string;   // 링크 목적지 (예: '#main-content')
   label: string;  // 링크 라벨 텍스트 (예: '본문 바로가기')
 }`}
                 </Code>
-              </Card>
-            </Subsection>
-          </Subsection>
+              </ComponentPreview>
+            </Section>
+          </Section>
         </TabsContent>
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'SimpleGrid', href: '/components/simple-grid' }}
-        next={{ title: 'Spacing', href: '/components/spacing' }}
+        prev={{ title: 'Skeleton', href: '/components/skeleton' }}
+        next={{ title: 'Slider', href: '/components/slider' }}
       />
-    </Section>
+    </>
   );
 }

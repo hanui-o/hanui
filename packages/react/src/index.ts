@@ -22,12 +22,15 @@ export {
   Checkbox,
   CheckboxGroup,
   CheckboxGroupItem,
+  ChipCheckbox,
   checkboxVariants,
+  chipCheckboxVariants,
 } from './components/checkbox';
 export type {
   CheckboxProps,
   CheckboxGroupProps,
   CheckboxGroupItemProps,
+  ChipCheckboxProps,
 } from './components/checkbox';
 
 export {
@@ -171,9 +174,6 @@ export type { BodyProps } from './components/body';
 
 export { Label } from './components/label';
 export type { LabelProps } from './components/label';
-
-export { NavText } from './components/nav-text';
-export type { NavTextProps } from './components/nav-text';
 
 export { Link, linkVariants } from './components/link';
 export type { LinkProps } from './components/link';
@@ -347,8 +347,12 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
+  DropdownMenuArrow,
 } from './components/dropdown-menu';
-export type { DropdownMenuItemProps } from './components/dropdown-menu';
+export type {
+  DropdownMenuItemProps,
+  DropdownMenuContentProps,
+} from './components/dropdown-menu';
 
 export { Slider, sliderVariants } from './components/slider';
 export type { SliderProps } from './components/slider';

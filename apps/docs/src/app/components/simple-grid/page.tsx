@@ -9,10 +9,13 @@ import {
 } from '@/components/content';
 
 // Docs helper components
-import { SimpleGrid, DoCard, DontCard } from '@/components/helpers';
+import { DoCard, DontCard } from '@/components/helpers';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI components - from @hanui/react
 import {
+  SimpleGrid,
   List,
   ListItem,
   Code,
@@ -49,58 +52,20 @@ export default function SimpleGridPage() {
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <Heading level="h2" id="installation" title="설치">
-              <Body className="leading-relaxed">
-                다음 명령어로 SimpleGrid 컴포넌트를 설치합니다:
-              </Body>
-            </Heading>
-
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add simple-grid
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
+          {/* 개요 */}
+          <Section level="h2">
             <Heading
               level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="SimpleGrid는 CSS Grid를 기반으로 반응형 레이아웃을 쉽게 만들 수 있는 유틸리티 컴포넌트입니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-
-            <Card variant="filled">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>고정 열 개수:</strong> columns prop으로 1~12개의
-                  고정된 열을 설정할 수 있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>자동 반응형:</strong> minChildWidth로 최소 너비를
-                  지정하면 자동으로 열 개수가 조정됩니다.
-                </ListItem>
-                <ListItem>
-                  <strong>간격 옵션:</strong> none, xs, sm, md, lg, xl 6가지
-                  간격 옵션을 제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>CSS Grid 기반:</strong> 모던 CSS Grid 레이아웃을
-                  사용합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>접근성:</strong> 키보드 네비게이션과 스크린 리더를
-                  지원합니다.
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
-
-          {/* Preview */}
-          <Section>
-            <Heading level="h2" id="preview" title="미리보기" />
-            <Card variant="outlined">
+            <Body className="mb-3">
+              SimpleGrid는 CSS Grid를 기반으로 반응형 레이아웃을 쉽게 만들 수
+              있는 유틸리티 컴포넌트입니다. columns로 고정 열 개수를 설정하거나
+              minChildWidth로 자동 반응형 그리드를 구현할 수 있습니다.
+            </Body>
+            <ComponentPreview>
               <SimpleGrid columns={3} gap="md">
                 <Card padding="md">
                   <Body>Item 1</Body>
@@ -121,32 +86,47 @@ export default function SimpleGridPage() {
                   <Body>Item 6</Body>
                 </Card>
               </SimpleGrid>
-            </Card>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`<SimpleGrid columns={3} gap="md">
+  <Card padding="md"><Body>Item 1</Body></Card>
+  <Card padding="md"><Body>Item 2</Body></Card>
+  <Card padding="md"><Body>Item 3</Body></Card>
+</SimpleGrid>`}
+            </Code>
           </Section>
 
-          {/* Usage */}
-          <Section>
-            <Heading level="h2" id="usage" title="사용 방법" />
+          {/* 설치 */}
+          <Section level="h2">
+            <Installation componentName="simple-grid" />
+          </Section>
 
-            <Subsection level="h3">
-              <Heading level="h3" title="고정된 열 개수">
-                <Body className="leading-relaxed">
-                  <Code>columns</Code> prop으로 그리드의 열 개수를 지정할 수
-                  있습니다:
-                </Body>
-              </Heading>
+          {/* 사용법 */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { SimpleGrid } from '@/components/hanui';
+            <Code variant="block" language="tsx">
+              {`import { SimpleGrid } from '@hanui/react';
 
-<SimpleGrid columns={4} gap="md">
-  {items.map((item, i) => (
-    <div key={i}>{item}</div>
+<SimpleGrid columns={3} gap="md">
+  {items.map((item) => (
+    <Card key={item.id}>{item.name}</Card>
   ))}
 </SimpleGrid>`}
-              </Code>
+            </Code>
+          </Section>
 
-              <Card variant="outlined" className="mt-3">
+          {/* 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="고정된 열 개수"
+                description="columns prop으로 그리드의 열 개수를 지정합니다. (1-12)"
+              />
+              <ComponentPreview>
                 <SimpleGrid columns={4} gap="md">
                   {Array.from({ length: 8 }).map((_, i) => (
                     <div
@@ -157,55 +137,58 @@ export default function SimpleGridPage() {
                     </div>
                   ))}
                 </SimpleGrid>
-              </Card>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="자동 반응형 (minChildWidth)">
-                <Body className="leading-relaxed">
-                  <Code>minChildWidth</Code> prop으로 각 아이템의 최소 너비를
-                  지정하면, 컨테이너 크기에 따라 자동으로 열 개수가 조정됩니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<SimpleGrid minChildWidth="200px" gap="lg">
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<SimpleGrid columns={4} gap="md">
   {items.map((item, i) => (
-    <Card key={i}>
-      <Body>{item}</Body>
-    </Card>
+    <div key={i}>{item}</div>
   ))}
 </SimpleGrid>`}
               </Code>
+            </Subsection>
 
-              <Card variant="outlined" className="mt-3">
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="자동 반응형 (minChildWidth)"
+                description="minChildWidth로 각 아이템의 최소 너비를 지정하면, 컨테이너 크기에 따라 자동으로 열 개수가 조정됩니다."
+              />
+              <ComponentPreview>
                 <SimpleGrid minChildWidth="200px" gap="lg">
                   {Array.from({ length: 6 }).map((_, i) => (
                     <Card key={i} padding="lg">
                       <Body>Auto Item {i + 1}</Body>
-                      <Body className="text-sm text-gray-600 mt-2">
+                      <Body className="text-sm text-krds-gray-60 mt-2">
                         최소 200px 너비
                       </Body>
                     </Card>
                   ))}
                 </SimpleGrid>
-              </Card>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<SimpleGrid minChildWidth="200px" gap="lg">
+  {items.map((item, i) => (
+    <Card key={i} padding="lg">
+      <Body>{item}</Body>
+    </Card>
+  ))}
+</SimpleGrid>`}
+              </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="간격 조정">
-                <Body className="leading-relaxed">
-                  <Code>gap</Code> prop으로 그리드 아이템 간 간격을 조절할 수
-                  있습니다:
-                </Body>
-              </Heading>
+              <Heading
+                level="h3"
+                title="간격 (Gap)"
+                description="gap prop으로 그리드 아이템 간 간격을 조절합니다."
+              />
 
               <Stack gap="md">
                 <div>
                   <Body className="font-medium mb-2">
                     작은 간격 (sm - 16px)
                   </Body>
-                  <Card variant="outlined">
+                  <ComponentPreview>
                     <SimpleGrid columns={3} gap="sm">
                       {Array.from({ length: 6 }).map((_, i) => (
                         <div
@@ -216,14 +199,14 @@ export default function SimpleGridPage() {
                         </div>
                       ))}
                     </SimpleGrid>
-                  </Card>
+                  </ComponentPreview>
                 </div>
 
                 <div>
                   <Body className="font-medium mb-2">
-                    중간 간격 (md - 24px)
+                    중간 간격 (md - 24px, 기본값)
                   </Body>
-                  <Card variant="outlined">
+                  <ComponentPreview>
                     <SimpleGrid columns={3} gap="md">
                       {Array.from({ length: 6 }).map((_, i) => (
                         <div
@@ -234,12 +217,12 @@ export default function SimpleGridPage() {
                         </div>
                       ))}
                     </SimpleGrid>
-                  </Card>
+                  </ComponentPreview>
                 </div>
 
                 <div>
                   <Body className="font-medium mb-2">큰 간격 (lg - 32px)</Body>
-                  <Card variant="outlined">
+                  <ComponentPreview>
                     <SimpleGrid columns={3} gap="lg">
                       {Array.from({ length: 6 }).map((_, i) => (
                         <div
@@ -250,69 +233,23 @@ export default function SimpleGridPage() {
                         </div>
                       ))}
                     </SimpleGrid>
-                  </Card>
+                  </ComponentPreview>
                 </div>
               </Stack>
+              <Code variant="block" language="tsx">
+                {`<SimpleGrid columns={3} gap="sm">...</SimpleGrid>
+<SimpleGrid columns={3} gap="md">...</SimpleGrid>
+<SimpleGrid columns={3} gap="lg">...</SimpleGrid>`}
+              </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="열 개수 변형">
-                <Body className="leading-relaxed">
-                  1~12개의 열을 자유롭게 설정할 수 있습니다:
-                </Body>
-              </Heading>
-
-              <Stack gap="md">
-                <div>
-                  <Body className="font-medium mb-2">2열 그리드</Body>
-                  <Card variant="outlined">
-                    <SimpleGrid columns={2} gap="md">
-                      <Card padding="md">
-                        <Body className="font-semibold">왼쪽 컨텐츠</Body>
-                        <Body className="text-sm mt-2">
-                          2열 그리드의 첫 번째 열
-                        </Body>
-                      </Card>
-                      <Card padding="md">
-                        <Body className="font-semibold">오른쪽 컨텐츠</Body>
-                        <Body className="text-sm mt-2">
-                          2열 그리드의 두 번째 열
-                        </Body>
-                      </Card>
-                    </SimpleGrid>
-                  </Card>
-                </div>
-
-                <div>
-                  <Body className="font-medium mb-2">4열 그리드</Body>
-                  <Card variant="outlined">
-                    <SimpleGrid columns={4} gap="sm">
-                      {['React', 'TypeScript', 'Tailwind', 'Next.js'].map(
-                        (tech) => (
-                          <Card key={tech} padding="sm">
-                            <Body className="text-center text-sm">{tech}</Body>
-                          </Card>
-                        )
-                      )}
-                    </SimpleGrid>
-                  </Card>
-                </div>
-              </Stack>
-            </Subsection>
-          </Section>
-
-          {/* Examples */}
-          <Section>
-            <Heading level="h2" id="examples" title="사용 예시" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="제품 카드 그리드">
-                <Body className="leading-relaxed">
-                  제품 목록을 그리드 레이아웃으로 표시하는 예시입니다:
-                </Body>
-              </Heading>
-
-              <Card variant="outlined" className="mb-3">
+              <Heading
+                level="h3"
+                title="제품 카드 그리드"
+                description="제품 목록을 그리드 레이아웃으로 표시하는 예시입니다."
+              />
+              <ComponentPreview>
                 <SimpleGrid minChildWidth="250px" gap="lg">
                   {[
                     { name: '제품 A', price: '29,000원' },
@@ -332,9 +269,8 @@ export default function SimpleGridPage() {
                     </Card>
                   ))}
                 </SimpleGrid>
-              </Card>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
                 {`<SimpleGrid minChildWidth="250px" gap="lg">
   {products.map(product => (
     <Card key={product.id} padding="lg">
@@ -349,38 +285,36 @@ export default function SimpleGridPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="대시보드 위젯">
-                <Body className="leading-relaxed">
-                  통계 대시보드를 그리드로 구성하는 예시입니다:
-                </Body>
-              </Heading>
-
-              <Card variant="outlined" className="mb-3">
+              <Heading
+                level="h3"
+                title="대시보드 위젯"
+                description="통계 대시보드를 그리드로 구성하는 예시입니다."
+              />
+              <ComponentPreview>
                 <SimpleGrid columns={3} gap="md">
                   <Card variant="shadow" padding="lg" gap="sm">
-                    <Body className="text-sm text-gray-600">총 방문자</Body>
+                    <Body className="text-sm text-krds-gray-60">총 방문자</Body>
                     <Body className="text-3xl font-bold">1,234</Body>
-                    <Body className="text-sm text-green-600">+12.5%</Body>
+                    <Body className="text-sm text-krds-success-60">+12.5%</Body>
                   </Card>
                   <Card variant="shadow" padding="lg" gap="sm">
-                    <Body className="text-sm text-gray-600">신규 가입</Body>
+                    <Body className="text-sm text-krds-gray-60">신규 가입</Body>
                     <Body className="text-3xl font-bold">89</Body>
-                    <Body className="text-sm text-blue-600">+8.3%</Body>
+                    <Body className="text-sm text-krds-info-60">+8.3%</Body>
                   </Card>
                   <Card variant="shadow" padding="lg" gap="sm">
-                    <Body className="text-sm text-gray-600">매출</Body>
+                    <Body className="text-sm text-krds-gray-60">매출</Body>
                     <Body className="text-3xl font-bold">456만원</Body>
-                    <Body className="text-sm text-red-600">-3.2%</Body>
+                    <Body className="text-sm text-krds-danger-60">-3.2%</Body>
                   </Card>
                 </SimpleGrid>
-              </Card>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
                 {`<SimpleGrid columns={3} gap="md">
   <Card variant="shadow" padding="lg">
-    <Body className="text-sm text-gray-600">총 방문자</Body>
+    <Body className="text-sm text-krds-gray-60">총 방문자</Body>
     <Body className="text-3xl font-bold">1,234</Body>
-    <Body className="text-sm text-green-600">+12.5%</Body>
+    <Body className="text-sm text-krds-success-60">+12.5%</Body>
   </Card>
   {/* More widgets... */}
 </SimpleGrid>`}
@@ -388,9 +322,9 @@ export default function SimpleGridPage() {
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
-            <Heading level="h2" id="best-practices" title="Best Practices" />
+          {/* 사용 가이드 */}
+          <Section level="h2">
+            <Heading level="h2" id="best-practices" title="사용 가이드" />
 
             <Subsection level="h3">
               <Heading level="h3" title="언제 사용하나요?" />
@@ -425,107 +359,111 @@ export default function SimpleGridPage() {
                 </List>
               </DontCard>
             </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="사용 가이드라인" />
-              <List>
-                <ListItem>
-                  고정된 레이아웃이 필요한 경우 <Code>columns</Code>를
-                  사용하세요.
-                </ListItem>
-                <ListItem>
-                  반응형 레이아웃이 필요한 경우 <Code>minChildWidth</Code>를
-                  사용하세요.
-                </ListItem>
-                <ListItem>
-                  간격은 콘텐츠의 밀도와 중요도에 따라 적절히 조절하세요.
-                </ListItem>
-                <ListItem>
-                  모바일에서는 1~2열, 데스크탑에서는 3~4열 정도가 적절합니다.
-                </ListItem>
-              </List>
-            </Subsection>
           </Section>
 
-          {/* Accessibility */}
-          <Section>
-            <Heading level="h2" id="accessibility" title="접근성" />
-
-            <Card variant="filled">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>시맨틱 마크업:</strong> SimpleGrid는 의미론적으로
-                  중립적인 <Code>&lt;div&gt;</Code> 요소를 사용합니다. 필요시
-                  적절한 ARIA 역할을 추가하세요.
-                </ListItem>
-                <ListItem>
-                  <strong>반응형 레이아웃:</strong> minChildWidth를 사용하면
-                  다양한 화면 크기에서 자동으로 최적화된 레이아웃을 제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>키보드 네비게이션:</strong> 그리드 내 요소들의 Tab
-                  순서가 자연스럽게 유지됩니다.
-                </ListItem>
-              </List>
-            </Card>
+          {/* 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="SimpleGrid는 WCAG 2.1 / KWCAG 2.2 기준을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>시맨틱 마크업:</strong> 의미론적으로 중립적인{' '}
+                <Code>&lt;div&gt;</Code> 요소를 사용합니다. 필요시 적절한 ARIA
+                역할을 추가하세요.
+              </ListItem>
+              <ListItem>
+                <strong>반응형 레이아웃:</strong> minChildWidth를 사용하면
+                다양한 화면 크기에서 자동으로 최적화된 레이아웃을 제공합니다.
+              </ListItem>
+              <ListItem>
+                <strong>키보드 네비게이션:</strong> 그리드 내 요소들의 Tab
+                순서가 자연스럽게 유지됩니다.
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
         {/* API 탭 */}
         <TabsContent value="api">
-          <Section>
+          <Section level="h2">
             <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
               <Heading level="h3" title="SimpleGrid Props" />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">columns</TableCell>
-                    <TableCell className="font-mono">
-                      1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-                    </TableCell>
-                    <TableCell className="font-mono">1</TableCell>
                     <TableCell>
-                      그리드 열 개수 (minChildWidth가 설정되면 무시됨)
+                      <Code>columns</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">1-12</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">1</Code>
+                    </TableCell>
+                    <TableCell>
+                      그리드 열 개수 (minChildWidth 설정 시 무시됨)
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">minChildWidth</TableCell>
-                    <TableCell className="font-mono">string</TableCell>
+                    <TableCell>
+                      <Code>minChildWidth</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>
-                      각 자식 요소의 최소 너비 (예: &quot;200px&quot;,
-                      &quot;15rem&quot;). 설정 시 자동으로 열 개수 조정
+                      각 자식 요소의 최소 너비 (예: &quot;200px&quot;). 설정 시
+                      auto-fit으로 자동 열 개수 조정
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">gap</TableCell>
-                    <TableCell className="font-mono">
-                      &apos;none&apos; | &apos;xs&apos; | &apos;sm&apos; |
-                      &apos;md&apos; | &apos;lg&apos; | &apos;xl&apos;
+                    <TableCell>
+                      <Code>gap</Code>
                     </TableCell>
-                    <TableCell className="font-mono">&apos;md&apos;</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;none&apos; | &apos;xs&apos; | &apos;sm&apos; |
+                        &apos;md&apos; | &apos;lg&apos; | &apos;xl&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">&apos;md&apos;</Code>
+                    </TableCell>
                     <TableCell>그리드 아이템 간 간격</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">className</TableCell>
-                    <TableCell className="font-mono">string</TableCell>
+                    <TableCell>
+                      <Code>className</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>추가 CSS 클래스</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">children</TableCell>
-                    <TableCell className="font-mono">ReactNode</TableCell>
+                    <TableCell>
+                      <Code>children</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">ReactNode</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>그리드 내부에 표시할 요소들</TableCell>
                   </TableRow>
@@ -536,44 +474,68 @@ export default function SimpleGridPage() {
             <Subsection level="h3">
               <Heading level="h3" title="Gap 크기" />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Size</TableHead>
+                    <TableHead>크기</TableHead>
                     <TableHead>픽셀 값</TableHead>
                     <TableHead>Tailwind 클래스</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">none</TableCell>
+                    <TableCell>
+                      <Code>none</Code>
+                    </TableCell>
                     <TableCell>0px</TableCell>
-                    <TableCell className="font-mono">gap-0</TableCell>
+                    <TableCell>
+                      <Code>gap-0</Code>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">xs</TableCell>
+                    <TableCell>
+                      <Code>xs</Code>
+                    </TableCell>
                     <TableCell>8px</TableCell>
-                    <TableCell className="font-mono">gap-2</TableCell>
+                    <TableCell>
+                      <Code>gap-2</Code>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">sm</TableCell>
+                    <TableCell>
+                      <Code>sm</Code>
+                    </TableCell>
                     <TableCell>16px</TableCell>
-                    <TableCell className="font-mono">gap-4</TableCell>
+                    <TableCell>
+                      <Code>gap-4</Code>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">md</TableCell>
+                    <TableCell>
+                      <Code>md</Code>
+                    </TableCell>
                     <TableCell>24px</TableCell>
-                    <TableCell className="font-mono">gap-6</TableCell>
+                    <TableCell>
+                      <Code>gap-6</Code>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">lg</TableCell>
+                    <TableCell>
+                      <Code>lg</Code>
+                    </TableCell>
                     <TableCell>32px</TableCell>
-                    <TableCell className="font-mono">gap-8</TableCell>
+                    <TableCell>
+                      <Code>gap-8</Code>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">xl</TableCell>
+                    <TableCell>
+                      <Code>xl</Code>
+                    </TableCell>
                     <TableCell>40px</TableCell>
-                    <TableCell className="font-mono">gap-10</TableCell>
+                    <TableCell>
+                      <Code>gap-10</Code>
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -583,8 +545,8 @@ export default function SimpleGridPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Side Navigation', href: '/components/sidenavigation' }}
-        next={{ title: 'SkipLink', href: '/components/skiplink' }}
+        prev={{ title: 'Side Navigation', href: '/components/side-navigation' }}
+        next={{ title: 'Skeleton', href: '/components/skeleton' }}
       />
     </>
   );

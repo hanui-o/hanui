@@ -1,17 +1,16 @@
 'use client';
 
-// Docs layout components
 import {
   PageSection as Section,
   Heading,
   Subsection,
   PageNavigation,
 } from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
-// Docs helper components
 import { DoCard, DontCard } from '@/components/helpers';
 
-// UI components - from @hanui/react
 import {
   Tabs as TabsComponent,
   TabsList,
@@ -37,6 +36,7 @@ export default function TabsPage() {
     <>
       <Heading
         level="h1"
+        id="tabs"
         title="Tabs"
         description="여러 콘텐츠 영역을 효율적으로 구성하고 전환할 수 있는 탭 네비게이션 컴포넌트입니다."
       />
@@ -48,73 +48,32 @@ export default function TabsPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section>
-            <Heading level="h2" id="installation" title="설치">
-              <Body className="leading-relaxed">
-                다음 명령어로 Tabs 컴포넌트를 설치합니다:
-              </Body>
-            </Heading>
-
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add tabs
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
+          {/* 개요 */}
+          <Section level="h2">
             <Heading
               level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="Tabs는 관련된 콘텐츠를 여러 패널로 나누어 공간을 효율적으로 활용하는 네비게이션 컴포넌트입니다."
+              id="overview"
+              title="개요"
+              className="sr-only"
             />
-
-            <Card variant="filled">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>ARIA 자동화:</strong> role, aria-selected,
-                  aria-controls 등이 자동으로 적용됩니다.
-                </ListItem>
-                <ListItem>
-                  <strong>키보드 네비게이션:</strong> Arrow 키, Home, End 키로
-                  탭 간 이동이 가능합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>2가지 variant:</strong> default (밑줄), pills (배경색)
-                  스타일을 제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>제어/비제어 모드:</strong> defaultValue 또는
-                  value/onValueChange로 사용할 수 있습니다.
-                </ListItem>
-                <ListItem>
-                  <strong>KRDS 준수:</strong> 색상만으로 선택 상태를 구별하지
-                  않습니다.
-                </ListItem>
-              </List>
-            </Card>
-          </Section>
-
-          {/* Preview */}
-          <Section>
-            <Heading level="h2" id="preview" title="미리보기" />
-
-            <Card variant="outlined">
+            <Body className="mb-3">
+              Tabs는 관련된 콘텐츠를 여러 패널로 나누어 공간을 효율적으로
+              활용하는 네비게이션 컴포넌트입니다. ARIA 자동화, 키보드
+              네비게이션, 포커스 관리를 기본 지원합니다.
+            </Body>
+            <ComponentPreview>
               <TabsComponent defaultValue="tab1">
                 <TabsList>
-                  <TabsTrigger value="tab1">Overview</TabsTrigger>
-                  <TabsTrigger value="tab2">Details</TabsTrigger>
-                  <TabsTrigger value="tab3">Settings</TabsTrigger>
+                  <TabsTrigger value="tab1">개요</TabsTrigger>
+                  <TabsTrigger value="tab2">상세</TabsTrigger>
+                  <TabsTrigger value="tab3">설정</TabsTrigger>
                 </TabsList>
                 <TabsContent value="tab1">
                   <Card>
                     <div className="p-6">
-                      <Body className="font-semibold mb-2">
-                        Overview Content
-                      </Body>
+                      <Body className="font-semibold mb-2">개요 콘텐츠</Body>
                       <Body className="text-krds-gray-70">
-                        이것은 Overview 탭의 콘텐츠입니다.
+                        이것은 개요 탭의 콘텐츠입니다.
                       </Body>
                     </div>
                   </Card>
@@ -122,11 +81,9 @@ export default function TabsPage() {
                 <TabsContent value="tab2">
                   <Card>
                     <div className="p-6">
-                      <Body className="font-semibold mb-2">
-                        Details Content
-                      </Body>
+                      <Body className="font-semibold mb-2">상세 콘텐츠</Body>
                       <Body className="text-krds-gray-70">
-                        이것은 Details 탭의 콘텐츠입니다.
+                        이것은 상세 탭의 콘텐츠입니다.
                       </Body>
                     </div>
                   </Card>
@@ -134,148 +91,145 @@ export default function TabsPage() {
                 <TabsContent value="tab3">
                   <Card>
                     <div className="p-6">
-                      <Body className="font-semibold mb-2">
-                        Settings Content
-                      </Body>
+                      <Body className="font-semibold mb-2">설정 콘텐츠</Body>
                       <Body className="text-krds-gray-70">
-                        이것은 Settings 탭의 콘텐츠입니다.
+                        이것은 설정 탭의 콘텐츠입니다.
                       </Body>
                     </div>
                   </Card>
                 </TabsContent>
               </TabsComponent>
-            </Card>
+            </ComponentPreview>
+          </Section>
 
-            <Code variant="block" language="tsx" showLineNumbers={false}>
+          {/* 설치 */}
+          <Section level="h2">
+            <Installation componentName="tabs" />
+          </Section>
+
+          {/* 사용법 */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용법" />
+            <Code variant="block" language="tsx">
               {`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@hanui/react';
 
 <Tabs defaultValue="tab1">
   <TabsList>
-    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+    <TabsTrigger value="tab1">탭 1</TabsTrigger>
+    <TabsTrigger value="tab2">탭 2</TabsTrigger>
   </TabsList>
-  <TabsContent value="tab1">Content 1</TabsContent>
-  <TabsContent value="tab2">Content 2</TabsContent>
+  <TabsContent value="tab1">콘텐츠 1</TabsContent>
+  <TabsContent value="tab2">콘텐츠 2</TabsContent>
 </Tabs>`}
             </Code>
           </Section>
 
-          {/* Usage */}
-          <Section>
-            <Heading level="h2" id="usage" title="사용법" />
+          {/* 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="Pills Variant">
-                <Body className="leading-relaxed">
-                  Pills 스타일은 둥근 배경으로 선택된 탭을 강조합니다:
-                </Body>
-              </Heading>
-
-              <Card variant="outlined">
+              <Heading
+                level="h3"
+                title="Pills 스타일"
+                description="둥근 배경으로 선택된 탭을 강조합니다."
+              />
+              <ComponentPreview>
                 <TabsComponent defaultValue="account" variant="pills">
                   <TabsList>
-                    <TabsTrigger value="account">Account</TabsTrigger>
-                    <TabsTrigger value="password">Password</TabsTrigger>
-                    <TabsTrigger value="notifications">
-                      Notifications
-                    </TabsTrigger>
+                    <TabsTrigger value="account">계정</TabsTrigger>
+                    <TabsTrigger value="password">비밀번호</TabsTrigger>
+                    <TabsTrigger value="notifications">알림</TabsTrigger>
                   </TabsList>
                   <TabsContent value="account">
-                    <Body>Account settings content...</Body>
+                    <Body>계정 설정 콘텐츠...</Body>
                   </TabsContent>
                   <TabsContent value="password">
-                    <Body>Password settings content...</Body>
+                    <Body>비밀번호 설정 콘텐츠...</Body>
                   </TabsContent>
                   <TabsContent value="notifications">
-                    <Body>Notification settings content...</Body>
+                    <Body>알림 설정 콘텐츠...</Body>
                   </TabsContent>
                 </TabsComponent>
-              </Card>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
                 {`<Tabs defaultValue="account" variant="pills">
   <TabsList>
-    <TabsTrigger value="account">Account</TabsTrigger>
-    <TabsTrigger value="password">Password</TabsTrigger>
-    <TabsTrigger value="notifications">Notifications</TabsTrigger>
+    <TabsTrigger value="account">계정</TabsTrigger>
+    <TabsTrigger value="password">비밀번호</TabsTrigger>
+    <TabsTrigger value="notifications">알림</TabsTrigger>
   </TabsList>
-  <TabsContent value="account">Account settings...</TabsContent>
-  <TabsContent value="password">Password settings...</TabsContent>
-  <TabsContent value="notifications">Notification settings...</TabsContent>
+  <TabsContent value="account">계정 설정...</TabsContent>
+  <TabsContent value="password">비밀번호 설정...</TabsContent>
+  <TabsContent value="notifications">알림 설정...</TabsContent>
 </Tabs>`}
               </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="비활성화된 탭">
-                <Body className="leading-relaxed">
-                  disabled prop으로 특정 탭을 비활성화할 수 있습니다:
-                </Body>
-              </Heading>
-
-              <Card variant="outlined">
+              <Heading
+                level="h3"
+                title="비활성화 탭"
+                description="disabled prop으로 특정 탭을 비활성화할 수 있습니다."
+              />
+              <ComponentPreview>
                 <TabsComponent defaultValue="general">
                   <TabsList>
-                    <TabsTrigger value="general">General</TabsTrigger>
-                    <TabsTrigger value="advanced">Advanced</TabsTrigger>
+                    <TabsTrigger value="general">일반</TabsTrigger>
+                    <TabsTrigger value="advanced">고급</TabsTrigger>
                     <TabsTrigger value="admin" disabled>
-                      Admin (Disabled)
+                      관리자 (비활성화)
                     </TabsTrigger>
                   </TabsList>
                   <TabsContent value="general">
-                    <Body>General settings...</Body>
+                    <Body>일반 설정...</Body>
                   </TabsContent>
                   <TabsContent value="advanced">
-                    <Body>Advanced settings...</Body>
+                    <Body>고급 설정...</Body>
                   </TabsContent>
                   <TabsContent value="admin">
-                    <Body>Admin settings...</Body>
+                    <Body>관리자 설정...</Body>
                   </TabsContent>
                 </TabsComponent>
-              </Card>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
                 {`<Tabs defaultValue="general">
   <TabsList>
-    <TabsTrigger value="general">General</TabsTrigger>
-    <TabsTrigger value="advanced">Advanced</TabsTrigger>
-    <TabsTrigger value="admin" disabled>Admin (Disabled)</TabsTrigger>
+    <TabsTrigger value="general">일반</TabsTrigger>
+    <TabsTrigger value="advanced">고급</TabsTrigger>
+    <TabsTrigger value="admin" disabled>관리자 (비활성화)</TabsTrigger>
   </TabsList>
-  <TabsContent value="general">General settings...</TabsContent>
-  <TabsContent value="advanced">Advanced settings...</TabsContent>
-  <TabsContent value="admin">Admin settings...</TabsContent>
+  ...
 </Tabs>`}
               </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Controlled Mode">
-                <Body className="leading-relaxed">
-                  value와 onValueChange props로 탭 상태를 외부에서 제어할 수
-                  있습니다:
-                </Body>
-              </Heading>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
+              <Heading
+                level="h3"
+                title="제어 모드"
+                description="value와 onValueChange props로 탭 상태를 외부에서 제어합니다."
+              />
+              <Code variant="block" language="tsx">
                 {`const [activeTab, setActiveTab] = useState('home');
 
 <Tabs value={activeTab} onValueChange={setActiveTab}>
   <TabsList>
-    <TabsTrigger value="home">Home</TabsTrigger>
-    <TabsTrigger value="profile">Profile</TabsTrigger>
-    <TabsTrigger value="messages">Messages</TabsTrigger>
+    <TabsTrigger value="home">홈</TabsTrigger>
+    <TabsTrigger value="profile">프로필</TabsTrigger>
+    <TabsTrigger value="messages">메시지</TabsTrigger>
   </TabsList>
-  <TabsContent value="home">Home content</TabsContent>
-  <TabsContent value="profile">Profile content</TabsContent>
-  <TabsContent value="messages">Messages content</TabsContent>
+  <TabsContent value="home">홈 콘텐츠</TabsContent>
+  <TabsContent value="profile">프로필 콘텐츠</TabsContent>
+  <TabsContent value="messages">메시지 콘텐츠</TabsContent>
 </Tabs>`}
               </Code>
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
-            <Heading level="h2" id="best-practices" title="Best Practices" />
+          {/* 사용 가이드 */}
+          <Section level="h2">
+            <Heading level="h2" id="best-practices" title="사용 가이드" />
 
             <Stack gap="content">
               <DoCard
@@ -305,39 +259,41 @@ export default function TabsPage() {
             </Stack>
           </Section>
 
-          {/* Accessibility */}
-          <Section>
-            <Heading level="h2" id="accessibility" title="접근성" />
-
-            <Card variant="filled">
-              <List variant="check">
-                <ListItem>
-                  <strong>ARIA 자동화:</strong> role="tablist", role="tab",
-                  role="tabpanel"이 자동으로 적용됩니다.
-                </ListItem>
-                <ListItem>
-                  <strong>선택 상태:</strong> aria-selected, aria-controls,
-                  aria-labelledby가 자동으로 연결됩니다.
-                </ListItem>
-                <ListItem>
-                  <strong>키보드 네비게이션:</strong> Arrow Left/Right로 탭 간
-                  이동, Home/End로 첫/마지막 탭 이동이 가능합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>포커스 가시성:</strong> WCAG 2.1 Focus Visible (AA)
-                  기준을 충족하는 명확한 포커스 표시를 제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>색상 독립성:</strong> 선택 상태를 색상만으로 구별하지
-                  않고 밑줄, 배경 등 시각적 요소를 추가합니다.
-                </ListItem>
-              </List>
-            </Card>
+          {/* 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="WCAG 2.1 / KWCAG 2.2 AA 레벨을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>ARIA 자동화:</strong> role=&quot;tablist&quot;,
+                role=&quot;tab&quot;, role=&quot;tabpanel&quot;이 자동으로
+                적용됩니다.
+              </ListItem>
+              <ListItem>
+                <strong>선택 상태:</strong> aria-selected, aria-controls,
+                aria-labelledby가 자동으로 연결됩니다.
+              </ListItem>
+              <ListItem>
+                <strong>키보드 네비게이션:</strong> Arrow Left/Right로 탭 간
+                이동, Home/End로 첫/마지막 탭 이동이 가능합니다.
+              </ListItem>
+              <ListItem>
+                <strong>포커스 가시성:</strong> WCAG 2.1 Focus Visible (AA)
+                기준을 충족하는 명확한 포커스 표시를 제공합니다.
+              </ListItem>
+              <ListItem>
+                <strong>색상 독립성:</strong> 선택 상태를 색상만으로 구별하지
+                않고 밑줄, 배경 등 시각적 요소를 추가합니다.
+              </ListItem>
+            </List>
 
             <Subsection level="h3">
               <Heading level="h3" title="키보드 단축키" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>키</TableHead>
@@ -346,27 +302,33 @@ export default function TabsPage() {
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">Tab</TableCell>
+                    <TableCell>
+                      <Code>Tab</Code>
+                    </TableCell>
                     <TableCell>탭 리스트로 포커스 진입</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">Enter</TableCell>
+                    <TableCell>
+                      <Code>Enter</Code>
+                    </TableCell>
                     <TableCell>포커스된 탭 선택 및 패널 전환</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">Arrow Left</TableCell>
-                    <TableCell>이전 탭으로 포커스 이동 (순환)</TableCell>
+                    <TableCell>
+                      <Code>←</Code> / <Code>→</Code>
+                    </TableCell>
+                    <TableCell>이전/다음 탭으로 포커스 이동 (순환)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">Arrow Right</TableCell>
-                    <TableCell>다음 탭으로 포커스 이동 (순환)</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-mono">Home</TableCell>
+                    <TableCell>
+                      <Code>Home</Code>
+                    </TableCell>
                     <TableCell>첫 번째 탭으로 포커스 이동</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">End</TableCell>
+                    <TableCell>
+                      <Code>End</Code>
+                    </TableCell>
                     <TableCell>마지막 탭으로 포커스 이동</TableCell>
                   </TableRow>
                 </TableBody>
@@ -376,49 +338,64 @@ export default function TabsPage() {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section>
-            <Heading level="h2" id="api-reference" title="API Reference" />
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API Reference" />
 
             <Subsection level="h3">
               <Heading level="h3" title="Tabs Props" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">defaultValue</TableCell>
-                    <TableCell className="text-krds-gray-70">string</TableCell>
+                    <TableCell>
+                      <Code>defaultValue</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>초기 활성 탭 (비제어 모드)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">value</TableCell>
-                    <TableCell className="text-krds-gray-70">string</TableCell>
+                    <TableCell>
+                      <Code>value</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>활성 탭 (제어 모드)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">onValueChange</TableCell>
-                    <TableCell className="text-krds-gray-70">
-                      (value: string) =&gt; void
+                    <TableCell>
+                      <Code>onValueChange</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (value: string) =&gt; void
+                      </Code>
                     </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>탭 변경 시 호출되는 콜백</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">variant</TableCell>
-                    <TableCell className="text-krds-gray-70">
-                      &apos;default&apos; | &apos;pills&apos;
+                    <TableCell>
+                      <Code>variant</Code>
                     </TableCell>
-                    <TableCell className="font-mono">
-                      &apos;default&apos;
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;default&apos; | &apos;pills&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">&apos;default&apos;</Code>
                     </TableCell>
                     <TableCell>탭 스타일 변형</TableCell>
                   </TableRow>
@@ -428,27 +405,36 @@ export default function TabsPage() {
 
             <Subsection level="h3">
               <Heading level="h3" title="TabsTrigger Props" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">value</TableCell>
-                    <TableCell className="text-krds-gray-70">string</TableCell>
+                    <TableCell>
+                      <Code>value</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>탭 식별자 (필수)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">disabled</TableCell>
-                    <TableCell className="text-krds-gray-70">boolean</TableCell>
-                    <TableCell className="font-mono">false</TableCell>
+                    <TableCell>
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">false</Code>
+                    </TableCell>
                     <TableCell>탭 비활성화 여부</TableCell>
                   </TableRow>
                 </TableBody>
@@ -457,19 +443,22 @@ export default function TabsPage() {
 
             <Subsection level="h3">
               <Heading level="h3" title="TabsContent Props" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">value</TableCell>
-                    <TableCell className="text-krds-gray-70">string</TableCell>
+                    <TableCell>
+                      <Code>value</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
                     <TableCell>연결된 탭 식별자 (필수)</TableCell>
                   </TableRow>
                 </TableBody>
@@ -478,21 +467,24 @@ export default function TabsPage() {
 
             <Subsection level="h3">
               <Heading level="h3" title="Variant 옵션" />
-
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Variant</TableHead>
+                    <TableHead>값</TableHead>
                     <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">default</TableCell>
+                    <TableCell>
+                      <Code>default</Code>
+                    </TableCell>
                     <TableCell>밑줄로 선택된 탭 표시 (기본값)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">pills</TableCell>
+                    <TableCell>
+                      <Code>pills</Code>
+                    </TableCell>
                     <TableCell>둥근 배경색으로 선택된 탭 강조</TableCell>
                   </TableRow>
                 </TableBody>
@@ -504,7 +496,7 @@ export default function TabsPage() {
 
       <PageNavigation
         prev={{ title: 'Table', href: '/components/table' }}
-        next={{ title: 'Tooltip', href: '/components/tooltip' }}
+        next={{ title: 'Textarea', href: '/components/textarea' }}
       />
     </>
   );

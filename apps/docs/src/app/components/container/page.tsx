@@ -381,7 +381,7 @@ export default function ContainerPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Colors', href: '/components/colors' }}
+        prev={{ title: 'Combobox', href: '/components/combobox' }}
         next={{ title: 'Display', href: '/components/display' }}
       />
     </>

@@ -547,7 +547,7 @@ export default function AlertDialogPage() {
 
       <PageNavigation
         prev={{ title: 'Alert', href: '/components/alert' }}
-        next={{ title: 'Badge', href: '/components/badge' }}
+        next={{ title: 'AspectRatio', href: '/components/aspect-ratio' }}
       />
     </>
   );

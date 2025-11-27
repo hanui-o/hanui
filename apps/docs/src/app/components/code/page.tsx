@@ -358,8 +358,8 @@ console.log(message);`}
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Card', href: '/components/card' }}
-        next={{ title: 'Container', href: '/components/container' }}
+        prev={{ title: 'Checkbox', href: '/components/checkbox' }}
+        next={{ title: 'Combobox', href: '/components/combobox' }}
       />
     </>
   );

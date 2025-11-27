@@ -219,7 +219,7 @@ export default function BodyPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Accordion', href: '/components/accordion' }}
+        prev={{ title: 'Badge', href: '/components/badge' }}
         next={{ title: 'Breadcrumb', href: '/components/breadcrumb' }}
       />
     </>

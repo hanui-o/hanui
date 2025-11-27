@@ -1,21 +1,43 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
+
+// Docs layout components
+import {
+  PageSection as Section,
+  Heading,
+  Subsection,
+  PageNavigation,
+} from '@/components/content';
+import { Installation } from '@/components/content/Installation';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
+
+// Docs helper components
+import { DoCard, DontCard } from '@/components/helpers';
+
+// UI components - from @hanui/react
 import {
   Switch,
-  Heading,
-  Body,
-  Container,
-  Section,
-  Card,
+  Button,
   Code,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
   Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  List,
+  ListItem,
   FormField,
   FormLabel,
   FormHelperText,
   FormError,
+  Body,
 } from '@hanui/react';
-import { CodeBlock } from '@/components/content/CodeBlock';
 
 export default function SwitchPage() {
   const [basicChecked, setBasicChecked] = useState(false);
@@ -25,192 +47,229 @@ export default function SwitchPage() {
   const [marketing, setMarketing] = useState(false);
 
   return (
-    <Container className="py-8">
-      <Heading level="h1" id="switch" title="Switch" className="mb-4" />
-      <Body size="lg" className="mb-8">
-        KRDS 기반의 스위치 컴포넌트입니다. 즉시 적용되는 켜기/끄기 상태 전환에
-        사용되며 FormField와 통합되어 폼 검증 및 접근성을 제공합니다.
-      </Body>
+    <>
+      <Heading
+        level="h1"
+        title="Switch"
+        description="즉시 적용되는 켜기/끄기 상태 전환에 사용되는 토글 컴포넌트입니다. FormField와 통합되어 폼 검증 및 접근성을 제공합니다."
+      />
 
-      {/* 기본 사용법 */}
-      <Section level="h2">
-        <Heading level="h2" id="basic-usage" title="기본 사용법" />
-        <Body className="mb-4">
-          기본 스위치는 라벨 없이 단독으로 사용할 수 있습니다.
-        </Body>
-        <Card className="p-6 mb-4">
-          <div className="flex items-center gap-4">
-            <Switch
-              checked={basicChecked}
-              onCheckedChange={setBasicChecked}
-              id="basic"
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
+        </TabsList>
+
+        {/* 개요 탭 */}
+        <TabsContent value="overview">
+          {/* 1. 개요 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              description="Switch는 즉시 적용되는 설정 변경에 사용됩니다. Radix UI 기반으로 접근성이 보장되며, FormField와 통합하여 폼 검증을 지원합니다."
+              className="sr-only"
             />
-            <Body size="md">상태: {basicChecked ? '켜짐' : '꺼짐'}</Body>
-          </div>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`const [checked, setChecked] = useState(false);
+            <ComponentPreview>
+              <div className="flex items-center gap-4">
+                <Switch
+                  checked={basicChecked}
+                  onCheckedChange={setBasicChecked}
+                  id="overview-switch"
+                  label="알림 받기"
+                />
+                <span className="text-sm text-krds-gray-60">
+                  상태: {basicChecked ? '켜짐' : '꺼짐'}
+                </span>
+              </div>
+            </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`import { Switch } from '@hanui/react';
+
+const [checked, setChecked] = useState(false);
 
 <Switch
   checked={checked}
   onCheckedChange={setChecked}
-  id="basic"
-/>`}
-        />
-      </Section>
-
-      {/* 라벨 포함 */}
-      <Section level="h2">
-        <Heading level="h2" id="with-label" title="라벨 포함" />
-        <Body className="mb-4">
-          <Code>label</Code> prop을 사용하면 라벨이 포함된 스위치를 쉽게 만들 수
-          있습니다. <Code>labelPosition</Code>으로 라벨 위치를 조정할 수
-          있습니다.
-        </Body>
-        <Card className="p-6 mb-4">
-          <div className="space-y-4">
-            <Switch
-              checked={notifications}
-              onCheckedChange={setNotifications}
-              id="notifications"
-              label="알림 받기"
-              labelPosition="right"
-            />
-            <Switch
-              checked={darkMode}
-              onCheckedChange={setDarkMode}
-              id="darkMode"
-              label="다크 모드"
-              labelPosition="left"
-            />
-          </div>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`{/* 라벨이 오른쪽 (기본값) */}
-<Switch
-  checked={notifications}
-  onCheckedChange={setNotifications}
-  id="notifications"
   label="알림 받기"
-  labelPosition="right"
-/>
+/>`}
+            </Code>
+          </Section>
+
+          {/* 2. 설치 */}
+          <Section level="h2">
+            <Installation componentName="switch" />
+          </Section>
+
+          {/* 3. 사용법 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Switch 컴포넌트를 import하고 checked, onCheckedChange로 상태를 관리합니다."
+            />
+            <Code variant="block" language="tsx">
+              {`import { Switch } from '@hanui/react';
+
+<Switch
+  checked={checked}
+  onCheckedChange={setChecked}
+  id="my-switch"
+  label="알림 받기"
+/>`}
+            </Code>
+          </Section>
+
+          {/* 4. 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
+
+            {/* 라벨 포함 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="라벨 포함"
+                description="label prop으로 라벨을 추가하고, labelPosition으로 위치를 조정할 수 있습니다."
+              />
+              <ComponentPreview>
+                <div className="space-y-4">
+                  <Switch
+                    checked={notifications}
+                    onCheckedChange={setNotifications}
+                    id="notifications"
+                    label="알림 받기"
+                    labelPosition="right"
+                  />
+                  <Switch
+                    checked={darkMode}
+                    onCheckedChange={setDarkMode}
+                    id="darkMode"
+                    label="다크 모드"
+                    labelPosition="left"
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`{/* 라벨이 오른쪽 (기본값) */}
+<Switch label="알림 받기" labelPosition="right" />
 
 {/* 라벨이 왼쪽 */}
-<Switch
-  checked={darkMode}
-  onCheckedChange={setDarkMode}
-  id="darkMode"
-  label="다크 모드"
-  labelPosition="left"
-/>`}
-        />
-      </Section>
+<Switch label="다크 모드" labelPosition="left" />`}
+              </Code>
+            </Subsection>
 
-      {/* 크기 변형 */}
-      <Section level="h2">
-        <Heading level="h2" id="sizes" title="크기" />
-        <Body className="mb-4">
-          3가지 크기를 제공합니다: <Code>sm</Code>, <Code>md</Code> (기본값),{' '}
-          <Code>lg</Code>.
-        </Body>
-        <Card className="p-6 mb-4">
-          <div className="space-y-4">
-            <Switch size="sm" label="Small" id="size-sm" defaultChecked />
-            <Switch
-              size="md"
-              label="Medium (기본값)"
-              id="size-md"
-              defaultChecked
-            />
-            <Switch size="lg" label="Large" id="size-lg" defaultChecked />
-          </div>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<Switch size="sm" label="Small" />
+            {/* 크기 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="크기"
+                description="sm, md(기본값), lg 세 가지 크기를 제공합니다."
+              />
+              <ComponentPreview>
+                <div className="space-y-4">
+                  <Switch size="sm" label="Small" id="size-sm" defaultChecked />
+                  <Switch
+                    size="md"
+                    label="Medium (기본값)"
+                    id="size-md"
+                    defaultChecked
+                  />
+                  <Switch size="lg" label="Large" id="size-lg" defaultChecked />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Switch size="sm" label="Small" />
 <Switch size="md" label="Medium (기본값)" />
 <Switch size="lg" label="Large" />`}
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* 비활성화 상태 */}
-      <Section level="h2">
-        <Heading level="h2" id="disabled" title="비활성화 상태" />
-        <Body className="mb-4">
-          <Code>disabled</Code> prop으로 스위치를 비활성화할 수 있습니다.
-        </Body>
-        <Card className="p-6 mb-4">
-          <div className="space-y-4">
-            <Switch disabled label="비활성화 (꺼짐)" id="disabled-off" />
-            <Switch
-              disabled
-              defaultChecked
-              label="비활성화 (켜짐)"
-              id="disabled-on"
-            />
-          </div>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<Switch disabled label="비활성화 (꺼짐)" />
+            {/* 비활성화 상태 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="비활성화 상태"
+                description="disabled prop으로 스위치를 비활성화할 수 있습니다."
+              />
+              <ComponentPreview>
+                <div className="space-y-4">
+                  <Switch disabled label="비활성화 (꺼짐)" id="disabled-off" />
+                  <Switch
+                    disabled
+                    defaultChecked
+                    label="비활성화 (켜짐)"
+                    id="disabled-on"
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Switch disabled label="비활성화 (꺼짐)" />
 <Switch disabled defaultChecked label="비활성화 (켜짐)" />`}
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* Status prop */}
-      <Section level="h2">
-        <Heading level="h2" id="status" title="Status" />
-        <Body className="mb-4">
-          <Code>status</Code> prop으로 에러 상태를 표시할 수 있습니다.
-        </Body>
-        <Card className="p-6 mb-4">
-          <div className="space-y-4">
-            <Switch
-              status="error"
-              label="에러 상태"
-              id="error-switch"
-              defaultChecked
-            />
-          </div>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<Switch status="error" label="에러 상태" defaultChecked />`}
-        />
-      </Section>
+            {/* 에러 상태 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="에러 상태"
+                description="status='error' prop으로 에러 상태를 표시할 수 있습니다."
+              />
+              <ComponentPreview>
+                <Switch
+                  status="error"
+                  label="에러 상태"
+                  id="error-switch"
+                  defaultChecked
+                />
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Switch status="error" label="에러 상태" defaultChecked />`}
+              </Code>
+            </Subsection>
 
-      {/* FormField 통합 */}
-      <Section level="h2">
-        <Heading
-          level="h2"
-          id="formfield-integration"
-          title="FormField 통합 (권장)"
-        />
-        <Body className="mb-4">
-          <Code>FormField</Code>와 함께 사용하면 자동으로 접근성 속성이 연결되며
-          폼 검증을 쉽게 구현할 수 있습니다.
-        </Body>
+            {/* FormField 통합 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="FormField 통합"
+                description="FormField와 함께 사용하면 자동으로 접근성 속성이 연결되며 폼 검증을 쉽게 구현할 수 있습니다."
+              />
+              <ComponentPreview>
+                <div className="space-y-6 w-full max-w-md">
+                  <FormField id="auto-save">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <FormLabel>자동 저장</FormLabel>
+                        <FormHelperText>
+                          변경사항을 자동으로 저장합니다
+                        </FormHelperText>
+                      </div>
+                      <Switch
+                        checked={autoSave}
+                        onCheckedChange={setAutoSave}
+                      />
+                    </div>
+                  </FormField>
 
-        {/* 기본 FormField */}
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          기본 사용
-        </Body>
-        <Card className="p-6 mb-4">
-          <FormField id="auto-save">
-            <div className="flex items-center justify-between">
-              <div>
-                <FormLabel>자동 저장</FormLabel>
-                <FormHelperText>변경사항을 자동으로 저장합니다</FormHelperText>
-              </div>
-              <Switch checked={autoSave} onCheckedChange={setAutoSave} />
-            </div>
-          </FormField>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<FormField id="auto-save">
+                  <FormField id="marketing" status="error">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <FormLabel>마케팅 정보 수신</FormLabel>
+                        <FormError>필수 동의 항목입니다</FormError>
+                      </div>
+                      <Switch
+                        checked={marketing}
+                        onCheckedChange={setMarketing}
+                      />
+                    </div>
+                  </FormField>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<FormField id="auto-save">
   <div className="flex items-center justify-between">
     <div>
       <FormLabel>자동 저장</FormLabel>
@@ -218,27 +277,9 @@ export default function SwitchPage() {
     </div>
     <Switch checked={autoSave} onCheckedChange={setAutoSave} />
   </div>
-</FormField>`}
-        />
+</FormField>
 
-        {/* 에러 상태 */}
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          에러 상태
-        </Body>
-        <Card className="p-6 mb-4">
-          <FormField id="marketing" status="error">
-            <div className="flex items-center justify-between">
-              <div>
-                <FormLabel>마케팅 정보 수신</FormLabel>
-                <FormError>필수 동의 항목입니다</FormError>
-              </div>
-              <Switch checked={marketing} onCheckedChange={setMarketing} />
-            </div>
-          </FormField>
-        </Card>
-        <CodeBlock
-          language="tsx"
-          code={`<FormField id="marketing" status="error">
+<FormField id="marketing" status="error">
   <div className="flex items-center justify-between">
     <div>
       <FormLabel>마케팅 정보 수신</FormLabel>
@@ -247,309 +288,311 @@ export default function SwitchPage() {
     <Switch checked={marketing} onCheckedChange={setMarketing} />
   </div>
 </FormField>`}
-        />
-      </Section>
+              </Code>
+            </Subsection>
 
-      {/* 설정 패널 예제 */}
-      <Section level="h2">
-        <Heading level="h2" id="settings-example" title="설정 패널 예제" />
-        <Body className="mb-4">실제 설정 화면에서 사용되는 패턴입니다.</Body>
-        <Card className="p-6 mb-4">
-          <div className="space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-krds-gray-20">
-              <div>
-                <Body size="md" weight="semibold">
-                  푸시 알림
-                </Body>
-                <Body size="sm" className="text-krds-gray-70">
-                  새로운 소식을 푸시 알림으로 받습니다
-                </Body>
-              </div>
-              <Switch id="push" defaultChecked />
-            </div>
-            <div className="flex items-center justify-between pb-4 border-b border-krds-gray-20">
-              <div>
-                <Body size="md" weight="semibold">
-                  이메일 알림
-                </Body>
-                <Body size="sm" className="text-krds-gray-70">
-                  주간 뉴스레터를 이메일로 받습니다
-                </Body>
-              </div>
-              <Switch id="email" />
-            </div>
-            <div className="flex items-center justify-between">
-              <div>
-                <Body size="md" weight="semibold">
-                  SMS 알림
-                </Body>
-                <Body size="sm" className="text-krds-gray-70">
-                  중요한 알림을 SMS로 받습니다
-                </Body>
-              </div>
-              <Switch id="sms" />
-            </div>
-          </div>
-        </Card>
-      </Section>
+            {/* 설정 패널 예제 */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="설정 패널 예제"
+                description="실제 설정 화면에서 사용되는 패턴입니다."
+              />
+              <ComponentPreview>
+                <div className="w-full max-w-md space-y-4">
+                  <div className="flex items-center justify-between pb-4 border-b border-krds-gray-20">
+                    <div>
+                      <Body size="md" weight="semibold">
+                        푸시 알림
+                      </Body>
+                      <Body size="sm" className="text-krds-gray-60">
+                        새로운 소식을 푸시 알림으로 받습니다
+                      </Body>
+                    </div>
+                    <Switch id="push" defaultChecked />
+                  </div>
+                  <div className="flex items-center justify-between pb-4 border-b border-krds-gray-20">
+                    <div>
+                      <Body size="md" weight="semibold">
+                        이메일 알림
+                      </Body>
+                      <Body size="sm" className="text-krds-gray-60">
+                        주간 뉴스레터를 이메일로 받습니다
+                      </Body>
+                    </div>
+                    <Switch id="email" />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <Body size="md" weight="semibold">
+                        SMS 알림
+                      </Body>
+                      <Body size="sm" className="text-krds-gray-60">
+                        중요한 알림을 SMS로 받습니다
+                      </Body>
+                    </div>
+                    <Switch id="sms" />
+                  </div>
+                </div>
+              </ComponentPreview>
+            </Subsection>
+          </Section>
 
-      {/* 사용 가이드 */}
-      <Section level="h2">
-        <Heading level="h2" id="usage-guidelines" title="사용 가이드" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-          <Card className="p-4 border-l-4 border-krds-success-60">
-            <Body size="md" weight="semibold" className="mb-2">
-              ✓ 스위치를 사용하는 경우
-            </Body>
-            <ul className="list-disc list-inside space-y-1 text-krds-body-md">
-              <li>즉시 적용되는 설정 변경</li>
-              <li>켜기/끄기 토글</li>
-              <li>기능 활성화/비활성화</li>
-              <li>실시간으로 결과가 반영되는 옵션</li>
-              <li>독립적인 설정 항목</li>
-            </ul>
-          </Card>
-          <Card className="p-4 border-l-4 border-krds-danger-60">
-            <Body size="md" weight="semibold" className="mb-2">
-              ✗ 스위치를 사용하지 않는 경우
-            </Body>
-            <ul className="list-disc list-inside space-y-1 text-krds-body-md">
-              <li>저장 버튼이 필요한 폼 (Checkbox 사용)</li>
-              <li>여러 옵션 중 선택 (Radio 사용)</li>
-              <li>다중 선택 (Checkbox 사용)</li>
-              <li>약관 동의 (Checkbox 사용)</li>
-            </ul>
-          </Card>
-        </div>
-      </Section>
+          {/* 5. 사용 가이드라인 */}
+          <Section level="h2">
+            <Heading level="h2" id="best-practices" title="사용 가이드라인" />
 
-      {/* Switch vs Checkbox */}
-      <Section level="h2">
-        <Heading
-          level="h2"
-          id="switch-vs-checkbox"
-          title="Switch vs Checkbox"
-        />
-        <Body className="mb-4">
-          Switch와 Checkbox의 차이점을 이해하고 적절히 사용하세요.
-        </Body>
-        <Table>
-          <thead>
-            <tr>
-              <th>구분</th>
-              <th>Switch</th>
-              <th>Checkbox</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>적용 시점</td>
-              <td>즉시 적용</td>
-              <td>저장 버튼 클릭 후 적용</td>
-            </tr>
-            <tr>
-              <td>시각적 피드백</td>
-              <td>명확한 켜짐/꺼짐 상태</td>
-              <td>체크 표시</td>
-            </tr>
-            <tr>
-              <td>사용 맥락</td>
-              <td>설정, 환경설정</td>
-              <td>폼, 동의, 다중 선택</td>
-            </tr>
-            <tr>
-              <td>물리적 비유</td>
-              <td>조명 스위치</td>
-              <td>체크리스트</td>
-            </tr>
-          </tbody>
-        </Table>
-      </Section>
+            <Subsection level="h3">
+              <Heading level="h3" title="언제 사용하나요?" />
+              <DoCard title="Switch 사용이 적합한 경우">
+                <List variant="check">
+                  <ListItem>즉시 적용되는 설정 변경</ListItem>
+                  <ListItem>켜기/끄기 토글</ListItem>
+                  <ListItem>기능 활성화/비활성화</ListItem>
+                  <ListItem>실시간으로 결과가 반영되는 옵션</ListItem>
+                  <ListItem>독립적인 설정 항목</ListItem>
+                </List>
+              </DoCard>
+            </Subsection>
 
-      {/* 접근성 */}
-      <Section level="h2">
-        <Heading level="h2" id="accessibility" title="접근성" />
-        <Body className="mb-4">WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다.</Body>
+            <Subsection level="h3">
+              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
+              <DontCard title="Switch 사용을 피해야 하는 경우">
+                <List variant="dash">
+                  <ListItem>저장 버튼이 필요한 폼 (Checkbox 사용)</ListItem>
+                  <ListItem>여러 옵션 중 선택 (Radio 사용)</ListItem>
+                  <ListItem>다중 선택 (Checkbox 사용)</ListItem>
+                  <ListItem>약관 동의 (Checkbox 사용)</ListItem>
+                </List>
+              </DontCard>
+            </Subsection>
 
-        <Body size="md" weight="semibold" className="mb-2">
-          키보드 지원
-        </Body>
-        <Table className="mb-6">
-          <thead>
-            <tr>
-              <th>키</th>
-              <th>동작</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Code>Space</Code>
-              </td>
-              <td>스위치 상태 전환</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>Tab</Code>
-              </td>
-              <td>다음 포커스 가능한 요소로 이동</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>Shift + Tab</Code>
-              </td>
-              <td>이전 포커스 가능한 요소로 이동</td>
-            </tr>
-          </tbody>
-        </Table>
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="Switch vs Checkbox"
+                description="Switch와 Checkbox의 차이점을 이해하고 적절히 사용하세요."
+              />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>구분</TableHead>
+                    <TableHead>Switch</TableHead>
+                    <TableHead>Checkbox</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>적용 시점</TableCell>
+                    <TableCell>즉시 적용</TableCell>
+                    <TableCell>저장 버튼 클릭 후 적용</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>시각적 피드백</TableCell>
+                    <TableCell>명확한 켜짐/꺼짐 상태</TableCell>
+                    <TableCell>체크 표시</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>사용 맥락</TableCell>
+                    <TableCell>설정, 환경설정</TableCell>
+                    <TableCell>폼, 동의, 다중 선택</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>물리적 비유</TableCell>
+                    <TableCell>조명 스위치</TableCell>
+                    <TableCell>체크리스트</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
 
-        <Body size="md" weight="semibold" className="mb-2">
-          스크린 리더 지원
-        </Body>
-        <ul className="list-disc list-inside space-y-1 text-krds-body-md mb-6">
-          <li>스위치의 상태(켜짐/꺼짐)를 정확히 전달</li>
-          <li>
-            <Code>FormField</Code>와 함께 사용 시 label, error, helperText 자동
-            연결
-          </li>
-          <li>상태 변경 시 변경된 상태를 즉시 안내</li>
-        </ul>
+          {/* 6. 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
 
-        <Body size="md" weight="semibold" className="mb-2">
-          ARIA 속성
-        </Body>
-        <ul className="list-disc list-inside space-y-1 text-krds-body-md">
-          <li>
-            <Code>role="switch"</Code>: 스위치 역할 명시
-          </li>
-          <li>
-            <Code>aria-checked</Code>: 켜짐/꺼짐 상태 전달
-          </li>
-          <li>
-            <Code>aria-invalid</Code>: 에러 상태 전달
-          </li>
-          <li>
-            <Code>aria-describedby</Code>: helper text, error 메시지 연결
-          </li>
-        </ul>
-      </Section>
+            <Subsection level="h3">
+              <Heading level="h3" title="키보드 지원" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>키</TableHead>
+                    <TableHead>동작</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Space</Code>
+                    </TableCell>
+                    <TableCell>스위치 상태 전환</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Tab</Code>
+                    </TableCell>
+                    <TableCell>다음 포커스 가능한 요소로 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Shift + Tab</Code>
+                    </TableCell>
+                    <TableCell>이전 포커스 가능한 요소로 이동</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
 
-      {/* API Reference */}
-      <Section level="h2">
-        <Heading level="h2" id="api-reference" title="API Reference" />
+            <Subsection level="h3">
+              <Heading level="h3" title="ARIA 속성" />
+              <List>
+                <ListItem>
+                  <Code>role=&quot;switch&quot;</Code>: 스위치 역할 명시
+                </ListItem>
+                <ListItem>
+                  <Code>aria-checked</Code>: 켜짐/꺼짐 상태 전달
+                </ListItem>
+                <ListItem>
+                  <Code>aria-invalid</Code>: 에러 상태 전달
+                </ListItem>
+                <ListItem>
+                  <Code>aria-describedby</Code>: helper text, error 메시지 연결
+                </ListItem>
+                <ListItem>
+                  FormField와 함께 사용 시 label, error, helperText 자동 연결
+                </ListItem>
+              </List>
+            </Subsection>
+          </Section>
+        </TabsContent>
 
-        <Body size="md" weight="semibold" className="mb-2 mt-6">
-          Switch Props
-        </Body>
-        <Table>
-          <thead>
-            <tr>
-              <th>Prop</th>
-              <th>타입</th>
-              <th>기본값</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <Code>size</Code>
-              </td>
-              <td>
-                <Code>"sm" | "md" | "lg"</Code>
-              </td>
-              <td>
-                <Code>"md"</Code>
-              </td>
-              <td>스위치 크기</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>status</Code>
-              </td>
-              <td>
-                <Code>"error" | "success" | "info"</Code>
-              </td>
-              <td>-</td>
-              <td>스위치 상태</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>checked</Code>
-              </td>
-              <td>
-                <Code>boolean</Code>
-              </td>
-              <td>-</td>
-              <td>켜짐 상태 (제어 컴포넌트)</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>defaultChecked</Code>
-              </td>
-              <td>
-                <Code>boolean</Code>
-              </td>
-              <td>-</td>
-              <td>초기 켜짐 상태 (비제어 컴포넌트)</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>onCheckedChange</Code>
-              </td>
-              <td>
-                <Code>(checked: boolean) =&gt; void</Code>
-              </td>
-              <td>-</td>
-              <td>상태 변경 시 호출</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>label</Code>
-              </td>
-              <td>
-                <Code>React.ReactNode</Code>
-              </td>
-              <td>-</td>
-              <td>라벨 텍스트</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>labelPosition</Code>
-              </td>
-              <td>
-                <Code>"left" | "right"</Code>
-              </td>
-              <td>
-                <Code>"right"</Code>
-              </td>
-              <td>라벨 위치</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>disabled</Code>
-              </td>
-              <td>
-                <Code>boolean</Code>
-              </td>
-              <td>
-                <Code>false</Code>
-              </td>
-              <td>비활성화 상태</td>
-            </tr>
-            <tr>
-              <td>
-                <Code>id</Code>
-              </td>
-              <td>
-                <Code>string</Code>
-              </td>
-              <td>-</td>
-              <td>스위치 ID (label 연결용)</td>
-            </tr>
-          </tbody>
-        </Table>
-      </Section>
-    </Container>
+        {/* API 탭 */}
+        <TabsContent value="api">
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Switch Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
+                    </TableCell>
+                    <TableCell>'md'</TableCell>
+                    <TableCell>스위치 크기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>status</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'error' | 'success' | 'info'
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>스위치 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>checked</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>켜짐 상태 (제어 컴포넌트)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>defaultChecked</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>초기 켜짐 상태 (비제어 컴포넌트)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>onCheckedChange</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (checked: boolean) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>상태 변경 시 호출</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>label</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">React.ReactNode</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>라벨 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>labelPosition</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">'left' | 'right'</Code>
+                    </TableCell>
+                    <TableCell>'right'</TableCell>
+                    <TableCell>라벨 위치</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>disabled</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>비활성화 상태</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>id</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>스위치 ID (label 연결용)</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'Structured List', href: '/components/structured-list' }}
+        next={{ title: 'Tab Bars', href: '/components/tabbars' }}
+      />
+    </>
   );
 }

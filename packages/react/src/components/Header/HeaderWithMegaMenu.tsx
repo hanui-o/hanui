@@ -89,7 +89,10 @@ export function HeaderWithMegaMenu({
                         onMouseLeave={() => setIsUtilityDropdownOpen(false)}
                       >
                         관련사이트
-                        <ChevronDown className={styles.dropdownIcon} />
+                        <ChevronDown
+                          className={styles.dropdownIcon}
+                          aria-hidden="true"
+                        />
                       </button>
                     </DropdownMenu.Trigger>
 
@@ -107,9 +110,12 @@ export function HeaderWithMegaMenu({
                               href={site.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              title="새 창 열기"
                             >
                               {site.label}
+                              <span className={styles.srOnly}>
+                                {' '}
+                                (새 창 열기)
+                              </span>
                             </a>
                           </DropdownMenu.Item>
                         ))}
@@ -144,9 +150,9 @@ export function HeaderWithMegaMenu({
 
           {/* MegaMenu - Inline */}
           <div style={{ flex: 1 }}>
-            <div id="gnb" className={styles.mainMenu}>
+            <nav id="gnb" className={styles.mainMenu} aria-label="주 메뉴">
               <MegaMenu columns={megaColumns} />
-            </div>
+            </nav>
           </div>
 
           {/* Actions */}
@@ -158,7 +164,7 @@ export function HeaderWithMegaMenu({
                   className={styles.searchBtn}
                   aria-label="검색"
                 >
-                  <Search />
+                  <Search aria-hidden="true" />
                 </button>
               </Dialog.Trigger>
               <Dialog.Portal>
@@ -182,7 +188,7 @@ export function HeaderWithMegaMenu({
                       className={styles.searchClose}
                       aria-label="닫기"
                     >
-                      <X />
+                      <X aria-hidden="true" />
                     </button>
                   </Dialog.Close>
                 </Dialog.Content>
@@ -195,7 +201,11 @@ export function HeaderWithMegaMenu({
               aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X /> : <Menu />}
+              {isMobileMenuOpen ? (
+                <X aria-hidden="true" />
+              ) : (
+                <Menu aria-hidden="true" />
+              )}
             </button>
           </div>
         </Container>

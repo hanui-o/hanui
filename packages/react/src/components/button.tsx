@@ -20,29 +20,29 @@ const isDev = () => {
 
 const buttonVariants = cva(
   // Button 스타일 variants (cva로 타입 안전한 variant 관리)
-  'inline-flex items-center justify-center gap-2 min-w-20 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 min-w-20 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         // 시각적 스타일 variants (primary, secondary, tertiary 등)
         primary:
-          'bg-krds-primary-50 text-krds-white hover:bg-krds-primary-60 active:bg-krds-primary-70 focus-visible:ring-krds-primary-50',
+          'bg-krds-primary-50 text-krds-white hover:bg-krds-primary-60 active:bg-krds-primary-70',
         secondary:
-          'border border-krds-primary-50 bg-krds-primary-5 text-krds-primary-base hover:bg-krds-primary-10 active:bg-krds-primary-20 focus-visible:ring-krds-primary-base',
+          'border border-krds-primary-50 bg-krds-primary-5 text-krds-primary-base hover:bg-krds-primary-10 active:bg-krds-primary-20',
         tertiary:
-          'border border-krds-gray-40 bg-krds-gray-0 text-krds-gray-95 hover:bg-krds-gray-5 active:bg-krds-gray-10 focus-visible:ring-krds-gray-40',
+          'border border-krds-gray-40 bg-krds-gray-0 text-krds-gray-95 hover:bg-krds-gray-5 active:bg-krds-gray-10',
         success:
-          'bg-krds-success-base text-krds-white hover:bg-krds-success-60 active:bg-krds-success-70 focus-visible:ring-krds-success-base',
+          'bg-krds-success-base text-krds-white hover:bg-krds-success-60 active:bg-krds-success-70',
         danger:
-          'bg-krds-danger-base text-krds-white hover:bg-krds-danger-60 active:bg-krds-danger-70 focus-visible:ring-krds-danger-base',
+          'bg-krds-danger-base text-krds-white hover:bg-krds-danger-60 active:bg-krds-danger-70',
         ghost:
-          'bg-transparent text-krds-gray-95 hover:bg-krds-gray-5 active:bg-krds-gray-10 focus-visible:ring-krds-gray-95',
+          'bg-transparent text-krds-gray-95 hover:bg-krds-gray-5 active:bg-krds-gray-10',
         'ghost-primary':
-          'bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10 focus-visible:ring-krds-primary-base',
+          'bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10',
         outline:
-          'border border-krds-primary-base bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10 focus-visible:ring-krds-primary-base',
+          'border border-krds-primary-base bg-transparent text-krds-primary-base hover:bg-krds-primary-5 active:bg-krds-primary-10',
         black:
-          'bg-krds-gray-95 text-krds-white hover:bg-krds-gray-90 active:bg-krds-gray-80 focus-visible:ring-krds-gray-95',
+          'bg-krds-gray-95 text-krds-white hover:bg-krds-gray-90 active:bg-krds-gray-80',
       },
       size: {
         // 크기 variants (xs~xl, icon)

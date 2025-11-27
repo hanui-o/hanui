@@ -30,12 +30,6 @@ const typographyComponents = [
     href: '/components/heading',
     updated: true,
   },
-  {
-    name: 'NavText',
-    description: '네비게이션 텍스트',
-    href: '/components/navtext',
-    updated: true,
-  },
 ];
 
 // 1. 아이덴티티 (Identity) - 알파벳 순

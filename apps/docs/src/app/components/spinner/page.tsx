@@ -28,6 +28,8 @@ import {
   TableRow,
   TableHead,
   TableCell,
+  List,
+  ListItem,
 } from '@hanui/react';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
@@ -213,6 +215,41 @@ export default function SpinnerPage() {
               </Code>
             </Subsection>
           </Section>
+
+          {/* 5. 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="Spinner는 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+            <List variant="check">
+              <ListItem>
+                <strong>role=&quot;status&quot;:</strong> 로딩 상태임을
+                스크린리더에 알립니다.
+              </ListItem>
+              <ListItem>
+                <strong>aria-live=&quot;polite&quot;:</strong> 현재 작업을
+                방해하지 않고 로딩 상태를 알립니다.
+              </ListItem>
+              <ListItem>
+                <strong>aria-busy=&quot;true&quot;:</strong> SpinnerOverlay에서
+                로딩 중임을 명시합니다.
+              </ListItem>
+              <ListItem>
+                <strong>sr-only 텍스트:</strong> 시각 장애인을 위한 대체
+                텍스트를 제공합니다.
+              </ListItem>
+              <ListItem>
+                label prop으로 상황에 맞는 명확한 로딩 메시지를 제공하세요.
+              </ListItem>
+              <ListItem>
+                긴 로딩 시에는 Progress 컴포넌트로 진행률을 표시하는 것을
+                권장합니다.
+              </ListItem>
+            </List>
+          </Section>
         </TabsContent>
 
         {/* API 탭 */}
@@ -362,50 +399,13 @@ export default function SpinnerPage() {
                 </TableBody>
               </Table>
             </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Accessibility" />
-              <div className="space-y-4 mt-4">
-                <div className="rounded-lg border border-krds-gray-20 p-4">
-                  <h4 className="font-semibold text-krds-gray-95 mb-2">
-                    ARIA 속성
-                  </h4>
-                  <ul className="list-disc pl-5 space-y-1 text-sm text-krds-gray-70">
-                    <li>
-                      <Code>role="status"</Code>: 상태 표시기임을 명시
-                    </li>
-                    <li>
-                      <Code>aria-live="polite"</Code>: 스크린리더에 알림
-                    </li>
-                    <li>
-                      <Code>aria-busy="true"</Code>: 오버레이에서 로딩 중 표시
-                    </li>
-                    <li>
-                      <Code>sr-only</Code>: 시각 장애인을 위한 대체 텍스트
-                    </li>
-                  </ul>
-                </div>
-                <div className="rounded-lg border border-krds-gray-20 p-4">
-                  <h4 className="font-semibold text-krds-gray-95 mb-2">
-                    권장 사항
-                  </h4>
-                  <ul className="list-disc pl-5 space-y-1 text-sm text-krds-gray-70">
-                    <li>
-                      항상 <Code>label</Code> prop으로 명확한 설명 제공
-                    </li>
-                    <li>오버레이 사용 시 포커스 트래핑 고려</li>
-                    <li>긴 로딩 시 진행률 표시 (Progress 컴포넌트) 권장</li>
-                  </ul>
-                </div>
-              </div>
-            </Subsection>
           </Section>
         </TabsContent>
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'SideNavigation', href: '/components/side-navigation' }}
-        next={{ title: 'Switch', href: '/components/switch' }}
+        prev={{ title: 'Slider', href: '/components/slider' }}
+        next={{ title: 'Stack', href: '/components/stack' }}
       />
     </>
   );

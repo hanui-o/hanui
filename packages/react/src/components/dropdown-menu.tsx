@@ -3,15 +3,79 @@
 import * as React from 'react';
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { cn } from '@/lib/utils';
-import { Check, ChevronRight, Circle } from 'lucide-react';
+import { Check, ChevronDown, ChevronRight, Circle } from 'lucide-react';
 
 // ============================================================================
 // DropdownMenu Root Components
 // ============================================================================
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 const DropdownMenuGroup = DropdownMenuPrimitive.Group;
+
+// ============================================================================
+// DropdownMenuTrigger
+// ============================================================================
+
+export interface DropdownMenuTriggerProps
+  extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger> {
+  /** 화살표 숨김 여부 (기본값: false) */
+  hideArrow?: boolean;
+}
+
+const DropdownMenuTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Trigger>,
+  DropdownMenuTriggerProps
+>(({ className, children, hideArrow = false, asChild, ...props }, ref) => {
+  // asChild가 true이면 children을 그대로 사용
+  if (asChild) {
+    return (
+      <DropdownMenuPrimitive.Trigger ref={ref} asChild {...props}>
+        {children}
+      </DropdownMenuPrimitive.Trigger>
+    );
+  }
+
+  const arrowIcon = (
+    <ChevronDown className="h-4 w-4 shrink-0" aria-hidden="true" />
+  );
+
+  // children이 React 요소(Button 등)인 경우 iconRight를 주입
+  if (React.isValidElement(children) && !hideArrow) {
+    const childProps = children.props as Record<string, unknown>;
+    // 이미 iconRight가 있으면 그대로 사용
+    if (!childProps.iconRight) {
+      const clonedChild = React.cloneElement(
+        children as React.ReactElement<Record<string, unknown>>,
+        { iconRight: arrowIcon }
+      );
+      return (
+        <DropdownMenuPrimitive.Trigger ref={ref} asChild {...props}>
+          {clonedChild}
+        </DropdownMenuPrimitive.Trigger>
+      );
+    }
+    // iconRight가 이미 있으면 asChild로 그대로 전달
+    return (
+      <DropdownMenuPrimitive.Trigger ref={ref} asChild {...props}>
+        {children}
+      </DropdownMenuPrimitive.Trigger>
+    );
+  }
+
+  // 텍스트 children인 경우 기본 스타일 적용
+  return (
+    <DropdownMenuPrimitive.Trigger
+      ref={ref}
+      className={cn('inline-flex items-center gap-1', className)}
+      {...props}
+    >
+      {children}
+      {!hideArrow && arrowIcon}
+    </DropdownMenuPrimitive.Trigger>
+  );
+});
+DropdownMenuTrigger.displayName = 'DropdownMenuTrigger';
+
 const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
 const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
@@ -29,15 +93,15 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      'flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none',
-      'focus:bg-krds-gray-10 data-[state=open]:bg-krds-gray-10',
+      'flex cursor-default select-none items-center rounded-sm px-2 py-2 text-[17px] outline-none',
+      'focus:bg-krds-primary-5 data-[state=open]:bg-krds-primary-5',
       inset && 'pl-8',
       className
     )}
     {...props}
   >
     {children}
-    <ChevronRight className="ml-auto h-4 w-4" />
+    <ChevronRight className="ml-auto h-4 w-4" aria-hidden="true" />
   </DropdownMenuPrimitive.SubTrigger>
 ));
 DropdownMenuSubTrigger.displayName = 'DropdownMenuSubTrigger';
@@ -67,30 +131,74 @@ const DropdownMenuSubContent = React.forwardRef<
 DropdownMenuSubContent.displayName = 'DropdownMenuSubContent';
 
 // ============================================================================
+// DropdownMenuArrow
+// ============================================================================
+
+const DropdownMenuArrow = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Arrow>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Arrow>
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.Arrow
+    ref={ref}
+    className={cn('fill-white [&>polygon]:stroke-krds-gray-20', className)}
+    {...props}
+  />
+));
+DropdownMenuArrow.displayName = 'DropdownMenuArrow';
+
+// ============================================================================
 // DropdownMenuContent
 // ============================================================================
 
+export interface DropdownMenuContentProps
+  extends React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> {
+  /** 화살표 표시 여부 */
+  showArrow?: boolean;
+  /** 화살표 너비 (기본값: 10) */
+  arrowWidth?: number;
+  /** 화살표 높이 (기본값: 5) */
+  arrowHeight?: number;
+}
+
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <DropdownMenuPrimitive.Portal>
-    <DropdownMenuPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      className={cn(
-        'z-50 min-w-[8rem] overflow-hidden rounded-md border border-krds-gray-20 bg-white p-1 text-krds-gray-95 shadow-md',
-        'data-[state=open]:animate-in data-[state=closed]:animate-out',
-        'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-        'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
-        'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
-        'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
-        className
-      )}
-      {...props}
-    />
-  </DropdownMenuPrimitive.Portal>
-));
+  DropdownMenuContentProps
+>(
+  (
+    {
+      className,
+      sideOffset = 4,
+      showArrow = false,
+      arrowWidth = 10,
+      arrowHeight = 5,
+      children,
+      ...props
+    },
+    ref
+  ) => (
+    <DropdownMenuPrimitive.Portal>
+      <DropdownMenuPrimitive.Content
+        ref={ref}
+        sideOffset={showArrow ? sideOffset + arrowHeight : sideOffset}
+        className={cn(
+          'z-50 min-w-[8rem] overflow-hidden rounded-md border border-krds-gray-20 bg-white p-1 text-krds-gray-95 shadow-md',
+          'data-[state=open]:animate-in data-[state=closed]:animate-out',
+          'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+          'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+          'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2',
+          'data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+          className
+        )}
+        {...props}
+      >
+        {children}
+        {showArrow && (
+          <DropdownMenuArrow width={arrowWidth} height={arrowHeight} />
+        )}
+      </DropdownMenuPrimitive.Content>
+    </DropdownMenuPrimitive.Portal>
+  )
+);
 DropdownMenuContent.displayName = 'DropdownMenuContent';
 
 // ============================================================================
@@ -107,6 +215,8 @@ export interface DropdownMenuItemProps
   inset?: boolean;
   /** 위험 액션 스타일 */
   destructive?: boolean;
+  /** 선택된 상태 */
+  selected?: boolean;
 }
 
 const DropdownMenuItem = React.forwardRef<
@@ -114,20 +224,31 @@ const DropdownMenuItem = React.forwardRef<
   DropdownMenuItemProps
 >(
   (
-    { className, icon, shortcut, inset, destructive, children, ...props },
+    {
+      className,
+      icon,
+      shortcut,
+      inset,
+      destructive,
+      selected,
+      children,
+      ...props
+    },
     ref
   ) => (
     <DropdownMenuPrimitive.Item
       ref={ref}
       className={cn(
-        'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors',
-        'focus:bg-krds-gray-10 focus:text-krds-gray-95',
+        'relative flex cursor-default select-none items-center rounded-sm px-2 py-2 text-[17px] outline-none transition-colors',
+        'focus:bg-krds-primary-5 focus:text-krds-primary-95',
         'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
         destructive &&
           'text-krds-danger-base focus:bg-krds-danger-10 focus:text-krds-danger-base',
+        selected && 'font-bold bg-krds-primary-5',
         inset && 'pl-8',
         className
       )}
+      aria-selected={selected}
       {...props}
     >
       {icon && (
@@ -137,7 +258,10 @@ const DropdownMenuItem = React.forwardRef<
       )}
       {children}
       {shortcut && (
-        <span className="ml-auto text-xs tracking-widest text-krds-gray-40">
+        <span
+          className="ml-auto text-[15px] tracking-widest text-krds-gray-40"
+          aria-hidden="true"
+        >
           {shortcut}
         </span>
       )}
@@ -158,14 +282,17 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     ref={ref}
     className={cn(
       'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors',
-      'focus:bg-krds-gray-10 focus:text-krds-gray-95',
+      'focus:bg-krds-gray-5 focus:text-krds-gray-95',
       'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       className
     )}
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span
+      className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"
+      aria-hidden="true"
+    >
       <DropdownMenuPrimitive.ItemIndicator>
         <Check className="h-4 w-4 text-krds-primary-base" />
       </DropdownMenuPrimitive.ItemIndicator>
@@ -193,7 +320,10 @@ const DropdownMenuRadioItem = React.forwardRef<
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span
+      className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center"
+      aria-hidden="true"
+    >
       <DropdownMenuPrimitive.ItemIndicator>
         <Circle className="h-2 w-2 fill-krds-primary-base text-krds-primary-base" />
       </DropdownMenuPrimitive.ItemIndicator>
@@ -255,6 +385,7 @@ const DropdownMenuShortcut = ({
         'ml-auto text-xs tracking-widest text-krds-gray-40',
         className
       )}
+      aria-hidden="true"
       {...props}
     />
   );
@@ -281,4 +412,5 @@ export {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuRadioGroup,
+  DropdownMenuArrow,
 };

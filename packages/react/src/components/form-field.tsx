@@ -177,9 +177,12 @@ export const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
       >
         {children}
         {required && (
-          <span className="text-krds-danger-50 ml-1" aria-label="필수">
-            *
-          </span>
+          <>
+            <span className="text-krds-danger-50 ml-1" aria-hidden="true">
+              *
+            </span>
+            <span className="sr-only">(필수)</span>
+          </>
         )}
       </label>
     );
@@ -221,7 +224,7 @@ export const FormError = React.forwardRef<HTMLDivElement, FormErrorProps>(
         aria-live="polite"
         {...props}
       >
-        <span className="text-krds-danger-60 shrink-0">
+        <span className="text-krds-danger-60 shrink-0" aria-hidden="true">
           <CircleX className="w-4 h-4" />
         </span>
         <span>{children}</span>
@@ -285,7 +288,11 @@ export const FormHelperText = React.forwardRef<
       )}
       {...props}
     >
-      {icon && <span className={cn('shrink-0', getStatusColor())}>{icon}</span>}
+      {icon && (
+        <span className={cn('shrink-0', getStatusColor())} aria-hidden="true">
+          {icon}
+        </span>
+      )}
       <span>{children}</span>
     </div>
   );

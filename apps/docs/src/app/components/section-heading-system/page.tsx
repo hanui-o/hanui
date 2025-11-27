@@ -275,7 +275,7 @@ export default function HeadingSystemPage() {
                   <Body weight="bold" className="mb-2">
                     헤딩 간 간격 (Heading-to-Heading)
                   </Body>
-                  <Stack gap="inline">
+                  <Stack gap="xs">
                     <Stack direction="row" align="center" gap="md">
                       <Body className="w-24 font-medium" size="sm">
                         h1 → h2:
@@ -317,7 +317,7 @@ export default function HeadingSystemPage() {
                   <Body weight="bold" className="mb-2">
                     헤딩-본문 간격 (Title-Body Gap)
                   </Body>
-                  <Stack gap="inline">
+                  <Stack gap="xs">
                     <Stack direction="row" align="center" gap="md">
                       <Body className="w-24 font-medium" size="sm">
                         h1 → body:
@@ -367,7 +367,7 @@ export default function HeadingSystemPage() {
                   <Body weight="bold" className="mb-2">
                     래퍼 간 간격 (Wrapper Spacing)
                   </Body>
-                  <Stack gap="inline">
+                  <Stack gap="xs">
                     <Stack direction="row" align="center" gap="md">
                       <Body className="w-32 font-medium" size="sm">
                         Section ↔ Section:
@@ -434,10 +434,10 @@ export default function HeadingSystemPage() {
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -515,10 +515,10 @@ export default function HeadingSystemPage() {
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -569,7 +569,7 @@ export default function HeadingSystemPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Section', href: '/components/section' }}
+        prev={{ title: 'Radio', href: '/components/radio' }}
         next={{ title: 'Select', href: '/components/select' }}
       />
     </>

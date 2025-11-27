@@ -201,10 +201,11 @@ export default function Layout() {
             />
 
             <Subsection level="h3">
-              <Heading level="h3" title="기본 사용" />
-              <Body className="mb-4">
-                items prop으로 메뉴 항목을 전달합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="기본 사용"
+                description="items prop으로 메뉴 항목을 전달합니다."
+              />
               <ComponentPreview>
                 <NavigationMenu
                   items={[
@@ -228,11 +229,11 @@ export default function Layout() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="드롭다운 메뉴 (간단한 서브메뉴)" />
-              <Body className="mb-4">
-                children 속성을 사용하여 간단한 드롭다운 메뉴를 만들 수
-                있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="드롭다운 메뉴 (간단한 서브메뉴)"
+                description="children 속성을 사용하여 간단한 드롭다운 메뉴를 만들 수 있습니다."
+              />
               <ComponentPreview className="h-[400px]">
                 <NavigationMenu
                   items={[
@@ -274,11 +275,8 @@ export default function Layout() {
               <Heading
                 level="h3"
                 title="섹션별 드롭다운 (설명 및 유틸리티 링크)"
+                description="sections를 사용하여 섹션 제목, 링크 설명, 유틸리티 링크를 포함한 풍부한 드롭다운을 만들 수 있습니다."
               />
-              <Body className="mb-4">
-                sections를 사용하여 섹션 제목, 링크 설명, 유틸리티 링크를 포함한
-                풍부한 드롭다운을 만들 수 있습니다.
-              </Body>
               <ComponentPreview className="h-[600px]">
                 <NavigationMenu
                   items={[
@@ -351,10 +349,11 @@ export default function Layout() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="다중 섹션 드롭다운" />
-              <Body className="mb-4">
-                여러 섹션으로 구분된 복잡한 드롭다운 메뉴를 만들 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="다중 섹션 드롭다운"
+                description="여러 섹션으로 구분된 복잡한 드롭다운 메뉴를 만들 수 있습니다."
+              />
               <Code variant="block" language="tsx">
                 {`<NavigationMenu
   items={[
@@ -412,11 +411,11 @@ export default function Layout() {
             </Code>
 
             <Subsection level="h3">
-              <Heading level="h3" title="기본 메가메뉴" />
-              <Body className="mb-4">
-                모든 메뉴에 서브메뉴가 있고, 호버 시 전체 너비로 모든 메뉴가
-                한번에 표시됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="기본 메가메뉴"
+                description="모든 메뉴에 서브메뉴가 있고, 호버 시 전체 너비로 모든 메뉴가 한번에 표시됩니다."
+              />
               <ComponentPreview className="h-[500px]">
                 <MegaMenu
                   columns={[
@@ -672,10 +671,10 @@ export default function Layout() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -834,10 +833,10 @@ export default function Layout() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

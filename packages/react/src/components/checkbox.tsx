@@ -11,7 +11,7 @@ const checkboxVariants = cva(
   [
     'peer',
     'shrink-0',
-    'rounded',
+    'rounded-md',
     'border',
     'border-krds-gray-60',
     'ring-offset-background',
@@ -46,68 +46,125 @@ export interface CheckboxProps
       'size'
     >,
     VariantProps<typeof checkboxVariants> {
+  /** 체크박스 크기 */
   size?: 'sm' | 'md' | 'lg';
+  /** 상태 표시 */
   status?: 'error' | 'success' | 'info';
-  error?: boolean; // @deprecated status="error" 사용 권장
+  /** @deprecated status="error" 사용 권장 */
+  error?: boolean;
+  /** 레이블 텍스트 (제공 시 label 요소와 함께 렌더링) */
+  label?: React.ReactNode;
+  /** 레이블 위치 */
+  labelPosition?: 'right' | 'left';
 }
 
 export const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ className, size, status, error = false, disabled, ...props }, ref) => {
-  // FormField 컨텍스트 (선택적)
-  let formField: ReturnType<typeof useFormField> | null = null;
-  try {
-    formField = useFormField();
-  } catch {
-    // FormField 없음, 독립 모드
-  }
-
-  const finalStatus =
-    status || formField?.status || (error ? 'error' : undefined);
-  const hasError = finalStatus === 'error';
-  const finalDisabled = formField?.disabled || disabled;
-
-  const getStatusClasses = () => {
-    if (hasError) {
-      return 'border-krds-danger-60 data-[state=checked]:bg-krds-danger-60 data-[state=checked]:border-krds-danger-60';
+>(
+  (
+    {
+      className,
+      size,
+      status,
+      error = false,
+      disabled,
+      label,
+      labelPosition = 'right',
+      id,
+      ...props
+    },
+    ref
+  ) => {
+    // FormField 컨텍스트 (선택적)
+    let formField: ReturnType<typeof useFormField> | null = null;
+    try {
+      formField = useFormField();
+    } catch {
+      // FormField 없음, 독립 모드
     }
-    return '';
-  };
 
-  const getCheckIconSize = () => {
-    switch (size) {
-      case 'sm':
-        return 12;
-      case 'lg':
-        return 16;
-      case 'md':
-      default:
-        return 14;
-    }
-  };
+    const finalStatus =
+      status || formField?.status || (error ? 'error' : undefined);
+    const hasError = finalStatus === 'error';
+    const finalDisabled = formField?.disabled || disabled;
 
-  return (
-    <CheckboxPrimitive.Root
-      ref={ref}
-      className={cn(checkboxVariants({ size }), getStatusClasses(), className)}
-      disabled={finalDisabled}
-      aria-invalid={hasError ? true : undefined}
-      aria-describedby={
-        [formField?.errorId, formField?.helperId, props['aria-describedby']]
-          .filter(Boolean)
-          .join(' ') || undefined
+    // label 있을 때 id 자동 생성
+    const generatedId = React.useId();
+    const checkboxId = id || (label ? generatedId : undefined);
+
+    const getStatusClasses = () => {
+      if (hasError) {
+        return 'border-krds-danger-60 data-[state=checked]:bg-krds-danger-60 data-[state=checked]:border-krds-danger-60';
       }
-      {...props}
-    >
-      <CheckboxPrimitive.Indicator
-        className={cn('flex items-center justify-center text-current')}
+      return '';
+    };
+
+    const getCheckIconSize = () => {
+      switch (size) {
+        case 'sm':
+          return 12;
+        case 'lg':
+          return 16;
+        case 'md':
+        default:
+          return 14;
+      }
+    };
+
+    const checkboxElement = (
+      <CheckboxPrimitive.Root
+        ref={ref}
+        id={checkboxId}
+        className={cn(
+          checkboxVariants({ size }),
+          getStatusClasses(),
+          className
+        )}
+        disabled={finalDisabled}
+        aria-invalid={hasError ? true : undefined}
+        aria-describedby={
+          [formField?.errorId, formField?.helperId, props['aria-describedby']]
+            .filter(Boolean)
+            .join(' ') || undefined
+        }
+        {...props}
       >
-        <Check size={getCheckIconSize()} strokeWidth={3} />
-      </CheckboxPrimitive.Indicator>
-    </CheckboxPrimitive.Root>
-  );
-});
+        <CheckboxPrimitive.Indicator
+          className={cn('flex items-center justify-center text-current')}
+        >
+          <Check size={getCheckIconSize()} strokeWidth={3} aria-hidden="true" />
+        </CheckboxPrimitive.Indicator>
+      </CheckboxPrimitive.Root>
+    );
+
+    // label 없으면 체크박스만 반환
+    if (!label) {
+      return checkboxElement;
+    }
+
+    // label 있으면 래퍼와 함께 반환
+    return (
+      <div
+        className={cn(
+          'flex items-center gap-2',
+          labelPosition === 'left' && 'flex-row-reverse'
+        )}
+      >
+        {checkboxElement}
+        <label
+          htmlFor={checkboxId}
+          className={cn(
+            'text-krds-body-md text-krds-gray-90 cursor-pointer select-none',
+            finalDisabled && 'cursor-not-allowed opacity-60'
+          )}
+        >
+          {label}
+        </label>
+      </div>
+    );
+  }
+);
 
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 
@@ -233,6 +290,7 @@ export const CheckboxGroupItem = React.forwardRef<
   const group = useCheckboxGroup();
 
   const isChecked = group.value.includes(value);
+  const isDisabled = group.disabled || disabled;
 
   const handleCheckedChange = (checked: boolean) => {
     if (checked) {
@@ -247,14 +305,17 @@ export const CheckboxGroupItem = React.forwardRef<
       <Checkbox
         checked={isChecked}
         onCheckedChange={handleCheckedChange}
-        disabled={group.disabled || disabled}
+        disabled={isDisabled}
         size={group.size}
         status={group.status}
         id={value}
       />
       <label
         htmlFor={value}
-        className="text-krds-body-md text-krds-gray-90 cursor-pointer select-none peer-disabled:cursor-not-allowed peer-disabled:opacity-60"
+        className={cn(
+          'text-krds-body-md text-krds-gray-90 cursor-pointer select-none',
+          isDisabled && 'cursor-not-allowed opacity-60'
+        )}
       >
         {label}
       </label>
@@ -264,4 +325,143 @@ export const CheckboxGroupItem = React.forwardRef<
 
 CheckboxGroupItem.displayName = 'CheckboxGroupItem';
 
-export { checkboxVariants };
+// ============================================================================
+// ChipCheckbox (칩 스타일 체크박스)
+// ============================================================================
+
+const chipCheckboxVariants = cva(
+  [
+    'inline-flex',
+    'items-center',
+    'gap-2',
+    'px-4',
+    'py-2',
+    'rounded',
+    'border',
+    'cursor-pointer',
+    'select-none',
+    'transition-colors',
+    'focus-visible:outline-none',
+    'focus-visible:ring-2',
+    'focus-visible:ring-krds-primary-base',
+    'focus-visible:ring-offset-2',
+  ].join(' '),
+  {
+    variants: {
+      checked: {
+        true: 'bg-krds-primary-base border-krds-primary-base text-white',
+        false:
+          'bg-white border-krds-gray-30 text-krds-gray-90 hover:bg-krds-gray-5',
+      },
+      disabled: {
+        true: 'opacity-60 cursor-not-allowed',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      checked: false,
+      disabled: false,
+    },
+  }
+);
+
+export interface ChipCheckboxProps
+  extends Omit<React.HTMLAttributes<HTMLLabelElement>, 'onChange'> {
+  /** 체크박스 레이블 */
+  label: React.ReactNode;
+  /** 선택 상태 (제어) */
+  checked?: boolean;
+  /** 기본 선택 상태 (비제어) */
+  defaultChecked?: boolean;
+  /** 상태 변경 콜백 */
+  onCheckedChange?: (checked: boolean) => void;
+  /** 비활성화 */
+  disabled?: boolean;
+  /** 체크박스 값 */
+  value?: string;
+}
+
+export const ChipCheckbox = React.forwardRef<
+  HTMLLabelElement,
+  ChipCheckboxProps
+>(
+  (
+    {
+      label,
+      checked: controlledChecked,
+      defaultChecked = false,
+      onCheckedChange,
+      disabled = false,
+      value,
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    const [internalChecked, setInternalChecked] =
+      React.useState(defaultChecked);
+    const isControlled = controlledChecked !== undefined;
+    const isChecked = isControlled ? controlledChecked : internalChecked;
+
+    const handleClick = () => {
+      if (disabled) return;
+
+      const newChecked = !isChecked;
+      if (!isControlled) {
+        setInternalChecked(newChecked);
+      }
+      onCheckedChange?.(newChecked);
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        handleClick();
+      }
+    };
+
+    return (
+      <label
+        ref={ref}
+        className={cn(
+          chipCheckboxVariants({ checked: isChecked, disabled }),
+          className
+        )}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        tabIndex={disabled ? -1 : 0}
+        role="checkbox"
+        aria-checked={isChecked}
+        aria-disabled={disabled}
+        data-state={isChecked ? 'checked' : 'unchecked'}
+        {...props}
+      >
+        <Check
+          size={16}
+          strokeWidth={2.5}
+          aria-hidden="true"
+          className={cn(
+            'shrink-0 transition-opacity',
+            isChecked ? 'opacity-100' : 'opacity-40'
+          )}
+        />
+        <span className="text-krds-body-md">{label}</span>
+        {value && (
+          <input
+            type="checkbox"
+            value={value}
+            checked={isChecked}
+            disabled={disabled}
+            onChange={() => {}}
+            className="sr-only"
+            tabIndex={-1}
+          />
+        )}
+      </label>
+    );
+  }
+);
+
+ChipCheckbox.displayName = 'ChipCheckbox';
+
+export { checkboxVariants, chipCheckboxVariants };

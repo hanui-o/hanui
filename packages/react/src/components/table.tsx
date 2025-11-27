@@ -145,7 +145,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 Table.displayName = 'Table';
 
 /**
- * TableHeader Component
+ * TableHeader 컴포넌트
  */
 export const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
@@ -155,8 +155,8 @@ export const TableHeader = React.forwardRef<
     <thead
       ref={ref}
       className={cn(
-        'bg-gray-50 dark:bg-gray-800/50',
-        '[&_tr]:border-b [&_tr]:border-gray-200 dark:[&_tr]:border-gray-800',
+        'bg-krds-gray-5',
+        '[&_tr]:border-b [&_tr]:border-krds-gray-20',
         className
       )}
       {...props}
@@ -169,7 +169,7 @@ export const TableHeader = React.forwardRef<
 TableHeader.displayName = 'TableHeader';
 
 /**
- * TableBody Component
+ * TableBody 컴포넌트
  */
 export const TableBody = React.forwardRef<
   HTMLTableSectionElement,
@@ -180,7 +180,7 @@ export const TableBody = React.forwardRef<
       ref={ref}
       className={cn(
         '[&_tr:last-child]:border-0',
-        '[&_tr]:border-b [&_tr]:border-gray-200 dark:[&_tr]:border-gray-800',
+        '[&_tr]:border-b [&_tr]:border-krds-gray-20',
         className
       )}
       {...props}
@@ -193,7 +193,7 @@ export const TableBody = React.forwardRef<
 TableBody.displayName = 'TableBody';
 
 /**
- * TableFooter Component
+ * TableFooter 컴포넌트
  */
 export const TableFooter = React.forwardRef<
   HTMLTableSectionElement,
@@ -203,8 +203,8 @@ export const TableFooter = React.forwardRef<
     <tfoot
       ref={ref}
       className={cn(
-        'bg-gray-50 dark:bg-gray-800/50',
-        'border-t border-gray-200 dark:border-gray-800',
+        'bg-krds-gray-5',
+        'border-t border-krds-gray-20',
         'font-medium',
         '[&>tr]:last:border-b-0',
         className
@@ -219,7 +219,7 @@ export const TableFooter = React.forwardRef<
 TableFooter.displayName = 'TableFooter';
 
 /**
- * TableRow Component
+ * TableRow 컴포넌트
  */
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
   ({ className, children, ...props }, ref) => {
@@ -228,8 +228,8 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         ref={ref}
         className={cn(
           'transition-colors',
-          'hover:bg-gray-50 dark:hover:bg-gray-800/50',
-          'data-[state=selected]:bg-gray-100 dark:data-[state=selected]:bg-gray-800',
+          'hover:bg-krds-gray-5',
+          'data-[state=selected]:bg-krds-gray-10',
           className
         )}
         {...props}
@@ -243,7 +243,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
 TableRow.displayName = 'TableRow';
 
 /**
- * TableHead Component
+ * TableHead 컴포넌트
  */
 export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
   ({ className, children, sortable, sortDirection, onSort, ...props }, ref) => {
@@ -256,8 +256,8 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
               className={cn(
                 'h-3 w-3 -mb-1',
                 sortDirection === 'asc'
-                  ? 'text-gray-900 dark:text-gray-100'
-                  : 'text-gray-400'
+                  ? 'text-krds-gray-90'
+                  : 'text-krds-gray-40'
               )}
               fill="currentColor"
               viewBox="0 0 20 20"
@@ -268,8 +268,8 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
               className={cn(
                 'h-3 w-3 -mt-1',
                 sortDirection === 'desc'
-                  ? 'text-gray-900 dark:text-gray-100'
-                  : 'text-gray-400'
+                  ? 'text-krds-gray-90'
+                  : 'text-krds-gray-40'
               )}
               fill="currentColor"
               viewBox="0 0 20 20"
@@ -285,10 +285,9 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
       <th
         ref={ref}
         className={cn(
-          'h-12 px-4 text-left align-middle font-medium text-gray-700 dark:text-gray-300',
+          'h-12 px-4 text-left align-middle font-medium text-krds-gray-70',
           '[&:has([role=checkbox])]:pr-0',
-          sortable &&
-            'cursor-pointer select-none hover:bg-gray-100 dark:hover:bg-gray-700',
+          sortable && 'cursor-pointer select-none hover:bg-krds-gray-10',
           className
         )}
         onClick={sortable ? onSort : undefined}
@@ -307,7 +306,7 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
 TableHead.displayName = 'TableHead';
 
 /**
- * TableCell Component
+ * TableCell 컴포넌트
  */
 export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
   ({ className, children, small, ...props }, ref) => {
@@ -331,7 +330,7 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
 TableCell.displayName = 'TableCell';
 
 /**
- * TableCaption Component
+ * TableCaption 컴포넌트
  */
 export const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
@@ -340,7 +339,7 @@ export const TableCaption = React.forwardRef<
   return (
     <caption
       ref={ref}
-      className={cn('mt-4 text-gray-600 dark:text-gray-400', className)}
+      className={cn('mt-4 text-krds-gray-60', className)}
       {...props}
     >
       {children}
@@ -535,10 +534,10 @@ export const TableAccordionTrigger = React.forwardRef<
 TableAccordionTrigger.displayName = 'TableAccordionTrigger';
 
 /**
- * TableAccordionContent Component
+ * TableAccordionContent 컴포넌트
  *
- * Expandable content that appears when trigger is clicked.
- * Must be wrapped in a TableRow component.
+ * 트리거 클릭 시 펼쳐지는 콘텐츠 영역입니다.
+ * TableRow 컴포넌트 내부에서 사용합니다.
  */
 export const TableAccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
@@ -558,9 +557,7 @@ export const TableAccordionContent = React.forwardRef<
     >
       <tr>
         <td colSpan={colSpan} className={cn('p-0', className)}>
-          <div className="px-4 py-2 bg-gray-50 dark:bg-gray-800/30">
-            {children}
-          </div>
+          <div className="px-4 py-2 bg-krds-gray-5">{children}</div>
         </td>
       </tr>
     </AccordionPrimitive.Content>

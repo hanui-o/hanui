@@ -25,7 +25,6 @@ import {
   TableCell,
   Center,
   Square,
-  Card,
   List,
   ListItem,
 } from '@hanui/react';
@@ -57,13 +56,13 @@ export default function FlexPage() {
             />
             <ComponentPreview>
               <Flex className="text-white" gap="4">
-                <Center className="w-[100px] h-[100px] bg-green-500 rounded-md">
+                <Center className="w-[100px] h-[100px] bg-krds-success-base rounded-md">
                   Box 1
                 </Center>
-                <Center className="w-[100px] h-[100px] bg-blue-500 rounded-md">
+                <Center className="w-[100px] h-[100px] bg-krds-info-base rounded-md">
                   Box 2
                 </Center>
-                <Center className="w-[100px] h-[100px] bg-red-500 rounded-md">
+                <Center className="w-[100px] h-[100px] bg-krds-danger-base rounded-md">
                   Box 3
                 </Center>
               </Flex>
@@ -82,11 +81,16 @@ export default function FlexPage() {
           </Section>
 
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Flex를 import하여 사용합니다. direction, align, justify, gap 등의 prop으로 레이아웃을 제어합니다."
+            />
             <Code variant="block" language="tsx">
-              {`import { Flex } from '@/components/hanui/flex'
+              {`import { Flex } from '@hanui/react'
 
-<Flex align="center" justify="space-between">
+<Flex align="center" justify="between">
   <div>Logo</div>
   <div>Menu</div>
 </Flex>`}
@@ -98,42 +102,54 @@ export default function FlexPage() {
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="Spacer 사용 (Justify Content)" />
+              <Heading
+                level="h3"
+                title="정렬"
+                description="justify와 align prop으로 아이템을 배치합니다."
+              />
               <ComponentPreview>
                 <Flex
-                  className="w-full border p-4 rounded-md"
+                  className="w-full border border-krds-gray-20 p-4 rounded-md"
                   justify="between"
                   align="center"
                 >
-                  <div className="font-bold">Logo</div>
+                  <div className="font-bold text-krds-gray-90">Logo</div>
                   <Flex gap="4">
-                    <div>Home</div>
-                    <div>About</div>
-                    <div>Contact</div>
+                    <div className="text-krds-gray-70">Home</div>
+                    <div className="text-krds-gray-70">About</div>
+                    <div className="text-krds-gray-70">Contact</div>
                   </Flex>
                 </Flex>
               </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<Flex justify="between" align="center">
-  <Box>Logo</Box>
+  <div>Logo</div>
   <Flex gap="4">
-    <Box>Home</Box>
-    <Box>About</Box>
-    <Box>Contact</Box>
+    <div>Home</div>
+    <div>About</div>
+    <div>Contact</div>
   </Flex>
 </Flex>`}
               </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Wrap" />
+              <Heading
+                level="h3"
+                title="줄바꿈"
+                description="wrap prop으로 아이템이 넘칠 때 줄바꿈 동작을 제어합니다."
+              />
               <ComponentPreview>
-                <Flex wrap="wrap" gap="2" className="w-[300px] border p-2">
+                <Flex
+                  wrap="wrap"
+                  gap="2"
+                  className="w-[300px] border border-krds-gray-20 p-2 rounded-md"
+                >
                   {Array.from({ length: 10 }).map((_, i) => (
                     <Square
                       key={i}
                       size="50px"
-                      className="bg-blue-100 text-blue-600 rounded"
+                      className="bg-krds-primary-5 text-krds-primary-base rounded"
                     >
                       {i + 1}
                     </Square>
@@ -142,29 +158,41 @@ export default function FlexPage() {
               </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<Flex wrap="wrap" gap="2">
-  {items.map(item => <Box />)}
+  {items.map((_, i) => (
+    <Square key={i} size="50px">{i + 1}</Square>
+  ))}
 </Flex>`}
               </Code>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Direction" />
+              <Heading
+                level="h3"
+                title="방향"
+                description="direction prop으로 주축 방향을 설정합니다."
+              />
               <ComponentPreview>
                 <Flex
                   direction="column"
                   gap="2"
-                  className="bg-gray-50 p-4 rounded-md"
+                  className="bg-krds-gray-5 p-4 rounded-md"
                 >
-                  <div className="bg-white p-2 shadow-sm rounded">Item 1</div>
-                  <div className="bg-white p-2 shadow-sm rounded">Item 2</div>
-                  <div className="bg-white p-2 shadow-sm rounded">Item 3</div>
+                  <div className="bg-white p-2 shadow-sm rounded text-krds-gray-90">
+                    Item 1
+                  </div>
+                  <div className="bg-white p-2 shadow-sm rounded text-krds-gray-90">
+                    Item 2
+                  </div>
+                  <div className="bg-white p-2 shadow-sm rounded text-krds-gray-90">
+                    Item 3
+                  </div>
                 </Flex>
               </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<Flex direction="column" gap="2">
-  <Box>Item 1</Box>
-  <Box>Item 2</Box>
-  <Box>Item 3</Box>
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
 </Flex>`}
               </Code>
             </Subsection>
@@ -178,29 +206,26 @@ export default function FlexPage() {
               title="접근성"
               description="WCAG 2.1 / KWCAG 2.2 AA 기준을 준수합니다."
             />
-            <Card variant="filled">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>시맨틱 마크업:</strong> Flex는 의미론적으로 중립적인{' '}
-                  <Code>&lt;div&gt;</Code> 요소를 사용합니다. 필요시 적절한
-                  시맨틱 태그나 ARIA 역할을 추가하세요.
-                </ListItem>
-                <ListItem>
-                  <strong>키보드 네비게이션:</strong> Flex 내부 요소들의 Tab
-                  순서가 시각적 배치와 일치하도록 주의하세요.
-                  <Code>flex-direction: column-reverse</Code>나{' '}
-                  <Code>row-reverse</Code> 사용 시 Tab 순서 고려 필요
-                </ListItem>
-                <ListItem>
-                  <strong>반응형 레이아웃:</strong> 다양한 화면 크기에서
-                  콘텐츠가 적절히 배치되어 모든 사용자가 접근 가능
-                </ListItem>
-                <ListItem>
-                  <strong>포커스 관리:</strong> 인터랙티브 요소들이 논리적인
-                  순서로 포커스를 받을 수 있도록 구성
-                </ListItem>
-              </List>
-            </Card>
+            <List variant="check" className="text-krds-gray-90">
+              <ListItem>
+                <strong>시맨틱 마크업:</strong> Flex는 의미론적으로 중립적인{' '}
+                <Code>&lt;div&gt;</Code> 요소를 사용합니다. 필요시 적절한 시맨틱
+                태그나 ARIA 역할을 추가하세요.
+              </ListItem>
+              <ListItem>
+                <strong>키보드 탐색:</strong> Flex 내부 요소들의 Tab 순서가
+                시각적 배치와 일치하도록 주의하세요. <Code>row-reverse</Code>나{' '}
+                <Code>column-reverse</Code> 사용 시 Tab 순서 고려 필요
+              </ListItem>
+              <ListItem>
+                <strong>반응형 레이아웃:</strong> 다양한 화면 크기에서 콘텐츠가
+                적절히 배치되어 모든 사용자가 접근 가능
+              </ListItem>
+              <ListItem>
+                <strong>포커스 관리:</strong> 인터랙티브 요소들이 논리적인
+                순서로 포커스를 받을 수 있도록 구성
+              </ListItem>
+            </List>
           </Section>
         </TabsContent>
 
@@ -214,10 +239,10 @@ export default function FlexPage() {
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -279,6 +304,16 @@ export default function FlexPage() {
                     </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>아이템 간격</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>inline</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>inline-flex 사용 여부</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

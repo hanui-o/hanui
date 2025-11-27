@@ -17,6 +17,8 @@ import {
   CircularProgress,
   Button,
   Code,
+  List,
+  ListItem,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -129,7 +131,11 @@ export default function ProgressPage() {
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="Interactive" />
+              <Heading
+                level="h3"
+                title="Interactive"
+                description="버튼을 클릭하여 진행률을 조절할 수 있습니다."
+              />
               <ComponentPreview>
                 <ProgressDemo />
               </ComponentPreview>
@@ -142,7 +148,11 @@ export default function ProgressPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Size" />
+              <Heading
+                level="h3"
+                title="Size"
+                description="sm, md, lg, xl 4가지 크기를 지원합니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-md space-y-4">
                   <Progress value={60} size="sm" label="Small" />
@@ -160,7 +170,11 @@ export default function ProgressPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Variant" />
+              <Heading
+                level="h3"
+                title="Variant"
+                description="default, primary, success, warning, error 5가지 색상 변형을 지원합니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-md space-y-4">
                   <Progress value={60} variant="default" label="Default" />
@@ -180,7 +194,11 @@ export default function ProgressPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Show Value" />
+              <Heading
+                level="h3"
+                title="Show Value"
+                description="showValue prop을 사용하여 진행률 텍스트를 표시합니다. formatValue로 커스텀 포맷도 가능합니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-md space-y-4">
                   <Progress value={45} showValue label="파일 업로드" />
@@ -206,7 +224,11 @@ export default function ProgressPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Indeterminate" />
+              <Heading
+                level="h3"
+                title="Indeterminate"
+                description="value를 생략하면 불확정(indeterminate) 상태로 애니메이션이 반복됩니다."
+              />
               <ComponentPreview>
                 <div className="w-full max-w-md space-y-4">
                   <Progress label="로딩 중..." />
@@ -223,7 +245,11 @@ export default function ProgressPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Circular" />
+              <Heading
+                level="h3"
+                title="Circular"
+                description="원형 진행 표시기입니다. showValue로 중앙에 값을 표시할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-6">
                   <CircularProgress value={25} showValue />
@@ -241,7 +267,11 @@ export default function ProgressPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Circular Size" />
+              <Heading
+                level="h3"
+                title="Circular Size"
+                description="size와 strokeWidth prop으로 원의 크기와 선 두께를 조절할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="flex flex-wrap items-center gap-6">
                   <CircularProgress value={60} size={32} strokeWidth={3} />
@@ -286,9 +316,9 @@ export default function ProgressPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -374,9 +404,9 @@ export default function ProgressPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -437,40 +467,40 @@ export default function ProgressPage() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="Accessibility" />
-              <div className="rounded-lg border border-krds-gray-20 p-4 mt-4">
-                <h4 className="font-semibold text-krds-gray-95 mb-2">
-                  ARIA 속성
-                </h4>
-                <ul className="list-disc pl-5 space-y-1 text-sm text-krds-gray-70">
-                  <li>
-                    <Code>role="progressbar"</Code>: 진행률 표시기임을 명시
-                  </li>
-                  <li>
-                    <Code>aria-valuenow</Code>: 현재 값
-                  </li>
-                  <li>
-                    <Code>aria-valuemin</Code>: 최소값 (0)
-                  </li>
-                  <li>
-                    <Code>aria-valuemax</Code>: 최대값 (기본 100)
-                  </li>
-                  <li>
-                    <Code>aria-busy="true"</Code>: 불확정 상태일 때
-                  </li>
-                  <li>
-                    <Code>aria-label</Code>: 스크린리더용 레이블
-                  </li>
-                </ul>
-              </div>
+              <Heading
+                level="h3"
+                title="접근성"
+                description="Progress 컴포넌트는 Radix UI Progress primitive를 기반으로 ARIA 속성이 자동 적용됩니다."
+              />
+              <List>
+                <ListItem>
+                  <Code>role=&quot;progressbar&quot;</Code>: 진행률 표시기임을
+                  명시
+                </ListItem>
+                <ListItem>
+                  <Code>aria-valuenow</Code>: 현재 값
+                </ListItem>
+                <ListItem>
+                  <Code>aria-valuemin</Code>: 최소값 (0)
+                </ListItem>
+                <ListItem>
+                  <Code>aria-valuemax</Code>: 최대값 (기본 100)
+                </ListItem>
+                <ListItem>
+                  <Code>aria-busy=&quot;true&quot;</Code>: 불확정 상태일 때
+                </ListItem>
+                <ListItem>
+                  <Code>aria-label</Code>: 스크린리더용 레이블
+                </ListItem>
+              </List>
             </Subsection>
           </Section>
         </TabsContent>
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Popover', href: '/components/popover' }}
-        next={{ title: 'RadioGroup', href: '/components/radio-group' }}
+        prev={{ title: 'Pagination', href: '/components/pagination' }}
+        next={{ title: 'Radio', href: '/components/radio' }}
       />
     </>
   );

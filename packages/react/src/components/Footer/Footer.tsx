@@ -123,7 +123,7 @@ export function Footer({ className }: FooterProps) {
     <footer id="krds-footer" className={`${styles.footer} ${className || ''}`}>
       <div className={styles.footQuick}>
         <Container className={styles.inner}>
-          <nav className={styles.relatedSitesNav}>
+          <nav className={styles.relatedSitesNav} aria-label="관련 사이트">
             {RELATED_SITES.map((site) => (
               <Dialog.Root
                 key={site.id}
@@ -166,9 +166,12 @@ export function Footer({ className }: FooterProps) {
                               href={link.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              title="새 창 열기"
                             >
                               {link.name}
+                              <span className={styles.srOnly}>
+                                {' '}
+                                (새 창 열기)
+                              </span>
                             </a>
                           </li>
                         ))}
@@ -201,7 +204,7 @@ export function Footer({ className }: FooterProps) {
           </div>
 
           <div className={styles.fLink}>
-            <div className={styles.linkGo}>
+            <nav className={styles.linkGo} aria-label="바로가기">
               {QUICK_LINKS.map((link) => (
                 <a
                   key={link.label}
@@ -211,8 +214,8 @@ export function Footer({ className }: FooterProps) {
                   {link.label} <ChevronRight aria-hidden="true" />
                 </a>
               ))}
-            </div>
-            <div className={styles.linkSns}>
+            </nav>
+            <nav className={styles.linkSns} aria-label="소셜 미디어">
               {SNS_LINKS.map((sns) => {
                 const IconComponent = sns.icon;
                 return (
@@ -222,23 +225,19 @@ export function Footer({ className }: FooterProps) {
                     className={styles.snsLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="새 창 열기"
-                    aria-label={sns.name}
+                    aria-label={`${sns.name} (새 창 열기)`}
                   >
-                    <span className={styles.srOnly}>
-                      {sns.label || sns.name}
-                    </span>
                     <IconComponent />
                   </a>
                 );
               })}
-            </div>
+            </nav>
           </div>
         </div>
 
         <div className={styles.fBtm}>
           <div className={styles.fBtmText}>
-            <div className={styles.fMenu}>
+            <nav className={styles.fMenu} aria-label="사이트 정책">
               {FOOTER_MENU.map((menu) => (
                 <a
                   key={menu.label}
@@ -248,7 +247,7 @@ export function Footer({ className }: FooterProps) {
                   {menu.label}
                 </a>
               ))}
-            </div>
+            </nav>
             <p className={styles.fCopy}>
               © 2023 National Health Insurance Service. All rights reserved.
             </p>
