@@ -28,6 +28,7 @@ export default defineConfig({
         '@radix-ui/react-navigation-menu',
       ],
       output: {
+        banner: '"use client";',
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',

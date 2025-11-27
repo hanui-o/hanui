@@ -81,6 +81,11 @@ export function Header() {
       isActive: pathname?.startsWith('/templates'),
     },
     {
+      label: 'A11y',
+      href: '/a11y',
+      isActive: pathname?.startsWith('/a11y'),
+    },
+    {
       label: 'Community',
       href: '/community',
       isActive: pathname?.startsWith('/community'),
