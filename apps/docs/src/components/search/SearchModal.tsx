@@ -278,7 +278,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-6 py-3 border-t border-krds-gray-10 bg-krds-gray-0 text-xs text-krds-gray-60">
+        {/* <div className="flex items-center justify-between px-6 py-3 border-t border-krds-gray-10 bg-krds-gray-0 text-xs text-krds-gray-60">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5">
               <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
@@ -302,7 +302,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               <span className="ml-1 text-sm">닫기</span>
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
