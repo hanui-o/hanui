@@ -1,5 +1,7 @@
 'use client';
 
+import React from 'react';
+
 // Docs layout components
 import {
   PageSection as Section,
