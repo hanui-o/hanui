@@ -39,7 +39,7 @@ export default function Home() {
             </div>
 
             {/* Title */}
-            <Display as="h1" className="tracking-tight text-[60px] py-2">
+            <Display as="h1" className="tracking-tight !text-[60px] py-2">
               KRDS 컴포넌트, 그냥 가져다 쓰세요
             </Display>
 
