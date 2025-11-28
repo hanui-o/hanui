@@ -245,8 +245,8 @@ export type {
 export { HeaderWithNavigation } from './components/Header/HeaderWithNavigation';
 export type { HeaderWithNavigationProps } from './components/Header/HeaderWithNavigation';
 
-export { Footer } from './components/Footer/footer';
-export type { FooterProps } from './components/Footer/footer';
+export { Footer } from './components/Footer/Footer';
+export type { FooterProps } from './components/Footer/Footer';
 
 export { Identifier } from './components/identifier';
 export type { IdentifierProps } from './components/identifier';
