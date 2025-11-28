@@ -51,8 +51,12 @@ jobs:
       - name: Create GitHub Release
         if: steps.changesets.outputs.published == 'true'
         run: |
-          for package in ${{ steps.changesets.outputs.publishedPackages }}; do
-            gh release create "$package" --generate-notes
+          echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -c '.[]' | while read -r package; do
+            name=$(echo "$package" | jq -r '.name')
+            version=$(echo "$package" | jq -r '.version')
+            tag="${name}@${version}"
+            echo "Creating release for $tag"
+            gh release create "$tag" --generate-notes || echo "Release $tag already exists or failed"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
