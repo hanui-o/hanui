@@ -40,14 +40,12 @@ export default function Home() {
 
             {/* Title */}
             <Display size="xl" as="h1" className="tracking-tight">
-              KRDS 가이드 400페이지??, 이제 안 봐도 됩니다
+              KRDS 컴포넌트, 그냥 가져다 쓰세요
             </Display>
 
             {/* Description */}
             <Body size="md" className="max-w-2xl">
-              KRDS 2.2 표준 + KWCAG 2.2 접근성 기본 탑재
-              <br className="hidden sm:block" />
-              공공기관 전용 React 컴포넌트 라이브러리
+              KRDS 2.2 표준, 접근성은 이미 챙겼습니다
             </Body>
 
             {/* CTA Buttons */}
