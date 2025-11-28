@@ -5,7 +5,7 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { Check } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import { useFormField } from './form-field';
+import { useFormFieldOptional } from './form-field';
 
 const checkboxVariants = cva(
   [
@@ -77,12 +77,7 @@ export const Checkbox = React.forwardRef<
     ref
   ) => {
     // FormField 컨텍스트 (선택적)
-    let formField: ReturnType<typeof useFormField> | null = null;
-    try {
-      formField = useFormField();
-    } catch {
-      // FormField 없음, 독립 모드
-    }
+    const formField = useFormFieldOptional();
 
     const finalStatus =
       status || formField?.status || (error ? 'error' : undefined);
@@ -223,12 +218,7 @@ export const CheckboxGroup = React.forwardRef<
       React.useState<string[]>(defaultValue);
 
     // FormField 컨텍스트 (선택적)
-    let formField: ReturnType<typeof useFormField> | null = null;
-    try {
-      formField = useFormField();
-    } catch {
-      // FormField 없음, 독립 모드
-    }
+    const formField = useFormFieldOptional();
 
     const finalStatus = status || formField?.status;
     const finalDisabled = formField?.disabled || disabled;
@@ -421,6 +411,7 @@ export const ChipCheckbox = React.forwardRef<
     };
 
     return (
+      /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
       <label
         ref={ref}
         className={cn(

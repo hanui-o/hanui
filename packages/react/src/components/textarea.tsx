@@ -3,7 +3,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { useFormField } from './form-field';
+import { useFormFieldOptional } from './form-field';
 
 // Textarea 스타일 variants
 const textareaVariants = cva(
@@ -80,12 +80,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const [internalValue, setInternalValue] = React.useState('');
 
     // FormField 컨텍스트 (선택적)
-    let formField: ReturnType<typeof useFormField> | null = null;
-    try {
-      formField = useFormField();
-    } catch {
-      // FormField 없음
-    }
+    const formField = useFormFieldOptional();
 
     React.useImperativeHandle(ref, () => internalRef.current!);
 

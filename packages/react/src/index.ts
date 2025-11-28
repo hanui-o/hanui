@@ -304,6 +304,7 @@ export {
   FormError,
   FormHelperText,
   useFormField,
+  useFormFieldOptional,
 } from './components/form-field';
 export type {
   FormFieldProps,

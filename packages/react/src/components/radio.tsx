@@ -5,7 +5,7 @@ import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { Circle } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import { useFormField } from './form-field';
+import { useFormFieldOptional } from './form-field';
 
 const radioVariants = cva(
   [
@@ -66,12 +66,7 @@ export const RadioGroup = React.forwardRef<
     ref
   ) => {
     // FormField 컨텍스트 (선택적)
-    let formField: ReturnType<typeof useFormField> | null = null;
-    try {
-      formField = useFormField();
-    } catch {
-      // FormField 없음, 독립 모드
-    }
+    const formField = useFormFieldOptional();
 
     const finalStatus =
       status || formField?.status || (error ? 'error' : undefined);

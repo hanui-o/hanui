@@ -4,9 +4,11 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 // Next.js Image import를 동적으로 처리
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let NextImage: any = null;
 try {
   // Next.js 환경에서만 next/image import 시도
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   NextImage = require('next/image').default;
 } catch {
   // Next.js가 아닌 환경에서는 null로 유지

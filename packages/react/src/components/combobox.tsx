@@ -138,7 +138,16 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
   ) => {
     const [open, setOpen] = React.useState(false);
     const [search, setSearch] = React.useState('');
+    const [triggerWidth, setTriggerWidth] = React.useState<number | null>(null);
     const triggerRef = React.useRef<HTMLButtonElement>(null);
+    const listboxId = React.useId();
+
+    // triggerWidth 업데이트
+    React.useEffect(() => {
+      if (open && triggerRef.current) {
+        setTriggerWidth(triggerRef.current.offsetWidth);
+      }
+    }, [open]);
 
     // 그룹화된 옵션
     const groupedOptions = React.useMemo(() => {
@@ -183,8 +192,8 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
       if (typeof popoverWidth === 'number') {
         return `${popoverWidth}px`;
       }
-      if (popoverWidth === 'trigger' && triggerRef.current) {
-        return `${triggerRef.current.offsetWidth}px`;
+      if (popoverWidth === 'trigger' && triggerWidth) {
+        return `${triggerWidth}px`;
       }
       return 'auto';
     };
@@ -240,6 +249,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             type="button"
             role="combobox"
             aria-expanded={open}
+            aria-controls={listboxId}
             aria-haspopup="listbox"
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
@@ -260,15 +270,15 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             </span>
             <div className="flex items-center gap-1">
               {clearable && selectedOption && !disabled && (
-                <span
-                  role="button"
+                <button
+                  type="button"
                   tabIndex={-1}
                   onClick={handleClear}
                   className="rounded-full p-0.5 hover:bg-krds-gray-20"
                   aria-label="선택 해제"
                 >
                   <X className="h-3.5 w-3.5 text-krds-gray-50" />
-                </span>
+                </button>
               )}
               <ChevronsUpDown
                 className="h-4 w-4 shrink-0 text-krds-gray-40"
@@ -318,6 +328,8 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
               {/* 옵션 리스트 */}
               {!loading && (
                 <CommandPrimitive.List
+                  id={listboxId}
+                  role="listbox"
                   className="overflow-auto p-2"
                   style={{ maxHeight }}
                 >

@@ -34,6 +34,14 @@ const useFormField = () => {
 };
 
 /**
+ * Optional version of useFormField that returns null if not within FormField
+ * Use this for components that can work both standalone and within FormField
+ */
+const useFormFieldOptional = () => {
+  return React.useContext(FormFieldContext);
+};
+
+/**
  * FormField Props
  */
 export interface FormFieldProps {
@@ -303,4 +311,4 @@ FormHelperText.displayName = 'FormHelperText';
 /**
  * Export useFormField for advanced usage
  */
-export { useFormField };
+export { useFormField, useFormFieldOptional };

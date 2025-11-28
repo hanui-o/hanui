@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { Eye, EyeOff, X } from 'lucide-react';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { useFormField } from './form-field';
+import { useFormFieldOptional } from './form-field';
 
 const inputVariants = cva(
   // Input 스타일 variants (cva로 타입 안전한 variant 관리)
@@ -93,12 +93,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>( // KRDS 입
   ) => {
     const [showPassword, setShowPassword] = React.useState(false); // 비밀번호 가시성 토글 상태
 
-    let formField: ReturnType<typeof useFormField> | null = null; // FormField 컨텍스트 (선택적)
-    try {
-      formField = useFormField();
-    } catch {
-      // FormField 없음, 독립 모드
-    }
+    // FormField 컨텍스트 (선택적)
+    const formField = useFormFieldOptional();
 
     const inputType = type === 'password' && showPassword ? 'text' : type; // 실제 input type 결정 (password 가시성 토글 처리)
     const isClearable = formField?.clearable ?? clearable; // clearable 결정 (FormField > Input prop)

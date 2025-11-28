@@ -328,7 +328,7 @@ type ToastState = {
   toasts: ToastType[];
 };
 
-type ToastAction =
+type ToastReducerAction =
   | { type: 'ADD_TOAST'; toast: ToastType }
   | { type: 'UPDATE_TOAST'; toast: Partial<ToastType> & { id: string } }
   | { type: 'DISMISS_TOAST'; toastId: string }
@@ -359,7 +359,7 @@ const addToRemoveQueue = (toastId: string) => {
   toastTimeouts.set(toastId, timeout);
 };
 
-const reducer = (state: ToastState, action: ToastAction): ToastState => {
+const reducer = (state: ToastState, action: ToastReducerAction): ToastState => {
   switch (action.type) {
     case 'ADD_TOAST':
       return {
@@ -409,7 +409,7 @@ const listeners: Array<(state: ToastState) => void> = [];
 
 let memoryState: ToastState = { toasts: [] };
 
-function dispatch(action: ToastAction) {
+function dispatch(action: ToastReducerAction) {
   memoryState = reducer(memoryState, action);
   listeners.forEach((listener) => {
     listener(memoryState);

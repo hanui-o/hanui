@@ -8,6 +8,22 @@ import { ChevronDown, Search, Menu, X } from 'lucide-react';
 import { Container } from '../container';
 import { NavigationMenu, NavigationMenuItem } from '../navigation-menu';
 
+// SearchInput 컴포넌트 - 검색 다이얼로그에서 포커스 관리
+const SearchInput = ({ className }: { className?: string }) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  React.useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+  return (
+    <input
+      ref={inputRef}
+      type="search"
+      placeholder="검색어를 입력하세요"
+      className={className}
+    />
+  );
+};
+
 export interface UtilityLink {
   label: string;
   href: string;
@@ -168,12 +184,7 @@ export function HeaderWithNavigation({
                   </Dialog.Title>
                   <div className={styles.searchInputWrapper}>
                     <Search className={styles.searchIcon} aria-hidden="true" />
-                    <input
-                      type="search"
-                      placeholder="검색어를 입력하세요"
-                      className={styles.searchInput}
-                      autoFocus
-                    />
+                    <SearchInput className={styles.searchInput} />
                   </div>
                   <Dialog.Close asChild>
                     <button

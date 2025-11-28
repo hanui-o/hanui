@@ -2,7 +2,7 @@ import * as SelectPrimitive from '@radix-ui/react-select';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronDownIcon, CheckIcon } from 'lucide-react';
-import { useFormField } from './form-field';
+import { useFormFieldOptional } from './form-field';
 
 // ============================================================================
 // 타입 정의
@@ -124,12 +124,7 @@ export function Select<T = string>({
   // FormField 연동 (선택적)
   // FormField 내부에서 사용되면 자동으로 id, status, disabled 등을 상속받음
   // --------------------------------------------------------------------------
-  let formField: ReturnType<typeof useFormField> | null = null;
-  try {
-    formField = useFormField();
-  } catch {
-    // FormField 외부에서 단독 사용 중 → 무시
-  }
+  const formField = useFormFieldOptional();
 
   // --------------------------------------------------------------------------
   // 최종 상태값 계산
