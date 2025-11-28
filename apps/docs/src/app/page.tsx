@@ -39,7 +39,7 @@ export default function Home() {
             </div>
 
             {/* Title */}
-            <Display size="xl" as="h1" className="tracking-tight">
+            <Display as="h1" className="tracking-tight text-[60px] py-2">
               KRDS 컴포넌트, 그냥 가져다 쓰세요
             </Display>
 
@@ -49,7 +49,7 @@ export default function Home() {
             </Body>
 
             {/* CTA Buttons */}
-            <HStack gap="md" justify="center" className="flex-wrap">
+            <HStack gap="md" justify="center" className="flex-wrap mt-8">
               <Link href="/docs/quick-start">
                 <Button variant="black" size="md">
                   Get Started
