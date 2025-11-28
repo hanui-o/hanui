@@ -41,7 +41,7 @@ export default function TextareaPage() {
       <Heading
         level="h1"
         title="Textarea"
-        description="다양한 스타일과 크기를 지원하는 여러 줄 입력 필드 컴포넌트입니다. 자동 높이 조절 기능과 FormField 자동 통합을 제공합니다."
+        description="다양한 스타일을 지원하는 여러 줄 입력 필드 컴포넌트입니다. 자동 높이 조절 기능과 FormField 자동 통합을 제공합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -62,7 +62,7 @@ export default function TextareaPage() {
             />
 
             <ComponentPreview>
-              <div className="flex flex-col gap-4 max-w-md">
+              <div className="flex flex-col gap-4 max-w-lg ">
                 <TextareaComponent placeholder="기본 텍스트 영역" />
                 <TextareaComponent readOnly value="읽기 전용 텍스트입니다." />
                 <TextareaComponent disabled placeholder="비활성화 상태" />
@@ -70,7 +70,7 @@ export default function TextareaPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Textarea } from '@hanui/react'
+              {`import { Textarea } from '@/components/hanui'
 
 // 기본
 <Textarea placeholder="내용을 입력하세요" />
@@ -97,7 +97,7 @@ export default function TextareaPage() {
               description="Textarea 컴포넌트를 import하여 사용합니다. rows 속성으로 초기 높이를 설정할 수 있습니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Textarea } from '@hanui/react'
+              {`import { Textarea } from '@/components/hanui'
 
 <Textarea placeholder="내용을 입력하세요" rows={4} />`}
             </Code>
@@ -106,35 +106,6 @@ export default function TextareaPage() {
           {/* 4. 예제 */}
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
-
-            <Subsection level="h3">
-              <Heading
-                level="h3"
-                title="Size"
-                description="sm, md(기본값), lg 세 가지 크기를 제공합니다."
-              />
-              <ComponentPreview>
-                <div className="flex flex-col gap-4 max-w-md">
-                  <TextareaComponent
-                    size="sm"
-                    placeholder="Small (min-h: 80px)"
-                  />
-                  <TextareaComponent
-                    size="md"
-                    placeholder="Medium (min-h: 96px)"
-                  />
-                  <TextareaComponent
-                    size="lg"
-                    placeholder="Large (min-h: 128px)"
-                  />
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Textarea size="sm" placeholder="Small" />
-<Textarea size="md" placeholder="Medium" />
-<Textarea size="lg" placeholder="Large" />`}
-              </Code>
-            </Subsection>
 
             <Subsection level="h3">
               <Heading
@@ -260,7 +231,7 @@ export default function TextareaPage() {
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { FormField, FormLabel, FormError, FormHelperText, Textarea } from '@hanui/react'
+                {`import { FormField, FormLabel, FormError, FormHelperText, Textarea } from '@/components/hanui'
 
 // 기본 사용
 <FormField id="description" required>
@@ -276,60 +247,6 @@ export default function TextareaPage() {
   <FormError>필수 입력 항목입니다</FormError>
 </FormField>`}
               </Code>
-            </Subsection>
-          </Section>
-
-          {/* 5. 사용 가이드라인 */}
-          <Section level="h2">
-            <Heading level="h2" id="best-practices" title="사용 가이드라인" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하나요?" />
-              <DoCard title="Textarea 사용이 적합한 경우">
-                <List variant="check">
-                  <ListItem>여러 줄의 텍스트 입력이 필요한 경우</ListItem>
-                  <ListItem>댓글, 리뷰, 피드백 작성</ListItem>
-                  <ListItem>상세한 설명이나 내용 입력</ListItem>
-                  <ListItem>메모, 노트 작성</ListItem>
-                </List>
-              </DoCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
-              <DontCard title="Textarea 사용을 피해야 하는 경우">
-                <List variant="dash">
-                  <ListItem>한 줄의 짧은 텍스트 입력 (Input 사용)</ListItem>
-                  <ListItem>
-                    이메일, 전화번호, URL 등 형식이 정해진 입력 (Input 사용)
-                  </ListItem>
-                  <ListItem>
-                    선택 목록이 있는 경우 (Select, Radio 사용)
-                  </ListItem>
-                </List>
-              </DontCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="주의사항" />
-              <List>
-                <ListItem>
-                  <strong>적절한 크기:</strong> rows 속성으로 초기 높이를
-                  설정하세요 (기본 3-5줄 권장)
-                </ListItem>
-                <ListItem>
-                  <strong>자동 높이 조절:</strong> 긴 텍스트가 예상되면
-                  autoResize를 사용하고 maxRows로 제한하세요
-                </ListItem>
-                <ListItem>
-                  <strong>명확한 레이블:</strong> FormLabel로 입력 목적을 명확히
-                  표시하세요
-                </ListItem>
-                <ListItem>
-                  <strong>글자 수 제한:</strong> maxLength와 FormHelperText로
-                  제한 사항을 알려주세요
-                </ListItem>
-              </List>
             </Subsection>
           </Section>
 
@@ -430,25 +347,13 @@ import { FormField, FormLabel, FormError, Textarea } from '@hanui/react'
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow>
-                    <TableCell>
-                      <Code>size</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
-                    </TableCell>
-                    <TableCell>'md'</TableCell>
-                    <TableCell>
-                      입력 필드 크기 (min-h: 80px / 96px / 128px)
-                    </TableCell>
-                  </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>variant</Code>
@@ -536,47 +441,6 @@ import { FormField, FormLabel, FormError, Textarea } from '@hanui/react'
                 </TableBody>
               </Table>
             </Subsection>
-          </Section>
-
-          <Section level="h2">
-            <Heading level="h2" id="size-variants" title="Size Variants" />
-
-            <Table small>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Size</TableHead>
-                  <TableHead>Min Height</TableHead>
-                  <TableHead>Font Size</TableHead>
-                  <TableHead>Padding</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow>
-                  <TableCell>
-                    <Code>sm</Code>
-                  </TableCell>
-                  <TableCell>80px</TableCell>
-                  <TableCell>15px (body-sm)</TableCell>
-                  <TableCell>16px (horizontal), 8px (vertical)</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>md</Code>
-                  </TableCell>
-                  <TableCell>96px</TableCell>
-                  <TableCell>17px (body-md)</TableCell>
-                  <TableCell>16px (horizontal), 8px (vertical)</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Code>lg</Code>
-                  </TableCell>
-                  <TableCell>128px</TableCell>
-                  <TableCell>19px (body-lg)</TableCell>
-                  <TableCell>16px (horizontal), 12px (vertical)</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
           </Section>
         </TabsContent>
       </Tabs>

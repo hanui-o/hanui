@@ -23,6 +23,13 @@ export interface TabBarsProps extends React.HTMLAttributes<HTMLElement> {
   items: TabBarItem[];
   /** 아이템 클릭 핸들러 */
   onItemClick?: (item: TabBarItem, index: number) => void;
+  /**
+   * 스타일 변형
+   * - default: 활성화 시 filled 아이콘 + text-krds-gray-95 + font-bold
+   * - border: 활성화 시 line 아이콘 유지 + text-krds-gray-95 + font-bold + border-top
+   * @default 'default'
+   */
+  variant?: 'default' | 'border';
   /** 추가 className */
   className?: string;
 }
@@ -65,6 +72,7 @@ export interface TabBarsProps extends React.HTMLAttributes<HTMLElement> {
 export function TabBars({
   items,
   onItemClick,
+  variant = 'default',
   className,
   ...props
 }: TabBarsProps) {
@@ -121,14 +129,17 @@ export function TabBars({
                 'min-h-[44px]',
                 // Focus styles
                 'focus:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2',
-                // Active styles
-                isActive && 'text-krds-primary-base',
+                // Color styles
+                isActive && 'text-krds-gray-95',
                 !isActive && 'text-krds-gray-60 hover:text-krds-gray-90'
               )}
             >
               {/* Icon with badge */}
               <div className="relative flex items-center justify-center w-6 h-6 mb-1">
-                {isActive && item.activeIcon ? item.activeIcon : item.icon}
+                {/* default variant: show filled icon when active, border variant: always show line icon */}
+                {variant === 'default' && isActive && item.activeIcon
+                  ? item.activeIcon
+                  : item.icon}
 
                 {/* Badge */}
                 {item.badge !== undefined && item.badge > 0 && (
@@ -159,10 +170,10 @@ export function TabBars({
                 {item.label}
               </span>
 
-              {/* Active indicator line (선택사항) */}
-              {isActive && (
+              {/* Active indicator line - only for border variant */}
+              {variant === 'border' && isActive && (
                 <span
-                  className="absolute top-0 left-0 right-0 h-[2px] bg-krds-primary-base"
+                  className="absolute top-0 left-0 right-0 h-[2px] bg-krds-gray-95"
                   aria-hidden="true"
                 />
               )}

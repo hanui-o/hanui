@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Copy, Check } from 'lucide-react';
 import { Heading } from '@hanui/react';
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn' | 'bun';
@@ -11,15 +12,22 @@ interface InstallationProps {
 
 export function Installation({ componentName }: InstallationProps) {
   const [packageManager, setPackageManager] = useState<PackageManager>('pnpm');
+  const [copied, setCopied] = useState(false);
 
-  const getInstallCommand = () => {
-    const commands = {
-      pnpm: `pnpm dlx @hanui/cli add ${componentName}`,
-      npm: `npx @hanui/cli add ${componentName}`,
-      yarn: `npx @hanui/cli add ${componentName}`,
-      bun: `bunx @hanui/cli add ${componentName}`,
+  const getCommand = () => {
+    const runners: Record<PackageManager, string> = {
+      pnpm: 'pnpm dlx',
+      npm: 'npx',
+      yarn: 'npx',
+      bun: 'bunx',
     };
-    return commands[packageManager];
+    return `${runners[packageManager]} @hanui/cli add ${componentName}`;
+  };
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(getCommand());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -37,8 +45,8 @@ export function Installation({ componentName }: InstallationProps) {
               onClick={() => setPackageManager(pm)}
               className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-colors ${
                 packageManager === pm
-                  ? 'bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-gray-900 dark:border-gray-100'
-                  : 'bg-transparent border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700'
+                  ? 'bg-krds-gray-90 text-white border-krds-gray-90'
+                  : 'bg-transparent border-krds-gray-20 text-krds-gray-70 hover:border-krds-gray-30'
               }`}
             >
               {pm}
@@ -46,8 +54,23 @@ export function Installation({ componentName }: InstallationProps) {
           ))}
         </div>
 
-        <div className="rounded-lg bg-gray-950 dark:bg-gray-900 p-4 font-mono">
-          <div className="text-gray-100">{getInstallCommand()}</div>
+        <div className="relative group">
+          <div className="overflow-x-auto rounded-lg bg-krds-gray-90 p-5">
+            <code className="text-krds-white text-[17px] leading-6">
+              {getCommand()}
+            </code>
+          </div>
+          <button
+            onClick={handleCopy}
+            className="absolute top-3 right-3 p-2 rounded-md transition-all bg-krds-gray-70 hover:bg-krds-gray-60 text-krds-gray-10 opacity-0 group-hover:opacity-100"
+            aria-label="Copy code"
+          >
+            {copied ? (
+              <Check className="w-4 h-4" />
+            ) : (
+              <Copy className="w-4 h-4" />
+            )}
+          </button>
         </div>
       </div>
     </div>

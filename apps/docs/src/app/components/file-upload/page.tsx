@@ -120,7 +120,7 @@ export default function FileUploadPage() {
               description="FileUpload와 UploadedFile 타입을 import하여 사용합니다. onUpload, onChange, onError 콜백으로 파일 업로드 상태를 관리합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { FileUpload, type UploadedFile } from '@hanui/react'
+              {`import { FileUpload, type UploadedFile } from '@/components/hanui'
 import { useState } from 'react'
 
 export default function MyComponent() {

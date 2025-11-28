@@ -101,7 +101,7 @@ export default function DisplayPage() {
             </Card>
 
             <Code variant="block" language="tsx">
-              {`import { Display } from '@hanui/react'
+              {`import { Display } from '@/components/hanui'
 
 // ✅ 올바른 사용
 <Display size="xl">환영합니다</Display>
@@ -307,7 +307,7 @@ export default function DisplayPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Container', href: '/components/container' }}
+        prev={{ title: 'DataTable', href: '/components/data-table' }}
         next={{ title: 'DropdownMenu', href: '/components/dropdown-menu' }}
       />
     </>

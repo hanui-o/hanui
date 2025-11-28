@@ -109,7 +109,7 @@ export default function SpinnerPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Spinner, SpinnerInline, SpinnerOverlay } from '@hanui/react'
+              {`import { Spinner, SpinnerInline, SpinnerOverlay } from '@/components/hanui'
 
 <Spinner />
 <SpinnerInline>로딩 중...</SpinnerInline>

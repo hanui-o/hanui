@@ -80,7 +80,7 @@ export default function ContainerPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Container } from '@hanui/react'
+              {`import { Container } from '@/components/hanui'
 
 <Container>
   <h1>페이지 제목</h1>
@@ -382,7 +382,7 @@ export default function ContainerPage() {
 
       <PageNavigation
         prev={{ title: 'Combobox', href: '/components/combobox' }}
-        next={{ title: 'Display', href: '/components/display' }}
+        next={{ title: 'DataTable', href: '/components/data-table' }}
       />
     </>
   );

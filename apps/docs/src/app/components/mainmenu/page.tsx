@@ -127,7 +127,7 @@ export default function MainMenuPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { NavigationMenu } from '@hanui/react'
+              {`import { NavigationMenu } from '@/components/hanui'
 
 <NavigationMenu
   items={[
@@ -168,7 +168,7 @@ export default function MainMenuPage() {
             </Body>
 
             <Code variant="block" language="tsx">
-              {`import { Header, MainMenu } from '@hanui/react'
+              {`import { Header, MainMenu } from '@/components/hanui'
 
 export default function Layout() {
   const menuItems = [
@@ -515,7 +515,7 @@ export default function Layout() {
                 />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { MegaMenu } from '@hanui/react'
+                {`import { MegaMenu } from '@/components/hanui'
 
 <MegaMenu
   columns={[

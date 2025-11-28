@@ -79,6 +79,11 @@ export interface ToastProviderProps
     | 'bottom-left'
     | 'bottom-center'
     | 'bottom-right';
+  /**
+   * Toast 영역으로 포커스를 이동하는 단축키
+   * @default ['F8']
+   */
+  hotkey?: string[];
 }
 
 const positionStyles = {
@@ -99,6 +104,7 @@ const positionStyles = {
 export function ToastProvider({
   children,
   position = 'bottom-right',
+  hotkey = ['F8'],
   ...props
 }: ToastProviderProps) {
   return (
@@ -109,6 +115,8 @@ export function ToastProvider({
           'fixed z-[100] flex max-h-screen w-full flex-col gap-2 p-4 sm:max-w-[420px]',
           positionStyles[position]
         )}
+        label="알림"
+        hotkey={hotkey}
       />
     </ToastPrimitives.Provider>
   );
@@ -119,7 +127,10 @@ export function ToastProvider({
 // ============================================================================
 
 export interface ToastProps
-  extends React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root>,
+  extends Omit<
+      React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root>,
+      'title'
+    >,
     VariantProps<typeof toastVariants> {
   /** Toast 제목 */
   title?: React.ReactNode;
@@ -162,26 +173,45 @@ export const Toast = React.forwardRef<
     },
     ref
   ) => {
-    const IconComponent =
-      icon === false ? null : icon || defaultIcons[variant || 'default'];
+    // 기본 아이콘 또는 커스텀 아이콘
+    const DefaultIcon =
+      icon === false ? null : defaultIcons[variant || 'default'];
+    const customIcon = icon === false ? null : icon;
+
+    // error variant는 즉시 알림 (aria-live="assertive")
+    const toastType = variant === 'error' ? 'foreground' : 'background';
+
+    // 아이콘 렌더링
+    const renderIcon = () => {
+      if (icon === false) return null;
+
+      // 커스텀 아이콘이 ReactElement인 경우
+      if (customIcon && React.isValidElement(customIcon)) {
+        return (
+          <span className="h-5 w-5 mt-0.5 shrink-0" aria-hidden="true">
+            {customIcon}
+          </span>
+        );
+      }
+
+      // 기본 lucide 아이콘 사용
+      if (DefaultIcon) {
+        return (
+          <DefaultIcon className="h-5 w-5 mt-0.5 shrink-0" aria-hidden="true" />
+        );
+      }
+
+      return null;
+    };
 
     return (
       <ToastPrimitives.Root
         ref={ref}
+        type={toastType}
         className={cn(toastVariants({ variant }), className)}
         {...props}
       >
-        {IconComponent &&
-          (typeof IconComponent === 'function' ? (
-            <IconComponent
-              className="h-5 w-5 mt-0.5 shrink-0"
-              aria-hidden="true"
-            />
-          ) : (
-            <span className="h-5 w-5 mt-0.5 shrink-0" aria-hidden="true">
-              {IconComponent}
-            </span>
-          ))}
+        {renderIcon()}
         <div className="flex-1 min-w-0 pr-6">
           {title && <ToastTitle>{title}</ToastTitle>}
           {(description || children) && (

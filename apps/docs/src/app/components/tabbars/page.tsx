@@ -9,6 +9,7 @@ import {
 } from '@/components/content';
 import { Installation } from '@/components/content/Installation';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
+import { Home, Search, Bell, User, Menu } from 'lucide-react';
 
 import {
   TabBars,
@@ -29,121 +30,40 @@ import {
   TableCell,
 } from '@hanui/react';
 
-// 예제용 아이콘 컴포넌트
-const HomeIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-  >
-    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-    <polyline points="9 22 9 12 15 12 15 22" />
-  </svg>
-);
-
-const HomeFilledIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-  </svg>
-);
-
-const SearchIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-  >
-    <circle cx="11" cy="11" r="8" />
-    <path d="m21 21-4.35-4.35" />
-  </svg>
-);
-
-const BellIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-  >
-    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-    <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-  </svg>
-);
-
-const BellFilledIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" />
-  </svg>
-);
-
-const UserIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-  >
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-  </svg>
-);
-
-const MenuIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-  >
-    <line x1="3" y1="12" x2="21" y2="12" />
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <line x1="3" y1="18" x2="21" y2="18" />
-  </svg>
-);
-
 export default function TabBarsPage() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const basicItems: TabBarItem[] = [
     {
       label: '홈',
-      icon: <HomeIcon />,
-      activeIcon: <HomeFilledIcon />,
+      icon: <Home size={24} strokeWidth={1.5} />,
+      activeIcon: <Home size={24} strokeWidth={2.5} />,
       href: '/',
       active: true,
     },
     {
       label: '검색',
-      icon: <SearchIcon />,
+      icon: <Search size={24} strokeWidth={1.5} />,
+      activeIcon: <Search size={24} strokeWidth={2.5} />,
       href: '/search',
     },
     {
       label: '알림',
-      icon: <BellIcon />,
-      activeIcon: <BellFilledIcon />,
+      icon: <Bell size={24} strokeWidth={1.5} />,
+      activeIcon: <Bell size={24} strokeWidth={2.5} />,
       href: '/notifications',
       badge: 3,
     },
     {
       label: '내 정보',
-      icon: <UserIcon />,
+      icon: <User size={24} strokeWidth={1.5} />,
+      activeIcon: <User size={24} strokeWidth={2.5} />,
       href: '/profile',
     },
     {
       label: '전체 메뉴',
-      icon: <MenuIcon />,
+      icon: <Menu size={24} strokeWidth={1.5} />,
+      activeIcon: <Menu size={24} strokeWidth={2.5} />,
       href: '/menu',
     },
   ];
@@ -183,13 +103,35 @@ export default function TabBarsPage() {
               <strong>KRDS(한국형 웹 콘텐츠 접근성 지침)</strong>을 준수하여
               공공 모바일 서비스에 최적화된 접근성과 사용성을 제공합니다.
             </Body>
-            <ComponentPreview className="pb-20">
-              <TabBars
-                items={basicItems}
-                onItemClick={handleItemClick}
-                className="!absolute !bottom-0"
-              />
-            </ComponentPreview>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Body size="sm" className="mb-2 text-krds-gray-60">
+                  <strong>Default</strong> - 활성화: 면 아이콘 + gray-95 + bold
+                </Body>
+                <ComponentPreview className="pb-20">
+                  <TabBars
+                    items={basicItems}
+                    variant="default"
+                    onItemClick={handleItemClick}
+                    className="!absolute !bottom-0"
+                  />
+                </ComponentPreview>
+              </div>
+              <div>
+                <Body size="sm" className="mb-2 text-krds-gray-60">
+                  <strong>Border</strong> - 활성화: 선 아이콘 + gray-95 + bold +
+                  border-top
+                </Body>
+                <ComponentPreview className="pb-20">
+                  <TabBars
+                    items={basicItems}
+                    variant="border"
+                    onItemClick={handleItemClick}
+                    className="!absolute !bottom-0"
+                  />
+                </ComponentPreview>
+              </div>
+            </div>
           </Section>
 
           {/* 설치 */}
@@ -202,24 +144,25 @@ export default function TabBarsPage() {
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
               {`import { TabBars, TabBarItem } from '@hanui/react';
+import { Home, Search, Bell } from 'lucide-react';
 
 const items: TabBarItem[] = [
   {
     label: '홈',
-    icon: <HomeIcon />,
-    activeIcon: <HomeFilledIcon />,
+    icon: <Home size={24} strokeWidth={1.5} />,
+    activeIcon: <Home size={24} strokeWidth={2.5} />,
     href: '/',
     active: true,
   },
   {
     label: '검색',
-    icon: <SearchIcon />,
+    icon: <Search size={24} strokeWidth={1.5} />,
     href: '/search',
   },
   {
     label: '알림',
-    icon: <BellIcon />,
-    activeIcon: <BellFilledIcon />,
+    icon: <Bell size={24} strokeWidth={1.5} />,
+    activeIcon: <Bell size={24} strokeWidth={2.5} />,
     href: '/notifications',
     badge: 3,
   },
@@ -257,8 +200,8 @@ const items: TabBarItem[] = [
               <Code variant="block" language="tsx">
                 {`{
   label: '알림',
-  icon: <BellIcon />,
-  activeIcon: <BellFilledIcon />,
+  icon: <Bell size={24} strokeWidth={1.5} />,
+  activeIcon: <Bell size={24} strokeWidth={2.5} />,
   href: '/notifications',
   badge: 3, // Badge 숫자
 }`}
@@ -269,13 +212,13 @@ const items: TabBarItem[] = [
               <Heading
                 level="h3"
                 title="활성 아이콘"
-                description="선택 상태에서 다른 아이콘(filled)을 표시하려면 activeIcon을 설정합니다."
+                description="선택 상태에서 다른 스타일의 아이콘을 표시하려면 activeIcon을 설정합니다."
               />
               <Code variant="block" language="tsx">
                 {`{
   label: '홈',
-  icon: <HomeIcon />,        // line 아이콘
-  activeIcon: <HomeFilledIcon />, // filled 아이콘
+  icon: <Home size={24} strokeWidth={1.5} />,        // 기본 아이콘
+  activeIcon: <Home size={24} strokeWidth={2.5} />, // 활성화 아이콘 (더 굵게)
   href: '/',
   active: true,
 }`}
@@ -286,7 +229,7 @@ const items: TabBarItem[] = [
           {/* 주요 기능 */}
           <Section level="h2">
             <Heading level="h2" id="key-features" title="주요 기능" />
-            <List variant="disc">
+            <List>
               <ListItem>
                 <strong>하단 고정:</strong> 화면 하단에 고정되어 스크롤 시에도
                 항상 접근 가능합니다
@@ -300,34 +243,13 @@ const items: TabBarItem[] = [
                 명확한 의미 전달
               </ListItem>
               <ListItem>
-                <strong>선택 상태 표시:</strong> 활성 메뉴는 filled 아이콘과
+                <strong>선택 상태 표시:</strong> 활성 메뉴는 더 굵은 아이콘과
                 색상 변화로 구분됩니다
               </ListItem>
               <ListItem>
                 <strong>Badge 지원:</strong> 알림 개수 등을 표시할 수 있는 배지
                 기능
               </ListItem>
-            </List>
-          </Section>
-
-          {/* 디자인 가이드라인 */}
-          <Section level="h2">
-            <Heading
-              level="h2"
-              id="guidelines"
-              title="디자인 가이드라인"
-              description="KRDS Tab Bars 가이드라인을 준수합니다."
-            />
-            <List variant="disc">
-              <ListItem>
-                홈 버튼은 가장 왼쪽, 전체 메뉴 버튼은 가장 오른쪽에 배치
-              </ListItem>
-              <ListItem>라벨 텍스트는 1-2단어로 간결하게 유지</ListItem>
-              <ListItem>모든 메뉴의 크기와 높이를 동일하게 유지</ListItem>
-              <ListItem>
-                선택/비선택 상태를 명확히 구분 (filled/line 아이콘)
-              </ListItem>
-              <ListItem>최소 터치 영역 44x44px 이상 확보</ListItem>
             </List>
           </Section>
 
@@ -407,6 +329,23 @@ const items: TabBarItem[] = [
                   </TableRow>
                   <TableRow>
                     <TableCell>
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;default&apos; | &apos;border&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">&apos;default&apos;</Code>
+                    </TableCell>
+                    <TableCell>
+                      스타일 변형. default: 활성화 시 면 아이콘, border: 활성화
+                      시 선 아이콘 + 상단 보더
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
                       <Code>className</Code>
                     </TableCell>
                     <TableCell>
@@ -424,8 +363,8 @@ const items: TabBarItem[] = [
               <Code variant="block" language="tsx">
                 {`interface TabBarItem {
   label: string;             // 메뉴 라벨 (1-2 단어 권장)
-  icon: React.ReactNode;     // 메뉴 아이콘 (line icon)
-  activeIcon?: React.ReactNode; // 선택된 상태의 아이콘 (filled icon)
+  icon: React.ReactNode;     // 메뉴 아이콘
+  activeIcon?: React.ReactNode; // 선택된 상태의 아이콘
   href: string;              // 메뉴 링크
   badge?: number;            // Badge 숫자 (선택사항)
   active?: boolean;          // 초기 활성 상태
@@ -435,7 +374,7 @@ const items: TabBarItem[] = [
 
             <Subsection level="h3">
               <Heading level="h3" title="사용 시 주의사항" />
-              <List variant="disc">
+              <List>
                 <ListItem>
                   메뉴는 최대 5개까지 권장합니다 (KRDS 가이드라인)
                 </ListItem>

@@ -61,6 +61,11 @@ export interface TableHeadProps
   className?: string;
   children: React.ReactNode;
   /**
+   * Text alignment
+   * @default 'left'
+   */
+  align?: 'left' | 'center' | 'right';
+  /**
    * Enable sortable functionality
    */
   sortable?: boolean;
@@ -81,6 +86,11 @@ export interface TableCellProps
   extends React.TdHTMLAttributes<HTMLTableCellElement> {
   className?: string;
   children: React.ReactNode;
+  /**
+   * Text alignment
+   * @default 'left'
+   */
+  align?: 'left' | 'center' | 'right';
   /**
    * Apply small text size to the cell
    */
@@ -129,7 +139,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         <table
           ref={ref}
           className={cn(
-            'w-full caption-bottom border-collapse',
+            'w-full caption-bottom border-collapse border-b border-krds-gray-20',
             small && 'text-sm',
             className
           )}
@@ -155,7 +165,7 @@ export const TableHeader = React.forwardRef<
     <thead
       ref={ref}
       className={cn(
-        'bg-krds-gray-5',
+        'bg-krds-primary-5',
         '[&_tr]:border-b [&_tr]:border-krds-gray-20',
         className
       )}
@@ -203,7 +213,7 @@ export const TableFooter = React.forwardRef<
     <tfoot
       ref={ref}
       className={cn(
-        'bg-krds-gray-5',
+        'bg-krds-primary-5',
         'border-t border-krds-gray-20',
         'font-medium',
         '[&>tr]:last:border-b-0',
@@ -228,8 +238,8 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         ref={ref}
         className={cn(
           'transition-colors',
-          'hover:bg-krds-gray-5',
-          'data-[state=selected]:bg-krds-gray-10',
+          'hover:bg-krds-primary-5',
+          'data-[state=selected]:bg-krds-primary-5',
           className
         )}
         {...props}
@@ -242,11 +252,28 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
 
 TableRow.displayName = 'TableRow';
 
+const alignmentClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
+};
+
 /**
  * TableHead 컴포넌트
  */
 export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
-  ({ className, children, sortable, sortDirection, onSort, ...props }, ref) => {
+  (
+    {
+      className,
+      children,
+      align = 'left',
+      sortable,
+      sortDirection,
+      onSort,
+      ...props
+    },
+    ref
+  ) => {
     const content = (
       <>
         <span>{children}</span>
@@ -285,9 +312,10 @@ export const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
       <th
         ref={ref}
         className={cn(
-          'h-12 px-4 text-left align-middle font-medium text-krds-gray-70',
+          'px-4 py-2 align-middle text-[15px] font-bold text-krds-gray-95',
+          alignmentClasses[align],
           '[&:has([role=checkbox])]:pr-0',
-          sortable && 'cursor-pointer select-none hover:bg-krds-gray-10',
+          sortable && 'cursor-pointer select-none hover:bg-krds-primary-5',
           className
         )}
         onClick={sortable ? onSort : undefined}
@@ -309,12 +337,13 @@ TableHead.displayName = 'TableHead';
  * TableCell 컴포넌트
  */
 export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
-  ({ className, children, small, ...props }, ref) => {
+  ({ className, children, align = 'left', small, ...props }, ref) => {
     return (
       <td
         ref={ref}
         className={cn(
-          'p-4 align-middle',
+          'py-2 px-4 align-middle text-krds-gray-70',
+          alignmentClasses[align],
           '[&:has([role=checkbox])]:pr-0',
           small && 'text-sm',
           className
@@ -557,7 +586,7 @@ export const TableAccordionContent = React.forwardRef<
     >
       <tr>
         <td colSpan={colSpan} className={cn('p-0', className)}>
-          <div className="px-4 py-2 bg-krds-gray-5">{children}</div>
+          <div className="px-4 py-2 bg-krds-primary-5">{children}</div>
         </td>
       </tr>
     </AccordionPrimitive.Content>

@@ -3,14 +3,10 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
-/**
- * SkipLink 표시 방식
- */
+/** SkipLink 표시 방식 */
 export type SkipLinkVariant = 'visible' | 'hidden';
 
-/**
- * SkipLink 링크 아이템
- */
+/** SkipLink 링크 아이템 */
 export interface SkipLinkItem {
   /** 링크 목적지 (예: '#main-content') */
   href: string;
@@ -18,9 +14,6 @@ export interface SkipLinkItem {
   label: string;
 }
 
-/**
- * SkipLink Props
- */
 export interface SkipLinkProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'children'> {
   /**
@@ -28,7 +21,6 @@ export interface SkipLinkProps
    * @example [{ href: '#main-content', label: '본문 바로가기' }]
    */
   links: SkipLinkItem[];
-
   /**
    * 표시 방식
    * - hidden: 포커스 시에만 표시 (기본값)
@@ -36,14 +28,11 @@ export interface SkipLinkProps
    * @default "hidden"
    */
   variant?: SkipLinkVariant;
-
   /** 추가 CSS 클래스 */
   className?: string;
 }
 
-/**
- * 기본 건너뛰기 링크
- */
+/** 기본 건너뛰기 링크 */
 const DEFAULT_LINKS: SkipLinkItem[] = [
   { href: '#main-content', label: '본문 바로가기' },
 ];
@@ -53,23 +42,6 @@ const DEFAULT_LINKS: SkipLinkItem[] = [
  *
  * 키보드 및 스크린 리더 사용자가 반복적인 콘텐츠를 건너뛰고
  * 주요 콘텐츠로 바로 이동할 수 있도록 돕는 접근성 필수 컴포넌트입니다.
- *
- * KRDS 필수 요구사항:
- * - id="krds-skip-link" 자동 적용
- * - 페이지 최상단 배치 (쿠키 배너/모달 제외)
- * - 최대 3개 링크 권장
- *
- * WCAG 2.1 / KWCAG 2.2 준수:
- * - Bypass Blocks (2.4.1) Level A
- * - Focus Visible (2.4.7) Level AA
- *
- * @example
- * <SkipLink
- *   links={[
- *     { href: '#main-content', label: '본문 바로가기' },
- *     { href: '#main-navigation', label: '주 메뉴 바로가기' },
- *   ]}
- * />
  */
 export const SkipLink = React.forwardRef<HTMLElement, SkipLinkProps>(
   ({ links = DEFAULT_LINKS, variant = 'hidden', className, ...props }, ref) => {
@@ -94,7 +66,6 @@ export const SkipLink = React.forwardRef<HTMLElement, SkipLinkProps>(
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
-        // 대상 요소로 스크롤
         targetElement.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
@@ -115,7 +86,7 @@ export const SkipLink = React.forwardRef<HTMLElement, SkipLinkProps>(
           }
         }, 100);
 
-        // URL 해시 업데이트 (스크롤 트리거 방지)
+        // URL 해시 업데이트
         if (window.history.pushState) {
           window.history.pushState(null, '', href);
         } else {
@@ -126,7 +97,7 @@ export const SkipLink = React.forwardRef<HTMLElement, SkipLinkProps>(
 
     // hidden: 포커스 시에만 표시
     const hiddenLinkClass =
-      'fixed left-0 -top-full z-[9999] w-full h-8 px-4 py-2 text-[15px] text-center ' +
+      'fixed left-0 -top-full z-[9999] w-full px-4 py-2 text-sm text-center ' +
       'bg-krds-gray-90 text-white ' +
       'focus:top-0 focus:outline-none focus:ring-2 focus:ring-krds-func-info focus:ring-offset-2';
 

@@ -111,7 +111,7 @@ export default function TabsPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@hanui/react';
+              {`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/hanui';
 
 <Tabs defaultValue="tab1">
   <TabsList>
@@ -135,7 +135,11 @@ export default function TabsPage() {
                 description="둥근 배경으로 선택된 탭을 강조합니다."
               />
               <ComponentPreview>
-                <TabsComponent defaultValue="account" variant="pills">
+                <TabsComponent
+                  defaultValue="account"
+                  variant="pills"
+                  className="w-full max-w-md"
+                >
                   <TabsList>
                     <TabsTrigger value="account">계정</TabsTrigger>
                     <TabsTrigger value="password">비밀번호</TabsTrigger>
@@ -169,37 +173,56 @@ export default function TabsPage() {
             <Subsection level="h3">
               <Heading
                 level="h3"
-                title="비활성화 탭"
-                description="disabled prop으로 특정 탭을 비활성화할 수 있습니다."
+                title="크기 (Size)"
+                description="size prop으로 탭의 크기를 조절합니다."
               />
               <ComponentPreview>
-                <TabsComponent defaultValue="general">
-                  <TabsList>
-                    <TabsTrigger value="general">일반</TabsTrigger>
-                    <TabsTrigger value="advanced">고급</TabsTrigger>
-                    <TabsTrigger value="admin" disabled>
-                      관리자 (비활성화)
-                    </TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="general">
-                    <Body>일반 설정...</Body>
-                  </TabsContent>
-                  <TabsContent value="advanced">
-                    <Body>고급 설정...</Body>
-                  </TabsContent>
-                  <TabsContent value="admin">
-                    <Body>관리자 설정...</Body>
-                  </TabsContent>
-                </TabsComponent>
+                <Stack gap="lg" className="w-full">
+                  <div>
+                    <Body className="text-sm text-krds-gray-60 mb-2">
+                      Default (56px)
+                    </Body>
+                    <TabsComponent defaultValue="tab1" className="max-w-md">
+                      <TabsList>
+                        <TabsTrigger value="tab1">탭 1</TabsTrigger>
+                        <TabsTrigger value="tab2">탭 2</TabsTrigger>
+                        <TabsTrigger value="tab3">탭 3</TabsTrigger>
+                      </TabsList>
+                    </TabsComponent>
+                  </div>
+                  <div>
+                    <Body className="text-sm text-krds-gray-60 mb-2">
+                      Small (40px)
+                    </Body>
+                    <TabsComponent
+                      defaultValue="tab1"
+                      size="sm"
+                      className="max-w-md"
+                    >
+                      <TabsList>
+                        <TabsTrigger value="tab1">탭 1</TabsTrigger>
+                        <TabsTrigger value="tab2">탭 2</TabsTrigger>
+                        <TabsTrigger value="tab3">탭 3</TabsTrigger>
+                      </TabsList>
+                    </TabsComponent>
+                  </div>
+                </Stack>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<Tabs defaultValue="general">
+                {`{/* Default 크기 */}
+<Tabs defaultValue="tab1">
   <TabsList>
-    <TabsTrigger value="general">일반</TabsTrigger>
-    <TabsTrigger value="advanced">고급</TabsTrigger>
-    <TabsTrigger value="admin" disabled>관리자 (비활성화)</TabsTrigger>
+    <TabsTrigger value="tab1">탭 1</TabsTrigger>
+    <TabsTrigger value="tab2">탭 2</TabsTrigger>
   </TabsList>
-  ...
+</Tabs>
+
+{/* Small 크기 */}
+<Tabs defaultValue="tab1" size="sm">
+  <TabsList>
+    <TabsTrigger value="tab1">탭 1</TabsTrigger>
+    <TabsTrigger value="tab2">탭 2</TabsTrigger>
+  </TabsList>
 </Tabs>`}
               </Code>
             </Subsection>
@@ -225,38 +248,114 @@ export default function TabsPage() {
 </Tabs>`}
               </Code>
             </Subsection>
-          </Section>
 
-          {/* 사용 가이드 */}
-          <Section level="h2">
-            <Heading level="h2" id="best-practices" title="사용 가이드" />
-
-            <Stack gap="content">
-              <DoCard
-                title="관련 콘텐츠 그룹화"
-                description="여러 관련된 콘텐츠를 하나의 영역에 구성할 때, 공간을 절약하면서 많은 정보를 제공할 때 사용하세요."
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="스크롤 가능한 탭"
+                description="탭이 많아 한 줄에 표시하기 어려운 경우, scrollable prop으로 좌우 스크롤 버튼을 활성화합니다."
               />
+              <ComponentPreview>
+                <div className="flex flex-col gap-2">
+                  <TabsComponent
+                    defaultValue="tab5"
+                    className="w-full max-w-lg"
+                  >
+                    <TabsList scrollable>
+                      <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+                      <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+                      <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+                      <TabsTrigger value="tab4">Tab 4</TabsTrigger>
+                      <TabsTrigger value="tab5">Tab 5</TabsTrigger>
+                      <TabsTrigger value="tab6">Tab 6</TabsTrigger>
+                      <TabsTrigger value="tab7">Tab 7</TabsTrigger>
+                      <TabsTrigger value="tab8">Tab 8</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="tab1">
+                      <Body>Tab 1 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab2">
+                      <Body>Tab 2 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab3">
+                      <Body>Tab 3 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab4">
+                      <Body>Tab 4 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab5">
+                      <Body>Tab 5 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab6">
+                      <Body>Tab 6 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab7">
+                      <Body>Tab 7 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab8">
+                      <Body>Tab 8 콘텐츠</Body>
+                    </TabsContent>
+                  </TabsComponent>
 
-              <DoCard
-                title="탭은 5개 이하로 유지"
-                description="너무 많은 탭은 사용자 경험을 해칩니다. 5개 이하로 유지하고, 그 이상은 다른 UI 패턴을 고려하세요."
-              />
-
-              <DoCard
-                title="명확한 탭 레이블"
-                description="탭 레이블은 짧고 명확하게 작성하여 사용자가 각 탭의 내용을 쉽게 예상할 수 있도록 하세요."
-              />
-
-              <DontCard
-                title="순차적 프로세스에 사용하지 않기"
-                description="단계별로 진행해야 하는 작업(회원가입, 결제 등)은 Stepper 컴포넌트를 사용하세요."
-              />
-
-              <DontCard
-                title="중요한 콘텐츠 숨기지 않기"
-                description="사용자가 반드시 봐야 하는 정보는 탭에 숨기지 말고 본문에 직접 표시하세요."
-              />
-            </Stack>
+                  <TabsComponent
+                    defaultValue="tab5"
+                    size="sm"
+                    className="w-full max-w-lg"
+                  >
+                    <TabsList scrollable>
+                      <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+                      <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+                      <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+                      <TabsTrigger value="tab4">Tab 4</TabsTrigger>
+                      <TabsTrigger value="tab5">Tab 5</TabsTrigger>
+                      <TabsTrigger value="tab6">Tab 6</TabsTrigger>
+                      <TabsTrigger value="tab7">Tab 7</TabsTrigger>
+                      <TabsTrigger value="tab8">Tab 8</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="tab1">
+                      <Body>Tab 1 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab2">
+                      <Body>Tab 2 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab3">
+                      <Body>Tab 3 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab4">
+                      <Body>Tab 4 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab5">
+                      <Body>Tab 5 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab6">
+                      <Body>Tab 6 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab7">
+                      <Body>Tab 7 콘텐츠</Body>
+                    </TabsContent>
+                    <TabsContent value="tab8">
+                      <Body>Tab 8 콘텐츠</Body>
+                    </TabsContent>
+                  </TabsComponent>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Tabs defaultValue="tab5" size="sm">
+  <TabsList scrollable>
+    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+    <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+    <TabsTrigger value="tab4">Tab 4</TabsTrigger>
+    <TabsTrigger value="tab5">Tab 5</TabsTrigger>
+    <TabsTrigger value="tab6">Tab 6</TabsTrigger>
+    <TabsTrigger value="tab7">Tab 7</TabsTrigger>
+    <TabsTrigger value="tab8">Tab 8</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">Tab 1 콘텐츠</TabsContent>
+  ...
+</Tabs>`}
+              </Code>
+            </Subsection>
           </Section>
 
           {/* 접근성 */}
@@ -399,6 +498,60 @@ export default function TabsPage() {
                     </TableCell>
                     <TableCell>탭 스타일 변형</TableCell>
                   </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;sm&apos; | &apos;default&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">&apos;default&apos;</Code>
+                    </TableCell>
+                    <TableCell>탭 크기</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="TabsList Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>scrollable</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">false</Code>
+                    </TableCell>
+                    <TableCell>탭이 많을 때 좌우 스크롤 버튼 활성화</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>variant</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;default&apos; | &apos;pills&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>탭 리스트 스타일 (Tabs에서 상속)</TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </Subsection>
@@ -436,6 +589,18 @@ export default function TabsPage() {
                       <Code className="text-xs">false</Code>
                     </TableCell>
                     <TableCell>탭 비활성화 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>size</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;sm&apos; | &apos;default&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>탭 크기 (Tabs에서 상속)</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -490,12 +655,41 @@ export default function TabsPage() {
                 </TableBody>
               </Table>
             </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Size 옵션" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>값</TableHead>
+                    <TableHead>높이</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>default</Code>
+                    </TableCell>
+                    <TableCell>56px (h-14)</TableCell>
+                    <TableCell>기본 크기, 큰 폰트와 넉넉한 패딩</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>sm</Code>
+                    </TableCell>
+                    <TableCell>40px (h-10)</TableCell>
+                    <TableCell>작은 크기, 좁은 공간에 적합</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
           </Section>
         </TabsContent>
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Table', href: '/components/table' }}
+        prev={{ title: 'DataTable', href: '/components/data-table' }}
         next={{ title: 'Textarea', href: '/components/textarea' }}
       />
     </>

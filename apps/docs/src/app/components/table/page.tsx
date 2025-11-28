@@ -61,6 +61,9 @@ export default function TablePage() {
           <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
+        {/* ============================================ */}
+        {/* 개요 탭 - 기본 Table */}
+        {/* ============================================ */}
         <TabsContent value="overview">
           {/* 1. 개요 */}
           <Section level="h2">
@@ -72,7 +75,7 @@ export default function TablePage() {
               className="sr-only"
             />
             <ComponentPreview>
-              <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
+              <div className="overflow-x-auto">
                 <TableComponent>
                   <TableHeader>
                     <TableRow>
@@ -175,7 +178,7 @@ export default function TablePage() {
                 description="TableCaption으로 테이블의 목적을 설명합니다. 스크린리더 사용자에게 필수입니다."
               />
               <ComponentPreview>
-                <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
+                <div className="overflow-x-auto">
                   <TableComponent>
                     <TableCaption>2024년 1분기 매출 현황</TableCaption>
                     <TableHeader>
@@ -189,12 +192,12 @@ export default function TablePage() {
                       <TableRow>
                         <TableCell>1월</TableCell>
                         <TableCell>1,200만원</TableCell>
-                        <TableCell>+15%</TableCell>
+                        <TableCell align="right">+15%</TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>2월</TableCell>
                         <TableCell>1,450만원</TableCell>
-                        <TableCell>+20.8%</TableCell>
+                        <TableCell align="right">+20.8%</TableCell>
                       </TableRow>
                     </TableBody>
                   </TableComponent>
@@ -216,7 +219,7 @@ export default function TablePage() {
                 description="TableFooter로 합계나 요약 정보를 표시합니다."
               />
               <ComponentPreview>
-                <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
+                <div className="overflow-x-auto">
                   <TableComponent>
                     <TableHeader>
                       <TableRow>
@@ -267,7 +270,7 @@ export default function TablePage() {
                 description="TableHead에 sortable, sortDirection, onSort props로 정렬 기능을 구현합니다."
               />
               <ComponentPreview>
-                <div className="overflow-x-auto rounded-lg border border-krds-gray-20">
+                <div className="overflow-x-auto">
                   <TableComponent>
                     <TableHeader>
                       <TableRow>
@@ -337,6 +340,124 @@ const handleSort = (column: string) => {
 </TableHead>`}
               </Code>
             </Subsection>
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="배열 데이터"
+                description="배열 데이터를 map()으로 렌더링하는 실전 패턴입니다. align prop으로 숫자/금액 열을 오른쪽 정렬합니다."
+              />
+              <ComponentPreview>
+                <div className="overflow-x-auto">
+                  <TableComponent>
+                    <TableCaption>2024년 월별 매출 현황</TableCaption>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>월</TableHead>
+                        <TableHead>담당자</TableHead>
+                        <TableHead align="right">매출</TableHead>
+                        <TableHead align="right">성장률</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {[
+                        {
+                          month: '1월',
+                          manager: '김철수',
+                          sales: 12000000,
+                          growth: 15.2,
+                        },
+                        {
+                          month: '2월',
+                          manager: '이영희',
+                          sales: 14500000,
+                          growth: 20.8,
+                        },
+                        {
+                          month: '3월',
+                          manager: '박민수',
+                          sales: 18200000,
+                          growth: 25.5,
+                        },
+                        {
+                          month: '4월',
+                          manager: '정지원',
+                          sales: 16800000,
+                          growth: -7.7,
+                        },
+                      ].map((row, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{row.month}</TableCell>
+                          <TableCell>{row.manager}</TableCell>
+                          <TableCell align="right">
+                            {row.sales.toLocaleString()}원
+                          </TableCell>
+                          <TableCell align="right">
+                            <span
+                              className={
+                                row.growth >= 0
+                                  ? 'text-krds-func-success'
+                                  : 'text-krds-func-danger'
+                              }
+                            >
+                              {row.growth >= 0 ? '+' : ''}
+                              {row.growth}%
+                            </span>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                    <TableFooter>
+                      <TableRow>
+                        <TableCell colSpan={2}>합계</TableCell>
+                        <TableCell align="right">
+                          {(
+                            12000000 +
+                            14500000 +
+                            18200000 +
+                            16800000
+                          ).toLocaleString()}
+                          원
+                        </TableCell>
+                        <TableCell align="right">+13.5%</TableCell>
+                      </TableRow>
+                    </TableFooter>
+                  </TableComponent>
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`const data = [
+  { month: '1월', manager: '김철수', sales: 12000000, growth: 15.2 },
+  { month: '2월', manager: '이영희', sales: 14500000, growth: 20.8 },
+  { month: '3월', manager: '박민수', sales: 18200000, growth: 25.5 },
+]
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>월</TableHead>
+      <TableHead>담당자</TableHead>
+      <TableHead align="right">매출</TableHead>
+      <TableHead align="right">성장률</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {data.map((row, index) => (
+      <TableRow key={index}>
+        <TableCell>{row.month}</TableCell>
+        <TableCell>{row.manager}</TableCell>
+        <TableCell align="right">
+          {row.sales.toLocaleString()}원
+        </TableCell>
+        <TableCell align="right">
+          {row.growth >= 0 ? '+' : ''}{row.growth}%
+        </TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>`}
+              </Code>
+            </Subsection>
           </Section>
 
           {/* 5. 접근성 */}
@@ -376,10 +497,14 @@ const handleSort = (column: string) => {
           </Section>
         </TabsContent>
 
+        {/* ============================================ */}
+        {/* API 레퍼런스 탭 */}
+        {/* ============================================ */}
         <TabsContent value="api">
           <Section level="h2">
             <Heading level="h2" id="api" title="API 레퍼런스" />
 
+            {/* Table Props */}
             <Subsection level="h3">
               <Heading level="h3" title="Table Props" />
               <Table small>
@@ -426,6 +551,7 @@ const handleSort = (column: string) => {
               </Table>
             </Subsection>
 
+            {/* TableHead Props */}
             <Subsection level="h3">
               <Heading level="h3" title="TableHead Props" />
               <Table small>
@@ -438,6 +564,19 @@ const handleSort = (column: string) => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>align</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;left&apos; | &apos;center&apos; |
+                        &apos;right&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>&apos;left&apos;</TableCell>
+                    <TableCell>텍스트 정렬</TableCell>
+                  </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
                       <Code>sortable</Code>
@@ -453,7 +592,9 @@ const handleSort = (column: string) => {
                       <Code>sortDirection</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">'asc' | 'desc' | null</Code>
+                      <Code className="text-xs">
+                        &apos;asc&apos; | &apos;desc&apos; | null
+                      </Code>
                     </TableCell>
                     <TableCell>null</TableCell>
                     <TableCell>현재 정렬 방향</TableCell>
@@ -472,6 +613,7 @@ const handleSort = (column: string) => {
               </Table>
             </Subsection>
 
+            {/* TableCell Props */}
             <Subsection level="h3">
               <Heading level="h3" title="TableCell Props" />
               <Table small>
@@ -484,6 +626,19 @@ const handleSort = (column: string) => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
+                  <TableRow>
+                    <TableCell className="font-mono">
+                      <Code>align</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        &apos;left&apos; | &apos;center&apos; |
+                        &apos;right&apos;
+                      </Code>
+                    </TableCell>
+                    <TableCell>&apos;left&apos;</TableCell>
+                    <TableCell>텍스트 정렬</TableCell>
+                  </TableRow>
                   <TableRow>
                     <TableCell className="font-mono">
                       <Code>colSpan</Code>
@@ -523,7 +678,7 @@ const handleSort = (column: string) => {
 
       <PageNavigation
         prev={{ title: 'Tab Bars', href: '/components/tabbars' }}
-        next={{ title: 'Tabs', href: '/components/tabs' }}
+        next={{ title: 'DataTable', href: '/components/data-table' }}
       />
     </>
   );

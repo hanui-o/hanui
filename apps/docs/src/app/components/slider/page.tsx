@@ -97,7 +97,7 @@ export default function SliderPage() {
               제어하거나 defaultValue로 비제어 모드로 사용합니다.
             </Body>
             <Code variant="block" language="tsx">
-              {`import { Slider } from '@hanui/react';
+              {`import { Slider } from '@/components/hanui';
 
 // 제어 컴포넌트
 const [value, setValue] = useState(50);

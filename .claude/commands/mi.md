@@ -19,3 +19,5 @@
   - 간단한 문서화가 되어 있는지 확인
   - Body 따로 만들지 말고 Heading description 에 넣는걸 추천. 다만 태그가 포함된 경우는 Body 사용
   - PageNavigation 순서 확인 및 수정
+
+- 컴포넌트 수정 한 수정한거 페이지 업뎃 (api 레퍼런스 등)

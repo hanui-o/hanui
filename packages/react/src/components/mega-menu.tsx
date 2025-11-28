@@ -60,7 +60,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
     const [isOpen, setIsOpen] = React.useState(false);
     const [activeColumn, setActiveColumn] = React.useState<number | null>(null);
     const timeoutRef = React.useRef<NodeJS.Timeout>();
-    const navRef = React.useRef<HTMLElement>(null);
+    const navRef = React.useRef<HTMLElement | null>(null);
 
     const handleMouseEnter = () => {
       if (timeoutRef.current) {

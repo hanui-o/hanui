@@ -97,7 +97,7 @@ const defaultIcons = {
 };
 
 export interface AlertProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     VariantProps<typeof alertVariants> {
   /** Alert 타이틀 */
   title?: React.ReactNode;

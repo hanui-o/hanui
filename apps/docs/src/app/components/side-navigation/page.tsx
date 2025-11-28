@@ -105,7 +105,7 @@ export default function SideNavigationPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { SideNavigation } from '@hanui/react';
+              {`import { SideNavigation } from '@/components/hanui';
 
 <SideNavigation
   title="1Depth-title"
@@ -136,7 +136,7 @@ export default function SideNavigationPage() {
             />
 
             <Code variant="block" language="tsx">
-              {`import { SideNavigation } from '@hanui/react';
+              {`import { SideNavigation } from '@/components/hanui';
 
 <SideNavigation
   title="주요 메뉴"

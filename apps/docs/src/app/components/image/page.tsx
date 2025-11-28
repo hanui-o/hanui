@@ -84,7 +84,7 @@ export default function ImagePage() {
               description="Image 컴포넌트를 import하여 사용합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Image } from '@hanui/react'
+              {`import { Image } from '@/components/hanui'
 
 <Image
   src="/photo.jpg"

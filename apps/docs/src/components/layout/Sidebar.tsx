@@ -57,6 +57,7 @@ const componentsNavigation = [
       { title: 'Code', href: '/components/code' },
       { title: 'Combobox', href: '/components/combobox' },
       { title: 'Container', href: '/components/container' },
+      { title: 'DataTable', href: '/components/data-table' },
       { title: 'Display', href: '/components/display' },
       { title: 'DropdownMenu', href: '/components/dropdown-menu' },
       { title: 'File Upload', href: '/components/file-upload' },
@@ -92,7 +93,7 @@ const componentsNavigation = [
       { title: 'Slider', href: '/components/slider' },
       { title: 'Spinner', href: '/components/spinner' },
       { title: 'Stack', href: '/components/stack' },
-      { title: 'Structured List', href: '/components/structured-list' },
+      // { title: 'Structured List', href: '/components/structured-list' },
       { title: 'Switch', href: '/components/switch' },
       { title: 'Tab Bars', href: '/components/tabbars' },
       { title: 'Table', href: '/components/table' },
@@ -120,7 +121,13 @@ type NavigationSection = {
   items: { title: string; href: string }[];
 };
 
-function SidebarSection({ section }: { section: NavigationSection }) {
+function SidebarSection({
+  section,
+  onActiveRef,
+}: {
+  section: NavigationSection;
+  onActiveRef?: (el: HTMLAnchorElement | null) => void;
+}) {
   const pathname = usePathname();
 
   return (
@@ -133,6 +140,7 @@ function SidebarSection({ section }: { section: NavigationSection }) {
             <li key={item.href}>
               <Link
                 href={item.href}
+                ref={isActive ? onActiveRef : undefined}
                 className={`block py-1 px-2 rounded-md transition-colors text-sm ${
                   isActive
                     ? 'bg-krds-primary-base text-white font-medium'
@@ -151,6 +159,7 @@ function SidebarSection({ section }: { section: NavigationSection }) {
 
 export function Sidebar() {
   const navRef = useRef<HTMLElement>(null);
+  const activeRef = useRef<HTMLAnchorElement | null>(null);
   const pathname = usePathname();
 
   // Determine which navigation to show based on current path
@@ -170,6 +179,11 @@ export function Sidebar() {
 
   const navigation = getNavigation();
 
+  // 활성 링크 ref 콜백
+  const handleActiveRef = (el: HTMLAnchorElement | null) => {
+    activeRef.current = el;
+  };
+
   // 스크롤 위치 저장 (링크 클릭 시)
   useEffect(() => {
     const nav = navRef.current;
@@ -183,16 +197,25 @@ export function Sidebar() {
     return () => nav.removeEventListener('click', handleClick);
   }, []);
 
-  // 스크롤 위치 복원 (페이지 전환 후)
+  // 스크롤 위치 복원 또는 활성 메뉴로 스크롤
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
 
     const savedScroll = sessionStorage.getItem('sidebar-scroll');
     if (savedScroll) {
-      // 브라우저 스크롤 초기화 이후에 복원하기 위해 지연
+      // 저장된 스크롤 위치가 있으면 복원
       const timeoutId = setTimeout(() => {
         nav.scrollTop = parseInt(savedScroll, 10);
+      }, 0);
+      return () => clearTimeout(timeoutId);
+    } else if (activeRef.current) {
+      // 저장된 위치가 없으면 활성 메뉴로 스크롤
+      const timeoutId = setTimeout(() => {
+        activeRef.current?.scrollIntoView({
+          block: 'center',
+          behavior: 'instant',
+        });
       }, 0);
       return () => clearTimeout(timeoutId);
     }
@@ -206,7 +229,11 @@ export function Sidebar() {
       >
         <div className="space-y-8">
           {navigation.map((section) => (
-            <SidebarSection key={section.title} section={section} />
+            <SidebarSection
+              key={section.title}
+              section={section}
+              onActiveRef={handleActiveRef}
+            />
           ))}
         </div>
       </nav>

@@ -40,8 +40,7 @@ export default function Home() {
 
             {/* Title */}
             <Display size="lg" as="h1" className="tracking-tight">
-              공공기관 웹사이트를 위한
-              <br /> KRDS 표준 React 컴포넌트
+              공공기관 웹사이트를 위한 KRDS 표준 React 컴포넌트
             </Display>
 
             {/* Description */}

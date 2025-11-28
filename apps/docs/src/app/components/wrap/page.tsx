@@ -15,11 +15,8 @@ import { DoCard, DontCard } from '@/components/helpers';
 
 // UI components - from @hanui/react
 import {
-  Body,
-  Stack,
   Wrap,
   Button,
-  Card,
   Code,
   List,
   ListItem,
@@ -41,7 +38,7 @@ export default function WrapPage() {
       <Heading
         level="h1"
         title="Wrap"
-        description="공간이 부족할 때 자동으로 줄바꿈되는 flexbox 레이아웃 컴포넌트입니다."
+        description="공간이 부족할 때 자동으로 줄바꿈되는 flexbox 레이아웃 컴포넌트입니다. 태그 목록, 버튼 그룹, 카드 배열 등에 적합합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -51,48 +48,15 @@ export default function WrapPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
-          <Section level="h2">
-            <Installation
-              packageName="wrap"
-              description="CLI를 사용하여 컴포넌트를 프로젝트에 설치할 수 있습니다."
-            />
-          </Section>
-
-          {/* What is it */}
+          {/* 1. 개요 */}
           <Section level="h2">
             <Heading
               level="h2"
-              id="what-is-it"
-              title="Wrap이란?"
+              id="overview"
+              title="개요"
               description="Wrap은 요소들에 간격을 추가하고 공간이 부족할 때 자동으로 줄바꿈하는 레이아웃 컴포넌트입니다."
+              className="sr-only"
             />
-
-            <ComponentPreview variant="muted">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>자동 줄바꿈:</strong> 공간이 부족하면 자동으로 다음
-                  줄로 넘어갑니다
-                </ListItem>
-                <ListItem>
-                  <strong>간격 조절:</strong> gap prop으로 요소 간 간격 설정
-                </ListItem>
-                <ListItem>
-                  <strong>정렬 옵션:</strong> align, justify로 정렬 가능
-                </ListItem>
-                <ListItem>
-                  <strong>반응형:</strong> 화면 크기에 따라 유연하게 배치
-                </ListItem>
-                <ListItem>
-                  <strong>사용 사례:</strong> 태그, 버튼 그룹, 카드 그리드 등
-                </ListItem>
-              </List>
-            </ComponentPreview>
-          </Section>
-
-          {/* Preview */}
-          <Section level="h2">
-            <Heading level="h2" id="preview" title="미리보기" />
             <ComponentPreview>
               <Wrap gap="md">
                 <div className="px-4 py-2 bg-krds-primary-10 rounded">
@@ -112,14 +76,34 @@ export default function WrapPage() {
                 </div>
               </Wrap>
             </ComponentPreview>
+            <Code variant="block" language="tsx">
+              {`import { Wrap } from '@/components/hanui';
+
+<Wrap gap="md">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+  <div>Item 4</div>
+  <div>Item 5</div>
+</Wrap>`}
+            </Code>
           </Section>
 
-          {/* Usage */}
+          {/* 2. 설치 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
+            <Installation componentName="wrap" />
+          </Section>
 
+          {/* 3. 사용법 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="Wrap 컴포넌트를 import하고 gap prop으로 간격을 설정합니다."
+            />
             <Code variant="block" language="tsx">
-              {`import { Wrap } from '@hanui/react';
+              {`import { Wrap } from '@/components/hanui';
 
 <Wrap gap="md">
   <div>Item 1</div>
@@ -129,56 +113,22 @@ export default function WrapPage() {
             </Code>
           </Section>
 
-          {/* Examples */}
+          {/* 4. 예제 */}
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
 
             <Subsection level="h3">
               <Heading
                 level="h3"
-                title="기본 사용"
-                description="Wrap 컴포넌트는 자식 요소들을 자동으로 줄바꿈합니다."
+                title="간격 조절 (Gap)"
+                description="gap prop으로 요소 간 간격을 조절합니다. none, xs, sm, md(기본값), lg, xl, 2xl을 제공합니다."
               />
               <ComponentPreview>
-                <Wrap gap="md">
-                  <div className="px-4 py-2 bg-krds-gray-10 rounded">
-                    Item 1
-                  </div>
-                  <div className="px-4 py-2 bg-krds-gray-10 rounded">
-                    Item 2
-                  </div>
-                  <div className="px-4 py-2 bg-krds-gray-10 rounded">
-                    Item 3
-                  </div>
-                  <div className="px-4 py-2 bg-krds-gray-10 rounded">
-                    Item 4
-                  </div>
-                  <div className="px-4 py-2 bg-krds-gray-10 rounded">
-                    Item 5
-                  </div>
-                </Wrap>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Wrap gap="md">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-  <div>Item 4</div>
-</Wrap>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading
-                level="h3"
-                title="간격 조절 (Gap)"
-                description="gap prop으로 요소 간 간격을 조절합니다."
-              />
-
-              <Stack gap="md">
-                <div>
-                  <Body className="font-medium mb-2">작은 간격 (sm - 8px)</Body>
-                  <ComponentPreview>
+                <div className="space-y-6 w-full">
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      작은 간격 (sm - 8px)
+                    </p>
                     <Wrap gap="sm">
                       <div className="px-4 py-2 bg-krds-accent-10 rounded">
                         Item 1
@@ -190,12 +140,27 @@ export default function WrapPage() {
                         Item 3
                       </div>
                     </Wrap>
-                  </ComponentPreview>
-                </div>
-
-                <div>
-                  <Body className="font-medium mb-2">큰 간격 (lg - 24px)</Body>
-                  <ComponentPreview>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      큰 간격 (md - 16px)
+                    </p>
+                    <Wrap gap="md">
+                      <div className="px-4 py-2 bg-krds-warning-10 rounded">
+                        Item 1
+                      </div>
+                      <div className="px-4 py-2 bg-krds-warning-10 rounded">
+                        Item 2
+                      </div>
+                      <div className="px-4 py-2 bg-krds-warning-10 rounded">
+                        Item 3
+                      </div>
+                    </Wrap>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      큰 간격 (lg - 24px)
+                    </p>
                     <Wrap gap="lg">
                       <div className="px-4 py-2 bg-krds-warning-10 rounded">
                         Item 1
@@ -207,9 +172,9 @@ export default function WrapPage() {
                         Item 3
                       </div>
                     </Wrap>
-                  </ComponentPreview>
+                  </div>
                 </div>
-              </Stack>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`<Wrap gap="sm">...</Wrap>  {/* 8px */}
 <Wrap gap="md">...</Wrap>  {/* 16px - 기본값 */}
@@ -221,13 +186,14 @@ export default function WrapPage() {
               <Heading
                 level="h3"
                 title="정렬 (Align & Justify)"
-                description="align과 justify로 요소를 정렬합니다."
+                description="align으로 교차축 정렬, justify로 주축 정렬을 설정합니다."
               />
-
-              <Stack gap="md">
-                <div>
-                  <Body className="font-medium mb-2">가운데 정렬</Body>
-                  <ComponentPreview>
+              <ComponentPreview>
+                <div className="space-y-6 w-full">
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      가운데 정렬
+                    </p>
                     <Wrap gap="md" justify="center" align="center">
                       <div className="px-4 py-2 bg-krds-primary-10 text-krds-primary-base rounded">
                         Center 1
@@ -239,12 +205,11 @@ export default function WrapPage() {
                         Center 3
                       </div>
                     </Wrap>
-                  </ComponentPreview>
-                </div>
-
-                <div>
-                  <Body className="font-medium mb-2">균등 분배</Body>
-                  <ComponentPreview>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      균등 분배 (between)
+                    </p>
                     <Wrap gap="md" justify="between">
                       <div className="px-4 py-2 bg-krds-gray-10 rounded">
                         Start
@@ -256,9 +221,9 @@ export default function WrapPage() {
                         End
                       </div>
                     </Wrap>
-                  </ComponentPreview>
+                  </div>
                 </div>
-              </Stack>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`// 가운데 정렬
 <Wrap gap="md" justify="center" align="center">
@@ -278,13 +243,14 @@ export default function WrapPage() {
               <Heading
                 level="h3"
                 title="실제 사용 예시"
-                description="태그 목록과 버튼 그룹 예시입니다."
+                description="태그 목록과 버튼 그룹에 Wrap을 적용한 예시입니다."
               />
-
-              <Stack gap="md">
-                <div>
-                  <Body className="font-medium mb-2">태그 목록</Body>
-                  <ComponentPreview>
+              <ComponentPreview>
+                <div className="space-y-6 w-full">
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      태그 목록
+                    </p>
                     <Wrap gap="sm">
                       {['React', 'TypeScript', 'Tailwind', 'Next.js'].map(
                         (tag) => (
@@ -297,20 +263,19 @@ export default function WrapPage() {
                         )
                       )}
                     </Wrap>
-                  </ComponentPreview>
-                </div>
-
-                <div>
-                  <Body className="font-medium mb-2">버튼 그룹</Body>
-                  <ComponentPreview>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium mb-2 text-krds-gray-70">
+                      버튼 그룹
+                    </p>
                     <Wrap gap="md">
                       <Button variant="primary">저장</Button>
                       <Button variant="secondary">취소</Button>
                       <Button variant="outline">삭제</Button>
                     </Wrap>
-                  </ComponentPreview>
+                  </div>
                 </div>
-              </Stack>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`// 태그 목록
 <Wrap gap="sm">
@@ -330,55 +295,16 @@ export default function WrapPage() {
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section level="h2">
-            <Heading level="h2" id="best-practices" title="사용 가이드" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하나요?" />
-              <DoCard title="Wrap을 사용하기 적합한 경우">
-                <List variant="check">
-                  <ListItem>태그나 배지 목록을 표시할 때</ListItem>
-                  <ListItem>버튼 그룹을 반응형으로 배치할 때</ListItem>
-                  <ListItem>
-                    카드나 아이템을 그리드처럼 배치하되 자동 줄바꿈이 필요할 때
-                  </ListItem>
-                  <ListItem>
-                    화면 크기에 따라 유연하게 배치되어야 하는 요소들
-                  </ListItem>
-                </List>
-              </DoCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
-              <DontCard title="Wrap 사용을 피해야 하는 경우">
-                <List variant="dash">
-                  <ListItem>
-                    고정된 그리드 레이아웃이 필요할 때 (<Code>SimpleGrid</Code>{' '}
-                    사용)
-                  </ListItem>
-                  <ListItem>
-                    항상 한 줄로 표시되어야 할 때 (<Code>Stack</Code> 사용)
-                  </ListItem>
-                  <ListItem>
-                    복잡한 2차원 레이아웃이 필요할 때 (CSS Grid 직접 사용)
-                  </ListItem>
-                </List>
-              </DontCard>
-            </Subsection>
-          </Section>
-
-          {/* Accessibility */}
+          {/* 6. 접근성 */}
           <Section level="h2">
             <Heading
               level="h2"
               id="accessibility"
               title="접근성"
-              description="Wrap 컴포넌트는 WCAG 2.1 / KWCAG 2.2 기준을 준수합니다."
+              description="WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
             />
 
-            <List variant="check">
+            <List>
               <ListItem>
                 <strong>시맨틱 마크업:</strong> 의미론적으로 중립적인{' '}
                 <Code>&lt;div&gt;</Code> 요소 사용
@@ -391,24 +317,27 @@ export default function WrapPage() {
                 <strong>키보드 네비게이션:</strong> 내부 요소들의 Tab 순서가
                 자연스럽게 유지
               </ListItem>
+              <ListItem>
+                <strong>내부 요소 접근성:</strong> Wrap 자체는 레이아웃만 담당,
+                내부 요소의 접근성은 개별적으로 처리
+              </ListItem>
             </List>
           </Section>
         </TabsContent>
 
         <TabsContent value="api">
           <Section level="h2">
-            <Heading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
               <Heading level="h3" title="Wrap Props" />
-
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>속성</TableHead>
-                    <TableHead>타입</TableHead>
-                    <TableHead>기본값</TableHead>
-                    <TableHead>설명</TableHead>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -418,14 +347,10 @@ export default function WrapPage() {
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">
-                        &apos;none&apos; | &apos;xs&apos; | &apos;sm&apos; |
-                        &apos;md&apos; | &apos;lg&apos; | &apos;xl&apos; |
-                        &apos;2xl&apos;
+                        'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
                       </Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">&apos;md&apos;</Code>
-                    </TableCell>
+                    <TableCell>'md'</TableCell>
                     <TableCell>아이템 간 간격</TableCell>
                   </TableRow>
                   <TableRow>
@@ -434,14 +359,11 @@ export default function WrapPage() {
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">
-                        &apos;start&apos; | &apos;center&apos; | &apos;end&apos;
-                        | &apos;stretch&apos; | &apos;baseline&apos;
+                        'start' | 'center' | 'end' | 'stretch' | 'baseline'
                       </Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">&apos;start&apos;</Code>
-                    </TableCell>
-                    <TableCell>교차축 정렬</TableCell>
+                    <TableCell>'start'</TableCell>
+                    <TableCell>교차축(cross-axis) 정렬</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
@@ -449,15 +371,12 @@ export default function WrapPage() {
                     </TableCell>
                     <TableCell>
                       <Code className="text-xs">
-                        &apos;start&apos; | &apos;center&apos; | &apos;end&apos;
-                        | &apos;between&apos; | &apos;around&apos; |
-                        &apos;evenly&apos;
+                        'start' | 'center' | 'end' | 'between' | 'around' |
+                        'evenly'
                       </Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">&apos;start&apos;</Code>
-                    </TableCell>
-                    <TableCell>주축 정렬</TableCell>
+                    <TableCell>'start'</TableCell>
+                    <TableCell>주축(main-axis) 정렬</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
@@ -475,7 +394,6 @@ export default function WrapPage() {
 
             <Subsection level="h3">
               <Heading level="h3" title="Gap 옵션" />
-
               <Table small>
                 <TableHeader>
                   <TableRow>

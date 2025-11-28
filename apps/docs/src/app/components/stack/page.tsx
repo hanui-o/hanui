@@ -72,7 +72,7 @@ export default function StackPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Stack, VStack, HStack } from '@hanui/react';
+              {`import { Stack, VStack, HStack } from '@/components/hanui';
 
 <Stack gap="md">
   <div>첫 번째</div>
@@ -268,6 +268,7 @@ export default function StackPage() {
                       HStack - Space Between
                     </p>
                     <HStack
+                      gap="sm"
                       justify="between"
                       className="border border-krds-gray-20 rounded p-4"
                     >
@@ -288,7 +289,7 @@ export default function StackPage() {
 </VStack>
 
 // 양 끝 정렬
-<HStack justify="between">
+<HStack justify="between" gap="sm">
   <div>왼쪽</div>
   <div>오른쪽</div>
 </HStack>`}
@@ -318,40 +319,6 @@ export default function StackPage() {
   <Card>카드 2</Card>
 </VStack>`}
               </Code>
-            </Subsection>
-          </Section>
-
-          {/* Best Practices */}
-          <Section level="h2">
-            <Heading level="h2" id="best-practices" title="사용 가이드라인" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하나요?" />
-              <DoCard title="Stack 사용이 적합한 경우">
-                <List variant="check">
-                  <ListItem>여러 요소를 수직 또는 수평으로 나열할 때</ListItem>
-                  <ListItem>요소 간 일관된 간격이 필요할 때</ListItem>
-                  <ListItem>폼 레이아웃을 구성할 때</ListItem>
-                  <ListItem>버튼 그룹을 정렬할 때</ListItem>
-                </List>
-              </DoCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
-              <DontCard title="Stack 사용을 피해야 하는 경우">
-                <List variant="dash">
-                  <ListItem>
-                    그리드 레이아웃이 필요할 때 (<Code>SimpleGrid</Code> 사용)
-                  </ListItem>
-                  <ListItem>
-                    자동 줄바꿈이 필요할 때 (<Code>Wrap</Code> 사용)
-                  </ListItem>
-                  <ListItem>
-                    복잡한 2차원 레이아웃일 때 (CSS Grid 직접 사용)
-                  </ListItem>
-                </List>
-              </DontCard>
             </Subsection>
           </Section>
         </TabsContent>
@@ -564,7 +531,7 @@ export default function StackPage() {
 
       <PageNavigation
         prev={{ title: 'Spinner', href: '/components/spinner' }}
-        next={{ title: 'Structured List', href: '/components/structured-list' }}
+        next={{ title: 'Switch', href: '/components/switch' }}
       />
     </>
   );

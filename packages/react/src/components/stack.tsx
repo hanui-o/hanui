@@ -49,7 +49,7 @@ const stackVariants = cva('flex', {
 // Stack Props 인터페이스
 export interface StackProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'gap'>,
-    VariantProps<typeof stackVariants> {
+    Omit<VariantProps<typeof stackVariants>, 'gap'> {
   /** 간격 @default "none" */
   gap?:
     | 'none'

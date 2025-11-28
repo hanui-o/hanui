@@ -85,7 +85,7 @@ export default function MastheadPage() {
             />
 
             <Code variant="block" language="tsx">
-              {`import { SkipLink, Masthead, Header } from '@hanui/react';
+              {`import { SkipLink, Masthead, Header } from '@/components/hanui';
 
 export default function Layout({ children }) {
   return (
@@ -158,7 +158,7 @@ export default function Layout({ children }) {
                 description="실제 페이지 레이아웃에서의 Masthead 배치 예제입니다."
               />
               <Code variant="block" language="tsx">
-                {`import { SkipLink, Masthead, Header, Footer } from '@hanui/react';
+                {`import { SkipLink, Masthead, Header, Footer } from '@/components/hanui';
 
 export default function RootLayout({ children }) {
   return (

@@ -8,6 +8,21 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     '../../packages/react/src/**/*.{js,ts,jsx,tsx}',
+    '../../packages/react/dist/**/*.{js,mjs}',
+  ],
+  safelist: [
+    // Tabs pills variant classes
+    'bg-krds-gray-10',
+    'bg-krds-secondary-80',
+    'bg-krds-gray-20',
+    'bg-krds-white',
+    'flex-1',
+    'rounded-lg',
+    'rounded-md',
+    'overflow-hidden',
+    'border-r',
+    'last:border-r-0',
+    'p-1',
   ],
   darkMode: 'class',
   theme: {

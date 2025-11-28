@@ -76,7 +76,7 @@ export default function FormFieldPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { FormField, FormLabel, FormHelperText, Input } from '@hanui/react'
+              {`import { FormField, FormLabel, FormHelperText, Input } from '@/components/hanui'
 
 // 기본
 <FormField id="email">
@@ -110,7 +110,7 @@ export default function FormFieldPage() {
               </ListItem>
             </List>
             <Code variant="block" language="tsx">
-              {`import { FormField, FormLabel, FormError, FormHelperText, Input } from '@hanui/react'
+              {`import { FormField, FormLabel, FormError, FormHelperText, Input } from '@/components/hanui'
 
 // 기본 구조
 <FormField id="field-id">

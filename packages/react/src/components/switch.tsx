@@ -3,6 +3,7 @@
 import * as React from 'react';
 import * as SwitchPrimitive from '@radix-ui/react-switch';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Check, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useFormField } from './form-field';
 
@@ -25,14 +26,14 @@ const switchVariants = cva(
     'disabled:cursor-not-allowed',
     'disabled:opacity-60',
     'data-[state=checked]:bg-krds-primary-base',
-    'data-[state=unchecked]:bg-krds-gray-40',
+    'data-[state=unchecked]:bg-krds-gray-50',
   ].join(' '),
   {
     variants: {
       size: {
         sm: 'h-5 w-9', // 20px height, 36px width
-        md: 'h-6 w-11', // 24px height, 44px width
-        lg: 'h-7 w-14', // 28px height, 56px width
+        md: 'h-6 w-10', // 24px height, 40px width
+        lg: 'h-7 w-12', // 28px height, 48px width
       },
     },
     defaultVariants: {
@@ -44,21 +45,20 @@ const switchVariants = cva(
 const thumbVariants = cva(
   [
     'pointer-events-none',
-    'block',
+    'flex items-center justify-center',
     'rounded-full',
     'bg-white',
     'shadow-lg',
     'ring-0',
     'transition-transform',
-    'data-[state=checked]:translate-x-full',
     'data-[state=unchecked]:translate-x-0',
   ].join(' '),
   {
     variants: {
       size: {
-        sm: 'h-4 w-4', // 16px
-        md: 'h-5 w-5', // 20px
-        lg: 'h-6 w-6', // 24px
+        sm: 'h-4 w-4 data-[state=checked]:translate-x-full', // 16px, 36-16=20px
+        md: 'h-5 w-5 data-[state=checked]:translate-x-[16px]', // 20px, 40-20-4(border)=16px
+        lg: 'h-6 w-6 data-[state=checked]:translate-x-[20px]', // 24px, 48-24-4=20px
       },
     },
     defaultVariants: {
@@ -66,6 +66,13 @@ const thumbVariants = cva(
     },
   }
 );
+
+// 아이콘 크기 매핑
+const iconSizeMap = {
+  sm: 10,
+  md: 12,
+  lg: 14,
+};
 
 export interface SwitchProps
   extends Omit<
@@ -114,7 +121,7 @@ export const Switch = React.forwardRef<
 
     const getStatusClasses = () => {
       if (hasError) {
-        return 'data-[state=checked]:bg-krds-danger-60';
+        return 'data-[state=checked]:bg-krds-danger-50';
       }
       return '';
     };
@@ -131,6 +138,8 @@ export const Switch = React.forwardRef<
       }
     };
 
+    const iconSize = iconSizeMap[size || 'md'];
+
     const switchElement = (
       <SwitchPrimitive.Root
         className={cn(switchVariants({ size }), getStatusClasses(), className)}
@@ -145,7 +154,22 @@ export const Switch = React.forwardRef<
         {...props}
         ref={ref}
       >
-        <SwitchPrimitive.Thumb className={cn(thumbVariants({ size }))} />
+        <SwitchPrimitive.Thumb className={cn(thumbVariants({ size }))}>
+          {/* 체크 아이콘 (checked 상태) */}
+          <Check
+            size={iconSize}
+            strokeWidth={3}
+            className="text-krds-primary-base hidden [[data-state=checked]_&]:block"
+            aria-hidden="true"
+          />
+          {/* X 아이콘 (unchecked 상태) */}
+          <X
+            size={iconSize}
+            strokeWidth={3}
+            className="text-krds-gray-40 absolute block [[data-state=checked]_&]:hidden"
+            aria-hidden="true"
+          />
+        </SwitchPrimitive.Thumb>
       </SwitchPrimitive.Root>
     );
 

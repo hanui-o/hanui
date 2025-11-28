@@ -381,6 +381,67 @@ export default function Home() {
         </Tabs>
       </Section>
 
+      {/* CLI Installation */}
+      <Section>
+        <Heading
+          level="h2"
+          id="cli-installation"
+          title="CLI로 컴포넌트 추가"
+          description="개별 컴포넌트를 프로젝트에 추가하려면 CLI를 사용하세요:"
+        />
+
+        <Tabs defaultValue="pnpm" className="mt-6">
+          <TabsList>
+            <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+            <TabsTrigger value="npm">npm</TabsTrigger>
+            <TabsTrigger value="yarn">yarn</TabsTrigger>
+            <TabsTrigger value="bun">bun</TabsTrigger>
+          </TabsList>
+          <TabsContent value="pnpm">
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              pnpm dlx @hanui/cli add button
+            </Code>
+          </TabsContent>
+          <TabsContent value="npm">
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              npx @hanui/cli add button
+            </Code>
+          </TabsContent>
+          <TabsContent value="yarn">
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              npx @hanui/cli add button
+            </Code>
+          </TabsContent>
+          <TabsContent value="bun">
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              bunx @hanui/cli add button
+            </Code>
+          </TabsContent>
+        </Tabs>
+
+        <Alert variant="info" className="mt-4" title="설치 경로">
+          컴포넌트는 <Code>@/components/hanui</Code>에 설치됩니다.
+          <br />
+          <span className="text-krds-gray-60">
+            (프로젝트 구조에 따라 src/components/hanui 또는 components/hanui)
+          </span>
+        </Alert>
+
+        <Code
+          variant="block"
+          language="tsx"
+          className="mt-4"
+          showLineNumbers={false}
+        >
+          {`// 설치 후 import
+import { Button } from '@/components/hanui';
+
+export default function Page() {
+  return <Button variant="primary">시작하기</Button>;
+}`}
+        </Code>
+      </Section>
+
       {/* Framework-specific paths */}
       <Section>
         <Heading

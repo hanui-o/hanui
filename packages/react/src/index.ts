@@ -372,3 +372,15 @@ export type {
   SkeletonCardProps,
   SkeletonTableProps,
 } from './components/skeleton';
+
+export {
+  DataTable,
+  SortableHeader,
+  getSelectionColumn,
+} from './components/data-table';
+export type {
+  DataTableProps,
+  ColumnDef,
+  SortingState,
+  ColumnFiltersState,
+} from './components/data-table';

@@ -36,13 +36,13 @@ const typographyComponents = [
 const identityComponents = [
   {
     name: 'Footer',
-    description: '푸터 (CSS Module)',
-    href: '/components/identity/footer',
+    description: '푸터',
+    href: '/components/footer',
     updated: true,
   },
   {
     name: 'Header',
-    description: '헤더 (CSS Module)',
+    description: '헤더',
     href: '/components/header',
     updated: true,
   },
@@ -71,7 +71,7 @@ const navigationMainComponents = [
   {
     name: 'Side Navigation',
     description: '사이드 메뉴',
-    href: '/components/sidenavigation',
+    href: '/components/side-navigation',
     updated: true,
   },
   {
@@ -92,7 +92,7 @@ const navigationContentComponents = [
   {
     name: 'In-page Navigation',
     description: '콘텐츠 내 탐색',
-    href: '/components/inpagenavigation',
+    href: '/components/in-page-navigation',
     updated: true,
   },
   {
@@ -170,12 +170,6 @@ const presentationComponents = [
     updated: true,
   },
   {
-    name: 'Section',
-    description: '섹션',
-    href: '/components/section',
-    updated: true,
-  },
-  {
     name: 'Section Heading System',
     description: 'KRDS Gap-layout 자동 간격 시스템',
     href: '/components/section-heading-system',
@@ -201,9 +195,9 @@ const presentationComponents = [
   },
   // Presentation 컴포넌트들
   {
-    name: 'Structured List',
-    description: '구조화 목록',
-    href: '/components/structured-list',
+    name: 'DataTable',
+    description: '데이터 테이블',
+    href: '/components/data-table',
     updated: true,
   },
   {
@@ -218,7 +212,7 @@ const presentationComponents = [
     href: '/components/accordion',
     updated: true,
   },
-  { name: 'Tab', description: '탭', href: '/components/tabs', updated: true },
+  { name: 'Tabs', description: '탭', href: '/components/tabs', updated: true },
   {
     name: 'Table',
     description: '표',

@@ -91,7 +91,7 @@ export default function AspectRatioPage() {
               description="AspectRatio와 Image를 import하여 사용합니다. ratio prop으로 종횡비를 설정합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { AspectRatio, Image } from '@hanui/react'
+              {`import { AspectRatio, Image } from '@/components/hanui'
 
 <AspectRatio ratio={4 / 3}>
   <Image src="/image.jpg" alt="이미지 설명" />

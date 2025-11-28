@@ -57,7 +57,7 @@ export default function TooltipPage() {
               className="sr-only"
             />
             <ComponentPreview>
-              <div className="flex gap-4">
+              <div className="flex justify-between gap-4 w-full">
                 <Tooltip content="저장 버튼을 클릭하여 변경사항을 저장하세요">
                   <Button>저장</Button>
                 </Tooltip>
@@ -68,7 +68,7 @@ export default function TooltipPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Tooltip, Button } from '@hanui/react';
+              {`import { Tooltip, Button } from '@/components/hanui';
 
 <Tooltip content="저장 버튼을 클릭하여 변경사항을 저장하세요">
   <Button>저장</Button>
@@ -91,7 +91,7 @@ export default function TooltipPage() {
             />
 
             <Code variant="block" language="tsx">
-              {`import { Tooltip, Button } from '@hanui/react';
+              {`import { Tooltip, Button } from '@/components/hanui';
 
 <Tooltip content="저장 버튼입니다">
   <Button>저장</Button>
@@ -136,14 +136,14 @@ export default function TooltipPage() {
               </Code>
             </Subsection>
 
-            <Subsection level="h3">
+            {/* <Subsection level="h3">
               <Heading
                 level="h3"
                 title="Variant"
                 description="variant prop으로 툴팁 스타일을 변경할 수 있습니다."
               />
               <ComponentPreview>
-                <div className="flex gap-4">
+                <div className="flex justify-between gap-4 w-full">
                   <Tooltip content="기본 다크 툴팁" variant="default">
                     <Button>Dark (Default)</Button>
                   </Tooltip>
@@ -161,7 +161,7 @@ export default function TooltipPage() {
   <Button>Light</Button>
 </Tooltip>`}
               </Code>
-            </Subsection>
+            </Subsection> */}
 
             <Subsection level="h3">
               <Heading
@@ -249,39 +249,6 @@ export default function TooltipPage() {
             </Subsection>
           </Section>
 
-          {/* 5. 사용 가이드라인 */}
-          <Section level="h2">
-            <Heading level="h2" id="best-practices" title="사용 가이드라인" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하나요?" />
-              <DoCard title="Tooltip 사용이 적합한 경우">
-                <List variant="check">
-                  <ListItem>아이콘 버튼의 기능 설명</ListItem>
-                  <ListItem>
-                    버튼이나 링크에 대한 간단한 부가 정보 제공
-                  </ListItem>
-                  <ListItem>1-2문장 이내의 간결한 도움말 표시</ListItem>
-                  <ListItem>
-                    비활성화된 요소가 왜 비활성화되었는지 설명
-                  </ListItem>
-                </List>
-              </DoCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
-              <DontCard title="Tooltip 사용을 피해야 하는 경우">
-                <List variant="dash">
-                  <ListItem>중요한 정보는 본문에 직접 표시</ListItem>
-                  <ListItem>긴 설명문은 Modal이나 별도 페이지 사용</ListItem>
-                  <ListItem>툴팁 내부에 버튼이나 링크 사용 금지</ListItem>
-                  <ListItem>모바일에서는 다른 UI 패턴 고려</ListItem>
-                </List>
-              </DontCard>
-            </Subsection>
-          </Section>
-
           {/* 6. 접근성 */}
           <Section level="h2">
             <Heading
@@ -329,8 +296,8 @@ export default function TooltipPage() {
               <Heading level="h3" title="ARIA 속성" />
               <List>
                 <ListItem>
-                  <Code>aria-labelledby</Code>: 활성화 버튼과 툴팁 콘텐츠 자동
-                  연결
+                  <Code>aria-describedby</Code>: 활성화 요소와 툴팁 콘텐츠 자동
+                  연결 (추가 설명 제공)
                 </ListItem>
                 <ListItem>
                   <Code>role=&quot;tooltip&quot;</Code>: 툴팁 역할 명시
@@ -352,7 +319,7 @@ export default function TooltipPage() {
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
+                    <TableHead>속성</TableHead>
                     <TableHead>타입</TableHead>
                     <TableHead>기본값</TableHead>
                     <TableHead>설명</TableHead>
@@ -402,9 +369,23 @@ export default function TooltipPage() {
                       </Code>
                     </TableCell>
                     <TableCell>
-                      <Code>&quot;top&quot;</Code>
+                      <Code>&quot;right&quot;</Code>
                     </TableCell>
-                    <TableCell>툴팁 표시 위치</TableCell>
+                    <TableCell>
+                      툴팁 표시 위치 (autoPosition 시 자동 조절)
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>autoPosition</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>boolean</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code>true</Code>
+                    </TableCell>
+                    <TableCell>화면 위치에 따라 left/right 자동 선택</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>

@@ -152,7 +152,7 @@ export default function ComboboxPage() {
               description="Combobox와 ComboboxOption 타입을 import하여 사용합니다. options 배열과 value/onValueChange로 상태를 관리합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Combobox, type ComboboxOption } from '@hanui/react'
+              {`import { Combobox, type ComboboxOption } from '@/components/hanui'
 
 const options: ComboboxOption[] = [
   { value: 'react', label: 'React' },

@@ -114,7 +114,7 @@ export default function SelectPage() {
               가능한 항목들을 전달하고, value와 onChange로 상태를 관리합니다.
             </Body>
             <Code variant="block" language="tsx">
-              {`import { Select } from '@hanui/react'
+              {`import { Select } from '@/components/hanui'
 
 const options = [
   { value: 'seoul', label: '서울' },
@@ -164,7 +164,7 @@ const options = [
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { Select, FormField, FormLabel, FormHelperText } from '@hanui/react';
+                {`import { Select, FormField, FormLabel, FormHelperText } from '@/components/hanui';
 
 <FormField id="fruit" required>
   <FormLabel>좋아하는 과일</FormLabel>
@@ -209,7 +209,7 @@ const options = [
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { Select, FormField, FormLabel, FormError } from '@hanui/react';
+                {`import { Select, FormField, FormLabel, FormError } from '@/components/hanui';
 
 <FormField id="city" required status="error">
   <FormLabel>도시</FormLabel>

@@ -40,7 +40,6 @@ import {
 } from '@hanui/react';
 
 export default function SwitchPage() {
-  const [basicChecked, setBasicChecked] = useState(false);
   const [notifications, setNotifications] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [autoSave, setAutoSave] = useState(true);
@@ -62,38 +61,35 @@ export default function SwitchPage() {
 
         {/* 개요 탭 */}
         <TabsContent value="overview">
-          {/* 1. 개요 */}
+          {/* 1. 기본 */}
           <Section level="h2">
-            <Heading
-              level="h2"
-              id="overview"
-              title="개요"
-              description="Switch는 즉시 적용되는 설정 변경에 사용됩니다. Radix UI 기반으로 접근성이 보장되며, FormField와 통합하여 폼 검증을 지원합니다."
-              className="sr-only"
-            />
+            <Heading level="h2" id="basic" title="기본" />
             <ComponentPreview>
-              <div className="flex items-center gap-4">
+              <div className="space-y-4">
+                <Switch id="switch-default" label="switch : default" />
                 <Switch
-                  checked={basicChecked}
-                  onCheckedChange={setBasicChecked}
-                  id="overview-switch"
-                  label="알림 받기"
+                  id="switch-checked"
+                  label="switch : checked"
+                  defaultChecked
                 />
-                <span className="text-sm text-krds-gray-60">
-                  상태: {basicChecked ? '켜짐' : '꺼짐'}
-                </span>
+                <Switch
+                  id="switch-disabled"
+                  label="switch : disabled"
+                  disabled
+                />
               </div>
             </ComponentPreview>
             <Code variant="block" language="tsx">
               {`import { Switch } from '@hanui/react';
 
-const [checked, setChecked] = useState(false);
+{/* 기본 */}
+<Switch label="switch : default" />
 
-<Switch
-  checked={checked}
-  onCheckedChange={setChecked}
-  label="알림 받기"
-/>`}
+{/* 체크됨 */}
+<Switch label="switch : checked" defaultChecked />
+
+{/* 비활성화 */}
+<Switch label="switch : disabled" disabled />`}
             </Code>
           </Section>
 
@@ -111,7 +107,7 @@ const [checked, setChecked] = useState(false);
               description="Switch 컴포넌트를 import하고 checked, onCheckedChange로 상태를 관리합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Switch } from '@hanui/react';
+              {`import { Switch } from '@/components/hanui';
 
 <Switch
   checked={checked}
@@ -160,29 +156,22 @@ const [checked, setChecked] = useState(false);
               </Code>
             </Subsection>
 
-            {/* 크기 */}
+            {/* 사이즈 */}
             <Subsection level="h3">
               <Heading
                 level="h3"
-                title="크기"
-                description="sm, md(기본값), lg 세 가지 크기를 제공합니다."
+                title="사이즈"
+                description="lg(기본값)와 md 두 가지 크기를 제공합니다."
               />
               <ComponentPreview>
                 <div className="space-y-4">
-                  <Switch size="sm" label="Small" id="size-sm" defaultChecked />
-                  <Switch
-                    size="md"
-                    label="Medium (기본값)"
-                    id="size-md"
-                    defaultChecked
-                  />
-                  <Switch size="lg" label="Large" id="size-lg" defaultChecked />
+                  <Switch size="lg" label="switch size : large" id="size-lg" />
+                  <Switch size="md" label="switch size : medium" id="size-md" />
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<Switch size="sm" label="Small" />
-<Switch size="md" label="Medium (기본값)" />
-<Switch size="lg" label="Large" />`}
+                {`<Switch size="lg" label="switch size : large" />
+<Switch size="md" label="switch size : medium" />`}
               </Code>
             </Subsection>
 
@@ -207,26 +196,6 @@ const [checked, setChecked] = useState(false);
               <Code variant="block" language="tsx">
                 {`<Switch disabled label="비활성화 (꺼짐)" />
 <Switch disabled defaultChecked label="비활성화 (켜짐)" />`}
-              </Code>
-            </Subsection>
-
-            {/* 에러 상태 */}
-            <Subsection level="h3">
-              <Heading
-                level="h3"
-                title="에러 상태"
-                description="status='error' prop으로 에러 상태를 표시할 수 있습니다."
-              />
-              <ComponentPreview>
-                <Switch
-                  status="error"
-                  label="에러 상태"
-                  id="error-switch"
-                  defaultChecked
-                />
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Switch status="error" label="에러 상태" defaultChecked />`}
               </Code>
             </Subsection>
 
@@ -302,7 +271,7 @@ const [checked, setChecked] = useState(false);
                 <div className="w-full max-w-md space-y-4">
                   <div className="flex items-center justify-between pb-4 border-b border-krds-gray-20">
                     <div>
-                      <Body size="md" weight="semibold">
+                      <Body size="md" weight="bold">
                         푸시 알림
                       </Body>
                       <Body size="sm" className="text-krds-gray-60">
@@ -313,7 +282,7 @@ const [checked, setChecked] = useState(false);
                   </div>
                   <div className="flex items-center justify-between pb-4 border-b border-krds-gray-20">
                     <div>
-                      <Body size="md" weight="semibold">
+                      <Body size="md" weight="bold">
                         이메일 알림
                       </Body>
                       <Body size="sm" className="text-krds-gray-60">
@@ -324,7 +293,7 @@ const [checked, setChecked] = useState(false);
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
-                      <Body size="md" weight="semibold">
+                      <Body size="md" weight="bold">
                         SMS 알림
                       </Body>
                       <Body size="sm" className="text-krds-gray-60">
@@ -335,75 +304,6 @@ const [checked, setChecked] = useState(false);
                   </div>
                 </div>
               </ComponentPreview>
-            </Subsection>
-          </Section>
-
-          {/* 5. 사용 가이드라인 */}
-          <Section level="h2">
-            <Heading level="h2" id="best-practices" title="사용 가이드라인" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하나요?" />
-              <DoCard title="Switch 사용이 적합한 경우">
-                <List variant="check">
-                  <ListItem>즉시 적용되는 설정 변경</ListItem>
-                  <ListItem>켜기/끄기 토글</ListItem>
-                  <ListItem>기능 활성화/비활성화</ListItem>
-                  <ListItem>실시간으로 결과가 반영되는 옵션</ListItem>
-                  <ListItem>독립적인 설정 항목</ListItem>
-                </List>
-              </DoCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="언제 사용하지 말아야 하나요?" />
-              <DontCard title="Switch 사용을 피해야 하는 경우">
-                <List variant="dash">
-                  <ListItem>저장 버튼이 필요한 폼 (Checkbox 사용)</ListItem>
-                  <ListItem>여러 옵션 중 선택 (Radio 사용)</ListItem>
-                  <ListItem>다중 선택 (Checkbox 사용)</ListItem>
-                  <ListItem>약관 동의 (Checkbox 사용)</ListItem>
-                </List>
-              </DontCard>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading
-                level="h3"
-                title="Switch vs Checkbox"
-                description="Switch와 Checkbox의 차이점을 이해하고 적절히 사용하세요."
-              />
-              <Table small>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>구분</TableHead>
-                    <TableHead>Switch</TableHead>
-                    <TableHead>Checkbox</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>적용 시점</TableCell>
-                    <TableCell>즉시 적용</TableCell>
-                    <TableCell>저장 버튼 클릭 후 적용</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>시각적 피드백</TableCell>
-                    <TableCell>명확한 켜짐/꺼짐 상태</TableCell>
-                    <TableCell>체크 표시</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>사용 맥락</TableCell>
-                    <TableCell>설정, 환경설정</TableCell>
-                    <TableCell>폼, 동의, 다중 선택</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>물리적 비유</TableCell>
-                    <TableCell>조명 스위치</TableCell>
-                    <TableCell>체크리스트</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
             </Subsection>
           </Section>
 
@@ -481,10 +381,10 @@ const [checked, setChecked] = useState(false);
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Prop</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Default</TableHead>
-                    <TableHead>Description</TableHead>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>기본값</TableHead>
+                    <TableHead>설명</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -493,9 +393,9 @@ const [checked, setChecked] = useState(false);
                       <Code>size</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">'sm' | 'md' | 'lg'</Code>
+                      <Code className="text-xs">'lg' | 'md'</Code>
                     </TableCell>
-                    <TableCell>'md'</TableCell>
+                    <TableCell>'lg'</TableCell>
                     <TableCell>스위치 크기</TableCell>
                   </TableRow>
                   <TableRow>
@@ -590,7 +490,7 @@ const [checked, setChecked] = useState(false);
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Structured List', href: '/components/structured-list' }}
+        prev={{ title: 'Stack', href: '/components/stack' }}
         next={{ title: 'Tab Bars', href: '/components/tabbars' }}
       />
     </>

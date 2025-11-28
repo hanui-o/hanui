@@ -90,7 +90,7 @@ export default function BadgePage() {
               description="Badge, NumberBadge, DotBadge를 import하여 사용합니다. BadgeGroup으로 아이콘에 뱃지를 오버레이할 수 있습니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Badge, NumberBadge, DotBadge, BadgeGroup } from '@hanui/react'
+              {`import { Badge, NumberBadge, DotBadge, BadgeGroup } from '@/components/hanui'
 
 <Badge variant="success">완료</Badge>
 <NumberBadge count={5} />

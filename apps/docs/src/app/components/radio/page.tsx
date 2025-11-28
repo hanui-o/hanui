@@ -99,7 +99,7 @@ export default function RadioPage() {
             />
 
             <Code variant="block" language="tsx">
-              {`import { RadioGroup, Radio } from '@hanui/react';
+              {`import { RadioGroup, Radio } from '@/components/hanui';
 
 const [value, setValue] = useState('option1');
 

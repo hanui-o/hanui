@@ -125,7 +125,7 @@ export default function AlertDialogPage() {
               description="SimpleAlertDialog로 간단히 사용하거나, 개별 컴포넌트를 조합하여 커스텀할 수 있습니다."
             />
             <Code variant="block" language="tsx">
-              {`import { SimpleAlertDialog, Button } from '@hanui/react'
+              {`import { SimpleAlertDialog, Button } from '@/components/hanui'
 
 <SimpleAlertDialog
   trigger={<Button>삭제</Button>}

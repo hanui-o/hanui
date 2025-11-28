@@ -2,17 +2,19 @@
 
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /**
  * Tabs Variants
  * KRDS 접근성 자동화를 포함한 탭 컴포넌트
  */
-const tabsListVariants = cva('flex border-b border-krds-gray-20 mb-10', {
+const tabsListVariants = cva('flex', {
   variants: {
     variant: {
-      default: '',
-      pills: 'border-0 gap-2',
+      default: 'border-b border-krds-gray-20',
+      pills:
+        'overflow-hidden w-full rounded-lg bg-krds-white border border-krds-gray-20',
     },
   },
   defaultVariants: {
@@ -23,8 +25,7 @@ const tabsListVariants = cva('flex border-b border-krds-gray-20 mb-10', {
 const tabsTriggerVariants = cva(
   [
     'inline-flex items-center justify-center',
-    'px-4 py-2 font-medium',
-    'transition-colors whitespace-nowrap cursor-pointer',
+    'transition-all whitespace-nowrap cursor-pointer',
     'focus-visible:outline-none focus-visible:ring-2',
     'focus-visible:ring-krds-func-info focus-visible:ring-offset-2',
     'disabled:pointer-events-none disabled:opacity-50',
@@ -33,23 +34,35 @@ const tabsTriggerVariants = cva(
     variants: {
       variant: {
         default: [
-          'border-b-2 border-transparent -mb-px',
-          'data-[state=active]:border-krds-primary-base',
-          'data-[state=active]:text-krds-primary-base',
-          'data-[state=inactive]:text-krds-gray-60',
-          'data-[state=inactive]:hover:text-krds-gray-90',
+          'border-transparent -mb-px',
+          'data-[state=active]:border-krds-secondary-80',
+          'data-[state=active]:text-krds-secondary-80',
+          'data-[state=active]:hover:bg-krds-primary-5',
+          'data-[state=inactive]:text-krds-gray-70',
+          'data-[state=inactive]:hover:bg-krds-primary-5',
         ].join(' '),
         pills: [
-          'rounded-md',
-          'data-[state=active]:bg-krds-primary-base',
+          'flex-1 border-r border-krds-gray-20 last:border-r-0',
+          'data-[state=active]:bg-krds-secondary-80',
           'data-[state=active]:text-white',
-          'data-[state=inactive]:text-krds-gray-60',
-          'data-[state=inactive]:hover:bg-krds-gray-10',
+          'data-[state=inactive]:bg-transparent',
+          'data-[state=inactive]:text-krds-gray-70',
+          'data-[state=inactive]:hover:bg-krds-gray-20',
         ].join(' '),
       },
+      size: {
+        sm: 'h-10 px-6 py-1.5 text-krds-body-md font-medium',
+        default: 'h-14 px-10 py-2 text-krds-body-lg font-bold',
+      },
     },
+    compoundVariants: [
+      // default variant에만 border-b 적용
+      { variant: 'default', size: 'sm', className: 'border-b-2' },
+      { variant: 'default', size: 'default', className: 'border-b-4' },
+    ],
     defaultVariants: {
       variant: 'default',
+      size: 'default',
     },
   }
 );
@@ -66,6 +79,8 @@ export interface TabsProps {
   onValueChange?: (value: string) => void;
   /** 스타일 변형 */
   variant?: 'default' | 'pills';
+  /** 탭 크기 */
+  size?: 'sm' | 'default';
   /** 추가 CSS 클래스 */
   className?: string;
   /** 자식 요소 */
@@ -78,6 +93,8 @@ export interface TabsProps {
 export interface TabsListProps extends VariantProps<typeof tabsListVariants> {
   children: React.ReactNode;
   className?: string;
+  /** 탭이 많을 때 스크롤 가능하도록 설정 */
+  scrollable?: boolean;
 }
 
 /**
@@ -91,6 +108,8 @@ export interface TabsTriggerProps
   className?: string;
   /** 비활성화 여부 */
   disabled?: boolean;
+  /** 탭 크기 (Tabs에서 상속됨) */
+  size?: 'sm' | 'default';
 }
 
 /**
@@ -110,6 +129,7 @@ interface TabsContextValue {
   value: string;
   onValueChange: (value: string) => void;
   variant: 'default' | 'pills';
+  size: 'sm' | 'default';
 }
 
 const TabsContext = React.createContext<TabsContextValue | undefined>(
@@ -152,6 +172,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       value: controlledValue,
       onValueChange,
       variant = 'default',
+      size = 'default',
       className,
       children,
       ...props
@@ -177,7 +198,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
 
     return (
       <TabsContext.Provider
-        value={{ value, onValueChange: handleValueChange, variant }}
+        value={{ value, onValueChange: handleValueChange, variant, size }}
       >
         <div ref={ref} className={cn('w-full mt-8', className)} {...props}>
           {children}
@@ -193,17 +214,68 @@ Tabs.displayName = 'Tabs';
  * TabsList - 탭 버튼 컨테이너
  *
  * role="tablist"와 키보드 네비게이션을 자동으로 처리합니다.
+ * scrollable prop으로 탭이 많을 때 스크롤 네비게이션을 활성화할 수 있습니다.
  */
 export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
-  ({ children, className, variant: variantProp, ...props }, ref) => {
+  (
+    { children, className, variant: variantProp, scrollable = false, ...props },
+    ref
+  ) => {
     const { variant: contextVariant } = useTabsContext();
     const variant = variantProp || contextVariant;
     const internalRef = React.useRef<HTMLDivElement>(null);
-    const tabsListRef = ref || internalRef;
+    const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+    const tabsListRef = (ref as React.RefObject<HTMLDivElement>) || internalRef;
+
+    // 스크롤 상태 관리
+    const [canScrollLeft, setCanScrollLeft] = React.useState(false);
+    const [canScrollRight, setCanScrollRight] = React.useState(false);
+
+    // 스크롤 상태 업데이트
+    const updateScrollState = React.useCallback(() => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+    }, []);
+
+    // 스크롤 이벤트 리스너
+    React.useEffect(() => {
+      if (!scrollable) return;
+
+      const container = scrollContainerRef.current;
+      if (!container) return;
+
+      updateScrollState();
+
+      container.addEventListener('scroll', updateScrollState);
+      window.addEventListener('resize', updateScrollState);
+
+      return () => {
+        container.removeEventListener('scroll', updateScrollState);
+        window.removeEventListener('resize', updateScrollState);
+      };
+    }, [scrollable, updateScrollState]);
+
+    // 스크롤 함수
+    const scroll = (direction: 'left' | 'right') => {
+      const container = scrollContainerRef.current;
+      if (!container) return;
+
+      const scrollAmount = container.clientWidth * 0.5;
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    };
 
     // 키보드 네비게이션: Arrow Left/Right, Home, End
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      const tabsList = 'current' in tabsListRef ? tabsListRef.current : null;
+      const tabsList = scrollable
+        ? scrollContainerRef.current
+        : tabsListRef.current;
       if (!tabsList) return;
 
       const tabs = Array.from(
@@ -238,10 +310,87 @@ export const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
           return;
       }
 
-      tabs[nextIndex]?.focus();
-      tabs[nextIndex]?.click();
+      const nextTab = tabs[nextIndex];
+      nextTab?.focus();
+      nextTab?.click();
+
+      // 스크롤 가능한 경우, 포커스된 탭이 보이도록 스크롤
+      if (scrollable && nextTab) {
+        nextTab.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'nearest',
+        });
+      }
     };
 
+    // 스크롤 가능한 탭 렌더링
+    if (scrollable) {
+      return (
+        <div
+          ref={tabsListRef}
+          className={cn('relative flex items-center', className)}
+          {...props}
+        >
+          {/* 왼쪽 스크롤 버튼 */}
+          <button
+            type="button"
+            onClick={() => scroll('left')}
+            disabled={!canScrollLeft}
+            aria-label="이전 탭 보기"
+            className={cn(
+              'absolute left-0 top-1/2 -translate-y-1/2',
+              'flex-shrink-0 flex items-center justify-center',
+              'w-10 h-10 rounded-full',
+              'bg-krds-gray-90 text-white',
+              'hover:bg-krds-gray-80',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-func-info',
+              'disabled:opacity-0 disabled:pointer-events-none',
+              'transition-opacity'
+            )}
+          >
+            <ChevronLeft className="w-5 h-5" aria-hidden="true" />
+          </button>
+
+          {/* 스크롤 컨테이너 */}
+          <div
+            ref={scrollContainerRef}
+            role="tablist"
+            tabIndex={-1}
+            onKeyDown={handleKeyDown}
+            className={cn(
+              'flex-1 overflow-x-auto scrollbar-hide',
+              tabsListVariants({ variant })
+            )}
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {children}
+          </div>
+
+          {/* 오른쪽 스크롤 버튼 */}
+          <button
+            type="button"
+            onClick={() => scroll('right')}
+            disabled={!canScrollRight}
+            aria-label="다음 탭 보기"
+            className={cn(
+              'absolute right-0 top-1/2 -translate-y-1/2',
+              'flex-shrink-0 flex items-center justify-center',
+              'w-10 h-10 rounded-full',
+              'bg-krds-gray-90 text-white',
+              'hover:bg-krds-gray-80',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-func-info',
+              'disabled:opacity-0 disabled:pointer-events-none',
+              'transition-opacity'
+            )}
+          >
+            <ChevronRight className="w-5 h-5" aria-hidden="true" />
+          </button>
+        </div>
+      );
+    }
+
+    // 기본 탭 렌더링
     return (
       <div
         ref={tabsListRef}
@@ -274,13 +423,20 @@ export const TabsTrigger = React.forwardRef<
       children,
       className,
       variant: variantProp,
+      size: sizeProp,
       disabled,
       ...props
     },
     ref
   ) => {
-    const { value, onValueChange, variant: contextVariant } = useTabsContext();
+    const {
+      value,
+      onValueChange,
+      variant: contextVariant,
+      size: contextSize,
+    } = useTabsContext();
     const variant = variantProp || contextVariant;
+    const size = sizeProp || contextSize;
     const isActive = value === triggerValue;
     const panelId = `tabpanel-${triggerValue}`;
 
@@ -293,7 +449,7 @@ export const TabsTrigger = React.forwardRef<
         aria-controls={panelId}
         data-state={isActive ? 'active' : 'inactive'}
         disabled={disabled}
-        className={cn(tabsTriggerVariants({ variant }), className)}
+        className={cn(tabsTriggerVariants({ variant, size }), className)}
         onClick={() => onValueChange(triggerValue)}
         {...props}
       >
@@ -324,7 +480,7 @@ export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
         role="tabpanel"
         id={panelId}
         aria-labelledby={`tab-${contentValue}`}
-        className={cn('mt-4 focus-visible:outline-none', className)}
+        className={cn('pt-10 focus-visible:outline-none', className)}
         {...props}
       >
         {children}

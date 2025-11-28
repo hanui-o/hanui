@@ -159,7 +159,7 @@ export default function HeaderPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx" className="mb-4">
-              {`import { HeaderWithMegaMenu, MegaMenuColumn } from '@hanui/react'
+              {`import { HeaderWithMegaMenu, MegaMenuColumn } from '@/components/hanui'
 
 const megaColumns: MegaMenuColumn[] = [
   {
@@ -213,7 +213,7 @@ const megaColumns: MegaMenuColumn[] = [
             </ComponentPreview>
 
             <Code variant="block" language="tsx" className="mb-4">
-              {`import { HeaderWithNavigation, NavigationMenuItem } from '@hanui/react'
+              {`import { HeaderWithNavigation, NavigationMenuItem } from '@/components/hanui'
 
 const navigationItems: NavigationMenuItem[] = [
   { label: '홈', href: '/', active: true },

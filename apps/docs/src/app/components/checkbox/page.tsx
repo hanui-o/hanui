@@ -114,7 +114,7 @@ export default function CheckboxPage() {
               description="Checkbox, CheckboxGroup, CheckboxGroupItem을 import하여 사용합니다. FormField와 함께 사용하면 접근성과 폼 검증을 자동으로 처리합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Checkbox, CheckboxGroup, CheckboxGroupItem } from '@hanui/react'
+              {`import { Checkbox, CheckboxGroup, CheckboxGroupItem } from '@/components/hanui'
 
 // 단일 체크박스 (label prop 사용)
 <Checkbox label="동의합니다" checked={checked} onCheckedChange={setChecked} />
@@ -214,7 +214,7 @@ export default function CheckboxPage() {
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { ChipCheckbox } from '@hanui/react'
+                {`import { ChipCheckbox } from '@/components/hanui'
 
 <ChipCheckbox label="기본" />
 <ChipCheckbox label="선택됨" defaultChecked />

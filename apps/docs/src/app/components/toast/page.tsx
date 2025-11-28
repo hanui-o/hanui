@@ -198,7 +198,7 @@ toast({
               description="ToastProvider로 앱을 감싸고, useToast 훅으로 toast 함수를 호출합니다. Toaster 컴포넌트는 Toast를 렌더링합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { ToastProvider, Toaster, useToast, Button } from '@hanui/react'
+              {`import { ToastProvider, Toaster, useToast, Button } from '@/components/hanui'
 
 function App() {
   return (
@@ -243,7 +243,7 @@ function MyComponent() {
                 <ToastWithActionDemo />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { ToastAction, useToast } from '@hanui/react';
+                {`import { ToastAction, useToast } from '@/components/hanui';
 
 const { toast } = useToast();
 
@@ -289,7 +289,8 @@ toast({
                 description="Toast 컴포넌트를 직접 렌더링하여 정적인 알림을 표시할 수 있습니다."
               />
               <ComponentPreview>
-                <div className="w-full max-w-md space-y-4">
+                <div className="w-full max-w-md space-y-4 text-center">
+                  오른쪽 하단에 떠있는 toast 를 보시오.
                   <Toast variant="info" title="정보" open>
                     새로운 버전이 출시되었습니다.
                   </Toast>
@@ -314,6 +315,35 @@ toast({
                 title="Position"
                 description="ToastProvider의 position prop으로 Toast 표시 위치를 지정할 수 있습니다."
               />
+              <ComponentPreview>
+                <div className="w-full">
+                  <p className="text-sm text-krds-gray-60 mb-4 text-center">
+                    현재 페이지는 <Code>bottom-right</Code> 위치를 사용합니다.
+                  </p>
+                  <div className="relative w-full h-48 border border-krds-gray-20 rounded-lg bg-krds-gray-5">
+                    {/* Top row */}
+                    <div className="absolute top-2 left-2 px-2 py-1 text-xs bg-krds-gray-20 rounded">
+                      top-left
+                    </div>
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 px-2 py-1 text-xs bg-krds-gray-20 rounded">
+                      top-center
+                    </div>
+                    <div className="absolute top-2 right-2 px-2 py-1 text-xs bg-krds-gray-20 rounded">
+                      top-right
+                    </div>
+                    {/* Bottom row */}
+                    <div className="absolute bottom-2 left-2 px-2 py-1 text-xs bg-krds-gray-20 rounded">
+                      bottom-left
+                    </div>
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2 py-1 text-xs bg-krds-gray-20 rounded">
+                      bottom-center
+                    </div>
+                    <div className="absolute bottom-2 right-2 px-2 py-1 text-xs bg-krds-primary-10 text-krds-primary-base rounded border border-krds-primary-base">
+                      bottom-right (기본값)
+                    </div>
+                  </div>
+                </div>
+              </ComponentPreview>
               <Code variant="block" language="tsx">
                 {`// 오른쪽 상단에 Toast 표시
 <ToastProvider position="top-right">
@@ -360,7 +390,9 @@ toast({
               <List>
                 <ListItem>마우스 호버 시 타이머 일시 정지</ListItem>
                 <ListItem>스와이프로 닫기 지원 (모바일)</ListItem>
-                <ListItem>키보드로 닫기 버튼 접근 가능</ListItem>
+                <ListItem>
+                  <Code>F8</Code> 키로 Toast 영역에 포커스 → 액션 버튼 접근
+                </ListItem>
                 <ListItem>
                   <Code>duration: Infinity</Code>로 자동 닫힘 비활성화 가능
                 </ListItem>
@@ -379,10 +411,16 @@ toast({
                 <TableBody>
                   <TableRow>
                     <TableCell>
+                      <Code>F8</Code>
+                    </TableCell>
+                    <TableCell>Toast 영역으로 포커스 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
                       <Code>Tab</Code>
                     </TableCell>
                     <TableCell>
-                      닫기 버튼 또는 액션 버튼으로 포커스 이동
+                      Toast 내 버튼으로 포커스 이동 (액션 → 닫기)
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -399,6 +437,12 @@ toast({
                   </TableRow>
                 </TableBody>
               </Table>
+              <p className="text-sm text-krds-gray-60 mt-3">
+                <strong>키보드 접근 흐름:</strong> <Code>F8</Code> → Toast 영역
+                포커스 → <Code>Tab</Code> → 액션/닫기 버튼 포커스. F8은
+                브라우저와 충돌하지 않는 키로, <Code>hotkey</Code> prop으로 변경
+                가능합니다.
+              </p>
             </Subsection>
           </Section>
         </TabsContent>
@@ -432,6 +476,16 @@ toast({
                     </TableCell>
                     <TableCell>'bottom-right'</TableCell>
                     <TableCell>Toast 표시 위치</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>hotkey</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string[]</Code>
+                    </TableCell>
+                    <TableCell>['F8']</TableCell>
+                    <TableCell>Toast 영역으로 포커스 이동 단축키</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
