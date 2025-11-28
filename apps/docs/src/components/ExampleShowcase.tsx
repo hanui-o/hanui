@@ -4,11 +4,31 @@ import { Button, Input } from '@hanui/react';
 import { useState } from 'react';
 
 const examples = [
-  { id: 'examples', label: 'Examples' },
-  { id: 'dashboard', label: 'Dashboard' },
-  { id: 'tasks', label: 'Tasks' },
-  { id: 'playground', label: 'Playground' },
-  { id: 'auth', label: 'Authentication' },
+  {
+    id: 'examples',
+    label: 'Examples',
+    disabled: true,
+    tooltip: '여긴 아직...',
+  },
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    disabled: true,
+    tooltip: '이것도 아직...',
+  },
+  { id: 'tasks', label: 'Tasks', disabled: true, tooltip: '이것마저...' },
+  {
+    id: 'playground',
+    label: 'Playground',
+    disabled: true,
+    tooltip: '사실 다...',
+  },
+  {
+    id: 'auth',
+    label: 'Authentication',
+    disabled: true,
+    tooltip: 'Coming Soon 🚧',
+  },
 ];
 
 export function ExampleShowcase() {
@@ -20,20 +40,31 @@ export function ExampleShowcase() {
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-6">
           {examples.map((example) => (
-            <button
-              key={example.id}
-              onClick={() => setActiveTab(example.id)}
-              className={`pb-3 px-1 font-medium transition-colors relative ${
-                activeTab === example.id
-                  ? 'text-gray-900 dark:text-gray-100'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-              }`}
-            >
-              {example.label}
-              {activeTab === example.id && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900 dark:bg-gray-100" />
+            <div key={example.id} className="relative group">
+              <button
+                onClick={() => !example.disabled && setActiveTab(example.id)}
+                disabled={example.disabled}
+                className={`pb-3 px-1 font-medium transition-colors relative ${
+                  example.disabled
+                    ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                    : activeTab === example.id
+                      ? 'text-gray-900 dark:text-gray-100'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+                }`}
+              >
+                {example.label}
+                {!example.disabled && activeTab === example.id && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900 dark:bg-gray-100" />
+                )}
+              </button>
+              {/* Tooltip for disabled tabs */}
+              {example.disabled && example.tooltip && (
+                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-1.5 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                  {example.tooltip}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900 dark:border-t-gray-100" />
+                </div>
               )}
-            </button>
+            </div>
           ))}
         </div>
         <div className="flex items-center gap-2">

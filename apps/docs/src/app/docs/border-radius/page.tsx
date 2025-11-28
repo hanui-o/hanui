@@ -49,18 +49,20 @@ export default function BorderRadiusPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
+          {/* 핵심 요약 */}
           <Section>
-            <Heading
-              level="h2"
-              id="installation"
-              title="설치"
-              description="Body 컴포넌트는 @hanui/react 패키지에 포함되어 있습니다."
-            />
+            <Card variant="filled">
+              <Body>
+                <strong>핵심:</strong> KRDS 표준형 스타일은 2px~12px의 6단계
+                스케일을 제공합니다. Tailwind의 <Code>rounded-*</Code> 클래스로
+                쉽게 적용할 수 있습니다.
+              </Body>
+            </Card>
 
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              {`npx @hanui/cli add border-radius`}
-            </Code>
+            <Body className="mt-4">
+              Border Radius는 Tailwind 기본 설정을 사용하며, 별도의 CSS 변수
+              정의 없이 Tailwind 클래스로 바로 사용할 수 있습니다.
+            </Body>
           </Section>
 
           {/* What is it */}
@@ -746,8 +748,8 @@ export default function BorderRadiusPage() {
 
       {/* Page Navigation */}
       <PageNavigation
-        prev={{ title: 'Body', href: '/components/body' }}
-        next={{ title: 'Breadcrumb', href: '/components/breadcrumb' }}
+        prev={{ title: 'Spacing', href: '/docs/spacing' }}
+        next={{ title: 'Breakpoints', href: '/docs/breakpoints' }}
       />
     </>
   );

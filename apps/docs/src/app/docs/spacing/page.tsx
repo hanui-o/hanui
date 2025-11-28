@@ -44,13 +44,21 @@ export default function SpacingPage() {
         </TabsList>
 
         <TabsContent value="overview">
+          {/* 핵심 요약 */}
           <PageSection>
-            <Heading
-              level="h2"
-              id="overview"
-              title="개요"
-              description="HANUI의 Stack과 Section 컴포넌트는 시맨틱한 간격 시스템을 제공합니다. 의미 기반의 spacing prop을 사용하여 일관된 레이아웃을 쉽게 구성할 수 있습니다."
-            />
+            <Card variant="filled">
+              <Body>
+                <strong>핵심:</strong> KRDS 8px 기반 간격 시스템입니다. Stack,
+                Section 컴포넌트의 <Code>gap</Code> prop으로 시맨틱한 간격을
+                적용합니다.
+              </Body>
+            </Card>
+
+            <Body className="mt-4">
+              간격은 <Code>tailwind.preset.ts</Code>에서 Tailwind spacing으로
+              확장 정의되어 있습니다. 기본 Tailwind spacing에 KRDS 8px grid
+              system 추가 값이 포함됩니다.
+            </Body>
           </PageSection>
 
           {/* Heading 사용 예시 */}
@@ -1901,8 +1909,8 @@ export default function SpacingPage() {
 
       {/* Page Navigation */}
       <PageNavigation
-        prev={{ title: 'Typography', href: '/design-system/typography' }}
-        next={{ title: 'Breakpoints', href: '/design-system/breakpoints' }}
+        prev={{ title: 'Typography', href: '/docs/typography' }}
+        next={{ title: 'Border Radius', href: '/docs/border-radius' }}
       />
     </>
   );

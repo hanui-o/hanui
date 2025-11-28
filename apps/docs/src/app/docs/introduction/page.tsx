@@ -4,7 +4,6 @@ import {
   Heading,
   Subsection,
   PageNavigation,
-  CodeBlock,
 } from '@/components/content';
 
 // UI components from @hanui/react
@@ -16,247 +15,173 @@ export default function IntroductionPage() {
       <Heading
         level="h1"
         title="Introduction"
-        description="HANUI는 Radix UI Primitives 기반의 KRDS(Korea Republic Design System) 컴포넌트 라이브러리입니다. 소스 코드 복사 방식으로 배포되어 완전한 커스터마이징이 가능합니다."
+        description="공공기관 웹사이트 만들 때마다 KRDS 가이드 찾아보고, 접근성 체크하고, 디자인 시스템 구축하느라 지치셨죠? HANUI가 대신 해드립니다."
       />
 
-      {/* Quick Start */}
+      {/* 문제 제기 */}
       <Section>
         <Heading
           level="h2"
-          id="quick-start"
-          title="30초 만에 시작하기"
-          description="CLI 한 줄로 HANUI 컴포넌트를 바로 사용할 수 있습니다."
+          id="the-problem"
+          title="공공기관 웹 개발, 뭐가 문제인가요?"
         />
 
-        <Card className="mt-6">
-          <Body className="font-semibold mb-4">1. 프로젝트 초기화</Body>
-          <CodeBlock
-            code="npx hanui init"
-            language="bash"
-            showLineNumbers={false}
-          />
-
-          <Body className="font-semibold mb-4 mt-6">
-            2. 원하는 컴포넌트 추가
-          </Body>
-          <CodeBlock
-            code="npx hanui add button card input"
-            language="bash"
-            showLineNumbers={false}
-          />
-
-          <Body className="font-semibold mb-4 mt-6">3. 바로 사용</Body>
-          <CodeBlock
-            code={`import { Button } from '@/components/hanui/button';
-
-export default function Page() {
-  return <Button variant="primary">시작하기</Button>;
-}`}
-            language="tsx"
-            showLineNumbers={false}
-          />
-        </Card>
-
-        <Card variant="info" className="mt-6">
-          <Body as="div">
-            <strong>새 프로젝트라면?</strong> <Code>npx create-hanui-app</Code>
-            으로 Next.js + Tailwind CSS + KRDS 프리셋이 모두 설정된 프로젝트를
-            생성할 수 있습니다.
-          </Body>
+        <Card variant="filled">
+          <List variant="dash" className="text-krds-gray-90">
+            <ListItem>KRDS 가이드 읽다가 하루가 끝남</ListItem>
+            <ListItem>색상, 타이포그래피, 간격... 매번 처음부터 설정</ListItem>
+            <ListItem>
+              &quot;이거 접근성 통과해요?&quot; 불안한 마음으로 납품
+            </ListItem>
+            <ListItem>프로젝트마다 똑같은 컴포넌트 또 만들기</ListItem>
+            <ListItem>
+              디자이너: &quot;KRDS 따라 해주세요&quot; / 개발자:
+              &quot;...네&quot;
+            </ListItem>
+          </List>
         </Card>
       </Section>
 
-      {/* What is HANUI */}
+      {/* HANUI 소개 */}
       <Section>
         <Heading
           level="h2"
           id="what-is-hanui"
-          title="HANUI란?"
-          description="HANUI는 한국 공공기관 웹사이트 개발을 위한 UI 컴포넌트 라이브러리입니다. KRDS 디자인 시스템을 준수하며, 웹 접근성(WCAG 2.1 AA)을 완벽히 지원합니다."
+          title="HANUI가 뭔데요?"
+          description="KRDS 표준 + KWCAG 2.2 접근성이 기본 탑재된 React 컴포넌트 라이브러리입니다. 그냥 가져다 쓰면 됩니다."
         />
 
         <Subsection level="h3">
-          <Heading level="h3" title="핵심 가치" />
+          <Heading level="h3" title="핵심만 말하면" />
 
-          <List>
+          <List variant="check">
             <ListItem>
-              <strong>KRDS 준수:</strong> 한국 정부 디자인 시스템 가이드라인
-              완벽 준수
+              <strong>KRDS 2.2 표준 준수</strong> — 색상, 타이포, 간격, 컴포넌트
+              다 맞춰놨음
             </ListItem>
             <ListItem>
-              <strong>Radix UI 기반:</strong> 접근성 로직이 자동으로 처리되어
-              개발자는 비즈니스 로직에만 집중
+              <strong>KWCAG 2.2 접근성 기본 탑재</strong> — 키보드 네비게이션,
+              ARIA, 포커스 관리 자동
             </ListItem>
             <ListItem>
-              <strong>웹 접근성:</strong> WCAG 2.1 AA 수준 웹 접근성 기준 충족
-              (Radix UI가 자동 보장)
+              <strong>소스 코드 복사 방식</strong> — npm 의존성 걱정 없이 내
+              프로젝트에 복사해서 자유롭게 수정
             </ListItem>
             <ListItem>
-              <strong>소스 코드 소유권:</strong> 컴포넌트 소스 코드를 직접
-              수정하고 커스터마이징 가능
-            </ListItem>
-            <ListItem>
-              <strong>개발자 경험:</strong> TypeScript 완벽 지원 및 직관적인 API
+              <strong>TypeScript + Tailwind</strong> — 요즘 프론트엔드 스택
+              그대로
             </ListItem>
           </List>
         </Subsection>
       </Section>
 
-      {/* Key Features */}
+      {/* 왜 만들었나 */}
       <Section>
-        <Heading level="h2" id="key-features" title="주요 기능" />
+        <Heading level="h2" id="why-hanui" title="왜 만들었나요?" />
+
+        <Body className="leading-relaxed mb-4">
+          공공기관 SI 프로젝트 해본 분들은 아실 거예요. 매번 KRDS 가이드 뒤지고,
+          접근성 체크리스트 확인하고, 비슷한 컴포넌트 또 만들고... 이 반복
+          작업이 너무 비효율적이었습니다.
+        </Body>
+
+        <Body className="leading-relaxed mb-4">
+          그래서 만들었습니다.{' '}
+          <strong>한 번 제대로 만들어서, 다 같이 쓰자.</strong>
+        </Body>
+
+        <Card variant="filled">
+          <Body>
+            <strong>솔직히 말하면:</strong> 아직 베타입니다. 모든 KRDS
+            컴포넌트가 완성된 건 아니에요. 하지만 있는 것들은 제대로 만들었고,
+            계속 추가하고 있습니다.
+          </Body>
+        </Card>
+      </Section>
+
+      {/* 기술 스택 */}
+      <Section>
+        <Heading level="h2" id="tech-stack" title="기술 스택" />
 
         <Subsection level="h3">
-          <Heading
-            level="h3"
-            title="KRDS 디자인 시스템"
-            description="한국 공공기관 표준 디자인 가이드라인을 준수하는 컴포넌트를 제공합니다. 정부 및 공공기관 웹사이트 개발 시 필수적인 디자인 표준을 손쉽게 적용할 수 있습니다."
-          />
-        </Subsection>
-
-        <Subsection level="h3">
-          <Heading level="h3" title="Radix UI Primitives 기반">
-            <Body className="leading-relaxed">
-              HANUI는 <strong>Radix UI Primitives</strong>를 기반으로 구축되어
-              접근성과 사용성을 자동으로 보장합니다.
+          <Heading level="h3" title="React + TypeScript" />
+          <Body className="leading-relaxed">
+            타입 안정성과 자동완성으로 개발 생산성을 높입니다. 모든 컴포넌트에
+            완벽한 타입 정의가 제공됩니다.
+          </Body>
+          <Card variant="filled" className="mt-4">
+            <Body>
+              <strong>Vue도 추가할 예정입니다.</strong> 관심 있으시면 GitHub
+              Issue로 알려주세요!
             </Body>
-          </Heading>
-
-          <Card variant="filled">
-            <List variant="check" className="text-krds-gray-90">
-              <ListItem>
-                <strong>접근성 자동 보장:</strong> WCAG 2.1 AA 기준을 자동으로
-                준수합니다. ARIA 속성, 키보드 네비게이션, 포커스 관리 등 복잡한
-                접근성 로직을 Radix가 자동으로 처리합니다.
-              </ListItem>
-              <ListItem>
-                <strong>상태 관리 자동화:</strong> 모달 열림/닫힘, 탭 전환,
-                아코디언 펼침/접힘 등 모든 인터랙션 상태를 Radix가 자동으로
-                관리합니다. 개발자는 비즈니스 로직에만 집중할 수 있습니다.
-              </ListItem>
-              <ListItem>
-                <strong>키보드 네비게이션:</strong> Tab, Enter, Escape, 화살표
-                키 등 모든 키보드 조작이 자동으로 구현됩니다. 스크린 리더
-                사용자도 완벽하게 사용할 수 있습니다.
-              </ListItem>
-              <ListItem>
-                <strong>완전한 스타일 자유도:</strong> Radix는 Headless
-                컴포넌트이므로, KRDS 디자인 가이드를 100% 반영한 스타일을
-                Tailwind CSS로 자유롭게 적용할 수 있습니다.
-              </ListItem>
-            </List>
           </Card>
         </Subsection>
 
         <Subsection level="h3">
-          <Heading level="h3" title="소스 코드 기반 배포">
-            <Body className="leading-relaxed">
-              HANUI는 <strong>소스 코드 복사 방식</strong>으로 배포되어,
-              사용자가 컴포넌트를 직접 수정하고 커스터마이징할 수 있습니다.
-            </Body>
-          </Heading>
+          <Heading level="h3" title="Tailwind CSS" />
+          <Body className="leading-relaxed">
+            KRDS 색상, 타이포그래피, 간격 시스템이 Tailwind 설정에 녹아
+            있습니다.
+            <Code>text-krds-primary-60</Code>, <Code>bg-krds-gray-10</Code> 같은
+            클래스로 바로 사용 가능합니다.
+          </Body>
+        </Subsection>
 
+        <Subsection level="h3">
+          <Heading level="h3" title="Radix UI (일부 컴포넌트)" />
+          <Body className="leading-relaxed">
+            Dialog, Tabs 같은 복잡한 인터랙션이 필요한 컴포넌트는 Radix UI
+            Primitives를 기반으로 만들었습니다. 접근성 로직이 자동으로 처리되어
+            ARIA, 키보드 네비게이션을 신경 쓸 필요가 없습니다.
+          </Body>
+        </Subsection>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="소스 코드 복사 방식" />
+          <Body className="leading-relaxed mb-4">
+            shadcn/ui 스타일입니다. CLI로 컴포넌트를 내 프로젝트에 복사해서
+            사용합니다.
+          </Body>
           <Card variant="filled">
             <List variant="check" className="text-krds-gray-90">
-              <ListItem>
-                <strong>완전한 소유권:</strong> 컴포넌트 소스 코드가 프로젝트에
-                복사되므로, 라이브러리 업데이트에 영향받지 않고 안정적으로
-                사용할 수 있습니다. 필요에 따라 자유롭게 수정할 수 있습니다.
-              </ListItem>
-              <ListItem>
-                <strong>유지보수 용이성:</strong> 컴포넌트 코드를 직접 확인하고
-                수정할 수 있어, 버그 수정이나 기능 추가가 즉시 가능합니다. 외부
-                라이브러리 의존성 문제 없이 프로젝트를 완전히 제어할 수
-                있습니다.
-              </ListItem>
-              <ListItem>
-                <strong>프로젝트 특화 커스터마이징:</strong> KRDS 표준을
-                준수하면서도 프로젝트의 특수한 요구사항에 맞게 컴포넌트를 수정할
-                수 있습니다. 번들 크기도 필요한 컴포넌트만 포함하여 최적화할 수
-                있습니다.
-              </ListItem>
-              <ListItem>
-                <strong>학습 자료로 활용:</strong> 실제 동작하는 컴포넌트 소스
-                코드를 통해 Radix UI와 접근성 구현 방법을 학습할 수 있습니다. 팀
-                내부 지식 공유에도 유용합니다.
-              </ListItem>
+              <ListItem>npm 패키지 버전 충돌 걱정 없음</ListItem>
+              <ListItem>내 프로젝트에 맞게 자유롭게 수정 가능</ListItem>
+              <ListItem>필요한 컴포넌트만 가져가서 번들 사이즈 최적화</ListItem>
             </List>
           </Card>
         </Subsection>
-
-        <Subsection level="h3">
-          <Heading
-            level="h3"
-            title="웹 접근성"
-            description="스크린 리더, 키보드 네비게이션, ARIA 속성 등 웹 접근성을 완벽하게 지원합니다. 모든 사용자가 차별 없이 웹사이트를 이용할 수 있도록 설계되었습니다. Radix UI Primitives 기반으로 접근성 로직이 자동으로 처리되어, 개발자가 별도로 구현할 필요가 없습니다."
-          />
-        </Subsection>
-
-        <Subsection level="h3">
-          <Heading
-            level="h3"
-            title="React + TypeScript"
-            description="타입 안정성과 자동완성 기능으로 개발 생산성을 높입니다. 컴포넌트의 모든 Props와 이벤트 핸들러에 대한 완벽한 타입 정의를 제공합니다."
-          />
-        </Subsection>
-
-        <Subsection level="h3">
-          <Heading level="h3" title="Tailwind CSS">
-            <Body as="div" className="leading-relaxed">
-              유틸리티 클래스 기반으로 컴포넌트를 쉽게 커스터마이징할 수
-              있습니다. 프로젝트의 디자인 시스템에 맞게 자유롭게 스타일을 조정할
-              수 있습니다. Radix UI의 <Code>data-[state]</Code> 속성과 함께
-              사용하여 상태 기반 스타일링도 쉽게 구현할 수 있습니다.
-            </Body>
-          </Heading>
-        </Subsection>
       </Section>
 
-      {/* Who should use HANUI */}
+      {/* 누가 쓰면 좋나 */}
       <Section>
-        <Heading level="h2" id="who-should-use" title="누가 사용하나요?" />
+        <Heading level="h2" id="who-should-use" title="이런 분들에게 추천" />
 
-        <Subsection level="h3">
-          <Heading
-            level="h3"
-            title="공공기관 웹 개발자"
-            description="정부, 지자체, 공공기관 웹사이트 개발 시 KRDS 준수가 필수인 프로젝트에 적합합니다."
-          />
-        </Subsection>
-
-        <Subsection level="h3">
-          <Heading
-            level="h3"
-            title="SI 개발사"
-            description="공공 프로젝트를 수주하는 SI 업체에서 빠른 개발과 표준 준수가 필요한 경우에 활용할 수 있습니다."
-          />
-        </Subsection>
-
-        <Subsection level="h3">
-          <Heading
-            level="h3"
-            title="접근성 중시 프로젝트"
-            description="웹 접근성 준수가 중요한 모든 웹 애플리케이션 개발에 사용할 수 있습니다."
-          />
-        </Subsection>
+        <List variant="check">
+          <ListItem>
+            <strong>공공기관 SI 프로젝트</strong>를 진행하는 개발팀
+          </ListItem>
+          <ListItem>
+            <strong>KRDS 준수</strong>가 필수인 정부/지자체 웹사이트 개발
+          </ListItem>
+          <ListItem>
+            <strong>웹 접근성</strong>을 제대로 지원해야 하는 프로젝트
+          </ListItem>
+          <ListItem>
+            매번 똑같은 컴포넌트 만들기 <strong>지친</strong> 프론트엔드 개발자
+          </ListItem>
+        </List>
       </Section>
 
-      {/* Browser Support */}
+      {/* 브라우저 지원 */}
       <Section>
-        <Heading
-          level="h2"
-          id="browser-support"
-          title="브라우저 지원"
-          description="HANUI는 최신 브라우저를 지원합니다."
-        />
+        <Heading level="h2" id="browser-support" title="브라우저 지원" />
 
-        <List>
-          <ListItem>
-            <strong>Safari</strong> - 최신 2개 버전
-          </ListItem>
-          <ListItem>
-            <strong>Edge</strong> - 최신 2개 버전
-          </ListItem>
+        <Body className="mb-4">
+          최신 브라우저를 지원합니다. IE는 지원하지 않습니다. (2025년이니까요)
+        </Body>
+
+        <List variant="dash">
+          <ListItem>Chrome, Edge, Safari, Firefox — 최신 2개 버전</ListItem>
         </List>
       </Section>
 

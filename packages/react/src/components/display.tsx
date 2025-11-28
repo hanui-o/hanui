@@ -20,10 +20,10 @@ const displayVariants = cva(
   {
     variants: {
       size: {
-        xl: 'text-krds-display-xl md:text-krds-display-xl',
-        lg: 'text-krds-display-lg md:text-krds-display-lg',
-        md: 'text-krds-display-md md:text-krds-display-md',
-        sm: 'text-krds-display-sm md:text-krds-display-sm',
+        xl: 'text-krds-display-xl',
+        lg: 'text-krds-display-lg',
+        md: 'text-krds-display-md',
+        sm: 'text-krds-display-sm',
       },
     },
     defaultVariants: {

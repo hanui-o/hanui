@@ -11,6 +11,7 @@ import {
 // UI components - from @hanui/react
 import {
   Code,
+  Body,
   Card,
   Stack,
   Link,
@@ -44,248 +45,198 @@ export default function TypographyPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          {/* Installation */}
+          {/* 핵심 요약 */}
           <Section>
-            <Heading
-              level="h2"
-              id="installation"
-              title="설치"
-              description="타이포그래피는 HANUI의 기본 스타일에 포함되어 있습니다. 별도 설치가 필요 없습니다."
-            />
-
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              {`# HANUI 설치 시 자동으로 포함됩니다
-npx create-next-app@latest my-app
-npx @hanui/cli init`}
-            </Code>
-          </Section>
-
-          {/* What is it */}
-          <Section>
-            <Heading
-              level="h2"
-              id="what-is-it"
-              title="무엇인가요?"
-              description="Typography는 KRDS 디자인 시스템을 준수하는 타이포그래피 스타일을 제공합니다."
-            />
-
             <Card variant="filled">
-              <List variant="check" className="text-krds-gray-90">
-                <ListItem>
-                  <strong>Pretendard GOV 폰트:</strong> 한국 정부 웹사이트를
-                  위한 최적화된 폰트를 사용합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>접근성 준수:</strong> 최소 16px 크기와 150%
-                  line-height로 가독성을 보장합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>일관된 스케일:</strong> Heading과 Body Text의 체계적인
-                  크기 시스템을 제공합니다.
-                </ListItem>
-                <ListItem>
-                  <strong>KRDS 색상:</strong> KRDS 디자인 시스템의 색상 팔레트와
-                  통합됩니다.
-                </ListItem>
-              </List>
+              <Body>
+                <strong>핵심:</strong> <Code>text-krds-</Code> 접두사로 KRDS
+                타이포그래피를 사용합니다. Display, Title, Body 3가지 카테고리로
+                구성됩니다.
+              </Body>
             </Card>
+
+            <Body className="mt-4">
+              모든 타이포그래피 CSS 변수는{' '}
+              <Code>@hanui/react/variables.css</Code>에 정의되어 있고,{' '}
+              <Code>tailwind.preset.ts</Code>에서 Tailwind 클래스로 매핑됩니다.
+            </Body>
           </Section>
 
-          {/* Heading Scale */}
+          {/* Display Scale */}
           <Section>
             <Heading
               level="h2"
-              id="heading-scale"
-              title="Heading Scale"
-              description="제목을 위한 4가지 크기의 타이포그래피 스케일을 제공합니다."
+              id="display"
+              title="Display (특대 제목)"
+              description="히어로 섹션, 대형 제목에 사용합니다. Line-height 130%."
             />
 
             <Stack gap="sm">
               <Card gap="sm">
-                <Code>text-heading-xl</Code>
-                <Heading level="h1" title="40px / 700 - 페이지 제목 (h1)" />
+                <Code>text-krds-display-xl</Code>
+                <p className="text-krds-display-xl">48px / 700 — 히어로 제목</p>
               </Card>
               <Card gap="sm">
-                <Code>text-heading-lg</Code>
-                <Heading level="h2" title="32px / 700 - 섹션 제목 (h2)" />
+                <Code>text-krds-display-lg</Code>
+                <p className="text-krds-display-lg">42px / 700 — 대형 섹션</p>
               </Card>
               <Card gap="sm">
-                <Code>text-heading-md</Code>
-                <Heading level="h3" title="24px / 700 - 하위 섹션 제목 (h3)" />
+                <Code>text-krds-display-md</Code>
+                <p className="text-krds-display-md">36px / 700 — 중형 섹션</p>
               </Card>
               <Card gap="sm">
-                <Code>text-heading-sm</Code>
-                <Heading level="h4" title="19px / 700 - 카드 제목 (h4)" />
+                <Code>text-krds-display-sm</Code>
+                <p className="text-krds-display-sm">32px / 700 — 소형 섹션</p>
               </Card>
             </Stack>
           </Section>
 
-          {/* Body Text */}
+          {/* Title Scale */}
           <Section>
             <Heading
               level="h2"
-              id="body-text"
-              title="Body Text"
-              description="본문 텍스트를 위한 4가지 크기를 제공합니다."
+              id="title"
+              title="Title (제목)"
+              description="페이지 제목, 섹션 제목에 사용합니다. Line-height 140%."
             />
 
             <Stack gap="sm">
               <Card gap="sm">
-                <Code>text-body-lg</Code>
-                <p className="text-lg">
-                  19px / 400 - 큰 본문 텍스트 (강조된 문단)
-                </p>
+                <Code>text-krds-title-xl</Code>
+                <p className="text-krds-title-xl">32px / 700 — 페이지 제목</p>
               </Card>
               <Card gap="sm">
-                <Code>text-body-md (기본값)</Code>
-                <p className="text-base">
-                  17px / 400 - 기본 본문 텍스트 (가장 많이 사용)
-                </p>
+                <Code>text-krds-title-lg</Code>
+                <p className="text-krds-title-lg">28px / 700 — 섹션 제목</p>
               </Card>
               <Card gap="sm">
-                <Code>text-body-sm</Code>
-                <p className="text-sm">
-                  15px / 400 - 작은 본문 텍스트 (보조 정보)
-                </p>
+                <Code>text-krds-title-md</Code>
+                <p className="text-krds-title-md">24px / 700 — 하위 섹션</p>
               </Card>
               <Card gap="sm">
-                <Code>text-body-xs</Code>
-                <p className="text-xs">
-                  13px / 400 - 매우 작은 텍스트 (캡션, 라벨)
-                </p>
+                <Code>text-krds-title-sm</Code>
+                <p className="text-krds-title-sm">20px / 700 — 카드 제목</p>
+              </Card>
+              <Card gap="sm">
+                <Code>text-krds-title-xs</Code>
+                <p className="text-krds-title-xs">18px / 700 — 소형 제목</p>
+              </Card>
+            </Stack>
+          </Section>
+
+          {/* Body Scale */}
+          <Section>
+            <Heading
+              level="h2"
+              id="body"
+              title="Body (본문)"
+              description="본문 텍스트, 설명에 사용합니다. Line-height 150%."
+            />
+
+            <Stack gap="sm">
+              <Card gap="sm">
+                <Code>text-krds-body-lg</Code>
+                <p className="text-krds-body-lg">19px — 큰 본문 (강조)</p>
+              </Card>
+              <Card gap="sm">
+                <Code>text-krds-body-md</Code>
+                <p className="text-krds-body-md">17px — 기본 본문 (기본값)</p>
+              </Card>
+              <Card gap="sm">
+                <Code>text-krds-body-sm</Code>
+                <p className="text-krds-body-sm">15px — 작은 본문 (보조)</p>
+              </Card>
+              <Card gap="sm">
+                <Code>text-krds-body-xs</Code>
+                <p className="text-krds-body-xs">13px — 캡션, 레이블</p>
               </Card>
             </Stack>
           </Section>
 
           {/* Usage */}
           <Section>
+            <Heading level="h2" id="usage" title="사용 방법" />
+
+            <Code variant="block" language="tsx" showLineNumbers={false}>
+              {`// Display - 히어로, 대형 제목
+<h1 className="text-krds-display-xl">메인 히어로 제목</h1>
+<h2 className="text-krds-display-md">섹션 대제목</h2>
+
+// Title - 페이지, 섹션 제목
+<h1 className="text-krds-title-xl">페이지 제목</h1>
+<h2 className="text-krds-title-lg">섹션 제목</h2>
+<h3 className="text-krds-title-md">하위 섹션</h3>
+
+// Body - 본문 텍스트
+<p className="text-krds-body-md">기본 본문 텍스트 (17px)</p>
+<p className="text-krds-body-sm text-krds-gray-70">보조 정보 (15px)</p>
+<span className="text-krds-body-xs">캡션 (13px)</span>`}
+            </Code>
+          </Section>
+
+          {/* Font Family */}
+          <Section>
             <Heading
               level="h2"
-              id="usage"
-              title="사용 방법"
-              description="타이포그래피 클래스를 적용하는 방법입니다."
+              id="font-family"
+              title="폰트"
+              description="Pretendard GOV를 기본 폰트로 사용합니다."
             />
 
-            <Subsection level="h3">
-              <Heading
-                level="h3"
-                title="기본 사용"
-                description="Tailwind CSS 클래스를 사용하여 타이포그래피를 적용합니다:"
-              />
+            <Code variant="block" language="css" showLineNumbers={false}>
+              {`/* tailwind.preset.ts에서 정의 */
+fontFamily: {
+  sans: [
+    'Pretendard GOV',
+    'Pretendard',
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'system-ui',
+    'sans-serif',
+  ],
+}`}
+            </Code>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// Heading 사용
-<h1 className="text-4xl font-bold">페이지 제목</h1>
-<h2 className="text-3xl font-bold">섹션 제목</h2>
-
-// Body Text 사용
-<p className="text-base">기본 본문 텍스트</p>
-<p className="text-sm text-krds-gray-70">보조 정보</p>`}
-              </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading
-                level="h3"
-                title="실제 사용 예시"
-                description="문서에서 타이포그래피를 활용하는 실제 예시입니다:"
-              />
-
-              <Card variant="outlined">
-                <article className="space-y-4">
-                  <h2 className="text-3xl font-bold">섹션 제목</h2>
-                  <p className="text-base text-krds-gray-90 leading-relaxed">
-                    이것은 기본 본문 텍스트입니다. KRDS 기준에 따라 17px 크기와
-                    150% line-height를 사용하여 최적의 가독성을 제공합니다.
-                  </p>
-                  <p className="text-sm text-krds-gray-70">
-                    보조 정보는 작은 텍스트로 표시합니다. (15px)
-                  </p>
-                </article>
-              </Card>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<article className="space-y-4">
-  <h2 className="text-3xl font-bold">섹션 제목</h2>
-  <p className="text-base text-krds-gray-90 leading-relaxed">
-    기본 본문 텍스트 (17px)
-  </p>
-  <p className="text-sm text-krds-gray-70">
-    보조 정보 (15px)
-  </p>
-</article>`}
-              </Code>
-            </Subsection>
+            <Card variant="info" className="mt-4">
+              <Body>
+                <strong>Pretendard GOV</strong>는 정부 웹사이트용 최적화
+                폰트입니다. 없으면 Pretendard, 시스템 폰트 순으로 대체됩니다.
+              </Body>
+            </Card>
           </Section>
 
           {/* Best Practices */}
           <Section>
             <Heading level="h2" id="best-practices" title="Best Practices" />
 
-            <List>
+            <List variant="check">
               <ListItem>
-                <strong>최소 폰트 크기</strong>는 16px 이상을 사용하여 가독성을
-                보장하세요.
+                <strong>최소 폰트 크기</strong>는 13px 이상 (KRDS body-xs)
               </ListItem>
               <ListItem>
-                <strong>Line-height</strong>는 최소 150%를 유지하여 텍스트
-                간격을 확보하세요.
+                <strong>기본 본문</strong>은 17px (KRDS body-md) 사용
               </ListItem>
               <ListItem>
-                <strong>색상 대비</strong>는 WCAG 기준(4.5:1 이상)을 준수하세요.
+                <strong>Line-height</strong>: Display 130%, Title 140%, Body
+                150%
               </ListItem>
               <ListItem>
-                <strong>터치 타겟</strong> 크기는 최소 44x44px를 유지하세요.
+                <strong>색상 대비</strong>는 WCAG 기준 4.5:1 이상 준수
               </ListItem>
               <ListItem>
-                <strong>Heading 계층</strong>을 논리적으로 사용하여 문서 구조를
-                명확하게 하세요.
+                <strong>Heading 계층</strong>을 논리적으로 사용 (h1 → h2 → h3)
               </ListItem>
             </List>
           </Section>
 
-          {/* Accessibility */}
-          <Section>
-            <Heading
-              level="h2"
-              id="accessibility"
-              title="접근성"
-              description="타이포그래피 접근성 가이드라인입니다."
-            />
-
-            <Card variant="outlined">
-              <Heading
-                level="h3"
-                title="접근성 고려사항"
-                description="최소 텍스트 크기(16px), 충분한 대비(4.5:1), 터치 타겟 크기(44x44px)를 준수하세요."
-              />
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// 최소 폰트 크기 16px
-<p className="text-base">본문 텍스트</p>
-
-// 충분한 색상 대비
-<p className="text-krds-gray-90 bg-krds-white">높은 대비</p>
-
-// 터치 타겟 크기
-<Button size="md">최소 40px 높이</Button>`}
-              </Code>
-            </Card>
-          </Section>
-
           {/* Reference */}
           <Section>
-            <Heading
-              level="h2"
-              id="reference"
-              title="참고 자료"
-              description="KRDS 타이포그래피 관련 문서입니다."
-            />
+            <Heading level="h2" id="reference" title="참고 자료" />
 
             <Link
               href="https://www.krds.go.kr/html/site/style/style_03.html"
               external
-              className="block p-4 bg-krds-white border border-krds-gray-20 rounded-lg hover:border-krds-primary-base transition-colors"
+              className="block p-4 bg-krds-gray-surface border border-krds-gray-border rounded-lg hover:border-krds-primary-base transition-colors"
             >
               <h4 className="font-semibold mb-1">KRDS 타이포그래피 가이드</h4>
               <p className="text-sm text-krds-gray-70">
@@ -296,121 +247,239 @@ npx @hanui/cli init`}
         </TabsContent>
 
         <TabsContent value="api">
-          {/* API Reference */}
           <Section>
-            <Heading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
+            {/* Display Classes */}
             <Subsection level="h3">
-              <Heading level="h3" title="Heading Classes" />
+              <Heading level="h3" title="Display Classes" />
 
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Class</TableHead>
+                    <TableHead>Tailwind Class</TableHead>
                     <TableHead>Size</TableHead>
+                    <TableHead>Line-height</TableHead>
                     <TableHead>Weight</TableHead>
-                    <TableHead>Usage</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">text-4xl</TableCell>
-                    <TableCell>40px</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-display-xl</Code>
+                    </TableCell>
+                    <TableCell>48px</TableCell>
+                    <TableCell>130%</TableCell>
                     <TableCell>700</TableCell>
-                    <TableCell>페이지 제목 (h1)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">text-3xl</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-display-lg</Code>
+                    </TableCell>
+                    <TableCell>42px</TableCell>
+                    <TableCell>130%</TableCell>
+                    <TableCell>700</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-display-md</Code>
+                    </TableCell>
+                    <TableCell>36px</TableCell>
+                    <TableCell>130%</TableCell>
+                    <TableCell>700</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-display-sm</Code>
+                    </TableCell>
                     <TableCell>32px</TableCell>
+                    <TableCell>130%</TableCell>
                     <TableCell>700</TableCell>
-                    <TableCell>섹션 제목 (h2)</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-mono">text-2xl</TableCell>
-                    <TableCell>24px</TableCell>
-                    <TableCell>700</TableCell>
-                    <TableCell>하위 섹션 제목 (h3)</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="font-mono">text-lg</TableCell>
-                    <TableCell>19px</TableCell>
-                    <TableCell>700</TableCell>
-                    <TableCell>카드 제목 (h4)</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </Subsection>
 
+            {/* Title Classes */}
             <Subsection level="h3">
-              <Heading level="h3" title="Body Text Classes" />
+              <Heading level="h3" title="Title Classes" />
 
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Class</TableHead>
+                    <TableHead>Tailwind Class</TableHead>
                     <TableHead>Size</TableHead>
+                    <TableHead>Line-height</TableHead>
                     <TableHead>Weight</TableHead>
-                    <TableHead>Usage</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">text-lg</TableCell>
-                    <TableCell>19px</TableCell>
-                    <TableCell>400</TableCell>
-                    <TableCell>큰 본문 텍스트</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-title-xl</Code>
+                    </TableCell>
+                    <TableCell>32px</TableCell>
+                    <TableCell>140%</TableCell>
+                    <TableCell>700</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">text-base</TableCell>
-                    <TableCell>17px</TableCell>
-                    <TableCell>400</TableCell>
-                    <TableCell>기본 본문 텍스트</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-title-lg</Code>
+                    </TableCell>
+                    <TableCell>28px</TableCell>
+                    <TableCell>140%</TableCell>
+                    <TableCell>700</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">text-sm</TableCell>
-                    <TableCell>15px</TableCell>
-                    <TableCell>400</TableCell>
-                    <TableCell>작은 본문 텍스트</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-title-md</Code>
+                    </TableCell>
+                    <TableCell>24px</TableCell>
+                    <TableCell>140%</TableCell>
+                    <TableCell>700</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">text-xs</TableCell>
-                    <TableCell>13px</TableCell>
-                    <TableCell>400</TableCell>
-                    <TableCell>매우 작은 텍스트</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-title-sm</Code>
+                    </TableCell>
+                    <TableCell>20px</TableCell>
+                    <TableCell>140%</TableCell>
+                    <TableCell>700</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-title-xs</Code>
+                    </TableCell>
+                    <TableCell>18px</TableCell>
+                    <TableCell>140%</TableCell>
+                    <TableCell>700</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </Subsection>
 
+            {/* Body Classes */}
             <Subsection level="h3">
-              <Heading level="h3" title="Font Weight Classes" />
+              <Heading level="h3" title="Body Classes" />
 
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Class</TableHead>
-                    <TableHead>Weight</TableHead>
-                    <TableHead>Usage</TableHead>
+                    <TableHead>Tailwind Class</TableHead>
+                    <TableHead>Size</TableHead>
+                    <TableHead>Line-height</TableHead>
+                    <TableHead>용도</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell className="font-mono">font-bold</TableCell>
-                    <TableCell>700</TableCell>
-                    <TableCell>제목, 강조</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-body-lg</Code>
+                    </TableCell>
+                    <TableCell>19px</TableCell>
+                    <TableCell>150%</TableCell>
+                    <TableCell>큰 본문 (강조)</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">font-semibold</TableCell>
-                    <TableCell>600</TableCell>
-                    <TableCell>부제목, 레이블</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-body-md</Code>
+                    </TableCell>
+                    <TableCell>17px</TableCell>
+                    <TableCell>150%</TableCell>
+                    <TableCell>기본 본문</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell className="font-mono">font-normal</TableCell>
-                    <TableCell>400</TableCell>
-                    <TableCell>본문 텍스트</TableCell>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-body-sm</Code>
+                    </TableCell>
+                    <TableCell>15px</TableCell>
+                    <TableCell>150%</TableCell>
+                    <TableCell>작은 본문</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code className="text-xs">text-krds-body-xs</Code>
+                    </TableCell>
+                    <TableCell>13px</TableCell>
+                    <TableCell>150%</TableCell>
+                    <TableCell>캡션, 레이블</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
+            </Subsection>
+
+            {/* CSS Variables */}
+            <Subsection level="h3">
+              <Heading level="h3" title="CSS 변수" />
+              <Body className="mb-4">
+                모든 CSS 변수는 <Code>@hanui/react/variables.css</Code>에
+                정의되어 있습니다.
+              </Body>
+
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`/* variables.css에서 정의됨 */
+
+/* Display */
+--krds-display-xl: 48px;
+--krds-display-lg: 42px;
+--krds-display-md: 36px;
+--krds-display-sm: 32px;
+
+/* Title */
+--krds-title-xl: 32px;
+--krds-title-lg: 28px;
+--krds-title-md: 24px;
+--krds-title-sm: 20px;
+--krds-title-xs: 18px;
+
+/* Body */
+--krds-body-lg: 19px;
+--krds-body-md: 17px;
+--krds-body-sm: 15px;
+--krds-body-xs: 13px;
+
+/* Line Heights */
+--krds-leading-display: 130%;
+--krds-leading-title: 140%;
+--krds-leading-body: 150%;`}
+              </Code>
+            </Subsection>
+
+            {/* Tailwind Preset */}
+            <Subsection level="h3">
+              <Heading level="h3" title="Tailwind Preset 매핑" />
+              <Body className="mb-4">
+                <Code>tailwind.preset.ts</Code>에서 CSS 변수를 Tailwind 클래스로
+                매핑합니다.
+              </Body>
+
+              <Code
+                variant="block"
+                language="typescript"
+                showLineNumbers={false}
+              >
+                {`// tailwind.preset.ts
+fontSize: {
+  // Body
+  'krds-body-xs': ['13px', { lineHeight: '150%' }],
+  'krds-body-sm': ['15px', { lineHeight: '150%' }],
+  'krds-body-md': ['17px', { lineHeight: '150%' }],
+  'krds-body-lg': ['19px', { lineHeight: '150%' }],
+
+  // Title
+  'krds-title-xs': ['18px', { lineHeight: '140%', fontWeight: '700' }],
+  'krds-title-sm': ['20px', { lineHeight: '140%', fontWeight: '700' }],
+  'krds-title-md': ['24px', { lineHeight: '140%', fontWeight: '700' }],
+  'krds-title-lg': ['28px', { lineHeight: '140%', fontWeight: '700' }],
+  'krds-title-xl': ['32px', { lineHeight: '140%', fontWeight: '700' }],
+
+  // Display
+  'krds-display-sm': ['32px', { lineHeight: '130%', fontWeight: '700' }],
+  'krds-display-md': ['36px', { lineHeight: '130%', fontWeight: '700' }],
+  'krds-display-lg': ['42px', { lineHeight: '130%', fontWeight: '700' }],
+  'krds-display-xl': ['48px', { lineHeight: '130%', fontWeight: '700' }],
+}`}
+              </Code>
             </Subsection>
           </Section>
         </TabsContent>

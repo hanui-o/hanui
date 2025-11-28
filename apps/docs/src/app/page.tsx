@@ -39,15 +39,15 @@ export default function Home() {
             </div>
 
             {/* Title */}
-            <Display size="lg" as="h1" className="tracking-tight">
-              공공기관 웹사이트를 위한 KRDS 표준 React 컴포넌트
+            <Display size="xl" as="h1" className="tracking-tight">
+              KRDS 가이드 400페이지??, 이제 안 봐도 됩니다
             </Display>
 
             {/* Description */}
             <Body size="md" className="max-w-2xl">
-              KWCAG 2.2 접근성과 KRDS 2.2 디자인을 기본으로 제공하는
+              KRDS 2.2 표준 + KWCAG 2.2 접근성 기본 탑재
               <br className="hidden sm:block" />
-              정부·공공기관 전용 오픈소스 컴포넌트 라이브러리.
+              공공기관 전용 React 컴포넌트 라이브러리
             </Body>
 
             {/* CTA Buttons */}

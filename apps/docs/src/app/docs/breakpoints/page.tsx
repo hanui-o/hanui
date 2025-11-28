@@ -45,6 +45,24 @@ export default function BreakpointsPage() {
         </TabsList>
 
         <TabsContent value="overview">
+          {/* 핵심 요약 */}
+          <Section>
+            <Card variant="filled">
+              <Body>
+                <strong>핵심:</strong> KRDS + Tailwind 하이브리드 브레이크포인트
+                시스템입니다.
+                <Code>xs:</Code>(360px) ~ <Code>2xl:</Code>(1440px) 6단계를
+                지원합니다.
+              </Body>
+            </Card>
+
+            <Body className="mt-4">
+              브레이크포인트는 <Code>tailwind.preset.ts</Code>의{' '}
+              <Code>screens</Code> 설정에 정의되어 있습니다. KRDS 요구사항(xs:
+              360px, 2xl: 1440px)과 Tailwind 표준을 모두 지원합니다.
+            </Body>
+          </Section>
+
           {/* What is it */}
           <Section>
             <Heading
@@ -545,7 +563,7 @@ module.exports = {
 
       {/* Page Navigation */}
       <PageNavigation
-        prev={{ title: 'Spacing', href: '/design-system/spacing' }}
+        prev={{ title: 'Border Radius', href: '/docs/border-radius' }}
       />
     </>
   );

@@ -1,5 +1,3 @@
-'use client';
-
 // Docs layout components
 import {
   PageSection as Section,
@@ -28,17 +26,40 @@ export default function InstallationPage() {
       <Heading
         level="h1"
         title="Installation"
-        description="HANUI 컴포넌트를 프로젝트에 설치하고 설정하는 방법을 안내합니다."
+        description="HANUI는 shadcn/ui처럼 소스 코드를 복사하는 방식입니다. CLI로 초기 설정하고, 필요한 컴포넌트만 가져가세요."
       />
 
-      {/* Prerequisites */}
+      {/* 핵심 개념 */}
       <Section>
-        <Heading
-          level="h2"
-          id="prerequisites"
-          title="요구사항"
-          description="HANUI를 사용하기 전에 다음 요구사항을 확인하세요:"
-        />
+        <Heading level="h2" id="how-it-works" title="어떻게 작동하나요?" />
+
+        <Card variant="filled" className="mb-6">
+          <Body className="leading-relaxed">
+            HANUI는 npm 패키지 의존성이 아닌{' '}
+            <strong>소스 코드 복사 방식</strong>입니다. 컴포넌트 코드가 내
+            프로젝트에 직접 복사되어, 자유롭게 수정할 수 있습니다.
+          </Body>
+        </Card>
+
+        <List variant="check" className="mb-4">
+          <ListItem>
+            <Code>npx @hanui/cli init</Code> — KRDS 디자인 토큰 + Tailwind 설정
+          </ListItem>
+          <ListItem>
+            <Code>npx @hanui/cli add button</Code> — 컴포넌트 소스 코드 복사
+          </ListItem>
+          <ListItem>
+            <Code>
+              import {'{ Button }'} from &apos;@/components/hanui&apos;
+            </Code>{' '}
+            — 바로 사용
+          </ListItem>
+        </List>
+      </Section>
+
+      {/* 요구사항 */}
+      <Section>
+        <Heading level="h2" id="prerequisites" title="요구사항" />
 
         <div className="grid gap-4 md:grid-cols-3 mt-6">
           <Card className="p-4">
@@ -56,200 +77,135 @@ export default function InstallationPage() {
         </div>
       </Section>
 
-      {/* Installation Methods */}
+      {/* 설치 방법 */}
       <Section>
-        <Heading
-          level="h2"
-          id="installation-methods"
-          title="설치 방법"
-          description="프로젝트 상황에 맞는 방법을 선택하세요:"
-        />
+        <Heading level="h2" id="installation" title="설치" />
 
-        <Tabs defaultValue="existing-project" className="mt-6">
-          <TabsList>
-            <TabsTrigger value="existing-project">
-              기존 프로젝트에 추가
-            </TabsTrigger>
-            <TabsTrigger value="new-project">새 프로젝트 시작</TabsTrigger>
-          </TabsList>
+        <Subsection level="h3">
+          <Heading level="h3" title="Step 1. CLI로 초기화" />
+          <Body className="mb-4 text-krds-gray-70">
+            프로젝트 루트에서 CLI를 실행하면 KRDS 디자인 토큰이 자동으로
+            설정됩니다:
+          </Body>
 
-          {/* 기존 프로젝트에 추가 */}
-          <TabsContent value="existing-project">
-            <Card className="mt-6">
-              <Body className="font-semibold mb-4 text-xl">
-                Step 1. 패키지 설치
-              </Body>
-              <Body className="mb-4 text-krds-gray-70">
-                @hanui/react 패키지를 설치합니다:
-              </Body>
-
-              <Tabs defaultValue="pnpm" className="mt-4">
-                <TabsList>
-                  <TabsTrigger value="pnpm">pnpm</TabsTrigger>
-                  <TabsTrigger value="npm">npm</TabsTrigger>
-                  <TabsTrigger value="yarn">yarn</TabsTrigger>
-                </TabsList>
-                <TabsContent value="pnpm">
-                  <Code variant="block" language="bash" showLineNumbers={false}>
-                    pnpm add @hanui/react
-                  </Code>
-                </TabsContent>
-                <TabsContent value="npm">
-                  <Code variant="block" language="bash" showLineNumbers={false}>
-                    npm install @hanui/react
-                  </Code>
-                </TabsContent>
-                <TabsContent value="yarn">
-                  <Code variant="block" language="bash" showLineNumbers={false}>
-                    yarn add @hanui/react
-                  </Code>
-                </TabsContent>
-              </Tabs>
-
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 2. CSS 변수 설정
-              </Body>
-              <Body className="mb-4 text-krds-gray-70">
-                globals.css 최상단에 KRDS CSS 변수를 import합니다. 이 파일에는
-                색상, 타이포그래피, 간격 등 모든 디자인 토큰이 정의되어
-                있습니다:
-              </Body>
-
-              <Code variant="block" language="css" showLineNumbers={false}>
-                {`/* app/globals.css 또는 src/app/globals.css */
-@import '@hanui/react/variables.css';
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* 기존 스타일... */`}
+          <Tabs defaultValue="pnpm" className="mt-4">
+            <TabsList>
+              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+              <TabsTrigger value="npm">npm</TabsTrigger>
+              <TabsTrigger value="yarn">yarn</TabsTrigger>
+              <TabsTrigger value="bun">bun</TabsTrigger>
+            </TabsList>
+            <TabsContent value="pnpm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                pnpm dlx @hanui/cli init
               </Code>
-
-              <Alert variant="warning" className="mt-4" title="CSS import 순서">
-                <Code>@import '@hanui/react/variables.css'</Code>는 반드시{' '}
-                <Code>@tailwind</Code> 지시어보다 먼저 선언해야 합니다.
-              </Alert>
-
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 3. Tailwind 색상 설정
-              </Body>
-              <Body className="mb-4 text-krds-gray-70">
-                CSS 변수를 Tailwind 유틸리티 클래스로 사용하려면{' '}
-                <Code>tailwind.config.ts</Code>에 색상을 매핑해야 합니다. 이렇게
-                하면 <Code>bg-krds-primary-50</Code>,{' '}
-                <Code>text-krds-gray-90</Code> 같은 클래스를 사용할 수 있습니다:
-              </Body>
-
-              <Code
-                variant="block"
-                language="typescript"
-                showLineNumbers={false}
-              >
-                {`// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    // HANUI 컴포넌트 스타일 포함
-    './node_modules/@hanui/react/dist/**/*.{js,mjs}',
-  ],
-  theme: {
-    extend: {
-      colors: {
-        // Primary
-        'krds-primary': {
-          5: 'var(--krds-color-light-primary-5)',
-          10: 'var(--krds-color-light-primary-10)',
-          20: 'var(--krds-color-light-primary-20)',
-          30: 'var(--krds-color-light-primary-30)',
-          40: 'var(--krds-color-light-primary-40)',
-          50: 'var(--krds-color-light-primary-50)',
-          60: 'var(--krds-color-light-primary-60)',
-          70: 'var(--krds-color-light-primary-70)',
-          80: 'var(--krds-color-light-primary-80)',
-          90: 'var(--krds-color-light-primary-90)',
-          95: 'var(--krds-color-light-primary-95)',
-        },
-        // Gray
-        'krds-gray': {
-          0: 'var(--krds-color-light-gray-0)',
-          5: 'var(--krds-color-light-gray-5)',
-          10: 'var(--krds-color-light-gray-10)',
-          20: 'var(--krds-color-light-gray-20)',
-          30: 'var(--krds-color-light-gray-30)',
-          40: 'var(--krds-color-light-gray-40)',
-          50: 'var(--krds-color-light-gray-50)',
-          60: 'var(--krds-color-light-gray-60)',
-          70: 'var(--krds-color-light-gray-70)',
-          80: 'var(--krds-color-light-gray-80)',
-          90: 'var(--krds-color-light-gray-90)',
-          95: 'var(--krds-color-light-gray-95)',
-        },
-        // Danger
-        'krds-danger': {
-          5: 'var(--krds-color-light-danger-5)',
-          10: 'var(--krds-color-light-danger-10)',
-          20: 'var(--krds-color-light-danger-20)',
-          50: 'var(--krds-color-light-danger-50)',
-          60: 'var(--krds-color-light-danger-60)',
-        },
-        // Success
-        'krds-success': {
-          5: 'var(--krds-color-light-success-5)',
-          10: 'var(--krds-color-light-success-10)',
-          20: 'var(--krds-color-light-success-20)',
-          50: 'var(--krds-color-light-success-50)',
-          60: 'var(--krds-color-light-success-60)',
-        },
-        // Warning
-        'krds-warning': {
-          5: 'var(--krds-color-light-warning-5)',
-          10: 'var(--krds-color-light-warning-10)',
-          20: 'var(--krds-color-light-warning-20)',
-          30: 'var(--krds-color-light-warning-30)',
-          50: 'var(--krds-color-light-warning-50)',
-          60: 'var(--krds-color-light-warning-60)',
-        },
-        // Info
-        'krds-info': {
-          5: 'var(--krds-color-light-information-5)',
-          10: 'var(--krds-color-light-information-10)',
-          20: 'var(--krds-color-light-information-20)',
-          50: 'var(--krds-color-light-information-50)',
-          60: 'var(--krds-color-light-information-60)',
-        },
-      },
-      fontFamily: {
-        sans: ['Pretendard', 'sans-serif'],
-      },
-    },
-  },
-};
-
-export default config;`}
+            </TabsContent>
+            <TabsContent value="npm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                npx @hanui/cli init
               </Code>
+            </TabsContent>
+            <TabsContent value="yarn">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                npx @hanui/cli init
+              </Code>
+            </TabsContent>
+            <TabsContent value="bun">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                bunx @hanui/cli init
+              </Code>
+            </TabsContent>
+          </Tabs>
 
-              <Alert variant="info" className="mt-4" title="전체 색상 정의">
-                위 예시는 주요 색상만 포함합니다. 전체 색상 정의는{' '}
-                <a href="/docs/colors" className="underline">
-                  Colors 문서
-                </a>
-                를 참고하세요.
-              </Alert>
+          <Alert variant="info" className="mt-4" title="init이 하는 일">
+            <List variant="check" className="mt-2 text-sm">
+              <ListItem>
+                <Code>variables.css</Code> 생성 — KRDS 색상, 타이포그래피, 간격
+                CSS 변수
+              </ListItem>
+              <ListItem>
+                <Code>tailwind.config</Code> 수정 — KRDS 색상을 Tailwind
+                유틸리티로 매핑
+              </ListItem>
+              <ListItem>
+                <Code>globals.css</Code> 수정 — CSS 변수 import 추가
+              </ListItem>
+              <ListItem>
+                <Code>components/hanui</Code> 디렉토리 생성
+              </ListItem>
+            </List>
+          </Alert>
+        </Subsection>
 
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 4. 컴포넌트 사용
-              </Body>
-              <Body className="mb-4 text-krds-gray-70">
-                이제 HANUI 컴포넌트를 import하여 사용할 수 있습니다:
-              </Body>
+        <Subsection level="h3">
+          <Heading level="h3" title="Step 2. 컴포넌트 추가" />
+          <Body className="mb-4 text-krds-gray-70">
+            필요한 컴포넌트를 추가합니다. 소스 코드가{' '}
+            <Code>components/hanui/</Code>에 복사됩니다:
+          </Body>
 
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`import { Button, Card, CardBody } from '@hanui/react';
+          <Tabs defaultValue="pnpm" className="mt-4">
+            <TabsList>
+              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+              <TabsTrigger value="npm">npm</TabsTrigger>
+              <TabsTrigger value="yarn">yarn</TabsTrigger>
+              <TabsTrigger value="bun">bun</TabsTrigger>
+            </TabsList>
+            <TabsContent value="pnpm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`# 단일 컴포넌트
+pnpm dlx @hanui/cli add button
+
+# 여러 컴포넌트
+pnpm dlx @hanui/cli add button card input`}
+              </Code>
+            </TabsContent>
+            <TabsContent value="npm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`# 단일 컴포넌트
+npx @hanui/cli add button
+
+# 여러 컴포넌트
+npx @hanui/cli add button card input`}
+              </Code>
+            </TabsContent>
+            <TabsContent value="yarn">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`# 단일 컴포넌트
+npx @hanui/cli add button
+
+# 여러 컴포넌트
+npx @hanui/cli add button card input`}
+              </Code>
+            </TabsContent>
+            <TabsContent value="bun">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`# 단일 컴포넌트
+bunx @hanui/cli add button
+
+# 여러 컴포넌트
+bunx @hanui/cli add button card input`}
+              </Code>
+            </TabsContent>
+          </Tabs>
+
+          <Alert variant="info" className="mt-4" title="설치 경로">
+            컴포넌트는 <Code>@/components/hanui</Code>에 설치됩니다.
+            <br />
+            <span className="text-krds-gray-60">
+              (프로젝트 구조에 따라 src/components/hanui 또는 components/hanui)
+            </span>
+          </Alert>
+        </Subsection>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="Step 3. 사용하기" />
+          <Body className="mb-4 text-krds-gray-70">
+            설치된 컴포넌트를 import하여 사용합니다:
+          </Body>
+
+          <Code variant="block" language="tsx" showLineNumbers={false}>
+            {`import { Button, Card, CardBody } from '@/components/hanui'
 
 export default function Page() {
   return (
@@ -259,196 +215,110 @@ export default function Page() {
         <Button variant="primary">시작하기</Button>
       </CardBody>
     </Card>
-  );
+  )
 }`}
-              </Code>
+          </Code>
+        </Subsection>
+      </Section>
 
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 5. 개발 서버 재시작
-              </Body>
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                pnpm dev
-              </Code>
-            </Card>
-          </TabsContent>
+      {/* init이 생성하는 파일 */}
+      <Section>
+        <Heading level="h2" id="init-files" title="init이 생성하는 파일" />
 
-          {/* 새 프로젝트 시작 */}
-          <TabsContent value="new-project">
-            <Card className="mt-6">
-              <Body className="font-semibold mb-4 text-xl">
-                Step 1. Next.js 프로젝트 생성
-              </Body>
-              <Body className="mb-4 text-krds-gray-70">
-                Next.js 프로젝트를 생성합니다. Tailwind CSS를 포함하도록
-                선택하세요:
-              </Body>
+        <Subsection level="h3">
+          <Heading level="h3" title="variables.css" />
+          <Body className="mb-4 text-krds-gray-70">
+            KRDS 디자인 시스템의 CSS 변수가 정의되어 있습니다:
+          </Body>
 
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                {`npx create-next-app@latest my-hanui-app
+          <Code variant="block" language="css" showLineNumbers={false}>
+            {`/* variables.css - KRDS 디자인 토큰 */
+:root {
+  /* Primary Colors */
+  --krds-color-light-primary-50: #256ef4;
+  --krds-color-light-primary-60: #0b50d0;
+  /* ... 전체 색상 팔레트 */
 
-# 프롬프트에서 다음을 선택:
-# ✔ Would you like to use TypeScript? Yes
-# ✔ Would you like to use ESLint? Yes
-# ✔ Would you like to use Tailwind CSS? Yes
-# ✔ Would you like to use src/ directory? Yes
-# ✔ Would you like to use App Router? Yes`}
-              </Code>
+  /* Gray Scale */
+  --krds-color-light-gray-0: #ffffff;
+  --krds-color-light-gray-90: #1e2124;
+  /* ... */
 
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 2. HANUI 패키지 설치
-              </Body>
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                {`cd my-hanui-app
-pnpm add @hanui/react`}
-              </Code>
+  /* Semantic Colors */
+  --krds-primary-base: var(--krds-color-light-primary-50);
+  --krds-danger-base: var(--krds-color-light-danger-50);
+  /* ... */
 
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 3. globals.css 설정
-              </Body>
-              <Body className="mb-4 text-krds-gray-70">
-                <Code>src/app/globals.css</Code> 파일을 다음과 같이 수정합니다:
-              </Body>
+  /* Typography */
+  --krds-body-md: 17px;
+  --krds-title-md: 24px;
+  /* ... */
+}
 
-              <Code variant="block" language="css" showLineNumbers={false}>
-                {`/* src/app/globals.css */
-@import '@hanui/react/variables.css';
+.dark {
+  /* 다크 모드 자동 지원 */
+  --krds-color-light-gray-0: #000000;
+  --krds-color-light-gray-90: #e6e8ea;
+  /* ... */
+}`}
+          </Code>
+        </Subsection>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="tailwind.config.ts" />
+          <Body className="mb-4 text-krds-gray-70">
+            KRDS 색상이 Tailwind 유틸리티 클래스로 매핑됩니다:
+          </Body>
+
+          <Code variant="block" language="typescript" showLineNumbers={false}>
+            {`// tailwind.config.ts
+import hanUIPreset from '@hanui/react/tailwind.preset'
+
+export default {
+  presets: [hanUIPreset],
+  content: [
+    './src/**/*.{ts,tsx}',
+    './components/hanui/**/*.{ts,tsx}',
+  ],
+}
+
+// 이제 이런 클래스를 사용할 수 있습니다:
+// bg-krds-primary-50, text-krds-gray-90, border-krds-danger-60 등`}
+          </Code>
+        </Subsection>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="globals.css" />
+          <Body className="mb-4 text-krds-gray-70">
+            기존 <Code>globals.css</Code> 파일이 있으면 최상단에 import 한 줄만
+            추가됩니다. 없으면 새로 생성합니다:
+          </Body>
+
+          <Code variant="block" language="css" showLineNumbers={false}>
+            {`/* globals.css - 기존 파일이 있는 경우 */
+@import './variables.css';  /* ← 이 줄만 최상단에 추가됨 */
 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;`}
-              </Code>
+@tailwind utilities;
 
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 4. Tailwind 설정
-              </Body>
-              <Body className="mb-4 text-krds-gray-70">
-                <Code>tailwind.config.ts</Code> 파일에 KRDS 색상을 추가합니다.
-                "기존 프로젝트에 추가" 탭의 Step 3을 참고하세요.
-              </Body>
+/* 기존 스타일들은 그대로 유지... */`}
+          </Code>
 
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 5. 페이지 작성
-              </Body>
-              <Body className="mb-4 text-krds-gray-70">
-                <Code>src/app/page.tsx</Code>를 수정하여 HANUI 컴포넌트를
-                사용합니다:
-              </Body>
-
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// src/app/page.tsx
-import {
-  Button,
-  Container,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardBody,
-  Body,
-} from '@hanui/react';
-
-export default function Home() {
-  return (
-    <Container className="py-20">
-      <Card className="max-w-lg mx-auto">
-        <CardHeader>
-          <CardTitle>HANUI에 오신 것을 환영합니다</CardTitle>
-        </CardHeader>
-        <CardBody>
-          <Body className="mb-4">
-            KRDS 기반 React 컴포넌트 라이브러리입니다.
-          </Body>
-          <Button variant="primary">시작하기</Button>
-        </CardBody>
-      </Card>
-    </Container>
-  );
-}`}
-              </Code>
-
-              <Body className="font-semibold mb-4 mt-8 text-xl">
-                Step 6. 개발 서버 실행
-              </Body>
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                pnpm dev
-              </Code>
-
-              <Alert variant="success" className="mt-4" title="설정 완료">
-                <Code>http://localhost:3000</Code>에서 HANUI 컴포넌트가 적용된
-                페이지를 확인할 수 있습니다.
-              </Alert>
-            </Card>
-          </TabsContent>
-        </Tabs>
+          <Alert variant="warning" className="mt-4" title="import 순서 중요">
+            <Code>@import &apos;./variables.css&apos;</Code>는 반드시{' '}
+            <Code>@tailwind</Code> 지시어보다 먼저 선언해야 합니다. CLI가
+            자동으로 최상단에 추가하지만, 수동으로 수정했다면 순서를 확인하세요.
+          </Alert>
+        </Subsection>
       </Section>
 
-      {/* CLI Installation */}
-      <Section>
-        <Heading
-          level="h2"
-          id="cli-installation"
-          title="CLI로 컴포넌트 추가"
-          description="개별 컴포넌트를 프로젝트에 추가하려면 CLI를 사용하세요:"
-        />
-
-        <Tabs defaultValue="pnpm" className="mt-6">
-          <TabsList>
-            <TabsTrigger value="pnpm">pnpm</TabsTrigger>
-            <TabsTrigger value="npm">npm</TabsTrigger>
-            <TabsTrigger value="yarn">yarn</TabsTrigger>
-            <TabsTrigger value="bun">bun</TabsTrigger>
-          </TabsList>
-          <TabsContent value="pnpm">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              pnpm dlx @hanui/cli add button
-            </Code>
-          </TabsContent>
-          <TabsContent value="npm">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add button
-            </Code>
-          </TabsContent>
-          <TabsContent value="yarn">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx @hanui/cli add button
-            </Code>
-          </TabsContent>
-          <TabsContent value="bun">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              bunx @hanui/cli add button
-            </Code>
-          </TabsContent>
-        </Tabs>
-
-        <Alert variant="info" className="mt-4" title="설치 경로">
-          컴포넌트는 <Code>@/components/hanui</Code>에 설치됩니다.
-          <br />
-          <span className="text-krds-gray-60">
-            (프로젝트 구조에 따라 src/components/hanui 또는 components/hanui)
-          </span>
-        </Alert>
-
-        <Code
-          variant="block"
-          language="tsx"
-          className="mt-4"
-          showLineNumbers={false}
-        >
-          {`// 설치 후 import
-import { Button } from '@/components/hanui';
-
-export default function Page() {
-  return <Button variant="primary">시작하기</Button>;
-}`}
-        </Code>
-      </Section>
-
-      {/* Framework-specific paths */}
+      {/* 프레임워크별 경로 */}
       <Section>
         <Heading
           level="h2"
           id="framework-paths"
           title="프레임워크별 파일 경로"
-          description="프레임워크에 따라 설정 파일 경로가 다를 수 있습니다:"
         />
 
         <div className="overflow-x-auto mt-6">
@@ -459,10 +329,10 @@ export default function Page() {
                   프레임워크
                 </th>
                 <th className="border border-krds-gray-20 px-4 py-2 text-left">
-                  globals.css 경로
+                  컴포넌트 경로
                 </th>
                 <th className="border border-krds-gray-20 px-4 py-2 text-left">
-                  tailwind.config 경로
+                  globals.css 경로
                 </th>
               </tr>
             </thead>
@@ -472,10 +342,10 @@ export default function Page() {
                   Next.js (App Router + src)
                 </td>
                 <td className="border border-krds-gray-20 px-4 py-2">
-                  <Code>src/app/globals.css</Code>
+                  <Code>src/components/hanui/</Code>
                 </td>
                 <td className="border border-krds-gray-20 px-4 py-2">
-                  <Code>tailwind.config.ts</Code>
+                  <Code>src/app/globals.css</Code>
                 </td>
               </tr>
               <tr>
@@ -483,10 +353,10 @@ export default function Page() {
                   Next.js (App Router)
                 </td>
                 <td className="border border-krds-gray-20 px-4 py-2">
-                  <Code>app/globals.css</Code>
+                  <Code>components/hanui/</Code>
                 </td>
                 <td className="border border-krds-gray-20 px-4 py-2">
-                  <Code>tailwind.config.ts</Code>
+                  <Code>app/globals.css</Code>
                 </td>
               </tr>
               <tr>
@@ -494,10 +364,10 @@ export default function Page() {
                   Next.js (Pages Router)
                 </td>
                 <td className="border border-krds-gray-20 px-4 py-2">
-                  <Code>styles/globals.css</Code>
+                  <Code>components/hanui/</Code>
                 </td>
                 <td className="border border-krds-gray-20 px-4 py-2">
-                  <Code>tailwind.config.ts</Code>
+                  <Code>styles/globals.css</Code>
                 </td>
               </tr>
               <tr>
@@ -505,10 +375,10 @@ export default function Page() {
                   Vite + React
                 </td>
                 <td className="border border-krds-gray-20 px-4 py-2">
-                  <Code>src/index.css</Code>
+                  <Code>src/components/hanui/</Code>
                 </td>
                 <td className="border border-krds-gray-20 px-4 py-2">
-                  <Code>tailwind.config.ts</Code>
+                  <Code>src/index.css</Code>
                 </td>
               </tr>
             </tbody>
@@ -516,7 +386,7 @@ export default function Page() {
         </div>
       </Section>
 
-      {/* Brand Customization */}
+      {/* 브랜드 커스터마이징 */}
       <Section>
         <Heading
           level="h2"
@@ -537,71 +407,65 @@ export default function Page() {
         </Code>
 
         <Alert variant="info" className="mt-4" title="색상 오버라이드 순서">
-          커스텀 CSS 변수는 <Code>@import '@hanui/react/variables.css'</Code>{' '}
+          커스텀 CSS 변수는 <Code>@import &apos;./variables.css&apos;</Code>{' '}
           이후에 선언해야 적용됩니다.
         </Alert>
       </Section>
 
-      {/* Troubleshooting */}
+      {/* 문제 해결 */}
       <Section>
         <Heading level="h2" id="troubleshooting" title="문제 해결" />
-
-        <Subsection level="h3">
-          <Heading
-            level="h3"
-            title="Module not found: '@hanui/react/variables.css'"
-          />
-          <Body className="mb-4 text-krds-gray-70">
-            패키지가 올바르게 설치되지 않았을 수 있습니다:
-          </Body>
-          <Code variant="block" language="bash" showLineNumbers={false}>
-            {`# 패키지 재설치
-pnpm remove @hanui/react
-pnpm add @hanui/react
-
-# node_modules 정리 후 재설치
-rm -rf node_modules pnpm-lock.yaml
-pnpm install`}
-          </Code>
-        </Subsection>
 
         <Subsection level="h3">
           <Heading level="h3" title="KRDS 색상 클래스가 적용되지 않음" />
           <List className="mt-4">
             <ListItem>
-              <Code>tailwind.config.ts</Code>의 <Code>theme.extend.colors</Code>
-              에 KRDS 색상이 정의되어 있는지 확인
+              <Code>npx @hanui/cli init</Code>을 실행했는지 확인
             </ListItem>
             <ListItem>
-              <Code>content</Code> 배열에{' '}
-              <Code>
-                ./node_modules/@hanui/react/dist/**/*.{'{'}js,mjs{'}'}
-              </Code>{' '}
+              <Code>tailwind.config.ts</Code>에 <Code>hanUIPreset</Code>이
+              추가되어 있는지 확인
+            </ListItem>
+            <ListItem>
+              <Code>content</Code> 배열에 <Code>components/hanui/**/*.tsx</Code>{' '}
               경로가 포함되어 있는지 확인
-            </ListItem>
-            <ListItem>
-              <Code>globals.css</Code>에{' '}
-              <Code>@import '@hanui/react/variables.css'</Code>가 최상단에
-              있는지 확인
             </ListItem>
             <ListItem>개발 서버를 재시작</ListItem>
           </List>
         </Subsection>
 
         <Subsection level="h3">
-          <Heading level="h3" title="Tailwind IntelliSense 자동완성 안됨" />
+          <Heading level="h3" title="컴포넌트 import 에러" />
           <Body className="mb-4 text-krds-gray-70">
-            VSCode에서 KRDS 클래스 자동완성이 되지 않는 경우:
+            <Code>@/components/hanui</Code> 경로를 인식하지 못하는 경우:
           </Body>
           <List>
-            <ListItem>VSCode를 재시작</ListItem>
             <ListItem>
-              Tailwind CSS IntelliSense 확장이 설치되어 있는지 확인
+              <Code>tsconfig.json</Code>에 <Code>@/*</Code> 경로 별칭이 설정되어
+              있는지 확인
             </ListItem>
             <ListItem>
-              <Code>tailwind.config.ts</Code> 파일에 문법 오류가 없는지 확인
+              <Code>components/hanui/index.ts</Code> 파일이 있고 export가 제대로
+              되어 있는지 확인
             </ListItem>
           </List>
+
+          <Code
+            variant="block"
+            language="json"
+            className="mt-4"
+            showLineNumbers={false}
+          >
+            {`// tsconfig.json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]  // 또는 ["./*"]
+    }
+  }
+}`}
+          </Code>
         </Subsection>
 
         <Subsection level="h3">
@@ -616,43 +480,6 @@ pnpm install`}
 </html>`}
           </Code>
         </Subsection>
-      </Section>
-
-      {/* What's Included */}
-      <Section>
-        <Heading
-          level="h2"
-          id="whats-included"
-          title="포함된 파일"
-          description="@hanui/react 패키지에서 제공하는 파일들:"
-        />
-
-        <div className="grid gap-4 md:grid-cols-2 mt-6">
-          <Card className="p-4">
-            <Body className="font-semibold mb-2">
-              <Code>@hanui/react</Code>
-            </Body>
-            <Body className="text-sm text-krds-gray-70">
-              React 컴포넌트 (Button, Card, Input 등)
-            </Body>
-          </Card>
-          <Card className="p-4">
-            <Body className="font-semibold mb-2">
-              <Code>@hanui/react/variables.css</Code>
-            </Body>
-            <Body className="text-sm text-krds-gray-70">
-              KRDS CSS 변수 (색상, 타이포그래피, 간격)
-            </Body>
-          </Card>
-          <Card className="p-4">
-            <Body className="font-semibold mb-2">
-              <Code>@hanui/react/styles.css</Code>
-            </Body>
-            <Body className="text-sm text-krds-gray-70">
-              컴포넌트 기본 스타일 (선택적)
-            </Body>
-          </Card>
-        </div>
       </Section>
 
       {/* Next Steps */}
