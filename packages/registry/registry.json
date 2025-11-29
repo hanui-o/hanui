@@ -111,15 +111,11 @@
     "name": "footer",
     "type": "ui",
     "description": "KRDS 표준 푸터 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-accordion"],
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/Footer/footer.tsx",
+        "path": "components/footer.tsx",
         "type": "component"
-      },
-      {
-        "path": "components/Footer/footer.module.scss",
-        "type": "style"
       }
     ]
   },
@@ -135,27 +131,27 @@
       }
     ]
   },
+  "form-field": {
+    "name": "form-field",
+    "type": "ui",
+    "description": "폼 필드 컨텍스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/form-field.tsx",
+        "type": "component"
+      }
+    ]
+  },
   "header": {
     "name": "header",
     "type": "ui",
-    "description": "KRDS 표준 헤더 컴포넌트 (브랜딩, 네비게이션, 유틸리티)",
-    "dependencies": [
-      "clsx",
-      "tailwind-merge",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-navigation-menu",
-      "@radix-ui/react-accordion",
-      "@radix-ui/react-dialog",
-      "lucide-react"
-    ],
+    "description": "KRDS 표준 헤더 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/Header/header.tsx",
+        "path": "components/header.tsx",
         "type": "component"
-      },
-      {
-        "path": "components/Header/header.module.scss",
-        "type": "style"
       }
     ]
   },
@@ -175,8 +171,13 @@
     "name": "input",
     "type": "ui",
     "description": "폼 입력 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
-    "registryDependencies": ["label"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+      "lucide-react"
+    ],
+    "registryDependencies": ["label", "form-field"],
     "files": [
       {
         "path": "components/input.tsx",
@@ -208,14 +209,14 @@
       }
     ]
   },
-  "main-menu": {
-    "name": "main-menu",
+  "mega-menu": {
+    "name": "mega-menu",
     "type": "ui",
-    "description": "메인 메뉴 컴포넌트",
+    "description": "메가 메뉴 컴포넌트",
     "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/main-menu.tsx",
+        "path": "components/mega-menu.tsx",
         "type": "component"
       }
     ]
@@ -244,14 +245,18 @@
       }
     ]
   },
-  "nav-text": {
-    "name": "nav-text",
+  "navigation-menu": {
+    "name": "navigation-menu",
     "type": "ui",
-    "description": "네비게이션 텍스트 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "description": "네비게이션 메뉴 컴포넌트",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-navigation-menu"
+    ],
     "files": [
       {
-        "path": "components/nav-text.tsx",
+        "path": "components/navigation-menu.tsx",
         "type": "component"
       }
     ]
@@ -263,12 +268,8 @@
     "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/InPageNavigation/in-page-navigation.tsx",
+        "path": "components/in-page-navigation.tsx",
         "type": "component"
-      },
-      {
-        "path": "components/InPageNavigation/in-page-navigation.module.scss",
-        "type": "style"
       }
     ]
   },
@@ -327,12 +328,8 @@
     "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/SideNavigation/side-navigation.tsx",
+        "path": "components/side-navigation.tsx",
         "type": "component"
-      },
-      {
-        "path": "components/SideNavigation/side-navigation.module.scss",
-        "type": "style"
       }
     ]
   },
@@ -391,7 +388,7 @@
     "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/tab-bars.tsx",
+        "path": "components/TabBars.tsx",
         "type": "component"
       }
     ]
@@ -416,6 +413,251 @@
     "files": [
       {
         "path": "components/tooltip.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "badge": {
+    "name": "badge",
+    "type": "ui",
+    "description": "뱃지 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+    "files": [
+      {
+        "path": "components/badge.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "checkbox": {
+    "name": "checkbox",
+    "type": "ui",
+    "description": "체크박스 컴포넌트",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-checkbox",
+      "lucide-react"
+    ],
+    "files": [
+      {
+        "path": "components/checkbox.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "radio": {
+    "name": "radio",
+    "type": "ui",
+    "description": "라디오 버튼 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-radio-group"],
+    "files": [
+      {
+        "path": "components/radio.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "textarea": {
+    "name": "textarea",
+    "type": "ui",
+    "description": "텍스트 영역 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+    "files": [
+      {
+        "path": "components/textarea.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "switch": {
+    "name": "switch",
+    "type": "ui",
+    "description": "스위치 토글 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-switch"],
+    "files": [
+      {
+        "path": "components/switch.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "toast": {
+    "name": "toast",
+    "type": "ui",
+    "description": "토스트 알림 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/toast.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "list": {
+    "name": "list",
+    "type": "ui",
+    "description": "리스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/list.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "code": {
+    "name": "code",
+    "type": "ui",
+    "description": "코드 블록 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/code.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "progress": {
+    "name": "progress",
+    "type": "ui",
+    "description": "진행률 표시 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-progress"],
+    "files": [
+      {
+        "path": "components/progress.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "skeleton": {
+    "name": "skeleton",
+    "type": "ui",
+    "description": "스켈레톤 로딩 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/skeleton.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "spinner": {
+    "name": "spinner",
+    "type": "ui",
+    "description": "스피너 로딩 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/spinner.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "alert": {
+    "name": "alert",
+    "type": "ui",
+    "description": "알림 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+    "files": [
+      {
+        "path": "components/alert.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "dropdown-menu": {
+    "name": "dropdown-menu",
+    "type": "ui",
+    "description": "드롭다운 메뉴 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-dropdown-menu"],
+    "files": [
+      {
+        "path": "components/dropdown-menu.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "combobox": {
+    "name": "combobox",
+    "type": "ui",
+    "description": "콤보박스 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "cmdk"],
+    "files": [
+      {
+        "path": "components/combobox.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "slider": {
+    "name": "slider",
+    "type": "ui",
+    "description": "슬라이더 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-slider"],
+    "files": [
+      {
+        "path": "components/slider.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "image": {
+    "name": "image",
+    "type": "ui",
+    "description": "이미지 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/image.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "flex": {
+    "name": "flex",
+    "type": "ui",
+    "description": "플렉스 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/flex.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "grid": {
+    "name": "grid",
+    "type": "ui",
+    "description": "그리드 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/grid.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "center": {
+    "name": "center",
+    "type": "ui",
+    "description": "센터 정렬 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/center.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "wrap": {
+    "name": "wrap",
+    "type": "ui",
+    "description": "랩 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/wrap.tsx",
         "type": "component"
       }
     ]
