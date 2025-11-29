@@ -1,7 +1,7 @@
 {
-  "name": "hanui-ui",
-  "version": "1.0.0",
-  "description": "KRDS 기반 공공 웹 프로젝트 생성 CLI - Scaffolding tool for HANUI projects with KRDS design system",
+  "name": "@hanui/cli",
+  "version": "0.1.0",
+  "description": "HANUI CLI - KRDS 기반 컴포넌트 설치 도구",
   "keywords": [
     "cli",
     "create-app",
