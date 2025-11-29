@@ -72,7 +72,7 @@ export default function InstallationPage() {
           </Card>
           <Card className="p-4">
             <Body className="font-semibold mb-2">Tailwind CSS</Body>
-            <Code>v3</Code> 또는 <Code>v4</Code>
+            <Code>v3.x</Code> (v4 미지원)
           </Card>
         </div>
       </Section>
@@ -104,10 +104,16 @@ export default function InstallationPage() {
         </Subsection>
 
         <Subsection level="h3">
-          <Heading level="h3" title="기존 프로젝트에 Tailwind 설치" />
+          <Heading level="h3" title="기존 프로젝트에 Tailwind v3 설치" />
           <Body className="mb-4 text-krds-gray-70">
-            기존 프로젝트에 Tailwind CSS가 없다면 먼저 설치하세요:
+            기존 프로젝트에 Tailwind CSS가 없다면 <strong>v3</strong>를
+            설치하세요:
           </Body>
+
+          <Alert variant="info" className="mb-4" title="Tailwind v3 권장">
+            HANUI CLI는 현재 Tailwind v3 기준입니다. v4는 설정 방식이 달라 아직
+            미지원입니다.
+          </Alert>
 
           <Tabs defaultValue="npm" className="mt-4">
             <TabsList>
@@ -117,19 +123,19 @@ export default function InstallationPage() {
             </TabsList>
             <TabsContent value="npm">
               <Code variant="block" language="bash" showLineNumbers={false}>
-                {`npm install -D tailwindcss postcss autoprefixer
+                {`npm install -D tailwindcss@3 postcss autoprefixer
 npx tailwindcss init -p`}
               </Code>
             </TabsContent>
             <TabsContent value="pnpm">
               <Code variant="block" language="bash" showLineNumbers={false}>
-                {`pnpm add -D tailwindcss postcss autoprefixer
-pnpm dlx tailwindcss init -p`}
+                {`pnpm add -D tailwindcss@3 postcss autoprefixer
+npx tailwindcss init -p`}
               </Code>
             </TabsContent>
             <TabsContent value="yarn">
               <Code variant="block" language="bash" showLineNumbers={false}>
-                {`yarn add -D tailwindcss postcss autoprefixer
+                {`yarn add -D tailwindcss@3 postcss autoprefixer
 npx tailwindcss init -p`}
               </Code>
             </TabsContent>
