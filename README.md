@@ -92,10 +92,10 @@ export default function LoginForm() {
 
 <br />
 
-## 컴포넌트 (50+)
+## 컴포넌트 (55+)
 
 **Form**
-`Button` `Input` `Textarea` `Select` `Radio` `Checkbox` `Switch` `Combobox` `Slider` `FileUpload` `FormField`
+`Button` `Input` `Textarea` `Select` `Radio` `Checkbox` `Switch` `Combobox` `Slider` `FileUpload` `FormField` `Label`
 
 **Data Display**
 `Card` `Badge` `Table` `DataTable` `List` `Image` `Code` `Skeleton` `Progress` `Spinner`
@@ -104,13 +104,13 @@ export default function LoginForm() {
 `Modal` `AlertDialog` `Toast` `Alert` `Tooltip`
 
 **Navigation**
-`Tabs` `TabBars` `Breadcrumb` `Pagination` `SkipLink` `SideNavigation` `InPageNavigation` `MainMenu` `DropdownMenu` `Link`
+`Tabs` `TabBars` `Breadcrumb` `Pagination` `SkipLink` `SideNavigation` `InPageNavigation` `MegaMenu` `NavigationMenu` `DropdownMenu` `Link`
 
 **Layout**
-`Container` `Stack` `Flex` `Grid` `SimpleGrid` `Center` `Wrap` `AspectRatio` `Header` `Footer` `Masthead` `Identifier`
+`Container` `Stack` `Flex` `Grid` `SimpleGrid` `Center` `Wrap` `AspectRatio` `Box` `Header` `Footer` `Masthead` `Identifier`
 
 **Typography**
-`Display` `Heading` `Body` `Label` `SectionHeadingSystem`
+`Display` `Heading` `Body` `Label` `Section` `SectionHeader`
 
 **Overlay**
 `Accordion`
