@@ -77,6 +77,66 @@ export default function InstallationPage() {
         </div>
       </Section>
 
+      {/* 사전 설치 */}
+      <Section>
+        <Heading
+          level="h2"
+          id="before-init"
+          title="init 전 준비사항"
+          description="HANUI CLI를 실행하기 전에 Tailwind CSS가 설치되어 있어야 합니다."
+        />
+
+        <Alert variant="warning" className="mb-6" title="필수">
+          <Code>@hanui/cli init</Code>은 Tailwind CSS 설정
+          파일(tailwind.config.js/ts)이 있어야 실행됩니다.
+        </Alert>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="Next.js 프로젝트 생성 (권장)" />
+          <Body className="mb-4 text-krds-gray-70">
+            새 프로젝트라면 Next.js 생성 시 Tailwind CSS를 함께 설치하세요:
+          </Body>
+
+          <Code variant="block" language="bash" showLineNumbers={false}>
+            {`npx create-next-app@latest my-project
+# ✔ Would you like to use Tailwind CSS? → Yes`}
+          </Code>
+        </Subsection>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="기존 프로젝트에 Tailwind 설치" />
+          <Body className="mb-4 text-krds-gray-70">
+            기존 프로젝트에 Tailwind CSS가 없다면 먼저 설치하세요:
+          </Body>
+
+          <Tabs defaultValue="npm" className="mt-4">
+            <TabsList>
+              <TabsTrigger value="npm">npm</TabsTrigger>
+              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+              <TabsTrigger value="yarn">yarn</TabsTrigger>
+            </TabsList>
+            <TabsContent value="npm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p`}
+              </Code>
+            </TabsContent>
+            <TabsContent value="pnpm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`pnpm add -D tailwindcss postcss autoprefixer
+pnpm dlx tailwindcss init -p`}
+              </Code>
+            </TabsContent>
+            <TabsContent value="yarn">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`yarn add -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p`}
+              </Code>
+            </TabsContent>
+          </Tabs>
+        </Subsection>
+      </Section>
+
       {/* 설치 방법 */}
       <Section>
         <Heading level="h2" id="installation" title="설치" />
