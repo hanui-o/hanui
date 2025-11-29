@@ -72,7 +72,7 @@ export default function InstallationPage() {
           </Card>
           <Card className="p-4">
             <Body className="font-semibold mb-2">Tailwind CSS</Body>
-            <Code>v3.x</Code> (v4 미지원)
+            <Code>v3.x</Code> 또는 <Code>v4.x</Code>
           </Card>
         </div>
       </Section>
@@ -86,9 +86,9 @@ export default function InstallationPage() {
           description="HANUI CLI를 실행하기 전에 Tailwind CSS가 설치되어 있어야 합니다."
         />
 
-        <Alert variant="warning" className="mb-6" title="필수">
-          <Code>@hanui/cli init</Code>은 Tailwind CSS 설정
-          파일(tailwind.config.js/ts)이 있어야 실행됩니다.
+        <Alert variant="info" className="mb-6" title="자동 감지">
+          CLI가 Tailwind 버전(v3/v4)을 자동으로 감지하여 적절한 설정을
+          적용합니다.
         </Alert>
 
         <Subsection level="h3">
@@ -101,41 +101,36 @@ export default function InstallationPage() {
             {`npx create-next-app@latest my-project
 # ✔ Would you like to use Tailwind CSS? → Yes`}
           </Code>
+
+          <Body className="mt-4 text-krds-gray-60 text-sm">
+            Next.js 15+는 Tailwind v4를 기본 설치합니다. HANUI CLI가 자동으로 v4
+            설정을 적용합니다.
+          </Body>
         </Subsection>
 
         <Subsection level="h3">
-          <Heading level="h3" title="기존 프로젝트에 Tailwind v3 설치" />
+          <Heading level="h3" title="기존 프로젝트에 Tailwind 설치" />
           <Body className="mb-4 text-krds-gray-70">
-            기존 프로젝트에 Tailwind CSS가 없다면 <strong>v3</strong>를
-            설치하세요:
+            기존 프로젝트에 Tailwind CSS가 없다면 설치하세요:
           </Body>
 
-          <Alert variant="info" className="mb-4" title="Tailwind v3 권장">
-            HANUI CLI는 현재 Tailwind v3 기준입니다. v4는 설정 방식이 달라 아직
-            미지원입니다.
-          </Alert>
-
-          <Tabs defaultValue="npm" className="mt-4">
+          <Tabs defaultValue="v4" className="mt-4">
             <TabsList>
-              <TabsTrigger value="npm">npm</TabsTrigger>
-              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
-              <TabsTrigger value="yarn">yarn</TabsTrigger>
+              <TabsTrigger value="v4">Tailwind v4 (권장)</TabsTrigger>
+              <TabsTrigger value="v3">Tailwind v3</TabsTrigger>
             </TabsList>
-            <TabsContent value="npm">
+            <TabsContent value="v4">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`npm install -D tailwindcss @tailwindcss/postcss`}
+              </Code>
+              <Body className="mt-3 text-krds-gray-60 text-sm">
+                v4는 CSS 기반 설정으로, <Code>tailwind.config.js</Code>가 필요
+                없습니다.
+              </Body>
+            </TabsContent>
+            <TabsContent value="v3">
               <Code variant="block" language="bash" showLineNumbers={false}>
                 {`npm install -D tailwindcss@3 postcss autoprefixer
-npx tailwindcss init -p`}
-              </Code>
-            </TabsContent>
-            <TabsContent value="pnpm">
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                {`pnpm add -D tailwindcss@3 postcss autoprefixer
-npx tailwindcss init -p`}
-              </Code>
-            </TabsContent>
-            <TabsContent value="yarn">
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                {`yarn add -D tailwindcss@3 postcss autoprefixer
 npx tailwindcss init -p`}
               </Code>
             </TabsContent>
@@ -190,14 +185,18 @@ npx tailwindcss init -p`}
                 CSS 변수
               </ListItem>
               <ListItem>
-                <Code>tailwind.config</Code> 수정 — KRDS 색상을 Tailwind
-                유틸리티로 매핑
-              </ListItem>
-              <ListItem>
                 <Code>globals.css</Code> 수정 — CSS 변수 import 추가
               </ListItem>
               <ListItem>
                 <Code>components/hanui</Code> 디렉토리 생성
+              </ListItem>
+              <ListItem>
+                <strong>v4 전용:</strong> <Code>@theme</Code> 블록 자동 생성
+                (Tailwind 유틸리티 매핑)
+              </ListItem>
+              <ListItem>
+                <strong>v3 전용:</strong> <Code>hanui.preset.js</Code> 생성 및{' '}
+                <Code>tailwind.config</Code> 수정
               </ListItem>
             </List>
           </Alert>
@@ -331,14 +330,64 @@ export default function Page() {
         </Subsection>
 
         <Subsection level="h3">
-          <Heading level="h3" title="tailwind.config.ts" />
+          <Heading level="h3" title="globals.css" />
           <Body className="mb-4 text-krds-gray-70">
-            KRDS 색상이 Tailwind 유틸리티 클래스로 매핑됩니다:
+            기존 <Code>globals.css</Code> 파일이 있으면 CSS 변수 import가
+            추가됩니다:
+          </Body>
+
+          <Tabs defaultValue="v4" className="mt-4">
+            <TabsList>
+              <TabsTrigger value="v4">Tailwind v4</TabsTrigger>
+              <TabsTrigger value="v3">Tailwind v3</TabsTrigger>
+            </TabsList>
+            <TabsContent value="v4">
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`/* globals.css - Tailwind v4 */
+@import "tailwindcss";
+@import "./styles/variables.css";  /* ← 자동 추가됨 */
+
+/* 기존 스타일... */
+
+@theme {
+  /* KRDS 색상을 Tailwind 유틸리티로 매핑 */
+  --color-krds-primary-50: var(--krds-color-light-primary-50);
+  --color-krds-gray-5: var(--krds-color-light-gray-5);
+  /* ... 전체 색상 팔레트 자동 생성 */
+}`}
+              </Code>
+              <Body className="mt-3 text-krds-gray-60 text-sm">
+                v4는 <Code>@theme</Code> 블록으로 Tailwind 유틸리티를
+                정의합니다.
+                <Code>bg-krds-primary-50</Code>, <Code>text-krds-gray-90</Code>{' '}
+                등 클래스를 사용할 수 있습니다.
+              </Body>
+            </TabsContent>
+            <TabsContent value="v3">
+              <Code variant="block" language="css" showLineNumbers={false}>
+                {`/* globals.css - Tailwind v3 */
+@import './styles/variables.css';  /* ← 자동 추가됨 */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 기존 스타일들은 그대로 유지... */`}
+              </Code>
+            </TabsContent>
+          </Tabs>
+        </Subsection>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="tailwind.config.ts (v3 전용)" />
+          <Body className="mb-4 text-krds-gray-70">
+            Tailwind v3 사용 시, KRDS 색상이 Tailwind 유틸리티 클래스로
+            매핑됩니다:
           </Body>
 
           <Code variant="block" language="typescript" showLineNumbers={false}>
-            {`// tailwind.config.ts
-import hanUIPreset from '@hanui/react/tailwind.preset'
+            {`// tailwind.config.ts (v3 전용 - v4는 불필요)
+import hanUIPreset from './hanui.preset.js'
 
 export default {
   presets: [hanUIPreset],
@@ -351,30 +400,10 @@ export default {
 // 이제 이런 클래스를 사용할 수 있습니다:
 // bg-krds-primary-50, text-krds-gray-90, border-krds-danger-60 등`}
           </Code>
-        </Subsection>
 
-        <Subsection level="h3">
-          <Heading level="h3" title="globals.css" />
-          <Body className="mb-4 text-krds-gray-70">
-            기존 <Code>globals.css</Code> 파일이 있으면 최상단에 import 한 줄만
-            추가됩니다. 없으면 새로 생성합니다:
-          </Body>
-
-          <Code variant="block" language="css" showLineNumbers={false}>
-            {`/* globals.css - 기존 파일이 있는 경우 */
-@import './variables.css';  /* ← 이 줄만 최상단에 추가됨 */
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* 기존 스타일들은 그대로 유지... */`}
-          </Code>
-
-          <Alert variant="warning" className="mt-4" title="import 순서 중요">
-            <Code>@import &apos;./variables.css&apos;</Code>는 반드시{' '}
-            <Code>@tailwind</Code> 지시어보다 먼저 선언해야 합니다. CLI가
-            자동으로 최상단에 추가하지만, 수동으로 수정했다면 순서를 확인하세요.
+          <Alert variant="info" className="mt-4" title="v4는 CSS 기반 설정">
+            Tailwind v4는 <Code>tailwind.config.js</Code>가 필요 없습니다. CSS
+            변수가 직접 <Code>globals.css</Code>에 import됩니다.
           </Alert>
         </Subsection>
       </Section>

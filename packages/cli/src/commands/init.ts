@@ -14,6 +14,60 @@ import {
 import type { HanuiConfig } from '../types.js';
 
 /**
+ * Tailwind 버전 감지 (v3 vs v4)
+ */
+async function detectTailwindVersion(cwd: string): Promise<3 | 4 | null> {
+  const packageJsonPath = path.join(cwd, 'package.json');
+  if (!fs.existsSync(packageJsonPath)) return null;
+
+  const packageJson = await fs.readJSON(packageJsonPath);
+  const deps = {
+    ...packageJson.dependencies,
+    ...packageJson.devDependencies,
+  };
+
+  // v4 감지: @tailwindcss/postcss 또는 tailwindcss ^4.x
+  if (deps['@tailwindcss/postcss']) {
+    return 4;
+  }
+
+  // tailwindcss 버전 확인
+  const tailwindVersion = deps['tailwindcss'];
+  if (tailwindVersion) {
+    // ^4, 4.x, ~4 등
+    if (tailwindVersion.match(/^[\^~]?4/)) {
+      return 4;
+    }
+    // ^3, 3.x, ~3 등
+    if (tailwindVersion.match(/^[\^~]?3/)) {
+      return 3;
+    }
+  }
+
+  // postcss.config.mjs에서 @tailwindcss/postcss 확인
+  const postcssConfigPath = path.join(cwd, 'postcss.config.mjs');
+  if (fs.existsSync(postcssConfigPath)) {
+    const postcssContent = await fs.readFile(postcssConfigPath, 'utf-8');
+    if (postcssContent.includes('@tailwindcss/postcss')) {
+      return 4;
+    }
+  }
+
+  // tailwind.config 파일 존재 여부로 판단 (v4는 없음)
+  const hasV3Config =
+    fs.existsSync(path.join(cwd, 'tailwind.config.js')) ||
+    fs.existsSync(path.join(cwd, 'tailwind.config.ts')) ||
+    fs.existsSync(path.join(cwd, 'tailwind.config.mjs')) ||
+    fs.existsSync(path.join(cwd, 'tailwind.config.cjs'));
+
+  if (hasV3Config) {
+    return 3;
+  }
+
+  return null;
+}
+
+/**
  * KRDS CSS Variables (variables.css 내용)
  */
 const VARIABLES_CSS = `/**
@@ -266,6 +320,185 @@ const VARIABLES_CSS = `/**
 `;
 
 /**
+ * Tailwind v4용 @theme 블록
+ * CSS 변수를 Tailwind 유틸리티로 매핑
+ */
+const TAILWIND_V4_THEME = `
+@theme {
+  /* Base Colors */
+  --color-white: var(--color-white);
+  --color-black: var(--color-black);
+  --color-krds-white: var(--krds-white);
+  --color-krds-black: var(--krds-black);
+
+  /* KRDS Primary */
+  --color-krds-primary: var(--krds-primary-base);
+  --color-krds-primary-text: var(--krds-primary-text);
+  --color-krds-primary-surface: var(--krds-primary-surface);
+  --color-krds-primary-base: var(--krds-primary-base);
+  --color-krds-primary-border: var(--krds-primary-border);
+  --color-krds-primary-5: var(--krds-color-light-primary-5);
+  --color-krds-primary-10: var(--krds-color-light-primary-10);
+  --color-krds-primary-20: var(--krds-color-light-primary-20);
+  --color-krds-primary-30: var(--krds-color-light-primary-30);
+  --color-krds-primary-40: var(--krds-color-light-primary-40);
+  --color-krds-primary-50: var(--krds-color-light-primary-50);
+  --color-krds-primary-60: var(--krds-color-light-primary-60);
+  --color-krds-primary-70: var(--krds-color-light-primary-70);
+  --color-krds-primary-80: var(--krds-color-light-primary-80);
+  --color-krds-primary-90: var(--krds-color-light-primary-90);
+  --color-krds-primary-95: var(--krds-color-light-primary-95);
+
+  /* KRDS Secondary */
+  --color-krds-secondary: var(--krds-secondary-base);
+  --color-krds-secondary-text: var(--krds-secondary-text);
+  --color-krds-secondary-surface: var(--krds-secondary-surface);
+  --color-krds-secondary-base: var(--krds-secondary-base);
+  --color-krds-secondary-5: var(--krds-color-light-secondary-5);
+  --color-krds-secondary-10: var(--krds-color-light-secondary-10);
+  --color-krds-secondary-20: var(--krds-color-light-secondary-20);
+  --color-krds-secondary-30: var(--krds-color-light-secondary-30);
+  --color-krds-secondary-40: var(--krds-color-light-secondary-40);
+  --color-krds-secondary-50: var(--krds-color-light-secondary-50);
+  --color-krds-secondary-60: var(--krds-color-light-secondary-60);
+  --color-krds-secondary-70: var(--krds-color-light-secondary-70);
+  --color-krds-secondary-80: var(--krds-color-light-secondary-80);
+  --color-krds-secondary-90: var(--krds-color-light-secondary-90);
+  --color-krds-secondary-95: var(--krds-color-light-secondary-95);
+
+  /* KRDS Gray */
+  --color-krds-gray-text: var(--krds-gray-text);
+  --color-krds-gray-surface: var(--krds-gray-surface);
+  --color-krds-gray-background: var(--krds-gray-background);
+  --color-krds-gray-border: var(--krds-gray-border);
+  --color-krds-gray-0: var(--krds-color-light-gray-0);
+  --color-krds-gray-5: var(--krds-color-light-gray-5);
+  --color-krds-gray-10: var(--krds-color-light-gray-10);
+  --color-krds-gray-20: var(--krds-color-light-gray-20);
+  --color-krds-gray-30: var(--krds-color-light-gray-30);
+  --color-krds-gray-40: var(--krds-color-light-gray-40);
+  --color-krds-gray-50: var(--krds-color-light-gray-50);
+  --color-krds-gray-60: var(--krds-color-light-gray-60);
+  --color-krds-gray-70: var(--krds-color-light-gray-70);
+  --color-krds-gray-80: var(--krds-color-light-gray-80);
+  --color-krds-gray-90: var(--krds-color-light-gray-90);
+  --color-krds-gray-95: var(--krds-color-light-gray-95);
+  --color-krds-gray-100: var(--krds-color-light-gray-100);
+
+  /* KRDS Danger */
+  --color-krds-danger: var(--krds-danger-base);
+  --color-krds-danger-icon: var(--krds-danger-icon);
+  --color-krds-danger-text: var(--krds-danger-text);
+  --color-krds-danger-surface: var(--krds-danger-surface);
+  --color-krds-danger-base: var(--krds-danger-base);
+  --color-krds-danger-border: var(--krds-danger-border);
+  --color-krds-danger-5: var(--krds-color-light-danger-5);
+  --color-krds-danger-10: var(--krds-color-light-danger-10);
+  --color-krds-danger-20: var(--krds-color-light-danger-20);
+  --color-krds-danger-30: var(--krds-color-light-danger-30);
+  --color-krds-danger-40: var(--krds-color-light-danger-40);
+  --color-krds-danger-50: var(--krds-color-light-danger-50);
+  --color-krds-danger-60: var(--krds-color-light-danger-60);
+  --color-krds-danger-70: var(--krds-color-light-danger-70);
+  --color-krds-danger-80: var(--krds-color-light-danger-80);
+  --color-krds-danger-90: var(--krds-color-light-danger-90);
+  --color-krds-danger-95: var(--krds-color-light-danger-95);
+
+  /* KRDS Warning */
+  --color-krds-warning: var(--krds-warning-base);
+  --color-krds-warning-icon: var(--krds-warning-icon);
+  --color-krds-warning-text: var(--krds-warning-text);
+  --color-krds-warning-surface: var(--krds-warning-surface);
+  --color-krds-warning-base: var(--krds-warning-base);
+  --color-krds-warning-border: var(--krds-warning-border);
+  --color-krds-warning-5: var(--krds-color-light-warning-5);
+  --color-krds-warning-10: var(--krds-color-light-warning-10);
+  --color-krds-warning-20: var(--krds-color-light-warning-20);
+  --color-krds-warning-30: var(--krds-color-light-warning-30);
+  --color-krds-warning-40: var(--krds-color-light-warning-40);
+  --color-krds-warning-50: var(--krds-color-light-warning-50);
+  --color-krds-warning-60: var(--krds-color-light-warning-60);
+  --color-krds-warning-70: var(--krds-color-light-warning-70);
+  --color-krds-warning-80: var(--krds-color-light-warning-80);
+  --color-krds-warning-90: var(--krds-color-light-warning-90);
+  --color-krds-warning-95: var(--krds-color-light-warning-95);
+
+  /* KRDS Success */
+  --color-krds-success: var(--krds-success-base);
+  --color-krds-success-icon: var(--krds-success-icon);
+  --color-krds-success-text: var(--krds-success-text);
+  --color-krds-success-surface: var(--krds-success-surface);
+  --color-krds-success-base: var(--krds-success-base);
+  --color-krds-success-border: var(--krds-success-border);
+  --color-krds-success-5: var(--krds-color-light-success-5);
+  --color-krds-success-10: var(--krds-color-light-success-10);
+  --color-krds-success-20: var(--krds-color-light-success-20);
+  --color-krds-success-30: var(--krds-color-light-success-30);
+  --color-krds-success-40: var(--krds-color-light-success-40);
+  --color-krds-success-50: var(--krds-color-light-success-50);
+  --color-krds-success-60: var(--krds-color-light-success-60);
+  --color-krds-success-70: var(--krds-color-light-success-70);
+  --color-krds-success-80: var(--krds-color-light-success-80);
+  --color-krds-success-90: var(--krds-color-light-success-90);
+  --color-krds-success-95: var(--krds-color-light-success-95);
+
+  /* KRDS Info */
+  --color-krds-info: var(--krds-information-base);
+  --color-krds-info-icon: var(--krds-information-icon);
+  --color-krds-info-text: var(--krds-information-text);
+  --color-krds-info-surface: var(--krds-information-surface);
+  --color-krds-info-base: var(--krds-information-base);
+  --color-krds-info-border: var(--krds-information-border);
+  --color-krds-info-5: var(--krds-color-light-information-5);
+  --color-krds-info-10: var(--krds-color-light-information-10);
+  --color-krds-info-20: var(--krds-color-light-information-20);
+  --color-krds-info-30: var(--krds-color-light-information-30);
+  --color-krds-info-40: var(--krds-color-light-information-40);
+  --color-krds-info-50: var(--krds-color-light-information-50);
+  --color-krds-info-60: var(--krds-color-light-information-60);
+  --color-krds-info-70: var(--krds-color-light-information-70);
+  --color-krds-info-80: var(--krds-color-light-information-80);
+  --color-krds-info-90: var(--krds-color-light-information-90);
+  --color-krds-info-95: var(--krds-color-light-information-95);
+
+  /* KRDS Accent */
+  --color-krds-accent: var(--krds-accent-base);
+  --color-krds-accent-text: var(--krds-accent-text);
+  --color-krds-accent-surface: var(--krds-accent-surface);
+  --color-krds-accent-base: var(--krds-accent-base);
+  --color-krds-accent-5: var(--krds-color-light-accent-5);
+  --color-krds-accent-10: var(--krds-color-light-accent-10);
+  --color-krds-accent-20: var(--krds-color-light-accent-20);
+  --color-krds-accent-30: var(--krds-color-light-accent-30);
+  --color-krds-accent-40: var(--krds-color-light-accent-40);
+  --color-krds-accent-50: var(--krds-color-light-accent-50);
+  --color-krds-accent-60: var(--krds-color-light-accent-60);
+  --color-krds-accent-70: var(--krds-color-light-accent-70);
+  --color-krds-accent-80: var(--krds-color-light-accent-80);
+  --color-krds-accent-90: var(--krds-color-light-accent-90);
+  --color-krds-accent-95: var(--krds-color-light-accent-95);
+
+  /* Font Family */
+  --font-sans: 'Pretendard GOV', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  /* Font Sizes - KRDS Typography */
+  --text-krds-body-xs: 13px;
+  --text-krds-body-sm: 15px;
+  --text-krds-body-md: 17px;
+  --text-krds-body-lg: 19px;
+  --text-krds-title-xs: 18px;
+  --text-krds-title-sm: 20px;
+  --text-krds-title-md: 24px;
+  --text-krds-title-lg: 28px;
+  --text-krds-title-xl: 32px;
+  --text-krds-display-sm: 32px;
+  --text-krds-display-md: 36px;
+  --text-krds-display-lg: 42px;
+  --text-krds-display-xl: 48px;
+}
+`;
+
+/**
  * Tailwind Preset 내용
  */
 const TAILWIND_PRESET = `/**
@@ -477,23 +710,53 @@ export const init = new Command()
       const tailwindConfigPath = await getTailwindConfigPath(cwd);
       const cssPath = await getDefaultCssPath(cwd, projectInfo);
 
+      // Detect Tailwind version (v3 vs v4)
+      const tailwindVersion = await detectTailwindVersion(cwd);
+
       logger.info(
-        `Detected: ${chalk.cyan(projectInfo.type)} ${projectInfo.srcDir ? chalk.dim('(with src/)') : ''}\n`
+        `Detected: ${chalk.cyan(projectInfo.type)} ${projectInfo.srcDir ? chalk.dim('(with src/)') : ''}`
       );
 
-      // Check if Tailwind CSS is installed
-      const hasTailwind = fs.existsSync(path.join(cwd, tailwindConfigPath));
-      if (!hasTailwind) {
-        logger.warning(
-          'Tailwind CSS not detected. Please install Tailwind CSS first:\n'
-        );
-        console.log(
-          chalk.dim('  npm install -D tailwindcss postcss autoprefixer')
-        );
-        console.log(chalk.dim('  npx tailwindcss init -p\n'));
-        logger.info('Then run this command again.\n');
-        process.exit(1);
+      if (tailwindVersion) {
+        logger.info(`Tailwind CSS: ${chalk.cyan(`v${tailwindVersion}`)}\n`);
       }
+
+      // Check if Tailwind CSS is installed
+      if (!tailwindVersion) {
+        // v4 확인: globals.css에서 @import "tailwindcss" 체크
+        const globalsCssPath = path.join(cwd, cssPath);
+        let hasV4InCss = false;
+        if (fs.existsSync(globalsCssPath)) {
+          const cssContent = await fs.readFile(globalsCssPath, 'utf-8');
+          hasV4InCss =
+            cssContent.includes('@import "tailwindcss"') ||
+            cssContent.includes("@import 'tailwindcss'");
+        }
+
+        if (!hasV4InCss) {
+          const hasTailwindConfig = fs.existsSync(
+            path.join(cwd, tailwindConfigPath)
+          );
+          if (!hasTailwindConfig) {
+            logger.warning(
+              'Tailwind CSS not detected. Please install Tailwind CSS first:\n'
+            );
+            console.log(chalk.dim('  For Tailwind v4 (recommended):'));
+            console.log(
+              chalk.dim('    npm install -D tailwindcss @tailwindcss/postcss')
+            );
+            console.log(chalk.dim('\n  For Tailwind v3:'));
+            console.log(
+              chalk.dim('    npm install -D tailwindcss@3 postcss autoprefixer')
+            );
+            console.log(chalk.dim('    npx tailwindcss init -p\n'));
+            logger.info('Then run this command again.\n');
+            process.exit(1);
+          }
+        }
+      }
+
+      const isV4 = tailwindVersion === 4;
 
       // Prompt for configuration
       let config = {
@@ -561,80 +824,135 @@ export function cn(...inputs: ClassValue[]) {
       await fs.writeFile(variablesCssPath, VARIABLES_CSS);
       spinner.text = 'Created KRDS design tokens (variables.css)';
 
-      // 4. Create hanui.preset.js (Tailwind preset)
-      const presetPath = path.join(cwd, 'hanui.preset.js');
-      await fs.writeFile(presetPath, TAILWIND_PRESET);
-      spinner.text = 'Created Tailwind preset';
+      // v3/v4 분기 처리
+      if (isV4) {
+        // ===== Tailwind v4 설정 =====
+        spinner.text = 'Configuring for Tailwind v4...';
 
-      // 5. Update tailwind.config (자동 수정)
-      const tailwindConfigFullPath = path.join(cwd, tailwindConfigPath);
-      if (fs.existsSync(tailwindConfigFullPath)) {
-        let tailwindContent = await fs.readFile(
-          tailwindConfigFullPath,
-          'utf-8'
-        );
-
-        // preset 추가 여부 확인
-        if (!tailwindContent.includes('hanui.preset')) {
-          // 기존 tailwind.config 수정
-          if (tailwindContent.includes('export default')) {
-            // ESM 형식
-            tailwindContent = `import hanUIPreset from './hanui.preset.js';\n\n${tailwindContent}`;
-            tailwindContent = tailwindContent.replace(
-              /export default\s*\{/,
-              'export default {\n  presets: [hanUIPreset],'
-            );
-          } else if (tailwindContent.includes('module.exports')) {
-            // CommonJS 형식
-            tailwindContent = `const hanUIPreset = require('./hanui.preset.js');\n\n${tailwindContent}`;
-            tailwindContent = tailwindContent.replace(
-              /module\.exports\s*=\s*\{/,
-              'module.exports = {\n  presets: [hanUIPreset],'
-            );
-          }
-
-          // content 배열에 hanui 경로 추가
-          if (!tailwindContent.includes('hanui')) {
-            tailwindContent = tailwindContent.replace(
-              /content:\s*\[/,
-              `content: [\n    './${config.componentsPath}/**/*.{js,ts,jsx,tsx}',`
-            );
-          }
-
-          await fs.writeFile(tailwindConfigFullPath, tailwindContent);
-          spinner.text = 'Updated Tailwind config';
-        }
-      }
-
-      // 6. Update globals.css (CSS 변수 import 추가)
-      const globalsCssPath = path.join(cwd, cssPath);
-      if (fs.existsSync(globalsCssPath)) {
-        let globalsContent = await fs.readFile(globalsCssPath, 'utf-8');
-
-        // variables.css import 추가 (이미 없으면)
+        // v4: globals.css에 CSS 변수 import + @theme 블록 추가
+        const globalsCssPath = path.join(cwd, cssPath);
         const importPath = projectInfo.srcDir
           ? './styles/variables.css'
           : '../styles/variables.css';
 
-        if (!globalsContent.includes('variables.css')) {
-          globalsContent = `@import '${importPath}';\n\n${globalsContent}`;
+        if (fs.existsSync(globalsCssPath)) {
+          let globalsContent = await fs.readFile(globalsCssPath, 'utf-8');
+
+          // variables.css import 추가 (이미 없으면)
+          if (!globalsContent.includes('variables.css')) {
+            // @import "tailwindcss" 바로 뒤에 추가
+            if (globalsContent.includes('@import "tailwindcss"')) {
+              globalsContent = globalsContent.replace(
+                '@import "tailwindcss"',
+                `@import "tailwindcss";\n@import "${importPath}"`
+              );
+            } else if (globalsContent.includes("@import 'tailwindcss'")) {
+              globalsContent = globalsContent.replace(
+                "@import 'tailwindcss'",
+                `@import 'tailwindcss';\n@import '${importPath}'`
+              );
+            } else {
+              // @import "tailwindcss"가 없으면 맨 앞에 추가
+              globalsContent = `@import "${importPath}";\n\n${globalsContent}`;
+            }
+          }
+
+          // @theme 블록 추가 (이미 없으면)
+          if (!globalsContent.includes('@theme {')) {
+            globalsContent = globalsContent + TAILWIND_V4_THEME;
+          }
+
           await fs.writeFile(globalsCssPath, globalsContent);
-          spinner.text = 'Updated globals.css with KRDS imports';
+          spinner.text = 'Updated globals.css with KRDS imports + @theme (v4)';
+        } else {
+          // globals.css가 없으면 생성 (v4 형식)
+          const newGlobalsContent = `@import "tailwindcss";
+@import "${importPath}";
+${TAILWIND_V4_THEME}`;
+          await fs.ensureDir(path.dirname(globalsCssPath));
+          await fs.writeFile(globalsCssPath, newGlobalsContent);
+          spinner.text = 'Created globals.css (v4)';
         }
+
+        spinner.text = 'Tailwind v4 configured (CSS-based with @theme)';
       } else {
-        // globals.css가 없으면 생성
-        const importPath = projectInfo.srcDir
-          ? './styles/variables.css'
-          : '../styles/variables.css';
-        const newGlobalsContent = `@import '${importPath}';
+        // ===== Tailwind v3 설정 =====
+
+        // 4. Create hanui.preset.js (Tailwind preset)
+        const presetPath = path.join(cwd, 'hanui.preset.js');
+        await fs.writeFile(presetPath, TAILWIND_PRESET);
+        spinner.text = 'Created Tailwind preset';
+
+        // 5. Update tailwind.config (자동 수정)
+        const tailwindConfigFullPath = path.join(cwd, tailwindConfigPath);
+        if (fs.existsSync(tailwindConfigFullPath)) {
+          let tailwindContent = await fs.readFile(
+            tailwindConfigFullPath,
+            'utf-8'
+          );
+
+          // preset 추가 여부 확인
+          if (!tailwindContent.includes('hanui.preset')) {
+            // 기존 tailwind.config 수정
+            if (tailwindContent.includes('export default')) {
+              // ESM 형식
+              tailwindContent = `import hanUIPreset from './hanui.preset.js';\n\n${tailwindContent}`;
+              tailwindContent = tailwindContent.replace(
+                /export default\s*\{/,
+                'export default {\n  presets: [hanUIPreset],'
+              );
+            } else if (tailwindContent.includes('module.exports')) {
+              // CommonJS 형식
+              tailwindContent = `const hanUIPreset = require('./hanui.preset.js');\n\n${tailwindContent}`;
+              tailwindContent = tailwindContent.replace(
+                /module\.exports\s*=\s*\{/,
+                'module.exports = {\n  presets: [hanUIPreset],'
+              );
+            }
+
+            // content 배열에 hanui 경로 추가
+            if (!tailwindContent.includes('hanui')) {
+              tailwindContent = tailwindContent.replace(
+                /content:\s*\[/,
+                `content: [\n    './${config.componentsPath}/**/*.{js,ts,jsx,tsx}',`
+              );
+            }
+
+            await fs.writeFile(tailwindConfigFullPath, tailwindContent);
+            spinner.text = 'Updated Tailwind config';
+          }
+        }
+
+        // 6. Update globals.css (CSS 변수 import 추가)
+        const globalsCssPath = path.join(cwd, cssPath);
+        if (fs.existsSync(globalsCssPath)) {
+          let globalsContent = await fs.readFile(globalsCssPath, 'utf-8');
+
+          // variables.css import 추가 (이미 없으면)
+          const importPath = projectInfo.srcDir
+            ? './styles/variables.css'
+            : '../styles/variables.css';
+
+          if (!globalsContent.includes('variables.css')) {
+            globalsContent = `@import '${importPath}';\n\n${globalsContent}`;
+            await fs.writeFile(globalsCssPath, globalsContent);
+            spinner.text = 'Updated globals.css with KRDS imports';
+          }
+        } else {
+          // globals.css가 없으면 생성
+          const importPath = projectInfo.srcDir
+            ? './styles/variables.css'
+            : '../styles/variables.css';
+          const newGlobalsContent = `@import '${importPath}';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 `;
-        await fs.ensureDir(path.dirname(globalsCssPath));
-        await fs.writeFile(globalsCssPath, newGlobalsContent);
-        spinner.text = 'Created globals.css';
+          await fs.ensureDir(path.dirname(globalsCssPath));
+          await fs.writeFile(globalsCssPath, newGlobalsContent);
+          spinner.text = 'Created globals.css';
+        }
       }
 
       // 7. Create hanui.json config
@@ -642,10 +960,11 @@ export function cn(...inputs: ClassValue[]) {
         $schema: 'https://hanui.io/schema.json',
         style: 'default',
         tailwind: {
-          config: config.tailwindConfig,
+          config: isV4 ? '' : config.tailwindConfig,
           css: cssPath,
           baseColor: 'slate',
           cssVariables: true,
+          version: isV4 ? 4 : 3,
         },
         aliases: {
           components: `@/${config.componentsPath.replace(/^src\//, '')}`,
@@ -662,7 +981,9 @@ export function cn(...inputs: ClassValue[]) {
       spinner.succeed('Project initialized!');
 
       // Success message
-      logger.success('\n✓ HANUI initialized successfully!\n');
+      logger.success(
+        `\n✓ HANUI initialized successfully! (Tailwind ${isV4 ? 'v4' : 'v3'})\n`
+      );
 
       console.log(chalk.dim('  Created files:'));
       console.log(
@@ -670,12 +991,16 @@ export function cn(...inputs: ClassValue[]) {
           `    - ${projectInfo.srcDir ? 'src/' : ''}styles/variables.css`
         )
       );
-      console.log(chalk.dim('    - hanui.preset.js'));
+      if (!isV4) {
+        console.log(chalk.dim('    - hanui.preset.js'));
+      }
       console.log(chalk.dim(`    - ${libPath}/utils.ts`));
       console.log(chalk.dim('    - hanui.json\n'));
 
       console.log(chalk.dim('  Updated files:'));
-      console.log(chalk.dim(`    - ${tailwindConfigPath}`));
+      if (!isV4) {
+        console.log(chalk.dim(`    - ${tailwindConfigPath}`));
+      }
       console.log(chalk.dim(`    - ${cssPath}\n`));
 
       logger.info('Next steps:\n');

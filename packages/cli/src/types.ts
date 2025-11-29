@@ -20,6 +20,7 @@ export interface HanuiConfig {
     css?: string;
     baseColor?: string;
     cssVariables?: boolean;
+    version?: 3 | 4;
   };
   aliases: {
     components: string;
