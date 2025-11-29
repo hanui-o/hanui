@@ -4,14 +4,33 @@ import chalk from 'chalk';
 import ora from 'ora';
 import path from 'path';
 import fs from 'fs-extra';
-import { fetchRegistry, getSourceBaseUrl, type Framework } from '../utils/registry.js';
+import {
+  fetchRegistry,
+  getSourceBaseUrl,
+  type Framework,
+} from '../utils/registry.js';
 import { installDependencies } from '../utils/installer.js';
 import { logger } from '../utils/logger.js';
+import type { HanuiConfig } from '../types.js';
+
+/**
+ * hanui.json 설정 파일 읽기
+ */
+async function loadHanuiConfig(cwd: string): Promise<HanuiConfig | null> {
+  const configPath = path.join(cwd, 'hanui.json');
+  if (!fs.existsSync(configPath)) {
+    return null;
+  }
+  return fs.readJSON(configPath);
+}
 
 /**
  * Fetch file content from GitHub
  */
-async function fetchFileFromGitHub(filePath: string, framework: Framework = 'react'): Promise<string> {
+async function fetchFileFromGitHub(
+  filePath: string,
+  framework: Framework = 'react'
+): Promise<string> {
   const baseUrl = getSourceBaseUrl(framework);
   const url = `${baseUrl}/${filePath}`;
   const response = await fetch(url);
@@ -36,7 +55,11 @@ export const add = new Command()
   .option('-y, --yes', 'skip confirmation prompt')
   .option('-o, --overwrite', 'overwrite existing files')
   .option('-p, --path <path>', 'custom path for components', 'components/hanui')
-  .option('-f, --framework <framework>', 'framework to use (react or vue)', 'react')
+  .option(
+    '-f, --framework <framework>',
+    'framework to use (react or vue)',
+    'react'
+  )
   .action(async (components: string[], options) => {
     try {
       const cwd = process.cwd();
@@ -55,6 +78,18 @@ export const add = new Command()
           'package.json not found. Make sure you are in a valid project directory.'
         );
         process.exit(1);
+      }
+
+      // Load hanui.json config
+      const hanuiConfig = await loadHanuiConfig(cwd);
+
+      // Determine components path from hanui.json or options
+      let componentsPath = options.path;
+      if (hanuiConfig?.aliases?.components) {
+        // Convert alias like "@/components/hanui" to "src/components/hanui"
+        componentsPath = hanuiConfig.aliases.components
+          .replace(/^@\//, 'src/')
+          .replace(/^~\//, '');
       }
 
       // Fetch registry
@@ -123,7 +158,9 @@ export const add = new Command()
 
       // Show confirmation
       if (!options.yes) {
-        logger.info(`\nThe following ${framework} components will be installed:\n`);
+        logger.info(
+          `\nThe following ${framework} components will be installed:\n`
+        );
         Array.from(componentsToInstall).forEach((name) => {
           console.log(
             `  ${chalk.cyan('•')} ${chalk.bold(name)} ${chalk.dim(`(${registry[name].type})`)}`
@@ -163,7 +200,10 @@ export const add = new Command()
           let sourcePath: string | null = null;
 
           // Strategy 1: Check if we're in the hanui monorepo (development)
-          const monorepoPath = path.resolve(cwd, `../../packages/${packageDir}/src`);
+          const monorepoPath = path.resolve(
+            cwd,
+            `../../packages/${packageDir}/src`
+          );
           const devSourcePath = path.join(monorepoPath, file.path);
 
           if (fs.existsSync(devSourcePath)) {
@@ -198,7 +238,7 @@ export const add = new Command()
 
           const targetPath = path.join(
             cwd,
-            file.target || path.join(options.path, file.path)
+            file.target || path.join(componentsPath, file.path)
           );
 
           // Check if file exists
@@ -261,7 +301,7 @@ export const add = new Command()
         `\n✓ Successfully installed ${componentsToInstall.size} ${framework} component(s)!`
       );
       logger.info(
-        `\nComponents installed to: ${chalk.cyan(path.join(cwd, options.path))}`
+        `\nComponents installed to: ${chalk.cyan(path.join(cwd, componentsPath))}`
       );
     } catch (error) {
       logger.error('Failed to add components');
