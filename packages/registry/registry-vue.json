@@ -1,0 +1,14 @@
+{
+  "button": {
+    "name": "button",
+    "type": "ui",
+    "description": "KRDS 디자인 시스템을 준수하는 버튼 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-vue-next"],
+    "files": [
+      {
+        "path": "components/Button.vue",
+        "type": "component"
+      }
+    ]
+  }
+}

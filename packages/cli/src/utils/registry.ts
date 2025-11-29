@@ -2,9 +2,20 @@ import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs-extra';
 
-const REGISTRY_URL =
-  process.env.HANUI_REGISTRY_URL ||
-  'https://raw.githubusercontent.com/hanui-o/hanui/main/packages/registry/registry.json';
+export type Framework = 'react' | 'vue';
+
+const getRegistryUrl = (framework: Framework = 'react') => {
+  if (process.env.HANUI_REGISTRY_URL) {
+    return process.env.HANUI_REGISTRY_URL;
+  }
+  const registryFile = framework === 'vue' ? 'registry-vue.json' : 'registry.json';
+  return `https://raw.githubusercontent.com/hanui-o/hanui/main/packages/registry/${registryFile}`;
+};
+
+export const getSourceBaseUrl = (framework: Framework = 'react') => {
+  const packageDir = framework === 'vue' ? 'vue' : 'react';
+  return `https://raw.githubusercontent.com/hanui-o/hanui/main/packages/${packageDir}/src`;
+};
 
 export interface RegistryFile {
   path: string;
@@ -30,17 +41,19 @@ export type Registry = Record<string, RegistryComponent>;
 /**
  * Fetch the component registry from GitHub or local file
  */
-export async function fetchRegistry(): Promise<Registry> {
+export async function fetchRegistry(framework: Framework = 'react'): Promise<Registry> {
   try {
+    const registryFile = framework === 'vue' ? 'registry-vue.json' : 'registry.json';
+
     // In development, try local file first
     const cwd = process.cwd();
     const possiblePaths = [
       // From apps/docs
-      path.resolve(cwd, '../../packages/registry/registry.json'),
+      path.resolve(cwd, `../../packages/registry/${registryFile}`),
       // From packages/cli
-      path.resolve(cwd, '../registry/registry.json'),
+      path.resolve(cwd, `../registry/${registryFile}`),
       // From root
-      path.resolve(cwd, './packages/registry/registry.json'),
+      path.resolve(cwd, `./packages/registry/${registryFile}`),
     ];
 
     for (const localPath of possiblePaths) {
@@ -50,8 +63,9 @@ export async function fetchRegistry(): Promise<Registry> {
     }
 
     // Try to fetch from URL
-    if (REGISTRY_URL.startsWith('http')) {
-      const response = await fetch(REGISTRY_URL);
+    const registryUrl = getRegistryUrl(framework);
+    if (registryUrl.startsWith('http')) {
+      const response = await fetch(registryUrl);
       if (!response.ok) {
         throw new Error(`Failed to fetch registry: ${response.statusText}`);
       }

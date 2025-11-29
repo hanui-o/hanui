@@ -4,18 +4,16 @@ import chalk from 'chalk';
 import ora from 'ora';
 import path from 'path';
 import fs from 'fs-extra';
-import { fetchRegistry } from '../utils/registry.js';
+import { fetchRegistry, getSourceBaseUrl, type Framework } from '../utils/registry.js';
 import { installDependencies } from '../utils/installer.js';
 import { logger } from '../utils/logger.js';
-
-const GITHUB_RAW_BASE_URL =
-  'https://raw.githubusercontent.com/hanui-o/hanui/main/packages/react/src';
 
 /**
  * Fetch file content from GitHub
  */
-async function fetchFileFromGitHub(filePath: string): Promise<string> {
-  const url = `${GITHUB_RAW_BASE_URL}/${filePath}`;
+async function fetchFileFromGitHub(filePath: string, framework: Framework = 'react'): Promise<string> {
+  const baseUrl = getSourceBaseUrl(framework);
+  const url = `${baseUrl}/${filePath}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -38,9 +36,17 @@ export const add = new Command()
   .option('-y, --yes', 'skip confirmation prompt')
   .option('-o, --overwrite', 'overwrite existing files')
   .option('-p, --path <path>', 'custom path for components', 'components/hanui')
+  .option('-f, --framework <framework>', 'framework to use (react or vue)', 'react')
   .action(async (components: string[], options) => {
     try {
       const cwd = process.cwd();
+      const framework = (options.framework as Framework) || 'react';
+
+      // Validate framework option
+      if (!['react', 'vue'].includes(framework)) {
+        logger.error(`Invalid framework: ${framework}. Use 'react' or 'vue'.`);
+        process.exit(1);
+      }
 
       // Check if package.json exists
       const packageJsonPath = path.join(cwd, 'package.json');
@@ -52,8 +58,8 @@ export const add = new Command()
       }
 
       // Fetch registry
-      logger.info('Fetching component registry...');
-      const registry = await fetchRegistry();
+      logger.info(`Fetching ${framework} component registry...`);
+      const registry = await fetchRegistry(framework);
 
       // If no components specified, show interactive selection
       let selectedComponents = components;
@@ -117,7 +123,7 @@ export const add = new Command()
 
       // Show confirmation
       if (!options.yes) {
-        logger.info('\nThe following components will be installed:\n');
+        logger.info(`\nThe following ${framework} components will be installed:\n`);
         Array.from(componentsToInstall).forEach((name) => {
           console.log(
             `  ${chalk.cyan('•')} ${chalk.bold(name)} ${chalk.dim(`(${registry[name].type})`)}`
@@ -146,6 +152,7 @@ export const add = new Command()
 
       // Install components
       const spinner = ora('Installing components...').start();
+      const packageDir = framework === 'vue' ? 'vue' : 'react';
 
       for (const componentName of componentsToInstall) {
         const component = registry[componentName];
@@ -156,7 +163,7 @@ export const add = new Command()
           let sourcePath: string | null = null;
 
           // Strategy 1: Check if we're in the hanui monorepo (development)
-          const monorepoPath = path.resolve(cwd, '../../packages/react/src');
+          const monorepoPath = path.resolve(cwd, `../../packages/${packageDir}/src`);
           const devSourcePath = path.join(monorepoPath, file.path);
 
           if (fs.existsSync(devSourcePath)) {
@@ -166,7 +173,7 @@ export const add = new Command()
             const parentDir = path.dirname(cwd);
             const siblingHanuiPath = path.join(
               parentDir,
-              'hanui/packages/react/src',
+              `hanui/packages/${packageDir}/src`,
               file.path
             );
             if (fs.existsSync(siblingHanuiPath)) {
@@ -177,7 +184,7 @@ export const add = new Command()
               for (let i = 0; i < 5; i++) {
                 const testPath = path.join(
                   currentDir,
-                  'packages/react/src',
+                  `packages/${packageDir}/src`,
                   file.path
                 );
                 if (fs.existsSync(testPath)) {
@@ -216,7 +223,7 @@ export const add = new Command()
             // Production: fetch from GitHub
             try {
               spinner.text = `Downloading ${chalk.cyan(componentName)} from registry...`;
-              content = await fetchFileFromGitHub(file.path);
+              content = await fetchFileFromGitHub(file.path, framework);
             } catch (error) {
               spinner.fail(
                 `Failed to download ${chalk.red(file.path)}: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -251,7 +258,7 @@ export const add = new Command()
       }
 
       logger.success(
-        `\n✓ Successfully installed ${componentsToInstall.size} component(s)!`
+        `\n✓ Successfully installed ${componentsToInstall.size} ${framework} component(s)!`
       );
       logger.info(
         `\nComponents installed to: ${chalk.cyan(path.join(cwd, options.path))}`
