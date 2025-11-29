@@ -12,6 +12,8 @@ import {
   Sun,
   Moon,
   ChevronDown,
+  Menu,
+  X,
 } from 'lucide-react';
 import { SearchModal } from '@/components/search/SearchModal';
 
@@ -20,6 +22,7 @@ export function Header() {
   const [mounted, setMounted] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isMainPage = pathname === '/';
 
@@ -145,7 +148,7 @@ export function Header() {
           </nav>
 
           {/* Right: Version + Sponsor + Search + GitHub + Theme */}
-          <div className="flex items-center gap-2 ml-auto">
+          <div className="flex items-center gap-1 lg:gap-2 ml-auto">
             {/* Sponsor - GitHub Sponsors 설정 후 활성화 예정 */}
             {/* <Link
             href="https://github.com/sponsors/hanui-o"
@@ -166,11 +169,11 @@ export function Header() {
             {/* Search */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="hidden sm:flex items-center gap-2 h-9 w-full max-w-sm px-3 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors bg-krds-gray-5"
+              className="flex items-center gap-2 h-9 px-3 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors lg:w-full lg:max-w-sm lg:bg-krds-gray-5"
             >
-              <Search className="w-4 h-4" />
-              <span className="hidden lg:inline text-sm">Search...</span>
-              <kbd className="hidden lg:inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-0 px-1.5 font-mono text-xs font-medium text-krds-gray-70 ml-auto">
+              <Search className="w-5 lg:w-4 h-5 lg:h-4" />
+              <span className="hidden xl:inline text-sm">Search...</span>
+              <kbd className="hidden xl:inline-flex h-5 select-none items-center gap-1 rounded border border-krds-gray-20 bg-krds-gray-0 px-1.5 font-mono text-xs font-medium text-krds-gray-70 ml-auto">
                 <span className="text-xs">⌘</span>K
               </kbd>
             </button>
@@ -208,8 +211,48 @@ export function Header() {
                 )}
               </button>
             )}
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="flex md:hidden items-center justify-center h-9 w-9 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
           </div>
         </Container>
+
+        {/* Mobile Menu Panel */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden border-t border-krds-gray-5 bg-krds-white">
+            <Container maxWidth="full" className="py-4">
+              <nav className="flex flex-col space-y-1">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    target={item.target}
+                    rel={item.rel}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center justify-between gap-2 transition-colors px-4 py-3 rounded-md ${
+                      item.isActive
+                        ? 'text-krds-gray-95 bg-krds-gray-5'
+                        : 'text-krds-gray-70 hover:text-krds-gray-95 hover:bg-krds-gray-5'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    {item.icon}
+                  </Link>
+                ))}
+              </nav>
+            </Container>
+          </div>
+        )}
       </header>
     </>
   );
