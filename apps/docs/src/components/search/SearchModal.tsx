@@ -190,10 +190,8 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     key={result.href}
                     onClick={() => handleSelect(result.href)}
                     onMouseEnter={() => setSelectedIndex(index)}
-                    className={`w-full flex items-start gap-4 px-6 py-4 text-left transition-all border-l-4 ${
-                      isSelected
-                        ? 'bg-krds-primary-base/5 border-l-krds-primary-base'
-                        : 'hover:bg-krds-gray-0 border-l-transparent'
+                    className={`w-full flex items-start gap-4 px-6 py-4 text-left transition-all ${
+                      isSelected ? 'bg-krds-primary-5' : 'hover:bg-krds-gray-5'
                     }`}
                   >
                     {/* Icon */}
@@ -255,7 +253,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               <p className="text-sm text-krds-gray-60 mb-6">
                 검색어를 입력하여 문서를 찾아보세요
               </p>
-              <div className="mt-8 px-6">
+              {/* <div className="mt-8 px-6">
                 <p className="text-sm font-medium text-krds-gray-70 mb-3">
                   인기 검색어
                 </p>
@@ -272,7 +270,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     )
                   )}
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
         </div>
