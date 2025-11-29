@@ -12,9 +12,9 @@ const inputVariants = cva(
     'flex',
     'w-full',
     'rounded-md',
-    'font-medium',
+    'font-bold',
     'transition-colors',
-    'placeholder:text-krds-gray-50',
+    'placeholder:text-krds-gray-40',
     'focus-visible:outline-none',
     'disabled:cursor-not-allowed',
     'disabled:opacity-60',
@@ -43,9 +43,27 @@ const inputVariants = cva(
       },
       size: {
         // 크기 (sm: 40px, md: 48px, lg: 56px)
-        sm: ['h-10', 'px-4', 'text-[15px]', 'leading-[150%]'].join(' '), // 40px - KRDS body-sm
-        md: ['h-12', 'px-4', 'text-[17px]', 'leading-[150%]'].join(' '), // 48px - KRDS body-md (기본)
-        lg: ['h-14', 'px-4', 'text-[19px]', 'leading-[150%]'].join(' '), // 56px - KRDS body-lg
+        sm: [
+          'h-10',
+          'px-4',
+          'text-[15px]',
+          'rounded-md',
+          'leading-[150%]',
+        ].join(' '), // 40px - KRDS body-sm
+        md: [
+          'h-12',
+          'px-4',
+          'text-[17px]',
+          'rounded-md',
+          'leading-[150%]',
+        ].join(' '), // 48px - KRDS body-md (기본)
+        lg: [
+          'h-14',
+          'px-4',
+          'text-[19px]',
+          'rounded-lg',
+          'leading-[150%]',
+        ].join(' '), // 56px - KRDS body-lg
       },
     },
     defaultVariants: {
