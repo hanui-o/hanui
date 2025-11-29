@@ -459,6 +459,10 @@ importers:
       vue-tsc:
         specifier: ^2.2.0
         version: 2.2.12(typescript@5.9.3)
+    optionalDependencies:
+      shiki:
+        specifier: ^1.0.0
+        version: 1.29.2
 
 packages:
 
