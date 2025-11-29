@@ -20,7 +20,7 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'shiki'],
       output: {
         globals: {
           vue: 'Vue',

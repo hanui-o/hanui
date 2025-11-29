@@ -69,5 +69,8 @@
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.468.0",
     "tailwind-merge": "^3.4.0"
+  },
+  "optionalDependencies": {
+    "shiki": "^1.0.0"
   }
 }
