@@ -227,7 +227,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Heading level="h2" id="installation" title="설치">
           <Body>필요한 컴포넌트를 한 번에 설치합니다:</Body>
         </Heading>
-        <CodeBlock code="npx hanui add layout" language="bash" />
+        <CodeBlock code="npx @hanui/cli add layout" language="bash" />
         <Body className="text-krds-gray-70 mt-2">
           이 명령은 Header, Footer, SkipLink, MainMenu, Breadcrumb, Container를
           자동으로 설치합니다.
