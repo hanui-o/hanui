@@ -236,9 +236,11 @@ export const add = new Command()
             }
           }
 
+          // Remove "components/" prefix from file.path since componentsPath already includes it
+          const filePath = file.path.replace(/^components\//, '');
           const targetPath = path.join(
             cwd,
-            file.target || path.join(componentsPath, file.path)
+            file.target || path.join(componentsPath, filePath)
           );
 
           // Check if file exists
