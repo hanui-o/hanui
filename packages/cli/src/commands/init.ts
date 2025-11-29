@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import ora from 'ora';
 import path from 'path';
 import fs from 'fs-extra';
+import { execa } from 'execa';
 import { logger } from '../utils/logger.js';
 import {
   getProjectInfo,
@@ -12,6 +13,29 @@ import {
   getDefaultCssPath,
 } from '../utils/get-project-info.js';
 import type { HanuiConfig } from '../types.js';
+
+/**
+ * 패키지 매니저 감지
+ */
+function detectPackageManager(cwd: string): 'pnpm' | 'yarn' | 'npm' {
+  if (fs.existsSync(path.join(cwd, 'pnpm-lock.yaml'))) return 'pnpm';
+  if (fs.existsSync(path.join(cwd, 'yarn.lock'))) return 'yarn';
+  return 'npm';
+}
+
+/**
+ * 의존성 설치
+ */
+async function installDependencies(
+  cwd: string,
+  packages: string[],
+  packageManager: 'pnpm' | 'yarn' | 'npm'
+): Promise<void> {
+  const args =
+    packageManager === 'yarn' ? ['add', ...packages] : ['install', ...packages];
+
+  await execa(packageManager, args, { cwd, stdio: 'pipe' });
+}
 
 /**
  * Tailwind 버전 감지 (v3 vs v4)
@@ -980,6 +1004,20 @@ ${TAILWIND_V4_THEME}`;
 
       spinner.succeed('Project initialized!');
 
+      // 패키지 매니저 감지 및 의존성 자동 설치
+      const packageManager = detectPackageManager(cwd);
+      const depsToInstall = ['clsx', 'tailwind-merge'];
+
+      spinner.start(`Installing dependencies with ${packageManager}...`);
+      try {
+        await installDependencies(cwd, depsToInstall, packageManager);
+        spinner.succeed(`Dependencies installed (${depsToInstall.join(', ')})`);
+      } catch {
+        spinner.warn(
+          `Could not auto-install dependencies. Please run manually:\n  ${packageManager} ${packageManager === 'yarn' ? 'add' : 'install'} ${depsToInstall.join(' ')}`
+        );
+      }
+
       // Success message
       logger.success(
         `\n✓ HANUI initialized successfully! (Tailwind ${isV4 ? 'v4' : 'v3'})\n`
@@ -1005,13 +1043,10 @@ ${TAILWIND_V4_THEME}`;
 
       logger.info('Next steps:\n');
       console.log(
-        `  ${chalk.cyan('1.')} Install dependencies: ${chalk.bold('npm install clsx tailwind-merge')}`
+        `  ${chalk.cyan('1.')} Add components: ${chalk.bold('npx @hanui/cli add button')}`
       );
       console.log(
-        `  ${chalk.cyan('2.')} Add components: ${chalk.bold('npx @hanui/cli add button')}`
-      );
-      console.log(
-        `  ${chalk.cyan('3.')} Start building: ${chalk.bold('npm run dev')}\n`
+        `  ${chalk.cyan('2.')} Start building: ${chalk.bold(`${packageManager} run dev`)}\n`
       );
     } catch (error) {
       logger.error('Failed to initialize project');
