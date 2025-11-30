@@ -71,7 +71,7 @@ export const NavigationMenu = React.forwardRef<
     >
       <RadixNavigationMenu.List
         className={cn(
-          'flex',
+          'flex mb-2',
           orientation === 'horizontal'
             ? 'flex-row items-center gap-2'
             : 'flex-col gap-1'
@@ -82,7 +82,7 @@ export const NavigationMenu = React.forwardRef<
           const isActive = item.active || item.href === currentPath;
 
           return (
-            <RadixNavigationMenu.Item key={index}>
+            <RadixNavigationMenu.Item key={index} className="relative">
               {hasDropdown ? (
                 <>
                   {/* 드롭다운 트리거 */}
@@ -91,9 +91,9 @@ export const NavigationMenu = React.forwardRef<
                       'group inline-flex items-center gap-1',
                       'px-4 py-2 font-medium rounded-md',
                       'transition-colors duration-200',
-                      'hover:bg-krds-gray-10',
+                      'hover:bg-krds-gray-5',
                       'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                      'data-[state=open]:bg-krds-gray-10'
+                      'data-[state=open]:bg-krds-gray-5'
                     )}
                   >
                     {item.label}
@@ -104,16 +104,15 @@ export const NavigationMenu = React.forwardRef<
                     />
                   </RadixNavigationMenu.Trigger>
 
-                  {/* 드롭다운 콘텐츠 */}
+                  {/* 드롭다운 콘텐츠 - Item 내부에서 직접 렌더링 */}
                   <RadixNavigationMenu.Content
                     className={cn(
+                      'absolute top-full left-1/2 -translate-x-1/2 mt-1',
                       item.dropdownWidth || 'w-[200px]',
-                      'data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out',
-                      'data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out',
-                      'data-[motion=from-end]:slide-in-from-right-52',
-                      'data-[motion=from-start]:slide-in-from-left-52',
-                      'data-[motion=to-end]:slide-out-to-right-52',
-                      'data-[motion=to-start]:slide-out-to-left-52'
+                      'rounded-lg border border-krds-gray-20 bg-krds-white shadow-lg',
+                      'data-[state=open]:animate-in data-[state=closed]:animate-out',
+                      'data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0',
+                      'data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95'
                     )}
                   >
                     {/* 섹션 렌더링 */}
@@ -135,7 +134,7 @@ export const NavigationMenu = React.forwardRef<
                           <ul className="space-y-2">
                             {section.links.map(
                               (link: NavigationMenuLink, lIndex: number) => (
-                                <li key={lIndex}>
+                                <li key={lIndex} className="relative">
                                   <RadixNavigationMenu.Link asChild>
                                     <a
                                       href={link.href}
@@ -145,7 +144,7 @@ export const NavigationMenu = React.forwardRef<
                                         'hover:bg-krds-gray-5',
                                         'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
                                         link.active &&
-                                          'bg-krds-primary-10 text-krds-primary-60'
+                                          'bg-krds-gray-5 text-krds-primary-60'
                                       )}
                                       aria-current={
                                         link.active ? 'page' : undefined
@@ -201,7 +200,7 @@ export const NavigationMenu = React.forwardRef<
                         <ul className="space-y-1">
                           {item.children.map(
                             (child: NavigationMenuLink, cIndex: number) => (
-                              <li key={cIndex}>
+                              <li key={cIndex} className="relative">
                                 <RadixNavigationMenu.Link asChild>
                                   <a
                                     href={child.href}
@@ -212,7 +211,7 @@ export const NavigationMenu = React.forwardRef<
                                       'hover:bg-krds-gray-5',
                                       'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
                                       child.active &&
-                                        'bg-krds-primary-10 text-krds-primary-60'
+                                        'bg-krds-gray-5 text-krds-primary-60'
                                     )}
                                     aria-current={
                                       child.active ? 'page' : undefined
@@ -237,9 +236,9 @@ export const NavigationMenu = React.forwardRef<
                     className={cn(
                       'block px-4 py-2 font-medium rounded-md',
                       'transition-colors duration-200',
-                      'hover:bg-krds-gray-10',
+                      'hover:bg-krds-gray-5',
                       'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                      isActive && 'bg-krds-primary-10 text-krds-primary-60'
+                      isActive && 'bg-krds-gray-5 text-krds-primary-60'
                     )}
                     aria-current={isActive ? 'page' : undefined}
                   >
@@ -251,11 +250,6 @@ export const NavigationMenu = React.forwardRef<
           );
         })}
       </RadixNavigationMenu.List>
-
-      {/* Viewport for positioning dropdown content */}
-      <div className="perspective-origin-[top_center] absolute left-0 top-full flex w-full justify-start">
-        <RadixNavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] origin-top-center overflow-visible rounded-lg border border-krds-gray-20 bg-krds-white shadow-lg transition-[width,height] duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90" />
-      </div>
     </RadixNavigationMenu.Root>
   );
 });

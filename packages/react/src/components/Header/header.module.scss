@@ -23,6 +23,7 @@
   left: 0;
   z-index: 70;
   background-color: var(--krds-header--color-surface);
+  border-bottom: 0.1rem solid var(--krds-header--utility-color-divider);
 }
 
 // Header Utility (Top bar with login, signup, etc.)
@@ -75,12 +76,12 @@
   transition: var(--krds-transition-base);
 
   &:hover {
-    color: var(--krds-color-primary-60);
+    color: var(--krds-color-light-primary-60);
   }
 
   // 키보드 포커스 가시성
   &:focus-visible {
-    outline: 2px solid var(--krds-color-primary-60);
+    outline: 2px solid var(--krds-color-light-primary-60);
     outline-offset: 2px;
     border-radius: 0.4rem;
   }
@@ -100,7 +101,7 @@
   transition: var(--krds-transition-base);
 
   &:hover {
-    color: var(--krds-color-primary-60);
+    color: var(--krds-color-light-primary-60);
 
     ~ .utilityDropdown {
       display: block;
@@ -115,6 +116,7 @@
 
 // Radix UI DropdownMenu Content (Portal로 렌더링됨)
 .utilityDropdown {
+  margin-top: -0.4rem;
   background: var(--krds-header--color-surface);
   border: 1px solid var(--krds-header--utility-color-divider);
   border-radius: 1.2rem;
@@ -140,7 +142,6 @@
     display: block;
     position: relative;
     padding: 0.6rem 1rem;
-    padding-left: 2rem;
     margin: 0 0.8rem;
     color: var(--krds-header--navi-color-text);
     text-decoration: none;
@@ -158,22 +159,15 @@
       transform: translateY(-50%) translateX(-0.4rem);
       width: 0.3rem;
       height: 1.6rem;
-      background-color: var(--krds-color-primary-60);
+      background-color: var(--krds-color-light-primary-60);
       border-radius: 0.2rem;
       opacity: 0;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &:hover,
     &[data-highlighted] {
       background-color: var(--krds-header--navi-color-hover);
-      padding-left: 2.4rem;
-      color: var(--krds-color-primary-60);
-
-      &::before {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
-      }
+      color: var(--krds-color-light-primary-60);
     }
   }
 }
@@ -204,7 +198,6 @@
 .headerBranding {
   display: flex;
   align-items: center;
-  border-bottom: 0.1rem solid var(--krds-header--utility-color-divider);
 
   .inner {
     display: flex;
@@ -322,7 +315,6 @@
 .mainMenu {
   display: none;
   background-color: var(--krds-header--color-surface);
-  border-bottom: 0.1rem solid var(--krds-header--utility-color-divider);
 
   @media (min-width: 640px) {
     > div {
@@ -401,12 +393,12 @@
   &:hover {
     background-color: var(--krds-header--navi-color-hover);
     border-radius: var(--krds-radius-medium);
-    color: var(--krds-color-primary-60);
+    color: var(--krds-color-light-primary-60);
   }
 
   // 키보드 포커스 가시성
   &:focus-visible {
-    outline: 2px solid var(--krds-color-primary-60);
+    outline: 2px solid var(--krds-color-light-primary-60);
     outline-offset: 2px;
     border-radius: var(--krds-radius-medium);
   }
@@ -502,7 +494,7 @@
     transform: translateY(-50%) translateX(-0.4rem);
     width: 0.3rem;
     height: 1.6rem;
-    background-color: var(--krds-color-primary-60);
+    background-color: var(--krds-color-light-primary-60);
     border-radius: 0.2rem;
     opacity: 0;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -511,7 +503,7 @@
   &:hover {
     background-color: var(--krds-header--navi-color-hover);
     padding-left: 2.4rem;
-    color: var(--krds-color-primary-60);
+    color: var(--krds-color-light-primary-60);
 
     &::before {
       opacity: 1;
@@ -521,7 +513,7 @@
 
   // 키보드 포커스 가시성
   &:focus-visible {
-    outline: 2px solid var(--krds-color-primary-60);
+    outline: 2px solid var(--krds-color-light-primary-60);
     outline-offset: 2px;
     background-color: var(--krds-header--navi-color-hover);
   }
@@ -585,7 +577,7 @@
 
   // 키보드 포커스 가시성
   &:focus-visible {
-    outline: 2px solid var(--krds-color-primary-60);
+    outline: 2px solid var(--krds-color-light-primary-60);
     outline-offset: 2px;
   }
 }
@@ -623,7 +615,7 @@
   text-align: left;
 
   &:hover {
-    color: var(--krds-color-primary-60);
+    color: var(--krds-color-light-primary-60);
   }
 }
 
@@ -693,7 +685,7 @@
   transition: var(--krds-transition-base);
 
   &:hover {
-    color: var(--krds-color-primary-60);
+    color: var(--krds-color-light-primary-60);
   }
 }
 
@@ -796,7 +788,7 @@
   transition: var(--krds-transition-base);
 
   &:focus-within {
-    border-color: var(--krds-color-primary-60);
+    border-color: var(--krds-color-light-primary-60);
     background-color: var(--krds-header--color-surface);
   }
 }

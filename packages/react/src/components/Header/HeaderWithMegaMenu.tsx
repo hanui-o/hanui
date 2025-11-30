@@ -148,7 +148,7 @@ export function HeaderWithMegaMenu({
       {/* Branding + MegaMenu + Actions (Inline) */}
       <div className={styles.headerBranding}>
         <Container className={styles.inner}>
-          <div className={styles.branding}>
+          <div className={styles.branding + ' flex items-center'}>
             <a
               href={logoHref}
               className={styles.logo}
