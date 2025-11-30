@@ -55,7 +55,7 @@ const componentsNavigation = [
       { title: 'Center', href: '/components/center' },
       { title: 'Checkbox', href: '/components/checkbox' },
       { title: 'Code', href: '/components/code' },
-      { title: 'Combobox', href: '/components/combobox' },
+      // { title: 'Combobox', href: '/components/combobox' },
       { title: 'Container', href: '/components/container' },
       { title: 'DataTable', href: '/components/data-table' },
       { title: 'Display', href: '/components/display' },

@@ -381,7 +381,7 @@ export default function ContainerPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Combobox', href: '/components/combobox' }}
+        prev={{ title: 'Code', href: '/components/code' }}
         next={{ title: 'DataTable', href: '/components/data-table' }}
       />
     </>

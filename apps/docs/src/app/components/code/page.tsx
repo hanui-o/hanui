@@ -359,7 +359,7 @@ console.log(message);`}
 
       <PageNavigation
         prev={{ title: 'Checkbox', href: '/components/checkbox' }}
-        next={{ title: 'Combobox', href: '/components/combobox' }}
+        next={{ title: 'Container', href: '/components/container' }}
       />
     </>
   );
