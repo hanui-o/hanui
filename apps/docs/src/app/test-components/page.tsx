@@ -91,6 +91,11 @@ import {
   Body,
   List,
   ListItem,
+  HeaderWithMegaMenu,
+  HeaderWithNavigation,
+  NavigationMenuItem,
+  MegaMenuColumn,
+  Footer,
 } from '@hanui/react';
 import {
   AlertCircle,
@@ -105,6 +110,54 @@ import {
   ChevronRight,
   ExternalLink,
 } from 'lucide-react';
+
+// ============================================================================
+// Header 컴포넌트
+// ============================================================================
+const navigationItems: NavigationMenuItem[] = [
+  { label: '홈', href: '/', active: true },
+  { label: '소개', href: '/about' },
+  {
+    label: '서비스',
+    children: [
+      { label: '건강검진', href: '/services/checkup' },
+      { label: '보험료 조회', href: '/services/premium' },
+    ],
+  },
+  { label: '고객지원', href: '/support' },
+];
+
+const megaColumns: MegaMenuColumn[] = [
+  {
+    title: '서비스',
+    links: [
+      { label: '건강검진', href: '/services/checkup' },
+      { label: '보험료 조회', href: '/services/premium' },
+    ],
+    active: true,
+  },
+  {
+    title: '지원',
+    links: [
+      { label: '고객센터', href: '/support/center' },
+      { label: 'FAQ', href: '/support/faq' },
+    ],
+  },
+  {
+    title: '고객지원',
+    links: [
+      { label: '고객센터', href: '/support/center' },
+      { label: 'FAQ', href: '/support/faq' },
+    ],
+  },
+  {
+    title: '고객지원',
+    links: [
+      { label: '고객센터', href: '/support/center' },
+      { label: 'FAQ', href: '/support/faq' },
+    ],
+  },
+];
 
 // ============================================================================
 // Combobox 옵션
@@ -1192,6 +1245,8 @@ export default function TestComponentsPage() {
           <Body className="text-krds-gray-60 mt-2">
             KWCAG 2.2 AA 인증을 위한 모든 컴포넌트의 접근성 검증 페이지입니다.
           </Body>
+          {/* <HeaderWithNavigation navigationItems={navigationItems} /> */}
+          <HeaderWithMegaMenu megaColumns={megaColumns} />
         </div>
 
         <Tabs defaultValue="feedback">
@@ -1228,6 +1283,8 @@ export default function TestComponentsPage() {
             <AccessibilityChecklist />
           </TabsContent>
         </Tabs>
+
+        <Footer />
       </div>
       <Toaster />
     </ToastProvider>

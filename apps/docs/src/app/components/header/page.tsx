@@ -179,7 +179,7 @@ const megaColumns: MegaMenuColumn[] = [
             </Code>
 
             <Subsection level="h3">
-              <Heading level="h3" title="설치" />
+              <Heading level="h3" id="megamenu-installation" title="설치" />
               <Code variant="block" language="bash">
                 {`npx hanui add header-with-megamenu`}
               </Code>
@@ -232,7 +232,7 @@ const navigationItems: NavigationMenuItem[] = [
             </Code>
 
             <Subsection level="h3">
-              <Heading level="h3" title="설치" />
+              <Heading level="h3" id="navigation-installation" title="설치" />
               <Code variant="block" language="bash">
                 {`npx hanui add header-with-navigation`}
               </Code>

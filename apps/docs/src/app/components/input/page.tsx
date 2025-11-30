@@ -125,7 +125,9 @@ export default function InputPage() {
             </Code>
           </Section>
 
-          <Installation componentName="input" />
+          <Section>
+            <Installation componentName="input" />
+          </Section>
 
           {/* Usage */}
           <Section level="h2">

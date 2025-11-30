@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import '@hanui/react/variables.css';
+@import '@hanui/react/react.css';
 
 :root {
   /* Docs-specific variables (브레이크포인트 추가) */
