@@ -57,7 +57,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
     },
     ref
   ) => {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(true);
     const [activeColumn, setActiveColumn] = React.useState<number | null>(null);
     const timeoutRef = React.useRef<ReturnType<typeof setTimeout>>();
     const navRef = React.useRef<HTMLElement | null>(null);
@@ -244,20 +244,21 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
           {columns.map((column, index) => {
             const isActive =
               column.active ||
-              column.href === currentPath ||
-              column.links.some((link) => link.href === currentPath);
+              (currentPath && column.href === currentPath) ||
+              (currentPath &&
+                column.links.some((link) => link.href === currentPath));
 
             return (
               <li key={index}>
                 <a
                   href={column.href || '#'}
                   className={cn(
-                    'block px-4 py-2 font-medium rounded-md',
+                    'flex items-center h-14 px-4 py-2 font-medium rounded-md',
                     'transition-colors duration-200',
-                    'hover:bg-krds-gray-10',
+                    'hover:bg-krds-gray-5',
                     'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                    isActive && 'bg-krds-primary-10 text-krds-primary-60',
-                    activeColumn === index && isOpen && 'bg-krds-gray-10'
+                    isActive && 'bg-krds-gray-5 text-krds-primary-60',
+                    activeColumn === index && isOpen && 'bg-krds-gray-5'
                   )}
                   onMouseEnter={() => handleColumnMouseEnter(index)}
                   onFocus={() => handleColumnFocus(index)}
@@ -278,20 +279,19 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
         {isOpen && (
           <div
             className={cn(
-              'absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50',
-              'w-screen max-w-7xl',
+              'absolute left-1/2 -translate-x-1/2 top-full mt-6 z-50',
+              'w-screen',
               dropdownBgColor,
-              'border',
-              dropdownBorderColor,
-              'rounded-lg shadow-lg',
+              'border-t border-krds-gray-10',
+              'shadow-md',
               'animate-in fade-in slide-in-from-top-2 duration-200'
             )}
             role="menu"
           >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <div
                 className={cn(
-                  'grid gap-8',
+                  'grid gap-12',
                   columns.length === 2 && 'grid-cols-2',
                   columns.length === 3 && 'grid-cols-3',
                   columns.length === 4 && 'grid-cols-4',
@@ -315,7 +315,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                     data-column={colIndex}
                   >
                     {/* Column Title */}
-                    <h3 className="text-sm font-bold text-krds-gray-90 pb-2 border-b border-krds-gray-20">
+                    <h3 className="font-bold text-krds-gray-90 pb-2">
                       {column.href ? (
                         <a
                           href={column.href}
@@ -340,12 +340,12 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                             <a
                               href={link.href}
                               className={cn(
-                                'block px-3 py-1.5 rounded-md text-sm',
+                                'block py-1.5 rounded-md',
                                 'transition-colors',
                                 'hover:bg-krds-gray-5 hover:text-krds-primary-60',
                                 'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
                                 isLinkActive
-                                  ? 'bg-krds-primary-10 text-krds-primary-60 font-medium'
+                                  ? 'bg-krds-gray-5 text-krds-primary-60 font-medium'
                                   : 'text-krds-gray-70'
                               )}
                               aria-current={isLinkActive ? 'page' : undefined}
