@@ -23,6 +23,7 @@ export { default as Switch } from './components/Switch.vue';
 export { default as Label } from './components/Label.vue';
 export { default as Slider } from './components/Slider.vue';
 export { default as Select } from './components/Select.vue';
+export { default as Combobox } from './components/Combobox.vue';
 export { default as FileUpload } from './components/FileUpload.vue';
 
 // FormField
@@ -74,6 +75,9 @@ export { default as Pagination } from './components/Pagination.vue';
 export { default as SkipLink } from './components/SkipLink.vue';
 export { default as SideNavigation } from './components/SideNavigation.vue';
 export { default as InPageNavigation } from './components/InPageNavigation.vue';
+export { default as NavigationMenu } from './components/NavigationMenu.vue';
+export { default as MegaMenu } from './components/MegaMenu.vue';
+export { default as TabBars } from './components/TabBars.vue';
 
 // DropdownMenu
 export { default as DropdownMenu } from './components/DropdownMenu.vue';
@@ -98,6 +102,7 @@ export { default as TableRow } from './components/TableRow.vue';
 export { default as TableHead } from './components/TableHead.vue';
 export { default as TableCell } from './components/TableCell.vue';
 export { default as TableCaption } from './components/TableCaption.vue';
+export { default as DataTable } from './components/DataTable.vue';
 
 // Typography
 export { default as Heading } from './components/Heading.vue';
@@ -115,6 +120,8 @@ export { default as Link } from './components/Link.vue';
 // KRDS Components
 export { default as Identifier } from './components/Identifier.vue';
 export { default as Masthead } from './components/Masthead.vue';
+export { default as Header } from './components/Header.vue';
+export { default as Footer } from './components/Footer.vue';
 
 // Utils
 export { cn } from './lib/utils';
