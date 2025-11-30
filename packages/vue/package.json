@@ -1,6 +1,6 @@
 {
   "name": "@hanui/vue-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "KRDS 기반 공공 웹사이트용 Vue 컴포넌트 라이브러리 - Korean Government Design System (KRDS) based Vue component library for public web services",
   "keywords": [
     "vue",
@@ -50,18 +50,27 @@
     "dev": "vite build --watch",
     "build": "vite build",
     "lint": "echo 'Vue lint: TODO - configure eslint for .vue files'",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
     "vue": "^3.3.0"
   },
   "devDependencies": {
+    "@testing-library/vue": "^8.1.0",
     "@types/node": "^22.10.2",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "axe-core": "^4.11.0",
     "eslint-plugin-vue": "^10.6.2",
+    "happy-dom": "^20.0.11",
+    "jsdom": "^27.2.0",
     "typescript": "^5.7.3",
     "vite": "^6.0.7",
     "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.14",
+    "vitest-axe": "^0.1.0",
     "vue": "^3.5.13",
     "vue-eslint-parser": "^10.2.0",
     "vue-tsc": "^2.2.0"

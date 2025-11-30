@@ -56,6 +56,8 @@ const props = withDefaults(
     disabled?: boolean;
     label?: string;
     labelPosition?: 'left' | 'right';
+    ariaLabel?: string;
+    id?: string;
     class?: string;
   }>(),
   {
@@ -65,6 +67,8 @@ const props = withDefaults(
     labelPosition: 'right',
   }
 );
+
+const switchId = computed(() => props.id || `switch-${Math.random().toString(36).substr(2, 9)}`);
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean];
@@ -112,15 +116,18 @@ const handleKeyDown = (e: KeyboardEvent) => {
   <div v-if="label" class="flex items-center gap-2">
     <span
       v-if="labelPosition === 'left'"
+      :id="`${switchId}-label`"
       :class="labelClasses"
       @click="handleClick"
     >
       {{ label }}
     </span>
     <button
+      :id="switchId"
       type="button"
       role="switch"
       :aria-checked="modelValue"
+      :aria-labelledby="`${switchId}-label`"
       :disabled="disabled"
       :class="switchClasses"
       :data-state="modelValue ? 'checked' : 'unchecked'"
@@ -146,6 +153,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
     </button>
     <span
       v-if="labelPosition === 'right'"
+      :id="`${switchId}-label`"
       :class="labelClasses"
       @click="handleClick"
     >
@@ -154,9 +162,11 @@ const handleKeyDown = (e: KeyboardEvent) => {
   </div>
   <button
     v-else
+    :id="switchId"
     type="button"
     role="switch"
     :aria-checked="modelValue"
+    :aria-label="ariaLabel"
     :disabled="disabled"
     :class="switchClasses"
     :data-state="modelValue ? 'checked' : 'unchecked'"

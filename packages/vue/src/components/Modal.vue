@@ -16,6 +16,8 @@ const props = withDefaults(
     open: boolean;
     size?: keyof typeof modalSizes;
     class?: string;
+    ariaLabel?: string;
+    ariaLabelledby?: string;
   }>(),
   {
     size: 'md',
@@ -93,6 +95,8 @@ const contentClasses = computed(() =>
         <div
           role="dialog"
           aria-modal="true"
+          :aria-label="ariaLabel"
+          :aria-labelledby="ariaLabelledby"
           :class="contentClasses"
           @click.stop
         >

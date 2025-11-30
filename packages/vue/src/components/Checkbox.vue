@@ -29,6 +29,8 @@ const props = withDefaults(
     label?: string;
     labelPosition?: 'right' | 'left';
     class?: string;
+    ariaLabel?: string;
+    id?: string;
   }>(),
   {
     modelValue: false,
@@ -37,6 +39,8 @@ const props = withDefaults(
     labelPosition: 'right',
   }
 );
+
+const checkboxId = computed(() => props.id || `checkbox-${Math.random().toString(36).slice(2, 9)}`);
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean];
@@ -94,9 +98,11 @@ const handleKeyDown = (e: KeyboardEvent) => {
 <template>
   <div v-if="label" :class="wrapperClasses">
     <button
+      :id="checkboxId"
       type="button"
       role="checkbox"
       :aria-checked="modelValue"
+      :aria-labelledby="`${checkboxId}-label`"
       :aria-invalid="hasError ? true : undefined"
       :disabled="disabled"
       :class="checkboxClasses"
@@ -108,13 +114,15 @@ const handleKeyDown = (e: KeyboardEvent) => {
         <Check :size="iconSize" :stroke-width="3" aria-hidden="true" />
       </span>
     </button>
-    <span :class="labelClasses" @click="handleClick">{{ label }}</span>
+    <span :id="`${checkboxId}-label`" :class="labelClasses" @click="handleClick">{{ label }}</span>
   </div>
   <button
     v-else
+    :id="checkboxId"
     type="button"
     role="checkbox"
     :aria-checked="modelValue"
+    :aria-label="ariaLabel"
     :aria-invalid="hasError ? true : undefined"
     :disabled="disabled"
     :class="checkboxClasses"

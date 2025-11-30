@@ -100,9 +100,12 @@ const handleKeyDown = (e: KeyboardEvent) => {
 <template>
   <div :class="cn('flex items-center gap-2', props.class)">
     <button
+      :id="`radio-${value}`"
       type="button"
       role="radio"
       :aria-checked="isChecked"
+      :aria-labelledby="label ? `radio-label-${value}` : undefined"
+      :aria-label="!label ? value : undefined"
       :disabled="finalDisabled"
       :class="radioClasses"
       :data-state="isChecked ? 'checked' : 'unchecked'"
@@ -113,6 +116,13 @@ const handleKeyDown = (e: KeyboardEvent) => {
         <Circle :size="indicatorSize" class="fill-current" :stroke-width="0" />
       </span>
     </button>
-    <span v-if="label" :class="labelClasses" @click="handleClick">{{ label }}</span>
+    <span
+      v-if="label"
+      :id="`radio-label-${value}`"
+      :class="labelClasses"
+      @click="handleClick"
+    >
+      {{ label }}
+    </span>
   </div>
 </template>

@@ -252,6 +252,7 @@ const removeAllFiles = () => {
         :multiple="multiple"
         :disabled="disabled"
         class="sr-only"
+        :aria-label="uploadButtonText"
         @change="handleFileChange"
       />
 
