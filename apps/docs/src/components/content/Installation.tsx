@@ -5,12 +5,19 @@ import { Copy, Check } from 'lucide-react';
 import { Heading, Code } from '@hanui/react';
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn' | 'bun';
+type Framework = 'react' | 'vue';
 
 interface InstallationProps {
   componentName: string;
+  /** Vue 컴포넌트가 아직 없는 경우 false로 설정 */
+  hasVue?: boolean;
 }
 
-export function Installation({ componentName }: InstallationProps) {
+export function Installation({
+  componentName,
+  hasVue = true,
+}: InstallationProps) {
+  const [framework, setFramework] = useState<Framework>('react');
   const [packageManager, setPackageManager] = useState<PackageManager>('pnpm');
   const [copied, setCopied] = useState(false);
 
@@ -21,7 +28,8 @@ export function Installation({ componentName }: InstallationProps) {
       yarn: 'yarn',
       bun: 'bun',
     };
-    return `${runners[packageManager]} hanui add ${componentName}`;
+    const cliName = framework === 'react' ? 'hanui' : 'hanui-vue';
+    return `${runners[packageManager]} ${cliName} add ${componentName}`;
   };
 
   const handleCopy = async () => {
@@ -37,6 +45,34 @@ export function Installation({ componentName }: InstallationProps) {
       </Heading>
 
       <div className="space-y-4">
+        {/* Framework Selector */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1 p-1 bg-krds-gray-5 rounded-lg">
+            <button
+              onClick={() => setFramework('react')}
+              className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors ${
+                framework === 'react'
+                  ? 'bg-white text-krds-gray-90 shadow-sm'
+                  : 'text-krds-gray-60 hover:text-krds-gray-90'
+              }`}
+            >
+              React
+            </button>
+            <button
+              onClick={() => setFramework('vue')}
+              disabled={!hasVue}
+              className={`px-4 py-1.5 text-sm font-medium rounded-md transition-colors ${
+                framework === 'vue'
+                  ? 'bg-white text-krds-gray-90 shadow-sm'
+                  : 'text-krds-gray-60 hover:text-krds-gray-90'
+              } ${!hasVue ? 'opacity-50 cursor-not-allowed' : ''}`}
+              title={!hasVue ? 'Vue 버전 준비 중' : undefined}
+            >
+              Vue
+            </button>
+          </div>
+        </div>
+
         {/* Package Manager Selector */}
         <div className="flex items-center gap-2">
           {(['pnpm', 'npm', 'yarn', 'bun'] as const).map((pm) => (
