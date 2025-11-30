@@ -3,7 +3,12 @@
     "name": "accordion",
     "type": "ui",
     "description": "아코디언 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-accordion",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/accordion.tsx",
@@ -51,7 +56,13 @@
     "name": "button",
     "type": "ui",
     "description": "KRDS 디자인 시스템을 준수하는 버튼 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+      "@radix-ui/react-slot",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/button.tsx",
@@ -99,7 +110,7 @@
     "name": "file-upload",
     "type": "ui",
     "description": "파일 업로드 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": ["clsx", "tailwind-merge", "lucide-react"],
     "files": [
       {
         "path": "components/file-upload.tsx",
@@ -201,7 +212,12 @@
     "name": "link",
     "type": "ui",
     "description": "링크 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/link.tsx",
@@ -237,7 +253,12 @@
     "name": "modal",
     "type": "ui",
     "description": "모달 다이얼로그 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-dialog",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/modal.tsx",
@@ -252,7 +273,8 @@
     "dependencies": [
       "clsx",
       "tailwind-merge",
-      "@radix-ui/react-navigation-menu"
+      "@radix-ui/react-navigation-menu",
+      "lucide-react"
     ],
     "files": [
       {
@@ -277,7 +299,7 @@
     "name": "pagination",
     "type": "ui",
     "description": "페이지네이션 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": ["clsx", "tailwind-merge", "lucide-react"],
     "files": [
       {
         "path": "components/pagination.tsx",
@@ -313,7 +335,12 @@
     "name": "select",
     "type": "ui",
     "description": "셀렉트 드롭다운 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-select",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/select.tsx",
@@ -373,7 +400,7 @@
     "name": "table",
     "type": "ui",
     "description": "테이블 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": ["clsx", "tailwind-merge", "lucide-react"],
     "files": [
       {
         "path": "components/table.tsx",
@@ -409,7 +436,7 @@
     "name": "tooltip",
     "type": "ui",
     "description": "툴팁 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-popover"],
     "files": [
       {
         "path": "components/tooltip.tsx",
@@ -450,7 +477,12 @@
     "name": "radio",
     "type": "ui",
     "description": "라디오 버튼 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-radio-group"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-radio-group",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/radio.tsx",
@@ -474,7 +506,12 @@
     "name": "switch",
     "type": "ui",
     "description": "스위치 토글 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-switch"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-switch",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/switch.tsx",
@@ -486,7 +523,12 @@
     "name": "toast",
     "type": "ui",
     "description": "토스트 알림 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-toast",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/toast.tsx",
@@ -510,7 +552,7 @@
     "name": "code",
     "type": "ui",
     "description": "코드 블록 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "dependencies": ["clsx", "tailwind-merge", "shiki", "lucide-react"],
     "files": [
       {
         "path": "components/code.tsx",
@@ -558,7 +600,12 @@
     "name": "alert",
     "type": "ui",
     "description": "알림 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/alert.tsx",
@@ -570,7 +617,12 @@
     "name": "alert-dialog",
     "type": "ui",
     "description": "알림 다이얼로그 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-alert-dialog"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-alert-dialog",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/alert-dialog.tsx",
@@ -618,7 +670,12 @@
     "name": "dropdown-menu",
     "type": "ui",
     "description": "드롭다운 메뉴 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "@radix-ui/react-dropdown-menu"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-dropdown-menu",
+      "lucide-react"
+    ],
     "files": [
       {
         "path": "components/dropdown-menu.tsx",
@@ -630,7 +687,7 @@
     "name": "combobox",
     "type": "ui",
     "description": "콤보박스 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "cmdk"],
+    "dependencies": ["clsx", "tailwind-merge", "cmdk", "lucide-react"],
     "files": [
       {
         "path": "components/combobox.tsx",
