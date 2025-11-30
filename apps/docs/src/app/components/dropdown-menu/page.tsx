@@ -76,6 +76,20 @@ export default function DropdownMenuPage() {
     { value: 'fr', label: 'français (프랑스어)' },
   ];
 
+  const positions = [
+    { value: 'top', label: '상단' },
+    { value: 'bottom', label: '하단' },
+    { value: 'left', label: '왼쪽' },
+    { value: 'right', label: '오른쪽' },
+  ];
+
+  const [selectedOption, setSelectedOption] = useState('option1');
+  const options = [
+    { value: 'option1', label: '옵션 1' },
+    { value: 'option2', label: '옵션 2' },
+    { value: 'option3', label: '옵션 3' },
+  ];
+
   const fontSizes = [
     { value: 'small', label: '작게' },
     { value: 'medium', label: '보통' },
@@ -117,14 +131,10 @@ export default function DropdownMenuPage() {
                       size="sm"
                       iconLeft={<Globe className="h-4 w-4" />}
                     >
-                      언어 변경
+                      {languages.find((l) => l.value === language)?.label}
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent showArrow className="w-48">
-                    <DropdownMenuLabel>
-                      {languages.find((l) => l.value === language)?.label}
-                    </DropdownMenuLabel>
-                    <DropdownMenuSeparator />
                     {languages.map((lang) => (
                       <DropdownMenuItem
                         key={lang.value}
@@ -141,8 +151,6 @@ export default function DropdownMenuPage() {
                     <Button variant="outline">메뉴 열기</Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-56">
-                    <DropdownMenuLabel>내 계정</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
                     <DropdownMenuItem icon={<User className="h-4 w-4" />}>
                       프로필
                     </DropdownMenuItem>
@@ -226,13 +234,19 @@ export default function DropdownMenuPage() {
               />
               <ComponentPreview>
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="rounded-md border border-krds-gray-30 px-4 py-2 text-sm hover:bg-krds-gray-5">
-                    메뉴 선택
+                  <DropdownMenuTrigger className="rounded-md border border-krds-gray-30 px-4 py-2 hover:bg-krds-gray-5">
+                    {options.find((o) => o.value === selectedOption)?.label}
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-48">
-                    <DropdownMenuItem>옵션 1</DropdownMenuItem>
-                    <DropdownMenuItem>옵션 2</DropdownMenuItem>
-                    <DropdownMenuItem>옵션 3</DropdownMenuItem>
+                  <DropdownMenuContent className="w-56">
+                    {options.map((opt) => (
+                      <DropdownMenuItem
+                        key={opt.value}
+                        onSelect={() => setSelectedOption(opt.value)}
+                        selected={selectedOption === opt.value}
+                      >
+                        {opt.label}
+                      </DropdownMenuItem>
+                    ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </ComponentPreview>
@@ -303,8 +317,6 @@ export default function DropdownMenuPage() {
                       <Button variant="outline">보기 설정</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56">
-                      <DropdownMenuLabel>표시 옵션</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
                       <DropdownMenuCheckboxItem
                         checked={showStatusBar}
                         onCheckedChange={setShowStatusBar}
@@ -350,33 +362,27 @@ export default function DropdownMenuPage() {
                 <div className="flex flex-col items-center gap-2">
                   <DropdownMenu>
                     <DropdownMenuTrigger>
-                      <Button variant="outline">패널 위치</Button>
+                      <Button variant="outline">
+                        패널 위치:{' '}
+                        {positions.find((p) => p.value === position)?.label}
+                      </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56">
-                      <DropdownMenuLabel>패널 위치</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
                       <DropdownMenuRadioGroup
                         value={position}
                         onValueChange={setPosition}
                       >
-                        <DropdownMenuRadioItem value="top">
-                          상단
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem value="bottom">
-                          하단
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem value="left">
-                          왼쪽
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem value="right">
-                          오른쪽
-                        </DropdownMenuRadioItem>
+                        {positions.map((pos) => (
+                          <DropdownMenuRadioItem
+                            key={pos.value}
+                            value={pos.value}
+                          >
+                            {pos.label}
+                          </DropdownMenuRadioItem>
+                        ))}
                       </DropdownMenuRadioGroup>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <span className="text-sm text-krds-gray-50">
-                    선택된 위치: {position}
-                  </span>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
@@ -450,7 +456,6 @@ export default function DropdownMenuPage() {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-56">
                     <DropdownMenuGroup>
-                      <DropdownMenuLabel>계정</DropdownMenuLabel>
                       <DropdownMenuItem icon={<User className="h-4 w-4" />}>
                         프로필
                       </DropdownMenuItem>
@@ -465,7 +470,6 @@ export default function DropdownMenuPage() {
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
-                      <DropdownMenuLabel>지원</DropdownMenuLabel>
                       <DropdownMenuItem
                         icon={<HelpCircle className="h-4 w-4" />}
                       >
@@ -560,14 +564,10 @@ export default function DropdownMenuPage() {
                       size="xs"
                       iconLeft={<Globe className="h-4 w-4" />}
                     >
-                      언어 변경
+                      {languages.find((l) => l.value === language)?.label}
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent showArrow className="w-48">
-                    <DropdownMenuLabel>
-                      {languages.find((l) => l.value === language)?.label}
-                    </DropdownMenuLabel>
-                    <DropdownMenuSeparator />
                     {languages.map((lang) => (
                       <DropdownMenuItem
                         key={lang.value}
