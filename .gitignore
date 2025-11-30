@@ -81,3 +81,5 @@ coverage/
 
 # Test projects
 apps/test-next/
+test-vue/
+test-vue-cli/
