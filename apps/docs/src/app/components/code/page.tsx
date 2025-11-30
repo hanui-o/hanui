@@ -216,7 +216,7 @@ console.log(message);`}
               <Heading level="h3" title="Without Line Numbers" />
               <ComponentPreview>
                 <Code variant="block" language="bash" showLineNumbers={false}>
-                  npx @hanui/cli add code
+                  npx hanui add code
                 </Code>
               </ComponentPreview>
               <Code variant="block" language="tsx">
@@ -225,7 +225,7 @@ console.log(message);`}
   language="bash"
   showLineNumbers={false}
 >
-  npx @hanui/cli add code
+  npx hanui add code
 </Code>`}
               </Code>
             </Subsection>
