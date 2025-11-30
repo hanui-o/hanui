@@ -25,6 +25,27 @@ export interface ModalProps {
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>( // KRDS Modal 컴포넌트 (Radix UI Dialog, focus 관리, ESC/Tab 키보드 내비게이션, ARIA 자동화)
   ({ open, onClose, size = 'md', children, className }, ref) => {
+    // 모달 열기 전 포커스된 요소 저장
+    const triggerRef = React.useRef<HTMLElement | null>(null);
+    const prevOpenRef = React.useRef(open);
+
+    // open이 false -> true로 바뀌기 직전에 포커스 저장
+    React.useLayoutEffect(() => {
+      if (open && !prevOpenRef.current) {
+        // 모달이 열리기 직전에 현재 포커스된 요소 저장
+        triggerRef.current = document.activeElement as HTMLElement;
+      }
+      prevOpenRef.current = open;
+    }, [open]);
+
+    const handleCloseAutoFocus = React.useCallback((event: Event) => {
+      // 저장된 요소로 포커스 복원
+      if (triggerRef.current && triggerRef.current.focus) {
+        event.preventDefault();
+        triggerRef.current.focus();
+      }
+    }, []);
+
     return (
       <DialogPrimitive.Root open={open} onOpenChange={onClose}>
         <DialogPrimitive.Portal>
@@ -41,6 +62,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>( // KRDS Modal
             {/* Modal 컨테이너 */}
             <DialogPrimitive.Content
               ref={ref}
+              onCloseAutoFocus={handleCloseAutoFocus}
               className={cn(
                 'z-50 w-full',
                 modalSizes[size],
