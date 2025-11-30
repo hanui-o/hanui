@@ -937,10 +937,21 @@ ${TAILWIND_V4_THEME}`;
               }
               // presets 배열 추가 (없으면)
               if (!hasPresetsArray) {
-                tailwindContent = tailwindContent.replace(
-                  /export default\s*\{/,
-                  'export default {\n  presets: [hanUIPreset],'
-                );
+                // 두 가지 형식 지원:
+                // 1. export default { ... } - 직접 객체 export
+                // 2. const config = { ... }; export default config; - 변수 선언 후 export
+                if (tailwindContent.match(/export default\s*\{/)) {
+                  tailwindContent = tailwindContent.replace(
+                    /export default\s*\{/,
+                    'export default {\n  presets: [hanUIPreset],'
+                  );
+                } else {
+                  // const config: Config = { ... } 또는 const config = { ... } 형식
+                  tailwindContent = tailwindContent.replace(
+                    /(const\s+\w+\s*(?::\s*\w+)?\s*=\s*)\{/,
+                    '$1{\n  presets: [hanUIPreset],'
+                  );
+                }
               }
             } else if (tailwindContent.includes('module.exports')) {
               // CommonJS 형식 - require 추가 (없으면)
