@@ -3,6 +3,7 @@ export { default as Button } from './components/Button.vue';
 export { default as Alert } from './components/Alert.vue';
 export { default as Badge } from './components/Badge.vue';
 export { default as Body } from './components/Body.vue';
+export { default as Box } from './components/Box.vue';
 
 // Card
 export { default as Card } from './components/Card.vue';
@@ -21,12 +22,22 @@ export { default as RadioGroup } from './components/RadioGroup.vue';
 export { default as Switch } from './components/Switch.vue';
 export { default as Label } from './components/Label.vue';
 export { default as Slider } from './components/Slider.vue';
+export { default as Select } from './components/Select.vue';
+export { default as FileUpload } from './components/FileUpload.vue';
+
+// FormField
+export { default as FormField } from './components/FormField.vue';
+export { default as FormLabel } from './components/FormLabel.vue';
+export { default as FormError } from './components/FormError.vue';
+export { default as FormHelperText } from './components/FormHelperText.vue';
 
 // Feedback
 export { default as Spinner } from './components/Spinner.vue';
 export { default as Progress } from './components/Progress.vue';
 export { default as Skeleton } from './components/Skeleton.vue';
 export { default as Tooltip } from './components/Tooltip.vue';
+export { default as Toast } from './components/Toast.vue';
+export { default as Toaster } from './components/Toaster.vue';
 
 // Accordion
 export { default as Accordion } from './components/Accordion.vue';
@@ -55,11 +66,22 @@ export { default as VStack } from './components/VStack.vue';
 export { default as HStack } from './components/HStack.vue';
 export { default as Wrap } from './components/Wrap.vue';
 export { default as SimpleGrid } from './components/SimpleGrid.vue';
+export { default as Section } from './components/Section.vue';
 
 // Navigation
 export { default as Breadcrumb } from './components/Breadcrumb.vue';
 export { default as Pagination } from './components/Pagination.vue';
 export { default as SkipLink } from './components/SkipLink.vue';
+export { default as SideNavigation } from './components/SideNavigation.vue';
+export { default as InPageNavigation } from './components/InPageNavigation.vue';
+
+// DropdownMenu
+export { default as DropdownMenu } from './components/DropdownMenu.vue';
+export { default as DropdownMenuTrigger } from './components/DropdownMenuTrigger.vue';
+export { default as DropdownMenuContent } from './components/DropdownMenuContent.vue';
+export { default as DropdownMenuItem } from './components/DropdownMenuItem.vue';
+export { default as DropdownMenuSeparator } from './components/DropdownMenuSeparator.vue';
+export { default as DropdownMenuLabel } from './components/DropdownMenuLabel.vue';
 
 // Tabs
 export { default as Tabs } from './components/Tabs.vue';
@@ -89,6 +111,10 @@ export { default as ListItem } from './components/ListItem.vue';
 // Media
 export { default as Image } from './components/Image.vue';
 export { default as Link } from './components/Link.vue';
+
+// KRDS Components
+export { default as Identifier } from './components/Identifier.vue';
+export { default as Masthead } from './components/Masthead.vue';
 
 // Utils
 export { cn } from './lib/utils';
