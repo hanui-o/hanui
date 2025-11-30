@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Copy, Check } from 'lucide-react';
-import { Heading } from '@hanui/react';
+import { Heading, Code } from '@hanui/react';
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn' | 'bun';
 
@@ -55,11 +55,9 @@ export function Installation({ componentName }: InstallationProps) {
         </div>
 
         <div className="relative group">
-          <div className="overflow-x-auto rounded-lg bg-krds-gray-90 p-5">
-            <code className="text-krds-white text-[17px] leading-6">
-              {getCommand()}
-            </code>
-          </div>
+          <Code variant="block" language="bash">
+            {getCommand()}
+          </Code>
           <button
             onClick={handleCopy}
             className="absolute top-3 right-3 p-2 rounded-md transition-all bg-krds-gray-70 hover:bg-krds-gray-60 text-krds-gray-10 opacity-0 group-hover:opacity-100"
