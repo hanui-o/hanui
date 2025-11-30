@@ -93,32 +93,25 @@ export async function getDefaultCssPath(
   cwd: string,
   projectInfo: ProjectInfo
 ): Promise<string> {
-  const { srcDir, appDir } = projectInfo;
+  const { srcDir } = projectInfo;
 
-  // Next.js App Router
-  if (appDir) {
-    const appGlobalsCss = path.resolve(
-      cwd,
-      `${srcDir ? 'src/' : ''}app/globals.css`
-    );
-    if (await fs.pathExists(appGlobalsCss)) {
-      return `${srcDir ? 'src/' : ''}app/globals.css`;
+  // 실제 존재하는 파일을 우선 순위대로 확인
+  const possiblePaths = [
+    // Next.js App Router
+    'src/app/globals.css',
+    'app/globals.css',
+    // Next.js Pages or general
+    'src/styles/globals.css',
+    'styles/globals.css',
+    // Vite default
+    'src/index.css',
+    'index.css',
+  ];
+
+  for (const cssPath of possiblePaths) {
+    if (await fs.pathExists(path.resolve(cwd, cssPath))) {
+      return cssPath;
     }
-  }
-
-  // Next.js Pages or Vite
-  const stylesCss = path.resolve(
-    cwd,
-    `${srcDir ? 'src/' : ''}styles/globals.css`
-  );
-  if (await fs.pathExists(stylesCss)) {
-    return `${srcDir ? 'src/' : ''}styles/globals.css`;
-  }
-
-  // Vite default
-  const indexCss = path.resolve(cwd, `${srcDir ? 'src/' : ''}index.css`);
-  if (await fs.pathExists(indexCss)) {
-    return `${srcDir ? 'src/' : ''}index.css`;
   }
 
   // Default fallback

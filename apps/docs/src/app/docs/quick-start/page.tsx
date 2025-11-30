@@ -108,9 +108,19 @@ export default function Page() {
             </Body>
 
             <Subsection level="h3">
-              <Heading level="h3" title="1. 프로젝트 초기화" />
+              <Heading level="h3" title="1. CLI 설치" />
               <Code variant="block" language="bash" showLineNumbers={false}>
-                npx @hanui/cli init
+                npm install -D @hanui/cli
+              </Code>
+              <Body className="text-krds-gray-60 mt-2 text-sm">
+                devDependency로 설치하면 짧은 명령어로 사용할 수 있습니다.
+              </Body>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="2. 프로젝트 초기화" />
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                npx hanui init
               </Code>
               <Alert variant="info" className="mt-4" title="init이 하는 일">
                 <List variant="check" className="mt-2 text-sm">
@@ -133,13 +143,13 @@ export default function Page() {
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="2. 컴포넌트 추가" />
+              <Heading level="h3" title="3. 컴포넌트 추가" />
               <Code variant="block" language="bash" showLineNumbers={false}>
                 {`# 단일 컴포넌트
-npx @hanui/cli add button
+npx hanui add button
 
 # 여러 컴포넌트
-npx @hanui/cli add button card input`}
+npx hanui add button card input`}
               </Code>
               <Body className="text-krds-gray-70 mt-3">
                 컴포넌트 소스 코드가 <Code>components/hanui/</Code>에
@@ -148,7 +158,7 @@ npx @hanui/cli add button card input`}
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="3. 사용하기" />
+              <Heading level="h3" title="4. 사용하기" />
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`import { Button, Card } from '@/components/hanui'
 
@@ -199,7 +209,7 @@ export default function Page() {
           />
 
           <Code variant="block" language="bash" showLineNumbers={false}>
-            npx @hanui/cli add button input
+            npx hanui add button input
           </Code>
 
           <Body className="text-krds-gray-70 mt-4">
@@ -252,7 +262,7 @@ function LoginForm() {
           />
 
           <Code variant="block" language="bash" showLineNumbers={false}>
-            npx @hanui/cli add container card
+            npx hanui add container card
           </Code>
 
           <Body className="text-krds-gray-70 mt-4">대시보드 UI 예제:</Body>
@@ -296,7 +306,7 @@ function Dashboard() {
           />
 
           <Code variant="block" language="bash" showLineNumbers={false}>
-            npx @hanui/cli add modal button
+            npx hanui add modal button
           </Code>
 
           <Body className="text-krds-gray-70 mt-4">확인 다이얼로그 예제:</Body>

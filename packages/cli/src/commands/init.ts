@@ -839,8 +839,12 @@ export function cn(...inputs: ClassValue[]) {
       spinner.text = 'Created utility functions';
 
       // 3. Create variables.css (KRDS 디자인 토큰)
-      const stylesDir = projectInfo.srcDir
-        ? path.join(cwd, 'src', 'styles')
+      // cssPath 기준으로 styles 폴더 위치 결정
+      // 예: app/globals.css → styles/, src/app/globals.css → src/styles/
+      const cssDir = path.dirname(cssPath); // app 또는 src/app
+      const cssBaseDir = cssDir.startsWith('src/') ? 'src' : '';
+      const stylesDir = cssBaseDir
+        ? path.join(cwd, cssBaseDir, 'styles')
         : path.join(cwd, 'styles');
       await fs.ensureDir(stylesDir);
 
@@ -855,9 +859,12 @@ export function cn(...inputs: ClassValue[]) {
 
         // v4: globals.css에 CSS 변수 import + @theme 블록 추가
         const globalsCssPath = path.join(cwd, cssPath);
-        const importPath = projectInfo.srcDir
-          ? './styles/variables.css'
-          : '../styles/variables.css';
+        // cssPath가 app/ 또는 src/app/ 안에 있으면 ../styles/
+        const isInAppDir =
+          cssPath.includes('/app/') || cssPath.startsWith('app/');
+        const importPath = isInAppDir
+          ? '../styles/variables.css'
+          : './variables.css';
 
         if (fs.existsSync(globalsCssPath)) {
           let globalsContent = await fs.readFile(globalsCssPath, 'utf-8');
@@ -915,23 +922,38 @@ ${TAILWIND_V4_THEME}`;
             'utf-8'
           );
 
-          // preset 추가 여부 확인
-          if (!tailwindContent.includes('hanui.preset')) {
+          // preset 추가 여부 확인 (import와 presets 배열 모두 체크)
+          const hasPresetImport = tailwindContent.includes('hanui.preset');
+          const hasPresetsArray =
+            tailwindContent.includes('presets:') ||
+            tailwindContent.includes('presets :');
+
+          if (!hasPresetImport || !hasPresetsArray) {
             // 기존 tailwind.config 수정
             if (tailwindContent.includes('export default')) {
-              // ESM 형식
-              tailwindContent = `import hanUIPreset from './hanui.preset.js';\n\n${tailwindContent}`;
-              tailwindContent = tailwindContent.replace(
-                /export default\s*\{/,
-                'export default {\n  presets: [hanUIPreset],'
-              );
+              // ESM 형식 - import 추가 (없으면)
+              if (!hasPresetImport) {
+                tailwindContent = `import hanUIPreset from './hanui.preset.js';\n\n${tailwindContent}`;
+              }
+              // presets 배열 추가 (없으면)
+              if (!hasPresetsArray) {
+                tailwindContent = tailwindContent.replace(
+                  /export default\s*\{/,
+                  'export default {\n  presets: [hanUIPreset],'
+                );
+              }
             } else if (tailwindContent.includes('module.exports')) {
-              // CommonJS 형식
-              tailwindContent = `const hanUIPreset = require('./hanui.preset.js');\n\n${tailwindContent}`;
-              tailwindContent = tailwindContent.replace(
-                /module\.exports\s*=\s*\{/,
-                'module.exports = {\n  presets: [hanUIPreset],'
-              );
+              // CommonJS 형식 - require 추가 (없으면)
+              if (!hasPresetImport) {
+                tailwindContent = `const hanUIPreset = require('./hanui.preset.js');\n\n${tailwindContent}`;
+              }
+              // presets 배열 추가 (없으면)
+              if (!hasPresetsArray) {
+                tailwindContent = tailwindContent.replace(
+                  /module\.exports\s*=\s*\{/,
+                  'module.exports = {\n  presets: [hanUIPreset],'
+                );
+              }
             }
 
             // content 배열에 hanui 경로 추가
@@ -953,9 +975,12 @@ ${TAILWIND_V4_THEME}`;
           let globalsContent = await fs.readFile(globalsCssPath, 'utf-8');
 
           // variables.css import 추가 (이미 없으면)
-          const importPath = projectInfo.srcDir
-            ? './styles/variables.css'
-            : '../styles/variables.css';
+          // cssPath가 app/ 또는 src/app/ 안에 있으면 ../styles/
+          const isInAppDir =
+            cssPath.includes('/app/') || cssPath.startsWith('app/');
+          const importPath = isInAppDir
+            ? '../styles/variables.css'
+            : './variables.css';
 
           if (!globalsContent.includes('variables.css')) {
             globalsContent = `@import '${importPath}';\n\n${globalsContent}`;
@@ -964,9 +989,11 @@ ${TAILWIND_V4_THEME}`;
           }
         } else {
           // globals.css가 없으면 생성
-          const importPath = projectInfo.srcDir
-            ? './styles/variables.css'
-            : '../styles/variables.css';
+          const isInAppDir =
+            cssPath.includes('/app/') || cssPath.startsWith('app/');
+          const importPath = isInAppDir
+            ? '../styles/variables.css'
+            : './variables.css';
           const newGlobalsContent = `@import '${importPath}';
 
 @tailwind base;
@@ -1043,7 +1070,7 @@ ${TAILWIND_V4_THEME}`;
 
       logger.info('Next steps:\n');
       console.log(
-        `  ${chalk.cyan('1.')} Add components: ${chalk.bold('npx @hanui/cli add button')}`
+        `  ${chalk.cyan('1.')} Add components: ${chalk.bold('npx hanui add button')}`
       );
       console.log(
         `  ${chalk.cyan('2.')} Start building: ${chalk.bold(`${packageManager} run dev`)}\n`

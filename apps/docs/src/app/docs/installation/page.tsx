@@ -43,10 +43,13 @@ export default function InstallationPage() {
 
         <List variant="check" className="mb-4">
           <ListItem>
-            <Code>npx @hanui/cli init</Code> — KRDS 디자인 토큰 + Tailwind 설정
+            <Code>npm install -D @hanui/cli</Code> — CLI 설치 (1회)
           </ListItem>
           <ListItem>
-            <Code>npx @hanui/cli add button</Code> — 컴포넌트 소스 코드 복사
+            <Code>npx hanui init</Code> — KRDS 디자인 토큰 + Tailwind 설정
+          </ListItem>
+          <ListItem>
+            <Code>npx hanui add button</Code> — 컴포넌트 소스 코드 복사
           </ListItem>
           <ListItem>
             <Code>
@@ -143,37 +146,118 @@ npx tailwindcss init -p`}
         <Heading level="h2" id="installation" title="설치" />
 
         <Subsection level="h3">
-          <Heading level="h3" title="Step 1. CLI로 초기화" />
+          <Heading level="h3" title="빠른 시작 (한 번에 설치)" />
           <Body className="mb-4 text-krds-gray-70">
-            프로젝트 루트에서 CLI를 실행하면 KRDS 디자인 토큰이 자동으로
-            설정됩니다:
+            CLI 설치, 초기화, 버튼 컴포넌트 추가를 한 번에 실행합니다:
           </Body>
 
-          <Tabs defaultValue="pnpm" className="mt-4">
+          <Tabs defaultValue="npm" className="mt-4">
             <TabsList>
-              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
               <TabsTrigger value="npm">npm</TabsTrigger>
+              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
               <TabsTrigger value="yarn">yarn</TabsTrigger>
-              <TabsTrigger value="bun">bun</TabsTrigger>
             </TabsList>
-            <TabsContent value="pnpm">
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                pnpm dlx @hanui/cli init
-              </Code>
-            </TabsContent>
             <TabsContent value="npm">
               <Code variant="block" language="bash" showLineNumbers={false}>
-                npx @hanui/cli init
+                {`npm install -D @hanui/cli && npx hanui init -y && npx hanui add button -y`}
+              </Code>
+            </TabsContent>
+            <TabsContent value="pnpm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`pnpm add -D @hanui/cli && pnpm hanui init -y && pnpm hanui add button -y`}
               </Code>
             </TabsContent>
             <TabsContent value="yarn">
               <Code variant="block" language="bash" showLineNumbers={false}>
-                npx @hanui/cli init
+                {`yarn add -D @hanui/cli && yarn hanui init -y && yarn hanui add button -y`}
               </Code>
             </TabsContent>
-            <TabsContent value="bun">
+          </Tabs>
+
+          <Alert variant="info" className="mt-4" title="자동 의존성 설치">
+            CLI가 컴포넌트별 필요한 의존성을 자동으로 설치합니다. (lucide-react,
+            @radix-ui/* 등)
+          </Alert>
+        </Subsection>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="단계별 설치" />
+          <Body className="mb-4 text-krds-gray-70">
+            각 단계를 확인하며 설치하려면 아래 순서를 따르세요:
+          </Body>
+        </Subsection>
+
+        <Subsection level="h4">
+          <Heading level="h4" title="Step 1. CLI 설치" />
+          <Body className="mb-4 text-krds-gray-70">
+            프로젝트에 CLI를 devDependency로 설치합니다:
+          </Body>
+
+          <Tabs defaultValue="npm" className="mt-4">
+            <TabsList>
+              <TabsTrigger value="npm">npm</TabsTrigger>
+              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+              <TabsTrigger value="yarn">yarn</TabsTrigger>
+            </TabsList>
+            <TabsContent value="npm">
               <Code variant="block" language="bash" showLineNumbers={false}>
-                bunx @hanui/cli init
+                npm install -D @hanui/cli
+              </Code>
+            </TabsContent>
+            <TabsContent value="pnpm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                pnpm add -D @hanui/cli
+              </Code>
+            </TabsContent>
+            <TabsContent value="yarn">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                yarn add -D @hanui/cli
+              </Code>
+            </TabsContent>
+          </Tabs>
+
+          <Alert
+            variant="info"
+            className="mt-4"
+            title="devDependency 설치의 장점"
+          >
+            <List variant="check" className="mt-2 text-sm">
+              <ListItem>
+                짧은 명령어: <Code>npx hanui add button</Code>
+              </ListItem>
+              <ListItem>팀원 모두 동일한 CLI 버전 사용</ListItem>
+              <ListItem>
+                <Code>npm install</Code> 시 CLI도 함께 설치됨
+              </ListItem>
+            </List>
+          </Alert>
+        </Subsection>
+
+        <Subsection level="h4">
+          <Heading level="h4" title="Step 2. 프로젝트 초기화" />
+          <Body className="mb-4 text-krds-gray-70">
+            CLI를 실행하면 KRDS 디자인 토큰이 자동으로 설정됩니다:
+          </Body>
+
+          <Tabs defaultValue="npm" className="mt-4">
+            <TabsList>
+              <TabsTrigger value="npm">npm</TabsTrigger>
+              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+              <TabsTrigger value="yarn">yarn</TabsTrigger>
+            </TabsList>
+            <TabsContent value="npm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                npx hanui init
+              </Code>
+            </TabsContent>
+            <TabsContent value="pnpm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                pnpm hanui init
+              </Code>
+            </TabsContent>
+            <TabsContent value="yarn">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                yarn hanui init
               </Code>
             </TabsContent>
           </Tabs>
@@ -202,54 +286,44 @@ npx tailwindcss init -p`}
           </Alert>
         </Subsection>
 
-        <Subsection level="h3">
-          <Heading level="h3" title="Step 2. 컴포넌트 추가" />
+        <Subsection level="h4">
+          <Heading level="h4" title="Step 3. 컴포넌트 추가" />
           <Body className="mb-4 text-krds-gray-70">
             필요한 컴포넌트를 추가합니다. 소스 코드가{' '}
             <Code>components/hanui/</Code>에 복사됩니다:
           </Body>
 
-          <Tabs defaultValue="pnpm" className="mt-4">
+          <Tabs defaultValue="npm" className="mt-4">
             <TabsList>
-              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
               <TabsTrigger value="npm">npm</TabsTrigger>
+              <TabsTrigger value="pnpm">pnpm</TabsTrigger>
               <TabsTrigger value="yarn">yarn</TabsTrigger>
-              <TabsTrigger value="bun">bun</TabsTrigger>
             </TabsList>
-            <TabsContent value="pnpm">
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                {`# 단일 컴포넌트
-pnpm dlx @hanui/cli add button
-
-# 여러 컴포넌트
-pnpm dlx @hanui/cli add button card input`}
-              </Code>
-            </TabsContent>
             <TabsContent value="npm">
               <Code variant="block" language="bash" showLineNumbers={false}>
                 {`# 단일 컴포넌트
-npx @hanui/cli add button
+npx hanui add button
 
 # 여러 컴포넌트
-npx @hanui/cli add button card input`}
+npx hanui add button card input`}
+              </Code>
+            </TabsContent>
+            <TabsContent value="pnpm">
+              <Code variant="block" language="bash" showLineNumbers={false}>
+                {`# 단일 컴포넌트
+pnpm hanui add button
+
+# 여러 컴포넌트
+pnpm hanui add button card input`}
               </Code>
             </TabsContent>
             <TabsContent value="yarn">
               <Code variant="block" language="bash" showLineNumbers={false}>
                 {`# 단일 컴포넌트
-npx @hanui/cli add button
+yarn hanui add button
 
 # 여러 컴포넌트
-npx @hanui/cli add button card input`}
-              </Code>
-            </TabsContent>
-            <TabsContent value="bun">
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                {`# 단일 컴포넌트
-bunx @hanui/cli add button
-
-# 여러 컴포넌트
-bunx @hanui/cli add button card input`}
+yarn hanui add button card input`}
               </Code>
             </TabsContent>
           </Tabs>
@@ -263,8 +337,8 @@ bunx @hanui/cli add button card input`}
           </Alert>
         </Subsection>
 
-        <Subsection level="h3">
-          <Heading level="h3" title="Step 3. 사용하기" />
+        <Subsection level="h4">
+          <Heading level="h4" title="Step 4. 사용하기" />
           <Body className="mb-4 text-krds-gray-70">
             설치된 컴포넌트를 import하여 사용합니다:
           </Body>
@@ -515,7 +589,7 @@ export default {
           <Heading level="h3" title="KRDS 색상 클래스가 적용되지 않음" />
           <List className="mt-4">
             <ListItem>
-              <Code>npx @hanui/cli init</Code>을 실행했는지 확인
+              <Code>npx hanui init</Code>을 실행했는지 확인
             </ListItem>
             <ListItem>
               <Code>tailwind.config.ts</Code>에 <Code>hanUIPreset</Code>이
