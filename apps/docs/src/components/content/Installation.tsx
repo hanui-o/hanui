@@ -28,8 +28,8 @@ export function Installation({
       yarn: 'yarn',
       bun: 'bun',
     };
-    const cliName = framework === 'react' ? 'hanui' : 'hanui-vue';
-    return `${runners[packageManager]} ${cliName} add ${componentName}`;
+    const frameworkFlag = framework === 'vue' ? ' -f vue' : '';
+    return `${runners[packageManager]} hanui add ${componentName}${frameworkFlag}`;
   };
 
   const handleCopy = async () => {
