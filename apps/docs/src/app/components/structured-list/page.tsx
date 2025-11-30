@@ -31,7 +31,7 @@ import {
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // TODO: StructuredList 컴포넌트는 CLI로 설치 필요
-// npx @hanui/cli add structured-list
+// npx hanui add structured-list
 const StructuredList: React.FC<{
   items: StructuredListItem[];
   variant?: 'default' | 'full';
@@ -40,7 +40,7 @@ const StructuredList: React.FC<{
   <div className="text-center py-8 text-krds-gray-50">
     StructuredList 컴포넌트 미리보기
     <br />
-    <Code>npx @hanui/cli add structured-list</Code>로 설치하세요.
+    <Code>npx hanui add structured-list</Code>로 설치하세요.
   </div>
 );
 

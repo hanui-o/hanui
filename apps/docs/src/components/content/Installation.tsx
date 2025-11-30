@@ -16,12 +16,12 @@ export function Installation({ componentName }: InstallationProps) {
 
   const getCommand = () => {
     const runners: Record<PackageManager, string> = {
-      pnpm: 'pnpm dlx',
+      pnpm: 'pnpm',
       npm: 'npx',
-      yarn: 'npx',
-      bun: 'bunx',
+      yarn: 'yarn',
+      bun: 'bun',
     };
-    return `${runners[packageManager]} @hanui/cli add ${componentName}`;
+    return `${runners[packageManager]} hanui add ${componentName}`;
   };
 
   const handleCopy = async () => {
