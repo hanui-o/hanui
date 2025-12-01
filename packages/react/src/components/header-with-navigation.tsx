@@ -8,6 +8,9 @@ import { cn } from '@/lib/utils';
 import { Container } from './container';
 import { NavigationMenu, NavigationMenuItem } from './navigation-menu';
 
+// Re-export for convenience
+export type { NavigationMenuItem } from './navigation-menu';
+
 // SearchInput 컴포넌트 - 검색 다이얼로그에서 포커스 관리
 const SearchInput = ({ className }: { className?: string }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
