@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     'Korean Design System',
   ],
   authors: [{ name: 'odada-o', url: 'https://github.com/odada-o' }],
-  creator: 'odada-o',
+  creator: '오드오드',
   publisher: 'HANUI',
   robots: {
     index: true,
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     description:
       'KRDS를 준수하는 공공 웹사이트용 React 컴포넌트 라이브러리. 접근성 AA 등급, TypeScript 지원.',
     images: ['/og-image.png'],
-    creator: '@odada_o',
+    creator: '@oddodd',
   },
   verification: {
     google: 'd-lKf12TX-T8zDSGDsHe18M0zG7V5kW-e6F8U',

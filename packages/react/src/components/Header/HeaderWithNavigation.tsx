@@ -227,3 +227,6 @@ export function HeaderWithNavigation({
     </header>
   );
 }
+
+// Alias export for SCSS version
+export { HeaderWithNavigation as HeaderWithNavigationScss };

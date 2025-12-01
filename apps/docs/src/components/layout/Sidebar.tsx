@@ -64,7 +64,7 @@ const componentsNavigation = [
       { title: 'Footer', href: '/components/footer' },
       { title: 'Form Field', href: '/components/form-field' },
       { title: 'Grid', href: '/components/grid' },
-      // { title: 'Header', href: '/components/header' },
+      { title: 'Header', href: '/components/header' },
       { title: 'Heading', href: '/components/heading' },
       { title: 'Identifier', href: '/components/identifier' },
       { title: 'Image', href: '/components/image' },

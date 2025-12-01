@@ -236,14 +236,22 @@ export type {
   SkipLinkVariant,
 } from './components/skip-link';
 
-export { HeaderWithMegaMenu } from './components/Header/HeaderWithMegaMenu';
+// Header components (Tailwind CSS - default)
+export { HeaderWithMegaMenu } from './components/header-with-megamenu';
 export type {
-  HeaderWithMegaMenuProps,
+  HeaderWithMegaMenuTailwindProps as HeaderWithMegaMenuProps,
   UtilityLink as HeaderUtilityLink,
-} from './components/Header/HeaderWithMegaMenu';
+} from './components/header-with-megamenu';
 
-export { HeaderWithNavigation } from './components/Header/HeaderWithNavigation';
-export type { HeaderWithNavigationProps } from './components/Header/HeaderWithNavigation';
+export { HeaderWithNavigation } from './components/header-with-navigation';
+export type { HeaderWithNavigationTailwindProps as HeaderWithNavigationProps } from './components/header-with-navigation';
+
+// Header components (SCSS version)
+export { HeaderWithMegaMenuScss } from './components/Header/HeaderWithMegaMenu';
+export type { HeaderWithMegaMenuProps as HeaderWithMegaMenuScssProps } from './components/Header/HeaderWithMegaMenu';
+
+export { HeaderWithNavigationScss } from './components/Header/HeaderWithNavigation';
+export type { HeaderWithNavigationProps as HeaderWithNavigationScssProps } from './components/Header/HeaderWithNavigation';
 
 export { Footer } from './components/Footer/Footer';
 export type { FooterProps } from './components/Footer/Footer';

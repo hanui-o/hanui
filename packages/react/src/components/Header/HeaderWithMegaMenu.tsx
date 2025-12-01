@@ -227,3 +227,6 @@ export function HeaderWithMegaMenu({
     </header>
   );
 }
+
+// Alias export for SCSS version
+export { HeaderWithMegaMenu as HeaderWithMegaMenuScss };
