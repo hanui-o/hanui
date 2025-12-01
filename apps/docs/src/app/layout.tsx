@@ -71,7 +71,10 @@ export const metadata: Metadata = {
     creator: '@odada_o',
   },
   verification: {
-    google: 'google-site-verification-code',
+    google: 'd-lKf12TX-T8zDSGDsHe18M0zG7V5kW-e6F8U',
+    other: {
+      'naver-site-verification': '11f6b3d109de4b6b0b771e75d431cd0e2b1b39c8',
+    },
   },
   metadataBase: new URL('https://hanui.io'),
 };
