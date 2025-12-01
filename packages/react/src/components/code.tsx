@@ -93,7 +93,7 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
             <button
               onClick={handleCopy}
               className={cn(
-                'absolute top-3 right-3 p-2 rounded-md transition-all z-10',
+                'absolute top-4 right-3 p-2 rounded-md transition-all z-10',
                 'bg-krds-gray-70 hover:bg-krds-gray-60',
                 'text-krds-gray-10 opacity-0 group-hover:opacity-100'
               )}
@@ -136,7 +136,7 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
           <button
             onClick={handleCopy}
             className={cn(
-              'absolute top-3 right-3 p-2 rounded-md transition-all z-10',
+              'absolute top-4 right-3 p-2 rounded-md transition-all z-10',
               'bg-krds-primary-10 hover:bg-krds-primary-20 border border-krds-primary-30',
               'text-krds-primary-70 opacity-0 group-hover:opacity-100'
             )}

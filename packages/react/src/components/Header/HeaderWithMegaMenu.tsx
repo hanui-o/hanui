@@ -8,6 +8,9 @@ import { ChevronDown, Search, Menu, X } from 'lucide-react';
 import { Container } from '../container';
 import { MegaMenu, MegaMenuColumn } from '../mega-menu';
 
+// Re-export for convenience
+export type { MegaMenuColumn } from '../mega-menu';
+
 // SearchInput 컴포넌트 - 검색 다이얼로그에서 포커스 관리
 const SearchInput = ({ className }: { className?: string }) => {
   const inputRef = React.useRef<HTMLInputElement>(null);

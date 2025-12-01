@@ -60,7 +60,7 @@ export function Installation({ componentName }: InstallationProps) {
           </Code>
           <button
             onClick={handleCopy}
-            className="absolute top-3 right-3 p-2 rounded-md transition-all bg-krds-gray-70 hover:bg-krds-gray-60 text-krds-gray-10 opacity-0 group-hover:opacity-100"
+            className="absolute top-4 right-3 p-2 rounded-md transition-all bg-krds-gray-70 hover:bg-krds-gray-60 text-krds-gray-10 opacity-0 group-hover:opacity-100"
             aria-label="Copy code"
           >
             {copied ? (

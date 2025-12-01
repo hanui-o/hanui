@@ -75,70 +75,14 @@ export default function InstallationPage() {
           </Card>
           <Card className="p-4">
             <Body className="font-semibold mb-2">Tailwind CSS</Body>
-            <Code>v3.x</Code> 또는 <Code>v4.x</Code>
+            <Code>v4.x</Code> (권장) 또는 <Code>v3.x</Code>
           </Card>
         </div>
-      </Section>
 
-      {/* 사전 설치 */}
-      <Section>
-        <Heading
-          level="h2"
-          id="before-init"
-          title="init 전 준비사항"
-          description="HANUI CLI를 실행하기 전에 Tailwind CSS가 설치되어 있어야 합니다."
-        />
-
-        <Alert variant="info" className="mb-6" title="자동 감지">
-          CLI가 Tailwind 버전(v3/v4)을 자동으로 감지하여 적절한 설정을
-          적용합니다.
+        <Alert variant="info" className="mt-6" title="Tailwind CSS 필수">
+          HANUI CLI는 Tailwind가 설치된 프로젝트에서 실행해야 합니다. CLI가
+          Tailwind 버전(v3/v4)을 자동 감지하여 적절한 설정을 적용합니다.
         </Alert>
-
-        <Subsection level="h3">
-          <Heading level="h3" title="Next.js 프로젝트 생성 (권장)" />
-          <Body className="mb-4 text-krds-gray-70">
-            새 프로젝트라면 Next.js 생성 시 Tailwind CSS를 함께 설치하세요:
-          </Body>
-
-          <Code variant="block" language="bash" showLineNumbers={false}>
-            {`npx create-next-app@latest my-project
-# ✔ Would you like to use Tailwind CSS? → Yes`}
-          </Code>
-
-          <Body className="mt-4 text-krds-gray-60 text-sm">
-            Next.js 15+는 Tailwind v4를 기본 설치합니다. HANUI CLI가 자동으로 v4
-            설정을 적용합니다.
-          </Body>
-        </Subsection>
-
-        <Subsection level="h3">
-          <Heading level="h3" title="기존 프로젝트에 Tailwind 설치" />
-          <Body className="mb-4 text-krds-gray-70">
-            기존 프로젝트에 Tailwind CSS가 없다면 설치하세요:
-          </Body>
-
-          <Tabs defaultValue="v4" className="mt-4">
-            <TabsList>
-              <TabsTrigger value="v4">Tailwind v4 (권장)</TabsTrigger>
-              <TabsTrigger value="v3">Tailwind v3</TabsTrigger>
-            </TabsList>
-            <TabsContent value="v4">
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                {`npm install -D tailwindcss @tailwindcss/postcss`}
-              </Code>
-              <Body className="mt-3 text-krds-gray-60 text-sm">
-                v4는 CSS 기반 설정으로, <Code>tailwind.config.js</Code>가 필요
-                없습니다.
-              </Body>
-            </TabsContent>
-            <TabsContent value="v3">
-              <Code variant="block" language="bash" showLineNumbers={false}>
-                {`npm install -D tailwindcss@3 postcss autoprefixer
-npx tailwindcss init -p`}
-              </Code>
-            </TabsContent>
-          </Tabs>
-        </Subsection>
       </Section>
 
       {/* 설치 방법 */}

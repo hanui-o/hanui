@@ -198,10 +198,6 @@
     "registryDependencies": ["container", "mega-menu"],
     "files": [
       {
-        "path": "components/header.tsx",
-        "type": "component"
-      },
-      {
         "path": "components/Header/HeaderWithMegaMenu.tsx",
         "type": "component"
       },
@@ -244,10 +240,6 @@
     ],
     "registryDependencies": ["container", "navigation-menu"],
     "files": [
-      {
-        "path": "components/header.tsx",
-        "type": "component"
-      },
       {
         "path": "components/Header/HeaderWithNavigation.tsx",
         "type": "component"
