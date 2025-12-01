@@ -23,10 +23,10 @@ const bodyVariants = cva(
   {
     variants: {
       size: {
-        lg: '[font-size:var(--krds-size-body-lg)]',
-        md: '[font-size:var(--krds-size-body-md)]',
-        sm: '[font-size:var(--krds-size-body-sm)]',
-        xs: '[font-size:var(--krds-size-body-xs)]',
+        lg: '[font-size:var(--krds-body-lg)]',
+        md: '[font-size:var(--krds-body-md)]',
+        sm: '[font-size:var(--krds-body-sm)]',
+        xs: '[font-size:var(--krds-body-xs)]',
       },
       weight: {
         normal: 'font-normal text-krds-gray-90', // 400 = normal

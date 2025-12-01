@@ -46,11 +46,11 @@ const buttonVariants = cva(
       },
       size: {
         // 크기 variants (xs~xl, icon)
-        xs: 'h-8 px-3 [font-size:var(--krds-size-body-sm)] leading-[var(--krds-leading-body)]',
-        sm: 'h-10 px-4 [font-size:var(--krds-size-body-sm)] leading-[var(--krds-leading-body)]',
-        md: 'h-12 px-5 [font-size:var(--krds-size-body-md)] leading-[var(--krds-leading-body)]',
-        lg: 'h-14 px-6 [font-size:var(--krds-size-body-lg)] leading-[var(--krds-leading-body)]',
-        xl: 'h-16 px-8 [font-size:var(--krds-size-body-lg)] leading-[var(--krds-leading-body)]',
+        xs: 'h-8 px-3 [font-size:var(--krds-body-sm)] leading-[var(--krds-leading-body)]',
+        sm: 'h-10 px-4 [font-size:var(--krds-body-sm)] leading-[var(--krds-leading-body)]',
+        md: 'h-12 px-5 [font-size:var(--krds-body-md)] leading-[var(--krds-leading-body)]',
+        lg: 'h-14 px-6 [font-size:var(--krds-body-lg)] leading-[var(--krds-leading-body)]',
+        xl: 'h-16 px-8 [font-size:var(--krds-body-lg)] leading-[var(--krds-leading-body)]',
         icon: 'h-10 w-10',
       },
     },

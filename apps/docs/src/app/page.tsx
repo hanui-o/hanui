@@ -29,12 +29,12 @@ export default function Home() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-krds-primary-base"></span>
                 </span>
                 <span className="text-krds-primary-text font-semibold">
-                  v0.1.0 Beta
+                  v0.2.0 Preview
                 </span>
               </span>
               <span className="h-3 w-px bg-krds-gray-20"></span>
               <span className="text-krds-gray-70">
-                KRDS 2.2 · WCAG 2.1 AA · KWCAG 2.2
+                테스트 기간 · KRDS 2.2 · WCAG 2.1 AA
               </span>
             </div>
 
@@ -44,7 +44,7 @@ export default function Home() {
             </Display>
 
             {/* Description */}
-            <Body size="md" className="max-w-2xl">
+            <Body size="lg" className="max-w-2xl">
               KRDS 2.2 표준, 접근성은 이미 챙겼습니다
             </Body>
 

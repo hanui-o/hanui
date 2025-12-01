@@ -151,6 +151,7 @@ export default function HeaderPage() {
                 className="scale-[0.7] origin-top w-[1280px]"
                 style={{ height: '714px' }}
               >
+                {/* 여기에 HeaderWithMegaMenu tailwind 버전을 컴포넌트를 넣어줘 */}
                 <HeaderWithMegaMenu
                   className="w-[1280px]"
                   megaColumns={MEGA_COLUMNS}

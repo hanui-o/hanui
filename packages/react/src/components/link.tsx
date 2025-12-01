@@ -35,9 +35,9 @@ const linkVariants = cva(
       },
       // 크기 (폰트 사이즈)
       size: {
-        small: '[font-size:var(--krds-size-body-sm)]',
-        medium: '[font-size:var(--krds-size-body-md)]',
-        large: '[font-size:var(--krds-size-body-lg)]',
+        small: '[font-size:var(--krds-body-sm)]',
+        medium: '[font-size:var(--krds-body-md)]',
+        large: '[font-size:var(--krds-body-lg)]',
       },
     },
     defaultVariants: {
