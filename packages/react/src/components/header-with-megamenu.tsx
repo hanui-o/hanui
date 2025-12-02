@@ -81,7 +81,7 @@ export function HeaderWithMegaMenuTailwind({
   logoHref = '/',
   slogan,
   stickyBehavior = 'always',
-  scrollThreshold = 100,
+  scrollThreshold = 150,
 }: HeaderWithMegaMenuTailwindProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isUtilityDropdownOpen, setIsUtilityDropdownOpen] =
@@ -115,7 +115,7 @@ export function HeaderWithMegaMenuTailwind({
   return (
     <header
       className={cn(
-        'left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-300 ease-in-out',
+        'left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-500 ease-in-out',
         positionClass,
         hideClass,
         className
