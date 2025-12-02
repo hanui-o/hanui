@@ -1,0 +1,62 @@
+# KRDS 컴포넌트, 그냥 가져다 쓰세요 - HANUI 오픈
+
+![hanui](https://velog.velcdn.com/images/hanui/post/51496d9e-b061-42ef-8bba-4e1a25f65b36/image.png)
+
+공공기관 SI 해본 사람들은 알 거예요.
+
+KRDS 가이드 PDF 열어서 색상 코드 찾고, 간격 값 확인하고, "이 버튼 radius가 4px인가 8px인가" 고민하다 보면 하루가 가요. 그리고 다음 프로젝트에서 또 똑같은 걸 하게 되고요.
+
+그래서 만들었어요. **HANUI**.
+
+## 뭔데?
+
+KRDS 2.2 표준을 따르는 React 컴포넌트 라이브러리예요. 접근성(KWCAG 2.2)도 기본으로 들어가 있고요.
+
+```bash
+npx hanui add button
+```
+
+이거 치면 Button 컴포넌트가 내 프로젝트에 복사돼요. 끝.
+
+## 왜 이렇게 만들었나
+
+npm 패키지로 배포하면 편하긴 한데, 공공 SI 현장에서는 문제가 있어요.
+
+- 버전 충돌
+- 폐쇄망에서 설치 불가
+- "이 부분만 살짝 바꾸고 싶은데" 할 때 난감
+
+그래서 shadcn/ui 방식을 택했어요. 소스 코드를 그냥 복사해서 쓰는 거예요. 내 프로젝트 코드가 되니까 마음대로 수정하면 돼요.
+
+## 뭐가 있나
+
+지금 50개 넘는 컴포넌트가 있어요.
+
+- 기본: Button, Input, Select, Checkbox, Radio...
+- 레이아웃: Container, Stack, Grid, Flex...
+- 네비게이션: Header, MegaMenu, Breadcrumb, Pagination...
+- 피드백: Alert, Toast, Modal, Progress...
+
+전체 목록은 [컴포넌트 페이지](https://hanui.io/components)에서 확인할 수 있어요.
+
+## 솔직히 말하면
+
+베타예요. 모든 KRDS 컴포넌트가 있는 건 아니에요.
+
+근데 있는 것들은 제대로 만들었어요. 접근성 테스트도 했고, 키보드 네비게이션도 돼요. 계속 추가하고 있으니까 [GitHub Star](https://github.com/hanui-o/hanui) 찍어두면 업데이트 알림 받을 수 있어요.
+
+## 시작하기
+
+```bash
+npm install -D @hanui/cli && npx hanui init -y && npx hanui add button -y
+#           ↑ CLI 설치              ↑ KRDS 토큰 설정        ↑ 컴포넌트 복사
+```
+
+Tailwind CSS가 설치된 프로젝트에서 실행하면 돼요. 한 줄로 CLI 설치부터 버튼 컴포넌트 추가까지 끝나요.
+
+자세한 건 [설치 가이드](https://hanui.io/docs/installation) 참고해 주세요.
+
+---
+
+**GitHub**: https://github.com/hanui-o/hanui
+**문서**: https://hanui.io
