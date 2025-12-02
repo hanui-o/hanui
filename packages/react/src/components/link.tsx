@@ -35,14 +35,14 @@ const linkVariants = cva(
       },
       // 크기 (폰트 사이즈)
       size: {
-        small: '[font-size:var(--krds-body-sm)]',
-        medium: '[font-size:var(--krds-body-md)]',
-        large: '[font-size:var(--krds-body-lg)]',
+        sm: '[font-size:var(--krds-body-sm)]', // 13px
+        md: '[font-size:var(--krds-body-md)]', // 15px
+        lg: '[font-size:var(--krds-body-lg)]', // 17px
       },
     },
     defaultVariants: {
       variant: 'default',
-      size: 'medium',
+      size: 'md',
     },
   }
 );
@@ -52,7 +52,7 @@ export interface LinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
     VariantProps<typeof linkVariants> {
   variant?: 'default' | 'primary'; // 시각적 스타일 (기본값: default)
-  size?: 'small' | 'medium' | 'large'; // 크기 (기본값: medium)
+  size?: 'sm' | 'md' | 'lg'; // 크기 (기본값: md)
   underline?: boolean; // 밑줄 표시 여부 (기본값: false)
   external?: boolean; // 외부 링크 여부 (true 시 새 탭 + 아이콘)
   className?: string; // 추가 CSS 클래스
