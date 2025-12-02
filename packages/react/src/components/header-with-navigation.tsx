@@ -5,7 +5,6 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import * as Dialog from '@radix-ui/react-dialog';
 import { ChevronDown, Search, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Container } from './container';
 import { NavigationMenu, NavigationMenuItem } from './navigation-menu';
 
 // Re-export for convenience
@@ -88,7 +87,7 @@ export function HeaderWithNavigationTailwind({
       {/* Utility Bar */}
       {utilityLinks && utilityLinks.length > 0 && (
         <div className="hidden lg:flex justify-end">
-          <Container className="flex justify-end">
+          <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex justify-end">
             <ul className="flex justify-end list-none m-0 p-0">
               {utilityLinks.map((link, index) => (
                 <li key={link.label} className="relative flex items-center">
@@ -151,96 +150,92 @@ export function HeaderWithNavigationTailwind({
                 </li>
               )}
             </ul>
-          </Container>
+          </div>
         </div>
       )}
 
       {/* Branding + Actions (Line 1) */}
-      <div className="flex items-center">
-        <Container className="flex items-center w-full py-5 lg:py-6 gap-2">
-          <div className="flex items-center">
-            <a
-              href={logoHref}
-              className="inline-flex w-[137px] h-[56px] md:w-[94px] md:h-8"
-              aria-label={`${logoAlt} 홈으로 이동`}
-            >
-              <img
-                src={logo}
-                alt={logoAlt}
-                className="w-full h-full object-contain"
-              />
-            </a>
-            {slogan && (
-              <span className="inline-flex ml-3">
-                <span className="sr-only">슬로건</span>
-                {slogan}
-              </span>
-            )}
-          </div>
+      <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex items-center justify-between py-5 lg:py-6 gap-2">
+        {/* Logo */}
+        <div className="flex items-center">
+          <a
+            href={logoHref}
+            className="inline-flex h-8 md:h-12"
+            aria-label={`${logoAlt} 홈으로 이동`}
+          >
+            <img
+              src={logo}
+              alt={logoAlt}
+              className="w-full h-full object-contain"
+            />
+          </a>
+          {slogan && (
+            <span className="inline-flex ml-3">
+              <span className="sr-only">슬로건</span>
+              {slogan}
+            </span>
+          )}
+        </div>
 
-          {/* Actions */}
-          <div className="inline-flex gap-3 md:gap-0 ml-auto">
-            <Dialog.Root open={isSearchOpen} onOpenChange={setIsSearchOpen}>
-              <Dialog.Trigger asChild>
-                <button
-                  type="button"
-                  className="inline-flex flex-col justify-between items-center gap-2 min-h-[48px] py-2 px-5 border-none rounded-lg bg-transparent text-base font-bold text-krds-gray-90 cursor-pointer transition-colors hover:bg-krds-primary-5 active:bg-krds-primary-10 focus:bg-krds-primary-10"
-                  aria-label="검색"
-                >
-                  <Search className="w-6 h-6" aria-hidden="true" />
-                </button>
-              </Dialog.Trigger>
-              <Dialog.Portal>
-                <Dialog.Overlay className="fixed inset-0 bg-black/50 z-[999] backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0" />
-                <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] bg-white rounded-2xl shadow-2xl p-8 z-[1000] focus:outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 md:w-[95vw] md:p-5">
-                  <Dialog.Title className="text-2xl font-bold text-krds-gray-90 mb-5 md:text-xl md:mb-4">
-                    검색
-                  </Dialog.Title>
-                  <div className="relative flex items-center gap-3 py-4 px-5 bg-krds-primary-5 rounded-xl border-2 border-transparent transition-colors focus-within:border-krds-primary-60 focus-within:bg-white">
-                    <Search
-                      className="w-6 h-6 text-krds-gray-60 flex-shrink-0"
-                      aria-hidden="true"
-                    />
-                    <SearchInput className="flex-1 border-none bg-transparent text-lg text-krds-gray-90 outline-none placeholder:text-krds-gray-50 md:text-base" />
-                  </div>
-                  <Dialog.Close asChild>
-                    <button
-                      type="button"
-                      className="absolute top-5 right-5 inline-flex items-center justify-center w-10 h-10 border-none bg-transparent text-krds-gray-90 cursor-pointer rounded-lg transition-colors hover:bg-krds-primary-5 active:bg-krds-primary-10 focus:bg-krds-primary-10 md:top-4 md:right-4 md:w-9 md:h-9"
-                      aria-label="닫기"
-                    >
-                      <X className="w-6 h-6 md:w-5 md:h-5" aria-hidden="true" />
-                    </button>
-                  </Dialog.Close>
-                </Dialog.Content>
-              </Dialog.Portal>
-            </Dialog.Root>
-            <button
-              type="button"
-              className="inline-flex lg:hidden flex-col justify-between items-center gap-2 min-h-[48px] py-2 px-5 border-none rounded-lg bg-transparent text-base font-bold text-krds-gray-90 cursor-pointer transition-colors hover:bg-krds-primary-5 active:bg-krds-primary-10 focus:bg-krds-primary-10"
-              aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
-              aria-expanded={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" aria-hidden="true" />
-              ) : (
-                <Menu className="w-6 h-6" aria-hidden="true" />
-              )}
-            </button>
-          </div>
-        </Container>
+        {/* Actions */}
+        <div className="inline-flex gap-3 md:gap-0">
+          <Dialog.Root open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+            <Dialog.Trigger asChild>
+              <button
+                className="inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors"
+                aria-label="검색"
+              >
+                <Search className="w-6 h-6" aria-hidden="true" />
+              </button>
+            </Dialog.Trigger>
+            <Dialog.Portal>
+              <Dialog.Overlay className="fixed inset-0 bg-black/50 z-[999] backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0" />
+              <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] bg-white rounded-2xl shadow-2xl p-8 z-[1000] focus:outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 md:w-[95vw] md:p-5">
+                <Dialog.Title className="text-2xl font-bold text-krds-gray-90 mb-5 md:text-xl md:mb-4">
+                  검색
+                </Dialog.Title>
+                <div className="relative flex items-center gap-3 py-4 px-5 bg-krds-primary-5 rounded-xl border-2 border-transparent transition-colors focus-within:border-krds-primary-60 focus-within:bg-white">
+                  <Search
+                    className="w-6 h-6 text-krds-gray-60 flex-shrink-0"
+                    aria-hidden="true"
+                  />
+                  <SearchInput className="flex-1 border-none bg-transparent text-lg text-krds-gray-90 outline-none placeholder:text-krds-gray-50 md:text-base" />
+                </div>
+                <Dialog.Close asChild>
+                  <button
+                    className="absolute top-5 right-5 inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors md:top-4 md:right-4"
+                    aria-label="닫기"
+                  >
+                    <X className="w-6 h-6 md:w-5 md:h-5" aria-hidden="true" />
+                  </button>
+                </Dialog.Close>
+              </Dialog.Content>
+            </Dialog.Portal>
+          </Dialog.Root>
+          <button
+            className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors"
+            aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" aria-hidden="true" />
+            ) : (
+              <Menu className="w-6 h-6" aria-hidden="true" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* NavigationMenu (Line 2) - Desktop only */}
       <nav
         id="gnb"
-        className="hidden xl:flex justify-center w-full bg-white"
+        className="hidden lg:flex justify-center w-full bg-white"
         aria-label="주 메뉴"
       >
-        <Container>
+        <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)]">
           <NavigationMenu items={navigationItems} />
-        </Container>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -248,8 +243,7 @@ export function HeaderWithNavigationTailwind({
         <div className="lg:hidden fixed inset-0 z-[1000] bg-white overflow-y-auto">
           <div className="flex justify-end items-center p-5 border-b border-krds-gray-20 sticky top-0 bg-white z-10">
             <button
-              type="button"
-              className="inline-flex items-center justify-center w-11 h-11 border-none bg-transparent text-krds-gray-90 cursor-pointer rounded-lg transition-colors hover:bg-krds-primary-5 active:bg-krds-primary-10 focus:bg-krds-primary-10 focus-visible:outline-2 focus-visible:outline-krds-primary-60 focus-visible:outline-offset-2"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-label="메뉴 닫기"
             >

@@ -70,7 +70,12 @@
   --krds-container-padding-mobile: 1rem; /* 16px - px-4 */
   --krds-container-padding-tablet: 1.5rem; /* 24px - sm:px-6 */
   --krds-container-padding-desktop: 2rem; /* 32px - lg:px-8 */
+  --krds-container-xs: 480px; /* max-width xs */
+  --krds-container-sm: 640px; /* max-width sm */
+  --krds-container-md: 768px; /* max-width md */
+  --krds-container-lg: 1024px; /* max-width lg */
   --krds-container-xl: 1280px; /* max-width xl */
+  --krds-container-2xl: 1440px; /* max-width 2xl */
 
   /* KRDS Header Size Variables */
   --krds-size-height-6: 3rem; /* 48px */
