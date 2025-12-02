@@ -1243,7 +1243,7 @@ export default function TestComponentsPage() {
       <div>
         <Masthead />
         {/* <HeaderWithNavigation navigationItems={navigationItems} /> */}
-        <HeaderWithMegaMenu megaColumns={megaColumns} />
+        <HeaderWithMegaMenu megaColumns={megaColumns} stickyBehavior="auto" />
 
         <Container>
           <Tabs defaultValue="feedback">
