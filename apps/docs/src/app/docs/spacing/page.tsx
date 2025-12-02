@@ -37,6 +37,36 @@ export default function SpacingPage() {
         description="HANUI의 Stack과 Section 컴포넌트는 시맨틱한 간격 시스템을 제공합니다. 의미 기반의 spacing prop을 사용하여 일관된 레이아웃을 쉽게 구성할 수 있습니다."
       />
 
+      {/* Section Heading System 소개 */}
+      <Card
+        variant="outlined"
+        className="mb-8 border-krds-primary-30 bg-krds-primary-5"
+      >
+        <Stack gap="sm">
+          <HStack gap="sm" align="center">
+            <span className="text-krds-primary-60 font-semibold">TL;DR</span>
+          </HStack>
+          <Body>
+            이 페이지의 모든 간격 규칙이 이미 적용된 컴포넌트가 있어요.{' '}
+            <a
+              href="/components/section-heading-system"
+              className="text-krds-primary-60 underline font-medium"
+            >
+              Section Heading System
+            </a>
+            을 사용하면 KRDS Gap-layout 명세(헤딩 간 간격, 헤딩-본문 간격)가 CSS
+            인접 선택자로 자동 적용됩니다.
+          </Body>
+          <Code variant="block" language="tsx" showLineNumbers={false}>
+            {`// 이렇게만 쓰면 간격이 자동으로 맞춰져요
+<Section level="h2">
+  <Heading level="h2" title="제목" />
+  <Body>본문 내용...</Body>
+</Section>`}
+          </Code>
+        </Stack>
+      </Card>
+
       <Tabs defaultValue="overview">
         <TabsList>
           <TabsTrigger value="overview">개요</TabsTrigger>
@@ -426,7 +456,7 @@ export default function SpacingPage() {
                 </h2>
 
                 <div className="bg-krds-gray-5 p-6 rounded-lg">
-                  <Stack gap="content-loose">
+                  <Stack gap="md">
                     <h3 className="text-heading-sm font-semibold text-krds-primary-text">
                       문제점
                     </h3>
@@ -437,7 +467,7 @@ export default function SpacingPage() {
                     </p>
                   </Stack>
 
-                  <Stack gap="content-loose" className="mt-6">
+                  <Stack gap="md" className="mt-6">
                     <h3 className="text-heading-sm font-semibold text-krds-primary-text">
                       해결책
                     </h3>
@@ -460,7 +490,7 @@ export default function SpacingPage() {
                   description="Stack은 수직/수평 방향으로 요소를 배치하고 간격을 관리하는 컴포넌트입니다. 시맨틱한 spacing prop을 사용하여 일관된 간격을 적용할 수 있습니다."
                 />
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <Heading level="h3" title="폼 레이아웃" />
                   <ComponentPreview>
                     <Stack gap="md" className="max-w-md">
@@ -499,7 +529,7 @@ export default function SpacingPage() {
                   />
                 </Stack>
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <h3 className="text-heading-md font-bold">카드 리스트</h3>
                   <ComponentPreview>
                     <Stack gap="md">
@@ -539,7 +569,7 @@ export default function SpacingPage() {
                   />
                 </Stack>
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <h3 className="text-heading-md font-bold">제목 계층</h3>
                   <ComponentPreview>
                     <Stack gap="lg">
@@ -548,7 +578,7 @@ export default function SpacingPage() {
                         <h2 className="text-heading-lg font-bold">
                           서브 제목 1
                         </h2>
-                        <Stack gap="content-loose">
+                        <Stack gap="md">
                           <h3 className="text-heading-md font-bold">소제목</h3>
                           <p className="text-body-md text-krds-gray-70">
                             콘텐츠 내용입니다. 타이포그래피 계층에 맞춰 자동으로
@@ -563,7 +593,7 @@ export default function SpacingPage() {
   <h1>메인 제목</h1>
   <Stack gap="sm">
     <h2>서브 제목</h2>
-    <Stack gap="content-loose">
+    <Stack gap="md">
       <h3>소제목</h3>
       <p>콘텐츠 내용</p>
     </Stack>
@@ -573,7 +603,7 @@ export default function SpacingPage() {
                   />
                 </Stack>
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <h3 className="text-heading-md font-bold">
                     가로 방향 레이아웃
                   </h3>
@@ -594,7 +624,7 @@ export default function SpacingPage() {
                   />
                 </Stack>
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <h3 className="text-heading-md font-bold">
                     전체 스페이싱 프리셋
                   </h3>
@@ -745,7 +775,7 @@ export default function SpacingPage() {
                   description="Section 컴포넌트는 패딩과 배경을 함께 관리하여 일관된 내부 간격을 제공합니다."
                 />
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <h3 className="text-heading-md font-bold">
                     기본 사용법 (Padding Prop)
                   </h3>
@@ -777,7 +807,7 @@ export default function SpacingPage() {
                   />
                 </Stack>
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <h3 className="text-heading-md font-bold">패딩 프리셋</h3>
                   <p className="text-body-md text-krds-gray-70">
                     Section은 다양한 상황에 맞는 패딩 프리셋을 제공합니다:
@@ -879,7 +909,7 @@ export default function SpacingPage() {
                   </div>
                 </Stack>
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <h3 className="text-heading-md font-bold">배경 스타일</h3>
                   <p className="text-body-md text-krds-gray-70">
                     background prop으로 배경을 간편하게 설정할 수 있습니다:
@@ -919,7 +949,7 @@ export default function SpacingPage() {
                   </Stack>
                 </Stack>
 
-                <Stack gap="content-loose">
+                <Stack gap="md">
                   <h3 className="text-heading-md font-bold">실전 예시</h3>
                   <ComponentPreview>
                     <Stack gap="sm">
@@ -996,7 +1026,7 @@ export default function SpacingPage() {
                         background="white"
                         className="rounded-lg border"
                       >
-                        <Stack gap="content-loose">
+                        <Stack gap="md">
                           <h3 className="text-heading-sm font-bold">
                             최근 활동
                           </h3>
@@ -1047,7 +1077,7 @@ export default function SpacingPage() {
 
   {/* Main Content */}
   <Section padding="content-area" background="white">
-    <Stack gap="content-loose">
+    <Stack gap="md">
       <h3>최근 활동</h3>
       <Stack gap="md">
         <Section padding="card-small" background="gray">
