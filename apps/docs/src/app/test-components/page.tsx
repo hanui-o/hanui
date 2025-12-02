@@ -97,6 +97,7 @@ import {
   MegaMenuColumn,
   Footer,
   Container,
+  Masthead,
 } from '@hanui/react';
 import {
   AlertCircle,
@@ -609,7 +610,8 @@ function NavigationTab() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div>
+      <Masthead />
       <Heading level="h2" className="sr-only">
         네비게이션 컴포넌트
       </Heading>
@@ -695,7 +697,9 @@ function NavigationTab() {
             Tab 키를 눌러 포커스하면 건너뛰기 링크가 나타납니다.
           </Body>
           <div className="relative p-4 border border-krds-gray-20 rounded-lg">
-            <SkipLink />
+            <SkipLink
+              links={[{ href: '#main-content', label: '본문 바로가기' }]}
+            />
             <Body>건너뛰기 링크 테스트 영역</Body>
           </div>
         </CardBody>

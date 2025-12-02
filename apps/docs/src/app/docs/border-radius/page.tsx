@@ -50,7 +50,7 @@ export default function BorderRadiusPage() {
 
         <TabsContent value="overview">
           {/* 핵심 요약 */}
-          <Section>
+          <Section level="h2">
             <Card variant="filled">
               <Body>
                 <strong>핵심:</strong> KRDS 표준형 스타일은 2px~12px의 6단계
@@ -65,8 +65,8 @@ export default function BorderRadiusPage() {
             </Body>
           </Section>
 
-          {/* What is it */}
-          <Section>
+          {/* 소개 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="what-is-it"
@@ -96,8 +96,8 @@ export default function BorderRadiusPage() {
             </Card>
           </Section>
 
-          {/* Standard Style */}
-          <Section>
+          {/* 표준형 스타일 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="standard-style"
@@ -220,8 +220,8 @@ export default function BorderRadiusPage() {
             </Subsection>
           </Section>
 
-          {/* Calculation */}
-          <Section>
+          {/* 계산법 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="calculation"
@@ -326,8 +326,8 @@ export default function BorderRadiusPage() {
             </Subsection>
           </Section>
 
-          {/* Extended Style */}
-          <Section>
+          {/* 확장형 스타일 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="extended-style"
@@ -383,8 +383,8 @@ export default function BorderRadiusPage() {
             </Subsection>
           </Section>
 
-          {/* Expression Method */}
-          <Section>
+          {/* 표현 방법 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="expression"
@@ -448,8 +448,8 @@ export default function BorderRadiusPage() {
             </Subsection>
           </Section>
 
-          {/* Usage Guide */}
-          <Section>
+          {/* 사용 방법 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="usage"
@@ -531,8 +531,8 @@ export default function BorderRadiusPage() {
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
+          {/* 모범 사례 */}
+          <Section level="h2">
             <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <List>
@@ -559,8 +559,8 @@ export default function BorderRadiusPage() {
             </List>
           </Section>
 
-          {/* Reference */}
-          <Section>
+          {/* 참고 자료 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="reference"
@@ -608,14 +608,14 @@ export default function BorderRadiusPage() {
         </TabsContent>
 
         <TabsContent value="api">
-          {/* API Reference */}
-          <Section>
-            <Heading level="h2" id="api" title="API Reference" />
+          {/* API 레퍼런스 */}
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
               <Heading level="h3" title="표준형 Tailwind Classes" />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Class</TableHead>
@@ -668,7 +668,7 @@ export default function BorderRadiusPage() {
             <Subsection level="h3">
               <Heading level="h3" title="특수 Classes" />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Class</TableHead>
@@ -699,7 +699,7 @@ export default function BorderRadiusPage() {
             <Subsection level="h3">
               <Heading level="h3" title="방향별 Classes" />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Class</TableHead>
@@ -746,10 +746,10 @@ export default function BorderRadiusPage() {
         </TabsContent>
       </Tabs>
 
-      {/* Page Navigation */}
+      {/* 페이지 네비게이션 */}
       <PageNavigation
         prev={{ title: 'Spacing', href: '/docs/spacing' }}
-        next={{ title: 'Breakpoints', href: '/docs/breakpoints' }}
+        next={{ title: 'Layout', href: '/docs/layout' }}
       />
     </>
   );

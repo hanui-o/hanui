@@ -55,14 +55,14 @@ export const searchData: SearchItem[] = [
   {
     title: 'Colors',
     description: 'KRDS 컬러 시스템을 안내합니다.',
-    href: '/design-system/colors',
+    href: '/docs/colors',
     category: 'design-system',
     keywords: ['색상', 'colors', 'palette', '팔레트', 'KRDS'],
   },
   {
     title: 'Typography',
     description: 'KRDS 타이포그래피 시스템을 안내합니다.',
-    href: '/design-system/typography',
+    href: '/docs/typography',
     category: 'design-system',
     keywords: ['타이포그래피', 'typography', 'font', '폰트', '글꼴'],
   },

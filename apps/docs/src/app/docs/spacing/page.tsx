@@ -75,7 +75,7 @@ export default function SpacingPage() {
 
         <TabsContent value="overview">
           {/* 핵심 요약 */}
-          <PageSection>
+          <PageSection level="h2">
             <Card variant="filled">
               <Body>
                 <strong>핵심:</strong> KRDS 8px 기반 간격 시스템입니다. Stack,
@@ -92,7 +92,7 @@ export default function SpacingPage() {
           </PageSection>
 
           {/* Heading 사용 예시 */}
-          <PageSection>
+          <PageSection level="h2">
             <Heading
               level="h2"
               id="section-header-usage"
@@ -186,7 +186,7 @@ export default function SpacingPage() {
           </PageSection>
 
           {/* 컴포넌트 간격 */}
-          <PageSection>
+          <PageSection level="h2">
             <Heading level="h2" id="component-spacing" title="컴포넌트 간격" />
 
             <Stack gap="lg" className="mt-2 md:mt-4">
@@ -349,7 +349,7 @@ export default function SpacingPage() {
           </PageSection>
 
           {/* 컴포넌트 내 패딩 */}
-          <PageSection>
+          <PageSection level="h2">
             <Heading
               level="h2"
               id="component-padding"
@@ -445,7 +445,7 @@ export default function SpacingPage() {
             </Stack>
           </PageSection>
 
-          <PageSection>
+          <PageSection level="h2">
             <Stack gap="lg">
               <Stack gap="sm">
                 <h2
@@ -953,7 +953,7 @@ export default function SpacingPage() {
                   <h3 className="text-heading-md font-bold">실전 예시</h3>
                   <ComponentPreview>
                     <Stack gap="sm">
-                      {/* Header */}
+                      {/* 헤더 */}
                       <Section
                         padding="header"
                         background="white"
@@ -980,7 +980,7 @@ export default function SpacingPage() {
                         </Stack>
                       </Section>
 
-                      {/* Stats Cards */}
+                      {/* 통계 카드 */}
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <Section
                           padding="card-medium"
@@ -1020,7 +1020,7 @@ export default function SpacingPage() {
                         </Section>
                       </div>
 
-                      {/* Main Content */}
+                      {/* 메인 콘텐츠 */}
                       <Section
                         padding="content-area"
                         background="white"
@@ -1161,11 +1161,12 @@ export default function SpacingPage() {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section>
+          {/* API 레퍼런스 */}
+          <PageSection level="h2">
             <Heading level="h2" id="api-reference" title="API 레퍼런스" />
 
-            {/* Spacing Scale */}
-            <PageSection>
+            {/* 간격 스케일 */}
+            <PageSection level="h3">
               <Heading level="h3" title="간격 스케일 (Spacing Scale)">
                 <Body>
                   HANUI는 Tailwind CSS 기본 간격 스케일을 사용합니다. 8px 기반의
@@ -1173,7 +1174,7 @@ export default function SpacingPage() {
                 </Body>
               </Heading>
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Token</TableHead>
@@ -1261,8 +1262,8 @@ export default function SpacingPage() {
               </Table>
             </PageSection>
 
-            {/* Tailwind Classes */}
-            <PageSection>
+            {/* Tailwind 클래스 */}
+            <PageSection level="h3">
               <Heading level="h3" title="Tailwind 간격 유틸리티">
                 <Body>
                   Tailwind CSS는 margin, padding, gap을 위한 유틸리티 클래스를
@@ -1273,7 +1274,7 @@ export default function SpacingPage() {
               <Stack gap="lg">
                 <div>
                   <Heading level="h4" title="Margin 클래스" />
-                  <Table>
+                  <Table small>
                     <TableHeader>
                       <TableRow>
                         <TableHead>Class Pattern</TableHead>
@@ -1351,7 +1352,7 @@ export default function SpacingPage() {
 
                 <div>
                   <Heading level="h4" title="Padding 클래스" />
-                  <Table>
+                  <Table small>
                     <TableHeader>
                       <TableRow>
                         <TableHead>Class Pattern</TableHead>
@@ -1429,7 +1430,7 @@ export default function SpacingPage() {
 
                 <div>
                   <Heading level="h4" title="Gap 클래스 (Flexbox/Grid)" />
-                  <Table>
+                  <Table small>
                     <TableHeader>
                       <TableRow>
                         <TableHead>Class Pattern</TableHead>
@@ -1471,13 +1472,13 @@ export default function SpacingPage() {
               </Stack>
             </PageSection>
 
-            {/* Usage Examples */}
-            <PageSection>
+            {/* 사용 예시 */}
+            <PageSection level="h3">
               <Heading level="h3" title="사용 예시">
                 <Body>실제 사용 패턴과 권장 사항입니다.</Body>
               </Heading>
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Use Case</TableHead>
@@ -1595,8 +1596,8 @@ export default function SpacingPage() {
               </Table>
             </PageSection>
 
-            {/* Component Spacing Props */}
-            <PageSection>
+            {/* 컴포넌트 Spacing Props */}
+            <PageSection level="h3">
               <Heading level="h3" title="컴포넌트 Spacing Props">
                 <Body>HANUI 컴포넌트가 제공하는 spacing 관련 props입니다.</Body>
               </Heading>
@@ -1604,7 +1605,7 @@ export default function SpacingPage() {
               <Stack gap="lg">
                 <div>
                   <Heading level="h4" title="Stack 컴포넌트" />
-                  <Table>
+                  <Table small>
                     <TableHeader>
                       <TableRow>
                         <TableHead>Prop</TableHead>
@@ -1680,7 +1681,7 @@ export default function SpacingPage() {
 
                 <div>
                   <Heading level="h4" title="Section 컴포넌트" />
-                  <Table>
+                  <Table small>
                     <TableHeader>
                       <TableRow>
                         <TableHead>Prop</TableHead>
@@ -1756,8 +1757,8 @@ export default function SpacingPage() {
               </Stack>
             </PageSection>
 
-            {/* Responsive Spacing */}
-            <PageSection>
+            {/* 반응형 간격 */}
+            <PageSection level="h3">
               <Heading level="h3" title="반응형 간격">
                 <Body>
                   Tailwind의 반응형 접두사를 사용하여 화면 크기별로 다른 간격을
@@ -1765,7 +1766,7 @@ export default function SpacingPage() {
                 </Body>
               </Heading>
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Breakpoint</TableHead>
@@ -1841,8 +1842,8 @@ export default function SpacingPage() {
               </Card>
             </PageSection>
 
-            {/* Best Practices */}
-            <PageSection>
+            {/* 권장 사항 */}
+            <PageSection level="h3">
               <Heading level="h3" title="권장 사항">
                 <Body>
                   일관된 간격 시스템을 유지하기 위한 가이드라인입니다.
@@ -1933,11 +1934,11 @@ export default function SpacingPage() {
                 </Card>
               </Stack>
             </PageSection>
-          </Section>
+          </PageSection>
         </TabsContent>
       </Tabs>
 
-      {/* Page Navigation */}
+      {/* 페이지 네비게이션 */}
       <PageNavigation
         prev={{ title: 'Typography', href: '/docs/typography' }}
         next={{ title: 'Border Radius', href: '/docs/border-radius' }}

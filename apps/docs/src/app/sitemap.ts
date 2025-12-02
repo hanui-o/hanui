@@ -10,9 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'quick-start',
     'colors',
     'typography',
-    'border-radius',
     'spacing',
-    'breakpoints',
+    'border-radius',
+    'layout',
   ];
 
   // All components from Sidebar.tsx
@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'footer',
     'form-field',
     'grid',
+    'header',
     'heading',
     'identifier',
     'image',

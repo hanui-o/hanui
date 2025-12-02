@@ -46,7 +46,7 @@ export default function TypographyPage() {
 
         <TabsContent value="overview">
           {/* 핵심 요약 */}
-          <Section>
+          <Section level="h2">
             <Card variant="filled">
               <Body>
                 <strong>핵심:</strong> <Code>text-krds-</Code> 접두사로 KRDS
@@ -62,8 +62,8 @@ export default function TypographyPage() {
             </Body>
           </Section>
 
-          {/* Display Scale */}
-          <Section>
+          {/* Display 스케일 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="display"
@@ -91,8 +91,8 @@ export default function TypographyPage() {
             </Stack>
           </Section>
 
-          {/* Title Scale */}
-          <Section>
+          {/* Title 스케일 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="title"
@@ -124,8 +124,8 @@ export default function TypographyPage() {
             </Stack>
           </Section>
 
-          {/* Body Scale */}
-          <Section>
+          {/* Body 스케일 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="body"
@@ -153,8 +153,8 @@ export default function TypographyPage() {
             </Stack>
           </Section>
 
-          {/* Usage */}
-          <Section>
+          {/* 사용 방법 */}
+          <Section level="h2">
             <Heading level="h2" id="usage" title="사용 방법" />
 
             <Code variant="block" language="tsx" showLineNumbers={false}>
@@ -174,8 +174,8 @@ export default function TypographyPage() {
             </Code>
           </Section>
 
-          {/* Font Family */}
-          <Section>
+          {/* 폰트 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="font-family"
@@ -205,8 +205,8 @@ fontFamily: {
             </Card>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
+          {/* 모범 사례 */}
+          <Section level="h2">
             <Heading level="h2" id="best-practices" title="Best Practices" />
 
             <List variant="check">
@@ -229,8 +229,8 @@ fontFamily: {
             </List>
           </Section>
 
-          {/* Reference */}
-          <Section>
+          {/* 참고 자료 */}
+          <Section level="h2">
             <Heading level="h2" id="reference" title="참고 자료" />
 
             <Link
@@ -247,14 +247,15 @@ fontFamily: {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section>
+          {/* API 레퍼런스 */}
+          <Section level="h2">
             <Heading level="h2" id="api" title="API 레퍼런스" />
 
-            {/* Display Classes */}
+            {/* Display 클래스 */}
             <Subsection level="h3">
               <Heading level="h3" title="Display Classes" />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Tailwind Class</TableHead>
@@ -300,11 +301,11 @@ fontFamily: {
               </Table>
             </Subsection>
 
-            {/* Title Classes */}
+            {/* Title 클래스 */}
             <Subsection level="h3">
               <Heading level="h3" title="Title Classes" />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Tailwind Class</TableHead>
@@ -358,11 +359,11 @@ fontFamily: {
               </Table>
             </Subsection>
 
-            {/* Body Classes */}
+            {/* Body 클래스 */}
             <Subsection level="h3">
               <Heading level="h3" title="Body Classes" />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Tailwind Class</TableHead>
@@ -408,7 +409,7 @@ fontFamily: {
               </Table>
             </Subsection>
 
-            {/* CSS Variables */}
+            {/* CSS 변수 */}
             <Subsection level="h3">
               <Heading level="h3" title="CSS 변수" />
               <Body className="mb-4">
@@ -445,7 +446,7 @@ fontFamily: {
               </Code>
             </Subsection>
 
-            {/* Tailwind Preset */}
+            {/* Tailwind Preset 매핑 */}
             <Subsection level="h3">
               <Heading level="h3" title="Tailwind Preset 매핑" />
               <Body className="mb-4">
@@ -485,10 +486,10 @@ fontSize: {
         </TabsContent>
       </Tabs>
 
-      {/* Page Navigation */}
+      {/* 페이지 네비게이션 */}
       <PageNavigation
-        prev={{ title: 'Colors', href: '/design-system/colors' }}
-        next={{ title: 'Spacing', href: '/design-system/spacing' }}
+        prev={{ title: 'Colors', href: '/docs/colors' }}
+        next={{ title: 'Spacing', href: '/docs/spacing' }}
       />
     </>
   );

@@ -46,10 +46,9 @@ export default function Home() {
             </Display>
 
             {/* Description */}
-            <Body size="lg" className="max-w-2xl text-krds-gray-70">
-              대한민국 정부 웹 표준(KRDS 2.2) 기반으로
-              <br />
-              접근성(WCAG 2.1 AA)까지 갖춘 50+ 컴포넌트.
+            <Body size="lg" className="text-krds-gray-70">
+              대한민국 정부 웹 표준(KRDS 2.2) 기반으로 접근성(WCAG 2.1 AA)까지
+              갖춘 50+ 컴포넌트.
               <br />
               복사해서 바로 쓰세요.
             </Body>
