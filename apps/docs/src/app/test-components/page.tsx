@@ -610,8 +610,7 @@ function NavigationTab() {
   ];
 
   return (
-    <div>
-      <Masthead />
+    <div className="space-y-8">
       <Heading level="h2" className="sr-only">
         네비게이션 컴포넌트
       </Heading>
@@ -1241,7 +1240,8 @@ function AccessibilityChecklist() {
 export default function TestComponentsPage() {
   return (
     <ToastProvider>
-      <div className="space-y-8">
+      <div>
+        <Masthead />
         {/* <HeaderWithNavigation navigationItems={navigationItems} /> */}
         <HeaderWithMegaMenu megaColumns={megaColumns} />
 

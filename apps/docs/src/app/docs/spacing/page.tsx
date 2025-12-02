@@ -1941,7 +1941,7 @@ export default function SpacingPage() {
       {/* 페이지 네비게이션 */}
       <PageNavigation
         prev={{ title: 'Typography', href: '/docs/typography' }}
-        next={{ title: 'Border Radius', href: '/docs/border-radius' }}
+        next={{ title: 'Layout', href: '/docs/layout' }}
       />
     </>
   );

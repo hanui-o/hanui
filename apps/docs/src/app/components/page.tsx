@@ -16,19 +16,16 @@ const typographyComponents = [
     name: 'Body',
     description: '본문 텍스트',
     href: '/components/body',
-    updated: true,
   },
   {
     name: 'Display',
     description: '대형 텍스트',
     href: '/components/display',
-    updated: true,
   },
   {
     name: 'Heading',
     description: '제목',
     href: '/components/heading',
-    updated: true,
   },
 ];
 
@@ -38,25 +35,21 @@ const identityComponents = [
     name: 'Footer',
     description: '푸터',
     href: '/components/footer',
-    updated: true,
   },
   {
     name: 'Header',
     description: '헤더',
     href: '/components/header',
-    updated: true,
   },
   {
     name: 'Identifier',
     description: '운영기관 식별자',
     href: '/components/identifier',
-    updated: true,
   },
   {
     name: 'Masthead',
     description: '공식 배너',
     href: '/components/masthead',
-    updated: true,
   },
 ];
 
@@ -66,19 +59,16 @@ const navigationMainComponents = [
     name: 'Main Menu',
     description: '주 메뉴',
     href: '/components/mainmenu',
-    updated: true,
   },
   {
     name: 'Side Navigation',
     description: '사이드 메뉴',
     href: '/components/side-navigation',
-    updated: true,
   },
   {
     name: 'Tab Bars',
     description: '하단 고정 탭바',
     href: '/components/tabbars',
-    updated: true,
   },
 ];
 
@@ -87,19 +77,16 @@ const navigationContentComponents = [
     name: 'Breadcrumb',
     description: '브레드크럼',
     href: '/components/breadcrumb',
-    updated: true,
   },
   {
     name: 'In-page Navigation',
     description: '콘텐츠 내 탐색',
     href: '/components/in-page-navigation',
-    updated: true,
   },
   {
     name: 'Pagination',
     description: '페이지네이션',
     href: '/components/pagination',
-    updated: true,
   },
 ];
 
@@ -108,13 +95,11 @@ const navigationLinkComponents = [
     name: 'Link',
     description: 'Next.js 통합 링크',
     href: '/components/link',
-    updated: true,
   },
   {
     name: 'SkipLink',
     description: '건너뛰기 링크 (접근성)',
     href: '/components/skiplink',
-    updated: true,
   },
 ];
 
@@ -125,105 +110,88 @@ const presentationComponents = [
     name: 'AspectRatio',
     description: '종횡비 유지 컨테이너',
     href: '/components/aspect-ratio',
-    updated: true,
   },
   {
     name: 'Center',
     description: '중앙 정렬 컨테이너',
     href: '/components/center',
-    updated: true,
   },
   {
     name: 'Container',
     description: '컨테이너',
     href: '/components/container',
-    updated: true,
   },
   {
     name: 'Stack',
     description: '스택 레이아웃',
     href: '/components/stack',
-    updated: true,
   },
   {
     name: 'Flex',
     description: 'Flexbox 레이아웃',
     href: '/components/flex',
-    updated: true,
   },
   {
     name: 'Grid',
     description: 'Grid 레이아웃',
     href: '/components/grid',
-    updated: true,
   },
   {
     name: 'Wrap',
     description: '자동 줄바꿈 레이아웃',
     href: '/components/wrap',
-    updated: true,
   },
   {
     name: 'SimpleGrid',
     description: '간단한 그리드 레이아웃',
     href: '/components/simple-grid',
-    updated: true,
   },
   {
     name: 'Section Heading System',
     description: 'KRDS Gap-layout 자동 간격 시스템',
     href: '/components/section-heading-system',
-    updated: true,
   },
   {
     name: 'List',
     description: '리스트',
     href: '/components/list',
-    updated: true,
   },
   {
     name: 'Code',
     description: '인라인/블록 코드',
     href: '/components/code',
-    updated: true,
   },
   {
     name: 'Image',
     description: '이미지',
     href: '/components/image',
-    updated: true,
   },
   // Presentation 컴포넌트들
   {
     name: 'DataTable',
     description: '데이터 테이블',
     href: '/components/data-table',
-    updated: true,
   },
   {
     name: 'Modal',
     description: '모달',
     href: '/components/modal',
-    updated: true,
   },
   {
     name: 'Accordion',
     description: '아코디언',
     href: '/components/accordion',
-    updated: true,
   },
-  { name: 'Tabs', description: '탭', href: '/components/tabs', updated: true },
+  { name: 'Tabs', description: '탭', href: '/components/tabs' },
   {
     name: 'Table',
     description: '표',
     href: '/components/table',
-    updated: true,
   },
   {
     name: 'Card',
     description: '카드',
     href: '/components/card',
-    updated: true,
   },
 ];
 
@@ -233,13 +201,11 @@ const actionComponents = [
     name: 'Button',
     description: '버튼',
     href: '/components/button',
-    updated: true,
   },
   {
     name: 'DropdownMenu',
     description: '드롭다운 메뉴',
     href: '/components/dropdown-menu',
-    updated: true,
   },
 ];
 
@@ -249,37 +215,31 @@ const selectionComponents = [
     name: 'Combobox',
     description: '검색 가능한 드롭다운',
     href: '/components/combobox',
-    updated: true,
   },
   {
     name: 'Checkbox',
     description: '체크박스 (단일/그룹)',
     href: '/components/checkbox',
-    updated: true,
   },
   {
     name: 'Radio',
     description: '라디오 버튼',
     href: '/components/radio',
-    updated: true,
   },
   {
     name: 'Select',
     description: '셀렉트',
     href: '/components/select',
-    updated: true,
   },
   {
     name: 'Slider',
     description: '범위 선택 슬라이더',
     href: '/components/slider',
-    updated: true,
   },
   {
     name: 'Switch',
     description: '토글 스위치',
     href: '/components/switch',
-    updated: true,
   },
 ];
 
@@ -289,43 +249,36 @@ const feedbackComponents = [
     name: 'Badge',
     description: '상태/알림 뱃지',
     href: '/components/badge',
-    updated: true,
   },
   {
     name: 'Alert',
     description: '정적 알림 메시지',
     href: '/components/alert',
-    updated: true,
   },
   {
     name: 'AlertDialog',
     description: '확인/취소 다이얼로그',
     href: '/components/alert-dialog',
-    updated: true,
   },
   {
     name: 'Progress',
     description: '진행률 표시',
     href: '/components/progress',
-    updated: true,
   },
   {
     name: 'Skeleton',
     description: '로딩 플레이스홀더',
     href: '/components/skeleton',
-    updated: true,
   },
   {
     name: 'Spinner',
     description: '로딩 스피너',
     href: '/components/spinner',
-    updated: true,
   },
   {
     name: 'Toast',
     description: '일시적 알림',
     href: '/components/toast',
-    updated: true,
   },
 ];
 
@@ -335,7 +288,6 @@ const helpComponents = [
     name: 'Tooltip',
     description: '툴팁',
     href: '/components/tooltip',
-    updated: true,
   },
 ];
 
@@ -345,31 +297,26 @@ const inputComponents = [
     name: 'FormField',
     description: '폼 필드 그룹 (Label, Input, Error, Helper)',
     href: '/components/form-field',
-    updated: true,
   },
   {
     name: 'Label',
     description: '라벨',
     href: '/components/label',
-    updated: true,
   },
   {
     name: 'Text Input',
     description: '텍스트 입력 필드',
     href: '/components/input',
-    updated: true,
   },
   {
     name: 'Textarea',
     description: '여러 줄 텍스트 입력',
     href: '/components/textarea',
-    updated: true,
   },
   {
     name: 'File Upload',
     description: '파일 업로드',
     href: '/components/file-upload',
-    updated: true,
   },
 ];
 
@@ -378,7 +325,7 @@ const settingsComponents: Array<{
   name: string;
   description?: string;
   href: string;
-  updated: boolean;
+  updated?: boolean;
 }> = [];
 
 // 10. 콘텐츠 (Content)
@@ -386,7 +333,7 @@ const contentComponents: Array<{
   name: string;
   description?: string;
   href: string;
-  updated: boolean;
+  updated?: boolean;
 }> = [];
 
 // 컴포넌트 섹션 렌더링 함수
@@ -402,7 +349,7 @@ function ComponentSection({
     name: string;
     description?: string;
     href: string;
-    updated: boolean;
+    updated?: boolean;
   }>;
   id: string;
 }) {
@@ -490,14 +437,9 @@ export default function ComponentsPage() {
               className="relative rounded-lg transition-all group flex items-center gap-2 min-w-[200px]"
             >
               <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-base font-medium text-krds-gray-95 group-hover:underline transition-all">
-                    {component.name}
-                  </span>
-                  {component.updated && (
-                    <span className="w-2 h-2 rounded-full bg-krds-primary-base" />
-                  )}
-                </div>
+                <span className="text-base font-medium text-krds-gray-95 group-hover:underline transition-all">
+                  {component.name}
+                </span>
                 {component.description && (
                   <span className="text-sm text-krds-gray-70">
                     {component.description}

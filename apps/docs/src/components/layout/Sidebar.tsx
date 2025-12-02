@@ -20,7 +20,6 @@ const getStartedNavigation = [
       { title: 'Colors', href: '/docs/colors' },
       { title: 'Typography', href: '/docs/typography' },
       { title: 'Spacing', href: '/docs/spacing' },
-      { title: 'Border Radius', href: '/docs/border-radius' },
       { title: 'Layout', href: '/docs/layout' },
     ],
   },

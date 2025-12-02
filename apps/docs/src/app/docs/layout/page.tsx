@@ -1081,9 +1081,7 @@ module.exports = {
       </Tabs>
 
       {/* 페이지 네비게이션 */}
-      <PageNavigation
-        prev={{ title: 'Border Radius', href: '/docs/border-radius' }}
-      />
+      <PageNavigation prev={{ title: 'Spacing', href: '/docs/spacing' }} />
     </>
   );
 }
