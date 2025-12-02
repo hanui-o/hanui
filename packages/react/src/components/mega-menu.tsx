@@ -57,7 +57,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
     },
     ref
   ) => {
-    const [isOpen, setIsOpen] = React.useState(true);
+    const [isOpen, setIsOpen] = React.useState(false);
     const [activeColumn, setActiveColumn] = React.useState<number | null>(null);
     const timeoutRef = React.useRef<ReturnType<typeof setTimeout>>();
     const navRef = React.useRef<HTMLElement | null>(null);
@@ -80,13 +80,15 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
       setActiveColumn(index);
     };
 
-    // 키보드 포커스 시 드롭다운 열기
+    // 키보드 포커스 시 활성 컬럼만 설정 (드롭다운 열지 않음)
+    // Tab 네비게이션: depth1만 순회, Enter/ArrowDown으로 depth2 진입
     const handleColumnFocus = (index: number) => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      setIsOpen(true);
       setActiveColumn(index);
+      // 드롭다운이 이미 열려있을 때만 열린 상태 유지
+      // Tab으로 이동 시에는 드롭다운을 열지 않음
     };
 
     // 1depth 메뉴에서 키보드 이벤트 처리
@@ -226,6 +228,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
 
     return (
       <nav
+        id="gnb"
         ref={(node) => {
           navRef.current = node;
           if (typeof ref === 'function') {
