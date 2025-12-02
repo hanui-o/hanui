@@ -363,7 +363,7 @@ export default function GridPage() {
 
       <PageNavigation
         prev={{ title: 'Footer', href: '/components/footer' }}
-        next={{ title: 'Heading', href: '/components/heading' }}
+        next={{ title: 'Header', href: '/components/header' }}
       />
     </>
   );

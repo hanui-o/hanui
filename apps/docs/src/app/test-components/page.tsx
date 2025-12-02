@@ -96,6 +96,7 @@ import {
   NavigationMenuItem,
   MegaMenuColumn,
   Footer,
+  Container,
 } from '@hanui/react';
 import {
   AlertCircle,
@@ -134,7 +135,6 @@ const megaColumns: MegaMenuColumn[] = [
       { label: '건강검진', href: '/services/checkup' },
       { label: '보험료 조회', href: '/services/premium' },
     ],
-    active: true,
   },
   {
     title: '지원',
@@ -680,9 +680,7 @@ function NavigationTab() {
             </Link>
           </div>
           <div>
-            <Link href="/" variant="plain">
-              플레인 링크
-            </Link>
+            <Link href="/">플레인 링크</Link>
           </div>
         </CardBody>
       </Card>
@@ -1240,49 +1238,45 @@ export default function TestComponentsPage() {
   return (
     <ToastProvider>
       <div className="space-y-8">
-        <div>
-          <Heading level="h1">접근성 컴포넌트 종합 테스트</Heading>
-          <Body className="text-krds-gray-60 mt-2">
-            KWCAG 2.2 AA 인증을 위한 모든 컴포넌트의 접근성 검증 페이지입니다.
-          </Body>
-          {/* <HeaderWithNavigation navigationItems={navigationItems} /> */}
-          <HeaderWithMegaMenu megaColumns={megaColumns} />
-        </div>
+        {/* <HeaderWithNavigation navigationItems={navigationItems} /> */}
+        <HeaderWithMegaMenu megaColumns={megaColumns} />
 
-        <Tabs defaultValue="feedback">
-          <TabsList className="flex-wrap">
-            <TabsTrigger value="feedback">피드백 & 상태</TabsTrigger>
-            <TabsTrigger value="form">폼 입력</TabsTrigger>
-            <TabsTrigger value="navigation">네비게이션</TabsTrigger>
-            <TabsTrigger value="action">액션 & 오버레이</TabsTrigger>
-            <TabsTrigger value="data">데이터 표시</TabsTrigger>
-            <TabsTrigger value="checklist">체크리스트</TabsTrigger>
-          </TabsList>
+        <Container>
+          <Tabs defaultValue="feedback">
+            <TabsList className="flex-wrap">
+              <TabsTrigger value="feedback">피드백 & 상태</TabsTrigger>
+              <TabsTrigger value="form">폼 입력</TabsTrigger>
+              <TabsTrigger value="navigation">네비게이션</TabsTrigger>
+              <TabsTrigger value="action">액션 & 오버레이</TabsTrigger>
+              <TabsTrigger value="data">데이터 표시</TabsTrigger>
+              <TabsTrigger value="checklist">체크리스트</TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="feedback">
-            <FeedbackTab />
-          </TabsContent>
+            <TabsContent value="feedback">
+              <FeedbackTab />
+            </TabsContent>
 
-          <TabsContent value="form">
-            <FormTab />
-          </TabsContent>
+            <TabsContent value="form">
+              <FormTab />
+            </TabsContent>
 
-          <TabsContent value="navigation">
-            <NavigationTab />
-          </TabsContent>
+            <TabsContent value="navigation">
+              <NavigationTab />
+            </TabsContent>
 
-          <TabsContent value="action">
-            <ActionTab />
-          </TabsContent>
+            <TabsContent value="action">
+              <ActionTab />
+            </TabsContent>
 
-          <TabsContent value="data">
-            <DataTab />
-          </TabsContent>
+            <TabsContent value="data">
+              <DataTab />
+            </TabsContent>
 
-          <TabsContent value="checklist">
-            <AccessibilityChecklist />
-          </TabsContent>
-        </Tabs>
+            <TabsContent value="checklist">
+              <AccessibilityChecklist />
+            </TabsContent>
+          </Tabs>
+        </Container>
 
         <Footer />
       </div>
