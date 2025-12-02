@@ -4,10 +4,15 @@ import { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { ChevronRight, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from './button';
 import { Container } from './container';
+import { Logo } from './logo';
 
-export interface FooterTailwindProps {
+export interface FooterProps {
   className?: string;
+  logo?: string;
+  logoAlt?: string;
+  logoHref?: string;
 }
 
 // SNS Icon Components
@@ -116,7 +121,12 @@ const FOOTER_MENU = [
   { label: '웹 접근성 품질인증 마크 획득', href: '#' },
 ];
 
-export function FooterTailwind({ className }: FooterTailwindProps) {
+export function Footer({
+  className,
+  logo = 'https://www.krds.go.kr/resources/img/component/icon/ico_logo_krds.svg',
+  logoAlt = 'KRDS - Korea Design System',
+  logoHref = '/',
+}: FooterProps) {
   const [openModal, setOpenModal] = useState<string | null>(null);
 
   return (
@@ -164,12 +174,14 @@ export function FooterTailwind({ className }: FooterTailwindProps) {
                         {site.title}
                       </Dialog.Title>
                       <Dialog.Close asChild>
-                        <button
-                          className="inline-flex items-center justify-center w-10 h-10 border-none bg-transparent rounded-lg cursor-pointer text-krds-gray-70 transition-all duration-200 hover:bg-krds-gray-5 hover:text-krds-gray-90 active:bg-krds-gray-10 focus:bg-krds-gray-10"
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="min-w-0"
                           aria-label="닫기"
                         >
                           <X className="w-6 h-6" aria-hidden="true" />
-                        </button>
+                        </Button>
                       </Dialog.Close>
                     </div>
 
@@ -204,16 +216,13 @@ export function FooterTailwind({ className }: FooterTailwindProps) {
 
       {/* Main Footer Content */}
       <Container className="flex flex-col gap-8 py-10 lg:gap-12 max-lg:gap-8 max-lg:py-8 max-md:py-6">
-        {/* Logo */}
-        <div
-          className="w-[137px] h-14 bg-no-repeat bg-contain bg-left-center max-md:w-[99px] max-md:h-8"
-          style={{
-            backgroundImage:
-              "url('https://www.krds.go.kr/resources/img/component/icon/ico_logo_krds.svg')",
-          }}
-        >
-          <span className="sr-only">KRDS - Korea Design System</span>
-        </div>
+        {/* Logo - Footer에서는 슬로건 없이 사용 */}
+        <Logo
+          src={logo}
+          alt={logoAlt}
+          href={logoHref}
+          logoClassName="w-[137px] h-14 max-md:w-[99px] max-md:h-8"
+        />
 
         {/* Content Section */}
         <div className="flex gap-8 lg:justify-between lg:flex-1 max-lg:gap-5 max-md:flex-col">
@@ -276,9 +285,11 @@ export function FooterTailwind({ className }: FooterTailwindProps) {
             </nav>
           </div>
         </div>
+      </Container>
 
-        {/* Bottom Section */}
-        <div className="flex flex-col pt-6 gap-12 border-t border-krds-gray-10 max-md:text-sm">
+      {/* Bottom Section */}
+      <div className="border-t border-krds-gray-10">
+        <Container className="flex flex-col pt-6 gap-12">
           <div className="flex justify-between items-center w-full max-md:flex-col max-md:items-start max-md:gap-6">
             {/* Footer Menu */}
             <nav
@@ -320,10 +331,8 @@ export function FooterTailwind({ className }: FooterTailwindProps) {
               이 누리집은 보건복지부 누리집입니다.
             </span>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </footer>
   );
 }
-
-export { FooterTailwind as Footer };

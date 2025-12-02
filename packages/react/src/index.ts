@@ -156,6 +156,9 @@ export type { SelectProps, SelectOption } from './components/select';
 export { Container } from './components/container';
 export type { ContainerProps } from './components/container';
 
+export { Logo } from './components/logo';
+export type { LogoProps } from './components/logo';
+
 export { Stack, VStack, HStack, stackVariants } from './components/stack';
 export type { StackProps } from './components/stack';
 
@@ -253,8 +256,13 @@ export type { HeaderWithMegaMenuProps as HeaderWithMegaMenuScssProps } from './c
 export { HeaderWithNavigationScss } from './components/Header/HeaderWithNavigation';
 export type { HeaderWithNavigationProps as HeaderWithNavigationScssProps } from './components/Header/HeaderWithNavigation';
 
-export { Footer } from './components/Footer/Footer';
-export type { FooterProps } from './components/Footer/Footer';
+// Footer components (Tailwind CSS - default)
+export { Footer } from './components/footer';
+export type { FooterProps } from './components/footer';
+
+// Footer components (SCSS version)
+export { FooterScss } from './components/Footer/Footer';
+export type { FooterProps as FooterScssProps } from './components/Footer/Footer';
 
 export { Identifier } from './components/identifier';
 export type { IdentifierProps } from './components/identifier';

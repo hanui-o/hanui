@@ -116,7 +116,7 @@ const FOOTER_MENU = [
   { label: '웹 접근성 품질인증 마크 획득', href: '#' },
 ];
 
-export function Footer({ className }: FooterProps) {
+export function FooterScss({ className }: FooterProps) {
   const [openModal, setOpenModal] = useState<string | null>(null);
 
   return (
