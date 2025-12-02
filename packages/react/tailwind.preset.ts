@@ -197,17 +197,9 @@ const hanUIPreset = {
       fontFamily: {
         sans: [
           'Pretendard GOV',
-          'Pretendard',
-          'Pretendard Variable',
           '-apple-system',
           'BlinkMacSystemFont',
           'system-ui',
-          'Roboto',
-          'Helvetica Neue',
-          'Segoe UI',
-          'Apple SD Gothic Neo',
-          'Noto Sans KR',
-          'Malgun Gothic',
           'sans-serif',
         ],
       },

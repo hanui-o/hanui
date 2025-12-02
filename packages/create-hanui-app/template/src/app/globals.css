@@ -2,15 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'pretendard/dist/web/static/pretendard.css';
+/* Pretendard GOV는 CDN 또는 @hanui/cli init으로 설정됨 */
 
 :root {
-  --font-pretendard:
-    'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-sans:
+    'Pretendard GOV', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
 body {
-  font-family: var(--font-pretendard);
+  font-family: var(--font-sans);
 }
 
 @layer base {

@@ -503,7 +503,7 @@ const TAILWIND_V4_THEME = `
   --color-krds-accent-95: var(--krds-color-light-accent-95);
 
   /* Font Family */
-  --font-sans: 'Pretendard GOV', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-sans: 'Pretendard GOV', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
   /* Font Sizes - KRDS Typography */
   --text-krds-body-xs: 13px;
