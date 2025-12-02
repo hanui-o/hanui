@@ -40,12 +40,18 @@ export default function Home() {
 
             {/* Title */}
             <Display as="h1" className="tracking-tight !text-[60px] py-2">
-              KRDS 컴포넌트, 그냥 가져다 쓰세요
+              공공기관 웹사이트를 위한
+              <br />
+              React 컴포넌트 라이브러리
             </Display>
 
             {/* Description */}
-            <Body size="lg" className="max-w-2xl">
-              KRDS 2.2 표준, 접근성은 이미 챙겼습니다
+            <Body size="lg" className="max-w-2xl text-krds-gray-70">
+              대한민국 정부 웹 표준(KRDS 2.2) 기반으로
+              <br />
+              접근성(WCAG 2.1 AA)까지 갖춘 50+ 컴포넌트.
+              <br />
+              복사해서 바로 쓰세요.
             </Body>
 
             {/* CTA Buttons */}
