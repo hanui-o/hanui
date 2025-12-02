@@ -40,6 +40,15 @@ export interface HeaderWithMegaMenuTailwindProps {
   logoAlt?: string;
   logoHref?: string;
   slogan?: React.ReactNode;
+  /**
+   * 스크롤 시 헤더 동작
+   * - 'always': 항상 sticky (기본값)
+   * - 'auto': 스크롤 시 헤더가 위로 사라짐 (KRDS 스타일)
+   * - 'never': 항상 relative (스크롤과 함께 이동)
+   */
+  stickyBehavior?: 'always' | 'auto' | 'never';
+  /** auto 모드에서 헤더가 사라지기 시작하는 스크롤 위치 (px) */
+  scrollThreshold?: number;
 }
 
 const DEFAULT_UTILITY_LINKS = [
@@ -71,16 +80,44 @@ export function HeaderWithMegaMenuTailwind({
   logoAlt = '대한민국정부',
   logoHref = '/',
   slogan,
+  stickyBehavior = 'always',
+  scrollThreshold = 100,
 }: HeaderWithMegaMenuTailwindProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isUtilityDropdownOpen, setIsUtilityDropdownOpen] =
     React.useState(false);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  // 스크롤 감지 (auto 모드에서만 동작)
+  React.useEffect(() => {
+    if (stickyBehavior !== 'auto') return;
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > scrollThreshold);
+    };
+
+    // 초기 상태 설정
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [stickyBehavior, scrollThreshold]);
+
+  // position 클래스 결정
+  const positionClass =
+    stickyBehavior === 'never' ? 'relative' : 'sticky top-0';
+
+  // auto 모드에서 스크롤 시 헤더 숨기기 (transform 사용)
+  const hideClass =
+    stickyBehavior === 'auto' && isScrolled ? '-translate-y-full' : '';
 
   return (
     <header
       className={cn(
-        'sticky top-0 left-0 z-[70] bg-white border-b border-krds-gray-20',
+        'left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-300 ease-in-out',
+        positionClass,
+        hideClass,
         className
       )}
     >
