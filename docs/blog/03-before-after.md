@@ -1,0 +1,306 @@
+# KRDS 버튼 하나 만드는 데 반나절? Before/After로 보여드림
+
+![before-after](https://velog.velcdn.com/images/hanui/post/51496d9e-b061-42ef-8bba-4e1a25f65b36/image.png)
+
+"KRDS 가이드라인 문서 어디 있어요?"
+
+프로젝트 시작하면 항상 듣는 말이에요. 그리고 PDF 열어서 색상 코드 찾고, 간격 값 복사하고... 이거 하다 보면 진짜 하루가 가요.
+
+오늘은 실제 코드로 Before/After를 보여드릴게요.
+
+## Case 1: 버튼 만들기
+
+### Before: KRDS PDF 보고 직접 구현
+
+```tsx
+// 1단계: KRDS 가이드에서 색상 값 찾기 (약 10분)
+// Primary: #0A5ECA, Hover: #0852B2, Active: #064794...
+
+// 2단계: CSS 작성 (약 30분)
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 80px;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #0A5ECA;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #0852B2;
+}
+
+.btn-primary:active {
+  background-color: #064794;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid #0A5ECA;
+  outline-offset: 2px;
+}
+
+// 3단계: 컴포넌트 작성 (약 20분)
+function Button({ children, ...props }) {
+  return (
+    <button className="btn-primary" {...props}>
+      {children}
+    </button>
+  );
+}
+
+// 4단계: variant 추가하려면? (약 1시간)
+// secondary, tertiary, danger... 각각 색상 찾아서 CSS 추가
+
+// 5. size 추가하려면? (약 30분)
+// xs, sm, md, lg, xl... 각각 높이, 패딩, 폰트 사이즈 계산
+
+// 총 소요 시간: 2-3시간
+// 그리고 다음 프로젝트에서 또 처음부터...
+```
+
+### After: HANUI 사용
+
+```bash
+npx hanui add button
+```
+
+```tsx
+import { Button } from '@/components/ui/button';
+
+// 끝. 바로 사용
+<Button>기본 버튼</Button>
+<Button variant="secondary">보조 버튼</Button>
+<Button variant="danger" size="lg">삭제</Button>
+<Button loading>저장 중...</Button>
+<Button iconLeft={<Search />}>검색</Button>
+```
+
+**소요 시간: 10초**
+
+variant 8종, size 6종, 로딩 상태, 아이콘 지원까지 전부 들어있어요. 접근성? `aria-busy`, `aria-disabled`, 포커스 링 전부 적용되어 있고요.
+
+## Case 2: 폼 필드 만들기
+
+### Before: 직접 구현
+
+```tsx
+// 레이블 + 입력 + 에러 메시지 + 도움말
+// 이거 하나 제대로 만들려면...
+
+function FormField({ label, error, helperText, required, children }) {
+  const id = useId();
+  const errorId = `${id}-error`;
+  const helperId = `${id}-helper`;
+
+  return (
+    <div className="form-field">
+      <label htmlFor={id} className="form-label">
+        {label}
+        {required && <span className="required-mark">*</span>}
+      </label>
+
+      {/* children에 id, aria-describedby 어떻게 전달하지? */}
+      {/* cloneElement? Context? */}
+      {children}
+
+      {error && (
+        <div id={errorId} className="form-error" role="alert">
+          {error}
+        </div>
+      )}
+
+      {helperText && (
+        <div id={helperId} className="form-helper">
+          {helperText}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// aria-describedby 연결은?
+// Input에 error 상태 스타일은?
+// 에러 아이콘은?
+// 스크린 리더 대응은?
+// ... 점점 복잡해짐
+```
+
+### After: HANUI 사용
+
+```bash
+npx hanui add form-field input
+```
+
+```tsx
+import { FormField, FormLabel, FormError, FormHelperText } from '@/components/ui/form-field';
+import { Input } from '@/components/ui/input';
+
+<FormField status="error" required>
+  <FormLabel>이메일</FormLabel>
+  <Input type="email" placeholder="example@email.com" />
+  <FormError>이메일 형식이 올바르지 않습니다</FormError>
+</FormField>
+
+<FormField status="success">
+  <FormLabel>사용자명</FormLabel>
+  <Input value="hanui" />
+  <FormHelperText>사용 가능한 사용자명입니다</FormHelperText>
+</FormField>
+```
+
+Context로 id, aria 속성 자동 연결. 에러 아이콘, 성공 아이콘 자동 표시. `role="alert"`, `aria-live="polite"` 적용.
+
+## Case 3: 헤더 + 메가메뉴
+
+이건 진짜 직접 만들면 며칠 걸려요.
+
+### Before: 직접 구현하면 고려할 것들
+
+- 반응형 (모바일 햄버거 메뉴)
+- 메가메뉴 드롭다운
+- 키보드 네비게이션 (Tab, Arrow, Escape)
+- 포커스 트랩
+- 스크롤 시 헤더 고정/숨김
+- WAI-ARIA 패턴
+
+솔직히 제대로 만들려면 일주일은 잡아야 해요.
+
+### After: HANUI 사용
+
+```bash
+npx hanui add header
+```
+
+```tsx
+import { HeaderWithMegaMenu } from '@/components/ui/header';
+
+<HeaderWithMegaMenu
+  title="정부24"
+  navigation={[
+    { label: '서비스', items: [...] },
+    { label: '안내', items: [...] },
+  ]}
+  stickyBehavior="auto"
+/>
+```
+
+메가메뉴, 모바일 대응, 키보드 네비게이션, 스크롤 동작까지 전부 포함.
+
+## 진짜 비교
+
+| 작업                    | 직접 구현 | HANUI |
+| ----------------------- | --------- | ----- |
+| 버튼 (variant 포함)     | 2-3시간   | 10초  |
+| 폼 필드 (접근성 포함)   | 3-4시간   | 10초  |
+| 헤더 + 메가메뉴         | 3-5일     | 10초  |
+| Select (검색, 다중선택) | 1-2일     | 10초  |
+| 모달 (포커스 트랩)      | 반나절    | 10초  |
+
+그리고 직접 구현하면 빠뜨리기 쉬운 것들:
+
+- `aria-describedby` 연결
+- `aria-expanded`, `aria-haspopup`
+- 포커스 관리
+- Escape 키로 닫기
+- 스크린 리더 공지
+
+HANUI는 이런 거 전부 들어가 있어요.
+
+## 숨겨진 비용
+
+직접 구현의 진짜 문제는 시간만이 아니에요.
+
+**1. 일관성 깨짐**
+
+```css
+/* A 개발자 */
+.btn {
+  border-radius: 4px;
+}
+
+/* B 개발자 */
+.button {
+  border-radius: 6px;
+}
+
+/* C 개발자 */
+.custom-btn {
+  border-radius: 8px;
+}
+```
+
+**2. 접근성 누락**
+
+바쁘면 aria 속성 빼먹게 돼요. "나중에 추가하지 뭐" 하다가 검수 때 걸려요.
+
+**3. 유지보수 지옥**
+
+KRDS 가이드 업데이트되면? 전체 코드 다 수정해야 해요.
+
+## HANUI 쓰면
+
+```bash
+# 프로젝트 시작
+npx hanui init
+
+# 필요한 컴포넌트 추가
+npx hanui add button input select form-field header modal
+```
+
+5분이면 프로젝트 세팅 끝. 나머지 시간은 비즈니스 로직에 집중할 수 있어요.
+
+## 커스터마이징?
+
+"우리 프로젝트는 색상이 좀 달라요"
+
+그래서 복사 방식이에요. 파일 열어서 수정하면 돼요.
+
+```tsx
+// components/ui/button.tsx
+const buttonVariants = cva(
+  // 여기서 원하는 대로 수정
+  'inline-flex items-center justify-center ...',
+  {
+    variants: {
+      variant: {
+        primary: 'bg-[#우리색상] hover:bg-[#우리호버색상]',
+        // ...
+      },
+    },
+  }
+);
+```
+
+## 마무리
+
+KRDS 컴포넌트 만드는 데 시간 쓰지 마세요.
+
+```bash
+npm install -D @hanui/cli
+npx hanui init
+npx hanui add button
+```
+
+이 세 줄이면 시작할 수 있어요.
+
+다음 글에서는 접근성(KWCAG 2.2) 대응을 어떻게 했는지 얘기해볼게요. 심사 통과하려면 체크해야 할 것들이 은근 많거든요.
+
+---
+
+**GitHub**: https://github.com/hanui-o/hanui
+**문서**: https://hanui.io
+**CLI**: `npm install -D @hanui/cli`
