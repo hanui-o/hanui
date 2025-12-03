@@ -38,7 +38,7 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-krds-body-lg">
+                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-lg">
                   GitHub Issues
                 </h2>
                 <Body size="sm" className="text-krds-gray-70">
@@ -85,7 +85,7 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-krds-body-lg">
+                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-lg">
                   GitHub Discussions
                 </h2>
                 <Body size="sm" className="text-krds-gray-70">
@@ -133,7 +133,7 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-krds-body-lg">
+                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-lg">
                   GitHub 저장소
                 </h2>
                 <Body size="sm" className="text-krds-gray-70">
@@ -180,7 +180,7 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-krds-body-lg">
+                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-lg">
                   Star 받기
                 </h2>
                 <Body size="sm" className="text-krds-gray-70">
@@ -227,7 +227,7 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-krds-body-lg">
+                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-lg">
                   Velog 블로그
                 </h2>
                 <Body size="sm" className="text-krds-gray-70">
@@ -273,7 +273,7 @@ export default function CommunityPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-krds-body-lg">
+                <h2 className="mt-1 mb-3 text-krds-gray-95 font-bold text-lg">
                   이메일 연락
                 </h2>
                 <Body size="sm" className="text-krds-gray-70">

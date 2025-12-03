@@ -256,11 +256,13 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                 <a
                   href={column.href || '#'}
                   className={cn(
-                    'flex items-center h-14 px-4 py-2 font-medium rounded-md',
+                    'relative',
+                    'flex items-center h-14 px-6 py-2 font-bold text-krds-display-sm text-krds-gray-70',
                     'transition-colors duration-200',
-                    'hover:bg-krds-gray-5',
+                    'hover:bg-krds-primary-5',
                     'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                    isActive && 'bg-krds-gray-5 text-krds-primary-60',
+                    isActive &&
+                      'text-krds-primary-90 before:absolute before:-bottom-4 before:left-0 before:w-full before:h-1 before:bg-krds-primary-90',
                     activeColumn === index && isOpen && 'bg-krds-gray-5'
                   )}
                   onMouseEnter={() => handleColumnMouseEnter(index)}

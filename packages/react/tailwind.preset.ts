@@ -204,7 +204,13 @@ const hanUIPreset = {
         ],
       },
       fontSize: {
-        // KRDS Typography Scale
+        // Tailwind 기본 사이즈를 KRDS 값으로 덮어쓰기
+        xs: ['13px', { lineHeight: '150%' }], // KRDS body-xs
+        sm: ['15px', { lineHeight: '150%' }], // KRDS body-sm
+        base: ['17px', { lineHeight: '150%' }], // KRDS body-md
+        lg: ['19px', { lineHeight: '150%' }], // KRDS body-lg
+
+        // KRDS Typography Scale (원본 유지)
         'krds-body-xs': ['13px', { lineHeight: '150%' }],
         'krds-body-sm': ['15px', { lineHeight: '150%' }],
         'krds-body-md': ['17px', { lineHeight: '150%' }],
@@ -216,9 +222,9 @@ const hanUIPreset = {
         'krds-title-lg': ['28px', { lineHeight: '140%', fontWeight: '700' }],
         'krds-title-xl': ['32px', { lineHeight: '140%', fontWeight: '700' }],
 
-        'krds-display-sm': ['32px', { lineHeight: '130%', fontWeight: '700' }],
-        'krds-display-md': ['36px', { lineHeight: '130%', fontWeight: '700' }],
-        'krds-display-lg': ['42px', { lineHeight: '130%', fontWeight: '700' }],
+        'krds-display-sm': ['28px', { lineHeight: '130%', fontWeight: '700' }],
+        'krds-display-md': ['32px', { lineHeight: '130%', fontWeight: '700' }],
+        'krds-display-lg': ['44px', { lineHeight: '130%', fontWeight: '700' }],
         'krds-display-xl': ['48px', { lineHeight: '130%', fontWeight: '700' }],
       },
       spacing: {

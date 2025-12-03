@@ -559,9 +559,9 @@ hover:[color:var(--krds-color-light-primary-60)] /* hover 더 진한 Primary */
 .underline-offset-4            /* 밑줄 간격 */
 
 /* Size */
-.text-krds-body-sm             /* Small (15px) */
-.text-krds-body-md             /* Medium (17px) */
-.text-krds-body-lg             /* Large (19px) */
+.text-sm             /* Small (15px) */
+.text-base             /* Medium (17px) */
+.text-lg             /* Large (19px) */
 
 /* Accessibility */
 .focus-visible:ring-2          /* 포커스 링 */

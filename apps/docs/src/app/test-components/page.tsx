@@ -136,6 +136,7 @@ const megaColumns: MegaMenuColumn[] = [
       { label: '건강검진', href: '/services/checkup' },
       { label: '보험료 조회', href: '/services/premium' },
     ],
+    active: true,
   },
   {
     title: '지원',

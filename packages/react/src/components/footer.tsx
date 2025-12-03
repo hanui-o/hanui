@@ -325,7 +325,7 @@ export function Footer({
             >
               <span className="sr-only">대한민국정부</span>
             </span>
-            <span className="text-krds-body-sm text-krds-gray-90 whitespace-nowrap">
+            <span className="text-sm text-krds-gray-90 whitespace-nowrap">
               이 누리집은 정부 누리집입니다.
             </span>
           </div>

@@ -182,12 +182,12 @@ export const Radio = React.forwardRef<HTMLDivElement, RadioProps>(
     const getLabelSize = () => {
       switch (size) {
         case 'sm':
-          return 'text-krds-body-sm';
+          return 'text-sm';
         case 'lg':
-          return 'text-krds-body-lg';
+          return 'text-lg';
         case 'md':
         default:
-          return 'text-krds-body-md';
+          return 'text-base';
       }
     };
 

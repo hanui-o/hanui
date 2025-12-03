@@ -135,20 +135,20 @@ export default function TypographyPage() {
 
             <Stack gap="sm">
               <Card gap="sm">
-                <Code>text-krds-body-lg</Code>
-                <p className="text-krds-body-lg">19px — 큰 본문 (강조)</p>
+                <Code>text-lg</Code>
+                <p className="text-lg">19px — 큰 본문 (강조)</p>
               </Card>
               <Card gap="sm">
-                <Code>text-krds-body-md</Code>
-                <p className="text-krds-body-md">17px — 기본 본문 (기본값)</p>
+                <Code>text-base</Code>
+                <p className="text-base">17px — 기본 본문 (기본값)</p>
               </Card>
               <Card gap="sm">
-                <Code>text-krds-body-sm</Code>
-                <p className="text-krds-body-sm">15px — 작은 본문 (보조)</p>
+                <Code>text-sm</Code>
+                <p className="text-sm">15px — 작은 본문 (보조)</p>
               </Card>
               <Card gap="sm">
-                <Code>text-krds-body-xs</Code>
-                <p className="text-krds-body-xs">13px — 캡션, 레이블</p>
+                <Code>text-xs</Code>
+                <p className="text-xs">13px — 캡션, 레이블</p>
               </Card>
             </Stack>
           </Section>
@@ -168,9 +168,9 @@ export default function TypographyPage() {
 <h3 className="text-krds-title-md">하위 섹션</h3>
 
 // Body - 본문 텍스트
-<p className="text-krds-body-md">기본 본문 텍스트 (17px)</p>
-<p className="text-krds-body-sm text-krds-gray-70">보조 정보 (15px)</p>
-<span className="text-krds-body-xs">캡션 (13px)</span>`}
+<p className="text-base">기본 본문 텍스트 (17px)</p>
+<p className="text-sm text-krds-gray-70">보조 정보 (15px)</p>
+<span className="text-xs">캡션 (13px)</span>`}
             </Code>
           </Section>
 
@@ -375,7 +375,7 @@ fontFamily: {
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <Code className="text-xs">text-krds-body-lg</Code>
+                      <Code className="text-xs">text-lg</Code>
                     </TableCell>
                     <TableCell>19px</TableCell>
                     <TableCell>150%</TableCell>
@@ -383,7 +383,7 @@ fontFamily: {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code className="text-xs">text-krds-body-md</Code>
+                      <Code className="text-xs">text-base</Code>
                     </TableCell>
                     <TableCell>17px</TableCell>
                     <TableCell>150%</TableCell>
@@ -391,7 +391,7 @@ fontFamily: {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code className="text-xs">text-krds-body-sm</Code>
+                      <Code className="text-xs">text-sm</Code>
                     </TableCell>
                     <TableCell>15px</TableCell>
                     <TableCell>150%</TableCell>
@@ -399,7 +399,7 @@ fontFamily: {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code className="text-xs">text-krds-body-xs</Code>
+                      <Code className="text-xs">text-xs</Code>
                     </TableCell>
                     <TableCell>13px</TableCell>
                     <TableCell>150%</TableCell>

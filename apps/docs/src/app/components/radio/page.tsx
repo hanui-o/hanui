@@ -158,10 +158,8 @@ const [value, setValue] = useState('option1');
                   <div className="flex items-center gap-2">
                     <RadioGroupItem value="card" id="card" />
                     <label htmlFor="card" className="cursor-pointer">
-                      <span className="text-krds-body-md font-semibold">
-                        신용카드
-                      </span>
-                      <span className="text-krds-body-sm text-krds-gray-70 block">
+                      <span className="text-base font-semibold">신용카드</span>
+                      <span className="text-sm text-krds-gray-70 block">
                         VISA, Mastercard, 국내 카드
                       </span>
                     </label>
@@ -169,10 +167,8 @@ const [value, setValue] = useState('option1');
                   <div className="flex items-center gap-2">
                     <RadioGroupItem value="bank" id="bank" />
                     <label htmlFor="bank" className="cursor-pointer">
-                      <span className="text-krds-body-md font-semibold">
-                        계좌이체
-                      </span>
-                      <span className="text-krds-body-sm text-krds-gray-70 block">
+                      <span className="text-base font-semibold">계좌이체</span>
+                      <span className="text-sm text-krds-gray-70 block">
                         실시간 계좌이체
                       </span>
                     </label>
@@ -180,10 +176,10 @@ const [value, setValue] = useState('option1');
                   <div className="flex items-center gap-2">
                     <RadioGroupItem value="phone" id="phone" />
                     <label htmlFor="phone" className="cursor-pointer">
-                      <span className="text-krds-body-md font-semibold">
+                      <span className="text-base font-semibold">
                         휴대폰 결제
                       </span>
-                      <span className="text-krds-body-sm text-krds-gray-70 block">
+                      <span className="text-sm text-krds-gray-70 block">
                         통신사 결제
                       </span>
                     </label>
@@ -195,8 +191,8 @@ const [value, setValue] = useState('option1');
   <div className="flex items-center gap-2">
     <RadioGroupItem value="card" id="card" />
     <label htmlFor="card" className="cursor-pointer">
-      <span className="text-krds-body-md font-semibold">신용카드</span>
-      <span className="text-krds-body-sm text-krds-gray-70 block">
+      <span className="text-base font-semibold">신용카드</span>
+      <span className="text-sm text-krds-gray-70 block">
         VISA, Mastercard, 국내 카드
       </span>
     </label>

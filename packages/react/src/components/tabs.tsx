@@ -51,8 +51,8 @@ const tabsTriggerVariants = cva(
         ].join(' '),
       },
       size: {
-        sm: 'h-10 px-6 py-1.5 text-krds-body-md font-medium',
-        default: 'h-14 px-10 py-2 text-krds-body-lg font-bold',
+        sm: 'h-10 px-6 py-1.5 text-base font-medium',
+        default: 'h-14 px-10 py-2 text-lg font-bold',
       },
     },
     compoundVariants: [

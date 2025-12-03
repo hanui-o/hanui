@@ -159,7 +159,7 @@ export function Select<T = string>({
       <div className={cn('relative', className)}>
         {/* 레이블 (deprecated - FormLabel 사용 권장) */}
         {label && (
-          <label className="block text-krds-body-sm leading-[150%] font-medium text-krds-gray-70 mb-1">
+          <label className="block text-sm leading-[150%] font-medium text-krds-gray-70 mb-1">
             {label}
           </label>
         )}
@@ -176,7 +176,7 @@ export function Select<T = string>({
           }
           className={cn(
             // 기본 스타일 + 사이즈
-            'flex w-full items-center justify-between rounded-md border bg-krds-white pl-4 pr-12 py-2 text-krds-body-lg leading-[150%] shadow-sm transition-colors',
+            'flex w-full items-center justify-between rounded-md border bg-krds-white pl-4 pr-12 py-2 text-lg leading-[150%] shadow-sm transition-colors',
             sizeClasses[size],
             // 포커스 스타일
             'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
@@ -202,7 +202,7 @@ export function Select<T = string>({
           <SelectPrimitive.Content
             className={cn(
               // 기본 스타일
-              'relative z-50 max-h-96 min-w-[8rem] w-full overflow-hidden rounded-md border bg-krds-white text-krds-body-md leading-[150%] shadow-md',
+              'relative z-50 max-h-96 min-w-[8rem] w-full overflow-hidden rounded-md border bg-krds-white text-base leading-[150%] shadow-md',
               // 열기/닫기 애니메이션
               'data-[state=open]:animate-in data-[state=closed]:animate-out',
               'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',

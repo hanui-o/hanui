@@ -76,7 +76,7 @@ export const Masthead = React.forwardRef<HTMLDivElement, MastheadProps>(
               className="w-5 h-5 shrink-0"
               aria-hidden="true"
             />
-            <span className="text-krds-body-sm text-krds-gray-90 font-medium leading-[150%]">
+            <span className="text-sm text-krds-gray-90 font-medium leading-[150%]">
               {text}
             </span>
           </a>
