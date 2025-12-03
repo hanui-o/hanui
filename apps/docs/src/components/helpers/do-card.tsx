@@ -15,7 +15,7 @@ export function DoCard({
       variant="outlined"
       className="bg-krds-success-5 border-krds-success-20"
     >
-      <h3 className="text-[19px] font-bold leading-[150%] text-krds-gray-95 mb-3">
+      <h3 className="text-krds-body-lg font-bold leading-[150%] text-krds-gray-95 mb-3">
         {title}
       </h3>
       <List className="text-krds-gray-70">{children}</List>

@@ -204,28 +204,99 @@ const hanUIPreset = {
         ],
       },
       fontSize: {
-        // Tailwind 기본 사이즈를 KRDS 값으로 덮어쓰기
-        xs: ['13px', { lineHeight: '150%' }], // KRDS body-xs
-        sm: ['15px', { lineHeight: '150%' }], // KRDS body-sm
-        base: ['17px', { lineHeight: '150%' }], // KRDS body-md
-        lg: ['19px', { lineHeight: '150%' }], // KRDS body-lg
+        // === KRDS Typography Scale (반응형 - CSS 변수 사용) ===
 
-        // KRDS Typography Scale (원본 유지)
-        'krds-body-xs': ['13px', { lineHeight: '150%' }],
-        'krds-body-sm': ['15px', { lineHeight: '150%' }],
-        'krds-body-md': ['17px', { lineHeight: '150%' }],
+        // Display (반응형: 모바일↔PC)
+        'krds-display-lg': [
+          'var(--krds-fs-display-lg)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 44px → 60px
+        'krds-display-md': [
+          'var(--krds-fs-display-md)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 32px → 44px
+        'krds-display-sm': [
+          'var(--krds-fs-display-sm)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 28px → 36px
+
+        // Heading (반응형: 모바일↔PC)
+        'krds-heading-xl': [
+          'var(--krds-fs-heading-xl)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 28px → 40px
+        'krds-heading-lg': [
+          'var(--krds-fs-heading-lg)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 24px → 32px
+        'krds-heading-md': [
+          'var(--krds-fs-heading-md)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 22px → 24px
+        'krds-heading-sm': [
+          'var(--krds-fs-heading-sm)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 19px (고정)
+        'krds-heading-xs': [
+          'var(--krds-fs-heading-xs)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 17px (고정)
+        'krds-heading-xxs': [
+          'var(--krds-fs-heading-xxs)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 15px (고정)
+
+        // Body (고정 크기)
         'krds-body-lg': ['19px', { lineHeight: '150%' }],
+        'krds-body-md': ['17px', { lineHeight: '150%' }],
+        'krds-body-sm': ['15px', { lineHeight: '150%' }],
+        'krds-body-xs': ['13px', { lineHeight: '150%' }],
 
-        'krds-title-xs': ['18px', { lineHeight: '140%', fontWeight: '700' }],
-        'krds-title-sm': ['20px', { lineHeight: '140%', fontWeight: '700' }],
-        'krds-title-md': ['24px', { lineHeight: '140%', fontWeight: '700' }],
-        'krds-title-lg': ['28px', { lineHeight: '140%', fontWeight: '700' }],
-        'krds-title-xl': ['32px', { lineHeight: '140%', fontWeight: '700' }],
+        // Navigation (반응형: 모바일↔PC)
+        'krds-nav-title-lg': [
+          'var(--krds-fs-nav-title-lg)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 22px → 24px
+        'krds-nav-title-sm': [
+          'var(--krds-fs-nav-title-sm)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ], // 17px → 19px
+        'krds-nav-depth-md': [
+          'var(--krds-fs-nav-depth-md)',
+          { lineHeight: '150%' },
+        ], // 17px (고정)
+        'krds-nav-depth-sm': [
+          'var(--krds-fs-nav-depth-sm)',
+          { lineHeight: '150%' },
+        ], // 15px (고정)
 
-        'krds-display-sm': ['28px', { lineHeight: '130%', fontWeight: '700' }],
-        'krds-display-md': ['32px', { lineHeight: '130%', fontWeight: '700' }],
-        'krds-display-lg': ['44px', { lineHeight: '130%', fontWeight: '700' }],
-        'krds-display-xl': ['48px', { lineHeight: '130%', fontWeight: '700' }],
+        // Label (고정 크기)
+        'krds-label-lg': ['19px', { lineHeight: '150%' }],
+        'krds-label-md': ['17px', { lineHeight: '150%' }],
+        'krds-label-sm': ['15px', { lineHeight: '150%' }],
+        'krds-label-xs': ['13px', { lineHeight: '150%' }],
+
+        // Legacy (기존 호환성 유지 - Heading과 매핑)
+        'krds-title-xs': [
+          'var(--krds-fs-heading-xs)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ],
+        'krds-title-sm': [
+          'var(--krds-fs-heading-sm)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ],
+        'krds-title-md': [
+          'var(--krds-fs-heading-md)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ],
+        'krds-title-lg': [
+          'var(--krds-fs-heading-lg)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ],
+        'krds-title-xl': [
+          'var(--krds-fs-heading-xl)',
+          { lineHeight: '150%', fontWeight: '700' },
+        ],
       },
       spacing: {
         // KRDS 8px grid system 추가 값

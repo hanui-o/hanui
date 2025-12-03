@@ -151,7 +151,7 @@ export function SideNavigation({
                     onClick={() => toggleSection(sectionIndex)}
                     className={cn(
                       'flex items-center justify-between w-full px-2 py-4 border-0 bg-transparent',
-                      'text-base font-bold leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
+                      'text-krds-body-md font-bold leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
                       'transition-all duration-200 ease-in-out',
                       'relative',
                       // 하단 밑줄 효과
@@ -208,7 +208,7 @@ export function SideNavigation({
                                   className={cn(
                                     'overflow-hidden',
                                     'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent rounded-md',
-                                    'text-base font-normal leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
+                                    'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left cursor-pointer',
                                     'transition-all duration-200',
                                     // 불릿
                                     'before:content-["•"] before:inline-block',
@@ -255,7 +255,7 @@ export function SideNavigation({
                                             href={grandChild.href}
                                             className={cn(
                                               'flex items-center gap-2 w-full py-2 px-4 pl-13 bg-transparent rounded-md',
-                                              'text-base font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                                              'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                                               // 불릿
                                               'before:content-["•"] before:inline-block before:text-krds-gray-60',
                                               // 호버
@@ -289,7 +289,7 @@ export function SideNavigation({
                                 href={child.href}
                                 className={cn(
                                   'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent rounded-md',
-                                  'text-base font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                                  'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                                   // 불릿
                                   'before:content-["•"] before:inline-block',
                                   // 호버
@@ -320,7 +320,7 @@ export function SideNavigation({
                   href={section.href}
                   className={cn(
                     'flex items-center justify-between w-full py-3 px-3 border-0 bg-transparent',
-                    'text-base font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                    'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                     'transition-all duration-200',
                     // 하단 밑줄 효과
                     'relative before:content-[""] before:absolute before:bottom-[-1px] before:left-0 before:w-0 before:h-[3px] before:bg-[#063a74] before:transition-all before:duration-[400ms]',

@@ -243,7 +243,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
         aria-label="메인 메뉴"
       >
         {/* Main Menu Bar */}
-        <ul className="flex items-center gap-2">
+        <ul className="flex items-center gap-4">
           {columns.map((column, index) => {
             const isActive =
               column.active ||
@@ -257,12 +257,12 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                   href={column.href || '#'}
                   className={cn(
                     'relative',
-                    'flex items-center h-14 px-6 py-2 font-bold text-krds-display-sm text-krds-gray-70',
+                    'flex items-center h-14 px-4 py-2 font-bold text-krds-nav-title-sm text-krds-gray-70',
                     'transition-colors duration-200',
                     'hover:bg-krds-primary-5',
                     'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
                     isActive &&
-                      'text-krds-primary-90 before:absolute before:-bottom-4 before:left-0 before:w-full before:h-1 before:bg-krds-primary-90',
+                      'text-krds-primary-90 before:absolute before:-bottom-3 before:left-0 before:w-full before:h-1 before:bg-krds-secondary-70',
                     activeColumn === index && isOpen && 'bg-krds-gray-5'
                   )}
                   onMouseEnter={() => handleColumnMouseEnter(index)}
@@ -284,91 +284,89 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
         {isOpen && (
           <div
             className={cn(
-              'absolute left-1/2 -translate-x-1/2 top-full mt-6 z-50',
-              'w-screen',
+              'absolute -left-4 -right-4 top-full mt-3 z-50',
               dropdownBgColor,
               'border-t border-krds-gray-10',
               'shadow-md',
-              'animate-in fade-in slide-in-from-top-2 duration-200'
+              'animate-in fade-in slide-in-from-top-2 duration-200',
+              'px-5 py-6'
             )}
             role="menu"
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-              <div
-                className={cn(
-                  'grid gap-12',
-                  columns.length === 2 && 'grid-cols-2',
-                  columns.length === 3 && 'grid-cols-3',
-                  columns.length === 4 && 'grid-cols-4',
-                  columns.length === 5 && 'grid-cols-5',
-                  columns.length === 6 && 'grid-cols-6',
-                  columns.length === 7 && 'grid-cols-7',
-                  columns.length >= 8 && 'grid-cols-4 lg:grid-cols-8'
-                )}
-              >
-                {columns.map((column, colIndex) => (
-                  <div
-                    key={colIndex}
-                    className={cn(
-                      'space-y-3',
-                      activeColumn === colIndex && 'opacity-100',
-                      activeColumn !== null &&
-                        activeColumn !== colIndex &&
-                        'opacity-60'
+            <div
+              className={cn(
+                'grid gap-4',
+                columns.length === 2 && 'grid-cols-2',
+                columns.length === 3 && 'grid-cols-3',
+                columns.length === 4 && 'grid-cols-4',
+                columns.length === 5 && 'grid-cols-5',
+                columns.length === 6 && 'grid-cols-6',
+                columns.length === 7 && 'grid-cols-7',
+                columns.length >= 8 && 'grid-cols-4 lg:grid-cols-8'
+              )}
+            >
+              {columns.map((column, colIndex) => (
+                <div
+                  key={colIndex}
+                  className={cn(
+                    'space-y-3',
+                    activeColumn === colIndex && 'opacity-100',
+                    activeColumn !== null &&
+                      activeColumn !== colIndex &&
+                      'opacity-60'
+                  )}
+                  onMouseEnter={() => handleColumnMouseEnter(colIndex)}
+                  data-column={colIndex}
+                >
+                  {/* Column Title */}
+                  {/* <h3 className="font-bold text-krds-gray-90 pb-2">
+                    {column.href ? (
+                      <a
+                        href={column.href}
+                        className="hover:text-krds-primary-60 transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-60 rounded"
+                        role="menuitem"
+                      >
+                        {column.title}
+                      </a>
+                    ) : (
+                      column.title
                     )}
-                    onMouseEnter={() => handleColumnMouseEnter(colIndex)}
-                    data-column={colIndex}
-                  >
-                    {/* Column Title */}
-                    <h3 className="font-bold text-krds-gray-90 pb-2">
-                      {column.href ? (
-                        <a
-                          href={column.href}
-                          className="hover:text-krds-primary-60 transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-60 rounded"
-                          role="menuitem"
-                        >
-                          {column.title}
-                        </a>
-                      ) : (
-                        column.title
-                      )}
-                    </h3>
+                  </h3> */}
 
-                    {/* Sub Links */}
-                    <ul className="space-y-2" role="menu">
-                      {column.links.map((link, linkIndex) => {
-                        const isLinkActive =
-                          link.active || link.href === currentPath;
+                  {/* Sub Links */}
+                  <ul className="space-y-2" role="menu">
+                    {column.links.map((link, linkIndex) => {
+                      const isLinkActive =
+                        link.active || link.href === currentPath;
 
-                        return (
-                          <li key={linkIndex}>
-                            <a
-                              href={link.href}
-                              className={cn(
-                                'block py-1.5 rounded-md',
-                                'transition-colors',
-                                'hover:bg-krds-gray-5 hover:text-krds-primary-60',
-                                'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
-                                isLinkActive
-                                  ? 'bg-krds-gray-5 text-krds-primary-60 font-medium'
-                                  : 'text-krds-gray-70'
-                              )}
-                              aria-current={isLinkActive ? 'page' : undefined}
-                              role="menuitem"
-                              data-link={linkIndex}
-                              onKeyDown={(e) =>
-                                handleSubmenuKeyDown(e, colIndex, linkIndex)
-                              }
-                            >
-                              {link.label}
-                            </a>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+                      return (
+                        <li key={linkIndex}>
+                          <a
+                            href={link.href}
+                            className={cn(
+                              'block py-1.5 rounded-md',
+                              'transition-colors',
+                              'hover:bg-krds-gray-5 hover:text-krds-primary-60',
+                              'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
+                              isLinkActive
+                                ? 'bg-krds-gray-5 text-krds-primary-60 font-medium'
+                                : 'text-krds-gray-70'
+                            )}
+                            aria-current={isLinkActive ? 'page' : undefined}
+                            role="menuitem"
+                            data-link={linkIndex}
+                            onKeyDown={(e) =>
+                              handleSubmenuKeyDown(e, colIndex, linkIndex)
+                            }
+                          >
+                            {link.label}
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         )}

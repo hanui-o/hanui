@@ -20,10 +20,10 @@ const labelVariants = cva(
   {
     variants: {
       size: {
-        lg: 'text-lg',
-        md: 'text-base',
-        sm: 'text-sm',
-        xs: 'text-xs',
+        lg: 'text-krds-body-lg',
+        md: 'text-krds-body-md',
+        sm: 'text-krds-body-sm',
+        xs: 'text-krds-body-xs',
       },
     },
     defaultVariants: {

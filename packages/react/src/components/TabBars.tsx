@@ -162,7 +162,7 @@ export function TabBars({
               {/* Label (1-2 단어) */}
               <span
                 className={cn(
-                  'text-xs font-medium leading-tight text-center',
+                  'text-krds-body-xs font-medium leading-tight text-center',
                   'max-w-full truncate',
                   isActive && 'font-bold'
                 )}

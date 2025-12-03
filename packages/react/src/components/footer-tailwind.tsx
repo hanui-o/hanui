@@ -152,7 +152,7 @@ export function Footer({
                     className={cn(
                       'inline-flex justify-between items-center w-full gap-3 h-[calc(4rem-2px)] px-8 bg-white border-none border-r border-krds-gray-10 transition-all duration-200 cursor-pointer text-left',
                       'hover:bg-krds-primary-5 active:bg-krds-primary-10 focus:bg-krds-primary-10',
-                      'max-md:text-sm max-md:min-h-[calc(3.5rem-2px)] max-md:px-6 max-md:border-r-0',
+                      'max-md:text-krds-body-sm max-md:min-h-[calc(3.5rem-2px)] max-md:px-6 max-md:border-r-0',
                       index !== 0 &&
                         'max-md:border-t max-md:border-t-krds-gray-10'
                     )}

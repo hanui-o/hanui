@@ -179,7 +179,7 @@ export const Progress = React.forwardRef<
     return (
       <div className="w-full">
         {(label || showValue) && (
-          <div className="flex justify-between mb-1.5 text-sm">
+          <div className="flex justify-between mb-1.5 text-krds-body-sm">
             {label && (
               <span className="text-krds-gray-70" id={`${props.id}-label`}>
                 {label}
@@ -359,7 +359,7 @@ export const CircularProgress = React.forwardRef<
         </svg>
         {showValue && !isIndeterminate && (
           <span
-            className="absolute text-xs font-medium text-krds-gray-70 tabular-nums"
+            className="absolute text-krds-body-xs font-medium text-krds-gray-70 tabular-nums"
             style={{ fontSize: size * 0.2 }}
           >
             {formatValue(normalizedValue, max)}

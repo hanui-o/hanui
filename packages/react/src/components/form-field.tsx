@@ -178,7 +178,7 @@ export const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
         ref={ref}
         htmlFor={id}
         className={cn(
-          'text-[17px] font-medium text-krds-gray-90 leading-[140%]',
+          'text-krds-body-md font-medium text-krds-gray-90 leading-[140%]',
           className
         )}
         {...props}

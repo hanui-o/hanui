@@ -178,7 +178,7 @@ export function InPageNavigation({
       <div className="bg-krds-white p-6">
         {/* Header */}
         <div className="mb-5 pb-4 border-b border-krds-gray-20">
-          <p className="text-[13px] font-medium text-krds-gray-70 m-0 mb-2 tracking-tight">
+          <p className="text-krds-body-sm font-medium text-krds-gray-70 m-0 mb-2 tracking-tight">
             {caption}
           </p>
           <p className="text-lg font-bold text-krds-gray-90 m-0 leading-[1.4] tracking-tight">
@@ -224,7 +224,7 @@ export function InPageNavigation({
             </button>
             {action.info && (
               <p
-                className="text-[13px] text-krds-gray-70 mt-2 mb-0 text-center leading-[1.4]"
+                className="text-krds-body-sm text-krds-gray-70 mt-2 mb-0 text-center leading-[1.4]"
                 dangerouslySetInnerHTML={{ __html: action.info }}
               />
             )}

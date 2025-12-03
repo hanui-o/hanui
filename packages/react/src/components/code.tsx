@@ -18,9 +18,9 @@ export interface CodeProps extends React.HTMLAttributes<HTMLElement> {
 
 const sizeStyles = {
   // 인라인 코드 크기 스타일
-  sm: 'text-xs px-1 py-0.5',
-  default: 'text-sm px-1.5 py-0.5',
-  lg: 'text-base px-2 py-1',
+  sm: 'text-krds-body-xs px-1 py-0.5',
+  default: 'text-krds-body-sm px-1.5 py-0.5',
+  lg: 'text-krds-body-md px-2 py-1',
 } as const;
 
 export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴포넌트 (인라인/블록, Syntax highlighting, 복사 기능)
@@ -84,7 +84,7 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
           {fileName && (
             <div className="flex items-center gap-2 px-4 py-2 bg-krds-gray-90 border-b border-krds-gray-70 rounded-t-lg">
               <File className="w-3.5 h-3.5 text-krds-gray-40" />
-              <span className="text-xs text-krds-gray-40 font-mono">
+              <span className="text-krds-body-xs text-krds-gray-40 font-mono">
                 {fileName}
               </span>
             </div>

@@ -192,7 +192,7 @@ export function HeaderWithMegaMenuTailwind({
       )}
 
       {/* Branding + MegaMenu + Actions (Inline) */}
-      <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex items-center justify-between py-2 lg:py-4 gap-2">
+      <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex items-center justify-between py-2 lg:pt-2 lg:pb-3 gap-2">
         {/* Logo */}
         <div className="flex items-center">
           <a
@@ -215,7 +215,7 @@ export function HeaderWithMegaMenuTailwind({
         </div>
 
         {/* MegaMenu - Inline */}
-        <MegaMenu columns={megaColumns} className="hidden lg:block" />
+        <MegaMenu columns={megaColumns} />
 
         {/* Actions */}
         <div className="inline-flex gap-3 md:gap-0">

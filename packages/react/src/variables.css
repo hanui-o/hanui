@@ -326,6 +326,51 @@
   ); /* 기본 모드: 10, 선명한 화면 모드: 90 */
 }
 
+/* ============================================
+ * KRDS Responsive Typography
+ * 모바일 기본값 → PC(1024px 이상)에서 변경
+ * ============================================ */
+
+:root {
+  /* Display (모바일 기본값) */
+  --krds-fs-display-lg: 44px; /* PC: 60px */
+  --krds-fs-display-md: 32px; /* PC: 44px */
+  --krds-fs-display-sm: 28px; /* PC: 36px */
+
+  /* Heading (모바일 기본값) */
+  --krds-fs-heading-xl: 28px; /* PC: 40px */
+  --krds-fs-heading-lg: 24px; /* PC: 32px */
+  --krds-fs-heading-md: 22px; /* PC: 24px */
+  --krds-fs-heading-sm: 19px; /* 고정 */
+  --krds-fs-heading-xs: 17px; /* 고정 */
+  --krds-fs-heading-xxs: 15px; /* 고정 */
+
+  /* Navigation (모바일 기본값) */
+  --krds-fs-nav-title-lg: 22px; /* PC: 24px */
+  --krds-fs-nav-title-sm: 17px; /* PC: 19px */
+  --krds-fs-nav-depth-md: 17px; /* 고정 */
+  --krds-fs-nav-depth-sm: 15px; /* 고정 */
+}
+
+/* PC (1024px 이상) */
+@media (min-width: 1024px) {
+  :root {
+    /* Display */
+    --krds-fs-display-lg: 60px;
+    --krds-fs-display-md: 44px;
+    --krds-fs-display-sm: 36px;
+
+    /* Heading */
+    --krds-fs-heading-xl: 40px;
+    --krds-fs-heading-lg: 32px;
+    --krds-fs-heading-md: 24px;
+
+    /* Navigation */
+    --krds-fs-nav-title-lg: 24px;
+    --krds-fs-nav-title-sm: 19px;
+  }
+}
+
 .dark {
   /* Base Colors - 순수 흰색/검은색 (모드에 따라 반전) */
   --krds-white: #000000; /* 다크 모드: 검은색 */

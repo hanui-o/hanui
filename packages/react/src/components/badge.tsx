@@ -44,7 +44,7 @@ const badgeVariants = cva(
       },
       size: {
         md: 'text-[15px] h-6 px-2 rounded-[4px]',
-        lg: 'text-[17px] h-8 px-2.5 rounded-[4px]',
+        lg: 'text-krds-body-md h-8 px-2.5 rounded-[4px]',
       },
       shape: {
         rounded: '',

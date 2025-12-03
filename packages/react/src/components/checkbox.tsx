@@ -150,7 +150,7 @@ export const Checkbox = React.forwardRef<
         <label
           htmlFor={checkboxId}
           className={cn(
-            'text-base text-krds-gray-90 cursor-pointer select-none',
+            'text-krds-body-md text-krds-gray-90 cursor-pointer select-none',
             finalDisabled && 'cursor-not-allowed opacity-60'
           )}
         >
@@ -303,7 +303,7 @@ export const CheckboxGroupItem = React.forwardRef<
       <label
         htmlFor={value}
         className={cn(
-          'text-base text-krds-gray-90 cursor-pointer select-none',
+          'text-krds-body-md text-krds-gray-90 cursor-pointer select-none',
           isDisabled && 'cursor-not-allowed opacity-60'
         )}
       >
