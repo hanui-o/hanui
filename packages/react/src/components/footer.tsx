@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { ChevronRight, X } from 'lucide-react';
+import { ChevronRight, X, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from './button';
+import { List, ListItem } from './list';
 
 export interface FooterProps {
   className?: string;
@@ -43,42 +45,82 @@ const BlogIcon = () => (
   </svg>
 );
 
-// 관련 사이트
+// 관련 사이트 (일반 직장인 시리즈)
 const RELATED_SITES = [
   {
     id: 'family-sites',
-    title: '가족 사이트',
+    title: '출근길 사이트',
     links: [
-      { name: '건강iN', url: '#' },
-      { name: 'The건강보험', url: '#' },
-      { name: '요양기관업무포털', url: '#' },
+      { name: '지하철 환승 마스터', url: '#' },
+      { name: '버스 빈자리 예측기', url: '#' },
+      { name: '출근 5분전 알람 무시자 모임', url: '#' },
+      { name: '엘리베이터 버튼 먼저 누르기 협회', url: '#' },
+      { name: '지각 변명 생성기', url: '#' },
+      { name: '출근길 커피 할인 정보', url: '#' },
+      { name: '월요일이 싫은 사람들', url: '#' },
+      { name: '9시 출근 8시 59분 도착 클럽', url: '#' },
+      { name: '졸린 눈 비비기 연구소', url: '#' },
+      { name: '출퇴근 시간 가장 짧은 회사 찾기', url: '#' },
+      { name: '재택근무 꿈꾸는 사람들', url: '#' },
+      { name: '아침밥 포기한 직장인 연합', url: '#' },
+      { name: '출근하기 싫을 때 보는 사이트', url: '#' },
     ],
   },
   {
     id: 'service-sites',
-    title: '서비스 사이트',
+    title: '점심시간 사이트',
     links: [
-      { name: '민원신청', url: '#' },
-      { name: '증명서발급', url: '#' },
-      { name: '건강검진', url: '#' },
+      { name: '오늘 뭐 먹지 결정기', url: '#' },
+      { name: '회사 근처 맛집 비밀 지도', url: '#' },
+      { name: '점심값 아끼는 도시락 레시피', url: '#' },
+      { name: '배달앱 쿠폰 알리미', url: '#' },
+      { name: '점심 메뉴 투표 시스템', url: '#' },
+      { name: '빠른 식사 챌린지', url: '#' },
+      { name: '혼밥러 맛집 가이드', url: '#' },
+      { name: '점심시간에 낮잠 자기', url: '#' },
+      { name: '식후 커피 타임 지키기 운동', url: '#' },
+      { name: '메뉴 고르다 점심시간 다 가는 사람들', url: '#' },
+      { name: '월급날 점심 플렉스 모임', url: '#' },
+      { name: '다이어트 내일부터 하는 사람들', url: '#' },
+      { name: '점심약속 없는 날 우울한 직장인', url: '#' },
     ],
   },
   {
     id: 'info-sites',
-    title: '정보 사이트',
+    title: '야근 사이트',
     links: [
-      { name: '건강정보', url: '#' },
-      { name: '질병정보', url: '#' },
-      { name: '의학정보', url: '#' },
+      { name: '야근 시 먹을 것 배달 가이드', url: '#' },
+      { name: '퇴근 버튼 누르기 타이밍 연구소', url: '#' },
+      { name: '야근수당 계산기', url: '#' },
+      { name: '상사보다 먼저 퇴근하는 용기', url: '#' },
+      { name: '야근할 때 듣는 플레이리스트', url: '#' },
+      { name: '6시 칼퇴 성공 후기', url: '#' },
+      { name: '퇴근 후 치맥 동호회', url: '#' },
+      { name: '야근 핑계 만들기 대회', url: '#' },
+      { name: '회사 에어컨 온도 전쟁 중재', url: '#' },
+      { name: '퇴근 알림 설정하기', url: '#' },
+      { name: '야근하는 척 하기 스킬', url: '#' },
+      { name: '금요일 저녁 6시의 행복', url: '#' },
+      { name: '막차 시간 알리미', url: '#' },
     ],
   },
   {
     id: 'external-sites',
-    title: '외부 사이트',
+    title: '월급날 사이트',
     links: [
-      { name: '보건복지부', url: '#' },
-      { name: '질병관리청', url: '#' },
-      { name: '식품의약품안전처', url: '#' },
+      { name: '월급 들어오자마자 사라지는 이유', url: '#' },
+      { name: '월급날 플렉스 후회 모음', url: '#' },
+      { name: '통장 잔고 보지 않기 챌린지', url: '#' },
+      { name: '25일까지 버티기 서바이벌', url: '#' },
+      { name: '짠테크 꿀팁 공유', url: '#' },
+      { name: '급여명세서 해독 가이드', url: '#' },
+      { name: '세금 어디로 가는지 추적기', url: '#' },
+      { name: '월급 오르면 하고 싶은 것 리스트', url: '#' },
+      { name: '로또 당첨 시 퇴사 시뮬레이션', url: '#' },
+      { name: '월급 루팡이 되고 싶은 직장인', url: '#' },
+      { name: '저축 좀 해야겠다 생각만 하는 모임', url: '#' },
+      { name: '퇴직금 계산기 (수시로 확인용)', url: '#' },
+      { name: '연봉 협상 한마디도 못하는 사람들', url: '#' },
     ],
   },
 ];
@@ -135,7 +177,7 @@ export function Footer({
       <div className="border-y border-krds-gray-10 bg-white">
         <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex flex-col lg:flex-row">
           <nav
-            className="flex flex-col lg:flex-row w-full border-l border-krds-gray-10 max-md:border-l-0"
+            className="flex flex-col lg:flex-row w-full border-x border-krds-gray-10 border-l-0 md:border-l divide-x divide-krds-gray-10"
             aria-label="관련 사이트"
           >
             {RELATED_SITES.map((site, index) => (
@@ -145,38 +187,37 @@ export function Footer({
                 onOpenChange={(open) => setOpenModal(open ? site.id : null)}
               >
                 <Dialog.Trigger asChild>
-                  <button
+                  <Button
+                    variant="ghost"
+                    iconRight={<Plus className="w-5 h-5" />}
                     className={cn(
-                      'inline-flex justify-between items-center w-full gap-3 h-[calc(4rem-2px)] px-8 bg-white border-none border-r border-krds-gray-10 transition-all duration-200 cursor-pointer text-left',
-                      'hover:bg-krds-primary-5 active:bg-krds-primary-10 focus:bg-krds-primary-10',
-                      'max-md:text-sm max-md:min-h-[calc(3.5rem-2px)] max-md:px-6 max-md:border-r-0',
+                      'justify-between w-full h-14 px-6 rounded-none font-normal text-krds-gray-90',
+                      'hover:bg-krds-primary-5 active:bg-krds-primary-10',
+                      'text-sm min-h-[calc(3.5rem-2px)] md:text-base md:min-h-14',
                       index !== 0 &&
-                        'max-md:border-t max-md:border-t-krds-gray-10'
+                        'border-t border-t-krds-gray-10 md:border-t-0'
                     )}
                     title={`${site.title} 메뉴`}
                   >
                     {site.title}
-                    <ChevronRight
-                      className="w-6 h-6 flex-shrink-0"
-                      aria-hidden="true"
-                    />
-                  </button>
+                  </Button>
                 </Dialog.Trigger>
 
                 <Dialog.Portal>
-                  <Dialog.Overlay className="fixed inset-0 bg-black/50 z-[1000] animate-in fade-in-0" />
-                  <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-xl w-[90%] max-w-[896px] max-h-[85vh] z-[1001] animate-in fade-in-0 zoom-in-95 max-md:w-[95%] max-md:max-h-[90vh]">
-                    <div className="flex justify-between items-center py-6 px-8 border-b border-krds-gray-10 max-md:py-5 max-md:px-6">
-                      <Dialog.Title className="text-xl font-bold text-krds-gray-90 m-0 max-md:text-lg">
+                  <Dialog.Overlay className="fixed inset-0 bg-krds-black/50 z-[1000] animate-in fade-in-0" />
+                  <Dialog.Content className="fixed inset-0 bg-krds-gray-5 z-[1001] animate-in fade-in-0 slide-in-from-bottom-4 flex flex-col">
+                    {/* Header */}
+                    <div className="flex justify-between items-center py-5 px-6 md:px-8 md:py-0">
+                      <Dialog.Title className="text-lg font-bold text-krds-gray-90 mt-40 md:text-krds-heading-md">
                         {site.title}
                       </Dialog.Title>
                       <Dialog.Close asChild>
-                        <button
-                          className="inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors"
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          iconLeft={<X className="w-10 h-10" />}
                           aria-label="닫기"
-                        >
-                          <X className="w-6 h-6" aria-hidden="true" />
-                        </button>
+                        />
                       </Dialog.Close>
                     </div>
 
@@ -184,22 +225,29 @@ export function Footer({
                       {site.title} 관련 사이트 목록
                     </Dialog.Description>
 
-                    <div className="p-8 overflow-y-auto max-h-[calc(85vh-5rem)] max-md:p-6 max-md:max-h-[calc(90vh-4.5rem)]">
-                      <ul className="list-none m-0 p-0 grid grid-cols-4 gap-6 max-lg:grid-cols-3 max-md:grid-cols-2 max-md:gap-4">
-                        {site.links.map((link) => (
-                          <li key={link.name} className="m-0">
-                            <a
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block p-4 text-krds-gray-70 no-underline border border-krds-gray-10 rounded-lg transition-all duration-200 text-center hover:text-krds-primary-60 hover:border-krds-primary-20 hover:bg-krds-primary-5"
+                    {/* Content */}
+                    <div className="flex-1 overflow-y-auto">
+                      <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-6 py-8 md:px-8 md:py-10">
+                        <List className="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-y-0">
+                          {site.links.map((link, linkIndex) => (
+                            <ListItem
+                              key={link.name}
+                              className="m-0 before:top-[21px]"
                             >
-                              {link.name}
-                              <span className="sr-only"> (새 창 열기)</span>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                              <a
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative flex items-center gap-2 py-3 px-2 -mx-2 text-krds-gray-70 no-underline transition-colors hover:text-krds-gray-90 focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2 rounded before:content-[''] before:absolute before:inset-y-0 before:-left-6 before:right-4 before:rounded before:bg-krds-gray-10 before:opacity-0 before:transition-opacity hover:before:opacity-100 before:-z-10"
+                                autoFocus={linkIndex === 0}
+                              >
+                                {link.name}
+                                <span className="sr-only"> (새 창 열기)</span>
+                              </a>
+                            </ListItem>
+                          ))}
+                        </List>
+                      </div>
                     </div>
                   </Dialog.Content>
                 </Dialog.Portal>
@@ -210,7 +258,7 @@ export function Footer({
       </div>
 
       {/* Main Footer Content */}
-      <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex flex-col gap-8 py-10 lg:gap-12 max-lg:gap-8 max-lg:py-8 max-md:py-6">
+      <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex flex-col py-6 gap-8 md:py-8 lg:py-10 lg:gap-12">
         {/* Logo */}
         <div className="flex items-center">
           <a
@@ -227,9 +275,9 @@ export function Footer({
         </div>
 
         {/* Content Section */}
-        <div className="flex gap-8 lg:justify-between lg:flex-1 max-lg:gap-5 max-md:flex-col">
+        <div className="flex flex-col gap-5 md:flex-row md:gap-8 lg:justify-between lg:flex-1">
           {/* Info Section */}
-          <div className="flex flex-col flex-1 gap-5 max-lg:flex-[3] max-md:text-sm">
+          <div className="flex flex-col flex-1 gap-5 text-sm md:text-base lg:flex-[3]">
             <p className="m-0">
               (26464) 강원특별자치도 원주시 건강로 32(반곡동) 국민건강보험공단
             </p>
@@ -237,10 +285,10 @@ export function Footer({
               {CONTACT_INFO.map((contact) => (
                 <li
                   key={contact.label}
-                  className="flex items-center max-lg:flex-col max-lg:items-start max-md:flex-wrap max-md:break-all"
+                  className="flex flex-col items-start flex-wrap break-all md:flex-row md:flex-nowrap md:break-normal lg:items-center"
                 >
                   <strong className="font-bold">{contact.label}</strong>
-                  <span className="font-normal ml-2 max-lg:ml-0">
+                  <span className="font-normal ml-0 lg:ml-2">
                     {contact.description}
                   </span>
                 </li>
@@ -249,14 +297,14 @@ export function Footer({
           </div>
 
           {/* Links Section */}
-          <div className="flex flex-col flex-shrink-0 gap-12 lg:w-[23.5%] max-md:gap-10">
+          <div className="flex flex-col flex-shrink-0 gap-10 md:gap-12 lg:w-[23.5%]">
             {/* Quick Links */}
             <nav className="flex flex-col gap-2" aria-label="바로가기">
               {QUICK_LINKS.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="inline-flex items-center gap-2 text-krds-gray-90 font-medium no-underline hover:underline hover:text-krds-primary-50 max-md:text-sm transition-colors"
+                  className="inline-flex items-center gap-2 text-sm text-krds-gray-90 font-medium no-underline hover:underline hover:text-krds-primary-50 md:text-base transition-colors"
                 >
                   {link.label}
                   <ChevronRight className="w-5 h-5" aria-hidden="true" />
@@ -286,8 +334,8 @@ export function Footer({
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col pt-6 gap-12 border-t border-krds-gray-10 max-md:text-sm">
-          <div className="flex justify-between items-center w-full max-md:flex-col max-md:items-start max-md:gap-6">
+        <div className="flex flex-col pt-6 gap-12 border-t border-krds-gray-10 text-sm md:text-base">
+          <div className="flex flex-col items-start gap-6 w-full md:flex-row md:items-center md:justify-between md:gap-0">
             {/* Footer Menu */}
             <nav
               className="inline-flex flex-wrap gap-3"
@@ -298,7 +346,7 @@ export function Footer({
                   key={menu.label}
                   href={menu.href}
                   className={cn(
-                    'text-sm text-krds-gray-90 no-underline hover:underline font-medium transition-colors',
+                    'text-krds-body-sm text-krds-gray-90 no-underline hover:underline font-medium transition-colors',
                     menu.highlighted && 'text-krds-error font-bold'
                   )}
                 >
@@ -308,7 +356,7 @@ export function Footer({
             </nav>
 
             {/* Copyright */}
-            <p className="text-xs text-krds-gray-70 m-0">
+            <p className="text-krds-body-sm text-krds-gray-70 m-0">
               © 2023 National Health Insurance Service. All rights reserved.
               The Government of the Republic of Korea. All rights reserved.
             </p>
@@ -325,7 +373,7 @@ export function Footer({
             >
               <span className="sr-only">대한민국정부</span>
             </span>
-            <span className="text-sm text-krds-gray-90 whitespace-nowrap">
+            <span className="text-krds-body-sm text-krds-gray-90 whitespace-nowrap">
               이 누리집은 정부 누리집입니다.
             </span>
           </div>

@@ -166,10 +166,9 @@ export function InPageNavigation({
   return (
     <div
       className={cn(
-        'relative w-full',
-        'lg:fixed lg:top-[120px] lg:right-0 lg:w-[280px] lg:z-[100]',
+        'relative w-full mb-8',
+        'lg:fixed lg:top-[120px] lg:right-0 lg:w-[280px] lg:z-[100] lg:mb-0',
         'xl:w-[320px]',
-        'max-lg:static max-lg:w-full max-lg:mb-8',
         'print:hidden',
         className
       )}

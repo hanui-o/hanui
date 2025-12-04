@@ -75,7 +75,7 @@ export function Identifier({
       )}
       <span
         className={cn(
-          'text-[15px] whitespace-nowrap max-md:whitespace-normal max-md:break-keep',
+          'text-[15px] whitespace-normal break-keep md:whitespace-nowrap',
           variant === 'dark' ? 'text-krds-gray-30' : 'text-krds-gray-70'
         )}
       >

@@ -1,39 +1,26 @@
 'use client';
 
 import React from 'react';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import * as Dialog from '@radix-ui/react-dialog';
-import {
-  ChevronDown,
-  Search,
-  Menu,
-  X,
-  SquareArrowOutUpRight,
-} from 'lucide-react';
+import { Search, Menu, X, SquareArrowOutUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Container } from './container';
 import { Button } from './button';
 import { Logo } from './logo';
 import { NavigationMenu, NavigationMenuItem } from './menu-navigation';
+import {
+  SearchModal,
+  SAMPLE_POPULAR_KEYWORDS,
+  SAMPLE_RECENT_KEYWORDS,
+} from './search-modal';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from './dropdown-menu';
 
 // Re-export for convenience
 export type { NavigationMenuItem } from './menu-navigation';
-
-// SearchInput 컴포넌트 - 검색 다이얼로그에서 포커스 관리
-const SearchInput = ({ className }: { className?: string }) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  React.useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-  return (
-    <input
-      ref={inputRef}
-      type="search"
-      placeholder="검색어를 입력하세요"
-      className={className}
-    />
-  );
-};
 
 export interface UtilityLink {
   label: string;
@@ -93,8 +80,6 @@ export function HeaderWithNavigationTailwind({
   scrollThreshold = 150,
 }: HeaderWithNavigationTailwindProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [isUtilityDropdownOpen, setIsUtilityDropdownOpen] =
-    React.useState(false);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
 
@@ -151,51 +136,34 @@ export function HeaderWithNavigationTailwind({
               {relatedSites && relatedSites.length > 0 && (
                 <li className="relative flex items-center">
                   <span className="inline-flex w-px h-3 bg-krds-gray-20" />
-                  <DropdownMenu.Root
-                    open={isUtilityDropdownOpen}
-                    onOpenChange={setIsUtilityDropdownOpen}
-                    modal={false}
-                  >
-                    <DropdownMenu.Trigger asChild>
-                      <Button
-                        variant="ghost"
-                        className="min-w-0 h-auto py-2 px-3 text-sm font-normal text-krds-gray-90 hover:text-krds-primary-60 hover:bg-transparent"
-                        aria-label="관련사이트 메뉴"
-                        onMouseEnter={() => setIsUtilityDropdownOpen(true)}
-                        onMouseLeave={() => setIsUtilityDropdownOpen(false)}
-                      >
-                        관련사이트
-                        <ChevronDown className="w-4 h-4" aria-hidden="true" />
-                      </Button>
-                    </DropdownMenu.Trigger>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3">
+                      관련사이트
+                    </DropdownMenuTrigger>
 
-                    <DropdownMenu.Portal>
-                      <DropdownMenu.Content
-                        className="mt-[-4px] bg-white/[0.98] border border-krds-gray-20 rounded-xl shadow-lg min-w-[140px] py-2.5 z-[100] backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2"
-                        sideOffset={5}
-                        align="end"
-                        onMouseEnter={() => setIsUtilityDropdownOpen(true)}
-                        onMouseLeave={() => setIsUtilityDropdownOpen(false)}
-                      >
-                        {relatedSites.map((site) => (
-                          <DropdownMenu.Item key={site.label} asChild>
-                            <a
-                              href={site.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 py-1.5 px-2.5 mx-2 no-underline rounded-lg whitespace-nowrap cursor-pointer outline-none hover:bg-krds-primary-5 data-[highlighted]:bg-krds-primary-5 data-[highlighted]:text-krds-primary-60 transition-colors"
-                            >
-                              {site.label}
-                              <SquareArrowOutUpRight
-                                className="w-3 h-3"
-                                aria-hidden="true"
-                              />
-                            </a>
-                          </DropdownMenu.Item>
-                        ))}
-                      </DropdownMenu.Content>
-                    </DropdownMenu.Portal>
-                  </DropdownMenu.Root>
+                    <DropdownMenuContent
+                      className="rounded-xl min-w-[140px] py-2.5 z-[100]"
+                      sideOffset={5}
+                      align="end"
+                    >
+                      {relatedSites.map((site) => (
+                        <a
+                          key={site.label}
+                          href={site.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <DropdownMenuItem className="flex items-center gap-1 text-krds-body-sm">
+                            {site.label}
+                            <SquareArrowOutUpRight
+                              className="w-3 h-3"
+                              aria-hidden="true"
+                            />
+                          </DropdownMenuItem>
+                        </a>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </li>
               )}
             </ul>
@@ -213,43 +181,25 @@ export function HeaderWithNavigationTailwind({
 
         {/* Actions */}
         <div className="inline-flex gap-3 md:gap-0">
-          <Dialog.Root open={isSearchOpen} onOpenChange={setIsSearchOpen}>
-            <Dialog.Trigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="min-w-0 hover:bg-krds-gray-10"
-                aria-label="검색"
-              >
-                <Search className="w-6 h-6" aria-hidden="true" />
-              </Button>
-            </Dialog.Trigger>
-            <Dialog.Portal>
-              <Dialog.Overlay className="fixed inset-0 bg-black/50 z-[999] backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0" />
-              <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] bg-white rounded-2xl shadow-2xl p-8 z-[1000] focus:outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 md:w-[95vw] md:p-5">
-                <Dialog.Title className="text-2xl font-bold text-krds-gray-90 mb-5 md:text-xl md:mb-4">
-                  검색
-                </Dialog.Title>
-                <div className="relative flex items-center gap-3 py-4 px-5 bg-krds-primary-5 rounded-xl border-2 border-transparent transition-colors focus-within:border-krds-primary-60 focus-within:bg-white">
-                  <Search
-                    className="w-6 h-6 text-krds-gray-60 flex-shrink-0"
-                    aria-hidden="true"
-                  />
-                  <SearchInput className="flex-1 border-none bg-transparent text-lg text-krds-gray-90 outline-none placeholder:text-krds-gray-50 md:text-base" />
-                </div>
-                <Dialog.Close asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute top-5 right-5 min-w-0 hover:bg-krds-gray-10 md:top-4 md:right-4"
-                    aria-label="닫기"
-                  >
-                    <X className="w-6 h-6 md:w-5 md:h-5" aria-hidden="true" />
-                  </Button>
-                </Dialog.Close>
-              </Dialog.Content>
-            </Dialog.Portal>
-          </Dialog.Root>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="min-w-0 hover:bg-krds-gray-10"
+            aria-label="검색"
+            onClick={() => setIsSearchOpen(true)}
+          >
+            <Search className="w-6 h-6" aria-hidden="true" />
+          </Button>
+          <SearchModal
+            open={isSearchOpen}
+            onOpenChange={setIsSearchOpen}
+            popularKeywords={SAMPLE_POPULAR_KEYWORDS}
+            recentKeywords={SAMPLE_RECENT_KEYWORDS}
+            onSearch={(value) => {
+              console.log('검색:', value);
+              setIsSearchOpen(false);
+            }}
+          />
           <Button
             variant="ghost"
             size="icon"

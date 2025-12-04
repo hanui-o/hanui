@@ -181,7 +181,7 @@ export const SearchModal = React.forwardRef<HTMLDivElement, SearchModalProps>(
                 {/* modal contents (full type) */}
                 <div className="flex flex-col relative overflow-y-auto w-full p-0">
                   {/* 통합검색 */}
-                  <div className="max-w-[860px] w-full mx-auto px-6 pt-24 pb-12 max-md:pt-16 max-md:px-4">
+                  <div className="max-w-[860px] w-full mx-auto px-4 pt-16 pb-12 md:px-6 md:pt-24">
                     {/* 통합검색 정보입력 영역 */}
                     <FormField
                       id="search-total-input-id"
@@ -189,7 +189,7 @@ export const SearchModal = React.forwardRef<HTMLDivElement, SearchModalProps>(
                     >
                       {/* 검색어 타이틀 */}
                       <div className="flex items-center justify-between mb-4">
-                        <FormLabel className="text-krds-heading-md font-bold text-krds-gray-90 max-md:text-krds-heading-sm">
+                        <FormLabel className="text-krds-heading-sm font-bold text-krds-gray-90 md:text-krds-heading-md">
                           검색어를 입력해주세요
                         </FormLabel>
                         <a
@@ -212,12 +212,12 @@ export const SearchModal = React.forwardRef<HTMLDivElement, SearchModalProps>(
                             ref={inputRef}
                             type="text"
                             className={cn(
-                              'w-full h-16 px-6 pr-16 rounded-xl',
+                              'w-full px-6 pr-16 rounded-xl',
                               'bg-white border border-krds-gray-20',
-                              'text-krds-body-lg text-krds-gray-90 placeholder:text-krds-gray-50',
+                              'text-krds-body-md text-krds-gray-90 placeholder:text-krds-gray-50 md:text-krds-body-lg',
                               'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:border-transparent',
                               'transition-all duration-200',
-                              'max-md:h-14 max-md:text-krds-body-md'
+                              'h-14 md:h-16'
                             )}
                             id="search-total-input-id"
                             placeholder="검색어를 입력해주세요."
@@ -255,7 +255,7 @@ export const SearchModal = React.forwardRef<HTMLDivElement, SearchModalProps>(
                     <div>
                       {!showSuggestions ? (
                         /* 검색어 입력 전 - 2컬럼 레이아웃 */
-                        <div className="flex gap-8 max-md:flex-col max-md:gap-6">
+                        <div className="flex flex-col gap-6 md:flex-row md:gap-8">
                           {/* 인기검색어 */}
                           <div className="flex-1">
                             <h3 className="text-krds-body-lg font-bold text-krds-gray-90 mb-4">
@@ -322,7 +322,7 @@ export const SearchModal = React.forwardRef<HTMLDivElement, SearchModalProps>(
                           </div>
 
                           {/* 최근검색어 */}
-                          <div className="flex-1 flex flex-col border-l border-krds-gray-20 pl-8 max-md:border-l-0 max-md:pl-0 max-md:border-t max-md:pt-6">
+                          <div className="flex-1 flex flex-col border-t border-krds-gray-20 pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
                             <h3 className="text-krds-body-lg font-bold text-krds-gray-90 mb-4">
                               최근검색어
                             </h3>
@@ -421,16 +421,12 @@ export const SearchModal = React.forwardRef<HTMLDivElement, SearchModalProps>(
                     size="icon"
                     className={cn(
                       'absolute z-[901]',
-                      'top-7 right-7',
-                      'w-14 h-14 min-w-0',
-                      'max-md:top-6 max-md:right-6 max-md:w-12 max-md:h-12'
+                      'top-6 right-6 md:top-7 md:right-7',
+                      'w-12 h-12 min-w-0 md:w-14 md:h-14'
                     )}
                     aria-label="닫기"
                   >
-                    <X
-                      className="w-10 h-10 max-md:w-5 max-md:h-5"
-                      aria-hidden="true"
-                    />
+                    <X className="w-5 h-5 md:w-10 md:h-10" aria-hidden="true" />
                   </Button>
                 </Dialog.Close>
                 {/* //close button */}

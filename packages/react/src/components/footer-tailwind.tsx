@@ -138,7 +138,7 @@ export function Footer({
       <div className="border-y border-krds-gray-10 bg-white">
         <Container className="flex flex-col lg:flex-row">
           <nav
-            className="flex flex-col lg:flex-row w-full border-l border-krds-gray-10 max-md:border-l-0"
+            className="flex flex-col lg:flex-row w-full border-l-0 md:border-l md:border-krds-gray-10"
             aria-label="관련 사이트"
           >
             {RELATED_SITES.map((site, index) => (
@@ -152,9 +152,9 @@ export function Footer({
                     className={cn(
                       'inline-flex justify-between items-center w-full gap-3 h-[calc(4rem-2px)] px-8 bg-white border-none border-r border-krds-gray-10 transition-all duration-200 cursor-pointer text-left',
                       'hover:bg-krds-primary-5 active:bg-krds-primary-10 focus:bg-krds-primary-10',
-                      'max-md:text-krds-body-sm max-md:min-h-[calc(3.5rem-2px)] max-md:px-6 max-md:border-r-0',
+                      'text-krds-body-sm min-h-[calc(3.5rem-2px)] px-6 border-r-0 md:text-base md:min-h-[calc(4rem-2px)] md:px-8 md:border-r',
                       index !== 0 &&
-                        'max-md:border-t max-md:border-t-krds-gray-10'
+                        'border-t border-t-krds-gray-10 md:border-t-0'
                     )}
                     title={`${site.title} 메뉴`}
                   >
@@ -168,9 +168,9 @@ export function Footer({
 
                 <Dialog.Portal>
                   <Dialog.Overlay className="fixed inset-0 bg-black/50 z-[1000] animate-in fade-in-0" />
-                  <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-xl w-[90%] max-w-[896px] max-h-[85vh] z-[1001] animate-in fade-in-0 zoom-in-95 max-md:w-[95%] max-md:max-h-[90vh]">
-                    <div className="flex justify-between items-center py-6 px-8 border-b border-krds-gray-10 max-md:py-5 max-md:px-6">
-                      <Dialog.Title className="text-xl font-bold text-krds-gray-90 m-0 max-md:text-lg">
+                  <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-xl w-[95%] max-w-[896px] max-h-[90vh] z-[1001] animate-in fade-in-0 zoom-in-95 md:w-[90%] md:max-h-[85vh]">
+                    <div className="flex justify-between items-center py-5 px-6 border-b border-krds-gray-10 md:py-6 md:px-8">
+                      <Dialog.Title className="text-lg font-bold text-krds-gray-90 m-0 md:text-xl">
                         {site.title}
                       </Dialog.Title>
                       <Dialog.Close asChild>
@@ -189,8 +189,8 @@ export function Footer({
                       {site.title} 관련 사이트 목록
                     </Dialog.Description>
 
-                    <div className="p-8 overflow-y-auto max-h-[calc(85vh-5rem)] max-md:p-6 max-md:max-h-[calc(90vh-4.5rem)]">
-                      <ul className="list-none m-0 p-0 grid grid-cols-4 gap-6 max-lg:grid-cols-3 max-md:grid-cols-2 max-md:gap-4">
+                    <div className="p-6 overflow-y-auto max-h-[calc(90vh-4.5rem)] md:p-8 md:max-h-[calc(85vh-5rem)]">
+                      <ul className="list-none m-0 p-0 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
                         {site.links.map((link) => (
                           <li key={link.name} className="m-0">
                             <a
@@ -215,19 +215,19 @@ export function Footer({
       </div>
 
       {/* Main Footer Content */}
-      <Container className="flex flex-col gap-8 py-10 lg:gap-12 max-lg:gap-8 max-lg:py-8 max-md:py-6">
+      <Container className="flex flex-col gap-8 py-6 md:py-8 lg:gap-12 lg:py-10">
         {/* Logo - Footer에서는 슬로건 없이 사용 */}
         <Logo
           src={logo}
           alt={logoAlt}
           href={logoHref}
-          logoClassName="w-[137px] h-14 max-md:w-[99px] max-md:h-8"
+          logoClassName="w-[99px] h-8 md:w-[137px] md:h-14"
         />
 
         {/* Content Section */}
-        <div className="flex gap-8 lg:justify-between lg:flex-1 max-lg:gap-5 max-md:flex-col">
+        <div className="flex flex-col gap-5 md:flex-row md:gap-8 lg:justify-between lg:flex-1">
           {/* Info Section */}
-          <div className="flex flex-col flex-1 gap-5 max-lg:flex-[3] max-md:text-sm">
+          <div className="flex flex-col flex-1 gap-5 text-sm md:text-base lg:flex-1">
             <p className="m-0">
               (26464) 강원특별자치도 원주시 건강로 32(반곡동) 국민건강보험공단
             </p>
@@ -235,10 +235,10 @@ export function Footer({
               {CONTACT_INFO.map((contact) => (
                 <li
                   key={contact.label}
-                  className="flex items-center max-lg:flex-col max-lg:items-start max-md:flex-wrap max-md:break-all"
+                  className="flex flex-wrap break-all flex-col items-start lg:flex-row lg:items-center"
                 >
                   <strong className="font-bold">{contact.label}</strong>
-                  <span className="font-normal ml-2 max-lg:ml-0">
+                  <span className="font-normal ml-0 lg:ml-2">
                     {contact.description}
                   </span>
                 </li>
@@ -247,14 +247,14 @@ export function Footer({
           </div>
 
           {/* Links Section */}
-          <div className="flex flex-col flex-shrink-0 gap-12 lg:w-[23.5%] max-md:gap-10">
+          <div className="flex flex-col flex-shrink-0 gap-10 md:gap-12 lg:w-[23.5%]">
             {/* Quick Links */}
             <nav className="flex flex-col gap-2" aria-label="바로가기">
               {QUICK_LINKS.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="flex items-center gap-2 text-krds-gray-90 no-underline hover:underline max-md:p-0 max-md:text-sm"
+                  className="flex items-center gap-2 text-sm text-krds-gray-90 no-underline hover:underline md:text-base"
                 >
                   {link.label}{' '}
                   <ChevronRight className="w-5 h-5" aria-hidden="true" />
@@ -264,7 +264,7 @@ export function Footer({
 
             {/* SNS Links */}
             <nav
-              className="flex flex-wrap gap-3 max-lg:gap-2"
+              className="flex flex-wrap gap-2 lg:gap-3"
               aria-label="소셜 미디어"
             >
               {SNS_LINKS.map((sns) => {
@@ -290,7 +290,7 @@ export function Footer({
       {/* Bottom Section */}
       <div className="border-t border-krds-gray-10">
         <Container className="flex flex-col pt-6 gap-12">
-          <div className="flex justify-between items-center w-full max-md:flex-col max-md:items-start max-md:gap-6">
+          <div className="flex flex-col items-start gap-6 w-full md:flex-row md:justify-between md:items-center md:gap-0">
             {/* Footer Menu */}
             <nav
               className="inline-flex flex-wrap gap-3"

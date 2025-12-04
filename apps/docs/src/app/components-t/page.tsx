@@ -116,17 +116,37 @@ import {
 // ============================================================================
 // Header 컴포넌트
 // ============================================================================
+// 개발자의 거짓말 시리즈 🤥
 const navigationItems: NavigationMenuItem[] = [
-  { label: '홈', href: '/', active: true },
-  { label: '소개', href: '/about' },
+  { label: '금방 돼', href: '/', active: true },
   {
-    label: '서비스',
+    label: '내 로컬에선 돼',
     children: [
-      { label: '건강검진', href: '/services/checkup' },
-      { label: '보험료 조회', href: '/services/premium' },
+      { label: '재부팅 해봐', href: '/lies/reboot' },
+      { label: '캐시 지워봐', href: '/lies/cache' },
+      { label: '브랜치 다시 받아봐', href: '/lies/branch' },
+      { label: '환경변수 확인해봐', href: '/lies/env' },
     ],
   },
-  { label: '고객지원', href: '/support' },
+  {
+    label: '테스트 다 했어',
+    children: [
+      { label: '수동으로 확인함', href: '/lies/manual-test' },
+      { label: '시간 없어서 스킵', href: '/lies/no-time' },
+      { label: '어차피 QA가 찾음', href: '/lies/qa-will-find' },
+      { label: 'console.log만 찍음', href: '/lies/console-log' },
+    ],
+  },
+  {
+    label: '리팩토링 예정',
+    children: [
+      { label: '일단 돌아가니까', href: '/lies/it-works' },
+      { label: '기술부채 이슈 생성', href: '/lies/tech-debt' },
+      { label: '다음 스프린트에', href: '/lies/next-sprint' },
+      { label: '누가 건드리면 그때', href: '/lies/someone-else' },
+    ],
+  },
+  { label: '거의 다 됐어', href: '/lies/almost-done' },
 ];
 
 const megaColumns: MegaMenuColumn[] = [
@@ -251,24 +271,20 @@ function FeedbackTab() {
         </CardHeader>
         <CardBody className="space-y-4">
           <Alert variant="info">
-            <Info className="h-4 w-4" />
             <AlertTitle>정보</AlertTitle>
             <AlertDescription>
               시스템 점검이 예정되어 있습니다.
             </AlertDescription>
           </Alert>
           <Alert variant="success">
-            <CheckCircle className="h-4 w-4" />
             <AlertTitle>성공</AlertTitle>
             <AlertDescription>저장이 완료되었습니다.</AlertDescription>
           </Alert>
           <Alert variant="warning">
-            <AlertTriangle className="h-4 w-4" />
             <AlertTitle>경고</AlertTitle>
             <AlertDescription>저장 공간이 부족합니다.</AlertDescription>
           </Alert>
           <Alert variant="error">
-            <AlertCircle className="h-4 w-4" />
             <AlertTitle>오류</AlertTitle>
             <AlertDescription>네트워크 연결이 끊어졌습니다.</AlertDescription>
           </Alert>
@@ -1253,8 +1269,11 @@ export default function TestComponentsPage() {
     <ToastProvider>
       <div>
         <Masthead />
-        {/* <HeaderWithNavigation navigationItems={navigationItems} /> */}
-        <HeaderWithMegaMenu megaColumns={megaColumns} stickyBehavior="auto" />
+        <HeaderWithNavigation
+          navigationItems={navigationItems}
+          stickyBehavior="auto"
+        />
+        {/* <HeaderWithMegaMenu megaColumns={megaColumns} stickyBehavior="auto" /> */}
 
         <Container>
           <Tabs defaultValue="feedback">
