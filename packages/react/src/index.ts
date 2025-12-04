@@ -246,6 +246,15 @@ export type {
   MegaMenuLink,
 } from './components/menu-mega';
 
+export { PanelMenu } from './components/menu-panel';
+export type {
+  PanelMenuProps,
+  PanelMenuItem,
+  PanelMenu2DepthItem,
+  PanelMenuLink,
+  PanelMenuSubContent,
+} from './components/menu-panel';
+
 export { SkipLink } from './components/skip-link';
 export type {
   SkipLinkProps,
@@ -262,6 +271,9 @@ export type {
 
 export { HeaderWithNavigation } from './components/header-with-navigation';
 export type { HeaderWithNavigationTailwindProps as HeaderWithNavigationProps } from './components/header-with-navigation';
+
+export { HeaderWithPanelMenu } from './components/header-with-panel-menu';
+export type { HeaderWithPanelMenuProps } from './components/header-with-panel-menu';
 
 // Header components (SCSS version)
 export { HeaderWithMegaMenuScss } from './components/Header/HeaderWithMegaMenu';

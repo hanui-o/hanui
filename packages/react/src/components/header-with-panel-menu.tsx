@@ -1,12 +1,23 @@
 'use client';
 
 import React from 'react';
-import { Search, Menu, X, SquareArrowOutUpRight, Check } from 'lucide-react';
+import {
+  Search,
+  Menu,
+  X,
+  SquareArrowOutUpRight,
+  Globe,
+  Eye,
+  Check,
+  LogIn,
+  UserPlus,
+  User,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Container } from './container';
 import { Button } from './button';
 import { Logo } from './logo';
-import { MegaMenu, MegaMenuColumn } from './menu-mega';
+import { PanelMenu, PanelMenuItem } from './menu-panel';
 import {
   SearchModal,
   SAMPLE_POPULAR_KEYWORDS,
@@ -20,7 +31,7 @@ import {
 } from './dropdown-menu';
 
 // Re-export for convenience
-export type { MegaMenuColumn } from './menu-mega';
+export type { PanelMenuItem } from './menu-panel';
 
 /**
  * Utility Link 타입
@@ -41,10 +52,30 @@ export interface UtilityLink {
   onClick?: () => void;
 }
 
-export interface HeaderWithMegaMenuTailwindProps {
+/**
+ * Action Button 타입
+ * - 헤더 우측 세로 레이아웃 버튼 (아이콘 + 라벨)
+ */
+export interface ActionButton {
+  /** 버튼 라벨 */
+  label: string;
+  /** 버튼 아이콘 */
+  icon: React.ReactNode;
+  /** 링크 URL (href가 있으면 링크, 없으면 onClick 사용) */
+  href?: string;
+  /** 클릭 핸들러 */
+  onClick?: () => void;
+  /** 검색 모달 트리거 여부 (내부적으로 SearchModal 연동) */
+  isSearchTrigger?: boolean;
+}
+
+export interface HeaderWithPanelMenuProps {
   className?: string;
-  megaColumns: MegaMenuColumn[];
+  /** PanelMenu 항목 */
+  panelItems: PanelMenuItem[];
   utilityLinks?: UtilityLink[];
+  /** 헤더 우측 액션 버튼 (세로 레이아웃) */
+  actionButtons?: ActionButton[];
   logo?: string;
   logoAlt?: string;
   logoHref?: string;
@@ -61,38 +92,73 @@ export interface HeaderWithMegaMenuTailwindProps {
 }
 
 const DEFAULT_UTILITY_LINKS: UtilityLink[] = [
-  { label: '로그인', href: '#' },
-  { label: '회원가입', href: '#' },
-  { label: 'ENGLISH', href: '#' },
   {
-    label: '관련사이트',
+    label: 'Language',
+    icon: <Globe className="w-4 h-4" />,
     children: [
-      { label: '건강iN', href: '#', external: true },
-      { label: 'The건강보험', href: '#', external: true },
-      { label: '요양기관업무포털', href: '#', external: true },
-      { label: '민원신청', href: '#', external: true },
+      { label: '한국어', href: '#' },
+      { label: 'English (영어)', href: '#' },
+      { label: '中文 (중국어)', href: '#' },
+      { label: '日本語 (일본어)', href: '#' },
+      { label: 'français (프랑스어)', href: '#' },
+    ],
+  },
+  { label: '지원', href: '#' },
+  {
+    label: '글자·화면 설정',
+    icon: <Eye className="w-4 h-4" />,
+    children: [
+      { label: '작게', onClick: () => console.log('작게') },
+      { label: '보통', isSelected: true, onClick: () => console.log('보통') },
+      { label: '조금 크게', onClick: () => console.log('조금 크게') },
+      { label: '크게', onClick: () => console.log('크게') },
+      { label: '가장 크게', onClick: () => console.log('가장 크게') },
     ],
   },
 ];
 
+const DEFAULT_ACTION_BUTTONS: ActionButton[] = [
+  {
+    label: '통합검색',
+    icon: <Search className="w-5 h-5" />,
+    isSearchTrigger: true,
+  },
+  {
+    label: '로그인',
+    icon: <LogIn className="w-5 h-5" />,
+    href: '#',
+  },
+  {
+    label: '회원가입',
+    icon: <UserPlus className="w-5 h-5" />,
+    href: '#',
+  },
+  {
+    label: '나의 GOV',
+    icon: <User className="w-5 h-5" />,
+    href: '#',
+  },
+];
+
 /**
- * Header with MegaMenu (Tailwind CSS version)
+ * Header with PanelMenu (Tailwind CSS version)
  *
- * Inline layout: logo | MegaMenu | Actions (single line)
- * - 유틸리티 바 (선택)
- * - 로고, MegaMenu, 검색/메뉴 버튼이 한 줄에 배치
+ * Stacked layout:
+ * - Line 1: logo | actions
+ * - Line 2: PanelMenu (full width)
  */
-export function HeaderWithMegaMenuTailwind({
+export function HeaderWithPanelMenuTailwind({
   className,
-  megaColumns,
+  panelItems,
   utilityLinks = DEFAULT_UTILITY_LINKS,
+  actionButtons = DEFAULT_ACTION_BUTTONS,
   logo = 'https://www.krds.go.kr/resources/img/pattern/layout/head_logo.svg',
   logoAlt = '대한민국정부',
   logoHref = '/',
   slogan,
   stickyBehavior = 'always',
   scrollThreshold = 150,
-}: HeaderWithMegaMenuTailwindProps) {
+}: HeaderWithPanelMenuProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -123,7 +189,7 @@ export function HeaderWithMegaMenuTailwind({
   return (
     <header
       className={cn(
-        'relative left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-500 ease-in-out',
+        'left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-500 ease-in-out',
         positionClass,
         hideClass,
         className
@@ -182,6 +248,7 @@ export function HeaderWithMegaMenuTailwind({
                             </DropdownMenuItem>
                           );
 
+                          // href가 있으면 링크, 없으면 버튼 동작
                           return child.href ? (
                             <a
                               key={child.label}
@@ -232,25 +299,30 @@ export function HeaderWithMegaMenuTailwind({
         </div>
       )}
 
-      {/* Branding + MegaMenu + Actions (Inline) */}
-      <Container className="flex items-center justify-between pt-2 lg:pt-2 gap-2">
+      {/* Branding + Actions (Line 1) */}
+      <Container className="flex items-center justify-between pb-1 gap-2">
         {/* Logo */}
         <Logo src={logo} alt={logoAlt} href={logoHref} slogan={slogan} />
 
-        {/* MegaMenu - Inline */}
-        <MegaMenu columns={megaColumns} />
-
         {/* Actions */}
-        <div className="inline-flex gap-3 md:gap-0">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="min-w-0 hover:bg-krds-gray-10"
-            aria-label="검색"
-            onClick={() => setIsSearchOpen(true)}
-          >
-            <Search className="w-6 h-6" aria-hidden="true" />
-          </Button>
+        <div className="hidden lg:inline-flex gap-2">
+          {actionButtons.map((button) => (
+            <Button
+              key={button.label}
+              variant="ghost"
+              href={button.isSearchTrigger ? undefined : button.href}
+              className="flex flex-col gap-1 items-center min-w-0 h-full !py-2 !px-3 hover:bg-krds-gray-10"
+              aria-label={button.isSearchTrigger ? '검색' : undefined}
+              onClick={
+                button.isSearchTrigger
+                  ? () => setIsSearchOpen(true)
+                  : button.onClick
+              }
+            >
+              <span aria-hidden="true">{button.icon}</span>
+              {button.label}
+            </Button>
+          ))}
           <SearchModal
             open={isSearchOpen}
             onOpenChange={setIsSearchOpen}
@@ -261,22 +333,35 @@ export function HeaderWithMegaMenuTailwind({
               setIsSearchOpen(false);
             }}
           />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden min-w-0 hover:bg-krds-gray-10"
-            aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
-            aria-expanded={isMobileMenuOpen}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" aria-hidden="true" />
-            ) : (
-              <Menu className="w-6 h-6" aria-hidden="true" />
-            )}
-          </Button>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden min-w-0 hover:bg-krds-gray-10"
+          aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+          aria-expanded={isMobileMenuOpen}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? (
+            <X className="w-6 h-6" aria-hidden="true" />
+          ) : (
+            <Menu className="w-6 h-6" aria-hidden="true" />
+          )}
+        </Button>
       </Container>
+
+      {/* PanelMenu (Line 2) - Desktop only */}
+      <nav
+        id="gnb"
+        className="hidden lg:flex justify-center w-full bg-white border-t border-krds-gray-20"
+        aria-label="주 메뉴"
+      >
+        <Container>
+          <PanelMenu items={panelItems} />
+        </Container>
+      </nav>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
@@ -294,28 +379,17 @@ export function HeaderWithMegaMenuTailwind({
           </div>
           <div className="p-5">
             <ul className="list-none m-0 p-0">
-              {megaColumns.map((column, index) => (
+              {panelItems.map((item) => (
                 <li
-                  key={`${column.title}-${index}`}
+                  key={item.label}
                   className="border-b border-krds-gray-20 last:border-b-0"
                 >
-                  <div className="py-4 text-base font-bold text-krds-gray-90">
-                    {column.title}
-                  </div>
-                  {column.links && column.links.length > 0 && (
-                    <ul className="list-none m-0 p-0 pb-3 pl-4">
-                      {column.links.map((link) => (
-                        <li key={link.label}>
-                          <a
-                            href={link.href}
-                            className="block py-2 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors"
-                          >
-                            {link.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <a
+                    href={item.href}
+                    className="flex items-center justify-between w-full py-4 text-krds-body-lg font-bold text-krds-gray-90 hover:text-krds-primary-60 transition-colors"
+                  >
+                    {item.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -342,4 +416,4 @@ export function HeaderWithMegaMenuTailwind({
   );
 }
 
-export { HeaderWithMegaMenuTailwind as HeaderWithMegaMenu };
+export { HeaderWithPanelMenuTailwind as HeaderWithPanelMenu };

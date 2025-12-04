@@ -95,9 +95,12 @@ import {
   HeaderWithNavigation,
   NavigationMenuItem,
   MegaMenuColumn,
+  PanelMenu,
+  PanelMenuItem,
   Footer,
   Container,
   Masthead,
+  HeaderWithPanelMenu,
 } from '@hanui/react';
 import {
   AlertCircle,
@@ -116,7 +119,6 @@ import {
 // ============================================================================
 // Header 컴포넌트
 // ============================================================================
-// 개발자의 거짓말 시리즈 🤥
 const navigationItems: NavigationMenuItem[] = [
   { label: '금방 돼', href: '/' },
   {
@@ -148,6 +150,86 @@ const navigationItems: NavigationMenuItem[] = [
     ],
   },
   { label: '거의 다 됐어', href: '/lies/almost-done' },
+];
+
+const panelItems: PanelMenuItem[] = [
+  {
+    label: '회의',
+    panel: [
+      {
+        label: '회의하기 싫다',
+        subContent: {
+          title: '회의 거부 사유',
+          titleLink: { label: '바로가기', href: '/meeting/all' },
+          links: [
+            { label: '줌 피로감', href: '/meeting/zoom-fatigue' },
+            { label: '이메일로 대체 가능', href: '/meeting/email' },
+            { label: '내 할 일도 바쁨', href: '/meeting/busy' },
+            { label: '회의록 누가 씀?', href: '/meeting/minutes' },
+          ],
+          banner: {
+            badge: 'NEW',
+            label: '비동기 커뮤니케이션 가이드',
+            href: '/guide/async',
+          },
+        },
+      },
+      {
+        label: '이 회의 왜 하는거지',
+        subContent: {
+          title: '회의 목적 불명확',
+          links: [
+            { label: '아젠다가 없음', href: '/meeting/no-agenda' },
+            { label: '결론이 안 남', href: '/meeting/no-conclusion' },
+            { label: '같은 얘기 반복', href: '/meeting/repeat' },
+          ],
+        },
+      },
+      { label: '나 왜 초대됨?', href: '/meeting/invited' },
+      {
+        label: '메일로 될 것 같은데',
+        href: '/meeting/email-pls',
+        external: true,
+      },
+    ],
+  },
+  {
+    label: '코드리뷰',
+    panel: [
+      {
+        label: 'LGTM (안봄)',
+        subContent: {
+          title: 'LGTM 유형',
+          links: [
+            { label: '진짜 괜찮아서', href: '/review/really-ok' },
+            { label: '바빠서 대충', href: '/review/too-busy' },
+            { label: '이해 못해서', href: '/review/dont-understand' },
+          ],
+        },
+      },
+      { label: '이거 누가 짠거야', href: '/review/who' },
+      { label: '아 내가 짰네', href: '/review/me' },
+    ],
+  },
+  {
+    label: '배포',
+    panel: [
+      {
+        label: '금요일 배포 ㄴㄴ',
+        subContent: {
+          title: '금요일 배포 금지',
+          links: [
+            { label: '주말에 장애나면?', href: '/deploy/weekend-incident' },
+            { label: '온콜 담당자 불쌍', href: '/deploy/oncall' },
+            { label: '월요일에 하자', href: '/deploy/monday' },
+          ],
+        },
+      },
+      { label: '롤백 각오하셈', href: '/deploy/rollback' },
+      { label: '핫픽스 또?', href: '/deploy/hotfix' },
+    ],
+  },
+  { label: '문서화', href: '/docs' },
 ];
 
 const megaColumns: MegaMenuColumn[] = [
@@ -1270,10 +1352,11 @@ export default function TestComponentsPage() {
     <ToastProvider>
       <div>
         <Masthead />
-        <HeaderWithNavigation
+        <HeaderWithPanelMenu panelItems={panelItems} stickyBehavior="auto" />
+        {/* <HeaderWithNavigation
           navigationItems={navigationItems}
           stickyBehavior="auto"
-        />
+        /> */}
         {/* <HeaderWithMegaMenu megaColumns={megaColumns} stickyBehavior="auto" /> */}
 
         <Container>

@@ -119,22 +119,22 @@ const DEFAULT_UTILITY_LINKS: UtilityLink[] = [
 const DEFAULT_ACTION_BUTTONS: ActionButton[] = [
   {
     label: '통합검색',
-    icon: <Search className="w-4 h-4" />,
+    icon: <Search className="w-5 h-5" />,
     isSearchTrigger: true,
   },
   {
     label: '로그인',
-    icon: <LogIn className="w-4 h-4" />,
+    icon: <LogIn className="w-5 h-5" />,
     href: '#',
   },
   {
     label: '회원가입',
-    icon: <UserPlus className="w-4 h-4" />,
+    icon: <UserPlus className="w-5 h-5" />,
     href: '#',
   },
   {
     label: '나의 GOV',
-    icon: <User className="w-4 h-4" />,
+    icon: <User className="w-5 h-5" />,
     href: '#',
   },
 ];
