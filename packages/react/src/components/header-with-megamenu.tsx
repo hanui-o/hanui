@@ -22,16 +22,23 @@ import {
 // Re-export for convenience
 export type { MegaMenuColumn } from './menu-mega';
 
+/**
+ * Utility Link 타입
+ * - href만 있으면 일반 링크
+ * - children이 있으면 DropdownMenu로 렌더링
+ */
 export interface UtilityLink {
   label: string;
-  href: string;
+  href?: string;
+  children?: UtilityLink[];
+  /** 외부 링크 여부 (새 창에서 열기) */
+  external?: boolean;
 }
 
 export interface HeaderWithMegaMenuTailwindProps {
   className?: string;
   megaColumns: MegaMenuColumn[];
   utilityLinks?: UtilityLink[];
-  relatedSites?: UtilityLink[];
   logo?: string;
   logoAlt?: string;
   logoHref?: string;
@@ -47,17 +54,19 @@ export interface HeaderWithMegaMenuTailwindProps {
   scrollThreshold?: number;
 }
 
-const DEFAULT_UTILITY_LINKS = [
+const DEFAULT_UTILITY_LINKS: UtilityLink[] = [
   { label: '로그인', href: '#' },
   { label: '회원가입', href: '#' },
   { label: 'ENGLISH', href: '#' },
-];
-
-const DEFAULT_RELATED_SITES = [
-  { label: '건강iN', href: '#' },
-  { label: 'The건강보험', href: '#' },
-  { label: '요양기관업무포털', href: '#' },
-  { label: '민원신청', href: '#' },
+  {
+    label: '관련사이트',
+    children: [
+      { label: '건강iN', href: '#', external: true },
+      { label: 'The건강보험', href: '#', external: true },
+      { label: '요양기관업무포털', href: '#', external: true },
+      { label: '민원신청', href: '#', external: true },
+    ],
+  },
 ];
 
 /**
@@ -71,7 +80,6 @@ export function HeaderWithMegaMenuTailwind({
   className,
   megaColumns,
   utilityLinks = DEFAULT_UTILITY_LINKS,
-  relatedSites = DEFAULT_RELATED_SITES,
   logo = 'https://www.krds.go.kr/resources/img/pattern/layout/head_logo.svg',
   logoAlt = '대한민국정부',
   logoHref = '/',
@@ -121,64 +129,74 @@ export function HeaderWithMegaMenuTailwind({
       {/* Utility Bar */}
       {utilityLinks && utilityLinks.length > 0 && (
         <div className="hidden lg:flex justify-end">
-          <Container maxWidth="xl" className="flex justify-end">
+          <Container className="flex justify-end">
             <ul className="flex justify-end list-none m-0 p-0">
               {utilityLinks.map((link, index) => (
                 <li key={link.label} className="relative flex items-center">
                   {index !== 0 && (
                     <span className="inline-flex w-px h-3 bg-krds-gray-20" />
                   )}
-                  <a
-                    href={link.href}
-                    className="inline-flex items-center text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
-                  >
-                    {link.label}
-                  </a>
+                  {link.children && link.children.length > 0 ? (
+                    // Depth 2: DropdownMenu
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3">
+                        {link.label}
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent
+                        className="rounded-xl min-w-[140px] py-2.5 z-[100]"
+                        sideOffset={5}
+                        align="end"
+                      >
+                        {link.children.map((child) => (
+                          <a
+                            key={child.label}
+                            href={child.href}
+                            {...(child.external && {
+                              target: '_blank',
+                              rel: 'noopener noreferrer',
+                            })}
+                          >
+                            <DropdownMenuItem className="flex items-center gap-1 text-krds-body-sm">
+                              {child.label}
+                              {child.external && (
+                                <SquareArrowOutUpRight
+                                  className="w-3 h-3"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </DropdownMenuItem>
+                          </a>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : (
+                    // Depth 1: 일반 링크
+                    <a
+                      href={link.href}
+                      className="inline-flex items-center text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
+                      {...(link.external && {
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                      })}
+                    >
+                      {link.label}
+                      {link.external && (
+                        <SquareArrowOutUpRight
+                          className="w-3 h-3 ml-1"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </a>
+                  )}
                 </li>
               ))}
-              {relatedSites && relatedSites.length > 0 && (
-                <li className="relative flex items-center">
-                  <span className="inline-flex w-px h-3 bg-krds-gray-20" />
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3">
-                      관련사이트
-                    </DropdownMenuTrigger>
-
-                    <DropdownMenuContent
-                      className="rounded-xl min-w-[140px] py-2.5 z-[100]"
-                      sideOffset={5}
-                      align="end"
-                    >
-                      {relatedSites.map((site) => (
-                        <a
-                          key={site.label}
-                          href={site.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <DropdownMenuItem className="flex items-center gap-1 text-krds-body-sm">
-                            {site.label}
-                            <SquareArrowOutUpRight
-                              className="w-3 h-3"
-                              aria-hidden="true"
-                            />
-                          </DropdownMenuItem>
-                        </a>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </li>
-              )}
             </ul>
           </Container>
         </div>
       )}
 
       {/* Branding + MegaMenu + Actions (Inline) */}
-      <Container
-        maxWidth="xl"
-        className="flex items-center justify-between pt-2 lg:pt-2 gap-2"
-      >
+      <Container className="flex items-center justify-between pt-2 lg:pt-2 gap-2">
         {/* Logo */}
         <Logo src={logo} alt={logoAlt} href={logoHref} slogan={slogan} />
 
@@ -266,16 +284,18 @@ export function HeaderWithMegaMenuTailwind({
             </ul>
             {utilityLinks && utilityLinks.length > 0 && (
               <div className="flex flex-col gap-3 mt-8 pt-5 border-t border-krds-gray-20">
-                {utilityLinks.map((link) => (
-                  <Button
-                    key={link.label}
-                    href={link.href}
-                    variant="tertiary"
-                    className="w-full justify-center"
-                  >
-                    {link.label}
-                  </Button>
-                ))}
+                {utilityLinks
+                  .filter((link) => !link.children)
+                  .map((link) => (
+                    <Button
+                      key={link.label}
+                      href={link.href}
+                      variant="tertiary"
+                      className="w-full justify-center"
+                    >
+                      {link.label}
+                    </Button>
+                  ))}
               </div>
             )}
           </div>
