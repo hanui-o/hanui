@@ -33,6 +33,8 @@ export interface UtilityLink {
   children?: UtilityLink[];
   /** 외부 링크 여부 (새 창에서 열기) */
   external?: boolean;
+  /** 아이콘 (라벨 앞에 표시) */
+  icon?: React.ReactNode;
 }
 
 export interface HeaderWithMegaMenuTailwindProps {
@@ -140,6 +142,11 @@ export function HeaderWithMegaMenuTailwind({
                     // Depth 2: DropdownMenu
                     <DropdownMenu>
                       <DropdownMenuTrigger className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3">
+                        {link.icon && (
+                          <span className="flex-shrink-0" aria-hidden="true">
+                            {link.icon}
+                          </span>
+                        )}
                         {link.label}
                       </DropdownMenuTrigger>
                       <DropdownMenuContent
@@ -173,12 +180,17 @@ export function HeaderWithMegaMenuTailwind({
                     // Depth 1: 일반 링크
                     <a
                       href={link.href}
-                      className="inline-flex items-center text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
+                      className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
                       {...(link.external && {
                         target: '_blank',
                         rel: 'noopener noreferrer',
                       })}
                     >
+                      {link.icon && (
+                        <span className="flex-shrink-0" aria-hidden="true">
+                          {link.icon}
+                        </span>
+                      )}
                       {link.label}
                       {link.external && (
                         <SquareArrowOutUpRight

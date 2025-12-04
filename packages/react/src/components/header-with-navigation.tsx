@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Search, Menu, X, SquareArrowOutUpRight } from 'lucide-react';
+import { Search, Menu, X, SquareArrowOutUpRight, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Container } from './container';
 import { Button } from './button';
@@ -33,6 +33,8 @@ export interface UtilityLink {
   children?: UtilityLink[];
   /** 외부 링크 여부 (새 창에서 열기) */
   external?: boolean;
+  /** 아이콘 (라벨 앞에 표시) */
+  icon?: React.ReactNode;
 }
 
 export interface HeaderWithNavigationTailwindProps {
@@ -55,11 +57,20 @@ export interface HeaderWithNavigationTailwindProps {
 }
 
 const DEFAULT_UTILITY_LINKS: UtilityLink[] = [
-  { label: '로그인', href: '#' },
-  { label: '회원가입', href: '#' },
-  { label: 'ENGLISH', href: '#' },
   {
-    label: '관련사이트',
+    label: 'Language',
+    icon: <Globe className="w-4 h-4" />,
+    children: [
+      { label: '한국어', href: '#' },
+      { label: 'English (영어)', href: '#' },
+      { label: '中文 (중국어)', href: '#' },
+      { label: '日本語 (일본어)', href: '#' },
+      { label: 'français (프랑스어)', href: '#' },
+    ],
+  },
+  { label: '지원', href: '#' },
+  {
+    label: '글자·화면 설정',
     children: [
       { label: '건강iN', href: '#', external: true },
       { label: 'The건강보험', href: '#', external: true },
@@ -137,6 +148,11 @@ export function HeaderWithNavigationTailwind({
                     // Depth 2: DropdownMenu
                     <DropdownMenu>
                       <DropdownMenuTrigger className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3">
+                        {link.icon && (
+                          <span className="flex-shrink-0" aria-hidden="true">
+                            {link.icon}
+                          </span>
+                        )}
                         {link.label}
                       </DropdownMenuTrigger>
                       <DropdownMenuContent
@@ -170,12 +186,17 @@ export function HeaderWithNavigationTailwind({
                     // Depth 1: 일반 링크
                     <a
                       href={link.href}
-                      className="inline-flex items-center text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
+                      className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
                       {...(link.external && {
                         target: '_blank',
                         rel: 'noopener noreferrer',
                       })}
                     >
+                      {link.icon && (
+                        <span className="flex-shrink-0" aria-hidden="true">
+                          {link.icon}
+                        </span>
+                      )}
                       {link.label}
                       {link.external && (
                         <SquareArrowOutUpRight
