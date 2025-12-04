@@ -47,6 +47,31 @@ export interface NavigationMenuProps {
 }
 
 /**
+ * 메뉴 아이템 공통 스타일 생성 함수
+ */
+const getMenuItemStyles = (isActive: boolean, hasDropdown: boolean) =>
+  cn(
+    // 공통 스타일
+    'relative h-full px-4 rounded-md',
+    'transition-colors duration-200',
+    'hover:bg-krds-gray-5',
+    'pt-3 pb-4 font-bold text-krds-body-lg',
+    'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
+    // 드롭다운 여부에 따른 스타일
+    hasDropdown
+      ? [
+          'group inline-flex items-center gap-1',
+          'data-[state=open]:bg-krds-gray-5',
+        ]
+      : ['block'],
+    // 활성 상태 스타일
+    isActive && [
+      'before:absolute before:left-0 before:w-full before:h-1 before:bg-krds-secondary-70',
+      hasDropdown ? 'before:bottom-0' : 'before:bottom-0 text-krds-primary-60',
+    ]
+  );
+
+/**
  * Navigation Menu Component (네비게이션 메뉴 컴포넌트)
  *
  * Radix UI Navigation Menu 기반의 접근성 완벽 지원 메뉴 컴포넌트
@@ -71,7 +96,7 @@ export const NavigationMenu = React.forwardRef<
     >
       <RadixNavigationMenu.List
         className={cn(
-          'flex mb-2',
+          'flex',
           orientation === 'horizontal'
             ? 'flex-row items-center gap-2'
             : 'flex-col gap-1'
@@ -88,21 +113,12 @@ export const NavigationMenu = React.forwardRef<
                 <>
                   {/* 드롭다운 트리거 */}
                   <RadixNavigationMenu.Trigger
-                    className={cn(
-                      'group inline-flex items-center gap-1 relative',
-                      'px-4 py-2 font-medium rounded-md',
-                      'transition-colors duration-200',
-                      'hover:bg-krds-gray-5',
-                      'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                      'data-[state=open]:bg-krds-gray-5',
-                      isActive &&
-                        'before:absolute before:bottom-0 before:left-0 before:w-full before:h-1 before:bg-krds-secondary-70'
-                    )}
+                    className={getMenuItemStyles(!!isActive, true)}
                   >
                     {item.label}
                     <ChevronDown
                       className="relative top-[1px] transition-transform duration-200 group-data-[state=open]:rotate-180"
-                      size={16}
+                      size={20}
                       aria-hidden
                     />
                   </RadixNavigationMenu.Trigger>
@@ -110,7 +126,7 @@ export const NavigationMenu = React.forwardRef<
                   {/* 드롭다운 콘텐츠 - Item 내부에서 직접 렌더링 */}
                   <RadixNavigationMenu.Content
                     className={cn(
-                      'absolute top-full left-1/2 -translate-x-1/2 mt-1',
+                      'absolute top-full left-1/2 -translate-x-1/2 mt-0',
                       item.dropdownWidth || 'w-[200px]',
                       'rounded-lg border border-krds-gray-20 bg-krds-white shadow-lg',
                       'data-[state=open]:animate-in data-[state=closed]:animate-out',
@@ -236,14 +252,7 @@ export const NavigationMenu = React.forwardRef<
                 <RadixNavigationMenu.Link asChild>
                   <a
                     href={item.href}
-                    className={cn(
-                      'block px-4 py-2 font-medium rounded-md relative',
-                      'transition-colors duration-200',
-                      'hover:bg-krds-gray-5',
-                      'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                      isActive &&
-                        'text-krds-primary-60 before:absolute before:bottom-0 before:left-0 before:w-full before:h-1 before:bg-krds-secondary-70'
-                    )}
+                    className={getMenuItemStyles(!!isActive, false)}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {item.label}
