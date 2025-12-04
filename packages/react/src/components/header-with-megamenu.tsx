@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Search, Menu, X, SquareArrowOutUpRight } from 'lucide-react';
+import { Search, Menu, X, SquareArrowOutUpRight, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Container } from './container';
 import { Button } from './button';
@@ -35,6 +35,10 @@ export interface UtilityLink {
   external?: boolean;
   /** 아이콘 (라벨 앞에 표시) */
   icon?: React.ReactNode;
+  /** 선택된 상태 (radio-like 동작) */
+  isSelected?: boolean;
+  /** 클릭 핸들러 (href 대신 스크립트 실행) */
+  onClick?: () => void;
 }
 
 export interface HeaderWithMegaMenuTailwindProps {
@@ -154,16 +158,17 @@ export function HeaderWithMegaMenuTailwind({
                         sideOffset={5}
                         align="end"
                       >
-                        {link.children.map((child) => (
-                          <a
-                            key={child.label}
-                            href={child.href}
-                            {...(child.external && {
-                              target: '_blank',
-                              rel: 'noopener noreferrer',
-                            })}
-                          >
-                            <DropdownMenuItem className="flex items-center gap-1 text-krds-body-sm">
+                        {link.children.map((child) => {
+                          const itemContent = (
+                            <DropdownMenuItem
+                              className={cn(
+                                'flex items-center justify-between gap-2 text-krds-body-sm',
+                                child.isSelected &&
+                                  'bg-krds-primary-5 font-medium'
+                              )}
+                              aria-checked={child.isSelected}
+                              onSelect={child.onClick}
+                            >
                               {child.label}
                               {child.external && (
                                 <SquareArrowOutUpRight
@@ -171,9 +176,32 @@ export function HeaderWithMegaMenuTailwind({
                                   aria-hidden="true"
                                 />
                               )}
+                              {child.isSelected && (
+                                <Check
+                                  className="w-4 h-4 text-krds-primary-60 ml-auto"
+                                  aria-hidden="true"
+                                />
+                              )}
                             </DropdownMenuItem>
-                          </a>
-                        ))}
+                          );
+
+                          return child.href ? (
+                            <a
+                              key={child.label}
+                              href={child.href}
+                              {...(child.external && {
+                                target: '_blank',
+                                rel: 'noopener noreferrer',
+                              })}
+                            >
+                              {itemContent}
+                            </a>
+                          ) : (
+                            <React.Fragment key={child.label}>
+                              {itemContent}
+                            </React.Fragment>
+                          );
+                        })}
                       </DropdownMenuContent>
                     </DropdownMenu>
                   ) : (
