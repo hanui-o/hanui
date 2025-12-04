@@ -118,7 +118,7 @@ import {
 // ============================================================================
 // 개발자의 거짓말 시리즈 🤥
 const navigationItems: NavigationMenuItem[] = [
-  { label: '금방 돼', href: '/', active: true },
+  { label: '금방 돼', href: '/' },
   {
     label: '내 로컬에선 돼',
     children: [
@@ -127,6 +127,7 @@ const navigationItems: NavigationMenuItem[] = [
       { label: '브랜치 다시 받아봐', href: '/lies/branch' },
       { label: '환경변수 확인해봐', href: '/lies/env' },
     ],
+    active: true,
   },
   {
     label: '테스트 다 했어',
