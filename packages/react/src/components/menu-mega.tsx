@@ -56,7 +56,6 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
         className={cn('krds-mega-menu', 'relative', className)}
         aria-label="메인 메뉴"
       >
-        {/* 1Depth 메뉴 */}
         <ul className="depth1 group flex gap-2">
           {columns.map((column, colIndex) => {
             const isActive =
@@ -83,53 +82,44 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                 >
                   {column.title}
                 </a>
+
+                <ul
+                  className={cn(
+                    'depth2',
+                    'absolute left-0 right-0 top-full z-50 pt-4',
+                    'opacity-0 invisible group-hover:opacity-100 group-hover:visible',
+                    'transition-all duration-200',
+                    'bg-krds-white border-t border-krds-gray-20'
+                  )}
+                  role="menu"
+                >
+                  {column.links.map((link, linkIdx) => {
+                    const isLinkActive =
+                      link.active || link.href === currentPath;
+                    return (
+                      <li key={linkIdx}>
+                        <a
+                          href={link.href}
+                          className={cn(
+                            'block py-2 transition-colors text-center rounded',
+                            'hover:bg-krds-gray-5 hover:text-krds-primary-60',
+                            'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
+                            isLinkActive
+                              ? 'bg-krds-gray-5 text-krds-primary-60 font-medium'
+                              : 'text-krds-gray-70'
+                          )}
+                          aria-current={isLinkActive ? 'page' : undefined}
+                          role="menuitem"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
               </li>
             );
           })}
-
-          {/* Full-width dropdown backdrop - 호버 시 표시 */}
-          <div
-            className={cn(
-              'absolute top-full left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen z-50',
-              'bg-white border-y border-krds-gray-20 shadow-lg',
-              'opacity-0 invisible group-hover:opacity-100 group-hover:visible',
-              'transition-all duration-200'
-            )}
-            role="menu"
-          >
-            {/* Centered content container */}
-            <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8">
-              <div className="flex gap-2 py-4">
-                {columns.map((column, colIndex) => (
-                  <ul key={colIndex} className="depth2 flex-1">
-                    {column.links.map((link, linkIdx) => {
-                      const isLinkActive =
-                        link.active || link.href === currentPath;
-                      return (
-                        <li key={linkIdx}>
-                          <a
-                            href={link.href}
-                            className={cn(
-                              'block py-2 transition-colors text-center rounded',
-                              'hover:bg-krds-gray-5 hover:text-krds-primary-60',
-                              'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
-                              isLinkActive
-                                ? 'bg-krds-gray-5 text-krds-primary-60 font-medium'
-                                : 'text-krds-gray-70'
-                            )}
-                            aria-current={isLinkActive ? 'page' : undefined}
-                            role="menuitem"
-                          >
-                            {link.label}
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                ))}
-              </div>
-            </div>
-          </div>
         </ul>
       </nav>
     );
