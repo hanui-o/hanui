@@ -79,7 +79,8 @@ export const NavigationMenu = React.forwardRef<
       >
         {items.map((item: NavigationMenuItem, index: number) => {
           const hasDropdown = Boolean(item.sections || item.children);
-          const isActive = item.active || item.href === currentPath;
+          const isActive =
+            item.active || (item.href && item.href === currentPath);
 
           return (
             <RadixNavigationMenu.Item key={index} className="relative">
@@ -88,12 +89,14 @@ export const NavigationMenu = React.forwardRef<
                   {/* 드롭다운 트리거 */}
                   <RadixNavigationMenu.Trigger
                     className={cn(
-                      'group inline-flex items-center gap-1',
+                      'group inline-flex items-center gap-1 relative',
                       'px-4 py-2 font-medium rounded-md',
                       'transition-colors duration-200',
                       'hover:bg-krds-gray-5',
                       'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                      'data-[state=open]:bg-krds-gray-5'
+                      'data-[state=open]:bg-krds-gray-5',
+                      isActive &&
+                        'before:absolute before:bottom-0 before:left-0 before:w-full before:h-1 before:bg-krds-secondary-70'
                     )}
                   >
                     {item.label}
@@ -234,11 +237,12 @@ export const NavigationMenu = React.forwardRef<
                   <a
                     href={item.href}
                     className={cn(
-                      'block px-4 py-2 font-medium rounded-md',
+                      'block px-4 py-2 font-medium rounded-md relative',
                       'transition-colors duration-200',
                       'hover:bg-krds-gray-5',
                       'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
-                      isActive && 'bg-krds-gray-5 text-krds-primary-60'
+                      isActive &&
+                        'text-krds-primary-60 before:absolute before:bottom-0 before:left-0 before:w-full before:h-1 before:bg-krds-secondary-70'
                     )}
                     aria-current={isActive ? 'page' : undefined}
                   >
