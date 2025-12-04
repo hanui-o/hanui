@@ -48,16 +48,7 @@ export interface MegaMenuProps {
  * **자세한 사용법:** /components/mainmenu 문서 참고
  */
 export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
-  (
-    {
-      columns,
-      currentPath,
-      className,
-      dropdownBgColor = 'bg-krds-white',
-      dropdownBorderColor = 'border-krds-gray-20',
-    },
-    ref
-  ) => {
+  ({ columns, currentPath, className }, ref) => {
     return (
       <nav
         id="gnb"
@@ -78,13 +69,13 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                 <a
                   href={column.href || '#'}
                   className={cn(
-                    'relative flex items-center justify-center h-14 px-4 py-2',
-                    'font-bold text-krds-nav-title-sm text-krds-gray-70',
+                    'relative flex items-center justify-center h-18 px-8',
+                    'font-bold text-krds-nav-title-sm text-krds-gray-70 whitespace-nowrap',
                     'transition-colors duration-200',
-                    'hover:bg-krds-primary-5 group-hover:bg-krds-gray-5',
+                    'hover:bg-krds-primary-5',
                     'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
                     isActive &&
-                      'text-krds-primary-90 before:absolute before:-bottom-3 before:left-0 before:w-full before:h-1 before:bg-krds-secondary-70'
+                      'text-krds-primary-90 before:absolute before:bottom-0 before:left-0 before:w-full before:h-1 before:bg-krds-secondary-70'
                   )}
                   aria-current={isActive ? 'page' : undefined}
                   aria-haspopup="true"
@@ -98,9 +89,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                     'absolute left-0 right-0 top-full z-50 pt-2',
                     'opacity-0 invisible group-hover:opacity-100 group-hover:visible',
                     'transition-all duration-200',
-                    dropdownBgColor,
-                    'border-t',
-                    dropdownBorderColor
+                    'bg-krds-white border-t border-krds-gray-20'
                   )}
                   role="menu"
                 >
@@ -112,7 +101,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                         <a
                           href={link.href}
                           className={cn(
-                            'block py-1.5 px-4 transition-colors text-center',
+                            'block py-1.5 transition-colors text-center round',
                             'hover:bg-krds-gray-5 hover:text-krds-primary-60',
                             'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
                             isLinkActive

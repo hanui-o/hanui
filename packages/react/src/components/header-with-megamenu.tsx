@@ -115,7 +115,10 @@ export function HeaderWithMegaMenuTailwind({
   return (
     <header
       className={cn(
-        'left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-500 ease-in-out',
+        'relative left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-500 ease-in-out',
+        // gnb 호버 시 ::before로 흰색 배경 오버레이
+        'before:content-[""] before:absolute before:left-0 before:top-full before:w-full before:h-0 before:mt-[1px] before:bg-krds-white before:transition-all before:duration-200 before:z-40',
+        '[&:has(#gnb:hover)]:before:h-[50vh] [&:has(#gnb:hover)]:before:shadow-lg',
         positionClass,
         hideClass,
         className
@@ -192,7 +195,7 @@ export function HeaderWithMegaMenuTailwind({
       )}
 
       {/* Branding + MegaMenu + Actions (Inline) */}
-      <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex items-center justify-between py-2 lg:pt-2 lg:pb-3 gap-2">
+      <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex items-center justify-between pt-2 lg:pt-2 gap-2">
         {/* Logo */}
         <div className="flex items-center">
           <a

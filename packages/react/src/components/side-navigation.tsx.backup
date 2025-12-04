@@ -107,7 +107,7 @@ export function SideNavigation({
                           className={cn(
                             // 기본 버튼 스타일
                             'flex items-center justify-between w-full px-2 pt-4 pb-2 border-0 border-b border-krds-gray-20 bg-transparent',
-                            'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                            'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                             'transition-all duration-200 ease-in-out',
                             // 토글 버튼 스타일
                             'relative font-bold',
@@ -176,7 +176,7 @@ export function SideNavigation({
                                           className={cn(
                                             // 기본 버튼 스타일
                                             'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent',
-                                            'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                                            'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                                             'transition-all duration-200 ease-in-out rounded-md',
                                             // 3단계 토글 버튼
                                             'relative',
@@ -209,7 +209,7 @@ export function SideNavigation({
                                       {/* 3단계 제목 버튼 (시각적 전용, KRDS HTML 기준) */}
                                       <button
                                         type="button"
-                                        className="block w-full py-2 px-4 text-[17px] font-medium leading-[1.5] text-krds-gray-90 text-left bg-transparent border-0 cursor-default"
+                                        className="block w-full py-2 px-4 text-krds-body-md font-medium leading-[1.5] text-krds-gray-90 text-left bg-transparent border-0 cursor-default"
                                       >
                                         {child.label}
                                       </button>
@@ -227,7 +227,7 @@ export function SideNavigation({
                                                 href={grandChild.href}
                                                 className={cn(
                                                   'flex items-center justify-between w-full py-3 px-3 pl-16 border-0 bg-transparent',
-                                                  'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                                                  'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                                                   'relative',
                                                   // 불릿 포인트
                                                   'before:content-["•"] before:absolute before:left-10 before:text-2xl before:text-krds-gray-60',
@@ -270,7 +270,7 @@ export function SideNavigation({
                                 href={child.href}
                                 className={cn(
                                   'flex items-center gap-2 w-full py-2 px-4 border-0 bg-transparent',
-                                  'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                                  'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                                   'relative',
                                   // 불릿 포인트
                                   'before:content-["•"] before:inline-block',
@@ -297,7 +297,7 @@ export function SideNavigation({
                     href={section.href}
                     className={cn(
                       'flex items-center justify-between w-full py-3 px-3 border-0 border-b border-krds-gray-20 bg-transparent',
-                      'text-[17px] font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
+                      'text-krds-body-md font-normal leading-[1.5] text-krds-gray-90 text-left no-underline cursor-pointer',
                       'transition-all duration-200 ease-in-out',
                       // 하단 밑줄 효과
                       'relative before:content-[""] before:inline-flex before:absolute before:bottom-[-1px] before:left-0 before:w-0 before:h-[3px] before:bg-[#063a74] before:transition-all before:duration-[400ms] before:ease-in-out',
