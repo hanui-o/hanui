@@ -238,7 +238,7 @@ export function Footer({
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="relative flex items-center gap-2 py-3 px-2 -mx-2 text-krds-gray-70 no-underline transition-colors hover:text-krds-gray-90 focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2 rounded before:content-[''] before:absolute before:inset-y-0 before:-left-6 before:right-4 before:rounded before:bg-krds-gray-10 before:opacity-0 before:transition-opacity hover:before:opacity-100 before:-z-10"
+                                className="relative flex items-center gap-2 py-3 px-2 -mx-2 no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2 rounded before:content-[''] before:absolute before:inset-y-0 before:-left-6 before:right-4 before:rounded before:bg-krds-gray-10 before:opacity-0 before:transition-opacity hover:before:opacity-100 before:-z-10"
                               >
                                 {link.name}
                                 <span className="sr-only"> (새 창 열기)</span>
