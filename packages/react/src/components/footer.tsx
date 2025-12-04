@@ -229,7 +229,7 @@ export function Footer({
                     <div className="flex-1 overflow-y-auto">
                       <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-6 py-8 md:px-8 md:py-10">
                         <List className="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-y-0">
-                          {site.links.map((link, linkIndex) => (
+                          {site.links.map((link) => (
                             <ListItem
                               key={link.name}
                               className="m-0 before:top-[21px]"
@@ -239,7 +239,6 @@ export function Footer({
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="relative flex items-center gap-2 py-3 px-2 -mx-2 text-krds-gray-70 no-underline transition-colors hover:text-krds-gray-90 focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2 rounded before:content-[''] before:absolute before:inset-y-0 before:-left-6 before:right-4 before:rounded before:bg-krds-gray-10 before:opacity-0 before:transition-opacity hover:before:opacity-100 before:-z-10"
-                                autoFocus={linkIndex === 0}
                               >
                                 {link.name}
                                 <span className="sr-only"> (새 창 열기)</span>

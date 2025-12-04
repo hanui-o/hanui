@@ -192,16 +192,16 @@ export const SearchModal = React.forwardRef<HTMLDivElement, SearchModalProps>(
                         <FormLabel className="text-krds-heading-sm font-bold text-krds-gray-90 md:text-krds-heading-md">
                           검색어를 입력해주세요
                         </FormLabel>
-                        <a
-                          href="#"
-                          className="inline-flex items-center gap-1 text-krds-body-md font-medium text-krds-gray-70 hover:text-krds-primary-60 transition-colors"
+                        <button
+                          type="button"
+                          className="inline-flex items-center gap-1 text-krds-body-md font-medium text-krds-gray-70 hover:text-krds-primary-60 transition-colors cursor-pointer bg-transparent border-none p-0"
                         >
                           검색에 어려움이 있으신가요?
                           <ChevronRight
                             className="w-4 h-4"
                             aria-hidden="true"
                           />
-                        </a>
+                        </button>
                       </div>
                       {/* //검색어 타이틀 */}
 
