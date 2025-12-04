@@ -71,7 +71,7 @@ const componentsNavigation = [
       { title: 'In-page Navigation', href: '/components/in-page-navigation' },
       { title: 'Input', href: '/components/input' },
       { title: 'Label', href: '/components/label' },
-      { title: 'Link', href: '/components/link' },
+      // { title: 'Link', href: '/components/link' },
       { title: 'List', href: '/components/list' },
       { title: 'Main Menu', href: '/components/mainmenu' },
       { title: 'Masthead', href: '/components/masthead' },

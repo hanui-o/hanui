@@ -70,7 +70,7 @@ export default function MainMenuPage() {
                     일부 항목에만 드롭다운이 필요하거나 간단한 메뉴 구조에
                     적합합니다.
                   </Body>
-                  <Code variant="inline">npx hanui add navigation-menu</Code>
+                  <Code variant="inline">npx hanui add menu-navigation</Code>
                 </div>
               </Card>
               <Card>
@@ -81,7 +81,7 @@ export default function MainMenuPage() {
                     네비게이션. 모든 메뉴에 서브메뉴가 있고 복잡한 구조에
                     적합합니다.
                   </Body>
-                  <Code variant="inline">npx hanui add mega-menu</Code>
+                  <Code variant="inline">npx hanui add menu-mega</Code>
                 </div>
               </Card>
             </div>
@@ -91,7 +91,7 @@ export default function MainMenuPage() {
           <Section level="h2">
             <Heading
               level="h2"
-              id="navigation-menu"
+              id="menu-navigation"
               title="NavigationMenu"
               description="Radix UI 기반의 일반적인 네비게이션 메뉴"
             />
@@ -146,7 +146,7 @@ export default function MainMenuPage() {
 
             <Subsection level="h3">
               <Heading level="h3" title="설치" />
-              <Installation componentName="navigation-menu" />
+              <Installation componentName="menu-navigation" />
             </Subsection>
           </Section>
 
@@ -154,7 +154,7 @@ export default function MainMenuPage() {
           <Section level="h2">
             <Heading
               level="h2"
-              id="navigation-menu-usage"
+              id="menu-navigation-usage"
               title="NavigationMenu 사용법"
             />
 
@@ -194,7 +194,7 @@ export default function Layout() {
           <Section level="h2">
             <Heading
               level="h2"
-              id="navigation-menu-examples"
+              id="menu-navigation-examples"
               title="NavigationMenu 예제"
             />
 
@@ -389,7 +389,7 @@ export default function Layout() {
           <Section level="h2">
             <Heading
               level="h2"
-              id="mega-menu"
+              id="menu-mega"
               title="MegaMenu"
               description="순수 React 기반의 메가메뉴 스타일 네비게이션 (별도 설치)"
             />
@@ -405,7 +405,7 @@ export default function Layout() {
               <strong>별도 설치가 필요합니다:</strong>
             </Body>
             <Code variant="block" language="bash">
-              {`npx hanui add mega-menu`}
+              {`npx hanui add menu-mega`}
             </Code>
 
             <Subsection level="h3">
@@ -560,7 +560,7 @@ export default function Layout() {
                     <li>Radix UI 접근성 기능이 필요한 경우</li>
                   </ul>
                   <Code variant="block" language="bash" className="mt-4">
-                    {`npx hanui add navigation-menu`}
+                    {`npx hanui add menu-navigation`}
                   </Code>
                 </DoCard>
                 <DoCard title="MegaMenu를 선택하세요">
@@ -572,7 +572,7 @@ export default function Layout() {
                     <li>순수 React 구현이 필요한 경우</li>
                   </ul>
                   <Code variant="block" language="bash" className="mt-4">
-                    {`npx hanui add mega-menu`}
+                    {`npx hanui add menu-mega`}
                   </Code>
                 </DoCard>
               </div>
@@ -659,7 +659,7 @@ export default function Layout() {
           <Section level="h2">
             <Heading
               level="h2"
-              id="navigation-menu-props"
+              id="menu-navigation-props"
               title="NavigationMenu"
               description="NavigationMenu 컴포넌트 API 레퍼런스"
             />
@@ -820,7 +820,7 @@ export default function Layout() {
           <Section level="h2">
             <Heading
               level="h2"
-              id="mega-menu-api"
+              id="menu-mega-api"
               title="MegaMenu"
               description="MegaMenu 컴포넌트 API 레퍼런스"
             />
