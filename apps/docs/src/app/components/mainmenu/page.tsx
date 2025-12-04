@@ -13,6 +13,7 @@ import {
   NavigationMenu,
   MegaMenu,
   PanelMenu,
+  Alert,
   Body,
   Card,
   Code,
@@ -164,6 +165,19 @@ export default function MainMenuPage() {
         title="Main Menu"
         description="주요 네비게이션을 위한 3가지 독립적인 컴포넌트"
       />
+
+      {/* 빠른 시작 팁 */}
+      <Alert variant="info" className="mb-6">
+        <Body>
+          <strong>빠른 시작:</strong> 메뉴만 필요하면 아래 컴포넌트를 개별
+          설치하세요. 하지만 대부분의 경우{' '}
+          <a href="/components/header" className="underline font-medium">
+            Header 컴포넌트
+          </a>
+          를 사용하면 로고, 검색, 유틸리티 링크까지 포함된 완성된 헤더를 바로
+          적용할 수 있어 더 편리합니다.
+        </Body>
+      </Alert>
 
       {/* 컴포넌트 목록 */}
       <Section level="h2">
