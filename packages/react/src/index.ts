@@ -141,6 +141,20 @@ export {
 export { Modal, ModalTitle, ModalBody, ModalFooter } from './components/modal';
 export type { ModalProps } from './components/modal';
 
+export {
+  SearchModal,
+  SAMPLE_POPULAR_KEYWORDS,
+  SAMPLE_RECENT_KEYWORDS,
+  SAMPLE_SUGGESTIONS,
+} from './components/search-modal';
+export type {
+  SearchModalProps,
+  PopularKeyword,
+  RecentKeyword,
+  SearchSuggestion,
+  RankingState,
+} from './components/search-modal';
+
 export { Pagination } from './components/pagination';
 export type { PaginationProps } from './components/pagination';
 
@@ -217,20 +231,20 @@ export type {
 export { Masthead } from './components/masthead';
 export type { MastheadProps } from './components/masthead';
 
-export { NavigationMenu } from './components/navigation-menu';
+export { NavigationMenu } from './components/menu-navigation';
 export type {
   NavigationMenuProps,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuSection,
-} from './components/navigation-menu';
+} from './components/menu-navigation';
 
-export { MegaMenu } from './components/mega-menu';
+export { MegaMenu } from './components/menu-mega';
 export type {
   MegaMenuProps,
   MegaMenuColumn,
   MegaMenuLink,
-} from './components/mega-menu';
+} from './components/menu-mega';
 
 export { SkipLink } from './components/skip-link';
 export type {

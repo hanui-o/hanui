@@ -3,12 +3,21 @@
 import React from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import * as Dialog from '@radix-ui/react-dialog';
-import { ChevronDown, Search, Menu, X } from 'lucide-react';
+import {
+  ChevronDown,
+  Search,
+  Menu,
+  X,
+  SquareArrowOutUpRight,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { NavigationMenu, NavigationMenuItem } from './navigation-menu';
+import { Container } from './container';
+import { Button } from './button';
+import { Logo } from './logo';
+import { NavigationMenu, NavigationMenuItem } from './menu-navigation';
 
 // Re-export for convenience
-export type { NavigationMenuItem } from './navigation-menu';
+export type { NavigationMenuItem } from './menu-navigation';
 
 // SearchInput 컴포넌트 - 검색 다이얼로그에서 포커스 관리
 const SearchInput = ({ className }: { className?: string }) => {
@@ -124,7 +133,7 @@ export function HeaderWithNavigationTailwind({
       {/* Utility Bar */}
       {utilityLinks && utilityLinks.length > 0 && (
         <div className="hidden lg:flex justify-end">
-          <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex justify-end">
+          <Container maxWidth="xl" className="flex justify-end">
             <ul className="flex justify-end list-none m-0 p-0">
               {utilityLinks.map((link, index) => (
                 <li key={link.label} className="relative flex items-center">
@@ -133,7 +142,7 @@ export function HeaderWithNavigationTailwind({
                   )}
                   <a
                     href={link.href}
-                    className="bg-transparent border-none py-2 px-3 cursor-pointer text-sm text-krds-gray-90 transition-colors hover:text-krds-primary-60 focus-visible:outline-2 focus-visible:outline-krds-primary-60 focus-visible:outline-offset-2 focus-visible:rounded"
+                    className="inline-flex items-center text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
                   >
                     {link.label}
                   </a>
@@ -148,16 +157,16 @@ export function HeaderWithNavigationTailwind({
                     modal={false}
                   >
                     <DropdownMenu.Trigger asChild>
-                      <button
-                        type="button"
-                        className="relative bg-transparent border-none py-2 px-3 cursor-pointer text-sm text-krds-gray-90 inline-flex items-center gap-1 transition-colors hover:text-krds-primary-60"
+                      <Button
+                        variant="ghost"
+                        className="min-w-0 h-auto py-2 px-3 text-sm font-normal text-krds-gray-90 hover:text-krds-primary-60 hover:bg-transparent"
                         aria-label="관련사이트 메뉴"
                         onMouseEnter={() => setIsUtilityDropdownOpen(true)}
                         onMouseLeave={() => setIsUtilityDropdownOpen(false)}
                       >
                         관련사이트
                         <ChevronDown className="w-4 h-4" aria-hidden="true" />
-                      </button>
+                      </Button>
                     </DropdownMenu.Trigger>
 
                     <DropdownMenu.Portal>
@@ -174,10 +183,13 @@ export function HeaderWithNavigationTailwind({
                               href={site.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="block relative py-1.5 px-2.5 mx-2 text-krds-gray-90 no-underline transition-all duration-200 rounded-lg whitespace-nowrap cursor-pointer outline-none hover:bg-krds-primary-5 hover:text-krds-primary-60 data-[highlighted]:bg-krds-primary-5 data-[highlighted]:text-krds-primary-60"
+                              className="flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 py-1.5 px-2.5 mx-2 no-underline rounded-lg whitespace-nowrap cursor-pointer outline-none hover:bg-krds-primary-5 data-[highlighted]:bg-krds-primary-5 data-[highlighted]:text-krds-primary-60 transition-colors"
                             >
                               {site.label}
-                              <span className="sr-only"> (새 창 열기)</span>
+                              <SquareArrowOutUpRight
+                                className="w-3 h-3"
+                                aria-hidden="true"
+                              />
                             </a>
                           </DropdownMenu.Item>
                         ))}
@@ -187,43 +199,30 @@ export function HeaderWithNavigationTailwind({
                 </li>
               )}
             </ul>
-          </div>
+          </Container>
         </div>
       )}
 
       {/* Branding + Actions (Line 1) */}
-      <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex items-center justify-between py-5 lg:py-6 gap-2">
+      <Container
+        maxWidth="xl"
+        className="flex items-center justify-between py-5 lg:py-6 gap-2"
+      >
         {/* Logo */}
-        <div className="flex items-center">
-          <a
-            href={logoHref}
-            className="inline-flex h-8 md:h-12"
-            aria-label={`${logoAlt} 홈으로 이동`}
-          >
-            <img
-              src={logo}
-              alt={logoAlt}
-              className="w-full h-full object-contain"
-            />
-          </a>
-          {slogan && (
-            <span className="inline-flex ml-3">
-              <span className="sr-only">슬로건</span>
-              {slogan}
-            </span>
-          )}
-        </div>
+        <Logo src={logo} alt={logoAlt} href={logoHref} slogan={slogan} />
 
         {/* Actions */}
         <div className="inline-flex gap-3 md:gap-0">
           <Dialog.Root open={isSearchOpen} onOpenChange={setIsSearchOpen}>
             <Dialog.Trigger asChild>
-              <button
-                className="inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors"
+              <Button
+                variant="ghost"
+                size="icon"
+                className="min-w-0 hover:bg-krds-gray-10"
                 aria-label="검색"
               >
                 <Search className="w-6 h-6" aria-hidden="true" />
-              </button>
+              </Button>
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="fixed inset-0 bg-black/50 z-[999] backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0" />
@@ -239,18 +238,22 @@ export function HeaderWithNavigationTailwind({
                   <SearchInput className="flex-1 border-none bg-transparent text-lg text-krds-gray-90 outline-none placeholder:text-krds-gray-50 md:text-base" />
                 </div>
                 <Dialog.Close asChild>
-                  <button
-                    className="absolute top-5 right-5 inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors md:top-4 md:right-4"
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute top-5 right-5 min-w-0 hover:bg-krds-gray-10 md:top-4 md:right-4"
                     aria-label="닫기"
                   >
                     <X className="w-6 h-6 md:w-5 md:h-5" aria-hidden="true" />
-                  </button>
+                  </Button>
                 </Dialog.Close>
               </Dialog.Content>
             </Dialog.Portal>
           </Dialog.Root>
-          <button
-            className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors"
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden min-w-0 hover:bg-krds-gray-10"
             aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
             aria-expanded={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -260,9 +263,9 @@ export function HeaderWithNavigationTailwind({
             ) : (
               <Menu className="w-6 h-6" aria-hidden="true" />
             )}
-          </button>
+          </Button>
         </div>
-      </div>
+      </Container>
 
       {/* NavigationMenu (Line 2) - Desktop only */}
       <nav
@@ -270,22 +273,24 @@ export function HeaderWithNavigationTailwind({
         className="hidden lg:flex justify-center w-full bg-white"
         aria-label="주 메뉴"
       >
-        <div className="max-w-[var(--krds-container-xl,1280px)] mx-auto w-full px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)]">
+        <Container maxWidth="xl">
           <NavigationMenu items={navigationItems} />
-        </div>
+        </Container>
       </nav>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-[1000] bg-white overflow-y-auto">
           <div className="flex justify-end items-center p-5 border-b border-krds-gray-20 sticky top-0 bg-white z-10">
-            <button
-              className="inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-krds-gray-10 transition-colors"
+            <Button
+              variant="ghost"
+              size="icon"
+              className="min-w-0 hover:bg-krds-gray-10"
               onClick={() => setIsMobileMenuOpen(false)}
               aria-label="메뉴 닫기"
             >
               <X className="w-6 h-6" aria-hidden="true" />
-            </button>
+            </Button>
           </div>
           <div className="p-5">
             <ul className="list-none m-0 p-0">
@@ -296,7 +301,7 @@ export function HeaderWithNavigationTailwind({
                 >
                   <a
                     href={item.href}
-                    className="flex items-center justify-between w-full py-4 bg-transparent border-none text-base font-bold text-krds-gray-90 cursor-pointer text-left no-underline hover:text-krds-primary-60"
+                    className="flex items-center justify-between w-full py-4 text-krds-body-lg font-bold text-krds-gray-90 hover:text-krds-primary-60 transition-colors"
                   >
                     {item.label}
                   </a>
@@ -306,13 +311,14 @@ export function HeaderWithNavigationTailwind({
             {utilityLinks && utilityLinks.length > 0 && (
               <div className="flex flex-col gap-3 mt-8 pt-5 border-t border-krds-gray-20">
                 {utilityLinks.map((link) => (
-                  <a
+                  <Button
                     key={link.label}
                     href={link.href}
-                    className="block w-full py-3 bg-transparent border border-krds-gray-20 rounded-lg text-base text-krds-gray-90 no-underline text-center transition-colors hover:bg-krds-primary-5"
+                    variant="tertiary"
+                    className="w-full justify-center"
                   >
                     {link.label}
-                  </a>
+                  </Button>
                 ))}
               </div>
             )}

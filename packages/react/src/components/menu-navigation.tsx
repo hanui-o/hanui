@@ -179,7 +179,7 @@ export const NavigationMenu = React.forwardRef<
                                         <RadixNavigationMenu.Link asChild>
                                           <a
                                             href={utilityLink.href}
-                                            className="block px-3 py-1.5 text-xs font-medium text-krds-primary-60 hover:underline focus:outline-none focus:ring-2 focus:ring-krds-primary-60 rounded"
+                                            className="block px-3 py-1.5 text-krds-body-sm font-medium text-krds-primary-60 hover:text-krds-primary-70 hover:underline focus:outline-none focus:ring-2 focus:ring-krds-primary-60 rounded transition-colors"
                                           >
                                             {utilityLink.label} →
                                           </a>

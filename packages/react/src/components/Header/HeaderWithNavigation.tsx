@@ -6,10 +6,10 @@ import * as Dialog from '@radix-ui/react-dialog';
 import styles from './header.module.scss';
 import { ChevronDown, Search, Menu, X } from 'lucide-react';
 import { Container } from '../container';
-import { NavigationMenu, NavigationMenuItem } from '../navigation-menu';
+import { NavigationMenu, NavigationMenuItem } from '../menu-navigation';
 
 // Re-export for convenience
-export type { NavigationMenuItem } from '../navigation-menu';
+export type { NavigationMenuItem } from '../menu-navigation';
 
 // SearchInput 컴포넌트 - 검색 다이얼로그에서 포커스 관리
 const SearchInput = ({ className }: { className?: string }) => {

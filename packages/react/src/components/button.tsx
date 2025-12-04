@@ -51,7 +51,7 @@ const buttonVariants = cva(
         md: 'h-12 px-5 [font-size:var(--krds-body-md)] leading-[var(--krds-leading-body)]',
         lg: 'h-14 px-6 [font-size:var(--krds-body-lg)] leading-[var(--krds-leading-body)]',
         xl: 'h-16 px-8 [font-size:var(--krds-body-lg)] leading-[var(--krds-leading-body)]',
-        icon: 'h-10 w-10',
+        icon: 'h-12 w-12 !min-w-12',
       },
     },
     defaultVariants: {

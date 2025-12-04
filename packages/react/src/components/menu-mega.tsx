@@ -70,7 +70,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                   href={column.href || '#'}
                   className={cn(
                     'relative flex items-center justify-center h-18 px-8',
-                    'font-bold text-krds-nav-title-sm text-krds-gray-70 whitespace-nowrap',
+                    'text-krds-body-lg font-bold text-krds-gray-70 whitespace-nowrap',
                     'transition-colors duration-200',
                     'hover:bg-krds-primary-5',
                     'focus:outline-none focus:ring-2 focus:ring-krds-primary-60 focus:ring-offset-2',
@@ -86,7 +86,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                 <ul
                   className={cn(
                     'depth2',
-                    'absolute left-0 right-0 top-full z-50 pt-2',
+                    'absolute left-0 right-0 top-full z-50 pt-4',
                     'opacity-0 invisible group-hover:opacity-100 group-hover:visible',
                     'transition-all duration-200',
                     'bg-krds-white border-t border-krds-gray-20'
@@ -101,7 +101,7 @@ export const MegaMenu = React.forwardRef<HTMLElement, MegaMenuProps>(
                         <a
                           href={link.href}
                           className={cn(
-                            'block py-1.5 transition-colors text-center round',
+                            'block py-2 transition-colors text-center rounded',
                             'hover:bg-krds-gray-5 hover:text-krds-primary-60',
                             'focus:outline-none focus:ring-2 focus:ring-krds-primary-60',
                             isLinkActive
