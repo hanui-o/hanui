@@ -84,6 +84,8 @@ export interface PanelMenuProps {
   currentPath?: string;
   /** 패널 최소 높이 (기본값: 262px) */
   panelMinHeight?: number;
+  /** 패널 열림 상태 변경 콜백 */
+  onOpenChange?: (isOpen: boolean) => void;
 }
 
 /**
@@ -154,10 +156,29 @@ export function PanelMenu({
   className,
   currentPath,
   panelMinHeight = 262,
+  onOpenChange,
 }: PanelMenuProps) {
   const [open1Depth, setOpen1Depth] = React.useState<number | null>(null);
   const [active2Depth, setActive2Depth] = React.useState<number | null>(null);
   const menuRef = React.useRef<HTMLElement>(null);
+
+  // 열림 상태 변경 시 콜백 호출
+  React.useEffect(() => {
+    onOpenChange?.(open1Depth !== null);
+  }, [open1Depth, onOpenChange]);
+
+  // 패널 열릴 때 body 스크롤 막기
+  React.useEffect(() => {
+    if (open1Depth !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open1Depth]);
 
   // 1Depth 클릭 토글
   const handleToggle1Depth = (index: number) => {
@@ -270,20 +291,11 @@ export function PanelMenu({
         })}
       </ul>
 
-      {/* Dimmed overlay */}
-      {open1Depth !== null && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40"
-          aria-hidden="true"
-          onClick={handleClose}
-        />
-      )}
-
       {/* 2Depth 패널 (드롭다운) - Full width backdrop */}
       {open1Depth !== null && currentPanel && (
         <div
           className={cn(
-            'absolute top-full mt-0 z-50',
+            'absolute top-full mt-0 z-[90]',
             // Full viewport width trick
             'left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen',
             'bg-white border-y border-krds-gray-20 shadow-lg',

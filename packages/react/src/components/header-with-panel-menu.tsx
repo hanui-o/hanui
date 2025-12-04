@@ -162,6 +162,7 @@ export function HeaderWithPanelMenuTailwind({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isPanelOpen, setIsPanelOpen] = React.useState(false);
 
   // 스크롤 감지 (auto 모드에서만 동작)
   React.useEffect(() => {
@@ -187,232 +188,243 @@ export function HeaderWithPanelMenuTailwind({
     stickyBehavior === 'auto' && isScrolled ? '-translate-y-full' : '';
 
   return (
-    <header
-      className={cn(
-        'left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-500 ease-in-out',
-        positionClass,
-        hideClass,
-        className
+    <>
+      {/* Dimmed overlay - 패널 열릴 때 표시 (header 밖에 배치해야 z-index 작동) */}
+      {isPanelOpen && (
+        <div
+          className="fixed inset-0 top-[180px] z-[60]"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
+          aria-hidden="true"
+        />
       )}
-    >
-      {/* Utility Bar */}
-      {utilityLinks && utilityLinks.length > 0 && (
-        <div className="hidden lg:flex justify-end">
-          <Container className="flex justify-end">
-            <ul className="flex justify-end list-none m-0 p-0">
-              {utilityLinks.map((link, index) => (
-                <li key={link.label} className="relative flex items-center">
-                  {index !== 0 && (
-                    <span className="inline-flex w-px h-3 bg-krds-gray-20" />
-                  )}
-                  {link.children && link.children.length > 0 ? (
-                    // Depth 2: DropdownMenu
-                    <DropdownMenu>
-                      <DropdownMenuTrigger className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3">
+
+      <header
+        className={cn(
+          'left-0 z-[70] bg-white border-b border-krds-gray-20 transition-transform duration-500 ease-in-out',
+          positionClass,
+          hideClass,
+          className
+        )}
+      >
+        {/* Utility Bar */}
+        {utilityLinks && utilityLinks.length > 0 && (
+          <div className="hidden lg:flex justify-end">
+            <Container className="flex justify-end">
+              <ul className="flex justify-end list-none m-0 p-0">
+                {utilityLinks.map((link, index) => (
+                  <li key={link.label} className="relative flex items-center">
+                    {index !== 0 && (
+                      <span className="inline-flex w-px h-3 bg-krds-gray-20" />
+                    )}
+                    {link.children && link.children.length > 0 ? (
+                      // Depth 2: DropdownMenu
+                      <DropdownMenu>
+                        <DropdownMenuTrigger className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3">
+                          {link.icon && (
+                            <span className="flex-shrink-0" aria-hidden="true">
+                              {link.icon}
+                            </span>
+                          )}
+                          {link.label}
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent
+                          className="rounded-xl min-w-[140px] py-2.5 z-[100]"
+                          sideOffset={5}
+                          align="end"
+                        >
+                          {link.children.map((child) => {
+                            const itemContent = (
+                              <DropdownMenuItem
+                                className={cn(
+                                  'flex items-center justify-between gap-2 text-krds-body-sm',
+                                  child.isSelected &&
+                                    'bg-krds-primary-5 font-medium'
+                                )}
+                                aria-checked={child.isSelected}
+                                onSelect={child.onClick}
+                              >
+                                {child.label}
+                                {child.external && (
+                                  <SquareArrowOutUpRight
+                                    className="w-3 h-3"
+                                    aria-hidden="true"
+                                  />
+                                )}
+                                {child.isSelected && (
+                                  <Check
+                                    className="w-4 h-4 text-krds-primary-60 ml-auto"
+                                    aria-hidden="true"
+                                  />
+                                )}
+                              </DropdownMenuItem>
+                            );
+
+                            // href가 있으면 링크, 없으면 버튼 동작
+                            return child.href ? (
+                              <a
+                                key={child.label}
+                                href={child.href}
+                                {...(child.external && {
+                                  target: '_blank',
+                                  rel: 'noopener noreferrer',
+                                })}
+                              >
+                                {itemContent}
+                              </a>
+                            ) : (
+                              <React.Fragment key={child.label}>
+                                {itemContent}
+                              </React.Fragment>
+                            );
+                          })}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    ) : (
+                      // Depth 1: 일반 링크
+                      <a
+                        href={link.href}
+                        className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
+                        {...(link.external && {
+                          target: '_blank',
+                          rel: 'noopener noreferrer',
+                        })}
+                      >
                         {link.icon && (
                           <span className="flex-shrink-0" aria-hidden="true">
                             {link.icon}
                           </span>
                         )}
                         {link.label}
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent
-                        className="rounded-xl min-w-[140px] py-2.5 z-[100]"
-                        sideOffset={5}
-                        align="end"
-                      >
-                        {link.children.map((child) => {
-                          const itemContent = (
-                            <DropdownMenuItem
-                              className={cn(
-                                'flex items-center justify-between gap-2 text-krds-body-sm',
-                                child.isSelected &&
-                                  'bg-krds-primary-5 font-medium'
-                              )}
-                              aria-checked={child.isSelected}
-                              onSelect={child.onClick}
-                            >
-                              {child.label}
-                              {child.external && (
-                                <SquareArrowOutUpRight
-                                  className="w-3 h-3"
-                                  aria-hidden="true"
-                                />
-                              )}
-                              {child.isSelected && (
-                                <Check
-                                  className="w-4 h-4 text-krds-primary-60 ml-auto"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </DropdownMenuItem>
-                          );
+                        {link.external && (
+                          <SquareArrowOutUpRight
+                            className="w-3 h-3 ml-1"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </Container>
+          </div>
+        )}
 
-                          // href가 있으면 링크, 없으면 버튼 동작
-                          return child.href ? (
-                            <a
-                              key={child.label}
-                              href={child.href}
-                              {...(child.external && {
-                                target: '_blank',
-                                rel: 'noopener noreferrer',
-                              })}
-                            >
-                              {itemContent}
-                            </a>
-                          ) : (
-                            <React.Fragment key={child.label}>
-                              {itemContent}
-                            </React.Fragment>
-                          );
-                        })}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  ) : (
-                    // Depth 1: 일반 링크
-                    <a
-                      href={link.href}
-                      className="inline-flex items-center gap-1 text-krds-body-sm font-medium text-krds-gray-90 hover:text-krds-primary-60 transition-colors py-2 px-3"
-                      {...(link.external && {
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                      })}
-                    >
-                      {link.icon && (
-                        <span className="flex-shrink-0" aria-hidden="true">
-                          {link.icon}
-                        </span>
-                      )}
-                      {link.label}
-                      {link.external && (
-                        <SquareArrowOutUpRight
-                          className="w-3 h-3 ml-1"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </div>
-      )}
+        {/* Branding + Actions (Line 1) */}
+        <Container className="flex items-center justify-between pb-1 gap-2">
+          {/* Logo */}
+          <Logo src={logo} alt={logoAlt} href={logoHref} slogan={slogan} />
 
-      {/* Branding + Actions (Line 1) */}
-      <Container className="flex items-center justify-between pb-1 gap-2">
-        {/* Logo */}
-        <Logo src={logo} alt={logoAlt} href={logoHref} slogan={slogan} />
+          {/* Actions */}
+          <div className="hidden lg:inline-flex gap-2">
+            {actionButtons.map((button) => (
+              <Button
+                key={button.label}
+                variant="ghost"
+                href={button.isSearchTrigger ? undefined : button.href}
+                className="flex flex-col gap-1 items-center min-w-0 h-full !py-2 !px-3 hover:bg-krds-gray-10"
+                aria-label={button.isSearchTrigger ? '검색' : undefined}
+                onClick={
+                  button.isSearchTrigger
+                    ? () => setIsSearchOpen(true)
+                    : button.onClick
+                }
+              >
+                <span aria-hidden="true">{button.icon}</span>
+                {button.label}
+              </Button>
+            ))}
+            <SearchModal
+              open={isSearchOpen}
+              onOpenChange={setIsSearchOpen}
+              popularKeywords={SAMPLE_POPULAR_KEYWORDS}
+              recentKeywords={SAMPLE_RECENT_KEYWORDS}
+              onSearch={(value) => {
+                console.log('검색:', value);
+                setIsSearchOpen(false);
+              }}
+            />
+          </div>
 
-        {/* Actions */}
-        <div className="hidden lg:inline-flex gap-2">
-          {actionButtons.map((button) => (
-            <Button
-              key={button.label}
-              variant="ghost"
-              href={button.isSearchTrigger ? undefined : button.href}
-              className="flex flex-col gap-1 items-center min-w-0 h-full !py-2 !px-3 hover:bg-krds-gray-10"
-              aria-label={button.isSearchTrigger ? '검색' : undefined}
-              onClick={
-                button.isSearchTrigger
-                  ? () => setIsSearchOpen(true)
-                  : button.onClick
-              }
-            >
-              <span aria-hidden="true">{button.icon}</span>
-              {button.label}
-            </Button>
-          ))}
-          <SearchModal
-            open={isSearchOpen}
-            onOpenChange={setIsSearchOpen}
-            popularKeywords={SAMPLE_POPULAR_KEYWORDS}
-            recentKeywords={SAMPLE_RECENT_KEYWORDS}
-            onSearch={(value) => {
-              console.log('검색:', value);
-              setIsSearchOpen(false);
-            }}
-          />
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="lg:hidden min-w-0 hover:bg-krds-gray-10"
-          aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
-          aria-expanded={isMobileMenuOpen}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <X className="w-6 h-6" aria-hidden="true" />
-          ) : (
-            <Menu className="w-6 h-6" aria-hidden="true" />
-          )}
-        </Button>
-      </Container>
-
-      {/* PanelMenu (Line 2) - Desktop only */}
-      <nav
-        id="gnb"
-        className="hidden lg:flex justify-center w-full bg-white border-t border-krds-gray-20"
-        aria-label="주 메뉴"
-      >
-        <Container>
-          <PanelMenu items={panelItems} />
-        </Container>
-      </nav>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[1000] bg-white overflow-y-auto">
-          <div className="flex justify-end items-center p-5 border-b border-krds-gray-20 sticky top-0 bg-white z-10">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="min-w-0 hover:bg-krds-gray-10"
-              onClick={() => setIsMobileMenuOpen(false)}
-              aria-label="메뉴 닫기"
-            >
+          {/* Mobile Menu Toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="lg:hidden min-w-0 hover:bg-krds-gray-10"
+            aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
               <X className="w-6 h-6" aria-hidden="true" />
-            </Button>
-          </div>
-          <div className="p-5">
-            <ul className="list-none m-0 p-0">
-              {panelItems.map((item) => (
-                <li
-                  key={item.label}
-                  className="border-b border-krds-gray-20 last:border-b-0"
-                >
-                  <a
-                    href={item.href}
-                    className="flex items-center justify-between w-full py-4 text-krds-body-lg font-bold text-krds-gray-90 hover:text-krds-primary-60 transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {utilityLinks && utilityLinks.length > 0 && (
-              <div className="flex flex-col gap-3 mt-8 pt-5 border-t border-krds-gray-20">
-                {utilityLinks
-                  .filter((link) => !link.children)
-                  .map((link) => (
-                    <Button
-                      key={link.label}
-                      href={link.href}
-                      variant="tertiary"
-                      className="w-full justify-center"
-                    >
-                      {link.label}
-                    </Button>
-                  ))}
-              </div>
+            ) : (
+              <Menu className="w-6 h-6" aria-hidden="true" />
             )}
+          </Button>
+        </Container>
+
+        {/* PanelMenu (Line 2) - Desktop only */}
+        <nav
+          id="gnb"
+          className="hidden lg:flex justify-center w-full bg-white border-t border-krds-gray-20"
+          aria-label="주 메뉴"
+        >
+          <Container>
+            <PanelMenu items={panelItems} onOpenChange={setIsPanelOpen} />
+          </Container>
+        </nav>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden fixed inset-0 z-[1000] bg-white overflow-y-auto">
+            <div className="flex justify-end items-center p-5 border-b border-krds-gray-20 sticky top-0 bg-white z-10">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="min-w-0 hover:bg-krds-gray-10"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="메뉴 닫기"
+              >
+                <X className="w-6 h-6" aria-hidden="true" />
+              </Button>
+            </div>
+            <div className="p-5">
+              <ul className="list-none m-0 p-0">
+                {panelItems.map((item) => (
+                  <li
+                    key={item.label}
+                    className="border-b border-krds-gray-20 last:border-b-0"
+                  >
+                    <a
+                      href={item.href}
+                      className="flex items-center justify-between w-full py-4 text-krds-body-lg font-bold text-krds-gray-90 hover:text-krds-primary-60 transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              {utilityLinks && utilityLinks.length > 0 && (
+                <div className="flex flex-col gap-3 mt-8 pt-5 border-t border-krds-gray-20">
+                  {utilityLinks
+                    .filter((link) => !link.children)
+                    .map((link) => (
+                      <Button
+                        key={link.label}
+                        href={link.href}
+                        variant="tertiary"
+                        className="w-full justify-center"
+                      >
+                        {link.label}
+                      </Button>
+                    ))}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-    </header>
+        )}
+      </header>
+    </>
   );
 }
 
