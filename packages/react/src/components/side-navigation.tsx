@@ -47,9 +47,6 @@ export interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
   className?: string;
 }
 
-// Re-export types for convenience
-export type { SideNavigationMenuItem, SideNavigationSection };
-
 /**
  * 사이드 네비게이션 컴포넌트
  *

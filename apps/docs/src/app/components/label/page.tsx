@@ -97,7 +97,8 @@ export default function LabelPage() {
               description="Label과 Input을 import하여 사용합니다. htmlFor와 id로 라벨과 입력 요소를 연결합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Label, Input } from '@/components/hanui'
+              {`import { Label } from '@/components/hanui/label';
+import { Input } from '@/components/hanui/input';
 
 <Label htmlFor="input-id" size="md">라벨 텍스트</Label>
 <Input id="input-id" type="text" />`}
@@ -175,7 +176,8 @@ export default function LabelPage() {
                 description="간단한 폼이나 FormField 통합이 필요 없을 때 사용합니다."
               />
               <Code variant="block" language="tsx">
-                {`import { Label, Input } from '@/components/hanui';
+                {`import { Label } from '@/components/hanui/label';
+import { Input } from '@/components/hanui/input';
 
 // 간단한 검색 폼
 <div className="flex items-center gap-2">
@@ -198,7 +200,8 @@ export default function LabelPage() {
                 description="FormField와 함께 사용하면 접근성과 에러 처리가 자동으로 연결됩니다."
               />
               <Code variant="block" language="tsx">
-                {`import { FormField, FormLabel, FormError, FormHelperText, Input } from '@/components/hanui';
+                {`import { FormField, FormLabel, FormError, FormHelperText } from '@/components/hanui/form-field';
+import { Input } from '@/components/hanui/input';
 
 // 복잡한 폼 - 에러 처리 포함 (권장)
 <FormField id="email" required status="error">

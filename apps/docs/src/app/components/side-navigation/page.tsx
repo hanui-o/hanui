@@ -29,7 +29,7 @@ import {
 } from '@hanui/react';
 
 export default function SideNavigationPage() {
-  const exampleSections = [
+  const exampleMenuItems = [
     {
       label: '2Depth-title',
       active: true,
@@ -99,17 +99,17 @@ export default function SideNavigationPage() {
               <div className="w-[320px]">
                 <SideNavigation
                   title="1Depth-title"
-                  sections={exampleSections}
+                  menuItems={exampleMenuItems}
                 />
               </div>
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { SideNavigation } from '@/components/hanui';
+              {`import { SideNavigation } from '@/components/hanui/side-navigation';
 
 <SideNavigation
   title="1Depth-title"
-  sections={[
+  menuItems={[
     {
       label: '2Depth-title',
       active: true,
@@ -132,15 +132,15 @@ export default function SideNavigationPage() {
               level="h2"
               id="usage"
               title="사용법"
-              description="title과 sections props를 제공하여 사이드 네비게이션을 생성합니다."
+              description="title과 menuItems props를 제공하여 사이드 네비게이션을 생성합니다."
             />
 
             <Code variant="block" language="tsx">
-              {`import { SideNavigation } from '@/components/hanui';
+              {`import { SideNavigation } from '@/components/hanui/side-navigation';
 
 <SideNavigation
   title="주요 메뉴"
-  sections={[
+  menuItems={[
     {
       label: '건강보험',
       children: [
@@ -173,7 +173,7 @@ export default function SideNavigationPage() {
               <Code variant="block" language="tsx">
                 {`<SideNavigation
   title="1Depth-title"
-  sections={[
+  menuItems={[
     {
       label: '건강보험',
       children: [
@@ -202,7 +202,7 @@ export default function SideNavigationPage() {
               <Code variant="block" language="tsx">
                 {`<SideNavigation
   title="1Depth-title"
-  sections={[
+  menuItems={[
     {
       label: '건강보험',
       active: true,
@@ -229,7 +229,7 @@ export default function SideNavigationPage() {
               <Code variant="block" language="tsx">
                 {`<SideNavigation
   title="1Depth-title"
-  sections={sections}
+  menuItems={menuItems}
   className="shadow-lg rounded-lg"
 />`}
               </Code>
@@ -332,13 +332,13 @@ export default function SideNavigationPage() {
                 </TableRow>
                 <TableRow>
                   <TableCell>
-                    <Code>sections</Code>
+                    <Code>menuItems</Code>
                   </TableCell>
                   <TableCell>
-                    <Code>SideNavSection[]</Code>
+                    <Code>SideNavigationSection[]</Code>
                   </TableCell>
                   <TableCell>-</TableCell>
-                  <TableCell>섹션 배열 (2Depth)</TableCell>
+                  <TableCell>메뉴 아이템 배열 (2Depth)</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>
@@ -366,15 +366,15 @@ export default function SideNavigationPage() {
             <Subsection level="h3">
               <Heading
                 level="h3"
-                title="SideNavSection"
+                title="SideNavigationSection"
                 description="2Depth 섹션의 타입 정의입니다."
               />
               <Code variant="block" language="tsx">
-                {`interface SideNavSection {
-  label: string;           // 섹션 라벨
-  href?: string;           // 링크 URL (선택)
-  active?: boolean;        // 활성화 상태
-  children?: SideNavLink[];// 하위 링크 (3Depth)
+                {`interface SideNavigationSection {
+  label: string;                    // 섹션 라벨
+  href?: string;                    // 링크 URL (선택)
+  active?: boolean;                 // 활성화 상태
+  children?: SideNavigationMenuItem[];// 하위 링크 (3Depth)
 }`}
               </Code>
             </Subsection>
@@ -382,15 +382,15 @@ export default function SideNavigationPage() {
             <Subsection level="h3">
               <Heading
                 level="h3"
-                title="SideNavLink"
+                title="SideNavigationMenuItem"
                 description="3/4 Depth 링크의 타입 정의입니다."
               />
               <Code variant="block" language="tsx">
-                {`interface SideNavLink {
-  label: string;           // 링크 라벨
-  href?: string;           // 링크 URL
-  active?: boolean;        // 활성화 상태
-  children?: SideNavLink[];// 하위 링크 (4Depth)
+                {`interface SideNavigationMenuItem {
+  label: string;                    // 링크 라벨
+  href?: string;                    // 링크 URL
+  active?: boolean;                 // 활성화 상태
+  children?: SideNavigationMenuItem[];// 하위 링크 (4Depth)
 }`}
               </Code>
             </Subsection>

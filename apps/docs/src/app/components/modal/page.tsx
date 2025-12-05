@@ -117,7 +117,7 @@ export default function ModalPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Modal, ModalTitle, ModalBody, ModalFooter } from '@/components/hanui';
+              {`import { Modal, ModalTitle, ModalBody, ModalFooter } from '@/components/hanui/modal';
 
 <Modal open={isOpen} onClose={setIsOpen}>
   <ModalTitle>제목</ModalTitle>

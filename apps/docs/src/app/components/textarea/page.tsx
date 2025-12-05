@@ -70,7 +70,7 @@ export default function TextareaPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Textarea } from '@/components/hanui'
+              {`import { Textarea } from '@/components/hanui/textarea'
 
 // 기본
 <Textarea placeholder="내용을 입력하세요" />
@@ -97,7 +97,7 @@ export default function TextareaPage() {
               description="Textarea 컴포넌트를 import하여 사용합니다. rows 속성으로 초기 높이를 설정할 수 있습니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Textarea } from '@/components/hanui'
+              {`import { Textarea } from '@/components/hanui/textarea'
 
 <Textarea placeholder="내용을 입력하세요" rows={4} />`}
             </Code>
@@ -231,7 +231,8 @@ export default function TextareaPage() {
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { FormField, FormLabel, FormError, FormHelperText, Textarea } from '@/components/hanui'
+                {`import { FormField, FormLabel, FormError, FormHelperText } from '@/components/hanui/form-field';
+import { Textarea } from '@/components/hanui/textarea'
 
 // 기본 사용
 <FormField id="description" required>

@@ -60,7 +60,7 @@ export default function IdentifierPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Identifier } from '@/components/hanui'
+              {`import { Identifier } from '@/components/hanui/identifier'
 
 <Identifier
   organizationName="행정안전부"
@@ -81,7 +81,7 @@ export default function IdentifierPage() {
             <Subsection level="h3">
               <Heading level="h3" title="기본 사용" />
               <Code variant="block" language="tsx">
-                {`import { Identifier } from '@/components/hanui'
+                {`import { Identifier } from '@/components/hanui/identifier'
 
 <Identifier organizationName="행정안전부" />`}
               </Code>

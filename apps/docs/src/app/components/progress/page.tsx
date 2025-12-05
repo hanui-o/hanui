@@ -119,7 +119,7 @@ export default function ProgressPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Progress } from '@/components/hanui'
+              {`import { Progress } from '@/components/hanui/progress'
 
 <Progress value={60} />
 <Progress value={60} showValue label="진행률" />`}

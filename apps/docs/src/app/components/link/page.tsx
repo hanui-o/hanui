@@ -69,7 +69,7 @@ export default function LinkPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Link } from '@/components/hanui'
+              {`import { Link } from '@/components/hanui/link'
 
 <Link href="/docs">기본 링크</Link>
 <Link variant="primary" href="/primary">Primary 파란색 링크</Link>
@@ -84,7 +84,7 @@ export default function LinkPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Link } from '@/components/hanui'
+              {`import { Link } from '@/components/hanui/link'
 
 <Link href="/components">컴포넌트 보기</Link>`}
             </Code>

@@ -35,7 +35,7 @@ export function Installation({
 설치 명령어: npx hanui add ${componentName}
 
 설치 후 사용법:
-import { ${componentName.charAt(0).toUpperCase() + componentName.slice(1).replace(/-([a-z])/g, (_, c) => c.toUpperCase())} } from '@/components/ui/${componentName}'
+import { ${componentName.charAt(0).toUpperCase() + componentName.slice(1).replace(/-([a-z])/g, (_, c) => c.toUpperCase())} } from '@/components/hanui/${componentName}';
 
 공식 문서: https://hanui.io/components/${componentName}`;
   };

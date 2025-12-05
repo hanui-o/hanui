@@ -37,7 +37,8 @@ const AI_PROMPT_ALL = `HANUI 라이브러리를 설치하고 모든 컴포넌트
 3. 모든 컴포넌트 설치: npx hanui add all -y
 
 설치 후 사용법:
-import { Button, Card, Header, Footer } from '@/components/hanui'
+import { Button } from '@/components/hanui/button';
+import { Card } from '@/components/hanui/card';
 
 공식 문서: https://hanui.io/docs/quick-start`;
 
@@ -170,7 +171,8 @@ export default function QuickStartPage() {
         </Body>
 
         <Code variant="block" language="tsx" showLineNumbers={false}>
-          {`import { Button, Card } from '@/components/hanui'
+          {`import { Button } from '@/components/hanui/button';
+import { Card } from '@/components/hanui/card';
 
 export default function Page() {
   return (

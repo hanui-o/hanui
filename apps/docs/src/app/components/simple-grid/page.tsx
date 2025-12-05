@@ -106,7 +106,7 @@ export default function SimpleGridPage() {
             <Heading level="h2" id="usage" title="사용법" />
 
             <Code variant="block" language="tsx">
-              {`import { SimpleGrid } from '@/components/hanui';
+              {`import { SimpleGrid } from '@/components/hanui/simple-grid';
 
 <SimpleGrid columns={3} gap="md">
   {items.map((item) => (

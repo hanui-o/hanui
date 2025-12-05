@@ -194,8 +194,8 @@ export default function DataTablePage() {
               />
             </ComponentPreview>
             <Code variant="block" language="tsx">
-              {`import { DataTable } from '@/components/hanui'
-import type { ColumnDef } from '@/components/hanui'
+              {`import { DataTable } from '@/components/hanui/data-table'
+import type { ColumnDef } from '@/components/hanui/data-table'
 
 const columns: ColumnDef<User>[] = [
   { accessorKey: 'name', header: '이름' },
@@ -225,8 +225,8 @@ const columns: ColumnDef<User>[] = [
   DataTable,
   SortableHeader,
   getSelectionColumn,
-} from '@/components/hanui'
-import type { ColumnDef, SortingState, ColumnFiltersState } from '@/components/hanui'
+} from '@/components/hanui/data-table'
+import type { ColumnDef, SortingState, ColumnFiltersState } from '@/components/hanui/data-table'
 
 // 컬럼 정의
 const columns: ColumnDef<User>[] = [
@@ -268,7 +268,7 @@ const columns: ColumnDef<User>[] = [
                 />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { SortableHeader } from '@/components/hanui'
+                {`import { SortableHeader } from '@/components/hanui/data-table'
 
 const columns: ColumnDef<User>[] = [
   {
@@ -786,7 +786,7 @@ const columns: ColumnDef<User>[] = [
                 있습니다.
               </p>
               <Code variant="block" language="tsx">
-                {`import { getSelectionColumn } from '@/components/hanui'
+                {`import { getSelectionColumn } from '@/components/hanui/data-table'
 
 const columns: ColumnDef<User>[] = [
   getSelectionColumn<User>(),

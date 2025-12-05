@@ -94,7 +94,7 @@ export default function AlertPage() {
               description="Alert 컴포넌트를 import하고 variant와 title을 지정하여 사용합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Alert } from '@/components/hanui'
+              {`import { Alert } from '@/components/hanui/alert'
 
 <Alert variant="info" title="알림">
   중요한 메시지를 표시합니다.

@@ -99,7 +99,7 @@ export default function RadioPage() {
             />
 
             <Code variant="block" language="tsx">
-              {`import { RadioGroup, Radio } from '@/components/hanui';
+              {`import { RadioGroup, Radio } from '@/components/hanui/radio';
 
 const [value, setValue] = useState('option1');
 
@@ -371,7 +371,10 @@ const [value, setValue] = useState('option1');
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`<FormField id="gender" required>
+                {`import { FormField, FormLabel, FormError, FormHelperText } from '@/components/hanui/form-field';
+import { RadioGroup, Radio } from '@/components/hanui/radio';
+
+<FormField id="gender" required>
   <FormLabel>성별 *</FormLabel>
   <RadioGroup value={value} onValueChange={setValue}>
     <Radio value="male" label="남성" />

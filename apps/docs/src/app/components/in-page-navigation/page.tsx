@@ -83,7 +83,7 @@ export default function InPageNavigationPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { InPageNavigation } from '@/components/hanui'
+              {`import { InPageNavigation } from '@/components/hanui/in-page-navigation'
 
 const links = [
   { label: '서비스 개요', href: '#section_01', active: true },
@@ -108,7 +108,7 @@ const links = [
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { InPageNavigation } from '@/components/hanui'
+              {`import { InPageNavigation } from '@/components/hanui/in-page-navigation'
 
 const links = [
   { label: '서비스 개요', href: '#section_01', active: true },

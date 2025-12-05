@@ -88,7 +88,7 @@ export default function PaginationPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Pagination } from '@/components/hanui';
+              {`import { Pagination } from '@/components/hanui/pagination';
 import { useState } from 'react';
 
 export default function MyComponent() {

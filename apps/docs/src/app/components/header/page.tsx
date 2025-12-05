@@ -228,7 +228,7 @@ export default function HeaderPage() {
         </ComponentPreview>
 
         <Code variant="block" language="tsx" className="mt-4">
-          {`import { HeaderWithPanelMenu, PanelMenuItem } from '@/components/hanui'
+          {`import { HeaderWithPanelMenu, PanelMenuItem } from '@/components/hanui/header'
 
         const panelItems: PanelMenuItem[] = [
           {
@@ -279,7 +279,7 @@ export default function HeaderPage() {
         </ComponentPreview>
 
         <Code variant="block" language="tsx" className="mt-4">
-          {`import { HeaderWithNavigation, NavigationMenuItem } from '@/components/hanui'
+          {`import { HeaderWithNavigation, NavigationMenuItem } from '@/components/hanui/header'
 
 const navigationItems: NavigationMenuItem[] = [
   { label: '금방 돼', href: '/' },
@@ -319,7 +319,7 @@ const navigationItems: NavigationMenuItem[] = [
         </ComponentPreview>
 
         <Code variant="block" language="tsx" className="mt-4">
-          {`import { HeaderWithMegaMenu, MegaMenuColumn } from '@/components/hanui'
+          {`import { HeaderWithMegaMenu, MegaMenuColumn } from '@/components/hanui/header'
 
 const megaColumns: MegaMenuColumn[] = [
   {
