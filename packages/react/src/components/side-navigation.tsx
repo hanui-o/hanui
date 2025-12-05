@@ -4,32 +4,36 @@ import React, { useState } from 'react';
 import { cn } from '../lib/utils';
 
 /**
- * 사이드 네비게이션 링크 아이템 (3/4단계)
+ * 사이드 네비게이션 메뉴 아이템 (3/4단계)
  */
-export interface SideNavLink {
-  /** 링크 라벨 */
+export interface SideNavigationMenuItem {
+  /** 메뉴 라벨 */
   label: string;
   /** 링크 URL */
   href?: string;
   /** 활성화 상태 */
   active?: boolean;
-  /** 하위 링크 (4단계) */
-  children?: SideNavLink[];
+  /** 하위 메뉴 (4단계) */
+  children?: SideNavigationMenuItem[];
 }
 
 /**
  * 사이드 네비게이션 섹션 (2단계)
  */
-export interface SideNavSection {
+export interface SideNavigationSection {
   /** 섹션 라벨 */
   label: string;
   /** 섹션 URL (선택사항, 토글 버튼용) */
   href?: string;
   /** 활성화 상태 */
   active?: boolean;
-  /** 하위 링크 또는 중첩 섹션 */
-  children?: SideNavLink[];
+  /** 하위 메뉴 */
+  children?: SideNavigationMenuItem[];
 }
+
+// Legacy aliases for backward compatibility
+export type SideNavLink = SideNavigationMenuItem;
+export type SideNavSection = SideNavigationSection;
 
 /**
  * 사이드 네비게이션 Props
@@ -37,11 +41,14 @@ export interface SideNavSection {
 export interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
   /** 네비게이션 제목 (1단계) */
   title: string;
-  /** 네비게이션 섹션 (2단계) */
-  sections: SideNavSection[];
+  /** 네비게이션 메뉴 (2단계 섹션 배열) */
+  menuItems: SideNavigationSection[];
   /** 추가 CSS 클래스 */
   className?: string;
 }
+
+// Re-export types for convenience
+export type { SideNavigationMenuItem, SideNavigationSection };
 
 /**
  * 사이드 네비게이션 컴포넌트
@@ -55,14 +62,14 @@ export interface SideNavigationProps extends React.HTMLAttributes<HTMLElement> {
  */
 export function SideNavigation({
   title,
-  sections,
+  menuItems,
   className = '',
   ...props
 }: SideNavigationProps) {
   // 2단계 섹션 열림 상태 (활성 상태 기반으로 초기화)
   const [openSections, setOpenSections] = useState<Set<number>>(() => {
     const initial = new Set<number>();
-    sections.forEach((section, index) => {
+    menuItems.forEach((section, index) => {
       if (section.active || section.children?.some((child) => child.active)) {
         initial.add(index);
       }
@@ -73,7 +80,7 @@ export function SideNavigation({
   // 3단계 메뉴 열림 상태 (활성 상태 기반으로 초기화)
   const [openChildren, setOpenChildren] = useState<Set<string>>(() => {
     const initial = new Set<string>();
-    sections.forEach((section, sectionIndex) => {
+    menuItems.forEach((section, sectionIndex) => {
       section.children?.forEach((child, childIndex) => {
         if (child.active || child.children?.some((c) => c.active)) {
           initial.add(`${sectionIndex}-${childIndex}`);
@@ -126,7 +133,7 @@ export function SideNavigation({
 
       {/* 메뉴 리스트 - 순수 ul > li 구조 */}
       <ul role="menubar" className="list-none p-0 m-0">
-        {sections.map((section, sectionIndex) => {
+        {menuItems.map((section, sectionIndex) => {
           const isActive =
             section.active || section.children?.some((child) => child.active);
           const hasChildren = section.children && section.children.length > 0;
@@ -346,9 +353,9 @@ export function SideNavigation({
 }
 
 /**
- * 샘플 사이드 네비게이션 데이터
+ * 샘플 사이드 네비게이션 메뉴 데이터
  */
-export const SAMPLE_SIDE_NAVIGATION: SideNavSection[] = [
+export const SAMPLE_SIDE_NAVIGATION_MENU: SideNavigationSection[] = [
   {
     label: '2Depth-menu',
     children: [
@@ -395,3 +402,6 @@ export const SAMPLE_SIDE_NAVIGATION: SideNavSection[] = [
     ],
   },
 ];
+
+// Legacy alias
+export const SAMPLE_SIDE_NAVIGATION = SAMPLE_SIDE_NAVIGATION_MENU;

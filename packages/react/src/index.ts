@@ -282,10 +282,14 @@ export type { IdentifierProps } from './components/identifier';
 
 export {
   SideNavigation,
+  SAMPLE_SIDE_NAVIGATION_MENU,
   SAMPLE_SIDE_NAVIGATION,
 } from './components/side-navigation';
 export type {
   SideNavigationProps,
+  SideNavigationSection,
+  SideNavigationMenuItem,
+  // Legacy aliases
   SideNavSection,
   SideNavLink,
 } from './components/side-navigation';
