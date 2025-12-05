@@ -18,6 +18,11 @@ import {
   Code,
   Body,
   Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardBody,
+  CardFooter,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -56,18 +61,22 @@ export default function InstallationPage() {
 
       {/* AI로 설치하기 - 맨 위 */}
       <Section>
-        <Card className="p-6 bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200">
-          <div className="flex items-center gap-2 mb-3">
-            <Zap className="w-5 h-5 text-violet-600" />
-            <Heading level="h2" id="ai-install" title="AI로 설치하기" />
-          </div>
-          <Body className="text-krds-gray-70 mb-4">
-            Cursor, Claude, ChatGPT 등 AI에게 아래 프롬프트를 붙여넣으세요.
-          </Body>
-          <Code variant="block" language="text" className="text-sm">
-            {AI_PROMPT_ALL}
-          </Code>
-          <div className="mt-4 flex justify-end">
+        <Card className="bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Zap className="w-5 h-5 text-violet-600" />
+              AI로 설치하기
+            </CardTitle>
+            <CardDescription>
+              Cursor, Claude, ChatGPT 등 AI에게 아래 프롬프트를 붙여넣으세요.
+            </CardDescription>
+          </CardHeader>
+          <CardBody>
+            <Code variant="block" language="text" className="text-sm">
+              {AI_PROMPT_ALL}
+            </Code>
+          </CardBody>
+          <CardFooter className="justify-end">
             <Button
               onClick={handleAiCopy}
               variant="secondary"
@@ -82,7 +91,7 @@ export default function InstallationPage() {
             >
               {aiCopied ? '복사됨!' : 'AI 프롬프트 복사'}
             </Button>
-          </div>
+          </CardFooter>
         </Card>
       </Section>
 
