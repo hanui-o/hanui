@@ -26,52 +26,54 @@ import {
   TableHead,
   TableCell,
   SideNavigation,
+  SideNavigationSection,
 } from '@hanui/react';
 
-export default function SideNavigationPage() {
-  const exampleMenuItems = [
-    {
-      label: '2Depth-title',
-      active: true,
-      children: [
-        {
-          label: '3Depth-menu',
-          children: [
-            { label: '4Depth', href: '#', active: true },
-            { label: '4Depth', href: '#' },
-            { label: '4Depth', href: '#' },
-          ],
-        },
-        { label: '3Depth-link', href: '#' },
-        { label: '3Depth-link', href: '#' },
-      ],
-    },
-    {
-      label: '2Depth-title',
-      children: [
-        {
-          label: '3Depth-menu',
-          href: '#',
-          children: [
-            { label: '4Depth', href: '#' },
-            { label: '4Depth', href: '#' },
-            { label: '4Depth', href: '#' },
-          ],
-        },
-        { label: '3Depth-link', href: '#' },
-        { label: '3Depth-link', href: '#' },
-      ],
-    },
-    {
-      label: '2Depth-title',
-      children: [
-        { label: '3Depth-link', href: '#' },
-        { label: '3Depth-link', href: '#' },
-        { label: '3Depth-link', href: '#' },
-      ],
-    },
-  ];
+// 예제 메뉴 데이터
+const exampleMenuItems: SideNavigationSection[] = [
+  {
+    label: '2Depth-title',
+    active: true,
+    children: [
+      {
+        label: '3Depth-menu',
+        children: [
+          { label: '4Depth', href: '#', active: true },
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+        ],
+      },
+      { label: '3Depth-link', href: '#' },
+      { label: '3Depth-link', href: '#' },
+    ],
+  },
+  {
+    label: '2Depth-title',
+    children: [
+      {
+        label: '3Depth-menu',
+        href: '#',
+        children: [
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+          { label: '4Depth', href: '#' },
+        ],
+      },
+      { label: '3Depth-link', href: '#' },
+      { label: '3Depth-link', href: '#' },
+    ],
+  },
+  {
+    label: '2Depth-title',
+    children: [
+      { label: '3Depth-link', href: '#' },
+      { label: '3Depth-link', href: '#' },
+      { label: '3Depth-link', href: '#' },
+    ],
+  },
+];
 
+export default function SideNavigationPage() {
   return (
     <>
       <Heading
@@ -105,21 +107,20 @@ export default function SideNavigationPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { SideNavigation } from '@/components/hanui/side-navigation';
+              {`import { SideNavigation, SideNavigationSection } from '@/components/hanui/side-navigation';
 
-<SideNavigation
-  title="1Depth-title"
-  menuItems={[
-    {
-      label: '2Depth-title',
-      active: true,
-      children: [
-        { label: '3Depth-link', href: '#', active: true },
-        { label: '3Depth-link', href: '#' },
-      ],
-    },
-  ]}
-/>`}
+const menuItems: SideNavigationSection[] = [
+  {
+    label: '2Depth-title',
+    active: true,
+    children: [
+      { label: '3Depth-link', href: '#', active: true },
+      { label: '3Depth-link', href: '#' },
+    ],
+  },
+];
+
+<SideNavigation title="1Depth-title" menuItems={menuItems} />`}
             </Code>
           </Section>
 
@@ -136,27 +137,26 @@ export default function SideNavigationPage() {
             />
 
             <Code variant="block" language="tsx">
-              {`import { SideNavigation } from '@/components/hanui/side-navigation';
+              {`import { SideNavigation, SideNavigationSection } from '@/components/hanui/side-navigation';
 
-<SideNavigation
-  title="주요 메뉴"
-  menuItems={[
-    {
-      label: '건강보험',
-      children: [
-        { label: '보험료 조회', href: '/insurance/fee' },
-        { label: '자격 득실 확인', href: '/insurance/status' },
-      ],
-    },
-    {
-      label: '장기요양',
-      children: [
-        { label: '등급 판정', href: '/care/grade' },
-        { label: '장기요양 급여', href: '/care/benefit' },
-      ],
-    },
-  ]}
-/>`}
+const menuItems: SideNavigationSection[] = [
+  {
+    label: '건강보험',
+    children: [
+      { label: '보험료 조회', href: '/insurance/fee' },
+      { label: '자격 득실 확인', href: '/insurance/status' },
+    ],
+  },
+  {
+    label: '장기요양',
+    children: [
+      { label: '등급 판정', href: '/care/grade' },
+      { label: '장기요양 급여', href: '/care/benefit' },
+    ],
+  },
+];
+
+<SideNavigation title="주요 메뉴" menuItems={menuItems} />`}
             </Code>
           </Section>
 
@@ -171,25 +171,24 @@ export default function SideNavigationPage() {
                 description="3Depth 링크에 children을 추가하여 4Depth 서브메뉴를 만들 수 있습니다."
               />
               <Code variant="block" language="tsx">
-                {`<SideNavigation
-  title="1Depth-title"
-  menuItems={[
-    {
-      label: '건강보험',
-      children: [
-        {
-          label: '보험료',
-          children: [
-            { label: '보험료 조회', href: '/fee/check' },
-            { label: '보험료 납부', href: '/fee/pay' },
-            { label: '보험료 환급', href: '/fee/refund' },
-          ],
-        },
-        { label: '자격 득실', href: '/insurance/status' },
-      ],
-    },
-  ]}
-/>`}
+                {`const menuItems: SideNavigationSection[] = [
+  {
+    label: '건강보험',
+    children: [
+      {
+        label: '보험료',
+        children: [
+          { label: '보험료 조회', href: '/fee/check' },
+          { label: '보험료 납부', href: '/fee/pay' },
+          { label: '보험료 환급', href: '/fee/refund' },
+        ],
+      },
+      { label: '자격 득실', href: '/insurance/status' },
+    ],
+  },
+];
+
+<SideNavigation title="1Depth-title" menuItems={menuItems} />`}
               </Code>
             </Subsection>
 
@@ -200,23 +199,18 @@ export default function SideNavigationPage() {
                 description="active: true를 설정하여 현재 페이지를 표시합니다. 부모 섹션도 자동으로 확장됩니다."
               />
               <Code variant="block" language="tsx">
-                {`<SideNavigation
-  title="1Depth-title"
-  menuItems={[
-    {
-      label: '건강보험',
-      active: true,
-      children: [
-        {
-          label: '보험료 조회',
-          href: '/insurance/fee',
-          active: true,
-        },
-        { label: '자격 득실', href: '/insurance/status' },
-      ],
-    },
-  ]}
-/>`}
+                {`const menuItems: SideNavigationSection[] = [
+  {
+    label: '건강보험',
+    active: true,
+    children: [
+      { label: '보험료 조회', href: '/insurance/fee', active: true },
+      { label: '자격 득실', href: '/insurance/status' },
+    ],
+  },
+];
+
+<SideNavigation title="1Depth-title" menuItems={menuItems} />`}
               </Code>
             </Subsection>
 
