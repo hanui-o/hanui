@@ -243,7 +243,7 @@ export default function MainMenuPage() {
         </ComponentPreview>
 
         <Code variant="block" language="tsx" className="mt-4">
-          {`import { PanelMenu, PanelMenuItem } from '@hanui/react'
+          {`import { PanelMenu, PanelMenuItem } from '@/components/hanui'
 
 const panelItems: PanelMenuItem[] = [
   {
@@ -287,7 +287,7 @@ const panelItems: PanelMenuItem[] = [
         </ComponentPreview>
 
         <Code variant="block" language="tsx" className="mt-4">
-          {`import { NavigationMenu, NavigationMenuItem } from '@hanui/react'
+          {`import { NavigationMenu, NavigationMenuItem } from '@/components/hanui'
 
 const navigationItems: NavigationMenuItem[] = [
   { label: '금방 돼', href: '/' },
@@ -324,7 +324,7 @@ const navigationItems: NavigationMenuItem[] = [
         </ComponentPreview>
 
         <Code variant="block" language="tsx" className="mt-4">
-          {`import { MegaMenu, MegaMenuColumn } from '@hanui/react'
+          {`import { MegaMenu, MegaMenuColumn } from '@/components/hanui'
 
 const megaColumns: MegaMenuColumn[] = [
   {

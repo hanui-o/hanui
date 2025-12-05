@@ -562,7 +562,7 @@ export default function ListPage() {
 
       <PageNavigation
         prev={{ title: 'Label', href: '/components/label' }}
-        next={{ title: 'Main Menu', href: '/components/mainmenu' }}
+        next={{ title: 'Main Menu', href: '/components/main-menu' }}
       />
     </>
   );

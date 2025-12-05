@@ -350,7 +350,7 @@ gap: 8px;                  /* 아이콘과 텍스트 사이 간격 */`}
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Main Menu', href: '/components/mainmenu' }}
+        prev={{ title: 'Main Menu', href: '/components/main-menu' }}
         next={{ title: 'Modal', href: '/components/modal' }}
       />
     </>
