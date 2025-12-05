@@ -281,6 +281,13 @@ export const add = new Command()
             "from '@/lib/utils'"
           );
 
+          // Transform relative component imports (./component-name) to alias paths
+          // e.g., from './button' -> from '@/components/ui/button'
+          content = content.replace(
+            /from ['"]\.\/([a-z][a-z0-9-]*)['"]/g,
+            "from '@/components/ui/$1'"
+          );
+
           // Write file
           await fs.writeFile(targetPath, content, 'utf-8');
         }
