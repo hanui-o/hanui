@@ -275,8 +275,9 @@ export const add = new Command()
           }
 
           // Transform imports to use alias paths
+          // Handle both ../lib/utils and ../../lib/utils patterns
           content = content.replace(
-            /from ['"]\.\.\/\.\.\/lib\/utils['"]/g,
+            /from ['"](\.\.\/)+lib\/utils['"]/g,
             "from '@/lib/utils'"
           );
 
