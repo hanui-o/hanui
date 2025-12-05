@@ -1,9 +1,7 @@
 // HANUI React Component Library
 // Korean Government Design System (KRDS) based components
 
-// Import styles
-// NOTE: CSS import is commented out to prevent Tailwind v4/v3 conflicts in docs app
-// Users should import styles manually: import '@hanui/react/styles.css'
+// CSS import disabled - styles are handled by consumer's Tailwind config
 // import './styles.css';
 
 export const version = '0.0.0';
@@ -275,20 +273,9 @@ export type { HeaderWithNavigationTailwindProps as HeaderWithNavigationProps } f
 export { HeaderWithPanelMenu } from './components/header-with-panel-menu';
 export type { HeaderWithPanelMenuProps } from './components/header-with-panel-menu';
 
-// Header components (SCSS version)
-export { HeaderWithMegaMenuScss } from './components/Header/HeaderWithMegaMenu';
-export type { HeaderWithMegaMenuProps as HeaderWithMegaMenuScssProps } from './components/Header/HeaderWithMegaMenu';
-
-export { HeaderWithNavigationScss } from './components/Header/HeaderWithNavigation';
-export type { HeaderWithNavigationProps as HeaderWithNavigationScssProps } from './components/Header/HeaderWithNavigation';
-
-// Footer components (Tailwind CSS - default)
+// Footer components
 export { Footer } from './components/footer';
 export type { FooterProps } from './components/footer';
-
-// Footer components (SCSS version)
-export { FooterScss } from './components/Footer/Footer';
-export type { FooterProps as FooterScssProps } from './components/Footer/Footer';
 
 export { Identifier } from './components/identifier';
 export type { IdentifierProps } from './components/identifier';

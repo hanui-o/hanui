@@ -36,7 +36,7 @@ export default defineConfig({
           'next/link': 'NextLink',
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'styles.css';
+          if (assetInfo.name === 'style.css') return 'react.css';
           return assetInfo.name!;
         },
       },

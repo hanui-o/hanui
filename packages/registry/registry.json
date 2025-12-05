@@ -121,29 +121,6 @@
   "footer": {
     "name": "footer",
     "type": "ui",
-    "description": "KRDS 표준 푸터 컴포넌트 (SCSS)",
-    "dependencies": [
-      "clsx",
-      "tailwind-merge",
-      "@radix-ui/react-dialog",
-      "lucide-react",
-      "sass"
-    ],
-    "registryDependencies": ["container"],
-    "files": [
-      {
-        "path": "components/Footer/Footer.tsx",
-        "type": "component"
-      },
-      {
-        "path": "components/Footer/footer.module.scss",
-        "type": "component"
-      }
-    ]
-  },
-  "footer-tailwind": {
-    "name": "footer-tailwind",
-    "type": "ui",
     "description": "KRDS 표준 푸터 컴포넌트 (Tailwind CSS)",
     "dependencies": [
       "clsx",
@@ -151,10 +128,10 @@
       "@radix-ui/react-dialog",
       "lucide-react"
     ],
-    "registryDependencies": ["container"],
+    "registryDependencies": ["button", "list"],
     "files": [
       {
-        "path": "components/footer-tailwind.tsx",
+        "path": "components/footer.tsx",
         "type": "component"
       }
     ]
