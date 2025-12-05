@@ -119,6 +119,14 @@ export const add = new Command()
         selectedComponents = response.components;
       }
 
+      // Handle "all" keyword - install all available components
+      if (selectedComponents.length === 1 && selectedComponents[0] === 'all') {
+        selectedComponents = Object.keys(registry);
+        logger.info(
+          `Installing all ${selectedComponents.length} components...`
+        );
+      }
+
       // Validate components
       const invalidComponents = selectedComponents.filter(
         (name) => !registry[name]

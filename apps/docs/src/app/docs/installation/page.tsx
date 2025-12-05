@@ -1,3 +1,8 @@
+'use client';
+
+import { useState } from 'react';
+import { Check, Sparkles } from 'lucide-react';
+
 // Docs layout components
 import {
   PageSection as Section,
@@ -18,9 +23,29 @@ import {
   TabsTrigger,
   TabsContent,
   Alert,
+  Button,
 } from '@hanui/react';
 
+const AI_PROMPT_ALL = `HANUI 라이브러리를 설치하고 모든 컴포넌트를 추가해줘.
+
+1. CLI 설치: npm install -D @hanui/cli
+2. 초기화: npx hanui init -y
+3. 모든 컴포넌트 설치: npx hanui add all -y
+
+설치 후 사용법:
+import { Button, Card, Header, Footer } from '@/components/hanui'
+
+공식 문서: https://hanui.io/docs/installation`;
+
 export default function InstallationPage() {
+  const [aiCopied, setAiCopied] = useState(false);
+
+  const handleAiCopy = async () => {
+    await navigator.clipboard.writeText(AI_PROMPT_ALL);
+    setAiCopied(true);
+    setTimeout(() => setAiCopied(false), 2000);
+  };
+
   return (
     <>
       <Heading
@@ -249,7 +274,10 @@ export default function InstallationPage() {
 npx hanui add button
 
 # 여러 컴포넌트
-npx hanui add button card input`}
+npx hanui add button card input
+
+# 모든 컴포넌트 한번에 설치
+npx hanui add all`}
               </Code>
             </TabsContent>
             <TabsContent value="pnpm">
@@ -258,7 +286,10 @@ npx hanui add button card input`}
 pnpm hanui add button
 
 # 여러 컴포넌트
-pnpm hanui add button card input`}
+pnpm hanui add button card input
+
+# 모든 컴포넌트 한번에 설치
+pnpm hanui add all`}
               </Code>
             </TabsContent>
             <TabsContent value="yarn">
@@ -267,10 +298,18 @@ pnpm hanui add button card input`}
 yarn hanui add button
 
 # 여러 컴포넌트
-yarn hanui add button card input`}
+yarn hanui add button card input
+
+# 모든 컴포넌트 한번에 설치
+yarn hanui add all`}
               </Code>
             </TabsContent>
           </Tabs>
+
+          <Alert variant="success" className="mt-4" title="전체 설치 추천">
+            <Code>hanui add all</Code>로 50+ 컴포넌트를 한번에 설치하세요.
+            의존성도 자동으로 처리됩니다.
+          </Alert>
 
           <Alert variant="info" className="mt-4" title="설치 경로">
             컴포넌트는 <Code>@/components/hanui</Code>에 설치됩니다.
@@ -593,6 +632,45 @@ export default {
 </html>`}
           </Code>
         </Subsection>
+      </Section>
+
+      {/* AI 프롬프트 */}
+      <Section>
+        <Heading
+          level="h2"
+          id="ai-prompt"
+          title="AI로 설치하기"
+          description="Cursor, Claude, ChatGPT 등 AI에게 아래 프롬프트를 붙여넣으세요."
+        />
+
+        <Card className="p-6 bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200">
+          <div className="flex items-start justify-between gap-4">
+            <Code variant="block" language="text" className="flex-1 text-sm">
+              {AI_PROMPT_ALL}
+            </Code>
+          </div>
+          <div className="mt-4 flex justify-end">
+            <Button
+              onClick={handleAiCopy}
+              variant="secondary"
+              iconLeft={
+                aiCopied ? (
+                  <Check className="w-4 h-4" />
+                ) : (
+                  <Sparkles className="w-4 h-4" />
+                )
+              }
+              className="bg-gradient-to-r from-violet-500 to-purple-500 text-white border-transparent hover:from-violet-600 hover:to-purple-600"
+            >
+              {aiCopied ? '복사됨!' : 'AI 프롬프트 복사'}
+            </Button>
+          </div>
+        </Card>
+
+        <Alert variant="info" className="mt-4" title="AI 코딩 어시스턴트 활용">
+          Cursor, Claude Code, GitHub Copilot Chat 등에서 프롬프트를 붙여넣으면
+          설치부터 사용까지 자동으로 진행됩니다.
+        </Alert>
       </Section>
 
       {/* Next Steps */}
