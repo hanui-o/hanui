@@ -85,7 +85,9 @@ export const add = new Command()
 
       // Determine components path from hanui.json or options
       let componentsPath = options.path;
+      let componentsAlias = '@/components/hanui'; // Default alias
       if (hanuiConfig?.aliases?.components) {
+        componentsAlias = hanuiConfig.aliases.components;
         // Convert alias like "@/components/hanui" to "src/components/hanui"
         componentsPath = hanuiConfig.aliases.components
           .replace(/^@\//, 'src/')
@@ -290,10 +292,10 @@ export const add = new Command()
           );
 
           // Transform relative component imports (./component-name) to alias paths
-          // e.g., from './button' -> from '@/components/ui/button'
+          // e.g., from './button' -> from '@/components/hanui/button'
           content = content.replace(
             /from ['"]\.\/([a-z][a-z0-9-]*)['"]/g,
-            "from '@/components/ui/$1'"
+            `from '${componentsAlias}/$1'`
           );
 
           // Write file
