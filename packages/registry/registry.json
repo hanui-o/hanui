@@ -312,18 +312,6 @@
       }
     ]
   },
-  "mega-menu": {
-    "name": "mega-menu",
-    "type": "ui",
-    "description": "메가 메뉴 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
-    "files": [
-      {
-        "path": "components/mega-menu.tsx",
-        "type": "component"
-      }
-    ]
-  },
   "menu-mega": {
     "name": "menu-mega",
     "type": "ui",
@@ -391,23 +379,6 @@
     "files": [
       {
         "path": "components/modal.tsx",
-        "type": "component"
-      }
-    ]
-  },
-  "navigation-menu": {
-    "name": "navigation-menu",
-    "type": "ui",
-    "description": "네비게이션 메뉴 컴포넌트",
-    "dependencies": [
-      "clsx",
-      "tailwind-merge",
-      "@radix-ui/react-navigation-menu",
-      "lucide-react"
-    ],
-    "files": [
-      {
-        "path": "components/navigation-menu.tsx",
         "type": "component"
       }
     ]
