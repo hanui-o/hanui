@@ -10,8 +10,8 @@ const getStartedNavigation = [
     title: 'Getting Started',
     items: [
       { title: 'Introduction', href: '/docs/introduction' },
-      { title: 'Installation', href: '/docs/installation' },
       { title: 'Quick Start', href: '/docs/quick-start' },
+      { title: 'Installation', href: '/docs/installation' },
     ],
   },
   {

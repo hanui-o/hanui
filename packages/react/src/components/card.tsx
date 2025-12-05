@@ -7,12 +7,14 @@ import { cn } from '@/lib/utils';
 const cardVariants = cva(
   // Card 스타일 variants (elevation, 인터랙티브 상태)
   [
+    'relative',
     'rounded-lg',
     'border',
     'border-krds-gray-5',
     'bg-krds-gray-5',
     'transition-all',
     'duration-200',
+    'space-y-4',
   ].join(' '),
   {
     variants: {
