@@ -1,5 +1,8 @@
 'use client';
 
+import { useState } from 'react';
+import { Check, Copy, Sparkles, Zap } from 'lucide-react';
+
 // Docs layout components
 import {
   PageSection as Section,
@@ -25,7 +28,26 @@ import {
   Alert,
 } from '@hanui/react';
 
+const AI_PROMPT_ALL = `HANUI 라이브러리를 설치하고 모든 컴포넌트를 추가해줘.
+
+1. CLI 설치: npm install -D @hanui/cli
+2. 초기화: npx hanui init -y
+3. 모든 컴포넌트 설치: npx hanui add all -y
+
+설치 후 사용법:
+import { Button, Card, Header, Footer } from '@/components/hanui'
+
+공식 문서: https://hanui.io/docs/quick-start`;
+
 export default function QuickStartPage() {
+  const [aiCopied, setAiCopied] = useState(false);
+
+  const handleAiCopy = async () => {
+    await navigator.clipboard.writeText(AI_PROMPT_ALL);
+    setAiCopied(true);
+    setTimeout(() => setAiCopied(false), 2000);
+  };
+
   return (
     <>
       <Heading
@@ -149,7 +171,10 @@ export default function Page() {
 npx hanui add button
 
 # 여러 컴포넌트
-npx hanui add button card input`}
+npx hanui add button card input
+
+# 모든 컴포넌트 한 번에 설치
+npx hanui add all -y`}
               </Code>
               <Body className="text-krds-gray-70 mt-3">
                 컴포넌트 소스 코드가 <Code>components/hanui/</Code>에
@@ -173,6 +198,46 @@ export default function Page() {
             </Subsection>
           </TabsContent>
         </Tabs>
+
+        {/* AI 프롬프트 섹션 */}
+        <Card
+          variant="outlined"
+          className="mt-6 border-violet-200 bg-gradient-to-r from-violet-50 to-purple-50"
+        >
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-2">
+                <Zap className="w-5 h-5 text-violet-600" />
+                <Heading level="h3" title="AI로 한 번에 설치하기" />
+              </div>
+              <Body className="text-krds-gray-70 text-sm mb-3">
+                Cursor, Claude, ChatGPT 등 AI에게 아래 프롬프트를 전달하면 모든
+                컴포넌트를 한 번에 설치할 수 있습니다.
+              </Body>
+              <div className="relative">
+                <Code variant="block" language="text">
+                  {AI_PROMPT_ALL}
+                </Code>
+                <button
+                  onClick={handleAiCopy}
+                  className="absolute top-3 right-3 inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-all bg-gradient-to-r from-violet-500 to-purple-500 text-white hover:from-violet-600 hover:to-purple-600"
+                >
+                  {aiCopied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5" />
+                      복사됨
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-3.5 h-3.5" />
+                      AI 프롬프트 복사
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </Card>
 
         <Card variant="info" className="mt-6">
           <Heading level="h3" title="왜 소스 코드 복사 방식인가요?" />
