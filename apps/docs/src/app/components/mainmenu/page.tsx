@@ -225,6 +225,50 @@ export default function MainMenuPage() {
         </Table>
       </Section>
 
+      {/* PanelMenu */}
+      <Section level="h2">
+        <Heading level="h2" id="panel-menu" title="PanelMenu" />
+        <Body className="mb-4">
+          KRDS 스타일 패널형 메뉴. 클릭 시 2depth 패널이 열리고 3depth
+          서브콘텐츠를 지원합니다.
+        </Body>
+
+        <ComponentPreview className="h-[350px] overflow-hidden">
+          <div
+            className="scale-[0.65] origin-top w-[1400px]"
+            style={{ height: '540px' }}
+          >
+            <PanelMenu items={panelItems} />
+          </div>
+        </ComponentPreview>
+
+        <Code variant="block" language="tsx" className="mt-4">
+          {`import { PanelMenu, PanelMenuItem } from '@hanui/react'
+
+const panelItems: PanelMenuItem[] = [
+  {
+    label: '회의',
+    panel: [
+      {
+        label: '회의하기 싫다',
+        subContent: {
+          title: '회의 거부 사유',
+          links: [
+            { label: '줌 피로감', href: '/meeting/zoom-fatigue' },
+            { label: '이메일로 대체 가능', href: '/meeting/email' },
+          ],
+        },
+      },
+      { label: '나 왜 초대됨?', href: '/meeting/invited' },
+    ],
+  },
+  { label: '문서화', href: '/docs' },
+]
+
+<PanelMenu items={panelItems} />`}
+        </Code>
+      </Section>
+
       {/* NavigationMenu */}
       <Section level="h2">
         <Heading level="h2" id="navigation-menu" title="NavigationMenu" />
@@ -301,50 +345,6 @@ const megaColumns: MegaMenuColumn[] = [
 ]
 
 <MegaMenu columns={megaColumns} />`}
-        </Code>
-      </Section>
-
-      {/* PanelMenu */}
-      <Section level="h2">
-        <Heading level="h2" id="panel-menu" title="PanelMenu" />
-        <Body className="mb-4">
-          KRDS 스타일 패널형 메뉴. 클릭 시 2depth 패널이 열리고 3depth
-          서브콘텐츠를 지원합니다.
-        </Body>
-
-        <ComponentPreview className="h-[350px] overflow-hidden">
-          <div
-            className="scale-[0.65] origin-top w-[1400px]"
-            style={{ height: '540px' }}
-          >
-            <PanelMenu items={panelItems} />
-          </div>
-        </ComponentPreview>
-
-        <Code variant="block" language="tsx" className="mt-4">
-          {`import { PanelMenu, PanelMenuItem } from '@hanui/react'
-
-const panelItems: PanelMenuItem[] = [
-  {
-    label: '회의',
-    panel: [
-      {
-        label: '회의하기 싫다',
-        subContent: {
-          title: '회의 거부 사유',
-          links: [
-            { label: '줌 피로감', href: '/meeting/zoom-fatigue' },
-            { label: '이메일로 대체 가능', href: '/meeting/email' },
-          ],
-        },
-      },
-      { label: '나 왜 초대됨?', href: '/meeting/invited' },
-    ],
-  },
-  { label: '문서화', href: '/docs' },
-]
-
-<PanelMenu items={panelItems} />`}
         </Code>
       </Section>
 

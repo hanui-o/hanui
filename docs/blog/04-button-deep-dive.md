@@ -1,0 +1,226 @@
+# HANUI Button - 왜 이렇게 만들었나
+
+![button-variants](https://velog.velcdn.com/images/hanui/post/51496d9e-b061-42ef-8bba-4e1a25f65b36/image.png)
+
+버튼이요? 그냥 `<button>` 쓰면 되는 거 아닌가요?
+
+맞아요. 근데 KRDS 따라서 만들고, 접근성 챙기고, variant 관리하고, 로딩 상태 처리하고... 하다 보면 버튼 하나가 200줄이 돼요.
+
+오늘은 HANUI Button을 왜 이렇게 만들었는지 얘기해볼게요.
+
+## variant가 8개인 이유
+
+```tsx
+<Button variant="primary">주요 액션</Button>
+<Button variant="secondary">보조 액션</Button>
+<Button variant="tertiary">세 번째 옵션</Button>
+<Button variant="danger">삭제</Button>
+<Button variant="success">완료</Button>
+<Button variant="ghost">텍스트만</Button>
+<Button variant="outline">테두리만</Button>
+<Button variant="black">검정 버튼</Button>
+```
+
+KRDS 가이드 보면 버튼 스타일이 진짜 많아요. Primary, Secondary, Tertiary는 기본이고, 상황에 따라 Danger, Success도 필요하고.
+
+처음엔 "이렇게 많이 필요해?" 했는데, 실제 프로젝트 하다 보면 다 쓰게 돼요.
+
+```tsx
+// 실제 사용 예시
+<div className="flex gap-2">
+  <Button variant="primary">저장</Button>
+  <Button variant="tertiary">취소</Button>
+</div>
+
+<Button variant="danger">계정 삭제</Button>
+```
+
+## class-variance-authority 쓰는 이유
+
+variant 관리할 때 보통 이렇게 하잖아요.
+
+```tsx
+// 흔한 방식
+function Button({ variant, size, className }) {
+  const variantClass = {
+    primary: 'bg-blue-500 text-white',
+    secondary: 'bg-gray-100 text-gray-900',
+  }[variant];
+
+  const sizeClass = {
+    sm: 'h-8 px-3 text-sm',
+    md: 'h-10 px-4 text-base',
+  }[size];
+
+  return <button className={`${variantClass} ${sizeClass} ${className}`} />;
+}
+```
+
+이거 타입 안전하지 않아요. `variant="asdf"` 넣어도 에러 안 나요.
+
+cva 쓰면?
+
+```tsx
+import { cva, type VariantProps } from 'class-variance-authority';
+
+const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded-md',
+  {
+    variants: {
+      variant: {
+        primary: 'bg-krds-primary-50 text-white hover:bg-krds-primary-60',
+        secondary: 'border border-krds-primary-50 bg-krds-primary-5',
+      },
+      size: {
+        xs: 'h-8 px-3',
+        sm: 'h-10 px-4',
+        md: 'h-12 px-5',
+      },
+    },
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md',
+    },
+  }
+);
+
+// 타입 자동 생성
+type ButtonProps = VariantProps<typeof buttonVariants>;
+// { variant?: 'primary' | 'secondary', size?: 'xs' | 'sm' | 'md' }
+```
+
+`variant="asdf"` 넣으면 TypeScript 에러 나요. 자동완성도 되고요.
+
+## 접근성, 이렇게 챙겼어요
+
+### 1. 포커스 링
+
+```tsx
+'focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2';
+```
+
+키보드 사용자가 현재 포커스 위치를 알 수 있어야 해요. outline 지우고 ring으로 대체했어요.
+
+### 2. 로딩 상태
+
+```tsx
+<Button loading>저장 중...</Button>
+```
+
+로딩 중일 때:
+
+- `aria-busy="true"` 자동 적용
+- `disabled` 자동 적용 (중복 클릭 방지)
+- 스피너 아이콘 표시
+
+```tsx
+// 내부 구현
+<Comp disabled={isDisabled} aria-busy={loading} aria-disabled={isDisabled}>
+  {loading && <Loader2 className="animate-spin" aria-hidden="true" />}
+  {children}
+</Comp>
+```
+
+### 3. 아이콘 전용 버튼 경고
+
+```tsx
+// 이렇게 쓰면 개발 모드에서 경고 나옴
+<Button size="icon" iconLeft={<Search />} />
+// ⚠️ Icon-only buttons must have an aria-label
+
+// 이렇게 써야 함
+<Button size="icon" iconLeft={<Search />} aria-label="검색" />
+```
+
+텍스트 없는 버튼은 스크린 리더가 뭔지 모르잖아요. 개발 모드에서 경고 띄워서 까먹지 않게 했어요.
+
+## asChild 패턴
+
+Next.js에서 Link 쓸 때 이런 문제 있잖아요.
+
+```tsx
+// 이렇게 하면 <a> 안에 <a>가 들어감
+<Link href="/about">
+  <Button>About</Button>
+</Link>
+```
+
+asChild 쓰면?
+
+```tsx
+<Button asChild>
+  <Link href="/about">About</Link>
+</Button>
+```
+
+Button의 스타일은 유지하면서, 실제로는 Link로 렌더링돼요. Radix UI의 Slot 패턴이에요.
+
+## href 지원
+
+링크인데 버튼처럼 보여야 할 때 있잖아요.
+
+```tsx
+<Button href="/signup">회원가입</Button>
+<Button href="/docs" target="_blank">문서 보기</Button>
+```
+
+내부에서 href 있으면 자동으로 `<a>` 태그로 바꿔요.
+
+## 아이콘 넣기
+
+```tsx
+<Button iconLeft={<Search />}>검색</Button>
+<Button iconRight={<ArrowRight />}>다음</Button>
+<Button iconLeft={<Download />} iconRight={<ChevronDown />}>
+  다운로드
+</Button>
+```
+
+아이콘 위치를 prop으로 받아요. children 안에서 순서 맞추느라 고생할 필요 없어요.
+
+## 전체 API
+
+```tsx
+interface ButtonProps {
+  variant?:
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'danger'
+    | 'success'
+    | 'ghost'
+    | 'ghost-primary'
+    | 'outline'
+    | 'black';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'icon';
+  loading?: boolean;
+  disabled?: boolean;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+  asChild?: boolean;
+  href?: string;
+}
+```
+
+## 마무리
+
+버튼 하나에 이렇게 많은 게 들어가요.
+
+- 8개 variant, 6개 size
+- 로딩 상태 + 스피너
+- 접근성 (포커스 링, aria 속성, 개발 경고)
+- 아이콘 지원
+- 링크 버튼, asChild 패턴
+
+직접 만들면 하루는 걸려요. HANUI 쓰면?
+
+```bash
+npx hanui add button
+```
+
+10초.
+
+---
+
+**GitHub**: https://github.com/hanui-o/hanui
+**문서**: https://hanui.io

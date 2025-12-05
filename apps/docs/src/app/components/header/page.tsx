@@ -207,6 +207,53 @@ export default function HeaderPage() {
         </Table>
       </Section>
 
+      {/* HeaderWithPanelMenu */}
+      <Section level="h2">
+        <Heading level="h2" id="header-panel" title="HeaderWithPanelMenu" />
+        <Body className="mb-4">
+          KRDS 스타일 패널형 메뉴. 클릭 시 2depth 패널이 열리고 3depth
+          서브콘텐츠를 지원합니다.
+        </Body>
+
+        <ComponentPreview className="h-[500px] overflow-hidden">
+          <div
+            className="scale-[0.65] origin-top w-[1400px]"
+            style={{ height: '770px' }}
+          >
+            <HeaderWithPanelMenu
+              className="w-[1400px]"
+              panelItems={panelItems}
+            />
+          </div>
+        </ComponentPreview>
+
+        <Code variant="block" language="tsx" className="mt-4">
+          {`import { HeaderWithPanelMenu, PanelMenuItem } from '@hanui/react'
+
+        const panelItems: PanelMenuItem[] = [
+          {
+            label: '회의',
+            panel: [
+              {
+                label: '회의하기 싫다',
+                subContent: {
+                  title: '회의 거부 사유',
+                  links: [
+                    { label: '줌 피로감', href: '/meeting/zoom-fatigue' },
+                    { label: '이메일로 대체 가능', href: '/meeting/email' },
+                  ],
+                },
+              },
+              { label: '나 왜 초대됨?', href: '/meeting/invited' },
+            ],
+          },
+          { label: '문서화', href: '/docs' },
+        ]
+
+        <HeaderWithPanelMenu panelItems={panelItems} />`}
+        </Code>
+      </Section>
+
       {/* HeaderWithNavigation */}
       <Section level="h2">
         <Heading
@@ -293,53 +340,6 @@ const megaColumns: MegaMenuColumn[] = [
 ]
 
 <HeaderWithMegaMenu megaColumns={megaColumns} />`}
-        </Code>
-      </Section>
-
-      {/* HeaderWithPanelMenu */}
-      <Section level="h2">
-        <Heading level="h2" id="header-panel" title="HeaderWithPanelMenu" />
-        <Body className="mb-4">
-          KRDS 스타일 패널형 메뉴. 클릭 시 2depth 패널이 열리고 3depth
-          서브콘텐츠를 지원합니다.
-        </Body>
-
-        <ComponentPreview className="h-[500px] overflow-hidden">
-          <div
-            className="scale-[0.65] origin-top w-[1400px]"
-            style={{ height: '770px' }}
-          >
-            <HeaderWithPanelMenu
-              className="w-[1400px]"
-              panelItems={panelItems}
-            />
-          </div>
-        </ComponentPreview>
-
-        <Code variant="block" language="tsx" className="mt-4">
-          {`import { HeaderWithPanelMenu, PanelMenuItem } from '@hanui/react'
-
-        const panelItems: PanelMenuItem[] = [
-          {
-            label: '회의',
-            panel: [
-              {
-                label: '회의하기 싫다',
-                subContent: {
-                  title: '회의 거부 사유',
-                  links: [
-                    { label: '줌 피로감', href: '/meeting/zoom-fatigue' },
-                    { label: '이메일로 대체 가능', href: '/meeting/email' },
-                  ],
-                },
-              },
-              { label: '나 왜 초대됨?', href: '/meeting/invited' },
-            ],
-          },
-          { label: '문서화', href: '/docs' },
-        ]
-
-        <HeaderWithPanelMenu panelItems={panelItems} />`}
         </Code>
       </Section>
 
