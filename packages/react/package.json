@@ -1,6 +1,6 @@
 {
   "name": "@hanui/react",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "KRDS 기반 공공 웹사이트용 React 컴포넌트 라이브러리 - Korean Government Design System (KRDS) based React component library for public web services",
   "keywords": [
     "react",
