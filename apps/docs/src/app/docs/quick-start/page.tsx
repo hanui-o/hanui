@@ -60,7 +60,7 @@ export default function QuickStartPage() {
 
       {/* AI로 설치하기 - 맨 위 */}
       <Section>
-        <Card className="bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200">
+        <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Zap className="w-5 h-5 text-violet-600" />
@@ -69,13 +69,6 @@ export default function QuickStartPage() {
             <CardDescription>
               Cursor, Claude, ChatGPT 등 AI에게 아래 프롬프트를 붙여넣으세요.
             </CardDescription>
-          </CardHeader>
-          <CardBody>
-            <Code variant="block" language="text" className="text-sm">
-              {AI_PROMPT_ALL}
-            </Code>
-          </CardBody>
-          <CardFooter className="justify-end">
             <Button
               onClick={handleAiCopy}
               variant="secondary"
@@ -86,11 +79,16 @@ export default function QuickStartPage() {
                   <Sparkles className="w-4 h-4" />
                 )
               }
-              className="bg-gradient-to-r from-violet-500 to-purple-500 text-white border-transparent hover:from-violet-600 hover:to-purple-600"
+              className="bg-gradient-to-r from-violet-500 to-purple-500 text-white border-transparent hover:from-violet-600 hover:to-purple-600 absolute top-6 right-6"
             >
               {aiCopied ? '복사됨!' : 'AI 프롬프트 복사'}
             </Button>
-          </CardFooter>
+          </CardHeader>
+          <CardBody>
+            <Code variant="block" language="text" className="text-sm">
+              {AI_PROMPT_ALL}
+            </Code>
+          </CardBody>
         </Card>
       </Section>
 
@@ -98,7 +96,7 @@ export default function QuickStartPage() {
       <Section>
         <Heading level="h2" id="one-liner" title="한번에 설치" />
         <Body className="mb-4 text-krds-gray-70">
-          CLI 설치, 초기화, 버튼 컴포넌트 추가를 한 줄로 실행합니다:
+          CLI 설치, 초기화, 기본 컴포넌트 추가를 한 줄로 실행합니다:
         </Body>
 
         <Tabs defaultValue="npm" className="mt-4">
@@ -110,19 +108,19 @@ export default function QuickStartPage() {
           <TabsContent value="npm">
             <Code variant="block" language="bash" showLineNumbers={false}>
               npm install -D @hanui/cli && npx hanui init -y && npx hanui add
-              button -y
+              button card input -y
             </Code>
           </TabsContent>
           <TabsContent value="pnpm">
             <Code variant="block" language="bash" showLineNumbers={false}>
               pnpm add -D @hanui/cli && pnpm hanui init -y && pnpm hanui add
-              button -y
+              button card input -y
             </Code>
           </TabsContent>
           <TabsContent value="yarn">
             <Code variant="block" language="bash" showLineNumbers={false}>
               yarn add -D @hanui/cli && yarn hanui init -y && yarn hanui add
-              button -y
+              button card input -y
             </Code>
           </TabsContent>
         </Tabs>
