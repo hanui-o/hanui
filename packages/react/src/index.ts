@@ -300,8 +300,8 @@ export type {
   InPageNavLink,
 } from './components/in-page-navigation';
 
-export { TabBars } from './components/TabBars';
-export type { TabBarsProps, TabBarItem } from './components/TabBars';
+export { TabBars } from './components/tab-bars';
+export type { TabBarsProps, TabBarItem } from './components/tab-bars';
 
 // Utils
 export { cn } from './lib/utils';
@@ -418,3 +418,6 @@ export type {
   SortingState,
   ColumnFiltersState,
 } from './components/data-table';
+
+export { Carousel } from './components/carousel';
+export type { CarouselProps, CarouselSlide } from './components/carousel';
