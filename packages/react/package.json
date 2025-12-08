@@ -95,6 +95,7 @@
     "cmdk": "^1.1.1",
     "lucide-react": "^0.553.0",
     "shiki": "^1.29.2",
+    "swiper": "^12.0.3",
     "tailwind-merge": "^3.4.0"
   }
 }
