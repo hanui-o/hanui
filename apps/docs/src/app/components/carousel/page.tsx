@@ -10,66 +10,95 @@ import { Installation } from '@/components/content/Installation';
 import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 import {
-  Carousel,
-  Body,
+  PreviewCarousel,
+  HeroCarousel,
+  ContentCarousel,
   Code,
   List,
   ListItem,
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
   Table,
   TableHeader,
   TableBody,
   TableRow,
   TableHead,
   TableCell,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
 } from '@hanui/react';
-import type { CarouselSlide } from '@hanui/react';
+import type { HeroCarouselSlide, ContentCarouselSlide } from '@hanui/react';
 
-// 예제 슬라이드 데이터
-const visualSlides: CarouselSlide[] = [
+// HeroCarousel 예제 데이터
+const heroSlides: HeroCarouselSlide[] = [
   {
     id: 1,
-    title: '대한민국 정책브리핑',
-    description: '국민과 함께하는 정부, 더 나은 대한민국을 만들어갑니다.',
-    buttonText: '자세히 보기',
+    title: '월요일 출근하기 싫어',
+    description: '주말은 왜 이렇게 빨리 가는 걸까요. 금요일이 보고 싶습니다.',
+    buttonText: '퇴근하기',
     buttonHref: '#',
+    imageSrc:
+      'https://api.dicebear.com/7.x/lorelei/svg?seed=monday&backgroundColor=b6e3f4',
+    imageAlt: '월요일 싫어하는 캐릭터',
   },
   {
     id: 2,
-    title: '디지털 정부혁신',
-    description: '스마트한 공공서비스로 국민 편의를 높입니다.',
-    buttonText: '바로가기',
+    title: '회의하기 싫어',
+    description: '이 회의는 메일로 대체할 수 있었습니다. 30분 돌려주세요.',
+    buttonText: '회의 거절',
     buttonHref: '#',
+    imageSrc:
+      'https://api.dicebear.com/7.x/lorelei/svg?seed=meeting&backgroundColor=c0aede',
+    imageAlt: '회의 싫어하는 캐릭터',
   },
   {
     id: 3,
-    title: '탄소중립 2050',
-    description: '지속가능한 미래를 위한 환경 정책을 추진합니다.',
-    buttonText: '알아보기',
+    title: '수정사항 확인하기 싫어',
+    description:
+      'LGTM 누르고 싶은 마음을 참고 있습니다. 이거 누가 짠 거야... 아 내가 짰네.',
+    buttonText: 'LGTM',
     buttonHref: '#',
+    imageSrc:
+      'https://api.dicebear.com/7.x/lorelei/svg?seed=review&backgroundColor=ffd5dc',
+    imageAlt: '수정사항 확인 싫어하는 캐릭터',
   },
 ];
 
-const cardSlides: CarouselSlide[] = [
+// ContentCarousel 예제 데이터
+const contentSlides: ContentCarouselSlide[] = [
   {
     id: 1,
     subtitle: '공지사항',
     title: '2024년 상반기 정책 설명회 안내',
+    href: '#',
   },
   {
     id: 2,
     subtitle: '보도자료',
     title: '디지털 정부혁신 성과 발표',
+    href: '#',
   },
   {
     id: 3,
     subtitle: '이벤트',
     title: '국민참여 아이디어 공모전',
+    href: '#',
   },
 ];
+
+// PreviewCarousel 예제 카드
+const PreviewCard = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) => (
+  <div className="bg-white rounded-lg border border-krds-gray-20 p-4 h-full">
+    <h3 className="font-semibold text-krds-gray-90 mb-2">{title}</h3>
+    <p className="text-sm text-krds-gray-60">{description}</p>
+  </div>
+);
 
 export default function CarouselPage() {
   return (
@@ -77,7 +106,7 @@ export default function CarouselPage() {
       <Heading
         level="h1"
         title="Carousel"
-        description="여러 슬라이드를 순환하며 보여주는 캐러셀 컴포넌트입니다. 메인 비주얼 배너와 카드형 배너를 지원합니다."
+        description="여러 슬라이드를 순환하며 보여주는 캐러셀 컴포넌트입니다. Swiper.js 기반으로 터치/스와이프, 키보드 네비게이션, 접근성을 지원합니다."
       />
 
       <Tabs defaultValue="overview">
@@ -86,6 +115,7 @@ export default function CarouselPage() {
           <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
         </TabsList>
 
+        {/* 개요 탭 */}
         <TabsContent value="overview">
           {/* 1. 개요 */}
           <Section level="h2">
@@ -93,67 +123,76 @@ export default function CarouselPage() {
               level="h2"
               id="overview"
               title="개요"
+              description="용도에 따라 3가지 타입을 제공합니다."
               className="sr-only"
             />
-            <Body className="mb-3">
-              Carousel은 Swiper.js를 기반으로 구축되어 터치/스와이프, 키보드
-              네비게이션, 자동 재생 등을 지원합니다. KRDS 디자인 시스템 가이드를
-              따르며 접근성을 고려하여 설계되었습니다.
-            </Body>
-            <ComponentPreview>
-              <div className="w-full">
-                <Carousel variant="visual" slides={visualSlides} loop />
-              </div>
-            </ComponentPreview>
-            <Code variant="block" language="tsx" showLineNumbers={false}>
-              {`import { Carousel } from '@hanui/react';
-
-const slides = [
-  {
-    id: 1,
-    title: '대한민국 정책브리핑',
-    description: '국민과 함께하는 정부',
-    buttonText: '자세히 보기',
-    buttonHref: '#',
-  },
-  // ...
-];
-
-<Carousel variant="visual" slides={slides} loop />`}
-            </Code>
+            <Table className="mb-8">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>컴포넌트</TableHead>
+                  <TableHead>용도</TableHead>
+                  <TableHead>설치</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <strong>HeroCarousel</strong>
+                  </TableCell>
+                  <TableCell>메인 비주얼 배너 (텍스트 + 이미지)</TableCell>
+                  <TableCell>
+                    <Code variant="inline">npx hanui add carousel-hero</Code>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <strong>ContentCarousel</strong>
+                  </TableCell>
+                  <TableCell>섹션 배너, 공지 슬라이더</TableCell>
+                  <TableCell>
+                    <Code variant="inline">npx hanui add carousel-content</Code>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <strong>PreviewCarousel</strong>
+                  </TableCell>
+                  <TableCell>카드 목록, 부분 슬라이드 노출</TableCell>
+                  <TableCell>
+                    <Code variant="inline">npx hanui add carousel-preview</Code>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
           </Section>
 
           {/* 2. 설치 */}
           <Section level="h2">
-            <Installation componentName="carousel" />
+            <Installation componentName="carousel-hero" />
           </Section>
 
           {/* 3. 사용법 */}
           <Section level="h2">
-            <Heading level="h2" id="usage" title="사용법" />
-            <Body className="mb-3">
-              Carousel 컴포넌트를 import하여 사용합니다. slides 배열에 슬라이드
-              데이터를 전달합니다.
-            </Body>
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="용도에 맞는 Carousel 컴포넌트를 import하여 사용합니다."
+            />
             <Code variant="block" language="tsx" showLineNumbers={false}>
-              {`import { Carousel } from '@hanui/react';
-import type { CarouselSlide } from '@hanui/react';
+              {`import { HeroCarousel, ContentCarousel, PreviewCarousel } from '@hanui/react';
 
-const slides: CarouselSlide[] = [
-  {
-    id: 1,
-    title: '타이틀',
-    description: '설명 텍스트',
-    buttonText: '버튼',
-    buttonHref: '/link',
-  },
-];
+// 메인 비주얼 배너
+<HeroCarousel slides={heroSlides} autoPlay showPlayPause loop />
 
-// Visual Banner
-<Carousel variant="visual" slides={slides} />
+// 섹션 배너
+<ContentCarousel slides={contentSlides} sectionTitle="주요 소식" />
 
-// Card Carousel
-<Carousel variant="card" slides={slides} sectionTitle="제목" />`}
+// 카드 캐러셀
+<PreviewCarousel slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 3.2 }}>
+  <Card>카드 1</Card>
+  <Card>카드 2</Card>
+</PreviewCarousel>`}
             </Code>
           </Section>
 
@@ -161,157 +200,128 @@ const slides: CarouselSlide[] = [
           <Section level="h2">
             <Heading level="h2" id="examples" title="예제" />
 
-            {/* Visual Banner */}
+            {/* HeroCarousel */}
             <Subsection level="h3">
-              <Heading level="h3" title="Visual Banner" />
-              <Body className="mb-3">
-                메인 페이지 상단에 사용하는 큰 비주얼 배너입니다. 타이틀, 설명,
-                CTA 버튼, 이미지로 구성됩니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="HeroCarousel"
+                description="메인 페이지 상단에 사용하는 히어로 배너입니다. 텍스트는 왼쪽, 이미지는 오른쪽에 배치됩니다."
+              />
               <ComponentPreview>
                 <div className="w-full">
-                  <Carousel
-                    variant="visual"
-                    slides={visualSlides}
+                  <HeroCarousel
+                    slides={heroSlides}
+                    autoPlay
+                    showPlayPause
                     loop
+                  />
+                </div>
+              </ComponentPreview>
+              <Code variant="block" language="tsx" showLineNumbers={false}>
+                {`const slides: HeroCarouselSlide[] = [
+  {
+    id: 1,
+    title: '대한민국 정책브리핑',
+    description: '국민과 함께하는 정부',
+    buttonText: '자세히 보기',
+    buttonHref: '/about',
+    image: '/hero-image.png',
+  },
+];
+
+<HeroCarousel slides={slides} autoPlay showPlayPause loop />`}
+              </Code>
+            </Subsection>
+
+            {/* ContentCarousel */}
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="ContentCarousel"
+                description="카드형 섹션 배너입니다. 섹션 타이틀, 분수형 페이지네이션, 더보기 버튼을 지원합니다."
+              />
+              <ComponentPreview>
+                <div className="w-full max-w-md">
+                  <ContentCarousel
+                    sectionTitle="주요 소식"
+                    slides={contentSlides}
+                    paginationType="fraction"
+                    autoPlay
+                    showPlayPause
                     moreHref="#"
                   />
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Carousel
-  variant="visual"
-  slides={visualSlides}
-  loop
-  moreHref="/banners"
-/>`}
-              </Code>
-            </Subsection>
+                {`const slides: ContentCarouselSlide[] = [
+  {
+    id: 1,
+    subtitle: '공지사항',
+    title: '2024년 상반기 정책 설명회 안내',
+    href: '/notice/1',
+  },
+];
 
-            {/* Card Carousel */}
-            <Subsection level="h3">
-              <Heading level="h3" title="Card Carousel" />
-              <Body className="mb-3">
-                카드 형태의 작은 배너입니다. 서브타이틀과 타이틀로 구성되며 섹션
-                타이틀을 함께 표시할 수 있습니다.
-              </Body>
-              <ComponentPreview>
-                <div className="w-full max-w-md">
-                  <Carousel
-                    variant="card"
-                    sectionTitle="주요 소식"
-                    slides={cardSlides}
-                    paginationType="fraction"
-                    autoPlay
-                    showPlayPause
-                  />
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Carousel
-  variant="card"
+<ContentCarousel
   sectionTitle="주요 소식"
-  slides={cardSlides}
+  slides={slides}
   paginationType="fraction"
   autoPlay
   showPlayPause
+  moreHref="/notices"
 />`}
               </Code>
             </Subsection>
 
-            {/* 자동 재생 */}
+            {/* PreviewCarousel */}
             <Subsection level="h3">
-              <Heading level="h3" title="자동 재생" />
-              <Body className="mb-3">
-                autoPlay로 자동 재생을 활성화하고, showPlayPause로 재생/정지
-                버튼을 표시합니다. pauseOnHover로 호버시 일시정지할 수 있습니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="PreviewCarousel"
+                description="부분적으로 다음 슬라이드가 보이는 캐러셀입니다. children 기반으로 자유로운 콘텐츠를 사용할 수 있습니다."
+              />
               <ComponentPreview>
                 <div className="w-full">
-                  <Carousel
-                    variant="visual"
-                    slides={visualSlides}
-                    autoPlay
-                    interval={3000}
-                    showPlayPause
-                    pauseOnHover
-                    loop
-                  />
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Carousel
-  variant="visual"
-  slides={slides}
-  autoPlay
-  interval={3000}
-  showPlayPause
-  pauseOnHover
-  loop
-/>`}
-              </Code>
-            </Subsection>
-
-            {/* 페이지네이션 타입 */}
-            <Subsection level="h3">
-              <Heading level="h3" title="페이지네이션 타입" />
-              <Body className="mb-3">
-                bullets(도트)와 fraction(분수형) 두 가지 페이지네이션을
-                지원합니다.
-              </Body>
-              <ComponentPreview>
-                <div className="w-full space-y-8">
-                  <div>
-                    <Body className="text-sm text-krds-gray-50 mb-2">
-                      Bullets (기본)
-                    </Body>
-                    <Carousel
-                      variant="visual"
-                      slides={visualSlides}
-                      paginationType="bullets"
-                      loop
+                  <PreviewCarousel
+                    slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 3.2 }}
+                    spaceBetween={16}
+                    showArrows
+                    showPagination
+                  >
+                    <PreviewCard
+                      title="정책 안내 1"
+                      description="국민을 위한 정책 설명입니다."
                     />
-                  </div>
-                  <div>
-                    <Body className="text-sm text-krds-gray-50 mb-2">
-                      Fraction
-                    </Body>
-                    <Carousel
-                      variant="visual"
-                      slides={visualSlides}
-                      paginationType="fraction"
-                      loop
+                    <PreviewCard
+                      title="정책 안내 2"
+                      description="디지털 혁신 관련 내용입니다."
                     />
-                  </div>
+                    <PreviewCard
+                      title="정책 안내 3"
+                      description="환경 정책 안내입니다."
+                    />
+                    <PreviewCard
+                      title="정책 안내 4"
+                      description="복지 정책 안내입니다."
+                    />
+                    <PreviewCard
+                      title="정책 안내 5"
+                      description="경제 정책 안내입니다."
+                    />
+                  </PreviewCarousel>
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// 도트 페이지네이션 (기본)
-<Carousel paginationType="bullets" />
-
-// 분수형 페이지네이션 (1/3)
-<Carousel paginationType="fraction" />`}
-              </Code>
-            </Subsection>
-
-            {/* 단일 슬라이드 */}
-            <Subsection level="h3">
-              <Heading level="h3" title="단일 슬라이드 (Hero)" />
-              <Body className="mb-3">
-                슬라이드가 1개일 경우 화살표와 페이지네이션이 자동으로 숨겨져
-                Hero 배너처럼 동작합니다.
-              </Body>
-              <ComponentPreview>
-                <div className="w-full">
-                  <Carousel variant="visual" slides={[visualSlides[0]]} />
-                </div>
-              </ComponentPreview>
-              <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`// 슬라이드 1개 = 화살표/페이지네이션 자동 숨김
-<Carousel
-  variant="visual"
-  slides={[{ id: 1, title: '히어로 배너', description: '설명' }]}
-/>`}
+                {`<PreviewCarousel
+  slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 3.2 }}
+  spaceBetween={16}
+  showArrows
+  showPagination
+>
+  <Card>카드 1</Card>
+  <Card>카드 2</Card>
+  <Card>카드 3</Card>
+</PreviewCarousel>`}
               </Code>
             </Subsection>
           </Section>
@@ -322,46 +332,42 @@ const slides: CarouselSlide[] = [
               level="h2"
               id="accessibility"
               title="접근성"
-              description="Carousel은 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+              description="모든 Carousel은 WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
             />
             <List variant="check">
               <ListItem>
-                <strong>Swiper A11y 모듈:</strong> 스크린 리더용 안내 메시지가
-                자동으로 제공됩니다.
+                <strong>Swiper A11y 모듈:</strong> 스크린 리더용 안내 메시지
+                자동 제공
               </ListItem>
               <ListItem>
-                <strong>키보드 네비게이션:</strong> 좌/우 화살표로 슬라이드를
-                이동할 수 있습니다.
+                <strong>키보드 네비게이션:</strong> 좌/우 화살표로 슬라이드 이동
               </ListItem>
               <ListItem>
-                <strong>자동 재생 제어:</strong> 재생/정지 버튼으로 사용자가
-                자동 재생을 제어할 수 있습니다.
+                <strong>자동 재생 제어:</strong> 재생/정지 버튼으로 사용자 제어
+                가능
               </ListItem>
               <ListItem>
-                <strong>aria-label:</strong> 모든 컨트롤 버튼에 명확한 레이블이
-                제공됩니다.
-              </ListItem>
-              <ListItem>
-                <strong>포커스 관리:</strong> 키보드 사용자가 슬라이드 콘텐츠에
-                접근할 수 있습니다.
+                <strong>aria-label:</strong> 모든 컨트롤 버튼에 명확한 레이블
+                제공
               </ListItem>
             </List>
           </Section>
         </TabsContent>
 
+        {/* API 탭 */}
         <TabsContent value="api">
           <Section level="h2">
-            <Heading level="h2" id="api" title="API Reference" />
+            <Heading level="h2" id="api" title="API 레퍼런스" />
 
             <Subsection level="h3">
-              <Heading level="h3" title="CarouselProps" />
+              <Heading level="h3" title="HeroCarouselProps" />
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>속성</TableHead>
-                    <TableHead>타입</TableHead>
-                    <TableHead>기본값</TableHead>
-                    <TableHead>설명</TableHead>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -370,24 +376,10 @@ const slides: CarouselSlide[] = [
                       <Code>slides</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">CarouselSlide[]</Code>
+                      <Code className="text-xs">HeroCarouselSlide[]</Code>
                     </TableCell>
                     <TableCell>필수</TableCell>
-                    <TableCell>슬라이드 데이터 배열</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>variant</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">
-                        &apos;visual&apos; | &apos;card&apos;
-                      </Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">&apos;visual&apos;</Code>
-                    </TableCell>
-                    <TableCell>캐러셀 스타일</TableCell>
+                    <TableCell>슬라이드 데이터</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
@@ -396,10 +388,8 @@ const slides: CarouselSlide[] = [
                     <TableCell>
                       <Code className="text-xs">boolean</Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">false</Code>
-                    </TableCell>
-                    <TableCell>자동 재생 여부</TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>자동 재생</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
@@ -408,9 +398,7 @@ const slides: CarouselSlide[] = [
                     <TableCell>
                       <Code className="text-xs">number</Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">5000</Code>
-                    </TableCell>
+                    <TableCell>5000</TableCell>
                     <TableCell>자동 재생 간격 (ms)</TableCell>
                   </TableRow>
                   <TableRow>
@@ -420,9 +408,7 @@ const slides: CarouselSlide[] = [
                     <TableCell>
                       <Code className="text-xs">boolean</Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">true</Code>
-                    </TableCell>
+                    <TableCell>true</TableCell>
                     <TableCell>무한 루프</TableCell>
                   </TableRow>
                   <TableRow>
@@ -430,28 +416,66 @@ const slides: CarouselSlide[] = [
                       <Code>showArrows</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">
-                        boolean | &apos;auto&apos;
-                      </Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">&apos;auto&apos;</Code>
-                    </TableCell>
-                    <TableCell>화살표 표시 (auto: 2개+ 자동)</TableCell>
+                    <TableCell>true</TableCell>
+                    <TableCell>화살표 표시</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
                       <Code>showPagination</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">
-                        boolean | &apos;auto&apos;
-                      </Code>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>true</TableCell>
+                    <TableCell>페이지네이션 표시</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>showPlayPause</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">&apos;auto&apos;</Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
-                    <TableCell>페이지네이션 표시</TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>재생/정지 버튼</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="ContentCarouselProps" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>slides</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">ContentCarouselSlide[]</Code>
+                    </TableCell>
+                    <TableCell>필수</TableCell>
+                    <TableCell>슬라이드 데이터</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>sectionTitle</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>섹션 타이틀</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
@@ -462,10 +486,18 @@ const slides: CarouselSlide[] = [
                         &apos;bullets&apos; | &apos;fraction&apos;
                       </Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">&apos;bullets&apos;</Code>
-                    </TableCell>
+                    <TableCell>&apos;fraction&apos;</TableCell>
                     <TableCell>페이지네이션 타입</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>autoPlay</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>자동 재생</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
@@ -474,22 +506,8 @@ const slides: CarouselSlide[] = [
                     <TableCell>
                       <Code className="text-xs">boolean</Code>
                     </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">false</Code>
-                    </TableCell>
-                    <TableCell>재생/정지 버튼 표시</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>pauseOnHover</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">boolean</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">true</Code>
-                    </TableCell>
-                    <TableCell>호버시 일시정지</TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>재생/정지 버튼</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
@@ -501,133 +519,85 @@ const slides: CarouselSlide[] = [
                     <TableCell>-</TableCell>
                     <TableCell>더보기 버튼 링크</TableCell>
                   </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>sectionTitle</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">string</Code>
-                    </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>섹션 타이틀 (card variant)</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>onSlideChange</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">
-                        (index: number) =&gt; void
-                      </Code>
-                    </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>슬라이드 변경 콜백</TableCell>
-                  </TableRow>
                 </TableBody>
               </Table>
             </Subsection>
 
             <Subsection level="h3">
-              <Heading level="h3" title="CarouselSlide" />
+              <Heading level="h3" title="PreviewCarouselProps" />
               <Table small>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>속성</TableHead>
-                    <TableHead>타입</TableHead>
-                    <TableHead>필수</TableHead>
-                    <TableHead>설명</TableHead>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <Code>id</Code>
+                      <Code>children</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">string | number</Code>
+                      <Code className="text-xs">ReactNode</Code>
                     </TableCell>
-                    <TableCell>O</TableCell>
-                    <TableCell>슬라이드 고유 ID</TableCell>
+                    <TableCell>필수</TableCell>
+                    <TableCell>슬라이드 아이템들</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code>title</Code>
+                      <Code>slidesPerView</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">string</Code>
+                      <Code className="text-xs">
+                        number | &#123; mobile, tablet, desktop &#125;
+                      </Code>
                     </TableCell>
-                    <TableCell>O</TableCell>
-                    <TableCell>타이틀</TableCell>
+                    <TableCell>
+                      &#123; mobile: 1.2, tablet: 2.2, desktop: 3.2 &#125;
+                    </TableCell>
+                    <TableCell>표시할 슬라이드 수</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code>description</Code>
+                      <Code>spaceBetween</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">string</Code>
+                      <Code className="text-xs">number</Code>
                     </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>설명 (visual variant)</TableCell>
+                    <TableCell>16</TableCell>
+                    <TableCell>슬라이드 간격 (px)</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code>subtitle</Code>
+                      <Code>loop</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">string</Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>서브타이틀 (card variant)</TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>무한 루프</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code>image</Code>
+                      <Code>showArrows</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">string</Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>이미지 URL</TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>화살표 표시</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code>imageAlt</Code>
+                      <Code>showPagination</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">string</Code>
+                      <Code className="text-xs">boolean</Code>
                     </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>이미지 alt 텍스트</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>buttonText</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">string</Code>
-                    </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>CTA 버튼 텍스트</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>buttonHref</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">string</Code>
-                    </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>CTA 버튼 링크</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Code>onButtonClick</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">() =&gt; void</Code>
-                    </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>버튼 클릭 핸들러</TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>페이지네이션 표시</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
