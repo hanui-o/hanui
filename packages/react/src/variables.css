@@ -70,12 +70,13 @@
   --krds-container-padding-mobile: 1rem; /* 16px - px-4 */
   --krds-container-padding-tablet: 1.5rem; /* 24px - sm:px-6 */
   --krds-container-padding-desktop: 2rem; /* 32px - lg:px-8 */
-  --krds-container-xs: 480px; /* max-width xs */
-  --krds-container-sm: 640px; /* max-width sm */
-  --krds-container-md: 768px; /* max-width md */
-  --krds-container-lg: 1024px; /* max-width lg */
-  --krds-container-xl: 1280px; /* max-width xl */
-  --krds-container-2xl: 1440px; /* max-width 2xl */
+  /* max-width = 콘텐츠 영역 + 양쪽 패딩 */
+  --krds-container-xs: 512px; /* 콘텐츠 480px + 패딩 16px × 2 */
+  --krds-container-sm: 688px; /* 콘텐츠 640px + 패딩 24px × 2 */
+  --krds-container-md: 816px; /* 콘텐츠 768px + 패딩 24px × 2 */
+  --krds-container-lg: 1088px; /* 콘텐츠 1024px + 패딩 32px × 2 */
+  --krds-container-xl: 1344px; /* 콘텐츠 1280px + 패딩 32px × 2 */
+  --krds-container-2xl: 1504px; /* 콘텐츠 1440px + 패딩 32px × 2 */
 
   /* KRDS Header Size Variables */
   --krds-size-height-6: 3rem; /* 48px */
