@@ -52,11 +52,19 @@ const componentsNavigation = [
       { title: 'Breadcrumb', href: '/components/breadcrumb' },
       { title: 'Button', href: '/components/button' },
       { title: 'Card', href: '/components/card' },
+      { title: 'Carousel', href: '/components/carousel', isNew: true },
       { title: 'Center', href: '/components/center' },
       { title: 'Checkbox', href: '/components/checkbox' },
       { title: 'Code', href: '/components/code' },
       { title: 'Container', href: '/components/container' },
+      {
+        title: 'Critical Alerts',
+        href: '/components/critical-alerts',
+        isNew: true,
+      },
       { title: 'DataTable', href: '/components/data-table' },
+      { title: 'Date Input', href: '/components/date-input', isNew: true },
+      { title: 'Disclosure', href: '/components/disclosure', isNew: true },
       { title: 'Display', href: '/components/display' },
       { title: 'DropdownMenu', href: '/components/dropdown-menu' },
       { title: 'File Upload', href: '/components/file-upload' },
@@ -90,13 +98,24 @@ const componentsNavigation = [
       { title: 'Slider', href: '/components/slider' },
       { title: 'Spinner', href: '/components/spinner' },
       { title: 'Stack', href: '/components/stack' },
+      {
+        title: 'Step Indicator',
+        href: '/components/step-indicator',
+        isNew: true,
+      },
       { title: 'Switch', href: '/components/switch' },
       { title: 'Tab Bars', href: '/components/tabbars' },
       { title: 'Table', href: '/components/table' },
       { title: 'Tabs', href: '/components/tabs' },
+      { title: 'Tag', href: '/components/tag', isNew: true },
       { title: 'Textarea', href: '/components/textarea' },
       { title: 'Toast', href: '/components/toast' },
       { title: 'Tooltip', href: '/components/tooltip' },
+      {
+        title: 'Visually Hidden',
+        href: '/components/visually-hidden',
+        isNew: true,
+      },
       { title: 'Wrap', href: '/components/wrap' },
     ],
   },
@@ -112,9 +131,15 @@ const templatesNavigation = [
   },
 ];
 
+type NavigationItem = {
+  title: string;
+  href: string;
+  isNew?: boolean;
+};
+
 type NavigationSection = {
   title: string;
-  items: { title: string; href: string }[];
+  items: NavigationItem[];
 };
 
 function SidebarSection({
@@ -137,13 +162,21 @@ function SidebarSection({
               <Link
                 href={item.href}
                 ref={isActive ? onActiveRef : undefined}
-                className={`block py-1 px-2 rounded-md transition-colors text-sm ${
+                className={`flex items-center gap-1.5 py-1 px-2 rounded-md transition-colors text-sm ${
                   isActive
                     ? 'bg-krds-primary-base text-white font-medium'
                     : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'
                 }`}
               >
                 {item.title}
+                {item.isNew && (
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      isActive ? 'bg-white' : 'bg-krds-primary-base'
+                    }`}
+                    aria-label="새로운 컴포넌트"
+                  />
+                )}
               </Link>
             </li>
           );

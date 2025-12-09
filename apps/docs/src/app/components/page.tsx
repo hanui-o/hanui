@@ -112,6 +112,16 @@ const presentationComponents = [
     href: '/components/aspect-ratio',
   },
   {
+    name: 'Critical Alerts',
+    description: '긴급 공지 배너',
+    href: '/components/critical-alerts',
+  },
+  {
+    name: 'Disclosure',
+    description: '디스클로저',
+    href: '/components/disclosure',
+  },
+  {
     name: 'Center',
     description: '중앙 정렬 컨테이너',
     href: '/components/center',
@@ -193,6 +203,11 @@ const presentationComponents = [
     description: '카드',
     href: '/components/card',
   },
+  {
+    name: 'Carousel',
+    description: '캐러셀/슬라이드 배너',
+    href: '/components/carousel',
+  },
 ];
 
 // 4. 액션 (Action)
@@ -241,6 +256,11 @@ const selectionComponents = [
     description: '토글 스위치',
     href: '/components/switch',
   },
+  {
+    name: 'Tag',
+    description: '태그/필터 라벨',
+    href: '/components/tag',
+  },
 ];
 
 // 6. 피드백 (Feedback)
@@ -249,6 +269,11 @@ const feedbackComponents = [
     name: 'Badge',
     description: '상태/알림 뱃지',
     href: '/components/badge',
+  },
+  {
+    name: 'Step Indicator',
+    description: '단계 표시기',
+    href: '/components/step-indicator',
   },
   {
     name: 'Alert',
@@ -294,6 +319,11 @@ const helpComponents = [
 // 8. 입력 (Input)
 const inputComponents = [
   {
+    name: 'Date Input',
+    description: '날짜 입력 필드',
+    href: '/components/date-input',
+  },
+  {
     name: 'FormField',
     description: '폼 필드 그룹 (Label, Input, Error, Helper)',
     href: '/components/form-field',
@@ -334,7 +364,13 @@ const contentComponents: Array<{
   description?: string;
   href: string;
   updated?: boolean;
-}> = [];
+}> = [
+  {
+    name: 'Visually Hidden',
+    description: '스크린리더 전용 숨김 콘텐츠',
+    href: '/components/visually-hidden',
+  },
+];
 
 // 컴포넌트 섹션 렌더링 함수
 function ComponentSection({
@@ -491,6 +527,13 @@ export default function ComponentsPage() {
         description="사용자로부터 데이터를 입력받는 폼 컴포넌트"
         components={inputComponents}
         id="input"
+      />
+
+      <ComponentSection
+        title="콘텐츠"
+        description="접근성 및 콘텐츠 관련 컴포넌트"
+        components={contentComponents}
+        id="content"
       />
     </>
   );

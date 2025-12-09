@@ -101,6 +101,9 @@ import {
   Container,
   Masthead,
   HeaderWithPanelMenu,
+  Carousel,
+  HeroCarousel,
+  HeroCarouselSlide,
 } from '@hanui/react';
 import {
   AlertCircle,
@@ -271,6 +274,43 @@ const megaColumns: MegaMenuColumn[] = [
       { label: '주석 달기 귀찮아', href: '/docs/comment' },
       { label: 'README 업데이트', href: '/docs/readme' },
     ],
+  },
+];
+
+// ============================================================================
+// HeroCarousel 옵션
+// ============================================================================
+const slides: HeroCarouselSlide[] = [
+  {
+    id: 1,
+    title: '월요일 출근하기 싫어',
+    description: '주말은 왜 이렇게 빨리 가는 걸까요. 금요일이 보고 싶습니다.',
+    buttonText: '퇴근하기',
+    buttonHref: '#',
+    imageSrc:
+      'https://pikaso.cdnpk.net/private/production/1200801274/enhanced.png?token=exp=1765497600~hmac=747bc8f36aee543932afb5998ed71574065c618ded381f00e1336a4f07bef31e',
+    imageAlt: '월요일 싫어하는 캐릭터',
+  },
+  {
+    id: 2,
+    title: '회의하기 싫어',
+    description: '이 회의는 메일로 대체할 수 있었습니다. 30분 돌려주세요.',
+    buttonText: '회의 거절',
+    buttonHref: '#',
+    imageSrc:
+      'https://api.dicebear.com/7.x/lorelei/svg?seed=meeting&backgroundColor=c0aede',
+    imageAlt: '회의 싫어하는 캐릭터',
+  },
+  {
+    id: 3,
+    title: '수정사항 확인하기 싫어',
+    description:
+      'LGTM 누르고 싶은 마음을 참고 있습니다. 이거 누가 짠 거야... 아 내가 짰네.',
+    buttonText: 'LGTM',
+    buttonHref: '#',
+    imageSrc:
+      'https://api.dicebear.com/7.x/lorelei/svg?seed=review&backgroundColor=ffd5dc',
+    imageAlt: '수정사항 확인 싫어하는 캐릭터',
   },
 ];
 
@@ -1358,6 +1398,8 @@ export default function TestComponentsPage() {
           stickyBehavior="auto"
         /> */}
         {/* <HeaderWithMegaMenu megaColumns={megaColumns} stickyBehavior="auto" /> */}
+
+        <HeroCarousel slides={slides} autoPlay showPlayPause loop />
 
         <Container>
           <Tabs defaultValue="feedback">
