@@ -194,7 +194,7 @@ export const HeroCarousel = React.forwardRef<HTMLDivElement, HeroCarouselProps>(
                       src={slide.imageSrc}
                       alt=""
                       aria-hidden="true"
-                      className="absolute top-0 right-0 bottom-0 w-2/3 h-full object-cover object-center [mask-image:linear-gradient(to_right,transparent,black_40%)]"
+                      className="absolute top-0 right-0 bottom-0 w-2/3 h-full object-cover object-center [mask-image:linear-gradient(to_right,transparent,black_40%,black_90%,transparent)]"
                     />
                   )}
                   {/* 텍스트 영역 */}
