@@ -38,7 +38,7 @@ const heroSlides: HeroCarouselSlide[] = [
     buttonText: '퇴근하기',
     buttonHref: '#',
     imageSrc:
-      'https://api.dicebear.com/7.x/lorelei/svg?seed=monday&backgroundColor=b6e3f4',
+      'https://pikaso.cdnpk.net/private/production/1200801274/enhanced.png?token=exp=1765497600~hmac=747bc8f36aee543932afb5998ed71574065c618ded381f00e1336a4f07bef31e',
     imageAlt: '월요일 싫어하는 캐릭터',
   },
   {
@@ -48,7 +48,7 @@ const heroSlides: HeroCarouselSlide[] = [
     buttonText: '회의 거절',
     buttonHref: '#',
     imageSrc:
-      'https://api.dicebear.com/7.x/lorelei/svg?seed=meeting&backgroundColor=c0aede',
+      'https://img.freepik.com/free-photo/beautiful-pet-portrait-cat_23-2149218505.jpg?t=st=1765275515~exp=1765279115~hmac=76d534905c1624a31108178fa4cfa5fee6a86ac3778dc9f8f63d7c4afd37d0ba&w=740',
     imageAlt: '회의 싫어하는 캐릭터',
   },
   {
@@ -59,7 +59,7 @@ const heroSlides: HeroCarouselSlide[] = [
     buttonText: 'LGTM',
     buttonHref: '#',
     imageSrc:
-      'https://api.dicebear.com/7.x/lorelei/svg?seed=review&backgroundColor=ffd5dc',
+      'https://img.freepik.com/free-photo/gray-kitty-with-monochrome-wall-her_23-2148955126.jpg?t=st=1765275557~exp=1765279157~hmac=dba078bed3be9f5d145ee97b6e50055a970ace155e6503f6b28553c2d3d50ffd&w=740',
     imageAlt: '수정사항 확인 싫어하는 캐릭터',
   },
 ];
@@ -207,16 +207,9 @@ export default function CarouselPage() {
                 title="HeroCarousel"
                 description="메인 페이지 상단에 사용하는 히어로 배너입니다. 텍스트는 왼쪽, 이미지는 오른쪽에 배치됩니다."
               />
-              <ComponentPreview>
-                <div className="w-full">
-                  <HeroCarousel
-                    slides={heroSlides}
-                    autoPlay
-                    showPlayPause
-                    loop
-                  />
-                </div>
-              </ComponentPreview>
+              <div className="w-full">
+                <HeroCarousel slides={heroSlides} autoPlay showPlayPause loop />
+              </div>
               <Code variant="block" language="tsx" showLineNumbers={false}>
                 {`const slides: HeroCarouselSlide[] = [
   {
@@ -225,7 +218,8 @@ export default function CarouselPage() {
     description: '국민과 함께하는 정부',
     buttonText: '자세히 보기',
     buttonHref: '/about',
-    image: '/hero-image.png',
+    imageSrc: '/hero-image.png',
+    imageAlt: '대한민국 정책브리핑',
   },
 ];
 

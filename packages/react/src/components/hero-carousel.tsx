@@ -147,7 +147,7 @@ export const HeroCarousel = React.forwardRef<HTMLDivElement, HeroCarouselProps>(
     );
 
     return (
-      <div ref={ref} className={cn('bg-krds-gray-5', className)}>
+      <div ref={ref} className={cn('bg-krds-white', className)}>
         <div className="relative max-w-screen-xl mx-auto">
           <Swiper
             modules={[Navigation, Autoplay, A11y]}
@@ -235,7 +235,7 @@ export const HeroCarousel = React.forwardRef<HTMLDivElement, HeroCarouselProps>(
                 className={cn(
                   buttonBaseClass,
                   'hero-carousel-button-prev',
-                  'absolute -left-20 top-1/2 -translate-y-1/2 z-10'
+                  'absolute -left-16 top-1/2 -translate-y-1/2 z-10'
                 )}
                 aria-label="이전"
               >
@@ -246,7 +246,7 @@ export const HeroCarousel = React.forwardRef<HTMLDivElement, HeroCarouselProps>(
                 className={cn(
                   buttonBaseClass,
                   'hero-carousel-button-next',
-                  'absolute -right-20 top-1/2 -translate-y-1/2 z-10'
+                  'absolute -right-16 top-1/2 -translate-y-1/2 z-10'
                 )}
                 aria-label="다음"
               >
