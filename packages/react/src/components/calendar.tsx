@@ -116,10 +116,11 @@ function isDateDisabled(
 
 function generateYearOptions(
   currentYear: number,
-  range: number = 50
+  startYear: number = 2001
 ): number[] {
   const years: number[] = [];
-  for (let i = currentYear - range; i <= currentYear + range; i++) {
+  // 2001년부터 현재년도 + 10년까지
+  for (let i = startYear; i <= currentYear + 10; i++) {
     years.push(i);
   }
   return years;
@@ -175,6 +176,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
     // refs
     const yearListRef = React.useRef<HTMLUListElement>(null);
     const monthListRef = React.useRef<HTMLUListElement>(null);
+    const prevButtonRef = React.useRef<HTMLButtonElement>(null);
+    const calendarGridRef = React.useRef<HTMLTableElement>(null);
 
     // 년도 옵션
     const yearOptions = React.useMemo(
@@ -294,6 +297,15 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
       }
     }, [isMonthOpen]);
 
+    // 캘린더 마운트 시 이전달 버튼으로 포커스 이동
+    React.useEffect(() => {
+      // 짧은 지연 후 포커스 (Popover 애니메이션 후)
+      const timeoutId = setTimeout(() => {
+        prevButtonRef.current?.focus();
+      }, 50);
+      return () => clearTimeout(timeoutId);
+    }, []);
+
     // 달력 그리드 생성
     const calendarGrid = React.useMemo(() => {
       const daysInMonth = getDaysInMonth(displayYear, displayMonth);
@@ -361,8 +373,9 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
           <div className="calendar-head flex items-center justify-between mb-4">
             {/* 이전 달 버튼 */}
             <button
+              ref={prevButtonRef}
               type="button"
-              className="btn-cal-move prev p-2 rounded-md hover:bg-krds-gray-10 transition-colors"
+              className="btn-cal-move prev p-2 rounded-md hover:bg-krds-gray-10 transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base"
               onClick={goToPrevMonth}
             >
               <span className="sr-only">이전 달</span>
@@ -377,6 +390,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                   type="button"
                   className="btn-cal-switch year px-3 py-1.5 text-krds-body-md font-medium text-krds-gray-90 hover:bg-krds-gray-10 rounded-md transition-colors flex items-center gap-1"
                   aria-label="연도 선택"
+                  aria-expanded={isYearOpen}
+                  aria-haspopup="listbox"
                   onClick={() => {
                     setIsYearOpen(!isYearOpen);
                     setIsMonthOpen(false);
@@ -394,9 +409,18 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 </button>
                 {isYearOpen && (
                   <div className="calendar-select calendar-year-wrap absolute top-full left-0 mt-1 bg-white border border-krds-gray-30 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
-                    <ul ref={yearListRef} className="sel year py-1">
+                    <ul
+                      ref={yearListRef}
+                      className="sel year py-1"
+                      role="listbox"
+                      aria-label="연도 목록"
+                    >
                       {yearOptions.map((year) => (
-                        <li key={year}>
+                        <li
+                          key={year}
+                          role="option"
+                          aria-selected={year === displayYear}
+                        >
                           <button
                             type="button"
                             className={cn(
@@ -424,6 +448,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                   type="button"
                   className="btn-cal-switch month px-3 py-1.5 text-krds-body-md font-medium text-krds-gray-90 hover:bg-krds-gray-10 rounded-md transition-colors flex items-center gap-1"
                   aria-label="월 선택"
+                  aria-expanded={isMonthOpen}
+                  aria-haspopup="listbox"
                   onClick={() => {
                     setIsMonthOpen(!isMonthOpen);
                     setIsYearOpen(false);
@@ -441,9 +467,18 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                 </button>
                 {isMonthOpen && (
                   <div className="calendar-select calendar-mon-wrap absolute top-full left-0 mt-1 bg-white border border-krds-gray-30 rounded-md shadow-lg z-10">
-                    <ul ref={monthListRef} className="sel month py-1">
+                    <ul
+                      ref={monthListRef}
+                      className="sel month py-1"
+                      role="listbox"
+                      aria-label="월 목록"
+                    >
                       {MONTHS_KO.map((monthName, index) => (
-                        <li key={index}>
+                        <li
+                          key={index}
+                          role="option"
+                          aria-selected={index === displayMonth}
+                        >
                           <button
                             type="button"
                             className={cn(
@@ -469,8 +504,20 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
             {/* 다음 달 버튼 */}
             <button
               type="button"
-              className="btn-cal-move next p-2 rounded-md hover:bg-krds-gray-10 transition-colors"
+              className="btn-cal-move next p-2 rounded-md hover:bg-krds-gray-10 transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base"
               onClick={goToNextMonth}
+              onKeyDown={(e) => {
+                // Tab 키를 누르면 날짜 그리드로 포커스 이동
+                if (e.key === 'Tab' && !e.shiftKey) {
+                  e.preventDefault();
+                  // 선택된 날짜 또는 오늘 또는 1일로 포커스 이동
+                  const focusableButton =
+                    calendarGridRef.current?.querySelector(
+                      'button[tabindex="0"]'
+                    ) as HTMLButtonElement | null;
+                  focusableButton?.focus();
+                }
+              }}
             >
               <span className="sr-only">다음 달</span>
               <ChevronRight className="w-5 h-5 text-krds-gray-70" />
@@ -480,7 +527,11 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
           {/* 달력 테이블 */}
           <div className="calendar-body">
             <div className="calendar-table-wrap">
-              <table className="calendar-tbl w-full" role="grid">
+              <table
+                ref={calendarGridRef}
+                className="calendar-tbl w-full"
+                role="grid"
+              >
                 <caption className="sr-only">
                   {displayYear}년 {MONTHS_KO[displayMonth]}
                 </caption>
@@ -490,7 +541,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                       <th
                         key={day}
                         className={cn(
-                          'p-2 text-sm font-medium text-center',
+                          'p-2 font-medium text-center',
                           index === 0
                             ? 'text-krds-functional-error'
                             : 'text-krds-gray-60'
@@ -563,8 +614,9 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                           >
                             <button
                               type="button"
+                              aria-label={`${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일${isToday ? ' 오늘' : ''}${isSelected ? ' 선택됨' : ''}${isRangeStart ? ' 시작일' : ''}${isRangeEnd ? ' 종료일' : ''}${isHoliday && !isOtherMonth ? ' 공휴일' : ''}`}
                               className={cn(
-                                'btn-set-date w-10 h-10 flex items-center justify-center rounded-full text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base',
+                                'btn-set-date w-10 h-10 flex items-center justify-center rounded-full text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2',
                                 // 기본 상태
                                 'text-krds-gray-90 hover:bg-krds-gray-10',
                                 // 다른 달
@@ -573,8 +625,12 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                                 isToday &&
                                   !isSelected &&
                                   'border border-krds-primary-base',
-                                // 선택됨
-                                (isSelected || isRangeStart || isRangeEnd) &&
+                                // 선택됨 (single 모드) - 배경색 + ring
+                                isSelected &&
+                                  'bg-krds-primary-10 text-krds-primary-base ring-2 ring-krds-primary-base ring-offset-2 hover:bg-krds-primary-10',
+                                // 범위 시작/끝 (range 모드) - 기존 스타일 유지
+                                (isRangeStart || isRangeEnd) &&
+                                  !isSelected &&
                                   'bg-krds-primary-base text-white hover:bg-krds-primary-base',
                                 // 범위 내
                                 isInRange && 'bg-krds-primary-10 rounded-none',
@@ -600,9 +656,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                               onKeyDown={(e) => handleKeyDown(e, date)}
                               disabled={isDisabled}
                               tabIndex={
-                                isFocused ||
-                                (!focusedDate && isToday) ||
-                                (!focusedDate && !isToday && isSelected)
+                                // 현재 달 날짜만 탭 가능, 선택된 날짜는 건너뛰기
+                                !isOtherMonth && !isSelected && !isDisabled
                                   ? 0
                                   : -1
                               }

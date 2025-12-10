@@ -38,13 +38,13 @@ const dateFieldVariants = cva(
   [
     'calendar-input',
     'flex-1',
-    'h-10',
-    'rounded-md',
+    'h-14',
+    'rounded-lg',
     'border',
-    'border-krds-gray-30',
+    'border-krds-gray-60',
     'bg-white',
-    'px-3',
-    'text-sm',
+    'pl-4',
+    'text-krds-body-md',
     'text-krds-gray-90',
     'placeholder:text-krds-gray-50',
     'transition-colors',
@@ -63,9 +63,15 @@ const dateFieldVariants = cva(
         true: 'border-krds-functional-error focus:ring-krds-functional-error focus:border-krds-functional-error',
         false: '',
       },
+      // 달력 버튼 유무에 따른 오른쪽 패딩
+      showCalendarButton: {
+        true: 'pr-12',
+        false: 'pr-4',
+      },
     },
     defaultVariants: {
       hasError: false,
+      showCalendarButton: false,
     },
   }
 );
@@ -267,7 +273,7 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
         {helperText && (
           <p
             id={helperTextId}
-            className="form-hint text-sm text-krds-gray-60 mb-2"
+            className="form-hint text-krds-body-sm text-krds-gray-60 mb-2"
           >
             {helperText}
           </p>
@@ -293,8 +299,7 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
                 aria-invalid={hasError ? 'true' : undefined}
                 aria-required={required ? 'true' : undefined}
                 className={cn(
-                  dateFieldVariants({ hasError }),
-                  showCalendarButton && 'pr-10'
+                  dateFieldVariants({ hasError, showCalendarButton })
                 )}
                 {...props}
               />
@@ -320,6 +325,9 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
           {!onCalendarClick && (
             <PopoverPrimitive.Portal>
               <PopoverPrimitive.Content
+                role="dialog"
+                aria-label="날짜 선택"
+                aria-modal="true"
                 className={cn(
                   'z-50',
                   'data-[state=open]:animate-in data-[state=closed]:animate-out',
@@ -489,7 +497,7 @@ export const DateInputMultiple = React.forwardRef<
               aria-invalid={hasError ? 'true' : undefined}
               className={cn(
                 dateFieldVariants({ hasError }),
-                'w-14 text-center'
+                'w-16 text-center'
               )}
               aria-label="월"
               maxLength={2}
@@ -655,9 +663,8 @@ export const DateInputRange = React.forwardRef<
                   disabled={disabled}
                   aria-invalid={hasError ? 'true' : undefined}
                   className={cn(
-                    dateFieldVariants({ hasError }),
-                    'w-full',
-                    showCalendarButton && 'pr-10'
+                    dateFieldVariants({ hasError, showCalendarButton }),
+                    'w-full'
                   )}
                   aria-label="시작일"
                 />
@@ -692,9 +699,8 @@ export const DateInputRange = React.forwardRef<
                   disabled={disabled}
                   aria-invalid={hasError ? 'true' : undefined}
                   className={cn(
-                    dateFieldVariants({ hasError }),
-                    'w-full',
-                    showCalendarButton && 'pr-10'
+                    dateFieldVariants({ hasError, showCalendarButton }),
+                    'w-full'
                   )}
                   aria-label="종료일"
                 />
@@ -721,6 +727,9 @@ export const DateInputRange = React.forwardRef<
           {!hasExternalHandler && (
             <PopoverPrimitive.Portal>
               <PopoverPrimitive.Content
+                role="dialog"
+                aria-label="기간 선택"
+                aria-modal="true"
                 className={cn(
                   'z-50',
                   'data-[state=open]:animate-in data-[state=closed]:animate-out',
