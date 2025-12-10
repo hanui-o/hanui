@@ -461,8 +461,14 @@ export {
   stepIndicatorVariants,
   stepCircleVariants,
   stepLabelVariants,
+  useSteps,
 } from './components/step-indicator';
-export type { StepIndicatorProps, StepItem } from './components/step-indicator';
+export type {
+  StepIndicatorProps,
+  StepItem,
+  UseStepsOptions,
+  UseStepsReturn,
+} from './components/step-indicator';
 
 export {
   VisuallyHidden,

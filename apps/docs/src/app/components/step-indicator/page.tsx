@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 // Docs layout
 import {
   PageSection as Section,
@@ -15,6 +13,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 // UI Components
 import {
   StepIndicator,
+  useSteps,
   Button,
   Code,
   List,
@@ -48,7 +47,7 @@ const simpleSteps = [
 ];
 
 export default function StepIndicatorPage() {
-  const [currentStep, setCurrentStep] = useState(2);
+  const stepper = useSteps({ count: simpleSteps.length, initialStep: 2 });
 
   return (
     <>
@@ -180,36 +179,25 @@ const steps = [
             <Subsection level="h3">
               <Heading
                 level="h3"
-                title="클릭 가능"
-                description="clickable prop과 onStepClick으로 완료된 단계를 클릭해 돌아갈 수 있습니다."
+                title="useSteps 훅"
+                description="useSteps 훅으로 상태 관리를 간편하게 처리할 수 있습니다."
               />
               <ComponentPreview>
                 <Stack gap="md" className="w-full">
-                  <StepIndicator
-                    steps={simpleSteps}
-                    currentStep={currentStep}
-                    clickable
-                    onStepClick={setCurrentStep}
-                  />
+                  <StepIndicator steps={simpleSteps} {...stepper.bind} />
                   <div className="flex gap-2 justify-center">
                     <Button
                       size="sm"
                       variant="secondary"
-                      onClick={() =>
-                        setCurrentStep(Math.max(0, currentStep - 1))
-                      }
-                      disabled={currentStep === 0}
+                      onClick={stepper.prev}
+                      disabled={stepper.isFirst}
                     >
                       이전
                     </Button>
                     <Button
                       size="sm"
-                      onClick={() =>
-                        setCurrentStep(
-                          Math.min(simpleSteps.length - 1, currentStep + 1)
-                        )
-                      }
-                      disabled={currentStep === simpleSteps.length - 1}
+                      onClick={stepper.next}
+                      disabled={stepper.isLast}
                     >
                       다음
                     </Button>
@@ -217,14 +205,14 @@ const steps = [
                 </Stack>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`const [currentStep, setCurrentStep] = useState(2);
+                {`import { StepIndicator, useSteps } from '@hanui/react';
 
-<StepIndicator
-  steps={steps}
-  currentStep={currentStep}
-  clickable
-  onStepClick={setCurrentStep}
-/>`}
+const stepper = useSteps({ count: steps.length });
+
+<StepIndicator steps={steps} {...stepper.bind} />
+
+<Button onClick={stepper.prev} disabled={stepper.isFirst}>이전</Button>
+<Button onClick={stepper.next} disabled={stepper.isLast}>다음</Button>`}
               </Code>
             </Subsection>
 
@@ -447,6 +435,135 @@ const steps = [
                     </TableCell>
                     <TableCell>-</TableCell>
                     <TableCell>선택적 단계 여부</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="useSteps 훅"
+                description="Step Indicator 상태 관리를 위한 훅"
+              />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Option</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>count</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">number</Code>
+                    </TableCell>
+                    <TableCell>필수</TableCell>
+                    <TableCell>총 단계 수</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>initialStep</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">number</Code>
+                    </TableCell>
+                    <TableCell>0</TableCell>
+                    <TableCell>초기 단계 인덱스</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="useSteps 반환값" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Property</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>currentStep</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">number</Code>
+                    </TableCell>
+                    <TableCell>현재 단계 인덱스</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>goTo</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">
+                        (step: number) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>특정 단계로 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>next</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">() =&gt; void</Code>
+                    </TableCell>
+                    <TableCell>다음 단계로 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>prev</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">() =&gt; void</Code>
+                    </TableCell>
+                    <TableCell>이전 단계로 이동</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>isFirst</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>첫 번째 단계 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>isLast</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>마지막 단계 여부</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>reset</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">() =&gt; void</Code>
+                    </TableCell>
+                    <TableCell>초기 단계로 리셋</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>bind</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-krds-body-xs">object</Code>
+                    </TableCell>
+                    <TableCell>StepIndicator에 전달할 props</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

@@ -423,6 +423,106 @@ export const StepIndicator = React.forwardRef<
 StepIndicator.displayName = 'StepIndicator';
 
 // ============================================================================
+// useSteps 훅
+// ============================================================================
+
+export interface UseStepsOptions {
+  /** 총 단계 수 */
+  count: number;
+  /** 초기 단계 (기본: 0) */
+  initialStep?: number;
+}
+
+export interface UseStepsReturn {
+  /** 현재 단계 인덱스 */
+  currentStep: number;
+  /** 특정 단계로 이동 */
+  goTo: (step: number) => void;
+  /** 다음 단계로 이동 */
+  next: () => void;
+  /** 이전 단계로 이동 */
+  prev: () => void;
+  /** 첫 번째 단계인지 */
+  isFirst: boolean;
+  /** 마지막 단계인지 */
+  isLast: boolean;
+  /** 특정 단계가 완료되었는지 */
+  isCompleted: (step: number) => boolean;
+  /** 모든 단계가 완료되었는지 (마지막 단계에 도달) */
+  isAllCompleted: boolean;
+  /** 초기 단계로 리셋 */
+  reset: () => void;
+  /** StepIndicator에 바로 전달할 props */
+  bind: {
+    currentStep: number;
+    onStepClick: (step: number) => void;
+    clickable: boolean;
+  };
+}
+
+/**
+ * Step Indicator 상태 관리 훅
+ *
+ * @example
+ * ```tsx
+ * const stepper = useSteps({ count: 4 });
+ *
+ * <StepIndicator steps={steps} {...stepper.bind} />
+ * <Button onClick={stepper.prev} disabled={stepper.isFirst}>이전</Button>
+ * <Button onClick={stepper.next} disabled={stepper.isLast}>다음</Button>
+ * ```
+ */
+export function useSteps({
+  count,
+  initialStep = 0,
+}: UseStepsOptions): UseStepsReturn {
+  const [currentStep, setCurrentStep] = React.useState(initialStep);
+
+  const goTo = React.useCallback(
+    (step: number) => {
+      if (step >= 0 && step < count) {
+        setCurrentStep(step);
+      }
+    },
+    [count]
+  );
+
+  const next = React.useCallback(() => {
+    setCurrentStep((prev) => Math.min(prev + 1, count - 1));
+  }, [count]);
+
+  const prev = React.useCallback(() => {
+    setCurrentStep((prev) => Math.max(prev - 1, 0));
+  }, []);
+
+  const reset = React.useCallback(() => {
+    setCurrentStep(initialStep);
+  }, [initialStep]);
+
+  const isCompleted = React.useCallback(
+    (step: number) => step < currentStep,
+    [currentStep]
+  );
+
+  return {
+    currentStep,
+    goTo,
+    next,
+    prev,
+    isFirst: currentStep === 0,
+    isLast: currentStep === count - 1,
+    isCompleted,
+    isAllCompleted: currentStep === count - 1,
+    reset,
+    bind: {
+      currentStep,
+      onStepClick: goTo,
+      clickable: true,
+    },
+  };
+}
+
+// ============================================================================
 // 샘플 데이터
 // ============================================================================
 
