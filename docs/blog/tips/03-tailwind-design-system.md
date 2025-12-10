@@ -1,0 +1,275 @@
+# Tailwind CSS로 디자인 시스템 만들기
+
+"Tailwind는 유틸리티 클래스잖아요. 디자인 시스템이랑 맞나요?"
+
+맞아요. 오히려 잘 맞아요.
+
+디자인 시스템의 핵심은 **일관성**이거든요. 색상, 간격, 타이포그래피가 정해진 규칙대로 사용되는 것.
+
+Tailwind는 그걸 강제해요. `p-4` 쓰면 무조건 16px. `text-sm` 쓰면 무조건 14px. 개발자마다 다른 값 쓸 일이 없어요.
+
+## 기본 구조
+
+```
+디자인 토큰 (CSS 변수)
+    ↓
+Tailwind 설정 (tailwind.config)
+    ↓
+유틸리티 클래스 (bg-primary, text-sm)
+    ↓
+컴포넌트
+```
+
+## 1. 색상 토큰
+
+```ts
+// tailwind.config.ts
+export default {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          500: '#3b82f6', // base
+          600: '#2563eb', // hover
+          700: '#1d4ed8', // active
+        },
+        gray: {
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          500: '#6b7280',
+          900: '#111827',
+        },
+      },
+    },
+  },
+};
+```
+
+이러면 `bg-primary-500`, `text-gray-900` 이렇게 쓸 수 있어요.
+
+### CSS 변수로 하면 더 좋아요
+
+```css
+/* globals.css */
+:root {
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+}
+
+.dark {
+  --color-primary-500: #60a5fa;
+  --color-primary-600: #3b82f6;
+}
+```
+
+```ts
+// tailwind.config.ts
+colors: {
+  primary: {
+    500: 'var(--color-primary-500)',
+    600: 'var(--color-primary-600)',
+  },
+}
+```
+
+다크 모드 전환이 자동으로 돼요.
+
+## 2. 타이포그래피
+
+```ts
+// tailwind.config.ts
+fontSize: {
+  'display-lg': ['48px', { lineHeight: '1.2', fontWeight: '700' }],
+  'display-md': ['36px', { lineHeight: '1.2', fontWeight: '700' }],
+  'heading-lg': ['24px', { lineHeight: '1.4', fontWeight: '600' }],
+  'heading-md': ['20px', { lineHeight: '1.4', fontWeight: '600' }],
+  'body-lg': ['18px', { lineHeight: '1.6' }],
+  'body-md': ['16px', { lineHeight: '1.6' }],
+  'body-sm': ['14px', { lineHeight: '1.6' }],
+},
+```
+
+```tsx
+<h1 className="text-display-lg">큰 제목</h1>
+<h2 className="text-heading-lg">중간 제목</h2>
+<p className="text-body-md">본문</p>
+```
+
+### 반응형 타이포
+
+CSS 변수로 처리하면 반응형도 쉬워요:
+
+```css
+:root {
+  --fs-display-lg: 36px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --fs-display-lg: 48px;
+  }
+}
+```
+
+```ts
+fontSize: {
+  'display-lg': ['var(--fs-display-lg)', { lineHeight: '1.2' }],
+}
+```
+
+`text-display-lg` 하나로 모바일/PC 다 처리돼요.
+
+## 3. 간격 (Spacing)
+
+Tailwind 기본 간격 시스템 써도 되는데, 커스텀하려면:
+
+```ts
+spacing: {
+  'xs': '4px',
+  'sm': '8px',
+  'md': '16px',
+  'lg': '24px',
+  'xl': '32px',
+  '2xl': '48px',
+  '3xl': '64px',
+},
+```
+
+```tsx
+<div className="p-md mb-lg">{/* padding: 16px, margin-bottom: 24px */}</div>
+```
+
+근데 사실 Tailwind 기본 (`p-4`, `mb-6`)이 충분해요. 8px 그리드 시스템이거든요.
+
+## 4. 컴포넌트 만들기
+
+토큰 설정했으면 컴포넌트 만들어요:
+
+```tsx
+// Button.tsx
+const variants = {
+  primary: 'bg-primary-500 text-white hover:bg-primary-600',
+  secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
+  outline: 'border border-primary-500 text-primary-500 hover:bg-primary-50',
+};
+
+const sizes = {
+  sm: 'h-8 px-3 text-body-sm',
+  md: 'h-10 px-4 text-body-md',
+  lg: 'h-12 px-6 text-body-lg',
+};
+
+export function Button({ variant = 'primary', size = 'md', ...props }) {
+  return (
+    <button
+      className={`${variants[variant]} ${sizes[size]} rounded-md font-medium`}
+      {...props}
+    />
+  );
+}
+```
+
+### cva로 타입 안전하게
+
+```tsx
+import { cva, type VariantProps } from 'class-variance-authority';
+
+const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded-md font-medium',
+  {
+    variants: {
+      variant: {
+        primary: 'bg-primary-500 text-white hover:bg-primary-600',
+        secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
+      },
+      size: {
+        sm: 'h-8 px-3 text-body-sm',
+        md: 'h-10 px-4 text-body-md',
+        lg: 'h-12 px-6 text-body-lg',
+      },
+    },
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md',
+    },
+  }
+);
+
+type ButtonProps = VariantProps<typeof buttonVariants>;
+// { variant?: 'primary' | 'secondary', size?: 'sm' | 'md' | 'lg' }
+```
+
+자동완성도 되고 타입 체크도 돼요.
+
+## 5. 프리셋으로 배포
+
+팀에서 쓰거나 여러 프로젝트에서 재사용하려면 프리셋으로 만들어요:
+
+```ts
+// my-preset.ts
+const myPreset = {
+  theme: {
+    extend: {
+      colors: {
+        /* ... */
+      },
+      fontSize: {
+        /* ... */
+      },
+    },
+  },
+};
+
+export default myPreset;
+```
+
+```ts
+// tailwind.config.ts
+import myPreset from './my-preset';
+
+export default {
+  presets: [myPreset],
+  // 프로젝트별 추가 설정
+};
+```
+
+## 실전 체크리스트
+
+디자인 시스템 만들 때 필수 항목:
+
+- [ ] 색상 토큰 (primary, secondary, gray, danger, success)
+- [ ] 타이포그래피 스케일 (display, heading, body, label)
+- [ ] 간격 시스템 (8px 그리드 권장)
+- [ ] Border radius
+- [ ] Shadow
+- [ ] 기본 컴포넌트 (Button, Input, Card 등)
+
+## 공공기관이라면
+
+KRDS(한국형 웹 디자인 시스템) 따라야 해요.
+
+색상 코드, 폰트 크기, 간격 전부 가이드가 있어요. 직접 세팅하면 하루는 걸려요.
+
+[HANUI](https://hanui.io)는 KRDS 토큰이 다 적용된 Tailwind 프리셋이에요.
+
+```ts
+// tailwind.config.ts
+import hanuiPreset from '@hanui/react/tailwind.preset';
+
+export default {
+  presets: [hanuiPreset],
+};
+```
+
+```tsx
+<p className="text-krds-body-md text-krds-gray-90">KRDS 스타일 텍스트</p>
+<Button className="bg-krds-primary-50">KRDS 버튼</Button>
+```
+
+색상, 타이포그래피, 반응형까지 전부 KRDS 기준으로 나와요.
+
+---
+
+**태그**: #Tailwind #디자인시스템 #React #프론트엔드 #CSS
