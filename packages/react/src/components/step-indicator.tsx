@@ -22,78 +22,65 @@ export interface StepItem {
   optional?: boolean;
 }
 
-// Step Indicator 컨테이너 스타일
-const stepIndicatorVariants = cva(
-  // 기본 스타일
-  'krds-step-wrap',
-  {
-    variants: {
-      // 방향
-      orientation: {
-        horizontal: 'flex flex-row items-start',
-        vertical: 'flex flex-col',
-      },
-      // 크기
-      size: {
-        sm: '',
-        md: '',
-        lg: '',
-      },
+// 컨테이너 스타일
+const stepIndicatorVariants = cva('', {
+  variants: {
+    orientation: {
+      horizontal: 'flex flex-row items-start',
+      vertical: 'flex flex-col',
     },
-    defaultVariants: {
-      orientation: 'horizontal',
-      size: 'md',
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
     },
-  }
-);
+  },
+  defaultVariants: {
+    orientation: 'horizontal',
+    size: 'md',
+  },
+});
 
 // 개별 Step 스타일
-const stepVariants = cva(
-  // 기본 스타일
-  'relative flex items-center',
-  {
-    variants: {
-      // 방향에 따른 스타일
-      orientation: {
-        horizontal: 'flex-1 flex-col',
-        vertical: 'flex-row gap-3 pb-8 last:pb-0',
-      },
-      // 상태에 따른 스타일
-      status: {
-        completed: 'done',
-        current: 'active',
-        upcoming: '',
-      },
-      // 크기
-      size: {
-        sm: '',
-        md: '',
-        lg: '',
-      },
+const stepVariants = cva('relative flex items-center', {
+  variants: {
+    orientation: {
+      horizontal: 'flex-1 flex-col',
+      vertical: 'flex-row gap-3 pb-8 last:pb-0',
     },
-    defaultVariants: {
-      orientation: 'horizontal',
-      status: 'upcoming',
-      size: 'md',
+    status: {
+      completed: '',
+      current: '',
+      upcoming: '',
     },
-  }
-);
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
+  },
+  defaultVariants: {
+    orientation: 'horizontal',
+    status: 'upcoming',
+    size: 'md',
+  },
+});
 
-// Step 번호 원 스타일
+// 원형 인디케이터 스타일
 const stepCircleVariants = cva(
-  // 기본 스타일 - 원형 인디케이터
-  'flex items-center justify-center rounded-full font-medium transition-colors shrink-0',
+  'flex items-center justify-center rounded-full font-medium transition-colors shrink-0 border-[3px]',
   {
     variants: {
       status: {
-        completed: 'bg-krds-primary-base text-white',
-        current: 'bg-krds-primary-base text-white ring-4 ring-krds-primary-20',
-        upcoming: 'bg-krds-gray-20 text-krds-gray-60',
+        completed: 'bg-krds-gray-50 border-krds-gray-50 text-white',
+        current:
+          'bg-white border-krds-primary-base text-krds-primary-base ring-4 ring-krds-primary-20',
+        upcoming: 'bg-krds-gray-10 border-krds-gray-20 text-krds-gray-50',
       },
       size: {
-        sm: 'w-6 h-6 text-xs',
-        md: 'w-8 h-8 text-sm',
-        lg: 'w-10 h-10 text-base',
+        sm: 'w-6 h-6 text-krds-body-xs',
+        md: 'w-8 h-8 text-krds-body-sm',
+        lg: 'w-10 h-10 text-krds-body-md',
       },
     },
     defaultVariants: {
@@ -103,88 +90,76 @@ const stepCircleVariants = cva(
   }
 );
 
-// Step 레이블 스타일
-const stepLabelVariants = cva(
-  // 기본 스타일
-  'step-tit font-medium transition-colors',
-  {
-    variants: {
-      status: {
-        completed: 'text-krds-gray-70',
-        current: 'text-krds-gray-95',
-        upcoming: 'text-krds-gray-50',
-      },
-      size: {
-        sm: 'text-xs',
-        md: 'text-sm',
-        lg: 'text-base',
-      },
+// 레이블 스타일 (모바일 숨김)
+const stepLabelVariants = cva('font-medium transition-colors hidden md:block', {
+  variants: {
+    status: {
+      completed: 'text-krds-gray-70',
+      current: 'text-krds-gray-95',
+      upcoming: 'text-krds-gray-50',
     },
-    defaultVariants: {
-      status: 'upcoming',
-      size: 'md',
+    size: {
+      sm: 'text-krds-body-xs',
+      md: 'text-krds-body-sm',
+      lg: 'text-krds-body-md',
     },
-  }
-);
+  },
+  defaultVariants: {
+    status: 'upcoming',
+    size: 'md',
+  },
+});
 
-// Step 설명 스타일
-const stepDescriptionVariants = cva(
-  // 기본 스타일
-  'transition-colors',
-  {
-    variants: {
-      status: {
-        completed: 'text-krds-gray-50',
-        current: 'text-krds-gray-70',
-        upcoming: 'text-krds-gray-40',
-      },
-      size: {
-        sm: 'text-xs',
-        md: 'text-xs',
-        lg: 'text-sm',
-      },
+// 설명 스타일 (모바일 숨김)
+const stepDescriptionVariants = cva('transition-colors hidden md:block', {
+  variants: {
+    status: {
+      completed: 'text-krds-gray-50',
+      current: 'text-krds-gray-70',
+      upcoming: 'text-krds-gray-40',
     },
-    defaultVariants: {
-      status: 'upcoming',
-      size: 'md',
+    size: {
+      sm: 'text-krds-body-xs',
+      md: 'text-krds-body-xs',
+      lg: 'text-krds-body-sm',
     },
-  }
-);
+  },
+  defaultVariants: {
+    status: 'upcoming',
+    size: 'md',
+  },
+});
 
 // 연결선 스타일
-const stepConnectorVariants = cva(
-  // 기본 스타일
-  'transition-colors',
-  {
-    variants: {
-      orientation: {
-        horizontal: 'h-0.5 flex-1',
-        vertical: 'w-0.5 absolute left-4 top-10 bottom-2',
-      },
-      status: {
-        completed: 'bg-krds-primary-base',
-        current: 'bg-krds-gray-20',
-        upcoming: 'bg-krds-gray-20',
-      },
-      size: {
-        sm: '',
-        md: '',
-        lg: '',
-      },
+const stepConnectorVariants = cva('transition-colors', {
+  variants: {
+    orientation: {
+      horizontal: 'h-[3px] flex-1',
+      vertical: 'w-[3px] absolute left-4 top-10 bottom-2',
     },
-    compoundVariants: [
-      // 수직 방향일 때 크기별 위치 조정
-      { orientation: 'vertical', size: 'sm', className: 'left-3 top-8' },
-      { orientation: 'vertical', size: 'md', className: 'left-4 top-10' },
-      { orientation: 'vertical', size: 'lg', className: 'left-5 top-12' },
-    ],
-    defaultVariants: {
-      orientation: 'horizontal',
-      status: 'upcoming',
-      size: 'md',
+    status: {
+      completed: 'bg-krds-gray-50',
+      current: 'bg-krds-gray-20',
+      upcoming: 'bg-krds-gray-20',
     },
-  }
-);
+    size: {
+      sm: '',
+      md: '',
+      lg: '',
+    },
+  },
+  compoundVariants: [
+    // 수직 방향일 때 크기별 위치 조정
+    { orientation: 'vertical', size: 'sm', className: 'left-3 top-8' },
+    { orientation: 'vertical', size: 'md', className: 'left-4 top-10' },
+    { orientation: 'vertical', size: 'lg', className: 'left-5 top-12' },
+  ],
+  defaultVariants: {
+    orientation: 'horizontal',
+    status: 'upcoming',
+    size: 'md',
+  },
+});
 
 // ============================================================================
 // StepIndicator Props
@@ -281,24 +256,34 @@ export const StepIndicator = React.forwardRef<
                   {/* 원과 연결선 컨테이너 */}
                   <div className="flex items-center w-full">
                     {/* Step 원 */}
-                    <button
-                      type="button"
-                      className={cn(
-                        stepCircleVariants({ status, size }),
-                        isClickable &&
-                          'cursor-pointer hover:ring-4 hover:ring-krds-primary-20',
-                        !isClickable && 'cursor-default'
-                      )}
-                      onClick={() => handleStepClick(index)}
-                      disabled={!isClickable}
-                      aria-label={`${index + 1}단계${status === 'current' ? ' (현재 단계)' : ''}${status === 'completed' ? ' (완료)' : ''}: ${step.label}`}
-                    >
-                      {status === 'completed' && showCheckIcon ? (
-                        <CheckIcon className="w-4 h-4" />
-                      ) : (
-                        <span>{index + 1}</span>
-                      )}
-                    </button>
+                    {isClickable ? (
+                      <button
+                        type="button"
+                        className={cn(
+                          stepCircleVariants({ status, size }),
+                          'cursor-pointer hover:ring-4 hover:ring-krds-primary-20'
+                        )}
+                        onClick={() => handleStepClick(index)}
+                        aria-label={`${index + 1}단계 (완료): ${step.label}`}
+                      >
+                        {status === 'completed' && showCheckIcon ? (
+                          <CheckIcon className="w-4 h-4" />
+                        ) : (
+                          <span>{index + 1}</span>
+                        )}
+                      </button>
+                    ) : (
+                      <span
+                        className={cn(stepCircleVariants({ status, size }))}
+                        aria-hidden="true"
+                      >
+                        {status === 'completed' && showCheckIcon ? (
+                          <CheckIcon className="w-4 h-4" />
+                        ) : (
+                          <span>{index + 1}</span>
+                        )}
+                      </span>
+                    )}
 
                     {/* 연결선 (마지막 단계 제외) */}
                     {!isLast && (
@@ -319,16 +304,20 @@ export const StepIndicator = React.forwardRef<
 
                   {/* 레이블과 설명 */}
                   <div className="mt-2 text-center">
+                    {/* 스크린리더용 현재 단계 표시 */}
+                    {status === 'current' && (
+                      <span className="sr-only">현재단계</span>
+                    )}
+                    {/* 단계 번호 - 모바일에서 숨김 */}
+                    <span className="text-krds-gray-50 text-krds-body-xs hidden md:block">
+                      {index + 1}단계
+                    </span>
                     <span className={cn(stepLabelVariants({ status, size }))}>
                       {step.label}
                       {step.optional && (
                         <span className="text-krds-gray-50 ml-1">(선택)</span>
                       )}
                     </span>
-                    {/* 스크린리더용 현재 단계 표시 */}
-                    {status === 'current' && (
-                      <span className="sr-only">현재 단계</span>
-                    )}
                     {step.description && (
                       <p
                         className={cn(
@@ -345,24 +334,34 @@ export const StepIndicator = React.forwardRef<
                 /* 수직 방향 */
                 <>
                   {/* Step 원 */}
-                  <button
-                    type="button"
-                    className={cn(
-                      stepCircleVariants({ status, size }),
-                      isClickable &&
-                        'cursor-pointer hover:ring-4 hover:ring-krds-primary-20',
-                      !isClickable && 'cursor-default'
-                    )}
-                    onClick={() => handleStepClick(index)}
-                    disabled={!isClickable}
-                    aria-label={`${index + 1}단계${status === 'current' ? ' (현재 단계)' : ''}${status === 'completed' ? ' (완료)' : ''}: ${step.label}`}
-                  >
-                    {status === 'completed' && showCheckIcon ? (
-                      <CheckIcon className="w-4 h-4" />
-                    ) : (
-                      <span>{index + 1}</span>
-                    )}
-                  </button>
+                  {isClickable ? (
+                    <button
+                      type="button"
+                      className={cn(
+                        stepCircleVariants({ status, size }),
+                        'cursor-pointer hover:ring-4 hover:ring-krds-primary-20'
+                      )}
+                      onClick={() => handleStepClick(index)}
+                      aria-label={`${index + 1}단계 (완료): ${step.label}`}
+                    >
+                      {status === 'completed' && showCheckIcon ? (
+                        <CheckIcon className="w-4 h-4" />
+                      ) : (
+                        <span>{index + 1}</span>
+                      )}
+                    </button>
+                  ) : (
+                    <span
+                      className={cn(stepCircleVariants({ status, size }))}
+                      aria-hidden="true"
+                    >
+                      {status === 'completed' && showCheckIcon ? (
+                        <CheckIcon className="w-4 h-4" />
+                      ) : (
+                        <span>{index + 1}</span>
+                      )}
+                    </span>
+                  )}
 
                   {/* 연결선 (마지막 단계 제외) */}
                   {!isLast && (
@@ -381,21 +380,30 @@ export const StepIndicator = React.forwardRef<
 
                   {/* 레이블과 설명 */}
                   <div className="flex flex-col">
-                    <span className={cn(stepLabelVariants({ status, size }))}>
+                    {/* 스크린리더용 현재 단계 표시 */}
+                    {status === 'current' && (
+                      <span className="sr-only">현재단계</span>
+                    )}
+                    {/* 단계 번호 */}
+                    <span className="text-krds-gray-50 text-krds-body-xs">
+                      {index + 1}단계
+                    </span>
+                    <span
+                      className={cn(
+                        stepLabelVariants({ status, size }),
+                        'block' // 수직에서는 항상 표시
+                      )}
+                    >
                       {step.label}
                       {step.optional && (
                         <span className="text-krds-gray-50 ml-1">(선택)</span>
                       )}
                     </span>
-                    {/* 스크린리더용 현재 단계 표시 */}
-                    {status === 'current' && (
-                      <span className="sr-only">현재 단계</span>
-                    )}
                     {step.description && (
                       <p
                         className={cn(
                           stepDescriptionVariants({ status, size }),
-                          'mt-0.5'
+                          'mt-0.5 block' // 수직에서는 항상 표시
                         )}
                       >
                         {step.description}
