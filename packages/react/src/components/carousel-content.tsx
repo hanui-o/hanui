@@ -5,7 +5,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { cn } from '../lib/utils';
-import { ChevronLeft, ChevronRight, Play, Pause, Plus } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  ArrowRight,
+} from 'lucide-react';
 
 // Swiper CSS
 import 'swiper/css';
@@ -136,7 +142,7 @@ export const ContentCarousel = React.forwardRef<
 
     // 버튼 공통 스타일
     const buttonBaseClass = cn(
-      'flex items-center justify-center',
+      'flex items-center justify-center flex-shrink-0',
       'w-9 h-9 rounded-full',
       'border border-krds-gray-30 bg-white',
       'hover:bg-krds-gray-10 active:bg-krds-gray-20',
@@ -315,7 +321,7 @@ export const ContentCarousel = React.forwardRef<
                   className={buttonBaseClass}
                   aria-label="더 보기"
                 >
-                  <Plus className="w-5 h-5 text-krds-gray-70" />
+                  <ArrowRight className="w-5 h-5 text-krds-gray-70" />
                 </a>
               )}
             </div>

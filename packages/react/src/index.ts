@@ -422,23 +422,23 @@ export type {
 export { Carousel } from './components/carousel';
 export type { CarouselProps, CarouselSlide } from './components/carousel';
 
-export { PreviewCarousel } from './components/preview-carousel';
-export type {
-  PreviewCarouselProps,
-  PreviewCarouselBreakpoints,
-} from './components/preview-carousel';
-
-export { HeroCarousel } from './components/hero-carousel';
-export type {
-  HeroCarouselProps,
-  HeroCarouselSlide,
-} from './components/hero-carousel';
-
-export { ContentCarousel } from './components/content-carousel';
+export { ContentCarousel } from './components/carousel-content';
 export type {
   ContentCarouselProps,
   ContentCarouselSlide,
-} from './components/content-carousel';
+} from './components/carousel-content';
+
+export { HeroCarousel } from './components/carousel-hero';
+export type {
+  HeroCarouselProps,
+  HeroCarouselSlide,
+} from './components/carousel-hero';
+
+export { PreviewCarousel } from './components/carousel-preview';
+export type {
+  PreviewCarouselProps,
+  PreviewCarouselBreakpoints,
+} from './components/carousel-preview';
 
 export {
   Tag,
