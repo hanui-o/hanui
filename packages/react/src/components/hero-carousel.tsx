@@ -139,8 +139,8 @@ export const HeroCarousel = React.forwardRef<HTMLDivElement, HeroCarouselProps>(
     // 버튼 공통 스타일
     const buttonBaseClass = cn(
       'flex items-center justify-center',
-      'w-9 h-9 rounded-full',
-      'border border-krds-gray-30 bg-white',
+      'w-12 h-12 rounded-full',
+      'bg-[rgba(255,255,255,0.5)]',
       'hover:bg-krds-gray-10 active:bg-krds-gray-20',
       'disabled:bg-krds-gray-10 disabled:cursor-not-allowed',
       'transition-colors'
@@ -148,7 +148,7 @@ export const HeroCarousel = React.forwardRef<HTMLDivElement, HeroCarouselProps>(
 
     return (
       <div ref={ref} className={cn('bg-krds-white', className)}>
-        <div className="relative max-w-screen-xl mx-auto">
+        <div className="relative">
           <Swiper
             modules={[Navigation, Autoplay, A11y]}
             slidesPerView={1}
@@ -187,23 +187,23 @@ export const HeroCarousel = React.forwardRef<HTMLDivElement, HeroCarouselProps>(
             {slides.map((slide) => (
               <SwiperSlide key={slide.id}>
                 {/* Hero 슬라이드: 배경 이미지 + 텍스트 오버레이 */}
-                <div className="relative min-h-[280px] flex items-center py-10 overflow-hidden">
+                <div className="relative min-h-96 flex items-center py-10 overflow-hidden">
                   {/* 배경 이미지 (mask-image로 자연스러운 페이드) */}
                   {slide.imageSrc && (
                     <img
                       src={slide.imageSrc}
                       alt=""
                       aria-hidden="true"
-                      className="absolute top-0 right-0 bottom-0 w-2/3 h-full object-cover object-center [mask-image:linear-gradient(to_right,transparent,black_40%,black_90%,transparent)]"
+                      className="absolute top-0 right-0 bottom-0 w-2/3 h-full object-cover object-center [mask-image:linear-gradient(to_right,transparent,black_50%)]"
                     />
                   )}
                   {/* 텍스트 영역 */}
-                  <div className="relative z-10 max-w-lg text-center md:text-left">
-                    <h2 className="text-2xl md:text-3xl font-bold text-krds-gray-90 mb-3">
+                  <div className="relative z-10 max-w-screen-xl w-full mx-auto text-center md:text-left">
+                    <h2 className="text-krds-display-md font-bold text-krds-gray-90 mb-3">
                       {slide.title}
                     </h2>
                     {slide.description && (
-                      <p className="text-base text-krds-gray-60 mb-6">
+                      <p className="text-krds-body-lg text-krds-gray-60 mb-6">
                         {slide.description}
                       </p>
                     )}
@@ -227,32 +227,32 @@ export const HeroCarousel = React.forwardRef<HTMLDivElement, HeroCarouselProps>(
             ))}
           </Swiper>
 
-          {/* Navigation Arrows (외부 배치) */}
+          {/* Navigation Arrows (텍스트 영역 기준 외부 배치) */}
           {showArrows && hasMultipleSlides && (
-            <>
+            <div className="absolute inset-0 max-w-screen-xl mx-auto pointer-events-none">
               <button
                 type="button"
                 className={cn(
                   buttonBaseClass,
                   'hero-carousel-button-prev',
-                  'absolute -left-16 top-1/2 -translate-y-1/2 z-10'
+                  'absolute -left-20 top-1/2 -translate-y-1/2 z-10 pointer-events-auto'
                 )}
                 aria-label="이전"
               >
-                <ChevronLeft className="w-5 h-5 text-krds-gray-70" />
+                <ChevronLeft className="w-8 h-8 text-krds-primary-60" />
               </button>
               <button
                 type="button"
                 className={cn(
                   buttonBaseClass,
                   'hero-carousel-button-next',
-                  'absolute -right-16 top-1/2 -translate-y-1/2 z-10'
+                  'absolute -right-20 top-1/2 -translate-y-1/2 z-10 pointer-events-auto'
                 )}
                 aria-label="다음"
               >
-                <ChevronRight className="w-5 h-5 text-krds-gray-70" />
+                <ChevronRight className="w-8 h-8 text-krds-primary-60" />
               </button>
-            </>
+            </div>
           )}
 
           {/* Indicator (페이지네이션 + 컨트롤) */}

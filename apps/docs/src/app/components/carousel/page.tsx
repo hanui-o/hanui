@@ -33,7 +33,7 @@ import type { HeroCarouselSlide, ContentCarouselSlide } from '@hanui/react';
 const heroSlides: HeroCarouselSlide[] = [
   {
     id: 1,
-    title: '월요일 출근하기 싫어',
+    title: '물고기는 월요일 출근하기 않겠지?',
     description: '주말은 왜 이렇게 빨리 가는 걸까요. 금요일이 보고 싶습니다.',
     buttonText: '퇴근하기',
     buttonHref: '#',
@@ -48,19 +48,18 @@ const heroSlides: HeroCarouselSlide[] = [
     buttonText: '회의 거절',
     buttonHref: '#',
     imageSrc:
-      'https://img.freepik.com/free-photo/beautiful-pet-portrait-cat_23-2149218505.jpg?t=st=1765275515~exp=1765279115~hmac=76d534905c1624a31108178fa4cfa5fee6a86ac3778dc9f8f63d7c4afd37d0ba&w=740',
+      'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148901163.jpg?t=st=1765330039~exp=1765333639~hmac=a26189f95700af08bebc588ebfb402eab2d4845863bf52a5222867dadedb11cd&w=740',
     imageAlt: '회의 싫어하는 캐릭터',
   },
   {
     id: 3,
-    title: '수정사항 확인하기 싫어',
-    description:
-      'LGTM 누르고 싶은 마음을 참고 있습니다. 이거 누가 짠 거야... 아 내가 짰네.',
-    buttonText: 'LGTM',
+    title: '출근 안 하고 자고 싶어',
+    description: '알람 소리가 들리면 눈을 감고 꿈속으로 도망치고 싶습니다.',
+    buttonText: '다시 잠들기',
     buttonHref: '#',
     imageSrc:
-      'https://img.freepik.com/free-photo/gray-kitty-with-monochrome-wall-her_23-2148955126.jpg?t=st=1765275557~exp=1765279157~hmac=dba078bed3be9f5d145ee97b6e50055a970ace155e6503f6b28553c2d3d50ffd&w=740',
-    imageAlt: '수정사항 확인 싫어하는 캐릭터',
+      'https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148901163.jpg?t=st=1765330039~exp=1765333639~hmac=a26189f95700af08bebc588ebfb402eab2d4845863bf52a5222867dadedb11cd&w=740',
+    imageAlt: '꿈꾸는 하늘 배경',
   },
 ];
 
