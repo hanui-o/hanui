@@ -67,21 +67,32 @@ const heroSlides: HeroCarouselSlide[] = [
 const contentSlides: ContentCarouselSlide[] = [
   {
     id: 1,
-    subtitle: '공지사항',
-    title: '2024년 상반기 정책 설명회 안내',
+    subtitle: '유미의 픽',
+    title:
+      'SW·AI에 미래 건 현대차그룹, 정기 인사 임박…현대오토에버에 힘 실릴까',
     href: '#',
+    imageSrc:
+      'https://imgnews.pstatic.net/image/092/2025/12/10/0002401794_001_20251210131413949.jpg?type=w860',
+    imageAlt: 'SW·AI에 미래 건 현대차그룹',
   },
   {
     id: 2,
-    subtitle: '보도자료',
-    title: '디지털 정부혁신 성과 발표',
+    subtitle: '디지털 데일리',
+    title:
+      '“폴더블 판도가 뒤집힌다”…애플 첫 폴더블 아이폰, 시장가치 34% 싹쓸이 전망',
     href: '#',
+    imageSrc:
+      'https://imgnews.pstatic.net/image/138/2025/12/10/0002212056_001_20251210101813405.png?type=w860',
+    imageAlt: '애플 첫 폴더블 아이폰',
   },
   {
     id: 3,
-    subtitle: '이벤트',
-    title: '국민참여 아이디어 공모전',
+    subtitle: '달라지는 카카오톡',
+    title: '카톡 친구탭 내주 다시 열린다…이르면 15일부터 복원 시작',
     href: '#',
+    imageSrc:
+      'https://imgnews.pstatic.net/image/001/2025/12/10/PYH2025092312750001300_P4_20251210113321017.jpg?type=w860',
+    imageAlt: '카톡 친구탭 내주 다시 열린다…이르면 15일부터 복원 시작',
   },
 ];
 
@@ -236,7 +247,6 @@ export default function CarouselPage() {
               <ComponentPreview>
                 <div className="w-full max-w-md">
                   <ContentCarousel
-                    sectionTitle="주요 소식"
                     slides={contentSlides}
                     paginationType="fraction"
                     autoPlay
@@ -252,11 +262,12 @@ export default function CarouselPage() {
     subtitle: '공지사항',
     title: '2024년 상반기 정책 설명회 안내',
     href: '/notice/1',
+    imageSrc: '/notice-image.png',
+    imageAlt: '공지사항',
   },
 ];
 
 <ContentCarousel
-  sectionTitle="주요 소식"
   slides={slides}
   paginationType="fraction"
   autoPlay

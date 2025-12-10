@@ -143,7 +143,7 @@ export const PreviewCarousel = React.forwardRef<
 
     // 버튼 공통 스타일
     const buttonBaseClass = cn(
-      'flex items-center justify-center',
+      'flex items-center justify-center flex-shrink-0',
       'w-9 h-9 rounded-full',
       'border border-krds-gray-30 bg-white',
       'hover:bg-krds-gray-10 active:bg-krds-gray-20',

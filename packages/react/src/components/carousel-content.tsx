@@ -5,13 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { cn } from '../lib/utils';
-import {
-  ChevronLeft,
-  ChevronRight,
-  Play,
-  Pause,
-  ArrowRight,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, Pause, Plus } from 'lucide-react';
 
 // Swiper CSS
 import 'swiper/css';
@@ -29,7 +23,7 @@ export interface ContentCarouselSlide {
   /** 서브타이틀 (카테고리 등) */
   subtitle?: string;
   /** 이미지 URL */
-  image?: string;
+  imageSrc?: string;
   /** 이미지 alt 텍스트 */
   imageAlt?: string;
   /** 클릭 링크 */
@@ -44,8 +38,6 @@ export interface ContentCarouselSlide {
 export interface ContentCarouselProps {
   /** 슬라이드 데이터 배열 */
   slides: ContentCarouselSlide[];
-  /** 섹션 타이틀 */
-  sectionTitle?: string;
   /** 자동 재생 여부 */
   autoPlay?: boolean;
   /** 자동 재생 간격 (ms) */
@@ -72,17 +64,16 @@ export interface ContentCarouselProps {
  * Content 스타일 캐러셀 컴포넌트
  *
  * 카드형 섹션 배너용 캐러셀입니다.
- * 섹션 타이틀, 분수형 페이지네이션, 더보기 버튼을 지원합니다.
+ * 분수형 페이지네이션, 더보기 버튼을 지원합니다.
  *
  * @example
  * <ContentCarousel
- *   sectionTitle="배너영역 타이틀"
  *   slides={[
  *     {
  *       id: 1,
  *       title: "콘텐츠 제목",
  *       subtitle: "카테고리",
- *       image: "/content-image.png",
+ *       imageSrc: "/content-image.png",
  *       href: "/content/1"
  *     }
  *   ]}
@@ -99,7 +90,6 @@ export const ContentCarousel = React.forwardRef<
   (
     {
       slides,
-      sectionTitle,
       autoPlay = false,
       interval = 5000,
       loop = true,
@@ -181,13 +171,6 @@ export const ContentCarousel = React.forwardRef<
 
     return (
       <div ref={ref} className={cn(className)}>
-        {/* 섹션 타이틀 */}
-        {sectionTitle && (
-          <h2 className="text-xl font-bold text-krds-gray-90 mb-4">
-            {sectionTitle}
-          </h2>
-        )}
-
         <div className="relative">
           <Swiper
             modules={[Navigation, Pagination, Autoplay, A11y]}
@@ -228,21 +211,21 @@ export const ContentCarousel = React.forwardRef<
               <SwiperSlide key={slide.id}>
                 <CardWrapper slide={slide}>
                   {/* Card 슬라이드 */}
-                  <div className="bg-white rounded-lg overflow-hidden border border-krds-gray-20 p-4">
+                  <div>
                     <div className="mb-3">
                       {slide.subtitle && (
-                        <p className="text-sm text-krds-gray-50 mb-1">
+                        <p className="text-krds-body-sm text-krds-gray-50 mb-1">
                           {slide.subtitle}
                         </p>
                       )}
-                      <p className="text-lg font-semibold text-krds-gray-90">
+                      <strong className="block text-krds-heading-md font-semibold text-krds-gray-90 line-clamp-2">
                         {slide.title}
-                      </p>
+                      </strong>
                     </div>
-                    {slide.image && (
+                    {slide.imageSrc && (
                       <div className="aspect-video rounded-lg overflow-hidden bg-krds-gray-10">
                         <img
-                          src={slide.image}
+                          src={slide.imageSrc}
                           alt={slide.imageAlt || slide.title}
                           className="w-full h-full object-cover"
                         />
@@ -256,16 +239,15 @@ export const ContentCarousel = React.forwardRef<
 
           {/* Indicator (페이지네이션 + 컨트롤) */}
           {hasMultipleSlides && (
-            <div className="flex items-center justify-end gap-3 mt-4">
+            <div className="flex items-center justify-end gap-2 mt-4">
               {/* Pagination */}
               <div
                 className={cn(
                   'content-carousel-pagination',
-                  'flex items-center',
+                  'flex items-center justify-end',
                   paginationType === 'bullets' &&
                     'gap-1.5 h-9 px-3 bg-krds-gray-90/10 rounded-full',
-                  paginationType === 'fraction' &&
-                    'gap-2 px-4 h-9 border border-krds-gray-30 rounded-full bg-white font-bold text-sm',
+                  paginationType === 'fraction' && 'gap-2 px-4 h-9 font-bold',
                   // Swiper bullet 커스텀 스타일
                   '[&_.swiper-pagination-bullet]:w-2 [&_.swiper-pagination-bullet]:h-2',
                   '[&_.swiper-pagination-bullet]:bg-krds-gray-40 [&_.swiper-pagination-bullet]:rounded-full',
@@ -285,9 +267,15 @@ export const ContentCarousel = React.forwardRef<
                   aria-label={isPlaying ? '슬라이드 멈춤' : '슬라이드 재생'}
                 >
                   {isPlaying ? (
-                    <Pause className="w-4 h-4 text-krds-gray-70" />
+                    <Pause
+                      className="w-4 h-4 text-krds-gray-70"
+                      fill="currentColor"
+                    />
                   ) : (
-                    <Play className="w-4 h-4 text-krds-gray-70" />
+                    <Play
+                      className="w-4 h-4 text-krds-gray-70"
+                      fill="currentColor"
+                    />
                   )}
                 </button>
               )}
@@ -321,7 +309,7 @@ export const ContentCarousel = React.forwardRef<
                   className={buttonBaseClass}
                   aria-label="더 보기"
                 >
-                  <ArrowRight className="w-5 h-5 text-krds-gray-70" />
+                  <Plus className="w-5 h-5 text-krds-gray-70" />
                 </a>
               )}
             </div>
