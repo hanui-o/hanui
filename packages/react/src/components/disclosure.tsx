@@ -1,113 +1,17 @@
 'use client';
 
 import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
+import { CircleChevronRight } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 // ============================================================================
 // Disclosure 컴포넌트
-// KRDS 디스클로저 - 부가적인 정보를 표시하거나 숨기는 데 사용
+// KRDS 디스클로저 - 부가적인 정보를 표시하거나 숨기는 컴포넌트
 // Accordion과 달리 단독으로 사용되며, 여러 개를 동시에 열 수 있음
 // ============================================================================
 
-// Disclosure 컨테이너 스타일
-const disclosureVariants = cva(
-  // 기본 스타일
-  ['krds-disclosure', 'conts-expand-area'],
-  {
-    variants: {
-      // 변형
-      variant: {
-        default: '',
-        bordered: 'border border-krds-gray-20 rounded-lg',
-        ghost: '',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
-
-// 트리거 버튼 스타일
-const disclosureTriggerVariants = cva(
-  // 기본 스타일
-  [
-    'btn-conts-expand',
-    'flex',
-    'items-center',
-    'gap-2',
-    'text-left',
-    'transition-colors',
-    'focus:outline-none',
-    'focus:ring-2',
-    'focus:ring-krds-primary-base',
-    'focus:ring-offset-2',
-    'rounded',
-  ],
-  {
-    variants: {
-      variant: {
-        default: ['text-krds-primary-base', 'hover:text-krds-primary-60'],
-        bordered: [
-          'w-full',
-          'px-4',
-          'py-3',
-          'text-krds-gray-90',
-          'hover:bg-krds-gray-5',
-        ],
-        ghost: ['text-krds-gray-70', 'hover:text-krds-gray-90'],
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
-
-// 콘텐츠 컨테이너 스타일
-const disclosureContentVariants = cva(
-  // 기본 스타일
-  [
-    'expand-wrap',
-    'overflow-hidden',
-    'transition-all',
-    'duration-200',
-    'ease-in-out',
-  ],
-  {
-    variants: {
-      variant: {
-        default: 'mt-2',
-        bordered: 'px-4 pb-4',
-        ghost: 'mt-2',
-      },
-      // 열림/닫힘 상태
-      isOpen: {
-        true: 'opacity-100',
-        false: 'max-h-0 opacity-0',
-      },
-    },
-    compoundVariants: [
-      {
-        isOpen: true,
-        className: 'max-h-[2000px]',
-      },
-    ],
-    defaultVariants: {
-      variant: 'default',
-      isOpen: false,
-    },
-  }
-);
-
-// ============================================================================
-// Disclosure Props
-// ============================================================================
-
 export interface DisclosureProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,
-    VariantProps<typeof disclosureVariants> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /** 트리거 텍스트 */
   trigger: React.ReactNode;
   /** 콘텐츠 */
@@ -121,34 +25,6 @@ export interface DisclosureProps
 }
 
 // ============================================================================
-// 아이콘 컴포넌트
-// ============================================================================
-
-// 꺾쇠 아이콘
-const ChevronIcon = ({
-  className,
-  isOpen,
-}: {
-  className?: string;
-  isOpen: boolean;
-}) => (
-  <svg
-    className={cn(
-      'w-4 h-4 transition-transform duration-200',
-      isOpen && 'rotate-180',
-      className
-    )}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-    aria-hidden="true"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-  </svg>
-);
-
-// ============================================================================
 // Disclosure 컴포넌트
 // ============================================================================
 
@@ -156,7 +32,6 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(
   (
     {
       className,
-      variant = 'default',
       trigger,
       children,
       defaultOpen = false,
@@ -192,20 +67,50 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(
     return (
       <div
         ref={ref}
-        className={cn(disclosureVariants({ variant }), className)}
+        className={cn(
+          'krds-disclosure',
+          'conts-expand-area',
+          isOpen && 'active',
+          className
+        )}
         {...props}
       >
         {/* 트리거 버튼 */}
         <button
           id={triggerId}
           type="button"
-          className={cn(disclosureTriggerVariants({ variant }))}
+          className={cn(
+            'btn-conts-expand',
+            'group',
+            'inline-flex',
+            'items-center',
+            'gap-2',
+            'text-krds-primary-base',
+            'hover:text-krds-primary-60',
+            'text-sm',
+            'font-medium',
+            'transition-colors',
+            'focus:outline-none',
+            'focus-visible:ring-2',
+            'focus-visible:ring-krds-primary-base',
+            'focus-visible:ring-offset-2',
+            'rounded'
+          )}
           onClick={handleToggle}
           aria-expanded={isOpen}
           aria-controls={contentId}
         >
-          <ChevronIcon isOpen={isOpen} />
-          <span className="text-sm font-medium">{trigger}</span>
+          {/* 아이콘 */}
+          <CircleChevronRight
+            className={cn(
+              'w-4 h-4',
+              'transition-transform',
+              'duration-200',
+              isOpen ? 'rotate-90' : 'rotate-0'
+            )}
+            aria-hidden="true"
+          />
+          <span>{trigger}</span>
         </button>
 
         {/* 콘텐츠 영역 */}
@@ -213,11 +118,18 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(
           id={contentId}
           role="region"
           aria-labelledby={triggerId}
-          className={cn(disclosureContentVariants({ variant, isOpen }))}
-        >
-          {isOpen && (
-            <div className="text-sm text-krds-gray-70">{children}</div>
+          className={cn(
+            'expand-wrap',
+            'overflow-hidden',
+            'transition-all',
+            'duration-300',
+            'ease-in-out',
+            isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
           )}
+        >
+          <div className="expand-in pt-3 text-sm text-krds-gray-70">
+            {children}
+          </div>
         </div>
       </div>
     );
@@ -225,10 +137,3 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(
 );
 
 Disclosure.displayName = 'Disclosure';
-
-// Variants export
-export {
-  disclosureVariants,
-  disclosureTriggerVariants,
-  disclosureContentVariants,
-};

@@ -235,38 +235,6 @@ export default function CriticalAlertsPage() {
             </Subsection>
           </Section>
 
-          {/* 사용 가이드라인 */}
-          <Section level="h2">
-            <Heading level="h2" id="guidelines" title="사용 가이드라인" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="적절한 사용" />
-              <List>
-                <ListItem>재난/재해 대응 및 복구 안내</ListItem>
-                <ListItem>서비스 장애 또는 점검 안내</ListItem>
-                <ListItem>사용자 대부분이 인지해야 하는 중요 정보</ListItem>
-              </List>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="부적절한 사용" />
-              <List>
-                <ListItem>홍보 목적의 콘텐츠</ListItem>
-                <ListItem>일반적인 공지사항</ListItem>
-                <ListItem>입력폼 유효성 검사 결과나 완료 상태 피드백</ListItem>
-              </List>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="콘텐츠 작성" />
-              <List>
-                <ListItem>1줄 이내 권장 (모바일에서 최대 2줄)</ListItem>
-                <ListItem>링크는 1개만 사용</ListItem>
-                <ListItem>목적지를 예측할 수 있는 링크 텍스트 사용</ListItem>
-              </List>
-            </Subsection>
-          </Section>
-
           {/* 접근성 */}
           <Section level="h2">
             <Heading

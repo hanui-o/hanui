@@ -694,7 +694,7 @@ export default function CardPage() {
 
       <PageNavigation
         prev={{ title: 'Button', href: '/components/button' }}
-        next={{ title: 'Center', href: '/components/center' }}
+        next={{ title: 'Carousel', href: '/components/carousel' }}
       />
     </>
   );

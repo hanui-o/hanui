@@ -3,59 +3,151 @@
 import { useState } from 'react';
 
 // Docs layout
-import { PageSection as Section, Heading } from '@/components/content';
-
-// Docs helper
-import { PreviewBox } from '@/components/helpers';
+import {
+  PageSection as Section,
+  Subsection,
+  Heading,
+  PageNavigation,
+  Installation,
+} from '@/components/content';
+import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 // UI Components
 import {
   Disclosure,
-  Body,
-  Stack,
+  Button,
   Code,
+  List,
+  ListItem,
   Table,
   TableHeader,
   TableBody,
   TableRow,
   TableHead,
   TableCell,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Stack,
 } from '@hanui/react';
 
-// ============================================================================
-// 코드 예제
-// ============================================================================
+export default function DisclosurePage() {
+  const [isOpen, setIsOpen] = useState(false);
 
-const installCode = `npm install @hanui/react`;
+  return (
+    <>
+      <Heading
+        level="h1"
+        title="Disclosure"
+        description="부가적인 정보를 표시하거나 숨기는 컴포넌트입니다. Accordion과 달리 단독으로 사용되며, 여러 개를 동시에 열 수 있습니다."
+      />
 
-const importCode = `import { Disclosure } from '@/components/hanui/disclosure';`;
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
+        </TabsList>
 
-const basicUsageCode = `<Disclosure trigger="자세히 보기">
+        <TabsContent value="overview">
+          {/* 개요 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="overview"
+              title="개요"
+              className="sr-only"
+            />
+            <ComponentPreview>
+              <Disclosure trigger="참고 사항 보기">
+                이 정보는 추가적인 설명을 제공합니다. 디스클로저는 기본적으로
+                축소된 상태로 제공되어 사용자의 인지적 부담을 줄입니다.
+              </Disclosure>
+            </ComponentPreview>
+
+            <Code variant="block" language="tsx">
+              {`import { Disclosure } from '@/components/hanui/disclosure';
+
+<Disclosure trigger="참고 사항 보기">
+  이 정보는 추가적인 설명을 제공합니다.
+</Disclosure>`}
+            </Code>
+          </Section>
+
+          {/* 설치 */}
+          <Section level="h2">
+            <Installation componentName="disclosure" />
+          </Section>
+
+          {/* 사용법 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="usage"
+              title="사용법"
+              description="trigger와 children을 전달하여 디스클로저를 렌더링합니다. 기본적으로 축소된 상태로 시작합니다."
+            />
+
+            <Code variant="block" language="tsx">
+              {`import { Disclosure } from '@/components/hanui/disclosure';
+
+<Disclosure trigger="자세히 보기">
   이 정보는 부가적인 설명을 제공합니다.
   기본적으로 축소된 상태로 표시되며,
   사용자가 클릭하면 확장됩니다.
-</Disclosure>`;
+</Disclosure>`}
+            </Code>
+          </Section>
 
-const variantsCode = `// Default - 기본 스타일
-<Disclosure trigger="자세히 보기" variant="default">
-  기본 스타일의 디스클로저입니다.
-</Disclosure>
+          {/* 예제 */}
+          <Section level="h2">
+            <Heading level="h2" id="examples" title="예제" />
 
-// Bordered - 테두리 스타일
-<Disclosure trigger="자세히 보기" variant="bordered">
-  테두리가 있는 디스클로저입니다.
-</Disclosure>
-
-// Ghost - 투명 스타일
-<Disclosure trigger="자세히 보기" variant="ghost">
-  투명 스타일의 디스클로저입니다.
-</Disclosure>`;
-
-const defaultOpenCode = `<Disclosure trigger="이미 열린 정보" defaultOpen>
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="기본 열림 상태"
+                description="defaultOpen prop으로 처음부터 열린 상태로 렌더링할 수 있습니다. (KRDS는 축소 상태를 권장)"
+              />
+              <ComponentPreview>
+                <Disclosure trigger="이미 열린 정보" defaultOpen>
+                  기본적으로 열려 있는 상태로 시작합니다. 특수한 경우에만 사용을
+                  권장합니다.
+                </Disclosure>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`<Disclosure trigger="이미 열린 정보" defaultOpen>
   기본적으로 열려 있는 상태로 시작합니다.
-</Disclosure>`;
+</Disclosure>`}
+              </Code>
+            </Subsection>
 
-const controlledCode = `const [isOpen, setIsOpen] = useState(false);
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="제어 모드"
+                description="open과 onOpenChange로 외부에서 상태를 제어할 수 있습니다."
+              />
+              <ComponentPreview>
+                <Stack gap="md" className="w-full">
+                  <Disclosure
+                    trigger="제어 모드"
+                    open={isOpen}
+                    onOpenChange={setIsOpen}
+                  >
+                    외부에서 상태를 제어할 수 있습니다.
+                  </Disclosure>
+                  <Button
+                    variant="tertiary"
+                    size="sm"
+                    onClick={() => setIsOpen(!isOpen)}
+                  >
+                    {isOpen ? '닫기' : '열기'}
+                  </Button>
+                </Stack>
+              </ComponentPreview>
+              <Code variant="block" language="tsx">
+                {`const [isOpen, setIsOpen] = useState(false);
 
 <Disclosure
   trigger="제어 모드"
@@ -65,293 +157,189 @@ const controlledCode = `const [isOpen, setIsOpen] = useState(false);
   외부에서 상태를 제어할 수 있습니다.
 </Disclosure>
 
-<button onClick={() => setIsOpen(!isOpen)}>
+<Button onClick={() => setIsOpen(!isOpen)}>
   {isOpen ? '닫기' : '열기'}
-</button>`;
+</Button>`}
+              </Code>
+            </Subsection>
+          </Section>
 
-// ============================================================================
-// 페이지 컴포넌트
-// ============================================================================
+          {/* 사용 가이드라인 */}
+          <Section level="h2">
+            <Heading level="h2" id="guidelines" title="사용 가이드라인" />
 
-export default function DisclosurePage() {
-  const [isOpen, setIsOpen] = useState(false);
+            <Subsection level="h3">
+              <Heading level="h3" title="적절한 사용" />
+              <List>
+                <ListItem>
+                  부가적인 정보(가이드, 대체 텍스트 설명 등) 제공
+                </ListItem>
+                <ListItem>여러 콘텐츠 섹션 비교가 필요한 화면</ListItem>
+                <ListItem>
+                  탭이나 아코디언보다 덜 강조되어야 하는 콘텐츠
+                </ListItem>
+              </List>
+            </Subsection>
 
-  return (
-    <>
-      {/* 헤더 */}
-      <Heading
-        level="h1"
-        title="Disclosure"
-        description="부가적인 정보를 표시하거나 숨기는 데 사용하는 컴포넌트입니다."
-        links={[
-          {
-            label: 'KRDS 디스클로저',
-            href: 'https://www.krds.go.kr/html/site/component/component_04_04.html',
-          },
-        ]}
+            <Subsection level="h3">
+              <Heading level="h3" title="부적절한 사용" />
+              <List>
+                <ListItem>단일 콘텐츠만 있는 경우 (기본 표시 권장)</ListItem>
+                <ListItem>오류 메시지나 중요 알림 표시</ListItem>
+                <ListItem>테이블 셀 내부에 배치</ListItem>
+              </List>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Accordion과의 차이점" />
+              <List>
+                <ListItem>
+                  <strong>Disclosure</strong>: 단독 사용, 여러 개 동시 열림
+                  가능, 부가 정보 제공
+                </ListItem>
+                <ListItem>
+                  <strong>Accordion</strong>: 그룹 사용, 하나만 열림, 주요
+                  콘텐츠 분류
+                </ListItem>
+              </List>
+            </Subsection>
+          </Section>
+
+          {/* 접근성 */}
+          <Section level="h2">
+            <Heading
+              level="h2"
+              id="accessibility"
+              title="접근성"
+              description="WCAG 2.1 / KWCAG 2.2 Level AA 기준을 준수합니다."
+            />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="키보드 지원" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>키</TableHead>
+                    <TableHead>동작</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Enter</Code> / <Code>Space</Code>
+                    </TableCell>
+                    <TableCell>디스클로저 열기/닫기</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>Tab</Code>
+                    </TableCell>
+                    <TableCell>다음 포커스 가능한 요소로 이동</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="ARIA 속성" />
+              <List>
+                <ListItem>
+                  <Code>&lt;button&gt;</Code> 요소로 트리거 구현
+                </ListItem>
+                <ListItem>
+                  <Code>aria-expanded</Code>: 확장/축소 상태 전달
+                </ListItem>
+                <ListItem>
+                  <Code>aria-controls</Code>: 트리거와 콘텐츠 영역 연결
+                </ListItem>
+                <ListItem>
+                  콘텐츠 영역에 <Code>role=&quot;region&quot;</Code> 적용
+                </ListItem>
+              </List>
+            </Subsection>
+          </Section>
+        </TabsContent>
+
+        {/* API 탭 */}
+        <TabsContent value="api">
+          <Section level="h2">
+            <Heading level="h2" id="api" title="API 레퍼런스" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Disclosure Props" />
+              <Table small>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Prop</TableHead>
+                    <TableHead>Type</TableHead>
+                    <TableHead>Default</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>trigger</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">ReactNode</Code>
+                    </TableCell>
+                    <TableCell>필수</TableCell>
+                    <TableCell>트리거 버튼에 표시할 텍스트</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>children</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">ReactNode</Code>
+                    </TableCell>
+                    <TableCell>필수</TableCell>
+                    <TableCell>확장 시 표시할 콘텐츠</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>defaultOpen</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>false</TableCell>
+                    <TableCell>기본 열림 상태 (비제어)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>open</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>열림 상태 (제어 모드)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>onOpenChange</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        (open: boolean) =&gt; void
+                      </Code>
+                    </TableCell>
+                    <TableCell>-</TableCell>
+                    <TableCell>상태 변경 콜백</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
+        </TabsContent>
+      </Tabs>
+
+      <PageNavigation
+        prev={{ title: 'Display', href: '/components/display' }}
+        next={{ title: 'DropdownMenu', href: '/components/dropdown-menu' }}
       />
-
-      {/* 개요 */}
-      <Section>
-        <Heading level="h2" title="개요" id="overview" />
-        <Body>
-          디스클로저(Disclosure)는 특정 정보나 섹션과 관련된 부가적인 정보를
-          표시하거나 숨기는 데 사용됩니다. 기본적으로 축소된 상태로 제공되어
-          사용자의 인지적 부담을 줄이고, 필요한 경우에만 확장하여 상세 정보를
-          확인할 수 있습니다.
-        </Body>
-        <PreviewBox>
-          <Disclosure trigger="참고 사항 보기">
-            이 정보는 추가적인 설명을 제공합니다. 디스클로저는 아코디언과 달리
-            단독으로 사용되며, 부가적인 정보를 제공하는 데 적합합니다.
-          </Disclosure>
-        </PreviewBox>
-      </Section>
-
-      {/* 설치 */}
-      <Section>
-        <Heading level="h2" title="설치" id="installation" />
-        <Code variant="block" language="bash" showLineNumbers={false}>
-          {installCode}
-        </Code>
-      </Section>
-
-      {/* Import */}
-      <Section>
-        <Heading level="h2" title="Import" id="import" />
-        <Code variant="block" language="typescript" showLineNumbers={false}>
-          {importCode}
-        </Code>
-      </Section>
-
-      {/* 기본 사용법 */}
-      <Section>
-        <Heading level="h2" title="기본 사용법" id="basic-usage" />
-        <Body>
-          trigger와 children을 전달하여 기본 디스클로저를 렌더링합니다.
-        </Body>
-        <PreviewBox>
-          <Disclosure trigger="자세히 보기">
-            이 정보는 부가적인 설명을 제공합니다. 기본적으로 축소된 상태로
-            표시되며, 사용자가 클릭하면 확장됩니다.
-          </Disclosure>
-        </PreviewBox>
-        <Code variant="block" language="tsx" showLineNumbers={false}>
-          {basicUsageCode}
-        </Code>
-      </Section>
-
-      {/* 변형 */}
-      <Section>
-        <Heading level="h2" title="변형 (Variants)" id="variants" />
-        <Body>세 가지 스타일 변형을 지원합니다.</Body>
-        <PreviewBox>
-          <Stack gap="lg">
-            <div>
-              <Body className="text-sm text-krds-gray-60 mb-2">Default</Body>
-              <Disclosure trigger="자세히 보기" variant="default">
-                기본 스타일의 디스클로저입니다. 파란색 링크 스타일로 표시됩니다.
-              </Disclosure>
-            </div>
-            <div>
-              <Body className="text-sm text-krds-gray-60 mb-2">Bordered</Body>
-              <Disclosure trigger="자세히 보기" variant="bordered">
-                테두리가 있는 디스클로저입니다. 카드 형태로 표시됩니다.
-              </Disclosure>
-            </div>
-            <div>
-              <Body className="text-sm text-krds-gray-60 mb-2">Ghost</Body>
-              <Disclosure trigger="자세히 보기" variant="ghost">
-                투명 스타일의 디스클로저입니다. 회색 텍스트로 표시됩니다.
-              </Disclosure>
-            </div>
-          </Stack>
-        </PreviewBox>
-        <Code variant="block" language="tsx" showLineNumbers={false}>
-          {variantsCode}
-        </Code>
-      </Section>
-
-      {/* 기본 열림 */}
-      <Section>
-        <Heading level="h2" title="기본 열림 상태" id="default-open" />
-        <Body>
-          defaultOpen 속성을 사용하여 기본적으로 열린 상태로 렌더링할 수
-          있습니다. (KRDS 가이드라인에서는 권장하지 않습니다)
-        </Body>
-        <PreviewBox>
-          <Disclosure trigger="이미 열린 정보" defaultOpen>
-            기본적으로 열려 있는 상태로 시작합니다. 일반적으로 디스클로저는
-            축소된 상태로 제공하는 것이 권장되지만, 특수한 경우에 사용할 수
-            있습니다.
-          </Disclosure>
-        </PreviewBox>
-        <Code variant="block" language="tsx" showLineNumbers={false}>
-          {defaultOpenCode}
-        </Code>
-      </Section>
-
-      {/* 제어 모드 */}
-      <Section>
-        <Heading level="h2" title="제어 모드" id="controlled" />
-        <Body>
-          open과 onOpenChange를 사용하여 외부에서 상태를 제어할 수 있습니다.
-        </Body>
-        <PreviewBox>
-          <Stack gap="md">
-            <Disclosure
-              trigger="제어 모드"
-              open={isOpen}
-              onOpenChange={setIsOpen}
-            >
-              외부에서 상태를 제어할 수 있습니다. 외부 버튼을 클릭하여 열고 닫을
-              수 있습니다.
-            </Disclosure>
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="px-4 py-2 text-sm bg-krds-primary-base text-white rounded hover:bg-krds-primary-60"
-            >
-              {isOpen ? '닫기' : '열기'}
-            </button>
-          </Stack>
-        </PreviewBox>
-        <Code variant="block" language="tsx" showLineNumbers={false}>
-          {controlledCode}
-        </Code>
-      </Section>
-
-      {/* Accordion과의 차이점 */}
-      <Section>
-        <Heading level="h2" title="Accordion과의 차이점" id="vs-accordion" />
-        <Body>Disclosure와 Accordion은 비슷해 보이지만 용도가 다릅니다:</Body>
-        <ul className="list-disc pl-6 space-y-2 text-krds-gray-80">
-          <li>
-            <strong>Disclosure</strong>: 단독으로 사용되며, 부가적인 정보를
-            제공하는 데 적합. 여러 개를 동시에 열 수 있음
-          </li>
-          <li>
-            <strong>Accordion</strong>: 여러 섹션을 그룹화하여 하나만 열리도록
-            관리. 주요 콘텐츠를 분류하는 데 적합
-          </li>
-        </ul>
-      </Section>
-
-      {/* 사용 가이드라인 */}
-      <Section>
-        <Heading level="h2" title="사용 가이드라인" id="guidelines" />
-        <Body>KRDS 가이드라인에 따른 권장 사항:</Body>
-        <ul className="list-disc pl-6 space-y-2 text-krds-gray-80">
-          <li>부가적인 정보를 제공하는 데 사용</li>
-          <li>기본적으로 축소된 상태로 제공</li>
-          <li>관련 정보/컨트롤 아래에 배치</li>
-          <li>가능한 한 하나의 섹션에 하나의 디스클로저만 사용</li>
-          <li>여러 개 연속 배치 시 복잡성 증가에 주의</li>
-        </ul>
-      </Section>
-
-      {/* 접근성 */}
-      <Section>
-        <Heading level="h2" title="접근성" id="accessibility" />
-        <Body>Disclosure는 다음과 같은 접근성 기능을 제공합니다:</Body>
-        <ul className="list-disc pl-6 space-y-2 text-krds-gray-80">
-          <li>
-            <code>&lt;button&gt;</code> 요소로 트리거 구현
-          </li>
-          <li>
-            <code>aria-expanded</code> 속성으로 확장/축소 상태 전달
-          </li>
-          <li>
-            <code>aria-controls</code>로 트리거와 콘텐츠 영역 연결
-          </li>
-          <li>
-            콘텐츠 영역에 <code>role=&quot;region&quot;</code> 적용
-          </li>
-          <li>키보드 포커스 스타일 제공</li>
-        </ul>
-      </Section>
-
-      {/* API Reference */}
-      <Section>
-        <Heading level="h2" title="API Reference" id="api" />
-        <Table small>
-          <TableHeader>
-            <TableRow>
-              <TableHead>속성</TableHead>
-              <TableHead>타입</TableHead>
-              <TableHead>기본값</TableHead>
-              <TableHead>설명</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Code>trigger</Code>
-              </TableCell>
-              <TableCell>
-                <Code className="text-xs">React.ReactNode</Code>
-              </TableCell>
-              <TableCell>필수</TableCell>
-              <TableCell>트리거 버튼에 표시할 텍스트 또는 요소</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>children</Code>
-              </TableCell>
-              <TableCell>
-                <Code className="text-xs">React.ReactNode</Code>
-              </TableCell>
-              <TableCell>필수</TableCell>
-              <TableCell>확장 시 표시할 콘텐츠</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>variant</Code>
-              </TableCell>
-              <TableCell>
-                <Code className="text-xs">
-                  &quot;default&quot; | &quot;bordered&quot; | &quot;ghost&quot;
-                </Code>
-              </TableCell>
-              <TableCell>
-                <Code className="text-xs">&quot;default&quot;</Code>
-              </TableCell>
-              <TableCell>디스클로저 스타일 변형</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>defaultOpen</Code>
-              </TableCell>
-              <TableCell>
-                <Code className="text-xs">boolean</Code>
-              </TableCell>
-              <TableCell>
-                <Code className="text-xs">false</Code>
-              </TableCell>
-              <TableCell>기본 열림 상태 (비제어 모드)</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>open</Code>
-              </TableCell>
-              <TableCell>
-                <Code className="text-xs">boolean</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>열림 상태 (제어 모드)</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <Code>onOpenChange</Code>
-              </TableCell>
-              <TableCell>
-                <Code className="text-xs">(open: boolean) =&gt; void</Code>
-              </TableCell>
-              <TableCell>-</TableCell>
-              <TableCell>열림 상태 변경 시 호출되는 콜백</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Section>
     </>
   );
 }

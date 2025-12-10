@@ -223,7 +223,7 @@ export const PreviewCarousel = React.forwardRef<
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
               <CardWrapper slide={slide}>
-                <div className="bg-white overflow-hidden h-full">
+                <div className="bg-white h-full">
                   {slide.imageSrc && (
                     <div className="aspect-square relative overflow-hidden rounded-lg after:content-[''] after:absolute after:inset-0 after:border after:border-krds-gray-20 after:rounded-[inherit] after:bg-black/5">
                       <img
