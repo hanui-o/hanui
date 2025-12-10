@@ -484,12 +484,7 @@ export type {
   CriticalAlertBannerProps,
 } from './components/critical-alerts';
 
-export {
-  Disclosure,
-  disclosureVariants,
-  disclosureTriggerVariants,
-  disclosureContentVariants,
-} from './components/disclosure';
+export { Disclosure } from './components/disclosure';
 export type { DisclosureProps } from './components/disclosure';
 
 export {
@@ -503,3 +498,6 @@ export type {
   DateInputMultipleProps,
   DateInputRangeProps,
 } from './components/date-input';
+
+export { Calendar } from './components/calendar';
+export type { CalendarProps } from './components/calendar';
