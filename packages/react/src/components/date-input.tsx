@@ -358,7 +358,7 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
         {hasError && errorMessage && (
           <p
             id={errorId}
-            className="form-hint flex items-center gap-1 text-sm text-krds-danger mt-2"
+            className="form-hint flex items-center gap-1 text-krds-body-sm text-krds-danger mt-2"
           >
             <CircleX className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
             {errorMessage}
@@ -437,7 +437,7 @@ export const DateInputMultiple = React.forwardRef<
         {label && (
           <label
             id={labelId}
-            className="form-tit block text-sm font-medium text-krds-gray-90 mb-2"
+            className="form-tit block text-krds-body-sm font-medium text-krds-gray-90 mb-2"
           >
             {label}
             {required && (
@@ -450,7 +450,7 @@ export const DateInputMultiple = React.forwardRef<
         {helperText && (
           <p
             id={helperTextId}
-            className="form-hint text-sm text-krds-gray-60 mb-2"
+            className="form-hint text-krds-body-sm text-krds-gray-60 mb-2"
           >
             {helperText}
           </p>
@@ -481,7 +481,7 @@ export const DateInputMultiple = React.forwardRef<
                 aria-label="년도"
                 maxLength={4}
               />
-              <span className="text-sm text-krds-gray-70">년</span>
+              <span className="text-krds-body-sm text-krds-gray-70">년</span>
             </div>
           )}
 
@@ -502,7 +502,7 @@ export const DateInputMultiple = React.forwardRef<
               aria-label="월"
               maxLength={2}
             />
-            <span className="text-sm text-krds-gray-70">월</span>
+            <span className="text-krds-body-sm text-krds-gray-70">월</span>
           </div>
 
           {/* 일 필드 */}
@@ -523,7 +523,7 @@ export const DateInputMultiple = React.forwardRef<
                 aria-label="일"
                 maxLength={2}
               />
-              <span className="text-sm text-krds-gray-70">일</span>
+              <span className="text-krds-body-sm text-krds-gray-70">일</span>
             </div>
           )}
         </div>
@@ -532,7 +532,7 @@ export const DateInputMultiple = React.forwardRef<
         {hasError && errorMessage && (
           <p
             id={errorId}
-            className="form-hint flex items-center gap-1 text-sm text-krds-danger mt-2"
+            className="form-hint flex items-center gap-1 text-krds-body-sm text-krds-danger mt-2"
           >
             <CircleX className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
             {errorMessage}
@@ -621,7 +621,7 @@ export const DateInputRange = React.forwardRef<
         {label && (
           <label
             id={labelId}
-            className="form-tit block text-sm font-medium text-krds-gray-90 mb-2"
+            className="form-tit block text-krds-body-sm font-medium text-krds-gray-90 mb-2"
           >
             {label}
             {required && (
@@ -634,7 +634,7 @@ export const DateInputRange = React.forwardRef<
         {helperText && (
           <p
             id={helperTextId}
-            className="form-hint text-sm text-krds-gray-60 mb-2"
+            className="form-hint text-krds-body-sm text-krds-gray-60 mb-2"
           >
             {helperText}
           </p>
@@ -686,7 +686,9 @@ export const DateInputRange = React.forwardRef<
               </div>
 
               {/* 구분자 */}
-              <span className="text-sm text-krds-gray-70 shrink-0">~</span>
+              <span className="text-krds-body-sm text-krds-gray-70 shrink-0">
+                ~
+              </span>
 
               {/* 종료일 */}
               <div className="relative flex-1">
@@ -760,7 +762,7 @@ export const DateInputRange = React.forwardRef<
         {hasError && errorMessage && (
           <p
             id={errorId}
-            className="form-hint flex items-center gap-1 text-sm text-krds-danger mt-2"
+            className="form-hint flex items-center gap-1 text-krds-body-sm text-krds-danger mt-2"
           >
             <CircleX className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
             {errorMessage}

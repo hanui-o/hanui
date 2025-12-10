@@ -96,7 +96,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(
             isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
           )}
         >
-          <div className="overflow-hidden" {...(!isOpen && { inert: '' })}>
+          <div className="overflow-hidden" {...(!isOpen && { inert: true })}>
             <div className="mt-1 p-4 rounded text-krds-gray-70 bg-krds-gray-5">
               {children}
             </div>

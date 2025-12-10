@@ -166,7 +166,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
         >
           {/* Card variant 섹션 타이틀 */}
           {variant === 'card' && sectionTitle && (
-            <h2 className="text-xl font-bold text-krds-gray-90 mb-4">
+            <h2 className="text-krds-heading-sm font-bold text-krds-gray-90 mb-4">
               {sectionTitle}
             </h2>
           )}
@@ -221,11 +221,11 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                     // Visual Banner 슬라이드
                     <div className="flex flex-col md:flex-row items-center justify-between gap-6 py-10 px-4">
                       <div className="flex-1 text-center md:text-left">
-                        <p className="text-2xl md:text-3xl font-bold text-krds-gray-90 mb-3">
+                        <p className="text-krds-heading-lg font-bold text-krds-gray-90 mb-3">
                           {slide.title}
                         </p>
                         {slide.description && (
-                          <p className="text-base text-krds-gray-60 mb-6">
+                          <p className="text-krds-body-md text-krds-gray-60 mb-6">
                             {slide.description}
                           </p>
                         )}
@@ -259,11 +259,11 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                     <div className="bg-white rounded-lg overflow-hidden border border-krds-gray-20 p-4">
                       <div className="mb-3">
                         {slide.subtitle && (
-                          <p className="text-sm text-krds-gray-50 mb-1">
+                          <p className="text-krds-body-sm text-krds-gray-50 mb-1">
                             {slide.subtitle}
                           </p>
                         )}
-                        <p className="text-lg font-semibold text-krds-gray-90">
+                        <p className="text-krds-body-lg font-semibold text-krds-gray-90">
                           {slide.title}
                         </p>
                       </div>
@@ -330,7 +330,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
                       paginationType === 'bullets' &&
                         'gap-1.5 h-9 px-3 bg-krds-gray-90/10 rounded-full',
                       paginationType === 'fraction' &&
-                        'gap-2 px-4 h-9 border border-krds-gray-30 rounded-full bg-white font-bold text-sm',
+                        'gap-2 px-4 h-9 border border-krds-gray-30 rounded-full bg-white font-bold text-krds-body-sm',
                       // Swiper bullet 커스텀 스타일
                       '[&_.swiper-pagination-bullet]:w-2 [&_.swiper-pagination-bullet]:h-2',
                       '[&_.swiper-pagination-bullet]:bg-krds-gray-40 [&_.swiper-pagination-bullet]:rounded-full',

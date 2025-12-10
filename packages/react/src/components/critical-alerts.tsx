@@ -331,18 +331,20 @@ export const CriticalAlertBanner = React.forwardRef<
         {...props}
       >
         <div className="max-w-5xl mx-auto flex items-center justify-center gap-3 flex-wrap">
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white/20 rounded text-sm font-semibold">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white/20 rounded text-krds-body-sm font-semibold">
             <IconComponent className="w-4 h-4" />
             <span>{displayLabel}</span>
           </span>
 
-          <p className="text-sm font-medium flex-1 text-center">{message}</p>
+          <p className="text-krds-body-sm font-medium flex-1 text-center">
+            {message}
+          </p>
 
           {(href || onLinkClick) && (
             <a
               href={href}
               onClick={onLinkClick}
-              className="inline-flex items-center gap-0.5 text-sm font-medium underline underline-offset-2 hover:no-underline"
+              className="inline-flex items-center gap-0.5 text-krds-body-sm font-medium underline underline-offset-2 hover:no-underline"
             >
               {linkText}
               <ChevronRightIcon className="w-4 h-4" />

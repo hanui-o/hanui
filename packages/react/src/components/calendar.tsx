@@ -424,7 +424,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                           <button
                             type="button"
                             className={cn(
-                              'w-full px-4 py-2 text-sm text-left hover:bg-krds-gray-10 transition-colors',
+                              'w-full px-4 py-2 text-krds-body-sm text-left hover:bg-krds-gray-10 transition-colors',
                               year === displayYear &&
                                 'active bg-krds-primary-base text-white hover:bg-krds-primary-base'
                             )}
@@ -482,7 +482,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                           <button
                             type="button"
                             className={cn(
-                              'w-full px-4 py-2 text-sm text-left hover:bg-krds-gray-10 transition-colors',
+                              'w-full px-4 py-2 text-krds-body-sm text-left hover:bg-krds-gray-10 transition-colors',
                               index === displayMonth &&
                                 'active bg-krds-primary-base text-white hover:bg-krds-primary-base'
                             )}
@@ -616,7 +616,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
                               type="button"
                               aria-label={`${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일${isToday ? ' 오늘' : ''}${isSelected ? ' 선택됨' : ''}${isRangeStart ? ' 시작일' : ''}${isRangeEnd ? ' 종료일' : ''}${isHoliday && !isOtherMonth ? ' 공휴일' : ''}`}
                               className={cn(
-                                'btn-set-date w-10 h-10 flex items-center justify-center rounded-full text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2',
+                                'btn-set-date w-10 h-10 flex items-center justify-center rounded-full text-krds-body-sm transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2',
                                 // 기본 상태
                                 'text-krds-gray-90 hover:bg-krds-gray-10',
                                 // 다른 달
