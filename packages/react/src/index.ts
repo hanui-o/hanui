@@ -437,6 +437,7 @@ export type {
 export { PreviewCarousel } from './components/carousel-preview';
 export type {
   PreviewCarouselProps,
+  PreviewCarouselSlide,
   PreviewCarouselBreakpoints,
 } from './components/carousel-preview';
 

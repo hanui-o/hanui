@@ -2,15 +2,14 @@
 
 import * as React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, A11y } from 'swiper/modules';
+import { Navigation, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { cn } from '../lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Swiper CSS
+// Swiper CSS (pagination은 커스텀으로 구현하므로 제외)
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 /**
  * 반응형 slidesPerView 설정
@@ -25,11 +24,31 @@ export interface PreviewCarouselBreakpoints {
 }
 
 /**
+ * Preview 캐러셀 슬라이드 타입
+ */
+export interface PreviewCarouselSlide {
+  /** 슬라이드 고유 ID */
+  id: string | number;
+  /** 메인 타이틀 */
+  title: string;
+  /** 설명 텍스트 */
+  description?: string;
+  /** 이미지 URL */
+  imageSrc?: string;
+  /** 이미지 alt 텍스트 */
+  imageAlt?: string;
+  /** 클릭 링크 */
+  href?: string;
+  /** 클릭 핸들러 */
+  onClick?: () => void;
+}
+
+/**
  * PreviewCarousel Props
  */
 export interface PreviewCarouselProps {
-  /** 슬라이드 아이템들 (children) */
-  children: React.ReactNode;
+  /** 슬라이드 데이터 배열 */
+  slides: PreviewCarouselSlide[];
   /** 반응형 slidesPerView 설정 */
   slidesPerView?: PreviewCarouselBreakpoints | number;
   /** 슬라이드 간격 (px) */
@@ -50,32 +69,23 @@ export interface PreviewCarouselProps {
  * Preview 스타일 캐러셀 컴포넌트
  *
  * 부분적으로 다음 슬라이드가 보이는 캐러셀입니다.
- * 모바일에서 1.2개, 태블릿에서 2.2개, 데스크톱에서 3.2개처럼
- * 소수점 단위로 슬라이드를 표시하여 다음 콘텐츠를 미리 볼 수 있습니다.
+ * 이미지와 텍스트를 포함한 카드형 슬라이드를 표시합니다.
  *
  * @example
- * // 기본 사용법 (반응형 기본값 적용)
- * <PreviewCarousel>
- *   <Card>내용 1</Card>
- *   <Card>내용 2</Card>
- *   <Card>내용 3</Card>
- * </PreviewCarousel>
- *
- * @example
- * // 커스텀 slidesPerView
  * <PreviewCarousel
- *   slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 4.2 }}
- *   spaceBetween={16}
+ *   slides={[
+ *     {
+ *       id: 1,
+ *       title: "정책 안내",
+ *       description: "국민을 위한 정책 설명입니다.",
+ *       imageSrc: "/policy-image.png",
+ *       href: "/policy/1"
+ *     }
+ *   ]}
+ *   slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 3.2 }}
  *   showArrows
- * >
- *   {items.map(item => <Card key={item.id}>{item.title}</Card>)}
- * </PreviewCarousel>
- *
- * @example
- * // 고정 slidesPerView
- * <PreviewCarousel slidesPerView={2.5}>
- *   <Card>...</Card>
- * </PreviewCarousel>
+ *   showPagination
+ * />
  */
 export const PreviewCarousel = React.forwardRef<
   HTMLDivElement,
@@ -83,7 +93,7 @@ export const PreviewCarousel = React.forwardRef<
 >(
   (
     {
-      children,
+      slides,
       slidesPerView = { mobile: 1.2, tablet: 2.2, desktop: 3.2 },
       spaceBetween = 16,
       loop = false,
@@ -96,9 +106,8 @@ export const PreviewCarousel = React.forwardRef<
   ) => {
     const [swiperInstance, setSwiperInstance] =
       React.useState<SwiperType | null>(null);
+    const [activeIndex, setActiveIndex] = React.useState(0);
 
-    // children을 배열로 변환
-    const slides = React.Children.toArray(children);
     const hasMultipleSlides = slides.length > 1;
 
     // slidesPerView 설정 처리
@@ -127,9 +136,20 @@ export const PreviewCarousel = React.forwardRef<
     // 슬라이드 변경 핸들러
     const handleSlideChange = React.useCallback(
       (swiper: SwiperType) => {
+        setActiveIndex(swiper.realIndex);
         onSlideChange?.(swiper.realIndex);
       },
       [onSlideChange]
+    );
+
+    // 특정 슬라이드로 이동
+    const goToSlide = React.useCallback(
+      (index: number) => {
+        if (swiperInstance) {
+          swiperInstance.slideToLoop(index);
+        }
+      },
+      [swiperInstance]
     );
 
     // 이전/다음 버튼 핸들러
@@ -151,24 +171,44 @@ export const PreviewCarousel = React.forwardRef<
       'transition-colors'
     );
 
+    // 카드 래퍼 컴포넌트
+    const CardWrapper = ({
+      slide,
+      children,
+    }: {
+      slide: PreviewCarouselSlide;
+      children: React.ReactNode;
+    }) => {
+      if (slide.href) {
+        return (
+          <a href={slide.href} onClick={slide.onClick} className="block h-full">
+            {children}
+          </a>
+        );
+      }
+      if (slide.onClick) {
+        return (
+          <button
+            type="button"
+            onClick={slide.onClick}
+            className="block w-full text-left h-full"
+          >
+            {children}
+          </button>
+        );
+      }
+      return <div className="h-full">{children}</div>;
+    };
+
     return (
       <div ref={ref} className={cn('relative', className)}>
         <Swiper
-          modules={[Navigation, Pagination, A11y]}
+          modules={[Navigation, A11y]}
           slidesPerView={getSlidesPerView()}
           spaceBetween={spaceBetween}
           speed={400}
           loop={loop && hasMultipleSlides}
           breakpoints={getBreakpoints()}
-          pagination={
-            showPagination
-              ? {
-                  el: '.preview-carousel-pagination',
-                  clickable: true,
-                  type: 'bullets',
-                }
-              : false
-          }
           a11y={{
             prevSlideMessage: '이전 슬라이드',
             nextSlideMessage: '다음 슬라이드',
@@ -180,27 +220,56 @@ export const PreviewCarousel = React.forwardRef<
           onSlideChange={handleSlideChange}
           className="w-full"
         >
-          {slides.map((slide, index) => (
-            <SwiperSlide key={index}>{slide}</SwiperSlide>
+          {slides.map((slide) => (
+            <SwiperSlide key={slide.id}>
+              <CardWrapper slide={slide}>
+                <div className="bg-white overflow-hidden h-full">
+                  {slide.imageSrc && (
+                    <div className="aspect-square relative overflow-hidden rounded-lg after:content-[''] after:absolute after:inset-0 after:border after:border-krds-gray-20 after:rounded-[inherit] after:bg-black/5">
+                      <img
+                        src={slide.imageSrc}
+                        alt={slide.imageAlt || slide.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="py-4">
+                    <h3 className="text-krds-heading-sm font-semibold text-krds-gray-90 mb-2">
+                      {slide.title}
+                    </h3>
+                    {slide.description && (
+                      <p className="text-krds-body-sm text-krds-gray-60 line-clamp-2 min-h-11">
+                        {slide.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </CardWrapper>
+            </SwiperSlide>
           ))}
         </Swiper>
 
         {/* 컨트롤 영역 */}
         {(showArrows || showPagination) && hasMultipleSlides && (
           <div className="flex items-center justify-end gap-3 mt-4">
-            {/* Pagination */}
+            {/* 커스텀 Pagination */}
             {showPagination && (
-              <div
-                className={cn(
-                  'preview-carousel-pagination',
-                  'flex items-center gap-1.5 h-9 px-3 bg-krds-gray-90/10 rounded-full',
-                  // Swiper bullet 커스텀 스타일
-                  '[&_.swiper-pagination-bullet]:w-2 [&_.swiper-pagination-bullet]:h-2',
-                  '[&_.swiper-pagination-bullet]:bg-krds-gray-40 [&_.swiper-pagination-bullet]:rounded-full',
-                  '[&_.swiper-pagination-bullet]:opacity-100',
-                  '[&_.swiper-pagination-bullet-active]:w-8 [&_.swiper-pagination-bullet-active]:bg-krds-primary-60'
-                )}
-              />
+              <div className="flex items-center gap-1.5">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => goToSlide(index)}
+                    aria-label={`${index + 1}번째 슬라이드로 이동`}
+                    className={cn(
+                      'h-2 rounded-full transition-all duration-300',
+                      activeIndex === index
+                        ? 'w-6 bg-krds-primary-60'
+                        : 'w-2 bg-krds-gray-30 hover:bg-krds-gray-40'
+                    )}
+                  />
+                ))}
+              </div>
             )}
 
             {/* Navigation Arrows */}

@@ -223,7 +223,7 @@ export const ContentCarousel = React.forwardRef<
                       </strong>
                     </div>
                     {slide.imageSrc && (
-                      <div className="aspect-video rounded-lg overflow-hidden bg-krds-gray-10">
+                      <div className="aspect-video rounded-lg overflow-hidden bg-krds-gray-10 mt-10">
                         <img
                           src={slide.imageSrc}
                           alt={slide.imageAlt || slide.title}

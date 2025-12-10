@@ -27,7 +27,11 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@hanui/react';
-import type { HeroCarouselSlide, ContentCarouselSlide } from '@hanui/react';
+import type {
+  HeroCarouselSlide,
+  ContentCarouselSlide,
+  PreviewCarouselSlide,
+} from '@hanui/react';
 
 // HeroCarousel 예제 데이터
 const heroSlides: HeroCarouselSlide[] = [
@@ -96,19 +100,55 @@ const contentSlides: ContentCarouselSlide[] = [
   },
 ];
 
-// PreviewCarousel 예제 카드
-const PreviewCard = ({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) => (
-  <div className="bg-white rounded-lg border border-krds-gray-20 p-4 h-full">
-    <h3 className="font-semibold text-krds-gray-90 mb-2">{title}</h3>
-    <p className="text-sm text-krds-gray-60">{description}</p>
-  </div>
-);
+// PreviewCarousel 예제 데이터
+const previewSlides: PreviewCarouselSlide[] = [
+  {
+    id: 1,
+    title: '정책 안내 1',
+    description:
+      '"폴더블 판도가 뒤집힌다"…애플 첫 폴더블 아이폰, 시장가치 34% 싹쓸이 전망',
+    href: '#',
+    imageSrc:
+      'https://mimgnews.pstatic.net/image/origin/138/2025/12/10/2212056.jpg?type=nf352_352&ut=1765329493000',
+    imageAlt: '정책 안내 1',
+  },
+  {
+    id: 2,
+    title: '정책 안내 2',
+    description: '디지털 혁신 관련 내용입니다.',
+    href: '#',
+    imageSrc:
+      'https://mimgnews.pstatic.net/image/origin/138/2025/12/09/2212001.jpg?type=nf352_352&ut=1765268646000',
+    imageAlt: '정책 안내 2',
+  },
+  {
+    id: 3,
+    title: '정책 안내 3',
+    description: '환경 정책 안내입니다.',
+    href: '#',
+    imageSrc:
+      'https://mimgnews.pstatic.net/image/origin/138/2025/12/10/2212073.jpg?type=nf352_352&ut=1765332729000',
+    imageAlt: '정책 안내 3',
+  },
+  {
+    id: 4,
+    title: '정책 안내 4',
+    description: '복지 정책 안내입니다.',
+    href: '#',
+    imageSrc:
+      'https://mimgnews.pstatic.net/image/origin/138/2025/12/10/2212077.jpg?type=nf352_352&ut=1765333326000',
+    imageAlt: '정책 안내 4',
+  },
+  {
+    id: 5,
+    title: '정책 안내 5',
+    description: '경제 정책 안내입니다.',
+    href: '#',
+    imageSrc:
+      'https://mimgnews.pstatic.net/image/origin/138/2025/12/10/2212076.jpg?type=nf352_352&ut=1765333026000',
+    imageAlt: '정책 안내 5',
+  },
+];
 
 export default function CarouselPage() {
   return (
@@ -196,13 +236,15 @@ export default function CarouselPage() {
 <HeroCarousel slides={heroSlides} autoPlay showPlayPause loop />
 
 // 섹션 배너
-<ContentCarousel slides={contentSlides} sectionTitle="주요 소식" />
+<ContentCarousel slides={contentSlides} paginationType="fraction" />
 
 // 카드 캐러셀
-<PreviewCarousel slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 3.2 }}>
-  <Card>카드 1</Card>
-  <Card>카드 2</Card>
-</PreviewCarousel>`}
+<PreviewCarousel
+  slides={previewSlides}
+  slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 3.2 }}
+  showArrows
+  showPagination
+/>`}
             </Code>
           </Section>
 
@@ -242,7 +284,7 @@ export default function CarouselPage() {
               <Heading
                 level="h3"
                 title="ContentCarousel"
-                description="카드형 섹션 배너입니다. 섹션 타이틀, 분수형 페이지네이션, 더보기 버튼을 지원합니다."
+                description="카드형 섹션 배너입니다. 분수형 페이지네이션, 더보기 버튼을 지원합니다."
               />
               <ComponentPreview>
                 <div className="w-full max-w-md">
@@ -282,50 +324,38 @@ export default function CarouselPage() {
               <Heading
                 level="h3"
                 title="PreviewCarousel"
-                description="부분적으로 다음 슬라이드가 보이는 캐러셀입니다. children 기반으로 자유로운 콘텐츠를 사용할 수 있습니다."
+                description="부분적으로 다음 슬라이드가 보이는 카드형 캐러셀입니다. 이미지, 제목, 설명을 포함한 슬라이드를 표시합니다."
               />
               <ComponentPreview>
                 <div className="w-full">
                   <PreviewCarousel
+                    slides={previewSlides}
                     slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 3.2 }}
                     spaceBetween={16}
                     showArrows
                     showPagination
-                  >
-                    <PreviewCard
-                      title="정책 안내 1"
-                      description="국민을 위한 정책 설명입니다."
-                    />
-                    <PreviewCard
-                      title="정책 안내 2"
-                      description="디지털 혁신 관련 내용입니다."
-                    />
-                    <PreviewCard
-                      title="정책 안내 3"
-                      description="환경 정책 안내입니다."
-                    />
-                    <PreviewCard
-                      title="정책 안내 4"
-                      description="복지 정책 안내입니다."
-                    />
-                    <PreviewCard
-                      title="정책 안내 5"
-                      description="경제 정책 안내입니다."
-                    />
-                  </PreviewCarousel>
+                    loop
+                  />
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<PreviewCarousel
+                {`const slides: PreviewCarouselSlide[] = [
+  {
+    id: 1,
+    title: "정책 안내",
+    description: "국민을 위한 정책 설명입니다.",
+    imageSrc: "/policy-image.png",
+    href: "/policy/1"
+  },
+];
+
+<PreviewCarousel
+  slides={slides}
   slidesPerView={{ mobile: 1.2, tablet: 2.2, desktop: 3.2 }}
   spaceBetween={16}
   showArrows
   showPagination
->
-  <Card>카드 1</Card>
-  <Card>카드 2</Card>
-  <Card>카드 3</Card>
-</PreviewCarousel>`}
+/>`}
               </Code>
             </Subsection>
           </Section>
@@ -473,16 +503,6 @@ export default function CarouselPage() {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      <Code>sectionTitle</Code>
-                    </TableCell>
-                    <TableCell>
-                      <Code className="text-xs">string</Code>
-                    </TableCell>
-                    <TableCell>-</TableCell>
-                    <TableCell>섹션 타이틀</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
                       <Code>paginationType</Code>
                     </TableCell>
                     <TableCell>
@@ -541,13 +561,13 @@ export default function CarouselPage() {
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <Code>children</Code>
+                      <Code>slides</Code>
                     </TableCell>
                     <TableCell>
-                      <Code className="text-xs">ReactNode</Code>
+                      <Code className="text-xs">PreviewCarouselSlide[]</Code>
                     </TableCell>
                     <TableCell>필수</TableCell>
-                    <TableCell>슬라이드 아이템들</TableCell>
+                    <TableCell>슬라이드 데이터</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>
