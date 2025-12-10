@@ -65,47 +65,19 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(
     const contentId = `disclosure-content-${id}`;
 
     return (
-      <div
-        ref={ref}
-        className={cn(
-          'krds-disclosure',
-          'conts-expand-area',
-          isOpen && 'active',
-          className
-        )}
-        {...props}
-      >
+      <div ref={ref} className={className} {...props}>
         {/* 트리거 버튼 */}
         <button
           id={triggerId}
           type="button"
-          className={cn(
-            'btn-conts-expand',
-            'group',
-            'inline-flex',
-            'items-center',
-            'gap-2',
-            'text-krds-primary-base',
-            'hover:text-krds-primary-60',
-            'text-sm',
-            'font-medium',
-            'transition-colors',
-            'focus:outline-none',
-            'focus-visible:ring-2',
-            'focus-visible:ring-krds-primary-base',
-            'focus-visible:ring-offset-2',
-            'rounded'
-          )}
+          className="inline-flex items-center gap-2 text-krds-gray-95 hover:text-krds-gray-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2 rounded"
           onClick={handleToggle}
           aria-expanded={isOpen}
           aria-controls={contentId}
         >
-          {/* 아이콘 */}
           <CircleChevronRight
             className={cn(
-              'w-4 h-4',
-              'transition-transform',
-              'duration-200',
+              'w-4 h-4 transition-transform duration-200',
               isOpen ? 'rotate-90' : 'rotate-0'
             )}
             aria-hidden="true"
@@ -113,22 +85,21 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>(
           <span>{trigger}</span>
         </button>
 
-        {/* 콘텐츠 영역 */}
+        {/* 콘텐츠 영역 - CSS Grid 애니메이션 */}
         <div
           id={contentId}
           role="region"
           aria-labelledby={triggerId}
+          aria-hidden={!isOpen}
           className={cn(
-            'expand-wrap',
-            'overflow-hidden',
-            'transition-all',
-            'duration-300',
-            'ease-in-out',
-            isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+            'grid transition-[grid-template-rows] duration-200 ease-out',
+            isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
           )}
         >
-          <div className="expand-in pt-3 text-sm text-krds-gray-70">
-            {children}
+          <div className="overflow-hidden" {...(!isOpen && { inert: '' })}>
+            <div className="mt-1 p-4 rounded text-krds-gray-70 bg-krds-gray-5">
+              {children}
+            </div>
           </div>
         </div>
       </div>

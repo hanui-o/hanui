@@ -58,7 +58,7 @@ export default function DisclosurePage() {
               title="개요"
               className="sr-only"
             />
-            <ComponentPreview>
+            <ComponentPreview align="start">
               <Disclosure trigger="참고 사항 보기">
                 이 정보는 추가적인 설명을 제공합니다. 디스클로저는 기본적으로
                 축소된 상태로 제공되어 사용자의 인지적 부담을 줄입니다.
@@ -109,7 +109,7 @@ export default function DisclosurePage() {
                 title="기본 열림 상태"
                 description="defaultOpen prop으로 처음부터 열린 상태로 렌더링할 수 있습니다. (KRDS는 축소 상태를 권장)"
               />
-              <ComponentPreview>
+              <ComponentPreview align="start">
                 <Disclosure trigger="이미 열린 정보" defaultOpen>
                   기본적으로 열려 있는 상태로 시작합니다. 특수한 경우에만 사용을
                   권장합니다.
@@ -120,88 +120,6 @@ export default function DisclosurePage() {
   기본적으로 열려 있는 상태로 시작합니다.
 </Disclosure>`}
               </Code>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading
-                level="h3"
-                title="제어 모드"
-                description="open과 onOpenChange로 외부에서 상태를 제어할 수 있습니다."
-              />
-              <ComponentPreview>
-                <Stack gap="md" className="w-full">
-                  <Disclosure
-                    trigger="제어 모드"
-                    open={isOpen}
-                    onOpenChange={setIsOpen}
-                  >
-                    외부에서 상태를 제어할 수 있습니다.
-                  </Disclosure>
-                  <Button
-                    variant="tertiary"
-                    size="sm"
-                    onClick={() => setIsOpen(!isOpen)}
-                  >
-                    {isOpen ? '닫기' : '열기'}
-                  </Button>
-                </Stack>
-              </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`const [isOpen, setIsOpen] = useState(false);
-
-<Disclosure
-  trigger="제어 모드"
-  open={isOpen}
-  onOpenChange={setIsOpen}
->
-  외부에서 상태를 제어할 수 있습니다.
-</Disclosure>
-
-<Button onClick={() => setIsOpen(!isOpen)}>
-  {isOpen ? '닫기' : '열기'}
-</Button>`}
-              </Code>
-            </Subsection>
-          </Section>
-
-          {/* 사용 가이드라인 */}
-          <Section level="h2">
-            <Heading level="h2" id="guidelines" title="사용 가이드라인" />
-
-            <Subsection level="h3">
-              <Heading level="h3" title="적절한 사용" />
-              <List>
-                <ListItem>
-                  부가적인 정보(가이드, 대체 텍스트 설명 등) 제공
-                </ListItem>
-                <ListItem>여러 콘텐츠 섹션 비교가 필요한 화면</ListItem>
-                <ListItem>
-                  탭이나 아코디언보다 덜 강조되어야 하는 콘텐츠
-                </ListItem>
-              </List>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="부적절한 사용" />
-              <List>
-                <ListItem>단일 콘텐츠만 있는 경우 (기본 표시 권장)</ListItem>
-                <ListItem>오류 메시지나 중요 알림 표시</ListItem>
-                <ListItem>테이블 셀 내부에 배치</ListItem>
-              </List>
-            </Subsection>
-
-            <Subsection level="h3">
-              <Heading level="h3" title="Accordion과의 차이점" />
-              <List>
-                <ListItem>
-                  <strong>Disclosure</strong>: 단독 사용, 여러 개 동시 열림
-                  가능, 부가 정보 제공
-                </ListItem>
-                <ListItem>
-                  <strong>Accordion</strong>: 그룹 사용, 하나만 열림, 주요
-                  콘텐츠 분류
-                </ListItem>
-              </List>
             </Subsection>
           </Section>
 
