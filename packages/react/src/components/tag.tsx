@@ -3,14 +3,21 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../lib/utils';
-import { Check, X } from 'lucide-react';
+import { Check } from 'lucide-react';
+
+// ============================================================================
+// KRDS Tag 컴포넌트
+// ============================================================================
 
 /**
  * Tag 스타일 variants
- * KRDS 디자인 시스템 기반
+ * KRDS 디자인 시스템 기반 - pill 형태
  */
 const tagVariants = cva(
-  'inline-flex items-center justify-center gap-1.5 font-medium transition-colors',
+  [
+    'inline-flex items-center justify-center gap-1',
+    'rounded-full leading-none font-medium transition-colors',
+  ],
   {
     variants: {
       variant: {
@@ -22,34 +29,55 @@ const tagVariants = cva(
         warning: 'bg-krds-warning-5 text-krds-warning-40',
         error: 'bg-krds-danger-5 text-krds-danger-base',
         info: 'bg-krds-info-5 text-krds-info-base',
-        // 아웃라인
-        'outline-default':
-          'border border-krds-gray-30 bg-white text-krds-gray-90',
+        // 아웃라인 (KRDS 기본 스타일)
+        outline:
+          'bg-white border border-krds-gray-20 text-krds-gray-90 hover:bg-krds-gray-5 hover:border-krds-gray-30',
         'outline-primary':
-          'border border-krds-primary-30 bg-white text-krds-primary-60',
+          'bg-white border border-krds-primary-30 text-krds-primary-60 hover:bg-krds-primary-5',
         'outline-secondary':
-          'border border-krds-gray-30 bg-white text-krds-gray-70',
+          'bg-white border border-krds-gray-30 text-krds-gray-70 hover:bg-krds-gray-5',
         'outline-success':
-          'border border-krds-success-30 bg-white text-krds-success-base',
+          'bg-white border border-krds-success-30 text-krds-success-base hover:bg-krds-success-5',
         'outline-warning':
-          'border border-krds-warning-30 bg-white text-krds-warning-40',
+          'bg-white border border-krds-warning-30 text-krds-warning-40 hover:bg-krds-warning-5',
         'outline-error':
-          'border border-krds-danger-30 bg-white text-krds-danger-base',
+          'bg-white border border-krds-danger-30 text-krds-danger-base hover:bg-krds-danger-5',
         'outline-info':
-          'border border-krds-info-30 bg-white text-krds-info-base',
+          'bg-white border border-krds-info-30 text-krds-info-base hover:bg-krds-info-5',
       },
       size: {
-        sm: 'text-sm h-6 px-2 rounded',
-        md: 'text-sm h-7 px-2.5 rounded-md',
-        lg: 'text-base h-8 px-3 rounded-md',
+        sm: 'h-6 px-3 text-krds-label-xs',
+        md: 'h-8 px-4 text-krds-label-sm',
+        lg: 'h-10 px-5 text-krds-label-md',
       },
     },
     defaultVariants: {
-      variant: 'default',
+      variant: 'outline',
       size: 'md',
     },
   }
 );
+
+// TagGroup variants
+const tagGroupVariants = cva('flex flex-wrap', {
+  variants: {
+    size: {
+      sm: 'gap-x-2 gap-y-3',
+      md: 'gap-x-3 gap-y-3',
+      lg: 'gap-x-3 gap-y-4',
+    },
+  },
+  defaultVariants: {
+    size: 'md',
+  },
+});
+
+// 삭제 버튼 크기
+const deleteButtonSizeMap = {
+  sm: 'w-4 h-4',
+  md: 'w-4 h-4',
+  lg: 'w-5 h-5',
+};
 
 // ============================================================================
 // Tag (기본 태그)
@@ -72,7 +100,7 @@ export interface TagProps
  * ```tsx
  * <Tag>기본 태그</Tag>
  * <Tag variant="primary">Primary</Tag>
- * <Tag variant="outline-default" size="sm">작은 태그</Tag>
+ * <Tag variant="outline" size="sm">작은 태그</Tag>
  * ```
  */
 export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
@@ -131,7 +159,7 @@ export const SelectableTag = React.forwardRef<
   (
     {
       className,
-      variant = 'outline-default',
+      variant = 'outline',
       size,
       selected = false,
       onChange,
@@ -155,10 +183,9 @@ export const SelectableTag = React.forwardRef<
         className={cn(
           tagVariants({ variant, size }),
           'cursor-pointer',
-          'hover:bg-krds-gray-5',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-60 focus-visible:ring-offset-1',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-1',
           selected &&
-            'bg-krds-primary-5 border-krds-primary-60 text-krds-primary-60',
+            'bg-krds-primary-5 border-krds-primary-base text-krds-primary-base',
           className
         )}
         {...props}
@@ -207,8 +234,8 @@ export const RemovableTag = React.forwardRef<
   (
     {
       className,
-      variant = 'outline-default',
-      size,
+      variant = 'outline',
+      size = 'md',
       onRemove,
       removeLabel = '삭제',
       children,
@@ -216,34 +243,29 @@ export const RemovableTag = React.forwardRef<
     },
     ref
   ) => {
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        onRemove?.();
-      }
-    };
-
     return (
       <span
         ref={ref}
-        className={cn(tagVariants({ variant, size }), 'pr-1.5', className)}
+        className={cn(tagVariants({ variant, size }), 'pr-2', className)}
         {...props}
       >
-        {children}
-        <button
-          type="button"
-          onClick={onRemove}
-          onKeyDown={handleKeyDown}
-          className={cn(
-            'flex items-center justify-center',
-            'w-4 h-4 rounded-sm ml-0.5',
-            'hover:bg-krds-gray-20 transition-colors',
-            'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-krds-primary-60'
-          )}
-          aria-label={removeLabel}
-        >
-          <X className="w-3 h-3" aria-hidden="true" />
-        </button>
+        <span className="truncate">{children}</span>
+        {onRemove && (
+          <button
+            type="button"
+            onClick={onRemove}
+            className={cn(
+              'flex items-center justify-center shrink-0',
+              'rounded-full transition-colors',
+              'hover:bg-krds-gray-20',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-1',
+              deleteButtonSizeMap[size || 'md']
+            )}
+            aria-label={removeLabel}
+          >
+            <DeleteIcon className="w-3 h-3" />
+          </button>
+        )}
       </span>
     );
   }
@@ -252,25 +274,61 @@ export const RemovableTag = React.forwardRef<
 RemovableTag.displayName = 'RemovableTag';
 
 // ============================================================================
+// TagLink (링크형 태그)
+// ============================================================================
+
+export interface TagLinkProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    VariantProps<typeof tagVariants> {}
+
+/**
+ * TagLink 컴포넌트
+ *
+ * 클릭 가능한 링크형 KRDS 태그입니다.
+ * hover/active 시 밑줄이 표시됩니다.
+ *
+ * @example
+ * ```tsx
+ * <TagLink href="/category/react">React</TagLink>
+ * <TagLink href="/category/vue" size="lg">Vue</TagLink>
+ * ```
+ */
+export const TagLink = React.forwardRef<HTMLAnchorElement, TagLinkProps>(
+  ({ className, variant = 'outline', size, children, ...props }, ref) => {
+    return (
+      <a
+        ref={ref}
+        className={cn(
+          tagVariants({ variant, size }),
+          'cursor-pointer no-underline',
+          'hover:underline active:underline',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-1',
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  }
+);
+
+TagLink.displayName = 'TagLink';
+
+// ============================================================================
 // TagGroup (태그 그룹)
 // ============================================================================
 
-export interface TagGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TagGroupProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof tagGroupVariants> {
   /** 전체 삭제 버튼 표시 여부 */
   showClearAll?: boolean;
   /** 전체 삭제 버튼 텍스트 */
   clearAllText?: string;
   /** 전체 삭제 핸들러 */
   onClearAll?: () => void;
-  /** 태그 간격 */
-  spacing?: 'sm' | 'md' | 'lg';
 }
-
-const spacingStyles = {
-  sm: 'gap-1',
-  md: 'gap-2',
-  lg: 'gap-3',
-};
 
 /**
  * TagGroup 컴포넌트
@@ -289,10 +347,10 @@ export const TagGroup = React.forwardRef<HTMLDivElement, TagGroupProps>(
   (
     {
       className,
+      size,
       showClearAll = false,
       clearAllText = '전체 삭제',
       onClearAll,
-      spacing = 'md',
       children,
       ...props
     },
@@ -302,11 +360,7 @@ export const TagGroup = React.forwardRef<HTMLDivElement, TagGroupProps>(
       <div
         ref={ref}
         role="group"
-        className={cn(
-          'flex flex-wrap items-center',
-          spacingStyles[spacing],
-          className
-        )}
+        className={cn(tagGroupVariants({ size }), className)}
         {...props}
       >
         {children}
@@ -315,9 +369,9 @@ export const TagGroup = React.forwardRef<HTMLDivElement, TagGroupProps>(
             type="button"
             onClick={onClearAll}
             className={cn(
-              'text-sm text-krds-gray-60 underline',
+              'text-krds-label-sm text-krds-gray-60 underline',
               'hover:text-krds-gray-90 transition-colors',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-60 focus-visible:rounded'
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:rounded'
             )}
           >
             {clearAllText}
@@ -330,4 +384,23 @@ export const TagGroup = React.forwardRef<HTMLDivElement, TagGroupProps>(
 
 TagGroup.displayName = 'TagGroup';
 
-export { tagVariants };
+// ============================================================================
+// DeleteIcon (X 아이콘)
+// ============================================================================
+
+const DeleteIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+  </svg>
+);
+
+// ============================================================================
+// Export variants
+// ============================================================================
+
+export { tagVariants, tagGroupVariants };

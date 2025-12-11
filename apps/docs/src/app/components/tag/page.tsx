@@ -172,7 +172,7 @@ export default function TagPage() {
               />
               <ComponentPreview>
                 <div className="flex flex-wrap gap-2">
-                  <Tag variant="outline-default">기본</Tag>
+                  <Tag variant="outline">기본</Tag>
                   <Tag variant="outline-primary">Primary</Tag>
                   <Tag variant="outline-success">Success</Tag>
                   <Tag variant="outline-warning">Warning</Tag>
@@ -180,7 +180,7 @@ export default function TagPage() {
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx" showLineNumbers={false}>
-                {`<Tag variant="outline-default">기본</Tag>
+                {`<Tag variant="outline">기본</Tag>
 <Tag variant="outline-primary">Primary</Tag>
 <Tag variant="outline-success">Success</Tag>
 <Tag variant="outline-warning">Warning</Tag>
@@ -363,7 +363,7 @@ const toggleTag = (tag: string) => {
                   {filterTags.map((tag) => (
                     <RemovableTag
                       key={tag}
-                      variant="outline-default"
+                      variant="outline"
                       onRemove={() => removeFilterTag(tag)}
                     >
                       {tag}
@@ -394,7 +394,7 @@ const clearAllFilters = () => {
   {filterTags.map(tag => (
     <RemovableTag
       key={tag}
-      variant="outline-default"
+      variant="outline"
       onRemove={() => removeFilterTag(tag)}
     >
       {tag}
@@ -546,7 +546,7 @@ const clearAllFilters = () => {
                     <TableCell>
                       <Code className="text-xs">TagVariant</Code>
                     </TableCell>
-                    <TableCell>&apos;outline-default&apos;</TableCell>
+                    <TableCell>&apos;outline&apos;</TableCell>
                     <TableCell>태그 스타일</TableCell>
                   </TableRow>
                   <TableRow>
@@ -604,7 +604,7 @@ const clearAllFilters = () => {
                     <TableCell>
                       <Code className="text-xs">TagVariant</Code>
                     </TableCell>
-                    <TableCell>&apos;outline-default&apos;</TableCell>
+                    <TableCell>&apos;outline&apos;</TableCell>
                     <TableCell>태그 스타일</TableCell>
                   </TableRow>
                   <TableRow>
