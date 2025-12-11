@@ -445,13 +445,16 @@ export {
   Tag,
   SelectableTag,
   RemovableTag,
+  TagLink,
   TagGroup,
   tagVariants,
+  tagGroupVariants,
 } from './components/tag';
 export type {
   TagProps,
   SelectableTagProps,
   RemovableTagProps,
+  TagLinkProps,
   TagGroupProps,
 } from './components/tag';
 

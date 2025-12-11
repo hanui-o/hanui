@@ -876,8 +876,8 @@ const columns: ColumnDef<User>[] = [
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Container', href: '/components/container' }}
-        next={{ title: 'Display', href: '/components/display' }}
+        prev={{ title: 'Critical Alerts', href: '/components/critical-alerts' }}
+        next={{ title: 'Date Input', href: '/components/date-input' }}
       />
     </>
   );

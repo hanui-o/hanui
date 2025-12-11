@@ -53,7 +53,7 @@ export const VisuallyHidden = React.forwardRef<
 >(({ className, as: Component = 'span', focusable = false, ...props }, ref) => {
   return (
     <Component
-      ref={ref as React.Ref<HTMLElement>}
+      ref={ref as React.RefObject<HTMLSpanElement>}
       className={cn(
         // 기본 숨김 스타일
         visuallyHiddenStyles,

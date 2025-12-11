@@ -104,6 +104,14 @@ import {
   Carousel,
   HeroCarousel,
   HeroCarouselSlide,
+  StepIndicator,
+  useSteps,
+  // Tag 컴포넌트
+  Tag,
+  SelectableTag,
+  RemovableTag,
+  TagLink,
+  TagGroup,
 } from '@hanui/react';
 import {
   AlertCircle,
@@ -313,6 +321,13 @@ const slides: HeroCarouselSlide[] = [
   },
 ];
 
+const steps = [
+  { label: '약관 동의', description: '이용약관에 동의해주세요' },
+  { label: '정보 입력', description: '기본 정보를 입력해주세요' },
+  { label: '본인 인증', description: '본인 인증을 진행해주세요' },
+  { label: '가입 완료' },
+];
+
 // ============================================================================
 // Combobox 옵션
 // ============================================================================
@@ -380,6 +395,15 @@ function ToastDemo() {
 // ============================================================================
 function FeedbackTab() {
   const [progress, setProgress] = useState(45);
+  const [tags, setTags] = useState(['React', 'TypeScript', 'KRDS', 'HANUI']);
+
+  const removeTag = (tagToRemove: string) => {
+    setTags(tags.filter((tag) => tag !== tagToRemove));
+  };
+
+  const resetTags = () => {
+    setTags(['React', 'TypeScript', 'KRDS', 'HANUI']);
+  };
 
   return (
     <div className="space-y-8">
@@ -536,6 +560,108 @@ function FeedbackTab() {
             </div>
           </div>
           <SkeletonCard hasImage imageHeight={100} lines={2} />
+        </CardBody>
+      </Card>
+
+      {/* Tag */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Tag</CardTitle>
+        </CardHeader>
+        <CardBody className="space-y-6">
+          {/* 삭제 가능한 태그 */}
+          <div>
+            <Body className="text-sm font-medium mb-2">
+              삭제 가능 (RemovableTag)
+            </Body>
+            <div className="flex flex-wrap gap-2">
+              <RemovableTag size="sm" onRemove={() => {}}>
+                Small
+              </RemovableTag>
+              <RemovableTag size="md" onRemove={() => {}}>
+                Medium
+              </RemovableTag>
+              <RemovableTag size="lg" onRemove={() => {}}>
+                Large
+              </RemovableTag>
+            </div>
+          </div>
+
+          {/* TagGroup - 실제 삭제 동작 */}
+          <div>
+            <Body className="text-sm font-medium mb-2">
+              TagGroup (삭제 동작)
+            </Body>
+            <TagGroup
+              showClearAll={tags.length > 0}
+              onClearAll={() => setTags([])}
+            >
+              {tags.map((tag) => (
+                <RemovableTag key={tag} onRemove={() => removeTag(tag)}>
+                  {tag}
+                </RemovableTag>
+              ))}
+            </TagGroup>
+            {tags.length === 0 && (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={resetTags}
+                className="mt-2"
+              >
+                태그 초기화
+              </Button>
+            )}
+          </div>
+
+          {/* 링크형 태그 */}
+          <div>
+            <Body className="text-sm font-medium mb-2">링크형 (TagLink)</Body>
+            <div className="flex flex-wrap gap-2">
+              <TagLink href="#" size="sm">
+                Small
+              </TagLink>
+              <TagLink href="#" size="md">
+                Medium
+              </TagLink>
+              <TagLink href="#" size="lg">
+                Large
+              </TagLink>
+            </div>
+          </div>
+
+          {/* 색상 variants */}
+          <div>
+            <Body className="text-sm font-medium mb-2">색상 Variants</Body>
+            <div className="flex flex-wrap gap-2">
+              <Tag variant="default">Default</Tag>
+              <Tag variant="primary">Primary</Tag>
+              <Tag variant="success">Success</Tag>
+              <Tag variant="warning">Warning</Tag>
+              <Tag variant="error">Error</Tag>
+              <Tag variant="info">Info</Tag>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-2">
+              <Tag variant="outline">Outline</Tag>
+              <Tag variant="outline-primary">Primary</Tag>
+              <Tag variant="outline-success">Success</Tag>
+              <Tag variant="outline-warning">Warning</Tag>
+              <Tag variant="outline-error">Error</Tag>
+            </div>
+          </div>
+
+          {/* 선택 가능한 태그 */}
+          <div>
+            <Body className="text-sm font-medium mb-2">
+              선택 가능 (SelectableTag)
+            </Body>
+            <div className="flex flex-wrap gap-2">
+              <SelectableTag selected>React</SelectableTag>
+              <SelectableTag>Vue</SelectableTag>
+              <SelectableTag>Angular</SelectableTag>
+              <SelectableTag>Svelte</SelectableTag>
+            </div>
+          </div>
         </CardBody>
       </Card>
     </div>
@@ -751,6 +877,7 @@ function FormTab() {
 // ============================================================================
 function NavigationTab() {
   const [currentPage, setCurrentPage] = useState(1);
+  const stepper = useSteps({ count: steps.length });
 
   const breadcrumbItems = [
     { label: '홈', href: '/' },
@@ -763,6 +890,30 @@ function NavigationTab() {
       <Heading level="h2" className="sr-only">
         네비게이션 컴포넌트
       </Heading>
+
+      {/* StepIndicator */}
+      <Card>
+        <CardHeader>
+          <CardTitle>StepIndicator</CardTitle>
+        </CardHeader>
+        <CardBody className="space-y-4">
+          <StepIndicator steps={steps} {...stepper.bind} />
+          <div className="flex gap-2 justify-center">
+            <Button
+              size="sm"
+              variant="secondary"
+              onClick={stepper.prev}
+              disabled={stepper.isFirst}
+            >
+              이전
+            </Button>
+            <Button size="sm" onClick={stepper.next} disabled={stepper.isLast}>
+              다음
+            </Button>
+          </div>
+        </CardBody>
+      </Card>
+
       {/* Breadcrumb */}
       <Card>
         <CardHeader>
@@ -1399,6 +1550,8 @@ export default function TestComponentsPage() {
         {/* <HeaderWithMegaMenu megaColumns={megaColumns} stickyBehavior="auto" /> */}
 
         <HeroCarousel slides={slides} autoPlay showPlayPause loop />
+        <br />
+        <br />
 
         <Container>
           <Tabs defaultValue="feedback">

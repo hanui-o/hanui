@@ -382,7 +382,7 @@ export default function ContainerPage() {
 
       <PageNavigation
         prev={{ title: 'Code', href: '/components/code' }}
-        next={{ title: 'DataTable', href: '/components/data-table' }}
+        next={{ title: 'Critical Alerts', href: '/components/critical-alerts' }}
       />
     </>
   );

@@ -111,11 +111,6 @@ const componentsNavigation = [
       { title: 'Textarea', href: '/components/textarea' },
       { title: 'Toast', href: '/components/toast' },
       { title: 'Tooltip', href: '/components/tooltip' },
-      {
-        title: 'Visually Hidden',
-        href: '/components/visually-hidden',
-        isNew: true,
-      },
       { title: 'Wrap', href: '/components/wrap' },
     ],
   },

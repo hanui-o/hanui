@@ -255,8 +255,8 @@ export default function DisclosurePage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Display', href: '/components/display' }}
-        next={{ title: 'DropdownMenu', href: '/components/dropdown-menu' }}
+        prev={{ title: 'Date Input', href: '/components/date-input' }}
+        next={{ title: 'Display', href: '/components/display' }}
       />
     </>
   );
