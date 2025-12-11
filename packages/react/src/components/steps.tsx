@@ -270,6 +270,7 @@ StepsRoot.displayName = 'Steps.Root';
 // Steps.List
 // ============================================================================
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface StepsListProps
   extends React.OlHTMLAttributes<HTMLOListElement> {}
 
@@ -375,6 +376,7 @@ StepsIndicator.displayName = 'Steps.Indicator';
 // Steps.Title
 // ============================================================================
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface StepsTitleProps
   extends React.HTMLAttributes<HTMLSpanElement> {}
 
@@ -400,6 +402,7 @@ StepsTitle.displayName = 'Steps.Title';
 // Steps.Description
 // ============================================================================
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface StepsDescriptionProps
   extends React.HTMLAttributes<HTMLParagraphElement> {}
 
@@ -426,6 +429,7 @@ StepsDescription.displayName = 'Steps.Description';
 // Steps.Separator
 // ============================================================================
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface StepsSeparatorProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -485,6 +489,7 @@ StepsContent.displayName = 'Steps.Content';
 // Steps.CompletedContent
 // ============================================================================
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface StepsCompletedContentProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 

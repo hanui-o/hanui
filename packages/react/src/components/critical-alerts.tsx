@@ -201,7 +201,6 @@ export const CriticalAlerts = React.forwardRef<
       {...props}
     >
       <ul
-        role="list"
         aria-label="긴급 공지 목록"
         className="krds-critical-alerts space-y-3"
       >
