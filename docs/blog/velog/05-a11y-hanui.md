@@ -1,0 +1,235 @@
+# 공공 웹 접근성, HANUI가 대신 챙겨드립니다
+
+공공기관 프로젝트 검수 때 "웹접근성 미준수" 딱지 붙어본 적 있어요?
+
+저도 있어요. 몇 번이나.
+
+aria 속성 빼먹고, 키보드 네비게이션 안 되고, 포커스 표시 없고... 바쁘다 보면 까먹게 되거든요. 근데 검수 때 걸리면 일정 다 밀려요.
+
+그래서 HANUI는 접근성을 기본으로 넣었어요. 따로 신경 안 써도 되게.
+
+## KWCAG 2.2가 뭔데
+
+한국형 웹 콘텐츠 접근성 지침이에요. 공공기관 웹사이트는 이거 지켜야 해요.
+
+핵심만 정리하면:
+
+| 원칙          | 내용                               |
+| ------------- | ---------------------------------- |
+| 인식의 용이성 | 대체 텍스트, 색상 대비             |
+| 운용의 용이성 | 키보드 접근, 포커스 표시           |
+| 이해의 용이성 | 레이블 제공, 오류 정정             |
+| 견고성        | 마크업 오류 없음, ARIA 적절히 사용 |
+
+HANUI 컴포넌트는 이 4가지 다 고려해서 만들었어요.
+
+## 버튼 접근성
+
+```tsx
+// HANUI Button
+<Button loading>저장 중...</Button>
+```
+
+이게 렌더링되면:
+
+```html
+<button aria-busy="true" aria-disabled="true" disabled>
+  <svg class="animate-spin" aria-hidden="true">...</svg>
+  저장 중...
+</button>
+```
+
+자동으로 들어가는 것들:
+
+- `aria-busy`: 로딩 중임을 스크린 리더에 알림
+- `aria-disabled`: 비활성화 상태 알림
+- 스피너 `aria-hidden`: 장식용 요소는 읽지 않음
+
+### 아이콘 버튼 경고
+
+```tsx
+// 이렇게 쓰면 개발 모드에서 경고
+<Button size="icon" iconLeft={<Search />} />
+// ⚠️ Console: Icon-only buttons must have an aria-label
+
+// 이렇게 써야 함
+<Button size="icon" iconLeft={<Search />} aria-label="검색" />
+```
+
+텍스트 없는 버튼은 스크린 리더가 뭔지 모르잖아요. HANUI는 개발 중에 경고 띄워서 까먹지 않게 해요.
+
+## 폼 접근성
+
+```tsx
+<FormField status="error" required>
+  <FormLabel>이메일</FormLabel>
+  <Input type="email" placeholder="example@email.com" />
+  <FormError>이메일 형식이 올바르지 않습니다</FormError>
+</FormField>
+```
+
+렌더링 결과:
+
+```html
+<div>
+  <label for="field-1">
+    이메일
+    <span aria-hidden="true">*</span>
+    <span class="sr-only">(필수)</span>
+  </label>
+  <input
+    id="field-1"
+    type="email"
+    aria-describedby="field-1-error"
+    aria-invalid="true"
+  />
+  <div id="field-1-error" role="alert" aria-live="polite">
+    <svg aria-hidden="true">...</svg>
+    이메일 형식이 올바르지 않습니다
+  </div>
+</div>
+```
+
+자동으로 처리되는 것들:
+
+- `id`/`htmlFor` 연결: 레이블 클릭하면 input 포커스
+- `aria-describedby`: 에러 메시지와 input 연결
+- `aria-invalid`: 에러 상태임을 알림
+- `role="alert"`: 에러 발생 시 스크린 리더가 바로 읽음
+- 필수 표시: 시각적 `*` + 스크린 리더용 "(필수)"
+
+## 모달 접근성
+
+```tsx
+<Modal open={isOpen} onClose={() => setIsOpen(false)}>
+  <ModalHeader>
+    <ModalTitle>회원 탈퇴</ModalTitle>
+  </ModalHeader>
+  <ModalBody>정말 탈퇴하시겠습니까?</ModalBody>
+  <ModalFooter>
+    <Button variant="tertiary" onClick={() => setIsOpen(false)}>
+      취소
+    </Button>
+    <Button variant="danger">탈퇴</Button>
+  </ModalFooter>
+</Modal>
+```
+
+HANUI Modal이 자동으로 처리하는 것들:
+
+### 1. 포커스 트랩
+
+모달 열리면 모달 안에서만 Tab 이동. 밖으로 안 나가요.
+
+### 2. 포커스 복귀
+
+모달 닫히면 원래 열었던 버튼으로 포커스 돌아감.
+
+### 3. Escape 키
+
+Escape 누르면 모달 닫힘.
+
+### 4. ARIA 속성
+
+```html
+<div role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <h2 id="modal-title">회원 탈퇴</h2>
+  ...
+</div>
+```
+
+이거 직접 구현하면 진짜 복잡해요. Radix UI 기반이라 다 들어가 있어요.
+
+## 드롭다운/셀렉트 접근성
+
+```tsx
+<Select>
+  <SelectTrigger>
+    <SelectValue placeholder="선택하세요" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="seoul">서울</SelectItem>
+    <SelectItem value="busan">부산</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+키보드 동작:
+
+- `Enter`/`Space`: 드롭다운 열기
+- `↑`/`↓`: 옵션 이동
+- `Enter`: 선택
+- `Escape`: 닫기
+- 타이핑: 해당 글자로 시작하는 옵션으로 이동
+
+ARIA 속성:
+
+- `aria-haspopup="listbox"`
+- `aria-expanded`
+- `role="listbox"`, `role="option"`
+- `aria-selected`
+
+## 키보드 네비게이션
+
+모든 인터랙티브 요소가 키보드로 접근 가능해요.
+
+| 컴포넌트  | 키보드 동작                 |
+| --------- | --------------------------- |
+| Button    | Enter/Space로 클릭          |
+| Modal     | Escape로 닫기, Tab 트랩     |
+| Select    | 화살표로 이동, Enter로 선택 |
+| Tabs      | 화살표로 탭 이동            |
+| Menu      | 화살표로 메뉴 이동          |
+| Accordion | Enter로 열기/닫기           |
+
+## 포커스 표시
+
+```css
+/* HANUI 기본 포커스 스타일 */
+focus:outline-none
+focus:ring-2
+focus:ring-krds-primary-base
+focus:ring-offset-2
+```
+
+`outline: none`만 하면 안 돼요. 대체 스타일 꼭 있어야 해요.
+
+HANUI는 KRDS 색상으로 포커스 링 제공해요. 키보드 사용자가 현재 위치 알 수 있어요.
+
+## 색상 대비
+
+KRDS 색상 토큰 자체가 WCAG 대비 기준 맞춰서 설계되어 있어요.
+
+- 일반 텍스트: 4.5:1 이상
+- 큰 텍스트: 3:1 이상
+- UI 컴포넌트: 3:1 이상
+
+HANUI 컴포넌트 쓰면 별도로 대비 체크 안 해도 돼요.
+
+## 검수 전 체크리스트
+
+HANUI 쓰면 대부분 자동이지만, 그래도 확인해야 할 것들:
+
+- [ ] 이미지에 alt 속성 있음
+- [ ] 아이콘 버튼에 aria-label 있음
+- [ ] Lighthouse 접근성 90점 이상
+- [ ] 키보드만으로 모든 기능 사용 가능
+
+## 마무리
+
+접근성, 매번 신경 쓰기 어려워요.
+
+그래서 HANUI가 대신 챙겨놨어요.
+
+```bash
+npx hanui add button form-field modal select
+```
+
+aria 속성, 키보드 네비게이션, 포커스 관리... 다 들어가 있어요.
+
+검수 한 방에 통과하세요.
+
+---
+
+**GitHub**: https://github.com/hanui-o/hanui
+**문서**: https://hanui.io

@@ -1,0 +1,251 @@
+# 공공 SI React 기술스택 2025
+
+2025년에 공공기관 React 프로젝트 시작하면 뭘 써야 할까요?
+
+저도 고민 많이 했어요. 폐쇄망 환경, IE 지원(이제 안 해도 됨!), 웹접근성 심사, 검수 일정... 민간이랑 사정이 다르거든요.
+
+몇 년간 공공 SI 하면서 쌓인 노하우 정리해봤어요.
+
+## 프레임워크
+
+### Next.js (App Router)
+
+```bash
+npx create-next-app@latest my-project
+```
+
+2025년 기준 Next.js 15가 나왔어요. App Router가 안정화됐고, Server Components도 잘 돌아가요.
+
+다만 공공기관은 보통 정적 사이트가 많아서 `output: 'export'`로 빌드하는 경우가 많아요.
+
+```js
+// next.config.js
+module.exports = {
+  output: 'export',
+  // 정적 빌드, nginx에 올리면 됨
+};
+```
+
+### Vite (SSR 필요 없을 때)
+
+```bash
+npm create vite@latest my-project -- --template react-ts
+```
+
+서버 없이 정적 파일만 올릴 때 Vite가 더 간단해요. 빌드도 빠르고.
+
+## 스타일링
+
+### Tailwind CSS 4.x
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+Tailwind 4가 나왔어요. CSS-first 설정이라 tailwind.config.js 없이도 돼요.
+
+공공기관에서 Tailwind 쓰는 이유:
+
+- 클래스명만 보면 스타일 파악됨 (인수인계 편함)
+- 디자인 시스템 토큰화 쉬움
+- 번들 사이즈 작음 (purge 됨)
+
+### KRDS 토큰
+
+```css
+/* KRDS 17px 베이스 */
+@theme {
+  --font-size-body-md: 1.0625rem; /* 17px */
+  --font-size-body-lg: 1.1875rem; /* 19px */
+  --color-primary-base: #256ef4;
+}
+```
+
+정부24 디자인 가이드 따르려면 KRDS 토큰 세팅해야 해요. Tailwind preset으로 만들어두면 편해요.
+
+HANUI에 preset 있어요: https://hanui.io/guide/installation
+
+## 컴포넌트 라이브러리
+
+### 선택지들
+
+| 라이브러리 | 특징                              | 공공 SI 적합도    |
+| ---------- | --------------------------------- | ----------------- |
+| MUI        | 가장 많은 컴포넌트, Material 기반 | △ (커스텀 어려움) |
+| Chakra UI  | 접근성 좋음, 커스텀 쉬움          | ○                 |
+| shadcn/ui  | 소유권 있음, 수정 자유            | ◎                 |
+| HANUI      | KRDS 특화, shadcn 스타일          | ◎ (공공 전용)     |
+
+공공기관은 디자인 수정이 많아요. "이 버튼 색상 KRDS 가이드대로 바꿔주세요" 이런 거.
+
+그래서 소유권 있는 라이브러리가 좋아요. shadcn/ui나 HANUI처럼 코드 복사해서 프로젝트에 넣는 방식.
+
+### shadcn/ui
+
+```bash
+npx shadcn@latest init
+npx shadcn@latest add button
+```
+
+컴포넌트를 프로젝트에 복사해요. 수정 자유, 업데이트 영향 없음.
+
+단점은 KRDS 스타일로 커스텀해야 한다는 거.
+
+### HANUI
+
+```bash
+npx hanui init
+npx hanui add button
+```
+
+shadcn/ui랑 같은 방식인데, KRDS 스타일이 기본이에요. 17px 폰트, 정부 색상 등.
+
+## 상태 관리
+
+### Zustand
+
+```tsx
+import { create } from 'zustand';
+
+const useStore = create((set) => ({
+  user: null,
+  setUser: (user) => set({ user }),
+}));
+```
+
+간단해요. Redux 대비 보일러플레이트 90% 감소. 공공 SI처럼 빠르게 개발해야 할 때 좋아요.
+
+### TanStack Query (React Query)
+
+```tsx
+const { data, isLoading } = useQuery({
+  queryKey: ['user', userId],
+  queryFn: () => fetchUser(userId),
+});
+```
+
+서버 상태 관리는 이거 쓰세요. 캐싱, 리페칭, 에러 처리 다 해줘요.
+
+## 폼 관리
+
+### react-hook-form
+
+```tsx
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm();
+
+<input {...register('email', { required: true })} />;
+```
+
+공공기관 사이트는 폼이 많아요. 회원가입, 신청서, 민원접수...
+
+react-hook-form 쓰면 validation, 에러 처리, 성능 최적화 다 돼요.
+
+### zod (스키마 검증)
+
+```tsx
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const schema = z.object({
+  email: z.string().email('이메일 형식이 아닙니다'),
+  password: z.string().min(8, '8자 이상 입력하세요'),
+});
+
+const { register } = useForm({
+  resolver: zodResolver(schema),
+});
+```
+
+타입 안전한 validation. TypeScript랑 찰떡이에요.
+
+## 테이블
+
+### TanStack Table
+
+```tsx
+const table = useReactTable({
+  data,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+  getPaginationRowModel: getPaginationRowModel(),
+});
+```
+
+공공기관은 목록 조회가 많아요. 페이지네이션, 정렬, 필터링... TanStack Table이면 다 돼요.
+
+## 날짜
+
+### date-fns
+
+```tsx
+import { format, parseISO } from 'date-fns';
+import { ko } from 'date-fns/locale';
+
+format(new Date(), 'yyyy년 MM월 dd일', { locale: ko });
+// "2025년 01월 15일"
+```
+
+moment.js는 이제 안 써요. 번들 사이즈 너무 커요. date-fns는 트리쉐이킹 돼요.
+
+## 폐쇄망 대응
+
+공공기관 중 폐쇄망 있는 곳 많아요. npm install 안 돼요.
+
+### 방법 1: 패키지 미러링
+
+내부 Nexus나 Verdaccio에 패키지 미러링. IT 부서에 요청해야 해요.
+
+### 방법 2: node_modules 통째로
+
+```bash
+npm install --production
+tar -czvf node_modules.tar.gz node_modules/
+```
+
+패키지 설치한 node_modules를 압축해서 전달. 좀 원시적이지만 확실해요.
+
+### 방법 3: 번들만 전달
+
+```bash
+npm run build
+```
+
+빌드된 파일만 전달. 가장 깔끔해요.
+
+## 웹접근성
+
+공공기관은 KWCAG 2.2 준수 필수예요. 검수할 때 걸리면 일정 밀려요.
+
+### 체크리스트
+
+- [ ] 모든 이미지에 alt 있음
+- [ ] 폼 요소에 label 연결됨
+- [ ] 키보드로 모든 기능 사용 가능
+- [ ] 포커스 표시 보임
+- [ ] 색상 대비 4.5:1 이상
+- [ ] 에러 메시지 스크린리더에 전달됨
+
+HANUI 컴포넌트는 이거 다 기본으로 들어가 있어요.
+
+## 2025 권장 스택 요약
+
+```
+Framework:     Next.js 15 (App Router) or Vite
+Styling:       Tailwind CSS 4
+Components:    HANUI (KRDS) or shadcn/ui
+State:         Zustand + TanStack Query
+Form:          react-hook-form + zod
+Table:         TanStack Table
+Date:          date-fns
+Type:          TypeScript 5
+```
+
+물론 프로젝트 상황에 따라 달라요. 근데 이 조합이면 웬만한 공공 SI는 커버돼요.
+
+HANUI는 이 스택 기반으로 만들었어요. 설치하면 Tailwind, Radix, TypeScript 다 세팅돼 있어요.
+
+https://hanui.io
