@@ -57,23 +57,25 @@ export default function CriticalAlertsPage() {
               className="sr-only"
             />
             <ComponentPreview>
-              <CriticalAlerts>
-                <CriticalAlertItem
-                  variant="danger"
-                  message="긴급 공지 내용 표시"
-                  href="#"
-                />
-                <CriticalAlertItem
-                  variant="ok"
-                  message="긴급 공지 내용 표시"
-                  href="#"
-                />
-                <CriticalAlertItem
-                  variant="info"
-                  message="긴급 공지 내용 표시"
-                  href="#"
-                />
-              </CriticalAlerts>
+              <div className="w-full p-5 bg-krds-gray-10">
+                <CriticalAlerts>
+                  <CriticalAlertItem
+                    variant="danger"
+                    message="긴급 공지 내용 표시"
+                    href="#"
+                  />
+                  <CriticalAlertItem
+                    variant="ok"
+                    message="긴급 공지 내용 표시"
+                    href="#"
+                  />
+                  <CriticalAlertItem
+                    variant="info"
+                    message="긴급 공지 내용 표시"
+                    href="#"
+                  />
+                </CriticalAlerts>
+              </div>
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
