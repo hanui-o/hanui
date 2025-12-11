@@ -120,7 +120,7 @@ function StepsExample() {
 }
 
 export default function StepIndicatorPage() {
-  const stepper = useSteps({ count: simpleSteps.length, initialStep: 2 });
+  const stepper = useSteps({ count: sampleSteps.length, initialStep: 0 });
 
   return (
     <>
@@ -146,11 +146,30 @@ export default function StepIndicatorPage() {
               className="sr-only"
             />
             <ComponentPreview>
-              <StepIndicator steps={sampleSteps} currentStep={2} />
+              <Stack gap="md" className="w-full">
+                <StepIndicator steps={sampleSteps} {...stepper.bind} />
+                <div className="flex gap-2 justify-center">
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    onClick={stepper.prev}
+                    disabled={stepper.isFirst}
+                  >
+                    이전
+                  </Button>
+                  <Button
+                    size="sm"
+                    onClick={stepper.next}
+                    disabled={stepper.isLast}
+                  >
+                    다음
+                  </Button>
+                </div>
+              </Stack>
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { StepIndicator } from '@hanui/react';
+              {`import { StepIndicator, useSteps, Button } from '@hanui/react';
 
 const steps = [
   { label: '약관 동의', description: '이용약관에 동의해주세요' },
@@ -159,7 +178,12 @@ const steps = [
   { label: '가입 완료' },
 ];
 
-<StepIndicator steps={steps} currentStep={2} />`}
+const stepper = useSteps({ count: steps.length });
+
+<StepIndicator steps={steps} {...stepper.bind} />
+
+<Button onClick={stepper.prev} disabled={stepper.isFirst}>이전</Button>
+<Button onClick={stepper.next} disabled={stepper.isLast}>다음</Button>`}
             </Code>
           </Section>
 
@@ -253,39 +277,24 @@ const steps = [
               <Heading
                 level="h3"
                 title="useSteps 훅"
-                description="useSteps 훅으로 상태 관리를 간편하게 처리할 수 있습니다."
+                description="useSteps 훅으로 상태 관리를 간편하게 처리할 수 있습니다. 버튼과 함께 사용하면 단계 간 이동이 가능합니다."
               />
-              <ComponentPreview>
-                <Stack gap="md" className="w-full">
-                  <StepIndicator steps={simpleSteps} {...stepper.bind} />
-                  <div className="flex gap-2 justify-center">
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      onClick={stepper.prev}
-                      disabled={stepper.isFirst}
-                    >
-                      이전
-                    </Button>
-                    <Button
-                      size="sm"
-                      onClick={stepper.next}
-                      disabled={stepper.isLast}
-                    >
-                      다음
-                    </Button>
-                  </div>
-                </Stack>
-              </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { StepIndicator, useSteps } from '@hanui/react';
+                {`import { StepIndicator, useSteps, Button } from '@hanui/react';
 
 const stepper = useSteps({ count: steps.length });
 
+// stepper.bind는 currentStep, onStepClick, clickable을 포함
 <StepIndicator steps={steps} {...stepper.bind} />
 
+// 이전/다음 버튼
 <Button onClick={stepper.prev} disabled={stepper.isFirst}>이전</Button>
-<Button onClick={stepper.next} disabled={stepper.isLast}>다음</Button>`}
+<Button onClick={stepper.next} disabled={stepper.isLast}>다음</Button>
+
+// 기타 유용한 속성
+stepper.goTo(2);       // 특정 단계로 이동
+stepper.reset();       // 초기 상태로 리셋
+stepper.isCompleted(0) // 해당 단계 완료 여부`}
               </Code>
             </Subsection>
 
