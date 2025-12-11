@@ -42,7 +42,7 @@ const stepIndicatorVariants = cva('', {
 });
 
 // 개별 Step 스타일
-const stepVariants = cva('relative flex items-center', {
+const stepVariants = cva('relative flex', {
   variants: {
     orientation: {
       horizontal: 'flex-1 flex-col',
@@ -91,7 +91,7 @@ const stepCircleVariants = cva(
 );
 
 // 레이블 스타일 (모바일 숨김)
-const stepLabelVariants = cva('font-medium transition-colors hidden md:block', {
+const stepLabelVariants = cva('font-bold transition-colors hidden md:block', {
   variants: {
     status: {
       completed: 'text-krds-gray-70',
@@ -178,20 +178,6 @@ export interface StepIndicatorProps
   clickable?: boolean;
   /** 완료 아이콘 표시 여부 */
   showCheckIcon?: boolean;
-  /** 이전/다음 버튼 표시 여부 */
-  showNavigation?: boolean;
-  /** 다음 버튼 클릭 핸들러 */
-  onNext?: () => void;
-  /** 이전 버튼 클릭 핸들러 */
-  onPrev?: () => void;
-  /** 이전 버튼 텍스트 */
-  prevLabel?: string;
-  /** 다음 버튼 텍스트 */
-  nextLabel?: string;
-  /** 완료 버튼 텍스트 (마지막 단계) */
-  completeLabel?: string;
-  /** 완료 버튼 클릭 핸들러 */
-  onComplete?: () => void;
 }
 
 // 체크 아이콘 컴포넌트
@@ -226,19 +212,10 @@ export const StepIndicator = React.forwardRef<
       onStepClick,
       clickable = false,
       showCheckIcon = true,
-      showNavigation = false,
-      onNext,
-      onPrev,
-      prevLabel = '이전',
-      nextLabel = '다음',
-      completeLabel = '완료',
-      onComplete,
       ...props
     },
     ref
   ) => {
-    const isFirst = currentStep === 0;
-    const isLast = currentStep === steps.length - 1;
     // 각 단계의 상태 결정
     const getStepStatus = (index: number): StepStatus => {
       if (index < currentStep) return 'completed';
@@ -256,110 +233,28 @@ export const StepIndicator = React.forwardRef<
     };
 
     return (
-      <>
-        <ol
-          ref={ref}
-          className={cn(
-            stepIndicatorVariants({ orientation, size }),
-            className
-          )}
-          aria-label="진행 단계"
-          {...props}
-        >
-          {steps.map((step, index) => {
-            const status = getStepStatus(index);
-            const isClickable = clickable && status === 'completed';
-            const isLastStep = index === steps.length - 1;
+      <ol
+        ref={ref}
+        className={cn(stepIndicatorVariants({ orientation, size }), className)}
+        aria-label="진행 단계"
+        {...props}
+      >
+        {steps.map((step, index) => {
+          const status = getStepStatus(index);
+          const isClickable = clickable && status === 'completed';
+          const isLastStep = index === steps.length - 1;
 
-            return (
-              <li
-                key={index}
-                className={cn(stepVariants({ orientation, status, size }))}
-                aria-current={status === 'current' ? 'step' : undefined}
-              >
-                {/* 수평 방향: 원 + 연결선 + 콘텐츠 */}
-                {orientation === 'horizontal' ? (
-                  <>
-                    {/* 원과 연결선 컨테이너 */}
-                    <div className="flex items-center w-full">
-                      {/* Step 원 */}
-                      {isClickable ? (
-                        <button
-                          type="button"
-                          className={cn(
-                            stepCircleVariants({ status, size }),
-                            'cursor-pointer hover:ring-4 hover:ring-krds-primary-20'
-                          )}
-                          onClick={() => handleStepClick(index)}
-                          aria-label={`${index + 1}단계 (완료): ${step.label}`}
-                        >
-                          {status === 'completed' && showCheckIcon ? (
-                            <CheckIcon className="w-4 h-4" />
-                          ) : (
-                            <span>{index + 1}</span>
-                          )}
-                        </button>
-                      ) : (
-                        <span
-                          className={cn(stepCircleVariants({ status, size }))}
-                          aria-hidden="true"
-                        >
-                          {status === 'completed' && showCheckIcon ? (
-                            <CheckIcon className="w-4 h-4" />
-                          ) : (
-                            <span>{index + 1}</span>
-                          )}
-                        </span>
-                      )}
-
-                      {/* 연결선 (마지막 단계 제외) */}
-                      {!isLastStep && (
-                        <div
-                          className={cn(
-                            stepConnectorVariants({
-                              orientation,
-                              status:
-                                index < currentStep ? 'completed' : 'upcoming',
-                              size,
-                            }),
-                            'mx-2'
-                          )}
-                          aria-hidden="true"
-                        />
-                      )}
-                    </div>
-
-                    {/* 레이블과 설명 */}
-                    <div className="mt-2 text-center">
-                      {/* 스크린리더용 현재 단계 표시 */}
-                      {status === 'current' && (
-                        <span className="sr-only">현재단계</span>
-                      )}
-                      {/* 단계 번호 - 모바일에서 숨김 */}
-                      <span className="text-krds-gray-50 text-krds-body-xs hidden md:block">
-                        {index + 1}단계
-                      </span>
-                      <span className={cn(stepLabelVariants({ status, size }))}>
-                        {step.label}
-                        {step.optional && (
-                          <span className="text-krds-gray-50 ml-1">(선택)</span>
-                        )}
-                      </span>
-                      {step.description && (
-                        <p
-                          className={cn(
-                            stepDescriptionVariants({ status, size }),
-                            'mt-1'
-                          )}
-                        >
-                          {step.description}
-                        </p>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  /* 수직 방향 */
-                  <>
+          return (
+            <li
+              key={index}
+              className={cn(stepVariants({ orientation, status, size }))}
+              aria-current={status === 'current' ? 'step' : undefined}
+            >
+              {/* 수평 방향: 원 + 연결선 + 콘텐츠 */}
+              {orientation === 'horizontal' ? (
+                <>
+                  {/* 원과 연결선 컨테이너 */}
+                  <div className="flex items-center w-full">
                     {/* Step 원 */}
                     {isClickable ? (
                       <button
@@ -399,95 +294,128 @@ export const StepIndicator = React.forwardRef<
                             status:
                               index < currentStep ? 'completed' : 'upcoming',
                             size,
-                          })
+                          }),
+                          'mx-2'
                         )}
                         aria-hidden="true"
                       />
                     )}
+                  </div>
 
-                    {/* 레이블과 설명 */}
-                    <div className="flex flex-col">
-                      {/* 스크린리더용 현재 단계 표시 */}
-                      {status === 'current' && (
-                        <span className="sr-only">현재단계</span>
+                  {/* 레이블과 설명 */}
+                  <div className="mt-4">
+                    {/* 스크린리더용 현재 단계 표시 */}
+                    {status === 'current' && (
+                      <span className="sr-only">현재단계</span>
+                    )}
+                    {/* 단계 번호 - 모바일에서 숨김 */}
+                    <span className="text-krds-gray-50 text-krds-body-xs hidden md:block">
+                      {index + 1}단계
+                    </span>
+                    <span className={cn(stepLabelVariants({ status, size }))}>
+                      {step.label}
+                      {step.optional && (
+                        <span className="text-krds-gray-50 ml-1">(선택)</span>
                       )}
-                      {/* 단계 번호 */}
-                      <span className="text-krds-gray-50 text-krds-body-xs">
-                        {index + 1}단계
-                      </span>
-                      <span
+                    </span>
+                    {step.description && (
+                      <p
                         className={cn(
-                          stepLabelVariants({ status, size }),
-                          'block' // 수직에서는 항상 표시
+                          stepDescriptionVariants({ status, size }),
+                          'mt-1'
                         )}
                       >
-                        {step.label}
-                        {step.optional && (
-                          <span className="text-krds-gray-50 ml-1">(선택)</span>
-                        )}
-                      </span>
-                      {step.description && (
-                        <p
-                          className={cn(
-                            stepDescriptionVariants({ status, size }),
-                            'mt-0.5 block' // 수직에서는 항상 표시
-                          )}
-                        >
-                          {step.description}
-                        </p>
+                        {step.description}
+                      </p>
+                    )}
+                  </div>
+                </>
+              ) : (
+                /* 수직 방향 */
+                <>
+                  {/* Step 원 */}
+                  {isClickable ? (
+                    <button
+                      type="button"
+                      className={cn(
+                        stepCircleVariants({ status, size }),
+                        'cursor-pointer hover:ring-4 hover:ring-krds-primary-20'
                       )}
-                    </div>
-                  </>
-                )}
-              </li>
-            );
-          })}
-        </ol>
+                      onClick={() => handleStepClick(index)}
+                      aria-label={`${index + 1}단계 (완료): ${step.label}`}
+                    >
+                      {status === 'completed' && showCheckIcon ? (
+                        <CheckIcon className="w-4 h-4" />
+                      ) : (
+                        <span>{index + 1}</span>
+                      )}
+                    </button>
+                  ) : (
+                    <span
+                      className={cn(stepCircleVariants({ status, size }))}
+                      aria-hidden="true"
+                    >
+                      {status === 'completed' && showCheckIcon ? (
+                        <CheckIcon className="w-4 h-4" />
+                      ) : (
+                        <span>{index + 1}</span>
+                      )}
+                    </span>
+                  )}
 
-        {/* 네비게이션 버튼 */}
-        {showNavigation && (
-          <div className="flex justify-between mt-6 gap-3">
-            <button
-              type="button"
-              onClick={onPrev}
-              disabled={isFirst}
-              className={cn(
-                'px-6 py-2.5 rounded-lg font-medium transition-colors',
-                'border border-krds-gray-30 text-krds-gray-70',
-                'hover:bg-krds-gray-10 hover:border-krds-gray-40',
-                'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent'
+                  {/* 연결선 (마지막 단계 제외) */}
+                  {!isLastStep && (
+                    <div
+                      className={cn(
+                        stepConnectorVariants({
+                          orientation,
+                          status:
+                            index < currentStep ? 'completed' : 'upcoming',
+                          size,
+                        })
+                      )}
+                      aria-hidden="true"
+                    />
+                  )}
+
+                  {/* 레이블과 설명 */}
+                  <div className="flex flex-col">
+                    {/* 스크린리더용 현재 단계 표시 */}
+                    {status === 'current' && (
+                      <span className="sr-only">현재단계</span>
+                    )}
+                    {/* 단계 번호 */}
+                    <span className="text-krds-gray-50 text-krds-body-xs">
+                      {index + 1}단계
+                    </span>
+                    <span
+                      className={cn(
+                        stepLabelVariants({ status, size }),
+                        'block' // 수직에서는 항상 표시
+                      )}
+                    >
+                      {step.label}
+                      {step.optional && (
+                        <span className="text-krds-gray-50 ml-1">(선택)</span>
+                      )}
+                    </span>
+                    {step.description && (
+                      <p
+                        className={cn(
+                          stepDescriptionVariants({ status, size }),
+                          'mt-0.5 block' // 수직에서는 항상 표시
+                        )}
+                      >
+                        {step.description}
+                      </p>
+                    )}
+                  </div>
+                </>
               )}
-            >
-              {prevLabel}
-            </button>
-            {isLast ? (
-              <button
-                type="button"
-                onClick={onComplete}
-                className={cn(
-                  'px-6 py-2.5 rounded-lg font-medium transition-colors',
-                  'bg-krds-primary-base text-white',
-                  'hover:bg-krds-primary-60'
-                )}
-              >
-                {completeLabel}
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={onNext}
-                className={cn(
-                  'px-6 py-2.5 rounded-lg font-medium transition-colors',
-                  'bg-krds-primary-base text-white',
-                  'hover:bg-krds-primary-60'
-                )}
-              >
-                {nextLabel}
-              </button>
-            )}
-          </div>
-        )}
-      </>
+            </li>
+          );
+        })}
+      </ol>
     );
   }
 );

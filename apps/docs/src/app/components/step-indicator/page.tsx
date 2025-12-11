@@ -14,6 +14,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 import {
   StepIndicator,
   useSteps,
+  Steps,
   Button,
   Code,
   List,
@@ -30,6 +31,7 @@ import {
   TabsContent,
   Stack,
 } from '@hanui/react';
+import { useState } from 'react';
 
 // 샘플 데이터
 const sampleSteps = [
@@ -45,6 +47,77 @@ const simpleSteps = [
   { label: '검토' },
   { label: '완료' },
 ];
+
+const compoundSteps = [
+  { title: '약관 동의' },
+  { title: '정보 입력' },
+  { title: '본인 인증' },
+  { title: '가입 완료' },
+];
+
+// Steps Compound Component 예제
+function StepsExample() {
+  const [step, setStep] = useState(1);
+
+  return (
+    <ComponentPreview>
+      <Steps.Root
+        step={step}
+        onStepChange={(e) => setStep(e.step)}
+        count={compoundSteps.length}
+      >
+        <Steps.List>
+          {compoundSteps.map((s, i) => (
+            <Steps.Item key={i} index={i}>
+              <div className="flex items-center w-full">
+                <Steps.Indicator />
+                {i < compoundSteps.length - 1 && <Steps.Separator />}
+              </div>
+              <div className="mt-2">
+                <span className="text-krds-gray-50 text-krds-body-xs hidden md:block">
+                  {i + 1}단계
+                </span>
+                <Steps.Title>{s.title}</Steps.Title>
+              </div>
+            </Steps.Item>
+          ))}
+        </Steps.List>
+
+        <div className="mt-6 p-4 bg-krds-gray-5 rounded-lg">
+          <Steps.Content index={0}>
+            <p className="text-krds-body-sm">
+              이용약관 및 개인정보 처리방침에 동의해주세요.
+            </p>
+          </Steps.Content>
+          <Steps.Content index={1}>
+            <p className="text-krds-body-sm">
+              이름, 이메일 등 기본 정보를 입력해주세요.
+            </p>
+          </Steps.Content>
+          <Steps.Content index={2}>
+            <p className="text-krds-body-sm">
+              휴대폰 인증 또는 본인 인증을 진행합니다.
+            </p>
+          </Steps.Content>
+          <Steps.Content index={3}>
+            <p className="text-krds-body-sm">🎉 회원가입이 완료되었습니다!</p>
+          </Steps.Content>
+        </div>
+
+        <div className="flex gap-2 mt-4 justify-center">
+          <Steps.PrevTrigger asChild>
+            <Button variant="secondary" size="sm">
+              이전
+            </Button>
+          </Steps.PrevTrigger>
+          <Steps.NextTrigger asChild>
+            <Button size="sm">다음</Button>
+          </Steps.NextTrigger>
+        </div>
+      </Steps.Root>
+    </ComponentPreview>
+  );
+}
 
 export default function StepIndicatorPage() {
   const stepper = useSteps({ count: simpleSteps.length, initialStep: 2 });
@@ -235,6 +308,58 @@ const stepper = useSteps({ count: steps.length });
   currentStep={2}
   showCheckIcon={false}
 />`}
+              </Code>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading
+                level="h3"
+                title="Steps (Compound Component)"
+                description="Chakra UI 스타일의 유연한 Compound Component 패턴입니다. 버튼 위치를 자유롭게 커스텀할 수 있습니다."
+              />
+              <StepsExample />
+              <Code variant="block" language="tsx">
+                {`import { Steps, Button } from '@hanui/react';
+import { useState } from 'react';
+
+const [step, setStep] = useState(0);
+
+const steps = [
+  { title: '약관 동의' },
+  { title: '정보 입력' },
+  { title: '본인 인증' },
+  { title: '가입 완료' },
+];
+
+<Steps.Root
+  step={step}
+  onStepChange={(e) => setStep(e.step)}
+  count={steps.length}
+>
+  <Steps.List>
+    {steps.map((s, i) => (
+      <Steps.Item key={i} index={i}>
+        <Steps.Indicator />
+        <Steps.Title>{s.title}</Steps.Title>
+        {i < steps.length - 1 && <Steps.Separator />}
+      </Steps.Item>
+    ))}
+  </Steps.List>
+
+  <Steps.Content index={0}>1단계 내용...</Steps.Content>
+  <Steps.Content index={1}>2단계 내용...</Steps.Content>
+  <Steps.Content index={2}>3단계 내용...</Steps.Content>
+  <Steps.Content index={3}>4단계 내용...</Steps.Content>
+
+  <div className="flex gap-2 mt-4">
+    <Steps.PrevTrigger asChild>
+      <Button variant="secondary" size="sm">이전</Button>
+    </Steps.PrevTrigger>
+    <Steps.NextTrigger asChild>
+      <Button size="sm">다음</Button>
+    </Steps.NextTrigger>
+  </div>
+</Steps.Root>`}
               </Code>
             </Subsection>
           </Section>

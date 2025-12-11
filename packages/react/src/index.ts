@@ -470,6 +470,30 @@ export type {
   UseStepsReturn,
 } from './components/step-indicator';
 
+// Steps (Compound Component)
+export {
+  Steps,
+  stepsListVariants,
+  stepsItemVariants,
+  stepsIndicatorVariants,
+  stepsTitleVariants,
+  stepsDescriptionVariants,
+  stepsSeparatorVariants,
+} from './components/steps';
+export type {
+  StepsRootProps,
+  StepsListProps,
+  StepsItemProps,
+  StepsIndicatorProps,
+  StepsTitleProps,
+  StepsDescriptionProps,
+  StepsSeparatorProps,
+  StepsContentProps,
+  StepsCompletedContentProps,
+  StepsPrevTriggerProps,
+  StepsNextTriggerProps,
+} from './components/steps';
+
 export {
   VisuallyHidden,
   srOnlyClassName,
