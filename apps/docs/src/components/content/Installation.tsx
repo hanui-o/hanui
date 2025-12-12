@@ -5,17 +5,22 @@ import { Copy, Check, Sparkles } from 'lucide-react';
 import { Heading, Code } from '@hanui/react';
 
 type PackageManager = 'pnpm' | 'npm' | 'yarn' | 'bun';
+type Framework = 'react' | 'vue';
 
 interface InstallationProps {
   componentName: string;
   componentDescription?: string;
+  /** Vue 컴포넌트 지원 여부 (기본: true) */
+  hasVue?: boolean;
 }
 
 export function Installation({
   componentName,
   componentDescription,
+  hasVue = true,
 }: InstallationProps) {
   const [packageManager, setPackageManager] = useState<PackageManager>('pnpm');
+  const [framework, setFramework] = useState<Framework>('react');
   const [copied, setCopied] = useState(false);
   const [aiCopied, setAiCopied] = useState(false);
 
@@ -26,16 +31,28 @@ export function Installation({
       yarn: 'yarn',
       bun: 'bun',
     };
-    return `${runners[packageManager]} hanui add ${componentName}`;
+    const frameworkFlag = framework === 'vue' ? ' --vue' : '';
+    return `${runners[packageManager]} hanui add ${componentName}${frameworkFlag}`;
   };
 
-  const getAiPrompt = () => {
-    return `HANUI 라이브러리에서 ${componentName} 컴포넌트를 설치해줘.
+  const pascalName =
+    componentName.charAt(0).toUpperCase() +
+    componentName.slice(1).replace(/-([a-z])/g, (_, c) => c.toUpperCase());
 
-설치 명령어: npx hanui add ${componentName}
+  const getAiPrompt = () => {
+    const frameworkLabel = framework === 'vue' ? 'Vue' : 'React';
+    const frameworkFlag = framework === 'vue' ? ' --vue' : '';
+    const importExample =
+      framework === 'vue'
+        ? `import { ${pascalName} } from '@/components/hanui/${componentName}.vue';`
+        : `import { ${pascalName} } from '@/components/hanui/${componentName}';`;
+
+    return `HANUI 라이브러리에서 ${componentName} 컴포넌트를 설치해줘. (${frameworkLabel})
+
+설치 명령어: npx hanui add ${componentName}${frameworkFlag}
 
 설치 후 사용법:
-import { ${componentName.charAt(0).toUpperCase() + componentName.slice(1).replace(/-([a-z])/g, (_, c) => c.toUpperCase())} } from '@/components/hanui/${componentName}';
+${importExample}
 
 공식 문서: https://hanui.io/components/${componentName}`;
   };
@@ -78,21 +95,47 @@ import { ${componentName.charAt(0).toUpperCase() + componentName.slice(1).replac
       </div>
 
       <div className="space-y-4">
-        {/* Package Manager Selector */}
-        <div className="flex items-center gap-2">
-          {(['pnpm', 'npm', 'yarn', 'bun'] as const).map((pm) => (
-            <button
-              key={pm}
-              onClick={() => setPackageManager(pm)}
-              className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-colors ${
-                packageManager === pm
-                  ? 'bg-krds-gray-90 text-white border-krds-gray-90'
-                  : 'bg-transparent border-krds-gray-20 text-krds-gray-70 hover:border-krds-gray-30'
-              }`}
-            >
-              {pm}
-            </button>
-          ))}
+        {/* Framework & Package Manager Selector */}
+        <div className="flex flex-wrap items-center gap-4">
+          {/* Framework Selector */}
+          {hasVue && (
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-krds-gray-50">Framework:</span>
+              <div className="flex gap-1">
+                {(['react', 'vue'] as const).map((fw) => (
+                  <button
+                    key={fw}
+                    onClick={() => setFramework(fw)}
+                    className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                      framework === fw
+                        ? 'bg-krds-gray-90 text-white'
+                        : 'bg-transparent text-krds-gray-70 hover:bg-krds-gray-10'
+                    }`}
+                  >
+                    {fw === 'react' ? 'React' : 'Vue'}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Package Manager Selector */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-krds-gray-50">Package:</span>
+            {(['pnpm', 'npm', 'yarn', 'bun'] as const).map((pm) => (
+              <button
+                key={pm}
+                onClick={() => setPackageManager(pm)}
+                className={`px-3 py-1.5 text-xs font-medium rounded-md border transition-colors ${
+                  packageManager === pm
+                    ? 'bg-krds-gray-90 text-white border-krds-gray-90'
+                    : 'bg-transparent border-krds-gray-20 text-krds-gray-70 hover:border-krds-gray-30'
+                }`}
+              >
+                {pm}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="relative group">
