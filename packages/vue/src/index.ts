@@ -77,6 +77,7 @@ export { default as SideNavigation } from './components/SideNavigation.vue';
 export { default as InPageNavigation } from './components/InPageNavigation.vue';
 export { default as NavigationMenu } from './components/NavigationMenu.vue';
 export { default as MegaMenu } from './components/MegaMenu.vue';
+export { default as PanelMenu } from './components/PanelMenu.vue';
 export { default as TabBars } from './components/TabBars.vue';
 
 // DropdownMenu
@@ -121,6 +122,9 @@ export { default as Link } from './components/Link.vue';
 export { default as Identifier } from './components/Identifier.vue';
 export { default as Masthead } from './components/Masthead.vue';
 export { default as Header } from './components/Header.vue';
+export { default as HeaderWithMegaMenu } from './components/HeaderWithMegaMenu.vue';
+export { default as HeaderWithNavigation } from './components/HeaderWithNavigation.vue';
+export { default as HeaderWithPanelMenu } from './components/HeaderWithPanelMenu.vue';
 export { default as Footer } from './components/Footer.vue';
 
 // Tag
@@ -141,16 +145,39 @@ export { default as CriticalAlertBanner } from './components/CriticalAlertBanner
 // Step Indicator
 export { default as StepIndicator } from './components/StepIndicator.vue';
 
+// Steps (Compound Component)
+export { default as Steps } from './components/Steps.vue';
+export { default as StepsItem } from './components/StepsItem.vue';
+export { default as StepsIndicatorItem } from './components/StepsIndicatorItem.vue';
+export { default as StepsTitle } from './components/StepsTitle.vue';
+export { default as StepsDescription } from './components/StepsDescription.vue';
+export { default as StepsSeparator } from './components/StepsSeparator.vue';
+
+// Logo
+export { default as Logo } from './components/Logo.vue';
+
+// Section Header
+export { default as SectionHeader } from './components/SectionHeader.vue';
+
 // Date Input
 export { default as DateInput } from './components/DateInput.vue';
 export { default as DateInputMultiple } from './components/DateInputMultiple.vue';
 export { default as DateInputRange } from './components/DateInputRange.vue';
 
+// Calendar
+export { default as Calendar } from './components/Calendar.vue';
+
 // Carousel
 export { default as Carousel } from './components/Carousel.vue';
+export { default as CarouselHero } from './components/CarouselHero.vue';
+export { default as CarouselContent } from './components/CarouselContent.vue';
+export { default as CarouselPreview } from './components/CarouselPreview.vue';
 
 // Accessibility
 export { default as VisuallyHidden } from './components/VisuallyHidden.vue';
+
+// Search Modal
+export { default as SearchModal } from './components/SearchModal.vue';
 
 // Composables
 export { useSteps } from './composables/useSteps';
