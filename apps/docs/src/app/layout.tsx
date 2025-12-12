@@ -3,6 +3,7 @@ import { Krona_One } from 'next/font/google';
 import Script from 'next/script';
 import type { ReactNode } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { FrameworkProvider } from '@/components/FrameworkTabs';
 import { StructuredData } from '@/components/StructuredData';
 import './globals.css';
 
@@ -122,7 +123,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <FrameworkProvider>{children}</FrameworkProvider>
         </ThemeProvider>
       </body>
     </html>

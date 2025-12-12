@@ -8,7 +8,6 @@ import {
   PageNavigation,
 } from '@/components/content';
 import { Installation } from '@/components/content/Installation';
-import { FrameworkProvider } from '@/components/FrameworkTabs';
 import { FrameworkCodeBlock } from '@/components/content/FrameworkCodeBlock';
 
 // UI components - from @hanui/react
@@ -30,7 +29,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 export default function ButtonPage() {
   return (
-    <FrameworkProvider>
+    <>
       <Heading
         level="h1"
         title="Button"
@@ -389,6 +388,6 @@ import { Button } from '@/components/hanui/Button.vue'
         prev={{ title: 'Button', href: '/components/button' }}
         next={{ title: 'Card', href: '/components/card' }}
       />
-    </FrameworkProvider>
+    </>
   );
 }

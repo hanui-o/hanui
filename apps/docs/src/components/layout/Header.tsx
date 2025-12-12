@@ -16,9 +16,11 @@ import {
   X,
 } from 'lucide-react';
 import { SearchModal } from '@/components/search/SearchModal';
+import { useFramework } from '@/components/FrameworkTabs';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
+  const { framework, setFramework } = useFramework();
   const [mounted, setMounted] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -153,6 +155,30 @@ export function Header() {
             <span>Sponsor</span>
           </Link> */}
 
+            {/* Framework Selector */}
+            <div className="hidden lg:flex items-center h-9 rounded-md border border-krds-gray-20 overflow-hidden">
+              <button
+                onClick={() => setFramework('react')}
+                className={`h-full px-3 text-sm font-medium transition-colors ${
+                  framework === 'react'
+                    ? 'bg-krds-gray-90 text-white'
+                    : 'text-krds-gray-70 hover:bg-krds-gray-5'
+                }`}
+              >
+                React
+              </button>
+              <button
+                onClick={() => setFramework('vue')}
+                className={`h-full px-3 text-sm font-medium transition-colors ${
+                  framework === 'vue'
+                    ? 'bg-emerald-600 text-white'
+                    : 'text-krds-gray-70 hover:bg-krds-gray-5'
+                }`}
+              >
+                Vue
+              </button>
+            </div>
+
             {/* Version */}
             <button className="hidden lg:flex items-center gap-1.5 h-9 px-3 text-sm font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20 whitespace-nowrap">
               <span>v0.1.0-beta</span>
@@ -162,7 +188,7 @@ export function Header() {
             {/* Search */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 h-9 px-3 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors lg:w-full lg:max-w-sm lg:bg-krds-gray-5"
+              className="flex items-center gap-2 h-9 px-3 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors max-w-sm lg:bg-krds-gray-5"
             >
               <Search className="w-5 lg:w-4 h-5 lg:h-4" />
               <span className="hidden xl:inline text-sm">Search...</span>

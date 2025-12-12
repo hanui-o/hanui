@@ -23,7 +23,7 @@ export function FrameworkCodeBlock({
   showLineNumbers = true,
   reactFileName,
   vueFileName,
-  showTabs = true,
+  showTabs = false,
 }: FrameworkCodeBlockProps) {
   const { framework } = useFramework();
 

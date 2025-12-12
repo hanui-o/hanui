@@ -21,7 +21,6 @@ import {
   CardTitle,
   CardDescription,
   CardBody,
-  CardFooter,
   Alert,
   Tabs,
   TabsList,
@@ -30,7 +29,9 @@ import {
   Button,
 } from '@hanui/react';
 
-const AI_PROMPT_ALL = `HANUI 라이브러리를 설치하고 모든 컴포넌트를 추가해줘.
+import { useFramework } from '@/components/FrameworkTabs';
+
+const AI_PROMPT_REACT = `HANUI 라이브러리를 설치하고 모든 컴포넌트를 추가해줘.
 
 1. CLI 설치: npm install -D @hanui/cli
 2. 초기화: npx hanui init -y
@@ -42,11 +43,35 @@ import { Card } from '@/components/hanui/card';
 
 공식 문서: https://hanui.io/docs/quick-start`;
 
+const AI_PROMPT_VUE = `HANUI Vue 라이브러리를 설치하고 모든 컴포넌트를 추가해줘.
+
+1. CLI 설치: npm install -D @hanui/vue
+2. 초기화: npx hanui-vue init -y
+3. 모든 컴포넌트 설치: npx hanui-vue add all -y
+
+설치 후 사용법:
+<script setup lang="ts">
+import Button from '@/components/hanui/Button.vue';
+import Card from '@/components/hanui/Card.vue';
+</script>
+
+<template>
+  <Card>
+    <h2>환영합니다!</h2>
+    <Button variant="primary">시작하기</Button>
+  </Card>
+</template>
+
+공식 문서: https://hanui.io/docs/quick-start`;
+
 export default function QuickStartPage() {
   const [aiCopied, setAiCopied] = useState(false);
+  const { framework } = useFramework();
+
+  const currentPrompt = framework === 'vue' ? AI_PROMPT_VUE : AI_PROMPT_REACT;
 
   const handleAiCopy = async () => {
-    await navigator.clipboard.writeText(AI_PROMPT_ALL);
+    await navigator.clipboard.writeText(currentPrompt);
     setAiCopied(true);
     setTimeout(() => setAiCopied(false), 2000);
   };
@@ -87,7 +112,7 @@ export default function QuickStartPage() {
           </CardHeader>
           <CardBody>
             <Code variant="block" language="text" className="text-sm">
-              {AI_PROMPT_ALL}
+              {currentPrompt}
             </Code>
           </CardBody>
         </Card>
@@ -96,71 +121,147 @@ export default function QuickStartPage() {
       {/* 한번에 설치 */}
       <Section>
         <Heading level="h2" id="one-liner" title="한번에 설치" />
-        <Body className="mb-4 text-krds-gray-70">
-          CLI 설치, 초기화, 기본 컴포넌트 추가를 한 줄로 실행합니다:
-        </Body>
 
-        <Tabs defaultValue="npm" className="mt-4">
-          <TabsList>
-            <TabsTrigger value="npm">npm</TabsTrigger>
-            <TabsTrigger value="pnpm">pnpm</TabsTrigger>
-            <TabsTrigger value="yarn">yarn</TabsTrigger>
-          </TabsList>
-          <TabsContent value="npm">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npm install -D @hanui/cli && npx hanui init -y && npx hanui add
-              button card input -y
-            </Code>
-          </TabsContent>
-          <TabsContent value="pnpm">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              pnpm add -D @hanui/cli && pnpm hanui init -y && pnpm hanui add
-              button card input -y
-            </Code>
-          </TabsContent>
-          <TabsContent value="yarn">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              yarn add -D @hanui/cli && yarn hanui init -y && yarn hanui add
-              button card input -y
-            </Code>
-          </TabsContent>
-        </Tabs>
+        {framework === 'react' ? (
+          <>
+            <Body className="mb-4 text-krds-gray-70">
+              CLI 설치, 초기화, 기본 컴포넌트 추가를 한 줄로 실행합니다:
+            </Body>
+
+            <Tabs defaultValue="npm" className="mt-4">
+              <TabsList>
+                <TabsTrigger value="npm">npm</TabsTrigger>
+                <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+                <TabsTrigger value="yarn">yarn</TabsTrigger>
+              </TabsList>
+              <TabsContent value="npm">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  npm install -D @hanui/cli && npx hanui init -y && npx hanui
+                  add button card input -y
+                </Code>
+              </TabsContent>
+              <TabsContent value="pnpm">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  pnpm add -D @hanui/cli && pnpm hanui init -y && pnpm hanui add
+                  button card input -y
+                </Code>
+              </TabsContent>
+              <TabsContent value="yarn">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  yarn add -D @hanui/cli && yarn hanui init -y && yarn hanui add
+                  button card input -y
+                </Code>
+              </TabsContent>
+            </Tabs>
+          </>
+        ) : (
+          <>
+            <Body className="mb-4 text-krds-gray-70">
+              CLI 설치, 초기화, 기본 컴포넌트 추가를 한 줄로 실행합니다:
+            </Body>
+
+            <Tabs defaultValue="npm" className="mt-4">
+              <TabsList>
+                <TabsTrigger value="npm">npm</TabsTrigger>
+                <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+                <TabsTrigger value="yarn">yarn</TabsTrigger>
+              </TabsList>
+              <TabsContent value="npm">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  npm install -D @hanui/vue && npx hanui-vue init -y && npx
+                  hanui-vue add button card input -y
+                </Code>
+              </TabsContent>
+              <TabsContent value="pnpm">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  pnpm add -D @hanui/vue && pnpm hanui-vue init -y && pnpm
+                  hanui-vue add button card input -y
+                </Code>
+              </TabsContent>
+              <TabsContent value="yarn">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  yarn add -D @hanui/vue && yarn hanui-vue init -y && yarn
+                  hanui-vue add button card input -y
+                </Code>
+              </TabsContent>
+            </Tabs>
+          </>
+        )}
       </Section>
 
       {/* 모든 컴포넌트 설치 */}
       <Section>
         <Heading level="h2" id="install-all" title="모든 컴포넌트 설치" />
-        <Body className="mb-4 text-krds-gray-70">
-          50+ 컴포넌트를 한번에 설치합니다. 의존성도 자동으로 처리됩니다:
-        </Body>
 
-        <Tabs defaultValue="npm" className="mt-4">
-          <TabsList>
-            <TabsTrigger value="npm">npm</TabsTrigger>
-            <TabsTrigger value="pnpm">pnpm</TabsTrigger>
-            <TabsTrigger value="yarn">yarn</TabsTrigger>
-          </TabsList>
-          <TabsContent value="npm">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              npx hanui add all -y
-            </Code>
-          </TabsContent>
-          <TabsContent value="pnpm">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              pnpm hanui add all -y
-            </Code>
-          </TabsContent>
-          <TabsContent value="yarn">
-            <Code variant="block" language="bash" showLineNumbers={false}>
-              yarn hanui add all -y
-            </Code>
-          </TabsContent>
-        </Tabs>
+        {framework === 'react' ? (
+          <>
+            <Body className="mb-4 text-krds-gray-70">
+              50+ 컴포넌트를 한번에 설치합니다. 의존성도 자동으로 처리됩니다:
+            </Body>
 
-        <Alert variant="success" className="mt-4" title="추천">
-          처음 시작하신다면 <Code>hanui add all</Code>로 모든 컴포넌트를
-          설치하세요. 필요 없는 컴포넌트는 나중에 삭제하면 됩니다.
-        </Alert>
+            <Tabs defaultValue="npm" className="mt-4">
+              <TabsList>
+                <TabsTrigger value="npm">npm</TabsTrigger>
+                <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+                <TabsTrigger value="yarn">yarn</TabsTrigger>
+              </TabsList>
+              <TabsContent value="npm">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  npx hanui add all -y
+                </Code>
+              </TabsContent>
+              <TabsContent value="pnpm">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  pnpm hanui add all -y
+                </Code>
+              </TabsContent>
+              <TabsContent value="yarn">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  yarn hanui add all -y
+                </Code>
+              </TabsContent>
+            </Tabs>
+
+            <Alert variant="success" className="mt-4" title="추천">
+              처음 시작하신다면 <Code>hanui add all</Code>로 모든 컴포넌트를
+              설치하세요. 필요 없는 컴포넌트는 나중에 삭제하면 됩니다.
+            </Alert>
+          </>
+        ) : (
+          <>
+            <Body className="mb-4 text-krds-gray-70">
+              125+ 컴포넌트를 한번에 설치합니다. 의존성도 자동으로 처리됩니다:
+            </Body>
+
+            <Tabs defaultValue="npm" className="mt-4">
+              <TabsList>
+                <TabsTrigger value="npm">npm</TabsTrigger>
+                <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+                <TabsTrigger value="yarn">yarn</TabsTrigger>
+              </TabsList>
+              <TabsContent value="npm">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  npx hanui-vue add all -y
+                </Code>
+              </TabsContent>
+              <TabsContent value="pnpm">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  pnpm hanui-vue add all -y
+                </Code>
+              </TabsContent>
+              <TabsContent value="yarn">
+                <Code variant="block" language="bash" showLineNumbers={false}>
+                  yarn hanui-vue add all -y
+                </Code>
+              </TabsContent>
+            </Tabs>
+
+            <Alert variant="success" className="mt-4" title="추천">
+              처음 시작하신다면 <Code>hanui-vue add all</Code>로 모든 컴포넌트를
+              설치하세요. 필요 없는 컴포넌트는 나중에 삭제하면 됩니다.
+            </Alert>
+          </>
+        )}
       </Section>
 
       {/* 바로 사용하기 */}
@@ -170,8 +271,9 @@ export default function QuickStartPage() {
           설치가 완료되면 바로 컴포넌트를 import하여 사용할 수 있습니다:
         </Body>
 
-        <Code variant="block" language="tsx" showLineNumbers={false}>
-          {`import { Button } from '@/components/hanui/button';
+        {framework === 'react' ? (
+          <Code variant="block" language="tsx" showLineNumbers={false}>
+            {`import { Button } from '@/components/hanui/button';
 import { Card } from '@/components/hanui/card';
 
 export default function Page() {
@@ -182,10 +284,25 @@ export default function Page() {
     </Card>
   )
 }`}
-        </Code>
+          </Code>
+        ) : (
+          <Code variant="block" language="vue" showLineNumbers={false}>
+            {`<script setup lang="ts">
+import Button from '@/components/hanui/Button.vue';
+import Card from '@/components/hanui/Card.vue';
+</script>
+
+<template>
+  <Card>
+    <h2>환영합니다!</h2>
+    <Button variant="primary">시작하기</Button>
+  </Card>
+</template>`}
+          </Code>
+        )}
       </Section>
 
-      {/* 왜 소스 코드 복사 방식인가요? */}
+      {/* 왜 이 방식인가요? */}
       <Section>
         <Heading
           level="h2"
