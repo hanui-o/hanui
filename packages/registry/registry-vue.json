@@ -503,5 +503,71 @@
     "description": "랩 레이아웃 컴포넌트",
     "dependencies": ["clsx", "tailwind-merge"],
     "files": [{ "path": "components/Wrap.vue", "type": "component" }]
+  },
+  "tag": {
+    "name": "tag",
+    "type": "ui",
+    "description": "태그 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/Tag.vue", "type": "component" },
+      { "path": "components/SelectableTag.vue", "type": "component" },
+      { "path": "components/RemovableTag.vue", "type": "component" },
+      { "path": "components/TagLink.vue", "type": "component" },
+      { "path": "components/TagGroup.vue", "type": "component" }
+    ]
+  },
+  "disclosure": {
+    "name": "disclosure",
+    "type": "ui",
+    "description": "디스클로저 컴포넌트 - 콘텐츠 숨김/표시",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Disclosure.vue", "type": "component" }]
+  },
+  "critical-alerts": {
+    "name": "critical-alerts",
+    "type": "ui",
+    "description": "긴급 공지 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/CriticalAlerts.vue", "type": "component" },
+      { "path": "components/CriticalAlertItem.vue", "type": "component" },
+      { "path": "components/CriticalAlertBanner.vue", "type": "component" }
+    ]
+  },
+  "step-indicator": {
+    "name": "step-indicator",
+    "type": "ui",
+    "description": "단계 표시기 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/StepIndicator.vue", "type": "component" },
+      { "path": "composables/useSteps.ts", "type": "composable" }
+    ]
+  },
+  "date-input": {
+    "name": "date-input",
+    "type": "ui",
+    "description": "날짜 입력 필드 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/DateInput.vue", "type": "component" },
+      { "path": "components/DateInputMultiple.vue", "type": "component" },
+      { "path": "components/DateInputRange.vue", "type": "component" }
+    ]
+  },
+  "carousel": {
+    "name": "carousel",
+    "type": "ui",
+    "description": "캐러셀 슬라이드 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "swiper"],
+    "files": [{ "path": "components/Carousel.vue", "type": "component" }]
+  },
+  "visually-hidden": {
+    "name": "visually-hidden",
+    "type": "ui",
+    "description": "시각적 숨김 컴포넌트 (스크린리더 접근 가능)",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/VisuallyHidden.vue", "type": "component" }]
   }
 }

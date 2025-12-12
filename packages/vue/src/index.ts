@@ -123,5 +123,37 @@ export { default as Masthead } from './components/Masthead.vue';
 export { default as Header } from './components/Header.vue';
 export { default as Footer } from './components/Footer.vue';
 
+// Tag
+export { default as Tag } from './components/Tag.vue';
+export { default as SelectableTag } from './components/SelectableTag.vue';
+export { default as RemovableTag } from './components/RemovableTag.vue';
+export { default as TagLink } from './components/TagLink.vue';
+export { default as TagGroup } from './components/TagGroup.vue';
+
+// Disclosure
+export { default as Disclosure } from './components/Disclosure.vue';
+
+// Critical Alerts
+export { default as CriticalAlerts } from './components/CriticalAlerts.vue';
+export { default as CriticalAlertItem } from './components/CriticalAlertItem.vue';
+export { default as CriticalAlertBanner } from './components/CriticalAlertBanner.vue';
+
+// Step Indicator
+export { default as StepIndicator } from './components/StepIndicator.vue';
+
+// Date Input
+export { default as DateInput } from './components/DateInput.vue';
+export { default as DateInputMultiple } from './components/DateInputMultiple.vue';
+export { default as DateInputRange } from './components/DateInputRange.vue';
+
+// Carousel
+export { default as Carousel } from './components/Carousel.vue';
+
+// Accessibility
+export { default as VisuallyHidden } from './components/VisuallyHidden.vue';
+
+// Composables
+export { useSteps } from './composables/useSteps';
+
 // Utils
 export { cn } from './lib/utils';
