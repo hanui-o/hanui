@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     const response = await fetch(url, {
       headers: {
         'User-Agent':
-          'Mozilla/5.0 (compatible; HanuiA11yChecker/1.0; +https://hanui.kr)',
+          'Mozilla/5.0 (compatible; HanuiA11yChecker/1.0; +https://hanui.io)',
         Accept:
           'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
