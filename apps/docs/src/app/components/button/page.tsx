@@ -8,6 +8,8 @@ import {
   PageNavigation,
 } from '@/components/content';
 import { Installation } from '@/components/content/Installation';
+import { FrameworkProvider } from '@/components/FrameworkTabs';
+import { FrameworkCodeBlock } from '@/components/content/FrameworkCodeBlock';
 
 // UI components - from @hanui/react
 import {
@@ -28,7 +30,7 @@ import { ComponentPreview } from '@/components/content/ComponentPreview';
 
 export default function ButtonPage() {
   return (
-    <>
+    <FrameworkProvider>
       <Heading
         level="h1"
         title="Button"
@@ -53,9 +55,10 @@ export default function ButtonPage() {
             <ComponentPreview>
               <Button>Button</Button>
             </ComponentPreview>
-            <Code variant="block" language="tsx">
-              {`<Button>Button</Button>`}
-            </Code>
+            <FrameworkCodeBlock
+              reactCode={`<Button>Button</Button>`}
+              vueCode={`<Button>Button</Button>`}
+            />
           </Section>
 
           <Section level="h2">
@@ -64,11 +67,18 @@ export default function ButtonPage() {
 
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
-            <Code variant="block" language="tsx">
-              {`import { Button } from '@/components/hanui/button'
+            <FrameworkCodeBlock
+              reactCode={`import { Button } from '@/components/hanui/button'
 
 <Button variant="primary">Click me</Button>`}
-            </Code>
+              vueCode={`<script setup>
+import { Button } from '@/components/hanui/Button.vue'
+</script>
+
+<template>
+  <Button variant="primary">Click me</Button>
+</template>`}
+            />
           </Section>
 
           {/* 예제 섹션 */}
@@ -87,14 +97,20 @@ export default function ButtonPage() {
                   <Button variant="ghost-primary">Ghost Primary</Button>
                 </div>
               </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button variant="primary">Primary</Button>
+              <FrameworkCodeBlock
+                reactCode={`<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="tertiary">Tertiary</Button>
 <Button variant="outline">Outline</Button>
 <Button variant="ghost">Ghost</Button>
 <Button variant="ghost-primary">Ghost Primary</Button>`}
-              </Code>
+                vueCode={`<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="tertiary">Tertiary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="ghost-primary">Ghost Primary</Button>`}
+              />
             </Subsection>
 
             <Subsection level="h3">
@@ -108,13 +124,18 @@ export default function ButtonPage() {
                   <Button size="xl">x-Large</Button>
                 </div>
               </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button size="xs">x-Small</Button>
+              <FrameworkCodeBlock
+                reactCode={`<Button size="xs">x-Small</Button>
 <Button size="sm">Small</Button>
 <Button size="md">Medium</Button>
 <Button size="lg">Large</Button>
 <Button size="xl">x-Large</Button>`}
-              </Code>
+                vueCode={`<Button size="xs">x-Small</Button>
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+<Button size="xl">x-Large</Button>`}
+              />
             </Subsection>
 
             <Subsection level="h3">
@@ -130,11 +151,22 @@ export default function ButtonPage() {
                   />
                 </div>
               </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button iconLeft={<ChevronLeftIcon />}>이전</Button>
+              <FrameworkCodeBlock
+                reactCode={`<Button iconLeft={<ChevronLeftIcon />}>이전</Button>
 <Button iconRight={<ChevronRightIcon />}>다음</Button>
 <Button size="icon" iconLeft={<CheckIcon />} aria-label="확인" />`}
-              </Code>
+                vueCode={`<Button aria-label="확인">
+  <template #iconLeft><ChevronLeft /></template>
+  이전
+</Button>
+<Button>
+  다음
+  <template #iconRight><ChevronRight /></template>
+</Button>
+<Button size="icon" aria-label="확인">
+  <template #iconLeft><Check /></template>
+</Button>`}
+              />
             </Subsection>
 
             <Subsection level="h3">
@@ -151,12 +183,16 @@ export default function ButtonPage() {
                   </Button>
                 </div>
               </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button href="/about">내부 링크</Button>
+              <FrameworkCodeBlock
+                reactCode={`<Button href="/about">내부 링크</Button>
 <Button href="https://github.com" target="_blank" rel="noopener noreferrer">
   외부 링크
 </Button>`}
-              </Code>
+                vueCode={`<Button href="/about">내부 링크</Button>
+<Button href="https://github.com" target="_blank" rel="noopener noreferrer">
+  외부 링크
+</Button>`}
+              />
             </Subsection>
 
             <Subsection level="h3">
@@ -169,10 +205,12 @@ export default function ButtonPage() {
                   </Button>
                 </div>
               </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button loading>처리 중...</Button>
+              <FrameworkCodeBlock
+                reactCode={`<Button loading>처리 중...</Button>
 <Button loading disabled>제출 중...</Button>`}
-              </Code>
+                vueCode={`<Button loading>처리 중...</Button>
+<Button loading disabled>제출 중...</Button>`}
+              />
             </Subsection>
 
             <Subsection level="h3">
@@ -185,10 +223,12 @@ export default function ButtonPage() {
                   </Button>
                 </div>
               </ComponentPreview>
-              <Code variant="block" language="tsx">
-                {`<Button disabled>비활성화</Button>
+              <FrameworkCodeBlock
+                reactCode={`<Button disabled>비활성화</Button>
 <Button variant="outline" disabled>비활성화</Button>`}
-              </Code>
+                vueCode={`<Button disabled>비활성화</Button>
+<Button variant="outline" disabled>비활성화</Button>`}
+              />
             </Subsection>
           </Section>
         </TabsContent>
@@ -349,6 +389,6 @@ export default function ButtonPage() {
         prev={{ title: 'Button', href: '/components/button' }}
         next={{ title: 'Card', href: '/components/card' }}
       />
-    </>
+    </FrameworkProvider>
   );
 }
