@@ -291,7 +291,7 @@ const megaColumns: MegaMenuColumn[] = [
 const slides: HeroCarouselSlide[] = [
   {
     id: 1,
-    title: '물고기는 월요일 출근하기 않겠지?',
+    title: '물고기도 월요일 출근하기 않겠지?',
     description: '주말은 왜 이렇게 빨리 가는 걸까요. 금요일이 보고 싶습니다.',
     buttonText: '퇴근하기',
     buttonHref: '#',

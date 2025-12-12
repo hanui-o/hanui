@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { SquareArrowOutUpRight } from 'lucide-react';
 // Docs layout components
 import { PageSection as Section, Heading } from '@/components/content';
 
@@ -436,6 +437,24 @@ export default function ComponentsPage() {
         title="Components"
         description="HANUI 라이브러리에서 제공하는 모든 컴포넌트를 KRDS(Korean Design System) 분류 체계에 따라 정리했습니다."
       />
+
+      {/* 플레이그라운드 링크 */}
+      <Link
+        href="/playground"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center justify-between p-4 mb-8 border border-krds-gray-20 rounded-lg hover:border-krds-gray-40 transition-colors group"
+      >
+        <div>
+          <span className="text-base font-medium text-krds-gray-90">
+            컴포넌트 플레이그라운드
+          </span>
+          <Body className="text-sm text-krds-gray-60 mt-0.5">
+            모든 컴포넌트를 한 페이지에서 확인해보세요
+          </Body>
+        </div>
+        <SquareArrowOutUpRight className="w-4 h-4 text-krds-gray-50 group-hover:text-krds-gray-70 transition-colors" />
+      </Link>
 
       {/* 타이포그래피 */}
       <ComponentSection
