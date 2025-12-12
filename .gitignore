@@ -83,7 +83,3 @@ coverage/
 apps/test-next/
 test-vue/
 test-vue-cli/
-
-# Vue packages (moved to feat/vue-components branch)
-packages/vue/
-packages/cli-vue/

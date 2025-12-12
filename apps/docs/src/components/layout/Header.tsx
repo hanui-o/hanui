@@ -76,18 +76,11 @@ export function Header() {
         pathname?.startsWith('/typography') ||
         pathname?.startsWith('/layout'),
     },
-    // {
-    //   label: 'Templates',
-    //   href: '/templates',
-    //   // target: '_blank' as const,
-    //   // icon: <SquareArrowOutUpRight className="w-4 h-4 text-krds-gray-70" />,
-    //   isActive: pathname?.startsWith('/templates'),
-    // },
-    // {
-    //   label: 'A11y',
-    //   href: '/a11y',
-    //   isActive: pathname?.startsWith('/a11y'),
-    // },
+    {
+      label: 'A11y',
+      href: '/a11y',
+      isActive: pathname?.startsWith('/a11y'),
+    },
     {
       label: 'Community',
       href: '/community',

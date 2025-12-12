@@ -1,14 +1,573 @@
 {
+  "accordion": {
+    "name": "accordion",
+    "type": "ui",
+    "description": "아코디언 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [
+      { "path": "components/Accordion.vue", "type": "component" },
+      { "path": "components/AccordionItem.vue", "type": "component" },
+      { "path": "components/AccordionTrigger.vue", "type": "component" },
+      { "path": "components/AccordionContent.vue", "type": "component" }
+    ]
+  },
+  "alert": {
+    "name": "alert",
+    "type": "ui",
+    "description": "알림 컴포넌트",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+      "lucide-vue-next"
+    ],
+    "files": [{ "path": "components/Alert.vue", "type": "component" }]
+  },
+  "alert-dialog": {
+    "name": "alert-dialog",
+    "type": "ui",
+    "description": "알림 다이얼로그 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/AlertDialog.vue", "type": "component" }]
+  },
+  "aspect-ratio": {
+    "name": "aspect-ratio",
+    "type": "ui",
+    "description": "비율 유지 컨테이너 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/AspectRatio.vue", "type": "component" }]
+  },
+  "badge": {
+    "name": "badge",
+    "type": "ui",
+    "description": "뱃지 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+    "files": [{ "path": "components/Badge.vue", "type": "component" }]
+  },
+  "body": {
+    "name": "body",
+    "type": "ui",
+    "description": "본문 텍스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Body.vue", "type": "component" }]
+  },
+  "box": {
+    "name": "box",
+    "type": "ui",
+    "description": "기본 박스 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Box.vue", "type": "component" }]
+  },
+  "breadcrumb": {
+    "name": "breadcrumb",
+    "type": "ui",
+    "description": "브레드크럼 네비게이션 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/Breadcrumb.vue", "type": "component" }]
+  },
   "button": {
     "name": "button",
     "type": "ui",
     "description": "KRDS 디자인 시스템을 준수하는 버튼 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority", "lucide-vue-next"],
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+      "lucide-vue-next"
+    ],
+    "files": [{ "path": "components/Button.vue", "type": "component" }]
+  },
+  "card": {
+    "name": "card",
+    "type": "ui",
+    "description": "콘텐츠를 담는 카드 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
-      {
-        "path": "components/Button.vue",
-        "type": "component"
-      }
+      { "path": "components/Card.vue", "type": "component" },
+      { "path": "components/CardHeader.vue", "type": "component" },
+      { "path": "components/CardTitle.vue", "type": "component" },
+      { "path": "components/CardDescription.vue", "type": "component" },
+      { "path": "components/CardBody.vue", "type": "component" },
+      { "path": "components/CardFooter.vue", "type": "component" }
     ]
+  },
+  "center": {
+    "name": "center",
+    "type": "ui",
+    "description": "센터 정렬 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Center.vue", "type": "component" }]
+  },
+  "checkbox": {
+    "name": "checkbox",
+    "type": "ui",
+    "description": "체크박스 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/Checkbox.vue", "type": "component" }]
+  },
+  "circle": {
+    "name": "circle",
+    "type": "ui",
+    "description": "원형 컨테이너 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Circle.vue", "type": "component" }]
+  },
+  "code": {
+    "name": "code",
+    "type": "ui",
+    "description": "코드 블록 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "shiki", "lucide-vue-next"],
+    "files": [{ "path": "components/Code.vue", "type": "component" }]
+  },
+  "combobox": {
+    "name": "combobox",
+    "type": "ui",
+    "description": "검색 가능한 콤보박스 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/Combobox.vue", "type": "component" }]
+  },
+  "container": {
+    "name": "container",
+    "type": "ui",
+    "description": "레이아웃 컨테이너 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Container.vue", "type": "component" }]
+  },
+  "data-table": {
+    "name": "data-table",
+    "type": "ui",
+    "description": "데이터 테이블 컴포넌트 (정렬, 필터, 페이지네이션)",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "registryDependencies": ["button", "checkbox", "input"],
+    "files": [{ "path": "components/DataTable.vue", "type": "component" }]
+  },
+  "display": {
+    "name": "display",
+    "type": "ui",
+    "description": "디스플레이 텍스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Display.vue", "type": "component" }]
+  },
+  "dropdown-menu": {
+    "name": "dropdown-menu",
+    "type": "ui",
+    "description": "드롭다운 메뉴 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/DropdownMenu.vue", "type": "component" },
+      { "path": "components/DropdownMenuTrigger.vue", "type": "component" },
+      { "path": "components/DropdownMenuContent.vue", "type": "component" },
+      { "path": "components/DropdownMenuItem.vue", "type": "component" },
+      { "path": "components/DropdownMenuSeparator.vue", "type": "component" },
+      { "path": "components/DropdownMenuLabel.vue", "type": "component" }
+    ]
+  },
+  "file-upload": {
+    "name": "file-upload",
+    "type": "ui",
+    "description": "파일 업로드 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/FileUpload.vue", "type": "component" }]
+  },
+  "flex": {
+    "name": "flex",
+    "type": "ui",
+    "description": "플렉스 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Flex.vue", "type": "component" }]
+  },
+  "footer": {
+    "name": "footer",
+    "type": "ui",
+    "description": "KRDS 표준 푸터 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "registryDependencies": ["container"],
+    "files": [{ "path": "components/Footer.vue", "type": "component" }]
+  },
+  "form-field": {
+    "name": "form-field",
+    "type": "ui",
+    "description": "폼 필드 컨텍스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/FormField.vue", "type": "component" },
+      { "path": "components/FormLabel.vue", "type": "component" },
+      { "path": "components/FormError.vue", "type": "component" },
+      { "path": "components/FormHelperText.vue", "type": "component" }
+    ]
+  },
+  "grid": {
+    "name": "grid",
+    "type": "ui",
+    "description": "그리드 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/Grid.vue", "type": "component" },
+      { "path": "components/GridItem.vue", "type": "component" }
+    ]
+  },
+  "header": {
+    "name": "header",
+    "type": "ui",
+    "description": "KRDS 표준 헤더 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "registryDependencies": ["container"],
+    "files": [{ "path": "components/Header.vue", "type": "component" }]
+  },
+  "heading": {
+    "name": "heading",
+    "type": "ui",
+    "description": "제목 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Heading.vue", "type": "component" }]
+  },
+  "hstack": {
+    "name": "hstack",
+    "type": "ui",
+    "description": "수평 스택 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/HStack.vue", "type": "component" }]
+  },
+  "identifier": {
+    "name": "identifier",
+    "type": "ui",
+    "description": "KRDS 식별자 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Identifier.vue", "type": "component" }]
+  },
+  "image": {
+    "name": "image",
+    "type": "ui",
+    "description": "이미지 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Image.vue", "type": "component" }]
+  },
+  "in-page-navigation": {
+    "name": "in-page-navigation",
+    "type": "ui",
+    "description": "페이지 내 네비게이션 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/InPageNavigation.vue", "type": "component" }
+    ]
+  },
+  "input": {
+    "name": "input",
+    "type": "ui",
+    "description": "폼 입력 컴포넌트",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+      "lucide-vue-next"
+    ],
+    "registryDependencies": ["label", "form-field"],
+    "files": [{ "path": "components/Input.vue", "type": "component" }]
+  },
+  "label": {
+    "name": "label",
+    "type": "ui",
+    "description": "폼 레이블 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Label.vue", "type": "component" }]
+  },
+  "link": {
+    "name": "link",
+    "type": "ui",
+    "description": "링크 컴포넌트",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+      "lucide-vue-next"
+    ],
+    "files": [{ "path": "components/Link.vue", "type": "component" }]
+  },
+  "list": {
+    "name": "list",
+    "type": "ui",
+    "description": "리스트 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/List.vue", "type": "component" },
+      { "path": "components/ListItem.vue", "type": "component" }
+    ]
+  },
+  "masthead": {
+    "name": "masthead",
+    "type": "ui",
+    "description": "마스트헤드 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Masthead.vue", "type": "component" }]
+  },
+  "mega-menu": {
+    "name": "mega-menu",
+    "type": "ui",
+    "description": "메가 메뉴 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/MegaMenu.vue", "type": "component" }]
+  },
+  "modal": {
+    "name": "modal",
+    "type": "ui",
+    "description": "모달 다이얼로그 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [
+      { "path": "components/Modal.vue", "type": "component" },
+      { "path": "components/ModalTitle.vue", "type": "component" },
+      { "path": "components/ModalBody.vue", "type": "component" },
+      { "path": "components/ModalFooter.vue", "type": "component" }
+    ]
+  },
+  "navigation-menu": {
+    "name": "navigation-menu",
+    "type": "ui",
+    "description": "네비게이션 메뉴 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/NavigationMenu.vue", "type": "component" }]
+  },
+  "pagination": {
+    "name": "pagination",
+    "type": "ui",
+    "description": "페이지네이션 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/Pagination.vue", "type": "component" }]
+  },
+  "progress": {
+    "name": "progress",
+    "type": "ui",
+    "description": "진행률 표시 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Progress.vue", "type": "component" }]
+  },
+  "radio": {
+    "name": "radio",
+    "type": "ui",
+    "description": "라디오 버튼 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/Radio.vue", "type": "component" },
+      { "path": "components/RadioGroup.vue", "type": "component" }
+    ]
+  },
+  "section": {
+    "name": "section",
+    "type": "ui",
+    "description": "섹션 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Section.vue", "type": "component" }]
+  },
+  "select": {
+    "name": "select",
+    "type": "ui",
+    "description": "셀렉트 드롭다운 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/Select.vue", "type": "component" }]
+  },
+  "side-navigation": {
+    "name": "side-navigation",
+    "type": "ui",
+    "description": "사이드 네비게이션 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [{ "path": "components/SideNavigation.vue", "type": "component" }]
+  },
+  "simple-grid": {
+    "name": "simple-grid",
+    "type": "ui",
+    "description": "간단한 그리드 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/SimpleGrid.vue", "type": "component" }]
+  },
+  "skeleton": {
+    "name": "skeleton",
+    "type": "ui",
+    "description": "스켈레톤 로딩 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Skeleton.vue", "type": "component" }]
+  },
+  "skip-link": {
+    "name": "skip-link",
+    "type": "ui",
+    "description": "스킵 링크 컴포넌트 (접근성)",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/SkipLink.vue", "type": "component" }]
+  },
+  "slider": {
+    "name": "slider",
+    "type": "ui",
+    "description": "슬라이더 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Slider.vue", "type": "component" }]
+  },
+  "spinner": {
+    "name": "spinner",
+    "type": "ui",
+    "description": "스피너 로딩 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Spinner.vue", "type": "component" }]
+  },
+  "square": {
+    "name": "square",
+    "type": "ui",
+    "description": "정사각형 컨테이너 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Square.vue", "type": "component" }]
+  },
+  "stack": {
+    "name": "stack",
+    "type": "ui",
+    "description": "스택 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/Stack.vue", "type": "component" },
+      { "path": "components/VStack.vue", "type": "component" },
+      { "path": "components/HStack.vue", "type": "component" }
+    ]
+  },
+  "switch": {
+    "name": "switch",
+    "type": "ui",
+    "description": "스위치 토글 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Switch.vue", "type": "component" }]
+  },
+  "tab-bars": {
+    "name": "tab-bars",
+    "type": "ui",
+    "description": "모바일 탭 바 네비게이션 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/TabBars.vue", "type": "component" }]
+  },
+  "table": {
+    "name": "table",
+    "type": "ui",
+    "description": "테이블 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/Table.vue", "type": "component" },
+      { "path": "components/TableHeader.vue", "type": "component" },
+      { "path": "components/TableBody.vue", "type": "component" },
+      { "path": "components/TableFooter.vue", "type": "component" },
+      { "path": "components/TableRow.vue", "type": "component" },
+      { "path": "components/TableHead.vue", "type": "component" },
+      { "path": "components/TableCell.vue", "type": "component" },
+      { "path": "components/TableCaption.vue", "type": "component" }
+    ]
+  },
+  "tabs": {
+    "name": "tabs",
+    "type": "ui",
+    "description": "탭 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/Tabs.vue", "type": "component" },
+      { "path": "components/TabsList.vue", "type": "component" },
+      { "path": "components/TabsTrigger.vue", "type": "component" },
+      { "path": "components/TabsContent.vue", "type": "component" }
+    ]
+  },
+  "textarea": {
+    "name": "textarea",
+    "type": "ui",
+    "description": "텍스트 영역 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "class-variance-authority"],
+    "files": [{ "path": "components/Textarea.vue", "type": "component" }]
+  },
+  "toast": {
+    "name": "toast",
+    "type": "ui",
+    "description": "토스트 알림 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-vue-next"],
+    "files": [
+      { "path": "components/Toast.vue", "type": "component" },
+      { "path": "components/Toaster.vue", "type": "component" }
+    ]
+  },
+  "tooltip": {
+    "name": "tooltip",
+    "type": "ui",
+    "description": "툴팁 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Tooltip.vue", "type": "component" }]
+  },
+  "vstack": {
+    "name": "vstack",
+    "type": "ui",
+    "description": "수직 스택 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/VStack.vue", "type": "component" }]
+  },
+  "wrap": {
+    "name": "wrap",
+    "type": "ui",
+    "description": "랩 레이아웃 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Wrap.vue", "type": "component" }]
+  },
+  "tag": {
+    "name": "tag",
+    "type": "ui",
+    "description": "태그 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/Tag.vue", "type": "component" },
+      { "path": "components/SelectableTag.vue", "type": "component" },
+      { "path": "components/RemovableTag.vue", "type": "component" },
+      { "path": "components/TagLink.vue", "type": "component" },
+      { "path": "components/TagGroup.vue", "type": "component" }
+    ]
+  },
+  "disclosure": {
+    "name": "disclosure",
+    "type": "ui",
+    "description": "디스클로저 컴포넌트 - 콘텐츠 숨김/표시",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/Disclosure.vue", "type": "component" }]
+  },
+  "critical-alerts": {
+    "name": "critical-alerts",
+    "type": "ui",
+    "description": "긴급 공지 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/CriticalAlerts.vue", "type": "component" },
+      { "path": "components/CriticalAlertItem.vue", "type": "component" },
+      { "path": "components/CriticalAlertBanner.vue", "type": "component" }
+    ]
+  },
+  "step-indicator": {
+    "name": "step-indicator",
+    "type": "ui",
+    "description": "단계 표시기 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/StepIndicator.vue", "type": "component" },
+      { "path": "composables/useSteps.ts", "type": "composable" }
+    ]
+  },
+  "date-input": {
+    "name": "date-input",
+    "type": "ui",
+    "description": "날짜 입력 필드 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      { "path": "components/DateInput.vue", "type": "component" },
+      { "path": "components/DateInputMultiple.vue", "type": "component" },
+      { "path": "components/DateInputRange.vue", "type": "component" }
+    ]
+  },
+  "carousel": {
+    "name": "carousel",
+    "type": "ui",
+    "description": "캐러셀 슬라이드 컴포넌트",
+    "dependencies": ["clsx", "tailwind-merge", "swiper"],
+    "files": [{ "path": "components/Carousel.vue", "type": "component" }]
+  },
+  "visually-hidden": {
+    "name": "visually-hidden",
+    "type": "ui",
+    "description": "시각적 숨김 컴포넌트 (스크린리더 접근 가능)",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [{ "path": "components/VisuallyHidden.vue", "type": "component" }]
   }
 }
