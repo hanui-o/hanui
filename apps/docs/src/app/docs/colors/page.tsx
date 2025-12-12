@@ -49,7 +49,7 @@ export default function ColorsPage() {
         </TabsList>
 
         <TabsContent value="overview">
-          <Section>
+          <Section level="h2">
             <Subsection level="h3">
               <Heading level="h3" title="빠른 요약">
                 <Body>
@@ -77,8 +77,8 @@ export default function ColorsPage() {
             </Subsection>
           </Section>
 
-          {/* Overview */}
-          <Section>
+          {/* 개요 */}
+          <Section level="h2">
             <Heading level="h2" id="overview" title="개요">
               <Body>
                 HANUI는 KRDS(대한민국 디자인 시스템) 색상 시스템을 Tailwind
@@ -97,8 +97,8 @@ export default function ColorsPage() {
             </Card>
           </Section>
 
-          {/* KRDS Color System Integration */}
-          <Section>
+          {/* KRDS 색상 시스템 통합 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="krds-integration"
@@ -150,7 +150,8 @@ export default function ColorsPage() {
             <Subsection level="h3">
               <Heading level="h3" title="구현 방법">
                 <Body>
-                  <Code>globals.css</Code>에서 KRDS 색상을 CSS 변수로 정의하고,
+                  <Code>@hanui/react/variables.css</Code>에서 KRDS 색상을 CSS
+                  변수로 정의하고,
                   <Code>tailwind.config.ts</Code>에서 <Code>krds-</Code>{' '}
                   접두사를 붙여 Tailwind 유틸리티로 사용할 수 있도록 매핑합니다.
                 </Body>
@@ -159,7 +160,7 @@ export default function ColorsPage() {
               <Stack gap="md">
                 <div>
                   <Body size="sm" className="font-semibold mb-2">
-                    1. globals.css - CSS 변수 정의
+                    1. variables.css - CSS 변수 정의
                   </Body>
                   <Code variant="block" language="css">
                     {`:root {
@@ -251,7 +252,7 @@ export default function ColorsPage() {
                       <strong>숫자 스케일도 자동 전환됨:</strong>{' '}
                       <Code>bg-krds-gray-5</Code>,{' '}
                       <Code>text-krds-gray-10</Code> 같은 숫자 스케일도 CSS
-                      변수를 통해 자동 전환됩니다. <Code>globals.css</Code>의{' '}
+                      변수를 통해 자동 전환됩니다. <Code>variables.css</Code>의{' '}
                       <Code>.dark</Code>
                       에서 변수 값을 재정의하므로 <Code>dark:</Code> 접두사가
                       필요 없습니다.
@@ -278,8 +279,8 @@ export default function ColorsPage() {
             </Subsection>
           </Section>
 
-          {/* Colors */}
-          <Section>
+          {/* 색상 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="colors"
@@ -509,8 +510,8 @@ export default function ColorsPage() {
             </Subsection>
           </Section>
 
-          {/* Semantic Color Tokens */}
-          <Section>
+          {/* 의미 기반 색상 */}
+          <Section level="h2">
             <Heading
               level="h2"
               id="semantic-colors"
@@ -565,7 +566,7 @@ export default function ColorsPage() {
             <Stack gap="md" className="mt-4">
               <div>
                 <Body size="sm" className="font-semibold mb-2">
-                  1. globals.css - Semantic 변수 정의
+                  1. variables.css - Semantic 변수 정의
                 </Body>
                 <Code variant="block" language="css">
                   {`:root {
@@ -746,8 +747,8 @@ export default function ColorsPage() {
             </Subsection>
           </Section>
 
-          {/* Dark Mode */}
-          <Section>
+          {/* 다크 모드 */}
+          <Section level="h2">
             <Heading level="h2" id="dark-mode" title="다크 모드">
               <Body>
                 HANUI는 CSS 변수를 활용하여 다크 모드를 자동으로 지원합니다.{' '}
@@ -760,7 +761,7 @@ export default function ColorsPage() {
               <Heading level="h3" title="작동 원리">
                 <Body>
                   CSS 변수는 상위 요소의 값을 상속받습니다.{' '}
-                  <Code>globals.css</Code>
+                  <Code>variables.css</Code>
                   에서 <Code>:root</Code>와 <Code>.dark</Code>에서 같은 변수명을
                   사용하지만 다른 값을 할당하여, 모드에 따라 자동으로 색상이
                   변경되도록 구현했습니다.
@@ -770,7 +771,7 @@ export default function ColorsPage() {
               <Stack gap="md">
                 <div>
                   <Body size="sm" className="font-semibold mb-2">
-                    1. globals.css - CSS 변수 정의
+                    1. variables.css - CSS 변수 정의
                   </Body>
                   <Code variant="block" language="css">
                     {`:root {
@@ -971,8 +972,8 @@ function App() {
             </Subsection>
           </Section>
 
-          {/* Best Practices */}
-          <Section>
+          {/* 모범 사례 */}
+          <Section level="h2">
             <Heading level="h2" id="best-practices" title="모범 사례" />
 
             <Card variant="outlined">
@@ -991,8 +992,8 @@ function App() {
             </Card>
           </Section>
 
-          {/* Reference */}
-          <Section>
+          {/* 참고 자료 */}
+          <Section level="h2">
             <Heading level="h2" id="reference" title="참고 자료" />
 
             <Link
@@ -1007,17 +1008,18 @@ function App() {
         </TabsContent>
 
         <TabsContent value="api">
-          <Section>
+          <Section level="h2">
             <Heading level="h2" id="api-reference" title="API 레퍼런스" />
 
-            {/* Color Categories */}
+            {/* 색상 카테고리 */}
             <Subsection level="h3">
-              <Heading level="h3" title="색상 카테고리" />
-              <Body>
-                KRDS 색상 시스템은 다음 8가지 주요 카테고리를 제공합니다:
-              </Body>
+              <Heading
+                level="h3"
+                title="색상 카테고리"
+                description="KRDS 색상 시스템은 다음 8가지 주요 카테고리를 제공합니다."
+              />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Category</TableHead>
@@ -1086,14 +1088,15 @@ function App() {
               </Table>
             </Subsection>
 
-            {/* Color Scale */}
+            {/* 색상 스케일 */}
             <Subsection level="h3">
-              <Heading level="h3" title="색상 스케일" />
-              <Body>
-                각 색상 카테고리는 밝기에 따라 11단계의 스케일을 제공합니다:
-              </Body>
+              <Heading
+                level="h3"
+                title="색상 스케일"
+                description="각 색상 카테고리는 밝기에 따라 11단계의 스케일을 제공합니다."
+              />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Scale</TableHead>
@@ -1177,12 +1180,15 @@ function App() {
               </Table>
             </Subsection>
 
-            {/* Usage Table */}
+            {/* 사용 예시 */}
             <Subsection level="h3">
-              <Heading level="h3" title="사용 예시" />
-              <Body>주요 색상의 CSS 변수와 Tailwind 클래스 사용법:</Body>
+              <Heading
+                level="h3"
+                title="사용 예시"
+                description="주요 색상의 CSS 변수와 Tailwind 클래스 사용법입니다."
+              />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Category</TableHead>
@@ -1292,15 +1298,15 @@ function App() {
               </Table>
             </Subsection>
 
-            {/* Semantic Colors */}
+            {/* 시맨틱 색상 변수 */}
             <Subsection level="h3">
-              <Heading level="h3" title="시맨틱 색상 변수" />
-              <Body>
-                의미 기반 색상 변수는 모드에 따라 자동으로 적절한 값으로
-                전환됩니다:
-              </Body>
+              <Heading
+                level="h3"
+                title="시맨틱 색상 변수"
+                description="의미 기반 색상 변수는 모드에 따라 자동으로 적절한 값으로 전환됩니다."
+              />
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Semantic Variable</TableHead>
@@ -1397,12 +1403,13 @@ function App() {
               </Card>
             </Subsection>
 
-            {/* Dark Mode */}
+            {/* 다크 모드 */}
             <Subsection level="h3">
-              <Heading level="h3" title="다크 모드" />
-              <Body>
-                KRDS 색상은 CSS 변수를 통해 다크 모드를 자동으로 지원합니다.
-              </Body>
+              <Heading
+                level="h3"
+                title="다크 모드"
+                description="KRDS 색상은 CSS 변수를 통해 다크 모드를 자동으로 지원합니다."
+              />
 
               <Card variant="filled">
                 <Heading level="h4" title="작동 원리" />
@@ -1412,8 +1419,8 @@ function App() {
                     모든 KRDS 색상이 자동 전환
                   </ListItem>
                   <ListItem>
-                    <Code>globals.css</Code>의 <Code>.dark</Code> 선택자에서 CSS
-                    변수 값을 재정의하여 구현
+                    <Code>variables.css</Code>의 <Code>.dark</Code> 선택자에서
+                    CSS 변수 값을 재정의하여 구현
                   </ListItem>
                   <ListItem>
                     Tailwind의 <Code>dark:</Code> 접두사 불필요 (CSS 변수가 자동
@@ -1457,15 +1464,16 @@ function toggleDarkMode(isDark: boolean) {
               </Card>
             </Subsection>
 
-            {/* Base Colors */}
+            {/* 베이스 색상 */}
             <Subsection level="h3">
-              <Heading level="h3" title="베이스 색상" />
-              <Body>
-                <Code>krds-white</Code>와 <Code>krds-black</Code>는 모드에 따라
-                자동으로 반전됩니다:
-              </Body>
+              <Heading level="h3" title="베이스 색상">
+                <Body>
+                  <Code>krds-white</Code>와 <Code>krds-black</Code>는 모드에
+                  따라 자동으로 반전됩니다.
+                </Body>
+              </Heading>
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Variable</TableHead>
@@ -1503,15 +1511,16 @@ function toggleDarkMode(isDark: boolean) {
               </Card>
             </Subsection>
 
-            {/* Tailwind Prefix */}
+            {/* krds- 접두사 */}
             <Subsection level="h3">
-              <Heading level="h3" title="krds- 접두사" />
-              <Body>
-                모든 KRDS 색상은 <Code>krds-</Code> 접두사를 사용하여 Tailwind
-                기본 색상과 구분됩니다:
-              </Body>
+              <Heading level="h3" title="krds- 접두사">
+                <Body>
+                  모든 KRDS 색상은 <Code>krds-</Code> 접두사를 사용하여 Tailwind
+                  기본 색상과 구분됩니다.
+                </Body>
+              </Heading>
 
-              <Table>
+              <Table small>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Type</TableHead>
@@ -1553,7 +1562,7 @@ function toggleDarkMode(isDark: boolean) {
 
       {/* Page Navigation */}
       <PageNavigation
-        next={{ title: 'Typography', href: '/design-system/typography' }}
+        next={{ title: 'Typography', href: '/docs/typography' }}
       />
     </>
   );

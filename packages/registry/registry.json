@@ -121,8 +121,14 @@
   "footer": {
     "name": "footer",
     "type": "ui",
-    "description": "KRDS 표준 푸터 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "description": "KRDS 표준 푸터 컴포넌트 (Tailwind CSS)",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-dialog",
+      "lucide-react"
+    ],
+    "registryDependencies": ["button", "list"],
     "files": [
       {
         "path": "components/footer.tsx",
@@ -154,14 +160,83 @@
       }
     ]
   },
-  "header": {
-    "name": "header",
+  "header-panel": {
+    "name": "header-panel",
     "type": "ui",
-    "description": "KRDS 표준 헤더 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge"],
+    "description": "PanelMenu가 포함된 KRDS 표준 헤더 컴포넌트 (Tailwind CSS)",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-visually-hidden",
+      "lucide-react"
+    ],
+    "registryDependencies": [
+      "container",
+      "logo",
+      "button",
+      "menu-panel",
+      "search-modal",
+      "dropdown-menu"
+    ],
     "files": [
       {
-        "path": "components/header.tsx",
+        "path": "components/header-with-panel-menu.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "header-navigation": {
+    "name": "header-navigation",
+    "type": "ui",
+    "description": "NavigationMenu가 포함된 KRDS 표준 헤더 컴포넌트 (Tailwind CSS)",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-visually-hidden",
+      "lucide-react"
+    ],
+    "registryDependencies": [
+      "container",
+      "logo",
+      "button",
+      "menu-navigation",
+      "search-modal",
+      "dropdown-menu"
+    ],
+    "files": [
+      {
+        "path": "components/header-with-navigation.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "header-mega": {
+    "name": "header-mega",
+    "type": "ui",
+    "description": "MegaMenu가 포함된 KRDS 표준 헤더 컴포넌트 (Tailwind CSS)",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-visually-hidden",
+      "lucide-react"
+    ],
+    "registryDependencies": [
+      "container",
+      "logo",
+      "button",
+      "menu-mega",
+      "search-modal",
+      "dropdown-menu"
+    ],
+    "files": [
+      {
+        "path": "components/header-with-megamenu.tsx",
         "type": "component"
       }
     ]
@@ -225,14 +300,56 @@
       }
     ]
   },
-  "mega-menu": {
-    "name": "mega-menu",
+  "logo": {
+    "name": "logo",
     "type": "ui",
-    "description": "메가 메뉴 컴포넌트",
+    "description": "로고 컴포넌트 (Header/Footer 공용)",
     "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/mega-menu.tsx",
+        "path": "components/logo.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "menu-mega": {
+    "name": "menu-mega",
+    "type": "ui",
+    "description": "메가 메뉴 컴포넌트 (순수 React + CSS hover 기반)",
+    "dependencies": ["clsx", "tailwind-merge"],
+    "files": [
+      {
+        "path": "components/menu-mega.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "menu-navigation": {
+    "name": "menu-navigation",
+    "type": "ui",
+    "description": "네비게이션 메뉴 컴포넌트 (Radix UI 기반)",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-navigation-menu",
+      "lucide-react"
+    ],
+    "files": [
+      {
+        "path": "components/menu-navigation.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "menu-panel": {
+    "name": "menu-panel",
+    "type": "ui",
+    "description": "KRDS 스타일 패널형 메뉴 컴포넌트 (클릭 기반, 3depth 지원)",
+    "dependencies": ["clsx", "tailwind-merge", "lucide-react"],
+    "registryDependencies": ["badge"],
+    "files": [
+      {
+        "path": "components/menu-panel.tsx",
         "type": "component"
       }
     ]
@@ -262,23 +379,6 @@
     "files": [
       {
         "path": "components/modal.tsx",
-        "type": "component"
-      }
-    ]
-  },
-  "navigation-menu": {
-    "name": "navigation-menu",
-    "type": "ui",
-    "description": "네비게이션 메뉴 컴포넌트",
-    "dependencies": [
-      "clsx",
-      "tailwind-merge",
-      "@radix-ui/react-navigation-menu",
-      "lucide-react"
-    ],
-    "files": [
-      {
-        "path": "components/navigation-menu.tsx",
         "type": "component"
       }
     ]
@@ -327,6 +427,25 @@
     "files": [
       {
         "path": "components/section-header.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "search-modal": {
+    "name": "search-modal",
+    "type": "ui",
+    "description": "KRDS 통합검색 모달 컴포넌트 (인기검색어, 최근검색어, 자동완성)",
+    "dependencies": [
+      "clsx",
+      "tailwind-merge",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-visually-hidden",
+      "lucide-react"
+    ],
+    "registryDependencies": ["button", "form-field"],
+    "files": [
+      {
+        "path": "components/search-modal.tsx",
         "type": "component"
       }
     ]
@@ -400,7 +519,7 @@
     "name": "table",
     "type": "ui",
     "description": "테이블 컴포넌트",
-    "dependencies": ["clsx", "tailwind-merge", "lucide-react"],
+    "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
         "path": "components/table.tsx",

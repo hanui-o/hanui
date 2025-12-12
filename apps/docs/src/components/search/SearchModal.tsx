@@ -12,6 +12,9 @@ import {
   Users,
   Sparkles,
 } from 'lucide-react';
+// Note: This component uses custom UI that doesn't benefit from HANUI components
+// The result buttons have complex internal structure (icon, content, key hint)
+// that would break if converted to Button component
 
 interface SearchModalProps {
   isOpen: boolean;

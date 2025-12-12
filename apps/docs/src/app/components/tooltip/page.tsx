@@ -68,7 +68,8 @@ export default function TooltipPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Tooltip, Button } from '@/components/hanui';
+              {`import { Tooltip } from '@/components/hanui/tooltip';
+import { Button } from '@/components/hanui/button';
 
 <Tooltip content="저장 버튼을 클릭하여 변경사항을 저장하세요">
   <Button>저장</Button>
@@ -91,7 +92,8 @@ export default function TooltipPage() {
             />
 
             <Code variant="block" language="tsx">
-              {`import { Tooltip, Button } from '@/components/hanui';
+              {`import { Tooltip } from '@/components/hanui/tooltip';
+import { Button } from '@/components/hanui/button';
 
 <Tooltip content="저장 버튼입니다">
   <Button>저장</Button>

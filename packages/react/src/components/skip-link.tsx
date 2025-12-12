@@ -133,7 +133,7 @@ export const SkipLink = React.forwardRef<HTMLElement, SkipLinkProps>(
 
     // visible: 항상 표시
     const visibleLinkClass =
-      'block w-full px-4 py-2 text-sm text-center ' +
+      'block w-full px-4 py-2 text-krds-body-sm text-center ' +
       'bg-krds-gray-90 text-white ' +
       'hover:bg-krds-gray-80 ' +
       'focus:outline-none focus:ring-2 focus:ring-krds-func-info focus:ring-offset-2';

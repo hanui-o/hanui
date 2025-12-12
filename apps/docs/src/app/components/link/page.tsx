@@ -69,7 +69,7 @@ export default function LinkPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Link } from '@/components/hanui'
+              {`import { Link } from '@/components/hanui/link'
 
 <Link href="/docs">기본 링크</Link>
 <Link variant="primary" href="/primary">Primary 파란색 링크</Link>
@@ -84,7 +84,7 @@ export default function LinkPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Link } from '@/components/hanui'
+              {`import { Link } from '@/components/hanui/link'
 
 <Link href="/components">컴포넌트 보기</Link>`}
             </Code>
@@ -559,9 +559,9 @@ hover:[color:var(--krds-color-light-primary-60)] /* hover 더 진한 Primary */
 .underline-offset-4            /* 밑줄 간격 */
 
 /* Size */
-.text-krds-body-sm             /* Small (15px) */
-.text-krds-body-md             /* Medium (17px) */
-.text-krds-body-lg             /* Large (19px) */
+.text-sm             /* Small (15px) */
+.text-base             /* Medium (17px) */
+.text-lg             /* Large (19px) */
 
 /* Accessibility */
 .focus-visible:ring-2          /* 포커스 링 */

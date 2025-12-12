@@ -1,11 +1,10 @@
 import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 
 /**
  * Utility function to merge class names
  *
- * Combines clsx for conditional classes and tailwind-merge for Tailwind class conflicts
- * Used throughout HANUI components to merge Tailwind classes
+ * Uses clsx for conditional classes
+ * Note: tailwind-merge removed due to conflicts with KRDS custom classes
  *
  * @param inputs - Class values to merge
  * @returns Merged class string
@@ -17,5 +16,5 @@ import { twMerge } from 'tailwind-merge';
  * ```
  */
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return clsx(inputs);
 }

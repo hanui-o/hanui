@@ -187,7 +187,10 @@ export const FormDescription = React.forwardRef<
     <p
       ref={ref}
       id={`${id}-description`}
-      className={cn('text-[13px] leading-[150%] text-gray-600', className)}
+      className={cn(
+        'text-krds-body-sm leading-[150%] text-gray-600',
+        className
+      )}
       {...props}
     >
       {children}
@@ -224,7 +227,7 @@ export const FormError = React.forwardRef<HTMLParagraphElement, FormErrorProps>(
         role="alert"
         aria-live="polite"
         className={cn(
-          'text-[13px] leading-[150%] text-red-600 font-medium',
+          'text-krds-body-sm leading-[150%] text-red-600 font-medium',
           className
         )}
         {...props}
@@ -267,7 +270,7 @@ export const FormMessage = React.forwardRef<
       role={error ? 'alert' : undefined}
       aria-live={error ? 'polite' : undefined}
       className={cn(
-        'text-[13px] leading-[150%]',
+        'text-krds-body-sm leading-[150%]',
         error ? 'text-red-600 font-medium' : 'text-gray-600',
         className
       )}

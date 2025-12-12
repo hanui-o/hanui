@@ -101,7 +101,7 @@ export default function DisplayPage() {
             </Card>
 
             <Code variant="block" language="tsx">
-              {`import { Display } from '@/components/hanui'
+              {`import { Display } from '@/components/hanui/display'
 
 // ✅ 올바른 사용
 <Display size="xl">환영합니다</Display>

@@ -223,7 +223,7 @@ export default function CenterPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Card', href: '/components/card' }}
+        prev={{ title: 'Carousel', href: '/components/carousel' }}
         next={{ title: 'Checkbox', href: '/components/checkbox' }}
       />
     </>

@@ -97,7 +97,7 @@ export default function GridPage() {
               description="Grid와 GridItem을 import하여 사용합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Grid, GridItem } from '@/components/hanui'
+              {`import { Grid, GridItem } from '@/components/hanui/grid'
 
 <Grid templateColumns="repeat(3, 1fr)" gap="6">
   <GridItem className="bg-krds-primary-10 h-10" />

@@ -198,7 +198,8 @@ toast({
               description="ToastProvider로 앱을 감싸고, useToast 훅으로 toast 함수를 호출합니다. Toaster 컴포넌트는 Toast를 렌더링합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { ToastProvider, Toaster, useToast, Button } from '@/components/hanui'
+              {`import { ToastProvider, Toaster, useToast } from '@/components/hanui/toast';
+import { Button } from '@/components/hanui/button';
 
 function App() {
   return (
@@ -243,7 +244,7 @@ function MyComponent() {
                 <ToastWithActionDemo />
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { ToastAction, useToast } from '@/components/hanui';
+                {`import { ToastAction, useToast } from '@/components/hanui/toast';
 
 const { toast } = useToast();
 

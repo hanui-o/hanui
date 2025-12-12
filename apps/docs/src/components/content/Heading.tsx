@@ -69,8 +69,8 @@ function getHeadingStyles(level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5'): string {
     h1: 'text-[28px] md:text-[40px]',
     h2: 'text-[24px] md:text-[32px]',
     h3: 'text-[22px] md:text-[24px]',
-    h4: 'text-[19px]',
-    h5: 'text-[17px]',
+    h4: 'text-krds-body-lg',
+    h5: 'text-krds-body-md',
   };
   return styles[level];
 }
@@ -145,7 +145,8 @@ export function Heading({
     getHeadingStyles(level)
   );
 
-  const descriptionClasses = 'text-krds-gray-70 leading-relaxed text-[17px]';
+  const descriptionClasses =
+    'text-krds-gray-70 leading-relaxed text-krds-body-md';
   const spacing = getSpacing(level);
 
   const badgeElement = badge && (

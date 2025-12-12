@@ -10,8 +10,8 @@ const getStartedNavigation = [
     title: 'Getting Started',
     items: [
       { title: 'Introduction', href: '/docs/introduction' },
-      { title: 'Installation', href: '/docs/installation' },
       { title: 'Quick Start', href: '/docs/quick-start' },
+      { title: 'Installation', href: '/docs/installation' },
     ],
   },
   {
@@ -19,9 +19,8 @@ const getStartedNavigation = [
     items: [
       { title: 'Colors', href: '/docs/colors' },
       { title: 'Typography', href: '/docs/typography' },
-      { title: 'Border Radius', href: '/docs/border-radius' },
       { title: 'Spacing', href: '/docs/spacing' },
-      { title: 'Breakpoints', href: '/docs/breakpoints' },
+      { title: 'Layout', href: '/docs/layout' },
     ],
   },
 ];
@@ -30,10 +29,11 @@ const designSystemNavigation = [
   {
     title: 'Design System',
     items: [
-      { title: 'Colors', href: '/design-system/colors' },
-      { title: 'Typography', href: '/design-system/typography' },
-      { title: 'Spacing', href: '/design-system/spacing' },
-      { title: 'Breakpoints', href: '/design-system/breakpoints' },
+      { title: 'Colors', href: '/docs/colors' },
+      { title: 'Typography', href: '/docs/typography' },
+      { title: 'Spacing', href: '/docs/spacing' },
+      { title: 'Border Radius', href: '/docs/border-radius' },
+      { title: 'Layout', href: '/docs/layout' },
     ],
   },
 ];
@@ -52,12 +52,19 @@ const componentsNavigation = [
       { title: 'Breadcrumb', href: '/components/breadcrumb' },
       { title: 'Button', href: '/components/button' },
       { title: 'Card', href: '/components/card' },
+      { title: 'Carousel', href: '/components/carousel', isNew: true },
       { title: 'Center', href: '/components/center' },
       { title: 'Checkbox', href: '/components/checkbox' },
       { title: 'Code', href: '/components/code' },
-      // { title: 'Combobox', href: '/components/combobox' },
       { title: 'Container', href: '/components/container' },
+      {
+        title: 'Critical Alerts',
+        href: '/components/critical-alerts',
+        isNew: true,
+      },
       { title: 'DataTable', href: '/components/data-table' },
+      { title: 'Date Input', href: '/components/date-input', isNew: true },
+      { title: 'Disclosure', href: '/components/disclosure', isNew: true },
       { title: 'Display', href: '/components/display' },
       { title: 'DropdownMenu', href: '/components/dropdown-menu' },
       { title: 'File Upload', href: '/components/file-upload' },
@@ -72,15 +79,13 @@ const componentsNavigation = [
       { title: 'In-page Navigation', href: '/components/in-page-navigation' },
       { title: 'Input', href: '/components/input' },
       { title: 'Label', href: '/components/label' },
-      { title: 'Link', href: '/components/link' },
       { title: 'List', href: '/components/list' },
-      { title: 'Main Menu', href: '/components/mainmenu' },
+      { title: 'Main Menu', href: '/components/main-menu' },
       { title: 'Masthead', href: '/components/masthead' },
       { title: 'Modal', href: '/components/modal' },
       { title: 'Pagination', href: '/components/pagination' },
       { title: 'Progress', href: '/components/progress' },
       { title: 'Radio', href: '/components/radio' },
-      // { title: 'Section', href: '/components/section' },
       {
         title: 'Section Heading System',
         href: '/components/section-heading-system',
@@ -93,11 +98,16 @@ const componentsNavigation = [
       { title: 'Slider', href: '/components/slider' },
       { title: 'Spinner', href: '/components/spinner' },
       { title: 'Stack', href: '/components/stack' },
-      // { title: 'Structured List', href: '/components/structured-list' },
+      {
+        title: 'Step Indicator',
+        href: '/components/step-indicator',
+        isNew: true,
+      },
       { title: 'Switch', href: '/components/switch' },
       { title: 'Tab Bars', href: '/components/tabbars' },
       { title: 'Table', href: '/components/table' },
       { title: 'Tabs', href: '/components/tabs' },
+      { title: 'Tag', href: '/components/tag', isNew: true },
       { title: 'Textarea', href: '/components/textarea' },
       { title: 'Toast', href: '/components/toast' },
       { title: 'Tooltip', href: '/components/tooltip' },
@@ -116,9 +126,15 @@ const templatesNavigation = [
   },
 ];
 
+type NavigationItem = {
+  title: string;
+  href: string;
+  isNew?: boolean;
+};
+
 type NavigationSection = {
   title: string;
-  items: { title: string; href: string }[];
+  items: NavigationItem[];
 };
 
 function SidebarSection({
@@ -141,13 +157,21 @@ function SidebarSection({
               <Link
                 href={item.href}
                 ref={isActive ? onActiveRef : undefined}
-                className={`block py-1 px-2 rounded-md transition-colors text-sm ${
+                className={`flex items-center gap-1.5 py-1 px-2 rounded-md transition-colors text-sm ${
                   isActive
                     ? 'bg-krds-primary-base text-white font-medium'
                     : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'
                 }`}
               >
                 {item.title}
+                {item.isNew && (
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      isActive ? 'bg-white' : 'bg-krds-primary-base'
+                    }`}
+                    aria-label="새로운 컴포넌트"
+                  />
+                )}
               </Link>
             </li>
           );

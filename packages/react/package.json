@@ -1,19 +1,34 @@
 {
   "name": "@hanui/react",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "KRDS 기반 공공 웹사이트용 React 컴포넌트 라이브러리 - Korean Government Design System (KRDS) based React component library for public web services",
   "keywords": [
     "react",
+    "react-components",
     "components",
     "ui",
+    "ui-library",
     "krds",
     "korea",
+    "korean",
     "design-system",
+    "design-tokens",
     "government",
     "public",
     "accessibility",
     "a11y",
-    "hanui"
+    "wcag",
+    "hanui",
+    "tailwindcss",
+    "tailwind",
+    "radix-ui",
+    "radix",
+    "typescript",
+    "shadcn",
+    "shadcn-ui",
+    "copy-paste",
+    "nextjs",
+    "next"
   ],
   "homepage": "https://hanui.io",
   "repository": {
@@ -88,12 +103,14 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-toast": "^1.2.15",
     "@radix-ui/react-tooltip": "^1.2.8",
+    "@radix-ui/react-visually-hidden": "^1.2.4",
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "lucide-react": "^0.553.0",
     "shiki": "^1.29.2",
+    "swiper": "^12.0.3",
     "tailwind-merge": "^3.4.0"
   }
 }

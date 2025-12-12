@@ -18,7 +18,7 @@ export function CopyButton({ text }: CopyButtonProps) {
   return (
     <CopyToClipboard text={text} onCopy={handleCopy}>
       <button
-        className="absolute top-3 right-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        className="absolute top-4 right-3 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         aria-label="Copy code"
       >
         {copied ? (

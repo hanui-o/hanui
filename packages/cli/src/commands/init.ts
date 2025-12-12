@@ -503,7 +503,7 @@ const TAILWIND_V4_THEME = `
   --color-krds-accent-95: var(--krds-color-light-accent-95);
 
   /* Font Family */
-  --font-sans: 'Pretendard GOV', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-sans: 'Pretendard GOV', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
   /* Font Sizes - KRDS Typography */
   --text-krds-body-xs: 13px;
@@ -840,9 +840,10 @@ export function cn(...inputs: ClassValue[]) {
 
       // 3. Create variables.css (KRDS 디자인 토큰)
       // cssPath 기준으로 styles 폴더 위치 결정
-      // 예: app/globals.css → styles/, src/app/globals.css → src/styles/
-      const cssDir = path.dirname(cssPath); // app 또는 src/app
-      const cssBaseDir = cssDir.startsWith('src/') ? 'src' : '';
+      // 예: app/globals.css → styles/, src/app/globals.css → src/styles/, src/index.css → src/styles/
+      const cssDir = path.dirname(cssPath); // app 또는 src/app 또는 src
+      const cssBaseDir =
+        cssDir === 'src' || cssDir.startsWith('src/') ? 'src' : '';
       const stylesDir = cssBaseDir
         ? path.join(cwd, cssBaseDir, 'styles')
         : path.join(cwd, 'styles');
@@ -859,12 +860,12 @@ export function cn(...inputs: ClassValue[]) {
 
         // v4: globals.css에 CSS 변수 import + @theme 블록 추가
         const globalsCssPath = path.join(cwd, cssPath);
-        // cssPath가 app/ 또는 src/app/ 안에 있으면 ../styles/
+        // cssPath가 app/ 또는 src/app/ 안에 있으면 ../styles/, 그 외에는 ./styles/
         const isInAppDir =
           cssPath.includes('/app/') || cssPath.startsWith('app/');
         const importPath = isInAppDir
           ? '../styles/variables.css'
-          : './variables.css';
+          : './styles/variables.css';
 
         if (fs.existsSync(globalsCssPath)) {
           let globalsContent = await fs.readFile(globalsCssPath, 'utf-8');
@@ -991,7 +992,7 @@ ${TAILWIND_V4_THEME}`;
             cssPath.includes('/app/') || cssPath.startsWith('app/');
           const importPath = isInAppDir
             ? '../styles/variables.css'
-            : './variables.css';
+            : './styles/variables.css';
 
           if (!globalsContent.includes('variables.css')) {
             globalsContent = `@import '${importPath}';\n\n${globalsContent}`;
@@ -1004,7 +1005,7 @@ ${TAILWIND_V4_THEME}`;
             cssPath.includes('/app/') || cssPath.startsWith('app/');
           const importPath = isInAppDir
             ? '../styles/variables.css'
-            : './variables.css';
+            : './styles/variables.css';
           const newGlobalsContent = `@import '${importPath}';
 
 @tailwind base;

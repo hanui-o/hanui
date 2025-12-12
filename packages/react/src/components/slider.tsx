@@ -192,13 +192,13 @@ const Slider = React.forwardRef<
             {label && (
               <label
                 id={labelId}
-                className="text-sm font-medium text-krds-gray-70"
+                className="text-krds-body-sm font-medium text-krds-gray-70"
               >
                 {label}
               </label>
             )}
             {showValue && (
-              <span className="text-sm text-krds-gray-50">
+              <span className="text-krds-body-sm text-krds-gray-50">
                 {isRange
                   ? `${formatValue(currentValue[0])} - ${formatValue(currentValue[currentValue.length - 1])}`
                   : formatValue(currentValue[0])}

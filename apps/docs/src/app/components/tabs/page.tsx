@@ -111,7 +111,7 @@ export default function TabsPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/hanui';
+              {`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/hanui/tabs';
 
 <Tabs defaultValue="tab1">
   <TabsList>

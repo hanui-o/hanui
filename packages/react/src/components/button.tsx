@@ -20,7 +20,7 @@ const isDev = () => {
 
 const buttonVariants = cva(
   // Button 스타일 variants (cva로 타입 안전한 variant 관리)
-  'inline-flex items-center justify-center gap-2 min-w-20 rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
+  'inline-flex items-center justify-center gap-2 min-w-20 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer',
   {
     variants: {
       variant: {
@@ -46,12 +46,12 @@ const buttonVariants = cva(
       },
       size: {
         // 크기 variants (xs~xl, icon)
-        xs: 'h-8 px-3 [font-size:var(--krds-size-body-sm)] leading-[var(--krds-leading-body)]',
-        sm: 'h-10 px-4 [font-size:var(--krds-size-body-sm)] leading-[var(--krds-leading-body)]',
-        md: 'h-12 px-5 [font-size:var(--krds-size-body-md)] leading-[var(--krds-leading-body)]',
-        lg: 'h-14 px-6 [font-size:var(--krds-size-body-lg)] leading-[var(--krds-leading-body)]',
-        xl: 'h-16 px-8 [font-size:var(--krds-size-body-lg)] leading-[var(--krds-leading-body)]',
-        icon: 'h-10 w-10',
+        xs: 'h-8 px-3 [font-size:var(--krds-body-sm)] leading-[var(--krds-leading-body)]',
+        sm: 'h-10 px-4 [font-size:var(--krds-body-sm)] leading-[var(--krds-leading-body)]',
+        md: 'h-12 px-5 [font-size:var(--krds-body-md)] leading-[var(--krds-leading-body)]',
+        lg: 'h-14 px-6 [font-size:var(--krds-body-lg)] leading-[var(--krds-leading-body)]',
+        xl: 'h-16 px-8 [font-size:var(--krds-body-lg)] leading-[var(--krds-leading-body)]',
+        icon: 'h-12 w-12 !min-w-12',
       },
     },
     defaultVariants: {

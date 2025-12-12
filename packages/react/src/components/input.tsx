@@ -53,14 +53,14 @@ const inputVariants = cva(
         md: [
           'h-12',
           'px-4',
-          'text-[17px]',
+          'text-krds-body-md',
           'rounded-md',
           'leading-[150%]',
         ].join(' '), // 48px - KRDS body-md (기본)
         lg: [
           'h-14',
           'px-4',
-          'text-[19px]',
+          'text-krds-body-lg',
           'rounded-lg',
           'leading-[150%]',
         ].join(' '), // 56px - KRDS body-lg

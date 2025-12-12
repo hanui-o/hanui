@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { Krona_One } from 'next/font/google';
+import Script from 'next/script';
 import type { ReactNode } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { StructuredData } from '@/components/StructuredData';
 import './globals.css';
+
+const GTM_ID = 'GTM-MLGSBMTX';
 
 const kronaOne = Krona_One({
   subsets: ['latin'],
@@ -28,7 +31,7 @@ export const metadata: Metadata = {
     'Korean Design System',
   ],
   authors: [{ name: 'odada-o', url: 'https://github.com/odada-o' }],
-  creator: 'odada-o',
+  creator: '오드오드',
   publisher: 'HANUI',
   robots: {
     index: true,
@@ -68,10 +71,13 @@ export const metadata: Metadata = {
     description:
       'KRDS를 준수하는 공공 웹사이트용 React 컴포넌트 라이브러리. 접근성 AA 등급, TypeScript 지원.',
     images: ['/og-image.png'],
-    creator: '@odada_o',
+    creator: '@oddodd',
   },
   verification: {
-    google: 'google-site-verification-code',
+    google: 'd-lKf12TX-T8zDSGDsHe18M0zG7V5kW-e6F8U',
+    other: {
+      'naver-site-verification': '11f6b3d109de4b6b0b771e75d431cd0e2b1b39c8',
+    },
   },
   metadataBase: new URL('https://hanui.io'),
 };
@@ -91,8 +97,30 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov.min.css"
         />
         <StructuredData />
+        {/* Google Tag Manager */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`,
+          }}
+        />
       </head>
       <body className={`${kronaOne.variable} antialiased`}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            title="Google Tag Manager"
+          />
+        </noscript>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

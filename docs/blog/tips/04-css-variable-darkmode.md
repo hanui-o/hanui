@@ -1,0 +1,307 @@
+# CSS 변수로 다크모드 구현하기
+
+다크모드 구현할 때 어떻게 하세요?
+
+```css
+/* 이렇게요? */
+.dark .card {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+
+.light .card {
+  background: #ffffff;
+  color: #1a1a1a;
+}
+```
+
+컴포넌트마다 `.dark` 분기 쓰면 CSS가 2배로 늘어요.
+
+CSS 변수 쓰면 훨씬 깔끔해요.
+
+## 기본 구조
+
+```css
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-border: #e5e5e5;
+}
+
+.dark {
+  --color-bg: #1a1a1a;
+  --color-text: #ffffff;
+  --color-border: #333333;
+}
+```
+
+```css
+.card {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+```
+
+`.card` 스타일은 하나만 쓰면 돼요. 모드 전환하면 변수값만 바뀌니까.
+
+## 시맨틱 토큰
+
+색상 이름을 용도로 지으면 더 좋아요:
+
+```css
+:root {
+  /* 라이트 모드 */
+  --color-surface: #ffffff; /* 카드, 모달 배경 */
+  --color-background: #f5f5f5; /* 페이지 배경 */
+  --color-text-primary: #1a1a1a; /* 기본 텍스트 */
+  --color-text-secondary: #666666; /* 보조 텍스트 */
+  --color-border: #e5e5e5;
+}
+
+.dark {
+  --color-surface: #262626;
+  --color-background: #1a1a1a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3a3a3;
+  --color-border: #404040;
+}
+```
+
+`--color-gray-100` 이런 식보다 `--color-surface` 이런 게 나아요. 쓸 때 "이 색이 뭐였지?" 안 찾아봐도 돼요.
+
+## Tailwind에서 쓰기
+
+```ts
+// tailwind.config.ts
+export default {
+  theme: {
+    extend: {
+      colors: {
+        surface: 'var(--color-surface)',
+        background: 'var(--color-background)',
+        'text-primary': 'var(--color-text-primary)',
+        'text-secondary': 'var(--color-text-secondary)',
+        border: 'var(--color-border)',
+      },
+    },
+  },
+};
+```
+
+```tsx
+<div className="bg-surface text-text-primary border-border">
+  <p className="text-text-secondary">보조 텍스트</p>
+</div>
+```
+
+`dark:` prefix 안 써도 자동으로 바뀌어요.
+
+## 모드 전환 로직
+
+```tsx
+// theme-toggle.tsx
+function ThemeToggle() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // 시스템 설정 감지
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+    // 저장된 설정 확인
+    const saved = localStorage.getItem('theme');
+
+    if (saved === 'dark' || (!saved && prefersDark)) {
+      document.documentElement.classList.add('dark');
+      setIsDark(true);
+    }
+  }, []);
+
+  function toggle() {
+    const newValue = !isDark;
+    setIsDark(newValue);
+
+    if (newValue) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  return (
+    <button onClick={toggle}>{isDark ? '라이트 모드' : '다크 모드'}</button>
+  );
+}
+```
+
+핵심은 `document.documentElement.classList`에 `dark` 추가/제거하는 거예요.
+
+## 깜빡임 방지
+
+SSR이나 Next.js 쓸 때 페이지 로드시 깜빡이는 문제 있어요. 해결법:
+
+```html
+<!-- layout.tsx 또는 _document.tsx -->
+<head>
+  <script dangerouslySetInnerHTML={{
+    __html: `
+      (function() {
+        var theme = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    `
+  }} />
+</head>
+```
+
+이 스크립트가 렌더링 전에 실행돼서 깜빡임 없어요.
+
+## 색상 팔레트 만들기
+
+다크모드 색상은 그냥 반전하면 안 돼요:
+
+```
+❌ 라이트: #ffffff → 다크: #000000
+   너무 대비가 강해서 눈 아파요
+
+✅ 라이트: #ffffff → 다크: #1a1a1a
+   약간 밝은 검정이 편해요
+```
+
+텍스트도 마찬가지:
+
+```
+❌ 라이트: #000000 → 다크: #ffffff
+   순수 흰색은 눈 피로
+
+✅ 라이트: #1a1a1a → 다크: #f5f5f5
+   약간 어두운 흰색이 나아요
+```
+
+## 실전 색상 세트
+
+검증된 색상 조합이에요:
+
+```css
+:root {
+  /* Surface */
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+
+  /* Background */
+  --color-background: #f5f5f5;
+
+  /* Text */
+  --color-text-primary: #171717;
+  --color-text-secondary: #525252;
+  --color-text-tertiary: #a3a3a3;
+
+  /* Border */
+  --color-border: #e5e5e5;
+  --color-border-strong: #d4d4d4;
+
+  /* Primary */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+}
+
+.dark {
+  --color-surface: #262626;
+  --color-surface-elevated: #333333;
+
+  --color-background: #171717;
+
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a3a3a3;
+  --color-text-tertiary: #737373;
+
+  --color-border: #404040;
+  --color-border-strong: #525252;
+
+  --color-primary: #60a5fa;
+  --color-primary-hover: #3b82f6;
+}
+```
+
+Primary 색상은 다크모드에서 더 밝게 해야 눈에 잘 띄어요.
+
+## 주의할 점
+
+### 1. 이미지
+
+```css
+/* 다크모드에서 로고 반전 */
+.dark .logo {
+  filter: invert(1);
+}
+
+/* 또는 이미지 2개 준비 */
+```
+
+### 2. 그림자
+
+```css
+:root {
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  /* 다크모드에서 그림자 더 진하게 */
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+```
+
+### 3. 색상 하드코딩 금지
+
+```tsx
+/* ❌ 이러면 다크모드 안 먹어요 */
+<div className="bg-white text-black">
+
+/* ✅ 변수 사용 */
+<div className="bg-surface text-text-primary">
+```
+
+## KRDS에서의 다크모드
+
+공공기관 프로젝트라면 KRDS 색상 체계를 따라야 해요.
+
+[HANUI](https://hanui.io)는 KRDS 기준 다크모드가 설정되어 있어요:
+
+```css
+/* HANUI variables.css에 포함 */
+:root {
+  --krds-gray-surface: var(--krds-color-light-gray-0);
+  --krds-gray-text: var(--krds-color-light-gray-90);
+}
+
+.dark {
+  --krds-gray-surface: var(--krds-color-light-gray-95);
+  --krds-gray-text: var(--krds-color-light-gray-10);
+}
+```
+
+```tsx
+<div className="bg-krds-gray-surface text-krds-gray-text">
+  KRDS 다크모드 자동 적용
+</div>
+```
+
+## 정리
+
+1. CSS 변수로 색상 정의
+2. `.dark` 클래스에서 변수값만 변경
+3. 컴포넌트는 변수만 참조
+4. 시맨틱 이름 사용 (`surface`, `text-primary` 등)
+5. SSR 깜빡임 방지 스크립트 추가
+
+이렇게 하면 다크모드 유지보수가 훨씬 편해져요.
+
+---
+
+**태그**: #CSS #다크모드 #CSS변수 #Tailwind #React #프론트엔드

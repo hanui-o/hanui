@@ -88,7 +88,7 @@ export default function FlexPage() {
               description="Flex를 import하여 사용합니다. direction, align, justify, gap 등의 prop으로 레이아웃을 제어합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Flex } from '@/components/hanui'
+              {`import { Flex } from '@/components/hanui/flex'
 
 <Flex align="center" justify="between">
   <div>Logo</div>

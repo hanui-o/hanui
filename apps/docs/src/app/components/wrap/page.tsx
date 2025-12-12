@@ -77,7 +77,7 @@ export default function WrapPage() {
               </Wrap>
             </ComponentPreview>
             <Code variant="block" language="tsx">
-              {`import { Wrap } from '@/components/hanui';
+              {`import { Wrap } from '@/components/hanui/wrap';
 
 <Wrap gap="md">
   <div>Item 1</div>
@@ -103,7 +103,7 @@ export default function WrapPage() {
               description="Wrap 컴포넌트를 import하고 gap prop으로 간격을 설정합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Wrap } from '@/components/hanui';
+              {`import { Wrap } from '@/components/hanui/wrap';
 
 <Wrap gap="md">
   <div>Item 1</div>

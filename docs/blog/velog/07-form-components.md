@@ -1,0 +1,308 @@
+# Form 컴포넌트 총정리 - Input부터 Select까지
+
+폼 만들 때 제일 귀찮은 거 뭐예요?
+
+저는 label이랑 input 연결하는 거요. htmlFor 쓰고, id 만들고, aria-describedby 연결하고... 매번 같은 걸 반복해요.
+
+에러 메시지도 그래요. 에러 나면 빨갛게 바꾸고, aria-invalid 넣고, role="alert" 넣고. 빼먹으면 검수에서 걸려요.
+
+HANUI는 이거 자동으로 해줘요.
+
+## FormField - 모든 걸 연결해주는 컨테이너
+
+```tsx
+import { FormField, FormLabel, FormError, FormHelperText, Input } from 'hanui';
+
+<FormField id="email" required status="error">
+  <FormLabel>이메일</FormLabel>
+  <Input type="email" placeholder="example@email.com" />
+  <FormError>이메일 형식이 올바르지 않습니다</FormError>
+</FormField>;
+```
+
+이게 렌더링되면:
+
+```html
+<div class="flex flex-col gap-2">
+  <label for=":r1:" class="...">
+    이메일
+    <span aria-hidden="true">*</span>
+    <span class="sr-only">(필수)</span>
+  </label>
+  <input
+    id=":r1:"
+    aria-invalid="true"
+    aria-required="true"
+    aria-describedby=":r1:-error :r1:-helper"
+    ...
+  />
+  <div id=":r1:-error" role="alert" aria-live="polite">
+    이메일 형식이 올바르지 않습니다
+  </div>
+</div>
+```
+
+React.useId()로 유니크 ID 자동 생성하고, label과 input 연결하고, 에러 메시지에 role="alert" 넣고. 다 알아서 해요.
+
+## status 속성 - 에러/성공/정보
+
+```tsx
+// 에러 상태
+<FormField status="error">
+  <FormLabel>비밀번호</FormLabel>
+  <Input type="password" />
+  <FormError>8자 이상 입력하세요</FormError>
+</FormField>
+
+// 성공 상태
+<FormField status="success">
+  <FormLabel>닉네임</FormLabel>
+  <Input />
+  <FormHelperText>사용 가능한 닉네임입니다</FormHelperText>
+</FormField>
+
+// 정보 상태
+<FormField status="info">
+  <FormLabel>추천인 코드</FormLabel>
+  <Input />
+  <FormHelperText>선택사항입니다</FormHelperText>
+</FormField>
+```
+
+status에 따라 색상이 자동으로 바뀌어요:
+
+- `error`: 빨강 + X 아이콘
+- `success`: 초록 + 체크 아이콘
+- `info`: 파랑 + i 아이콘
+
+## Input - 사이즈, variant, 기능들
+
+### 사이즈
+
+```tsx
+<Input size="sm" /> // 40px
+<Input size="md" /> // 48px (기본)
+<Input size="lg" /> // 56px
+```
+
+KRDS 기준이에요. 공공기관 UI는 보통 lg 많이 써요.
+
+### variant
+
+```tsx
+<Input variant="default" /> // 테두리 있음 (기본)
+<Input variant="filled" />  // 배경색 있음
+```
+
+### clearable - 지우기 버튼
+
+```tsx
+<Input clearable onClear={() => setValue('')} />
+```
+
+값이 있으면 X 버튼이 생겨요. 모바일에서 유용해요.
+
+### 비밀번호 토글
+
+```tsx
+<Input type="password" />
+```
+
+type="password"면 눈 아이콘이 자동으로 붙어요. 클릭하면 비밀번호 보이고 안 보이고.
+
+### addon
+
+```tsx
+<Input
+  leftAddon={<SearchIcon className="w-5 h-5" />}
+  placeholder="검색어 입력"
+/>
+
+<Input
+  rightAddon={<span className="text-krds-gray-50">원</span>}
+  type="number"
+/>
+```
+
+아이콘이나 단위 같은 거 붙일 때 써요.
+
+## Select - 드롭다운
+
+```tsx
+import { Select } from 'hanui';
+
+const cities = [
+  { value: 'seoul', label: '서울특별시' },
+  { value: 'busan', label: '부산광역시' },
+  { value: 'daegu', label: '대구광역시' },
+];
+
+<Select
+  options={cities}
+  value={city}
+  onChange={setCity}
+  placeholder="도시 선택"
+/>;
+```
+
+Radix UI 기반이라 키보드 네비게이션, 스크린리더 다 돼요.
+
+### FormField와 함께
+
+```tsx
+<FormField id="city" required status={errors.city ? 'error' : undefined}>
+  <FormLabel>거주 도시</FormLabel>
+  <Select options={cities} value={city} onChange={setCity} />
+  {errors.city && <FormError>{errors.city}</FormError>}
+</FormField>
+```
+
+FormField 안에 넣으면 id, status, disabled 다 자동 연결돼요.
+
+## 실전 예제 - 회원가입 폼
+
+```tsx
+import {
+  FormField,
+  FormLabel,
+  FormError,
+  FormHelperText,
+  Input,
+  Select,
+  Button,
+} from 'hanui';
+
+function SignupForm() {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+    name: '',
+    city: '',
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // validation...
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <FormField
+        id="email"
+        required
+        status={errors.email ? 'error' : undefined}
+      >
+        <FormLabel>이메일</FormLabel>
+        <Input
+          type="email"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          placeholder="example@email.com"
+        />
+        {errors.email && <FormError>{errors.email}</FormError>}
+      </FormField>
+
+      <FormField
+        id="password"
+        required
+        status={errors.password ? 'error' : undefined}
+      >
+        <FormLabel>비밀번호</FormLabel>
+        <Input
+          type="password"
+          value={form.password}
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+        />
+        <FormHelperText>8자 이상, 영문/숫자 포함</FormHelperText>
+        {errors.password && <FormError>{errors.password}</FormError>}
+      </FormField>
+
+      <FormField id="name" required>
+        <FormLabel>이름</FormLabel>
+        <Input
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          clearable
+          onClear={() => setForm({ ...form, name: '' })}
+        />
+      </FormField>
+
+      <FormField id="city">
+        <FormLabel>거주 도시</FormLabel>
+        <Select
+          options={[
+            { value: 'seoul', label: '서울특별시' },
+            { value: 'busan', label: '부산광역시' },
+            { value: 'daegu', label: '대구광역시' },
+          ]}
+          value={form.city}
+          onChange={(value) => setForm({ ...form, city: value })}
+          placeholder="선택하세요"
+        />
+      </FormField>
+
+      <Button type="submit" className="w-full">
+        가입하기
+      </Button>
+    </form>
+  );
+}
+```
+
+## react-hook-form과 연동
+
+```tsx
+import { useForm } from 'react-hook-form';
+import { FormField, FormLabel, FormError, Input, Button } from 'hanui';
+
+function LoginForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormField
+        id="email"
+        required
+        status={errors.email ? 'error' : undefined}
+      >
+        <FormLabel>이메일</FormLabel>
+        <Input
+          type="email"
+          {...register('email', { required: '이메일을 입력하세요' })}
+        />
+        {errors.email && <FormError>{errors.email.message}</FormError>}
+      </FormField>
+
+      <Button type="submit">로그인</Button>
+    </form>
+  );
+}
+```
+
+register() 그대로 쓰면 돼요.
+
+## 정리
+
+| 컴포넌트       | 역할                           |
+| -------------- | ------------------------------ |
+| FormField      | 컨테이너, Context 제공         |
+| FormLabel      | 레이블, htmlFor 자동 연결      |
+| FormError      | 에러 메시지, role="alert" 자동 |
+| FormHelperText | 도움말, 상태별 색상 자동       |
+| Input          | 입력 필드, 다양한 기능         |
+| Select         | 드롭다운, Radix 기반           |
+
+접근성 속성 신경 안 써도 돼요. FormField로 감싸면 다 알아서 연결돼요.
+
+## 설치
+
+```bash
+npx hanui add form-field input select
+```
+
+https://hanui.io/components/form-field

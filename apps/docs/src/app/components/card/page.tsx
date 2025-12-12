@@ -139,7 +139,7 @@ export default function CardPage() {
                         가장 기본적인 카드 스타일입니다. 테두리만 있고 그림자나
                         배경색이 없어 깔끔한 느낌을 줍니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         일반적인 콘텐츠 그룹화에 적합합니다.
                       </p>
                     </CardBody>
@@ -154,7 +154,7 @@ export default function CardPage() {
                         은은한 그림자가 있는 카드입니다. 적당한 깊이감을
                         표현하여 콘텐츠를 돋보이게 합니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         중요한 정보를 강조할 때 사용합니다.
                       </p>
                     </CardBody>
@@ -169,7 +169,7 @@ export default function CardPage() {
                         배경색이 있는 카드입니다. 부드러운 배경색으로 콘텐츠
                         영역을 명확히 구분합니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         섹션 구분이 필요할 때 유용합니다.
                       </p>
                     </CardBody>
@@ -184,7 +184,7 @@ export default function CardPage() {
                         강한 그림자로 강조된 카드입니다. 높은 깊이감으로 시선을
                         집중시킵니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         가장 중요한 콘텐츠를 표시할 때 사용합니다.
                       </p>
                     </CardBody>
@@ -229,7 +229,7 @@ export default function CardPage() {
                         일반적인 정보나 도움말을 제공할 때 사용합니다.
                         사용자에게 참고 사항을 안내하는데 적합합니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         예: 시스템 공지, 기능 안내
                       </p>
                     </CardBody>
@@ -244,7 +244,7 @@ export default function CardPage() {
                         성공적인 작업 완료를 표시합니다. 긍정적인 결과를
                         사용자에게 알릴 때 사용합니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         예: 저장 성공, 전송 완료
                       </p>
                     </CardBody>
@@ -259,7 +259,7 @@ export default function CardPage() {
                         주의가 필요한 정보를 표시합니다. 사용자의 주의를
                         환기시켜야 하는 상황에 사용합니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         예: 삭제 전 확인, 중요 변경사항
                       </p>
                     </CardBody>
@@ -274,7 +274,7 @@ export default function CardPage() {
                         오류나 실패 상태를 표시합니다. 문제가 발생했음을 명확히
                         전달할 때 사용합니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         예: 검증 실패, 서버 오류
                       </p>
                     </CardBody>
@@ -443,7 +443,7 @@ export default function CardPage() {
                         대시보드를 통해 비즈니스 지표를 실시간으로 모니터링하고
                         데이터 기반 의사결정을 내릴 수 있습니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         차트, 그래프, 테이블 등 다양한 형태로 데이터를
                         시각화합니다.
                       </p>
@@ -468,7 +468,7 @@ export default function CardPage() {
                         설정한 주기에 따라 자동으로 보고서를 생성하고 관련자에게
                         이메일로 발송합니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         PDF, Excel 등 다양한 형식으로 내보내기가 가능합니다.
                       </p>
                     </CardBody>
@@ -492,7 +492,7 @@ export default function CardPage() {
                         팀원들과 실시간으로 소통하고 작업을 공유하며 프로젝트를
                         효율적으로 관리할 수 있습니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         채팅, 화상회의, 파일 공유 등 다양한 협업 기능을
                         제공합니다.
                       </p>
@@ -517,7 +517,7 @@ export default function CardPage() {
                         사용자 권한 관리, 접근 로그 추적, 보안 정책 설정 등을
                         통해 시스템을 안전하게 보호합니다.
                       </p>
-                      <p className="text-[13px] text-krds-gray-60">
+                      <p className="text-krds-body-sm text-krds-gray-60">
                         2단계 인증, IP 화이트리스트, 암호화 등 다양한 보안
                         기능을 제공합니다.
                       </p>
@@ -694,7 +694,7 @@ export default function CardPage() {
 
       <PageNavigation
         prev={{ title: 'Button', href: '/components/button' }}
-        next={{ title: 'Center', href: '/components/center' }}
+        next={{ title: 'Carousel', href: '/components/carousel' }}
       />
     </>
   );

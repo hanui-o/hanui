@@ -85,7 +85,9 @@ export const add = new Command()
 
       // Determine components path from hanui.json or options
       let componentsPath = options.path;
+      let componentsAlias = '@/components/hanui'; // Default alias
       if (hanuiConfig?.aliases?.components) {
+        componentsAlias = hanuiConfig.aliases.components;
         // Convert alias like "@/components/hanui" to "src/components/hanui"
         componentsPath = hanuiConfig.aliases.components
           .replace(/^@\//, 'src/')
@@ -117,6 +119,14 @@ export const add = new Command()
         }
 
         selectedComponents = response.components;
+      }
+
+      // Handle "all" keyword - install all available components
+      if (selectedComponents.length === 1 && selectedComponents[0] === 'all') {
+        selectedComponents = Object.keys(registry);
+        logger.info(
+          `Installing all ${selectedComponents.length} components...`
+        );
       }
 
       // Validate components
@@ -275,9 +285,17 @@ export const add = new Command()
           }
 
           // Transform imports to use alias paths
+          // Handle both ../lib/utils and ../../lib/utils patterns
           content = content.replace(
-            /from ['"]\.\.\/\.\.\/lib\/utils['"]/g,
+            /from ['"](\.\.\/)+lib\/utils['"]/g,
             "from '@/lib/utils'"
+          );
+
+          // Transform relative component imports (./component-name) to alias paths
+          // e.g., from './button' -> from '@/components/hanui/button'
+          content = content.replace(
+            /from ['"]\.\/([a-z][a-z0-9-]*)['"]/g,
+            `from '${componentsAlias}/$1'`
           );
 
           // Write file

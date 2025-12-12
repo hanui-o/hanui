@@ -2,9 +2,9 @@
 
 # HANUI
 
-### KRDS 컴포넌트, 그냥 가져다 쓰세요
+### Copy-paste React components for Korean Government Design System (KRDS)
 
-KRDS 2.2 표준, 접근성은 이미 챙겼습니다
+**shadcn/ui style** component library with KRDS 2.2 compliance and accessibility built-in
 
 <br />
 
@@ -12,11 +12,47 @@ KRDS 2.2 표준, 접근성은 이미 챙겼습니다
 [![license](https://img.shields.io/npm/l/@hanui/react.svg?style=flat-square)](./LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/hanui-o/hanui?style=flat-square)](https://github.com/hanui-o/hanui/stargazers)
 
-[문서](https://hanui.io) · [컴포넌트](https://hanui.io/components) · [시작하기](https://hanui.io/docs/quick-start)
+[Documentation](https://hanui.io) · [Components](https://hanui.io/components) · [Quick Start](https://hanui.io/docs/quick-start)
+
+</div>
 
 <br />
 
-<img src="https://hanui.io/og-image.png" alt="HANUI Preview" width="600" />
+## What is HANUI?
+
+HANUI is a React component library that implements **KRDS (Korean Government Design System)**. Like [shadcn/ui](https://ui.shadcn.com), components are copied into your project - you own the code.
+
+```bash
+npx hanui init
+npx hanui add button input modal
+```
+
+**Built with:**
+
+- **React 18+** + **TypeScript**
+- **Tailwind CSS** for styling
+- **Radix UI** for accessible primitives
+- **class-variance-authority** for type-safe variants
+
+**Features:**
+
+- KRDS 2.2 design tokens (colors, typography, spacing)
+- KWCAG 2.2 / WCAG 2.1 AA accessibility
+- 55+ production-ready components
+- Dark mode support
+- Responsive typography (mobile ↔ desktop)
+
+<br />
+
+---
+
+<br />
+
+<div align="center">
+
+### KRDS 컴포넌트, 그냥 가져다 쓰세요
+
+KRDS 2.2 표준, 접근성은 이미 챙겼습니다
 
 </div>
 
@@ -149,7 +185,8 @@ HANUI는 오픈소스입니다. 기여를 환영합니다!
 ## 커뮤니티
 
 - [GitHub Discussions](https://github.com/hanui-o/hanui/discussions)
-- [개발 블로그](https://velog.io/@hanui/)
+- [Dev Blog](https://dev.to/hanui)
+- [Velog (한국어)](https://velog.io/@hanui/)
 - Email: odada@oddodd.io
 
 <br />
@@ -162,8 +199,8 @@ MIT © [hanui-o](https://github.com/hanui-o)
 
 <div align="center">
 
-**HANUI로 더 나은 공공 웹을 만들어가요 🇰🇷**
+**Build better public websites with HANUI 🇰🇷**
 
-[시작하기](https://hanui.io/docs/quick-start) · [컴포넌트](https://hanui.io/components) · [Star ⭐](https://github.com/hanui-o/hanui)
+[Get Started](https://hanui.io/docs/quick-start) · [Components](https://hanui.io/components) · [Star ⭐](https://github.com/hanui-o/hanui)
 
 </div>

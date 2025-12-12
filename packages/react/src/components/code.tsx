@@ -68,7 +68,7 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
       // Block variant (Syntax highlighting 적용)
       if (!html) {
         return (
-          <div className={cn('relative group', className)}>
+          <div className={cn('relative group bg-[#24292e]', className)}>
             <div className="overflow-x-auto rounded-lg bg-krds-gray-90 p-5">
               <div className="animate-pulse">
                 <div className="h-4 bg-krds-gray-70 rounded w-3/4 mb-2"></div>
@@ -80,11 +80,11 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
       }
 
       return (
-        <div className={cn('relative group', className)}>
+        <div className={cn('relative group bg-[#24292e]', className)}>
           {fileName && (
             <div className="flex items-center gap-2 px-4 py-2 bg-krds-gray-90 border-b border-krds-gray-70 rounded-t-lg">
               <File className="w-3.5 h-3.5 text-krds-gray-40" />
-              <span className="text-xs text-krds-gray-40 font-mono">
+              <span className="text-krds-body-xs text-krds-gray-40 font-mono">
                 {fileName}
               </span>
             </div>
@@ -93,7 +93,7 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
             <button
               onClick={handleCopy}
               className={cn(
-                'absolute top-3 right-3 p-2 rounded-md transition-all z-10',
+                'absolute top-4 right-3 p-2 rounded-md transition-all z-10',
                 'bg-krds-gray-70 hover:bg-krds-gray-60',
                 'text-krds-gray-10 opacity-0 group-hover:opacity-100'
               )}
@@ -108,8 +108,11 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
             <div
               className={cn(
                 'overflow-x-auto',
+                // 줄 번호가 없을 때만 줄바꿈 적용 (줄 번호 있으면 가로 스크롤 유지)
+                !showLineNumbers &&
+                  '[&_pre]:whitespace-pre-wrap [&_pre]:break-words',
                 fileName ? 'rounded-b-lg' : 'rounded-lg',
-                showLineNumbers ? 'code-with-line-numbers' : ''
+                showLineNumbers && 'code-with-line-numbers'
               )}
               dangerouslySetInnerHTML={{ __html: html }}
             />
@@ -121,11 +124,11 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
     if (variant === 'block') {
       // Block variant (단순, Syntax highlighting 없음)
       return (
-        <div className="relative group">
+        <div className="relative group bg-[#24292e]">
           <pre
             ref={ref as React.Ref<HTMLPreElement>}
             className={cn(
-              'font-mono bg-krds-primary-5 rounded-lg p-4 overflow-x-auto',
+              'font-mono bg-krds-primary-5 rounded-lg p-4 whitespace-pre-wrap break-words',
               'text-krds-primary-70 border border-krds-primary-20',
               className
             )}
@@ -136,7 +139,7 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
           <button
             onClick={handleCopy}
             className={cn(
-              'absolute top-3 right-3 p-2 rounded-md transition-all z-10',
+              'absolute top-4 right-3 p-2 rounded-md transition-all z-10',
               'bg-krds-primary-10 hover:bg-krds-primary-20 border border-krds-primary-30',
               'text-krds-primary-70 opacity-0 group-hover:opacity-100'
             )}

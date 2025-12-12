@@ -26,6 +26,14 @@ export default defineConfig({
         'next/link',
         '@radix-ui/react-dropdown-menu',
         '@radix-ui/react-navigation-menu',
+        'swiper',
+        'swiper/react',
+        'swiper/modules',
+        'swiper/css',
+        'swiper/css/navigation',
+        'swiper/css/pagination',
+        'swiper/css/thumbs',
+        'swiper/css/effect-fade',
       ],
       output: {
         banner: '"use client";',
@@ -36,7 +44,7 @@ export default defineConfig({
           'next/link': 'NextLink',
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'styles.css';
+          if (assetInfo.name === 'style.css') return 'react.css';
           return assetInfo.name!;
         },
       },

@@ -70,7 +70,13 @@
   --krds-container-padding-mobile: 1rem; /* 16px - px-4 */
   --krds-container-padding-tablet: 1.5rem; /* 24px - sm:px-6 */
   --krds-container-padding-desktop: 2rem; /* 32px - lg:px-8 */
-  --krds-container-xl: 1280px; /* max-width xl */
+  /* max-width = 콘텐츠 영역 + 양쪽 패딩 */
+  --krds-container-xs: 512px; /* 콘텐츠 480px + 패딩 16px × 2 */
+  --krds-container-sm: 688px; /* 콘텐츠 640px + 패딩 24px × 2 */
+  --krds-container-md: 816px; /* 콘텐츠 768px + 패딩 24px × 2 */
+  --krds-container-lg: 1088px; /* 콘텐츠 1024px + 패딩 32px × 2 */
+  --krds-container-xl: 1344px; /* 콘텐츠 1280px + 패딩 32px × 2 */
+  --krds-container-2xl: 1504px; /* 콘텐츠 1440px + 패딩 32px × 2 */
 
   /* KRDS Header Size Variables */
   --krds-size-height-6: 3rem; /* 48px */
@@ -92,7 +98,7 @@
 
   /* KRDS Color Tokens - Light Mode */
   /* Primary */
-  --krds-color-light-primary-5: #ecf2fe; /* surface */
+  --krds-color-light-primary-5: #eef2f7; /* surface */
   --krds-color-light-primary-10: #d8e5fd;
   --krds-color-light-primary-20: #b1cefb;
   --krds-color-light-primary-30: #86aff9;
@@ -319,6 +325,51 @@
   --krds-information-border: var(
     --krds-color-light-information-10
   ); /* 기본 모드: 10, 선명한 화면 모드: 90 */
+}
+
+/* ============================================
+ * KRDS Responsive Typography
+ * 모바일 기본값 → PC(1024px 이상)에서 변경
+ * ============================================ */
+
+:root {
+  /* Display (모바일 기본값) */
+  --krds-fs-display-lg: 44px; /* PC: 60px */
+  --krds-fs-display-md: 32px; /* PC: 44px */
+  --krds-fs-display-sm: 28px; /* PC: 36px */
+
+  /* Heading (모바일 기본값) */
+  --krds-fs-heading-xl: 28px; /* PC: 40px */
+  --krds-fs-heading-lg: 24px; /* PC: 32px */
+  --krds-fs-heading-md: 22px; /* PC: 24px */
+  --krds-fs-heading-sm: 19px; /* 고정 */
+  --krds-fs-heading-xs: 17px; /* 고정 */
+  --krds-fs-heading-xxs: 15px; /* 고정 */
+
+  /* Navigation (모바일 기본값) */
+  --krds-fs-nav-title-lg: 22px; /* PC: 24px */
+  --krds-fs-nav-title-sm: 17px; /* PC: 19px */
+  --krds-fs-nav-depth-md: 17px; /* 고정 */
+  --krds-fs-nav-depth-sm: 15px; /* 고정 */
+}
+
+/* PC (1024px 이상) */
+@media (min-width: 1024px) {
+  :root {
+    /* Display */
+    --krds-fs-display-lg: 60px;
+    --krds-fs-display-md: 44px;
+    --krds-fs-display-sm: 36px;
+
+    /* Heading */
+    --krds-fs-heading-xl: 40px;
+    --krds-fs-heading-lg: 32px;
+    --krds-fs-heading-md: 24px;
+
+    /* Navigation */
+    --krds-fs-nav-title-lg: 24px;
+    --krds-fs-nav-title-sm: 19px;
+  }
 }
 
 .dark {

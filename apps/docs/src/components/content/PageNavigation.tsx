@@ -21,7 +21,7 @@ interface PageNavigationProps {
  * @example
  * ```tsx
  * <PageNavigation
- *   prev={{ title: 'Typography', href: '/design-system/typography' }}
+ *   prev={{ title: 'Typography', href: '/docs/typography' }}
  *   next={{ title: 'Display', href: '/typography/display' }}
  * />
  * ```

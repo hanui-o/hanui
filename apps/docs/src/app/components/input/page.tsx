@@ -112,7 +112,7 @@ export default function InputPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Input } from '@/components/hanui'
+              {`import { Input } from '@/components/hanui/input'
 
 // 기본
 <Input placeholder="기본 입력 필드" />
@@ -133,7 +133,7 @@ export default function InputPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Input } from '@/components/hanui'
+              {`import { Input } from '@/components/hanui/input'
 
 <Input placeholder="이름 입력" />`}
             </Code>
@@ -379,7 +379,8 @@ function SearchInput() {
                 </div>
               </ComponentPreview>
               <Code variant="block" language="tsx">
-                {`import { FormField, FormLabel, FormError, FormHelperText, Input } from '@/components/hanui'
+                {`import { FormField, FormLabel, FormError, FormHelperText } from '@/components/hanui/form-field';
+import { Input } from '@/components/hanui/input'
 
 // 기본 사용
 <FormField id="username" required>

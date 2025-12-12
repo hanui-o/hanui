@@ -72,7 +72,7 @@ export default function StackPage() {
             </ComponentPreview>
 
             <Code variant="block" language="tsx">
-              {`import { Stack, VStack, HStack } from '@/components/hanui';
+              {`import { Stack, VStack, HStack } from '@/components/hanui/stack';
 
 <Stack gap="md">
   <div>첫 번째</div>

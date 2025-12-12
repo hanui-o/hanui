@@ -8,7 +8,7 @@ const examples = [
     id: 'examples',
     label: 'Examples',
     disabled: true,
-    tooltip: '여긴 아직...',
+    tooltip: '이것은 단지 디자인일 뿐임',
   },
   {
     id: 'dashboard',

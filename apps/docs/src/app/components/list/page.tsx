@@ -82,7 +82,7 @@ export default function ListPage() {
               description="List와 ListItem을 import하여 사용합니다. variant로 리스트 스타일을 지정합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { List, ListItem } from '@/components/hanui'
+              {`import { List, ListItem } from '@/components/hanui/list'
 
 <List>
   <ListItem>첫 번째 항목</ListItem>
@@ -561,8 +561,8 @@ export default function ListPage() {
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Link', href: '/components/link' }}
-        next={{ title: 'Main Menu', href: '/components/mainmenu' }}
+        prev={{ title: 'Label', href: '/components/label' }}
+        next={{ title: 'Main Menu', href: '/components/main-menu' }}
       />
     </>
   );

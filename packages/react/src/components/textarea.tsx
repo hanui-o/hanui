@@ -9,7 +9,7 @@ import { useFormFieldOptional } from './form-field';
 const textareaVariants = cva(
   [
     'flex w-full rounded-md font-medium',
-    'min-h-36 px-4 py-2 text-[17px] leading-[150%]',
+    'min-h-36 px-4 py-2 text-krds-body-md leading-[150%]',
     'transition-colors resize-none',
     'placeholder:text-krds-gray-50',
     'focus-visible:outline-none',

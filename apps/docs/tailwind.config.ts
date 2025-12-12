@@ -23,6 +23,16 @@ const config: Config = {
     'border-r',
     'last:border-r-0',
     'p-1',
+    // Typography classes (title/display만 - body는 text-xs/sm/base/lg 사용)
+    'text-krds-title-xs',
+    'text-krds-title-sm',
+    'text-krds-title-md',
+    'text-krds-title-lg',
+    'text-krds-title-xl',
+    'text-krds-display-sm',
+    'text-krds-display-md',
+    'text-krds-display-lg',
+    'text-krds-display-xl',
   ],
   darkMode: 'class',
   theme: {

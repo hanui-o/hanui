@@ -29,23 +29,28 @@ export default function Home() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-krds-primary-base"></span>
                 </span>
                 <span className="text-krds-primary-text font-semibold">
-                  v0.1.0 Beta
+                  v0.2.0 Preview
                 </span>
               </span>
               <span className="h-3 w-px bg-krds-gray-20"></span>
               <span className="text-krds-gray-70">
-                KRDS 2.2 · WCAG 2.1 AA · KWCAG 2.2
+                테스트 기간 · KRDS 2.2 · WCAG 2.1 AA
               </span>
             </div>
 
             {/* Title */}
             <Display as="h1" className="tracking-tight !text-[60px] py-2">
-              KRDS 컴포넌트, 그냥 가져다 쓰세요
+              전자정부프레임워크 v5를 위한
+              <br />
+              KRDS 기반 React 컴포넌트
             </Display>
 
             {/* Description */}
-            <Body size="md" className="max-w-2xl">
-              KRDS 2.2 표준, 접근성은 이미 챙겼습니다
+            <Body size="lg" className="text-krds-gray-70">
+              eGovFrame 5.0 + Next.js 14 환경에 최적화.
+              <br />
+              KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 50+ 컴포넌트를
+              복사해서 바로 쓰세요.
             </Body>
 
             {/* CTA Buttons */}
@@ -67,72 +72,6 @@ export default function Home() {
         {/* Example Showcase Section */}
         <Section padding="content-area" as="section">
           <ExampleShowcase />
-        </Section>
-
-        {/* Code Example Section */}
-        <Section padding="content-area" as="section">
-          <Stack gap="lg" align="center">
-            <Stack gap="sm" align="center">
-              <Heading level="h2">30초 만에 시작하기</Heading>
-              <Body size="md">
-                CLI로 프로젝트를 생성하고 바로 개발을 시작하세요
-              </Body>
-            </Stack>
-
-            <div className="rounded-lg border border-krds-gray-20 bg-krds-gray-95 overflow-hidden shadow-2xl w-full">
-              <div className="border-b border-krds-gray-80 px-4 py-2.5 bg-krds-gray-90">
-                <div className="flex items-center space-x-2">
-                  <div className="flex space-x-1.5">
-                    <div className="w-3 h-3 rounded-full bg-krds-danger-50" />
-                    <div className="w-3 h-3 rounded-full bg-krds-warning-30" />
-                    <div className="w-3 h-3 rounded-full bg-krds-success-50" />
-                  </div>
-                  <span className="text-xs text-krds-gray-60 ml-3 font-medium">
-                    Terminal
-                  </span>
-                </div>
-              </div>
-              <div className="p-6 bg-krds-gray-95">
-                <pre className="text-krds-gray-10 font-mono leading-relaxed">
-                  <code>
-                    <span className="text-krds-gray-50">
-                      # HANUI 프로젝트 생성
-                    </span>
-                    {'\n'}
-                    <span className="text-krds-success-50">$</span>{' '}
-                    <span className="text-krds-primary-60">pnpm</span> create
-                    hanui-app my-project
-                    {'\n\n'}
-                    <span className="text-krds-gray-50"># 개발 서버 시작</span>
-                    {'\n'}
-                    <span className="text-krds-success-50">$</span>{' '}
-                    <span className="text-krds-primary-60">cd</span> my-project
-                    {'\n'}
-                    <span className="text-krds-success-50">$</span>{' '}
-                    <span className="text-krds-primary-60">pnpm</span> dev
-                    {'\n\n'}
-                    <span className="text-krds-gray-50"># 컴포넌트 사용</span>
-                    {'\n'}
-                    <span className="text-krds-accent-50">import</span> {'{ '}
-                    <span className="text-krds-warning-30">Button</span>
-                    {' }'} <span className="text-krds-accent-50">from</span>{' '}
-                    <span className="text-krds-success-50">
-                      &apos;@hanui/react&apos;
-                    </span>
-                    ;{'\n\n'}
-                    <span className="text-krds-accent-50">function</span>{' '}
-                    <span className="text-krds-warning-30">App</span>() {'{'}
-                    {'\n  '}
-                    <span className="text-krds-accent-50">return</span> {'<'}
-                    <span className="text-krds-primary-60">Button</span>
-                    {'>클릭하세요</'}
-                    <span className="text-krds-primary-60">Button</span>
-                    {'>'};{'\n}'}
-                  </code>
-                </pre>
-              </div>
-            </div>
-          </Stack>
         </Section>
       </Container>
     </HomeLayout>

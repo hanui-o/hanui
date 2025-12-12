@@ -107,7 +107,7 @@ export default function SwitchPage() {
               description="Switch 컴포넌트를 import하고 checked, onCheckedChange로 상태를 관리합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { Switch } from '@/components/hanui';
+              {`import { Switch } from '@/components/hanui/switch';
 
 <Switch
   checked={checked}

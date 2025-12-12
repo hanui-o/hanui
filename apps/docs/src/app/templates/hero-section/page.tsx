@@ -10,7 +10,7 @@ export default function HeroSectionTemplate() {
             <Heading level="h1" className="mb-4">
               공공서비스 플랫폼
             </Heading>
-            <Body className="text-krds-body-lg text-krds-gray-70 mb-8">
+            <Body className="text-lg text-krds-gray-70 mb-8">
               국민을 위한 편리하고 안전한 디지털 서비스를 제공합니다
             </Body>
             <div className="flex gap-4 justify-center">
@@ -59,7 +59,7 @@ export function HeroExample() {
           <Heading level="h1" className="mb-4">
             공공서비스 플랫폼
           </Heading>
-          <Body className="text-krds-body-lg text-krds-gray-70 mb-8">
+          <Body className="text-lg text-krds-gray-70 mb-8">
             국민을 위한 편리하고 안전한 디지털 서비스를 제공합니다
           </Body>
           <div className="flex gap-4 justify-center">

@@ -85,7 +85,9 @@ export default function MastheadPage() {
             />
 
             <Code variant="block" language="tsx">
-              {`import { SkipLink, Masthead, Header } from '@/components/hanui';
+              {`import { SkipLink } from '@/components/hanui/skiplink';
+import { Masthead } from '@/components/hanui/masthead';
+import { Header } from '@/components/hanui/header';
 
 export default function Layout({ children }) {
   return (
@@ -158,7 +160,10 @@ export default function Layout({ children }) {
                 description="실제 페이지 레이아웃에서의 Masthead 배치 예제입니다."
               />
               <Code variant="block" language="tsx">
-                {`import { SkipLink, Masthead, Header, Footer } from '@/components/hanui';
+                {`import { SkipLink } from '@/components/hanui/skiplink';
+import { Masthead } from '@/components/hanui/masthead';
+import { Header } from '@/components/hanui/header';
+import { Footer } from '@/components/hanui/footer';
 
 export default function RootLayout({ children }) {
   return (
@@ -350,7 +355,7 @@ gap: 8px;                  /* 아이콘과 텍스트 사이 간격 */`}
       </Tabs>
 
       <PageNavigation
-        prev={{ title: 'Main Menu', href: '/components/mainmenu' }}
+        prev={{ title: 'Main Menu', href: '/components/main-menu' }}
         next={{ title: 'Modal', href: '/components/modal' }}
       />
     </>

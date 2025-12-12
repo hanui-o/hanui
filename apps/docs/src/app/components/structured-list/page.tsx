@@ -147,7 +147,7 @@ export default function StructuredListPage() {
               description="StructuredList 컴포넌트를 import하고 items 배열을 전달하여 사용합니다."
             />
             <Code variant="block" language="tsx">
-              {`import { StructuredList } from '@/components/hanui'
+              {`import { StructuredList } from '@/components/hanui/structured-list'
 
 const items = [
   {

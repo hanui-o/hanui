@@ -2,13 +2,13 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 const maxWidthClasses = {
-  // KRDS Breakpoints 기반 max-width 클래스 (xs~2xl, full)
-  xs: 'max-w-krds-xs',
-  sm: 'max-w-krds-sm',
-  md: 'max-w-krds-md',
-  lg: 'max-w-krds-lg',
-  xl: 'max-w-krds-xl',
-  '2xl': 'max-w-krds-2xl',
+  // KRDS Breakpoints 기반 max-width 클래스 (CSS 변수 사용)
+  xs: 'max-w-[var(--krds-container-xs,480px)]',
+  sm: 'max-w-[var(--krds-container-sm,640px)]',
+  md: 'max-w-[var(--krds-container-md,768px)]',
+  lg: 'max-w-[var(--krds-container-lg,1024px)]',
+  xl: 'max-w-[var(--krds-container-xl,1280px)]',
+  '2xl': 'max-w-[var(--krds-container-2xl,1440px)]',
   full: 'max-w-full',
 } as const;
 
@@ -43,7 +43,8 @@ export const Container = React.forwardRef<
         className={cn(
           'mx-auto w-full', // 수평 센터링, 전체 너비
           maxWidth !== false && maxWidthClasses[maxWidth], // max-width 적용
-          !disablePadding && 'px-4 sm:px-6 lg:px-8', // 화면 여백 (KRDS 기준: 16px/24px/32px)
+          !disablePadding &&
+            'px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)]', // 화면 여백 (CSS 변수)
           className
         )}
         {...props}

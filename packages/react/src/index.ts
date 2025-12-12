@@ -1,9 +1,7 @@
 // HANUI React Component Library
 // Korean Government Design System (KRDS) based components
 
-// Import styles
-// NOTE: CSS import is commented out to prevent Tailwind v4/v3 conflicts in docs app
-// Users should import styles manually: import '@hanui/react/styles.css'
+// CSS import disabled - styles are handled by consumer's Tailwind config
 // import './styles.css';
 
 export const version = '0.0.0';
@@ -141,6 +139,20 @@ export {
 export { Modal, ModalTitle, ModalBody, ModalFooter } from './components/modal';
 export type { ModalProps } from './components/modal';
 
+export {
+  SearchModal,
+  SAMPLE_POPULAR_KEYWORDS,
+  SAMPLE_RECENT_KEYWORDS,
+  SAMPLE_SUGGESTIONS,
+} from './components/search-modal';
+export type {
+  SearchModalProps,
+  PopularKeyword,
+  RecentKeyword,
+  SearchSuggestion,
+  RankingState,
+} from './components/search-modal';
+
 export { Pagination } from './components/pagination';
 export type { PaginationProps } from './components/pagination';
 
@@ -155,6 +167,9 @@ export type { SelectProps, SelectOption } from './components/select';
 
 export { Container } from './components/container';
 export type { ContainerProps } from './components/container';
+
+export { Logo } from './components/logo';
+export type { LogoProps } from './components/logo';
 
 export { Stack, VStack, HStack, stackVariants } from './components/stack';
 export type { StackProps } from './components/stack';
@@ -214,20 +229,29 @@ export type {
 export { Masthead } from './components/masthead';
 export type { MastheadProps } from './components/masthead';
 
-export { NavigationMenu } from './components/navigation-menu';
+export { NavigationMenu } from './components/menu-navigation';
 export type {
   NavigationMenuProps,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuSection,
-} from './components/navigation-menu';
+} from './components/menu-navigation';
 
-export { MegaMenu } from './components/mega-menu';
+export { MegaMenu } from './components/menu-mega';
 export type {
   MegaMenuProps,
   MegaMenuColumn,
   MegaMenuLink,
-} from './components/mega-menu';
+} from './components/menu-mega';
+
+export { PanelMenu } from './components/menu-panel';
+export type {
+  PanelMenuProps,
+  PanelMenuItem,
+  PanelMenu2DepthItem,
+  PanelMenuLink,
+  PanelMenuSubContent,
+} from './components/menu-panel';
 
 export { SkipLink } from './components/skip-link';
 export type {
@@ -236,27 +260,36 @@ export type {
   SkipLinkVariant,
 } from './components/skip-link';
 
-export { HeaderWithMegaMenu } from './components/Header/HeaderWithMegaMenu';
+// Header components (Tailwind CSS - default)
+export { HeaderWithMegaMenu } from './components/header-with-megamenu';
 export type {
-  HeaderWithMegaMenuProps,
+  HeaderWithMegaMenuTailwindProps as HeaderWithMegaMenuProps,
   UtilityLink as HeaderUtilityLink,
-} from './components/Header/HeaderWithMegaMenu';
+} from './components/header-with-megamenu';
 
-export { HeaderWithNavigation } from './components/Header/HeaderWithNavigation';
-export type { HeaderWithNavigationProps } from './components/Header/HeaderWithNavigation';
+export { HeaderWithNavigation } from './components/header-with-navigation';
+export type { HeaderWithNavigationTailwindProps as HeaderWithNavigationProps } from './components/header-with-navigation';
 
-export { Footer } from './components/Footer/Footer';
-export type { FooterProps } from './components/Footer/Footer';
+export { HeaderWithPanelMenu } from './components/header-with-panel-menu';
+export type { HeaderWithPanelMenuProps } from './components/header-with-panel-menu';
+
+// Footer components
+export { Footer } from './components/footer';
+export type { FooterProps } from './components/footer';
 
 export { Identifier } from './components/identifier';
 export type { IdentifierProps } from './components/identifier';
 
 export {
   SideNavigation,
+  SAMPLE_SIDE_NAVIGATION_MENU,
   SAMPLE_SIDE_NAVIGATION,
 } from './components/side-navigation';
 export type {
   SideNavigationProps,
+  SideNavigationSection,
+  SideNavigationMenuItem,
+  // Legacy aliases
   SideNavSection,
   SideNavLink,
 } from './components/side-navigation';
@@ -267,8 +300,8 @@ export type {
   InPageNavLink,
 } from './components/in-page-navigation';
 
-export { TabBars } from './components/TabBars';
-export type { TabBarsProps, TabBarItem } from './components/TabBars';
+export { TabBars } from './components/tab-bars';
+export type { TabBarsProps, TabBarItem } from './components/tab-bars';
 
 // Utils
 export { cn } from './lib/utils';
@@ -385,3 +418,119 @@ export type {
   SortingState,
   ColumnFiltersState,
 } from './components/data-table';
+
+export { Carousel } from './components/carousel';
+export type { CarouselProps, CarouselSlide } from './components/carousel';
+
+export { ContentCarousel } from './components/carousel-content';
+export type {
+  ContentCarouselProps,
+  ContentCarouselSlide,
+} from './components/carousel-content';
+
+export { HeroCarousel } from './components/carousel-hero';
+export type {
+  HeroCarouselProps,
+  HeroCarouselSlide,
+} from './components/carousel-hero';
+
+export { PreviewCarousel } from './components/carousel-preview';
+export type {
+  PreviewCarouselProps,
+  PreviewCarouselSlide,
+  PreviewCarouselBreakpoints,
+} from './components/carousel-preview';
+
+export {
+  Tag,
+  SelectableTag,
+  RemovableTag,
+  TagLink,
+  TagGroup,
+  tagVariants,
+  tagGroupVariants,
+} from './components/tag';
+export type {
+  TagProps,
+  SelectableTagProps,
+  RemovableTagProps,
+  TagLinkProps,
+  TagGroupProps,
+} from './components/tag';
+
+export {
+  StepIndicator,
+  SAMPLE_STEPS,
+  stepIndicatorVariants,
+  stepCircleVariants,
+  stepLabelVariants,
+  useSteps,
+} from './components/step-indicator';
+export type {
+  StepIndicatorProps,
+  StepItem,
+  UseStepsOptions,
+  UseStepsReturn,
+} from './components/step-indicator';
+
+// Steps (Compound Component)
+export {
+  Steps,
+  stepsListVariants,
+  stepsItemVariants,
+  stepsIndicatorVariants,
+  stepsTitleVariants,
+  stepsDescriptionVariants,
+  stepsSeparatorVariants,
+} from './components/steps';
+export type {
+  StepsRootProps,
+  StepsListProps,
+  StepsItemProps,
+  StepsIndicatorProps,
+  StepsTitleProps,
+  StepsDescriptionProps,
+  StepsSeparatorProps,
+  StepsContentProps,
+  StepsCompletedContentProps,
+  StepsPrevTriggerProps,
+  StepsNextTriggerProps,
+} from './components/steps';
+
+export {
+  VisuallyHidden,
+  srOnlyClassName,
+  srOnlyFocusableClassName,
+} from './components/visually-hidden';
+export type { VisuallyHiddenProps } from './components/visually-hidden';
+
+export {
+  CriticalAlerts,
+  CriticalAlertItem,
+  CriticalAlertBanner,
+  criticalBadgeVariants,
+  bannerVariants,
+} from './components/critical-alerts';
+export type {
+  CriticalAlertsProps,
+  CriticalAlertItemProps,
+  CriticalAlertBannerProps,
+} from './components/critical-alerts';
+
+export { Disclosure } from './components/disclosure';
+export type { DisclosureProps } from './components/disclosure';
+
+export {
+  DateInput,
+  DateInputMultiple,
+  DateInputRange,
+  dateFieldVariants,
+} from './components/date-input';
+export type {
+  DateInputProps,
+  DateInputMultipleProps,
+  DateInputRangeProps,
+} from './components/date-input';
+
+export { Calendar } from './components/calendar';
+export type { CalendarProps } from './components/calendar';

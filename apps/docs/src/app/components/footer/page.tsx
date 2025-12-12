@@ -57,7 +57,7 @@ export default function FooterPage() {
               </div>
             </ComponentPreview>
             <Code variant="block" language="tsx">
-              {`import { Footer } from '@/components/hanui'
+              {`import { Footer } from '@/components/hanui/footer';
 
 <Footer />`}
             </Code>
@@ -81,7 +81,7 @@ export default function FooterPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Footer } from '@/components/hanui'
+              {`import { Footer } from '@/components/hanui/footer';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

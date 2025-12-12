@@ -436,7 +436,7 @@ export const ChipCheckbox = React.forwardRef<
             isChecked ? 'opacity-100' : 'opacity-40'
           )}
         />
-        <span className="text-krds-body-md">{label}</span>
+        <span className="text-base">{label}</span>
         {value && (
           <input
             type="checkbox"

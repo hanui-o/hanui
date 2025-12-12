@@ -454,11 +454,11 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
       >
         {/* Header Section */}
         <div className="file-head mb-4">
-          <h3 className="[font-size:var(--krds-size-body-lg)] font-semibold text-krds-gray-95 mb-2">
+          <h3 className="[font-size:var(--krds-body-lg)] font-semibold text-krds-gray-95 mb-2">
             {title}
           </h3>
           {description && (
-            <p className="[font-size:var(--krds-size-body-sm)] text-krds-gray-70">
+            <p className="[font-size:var(--krds-body-sm)] text-krds-gray-70">
               {description}
             </p>
           )}
@@ -490,7 +490,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             id="file-upload-input"
           />
 
-          <p className="[font-size:var(--krds-size-body-md)] text-krds-gray-70 mb-4">
+          <p className="[font-size:var(--krds-body-md)] text-krds-gray-70 mb-4">
             {instructionText}
           </p>
 
@@ -507,7 +507,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
           {/* File Info */}
           {(accept || maxSize) && (
-            <p className="mt-3 [font-size:var(--krds-size-body-sm)] text-krds-gray-60">
+            <p className="mt-3 [font-size:var(--krds-body-sm)] text-krds-gray-60">
               {accept && <span>형식: {accept}</span>}
               {accept && maxSize && <span> · </span>}
               {maxSize && <span>최대 크기: {formatBytes(maxSize)}</span>}
@@ -535,7 +535,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                   {/* File Info Section */}
                   <div className="file-info flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="font-medium [font-size:var(--krds-size-body-md)] text-krds-gray-95 truncate">
+                      <p className="font-medium [font-size:var(--krds-body-md)] text-krds-gray-95 truncate">
                         {uploadedFile.file.name}
                       </p>
 
@@ -554,7 +554,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                       )}
                     </div>
 
-                    <p className="[font-size:var(--krds-size-body-sm)] text-krds-gray-60 mt-1">
+                    <p className="[font-size:var(--krds-body-sm)] text-krds-gray-60 mt-1">
                       {formatBytes(uploadedFile.file.size)}
                     </p>
 
@@ -575,7 +575,7 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
                     {/* Error Message */}
                     {uploadedFile.error && (
-                      <p className="file-hint-invalid mt-2 [font-size:var(--krds-size-body-sm)] text-krds-danger-base">
+                      <p className="file-hint-invalid mt-2 [font-size:var(--krds-body-sm)] text-krds-danger-base">
                         {uploadedFile.error}
                       </p>
                     )}

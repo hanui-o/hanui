@@ -81,7 +81,7 @@ export default function HeadingPage() {
           <Section level="h2">
             <Heading level="h2" id="usage" title="사용법" />
             <Code variant="block" language="tsx">
-              {`import { Heading } from '@/components/hanui'
+              {`import { Heading } from '@/components/hanui/heading'
 
 <Heading level="h1">페이지 제목</Heading>
 <Heading level="h2">주요 섹션</Heading>
