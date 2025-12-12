@@ -1,6 +1,7 @@
 'use client';
 
-import { useFramework, FrameworkTabs, type Framework } from '../FrameworkTabs';
+import type { ReactNode } from 'react';
+import { useFramework, FrameworkTabs } from '../FrameworkTabs';
 import { CodeBlock } from './CodeBlock';
 
 interface FrameworkCodeBlockProps {
@@ -48,8 +49,8 @@ export function FrameworkCodeBlock({
 }
 
 interface FrameworkContentProps {
-  react: React.ReactNode;
-  vue: React.ReactNode;
+  react: ReactNode;
+  vue: ReactNode;
 }
 
 export function FrameworkContent({ react, vue }: FrameworkContentProps) {
