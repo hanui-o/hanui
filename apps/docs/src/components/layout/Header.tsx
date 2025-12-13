@@ -78,11 +78,11 @@ export function Header() {
         pathname?.startsWith('/typography') ||
         pathname?.startsWith('/layout'),
     },
-    // {
-    //   label: 'A11y',
-    //   href: '/a11y',
-    //   isActive: pathname?.startsWith('/a11y'),
-    // },
+    {
+      label: 'Kits',
+      href: '/kits',
+      isActive: pathname?.startsWith('/kits'),
+    },
     {
       label: 'Community',
       href: '/community',
@@ -156,17 +156,7 @@ export function Header() {
           </Link> */}
 
             {/* Framework Selector */}
-            {/* <div className="hidden lg:flex items-center h-9 rounded-md border border-krds-gray-20 overflow-hidden">
-              <button
-                onClick={() => setFramework('react')}
-                className={`h-full px-3 text-sm font-medium transition-colors ${
-                  framework === 'react'
-                    ? 'bg-krds-gray-90 text-white'
-                    : 'text-krds-gray-70 hover:bg-krds-gray-5'
-                }`}
-              >
-                React
-              </button>
+            <div className="hidden lg:flex items-center h-9 rounded-md border border-krds-gray-20 overflow-hidden">
               <button
                 onClick={() => setFramework('vue')}
                 className={`h-full px-3 text-sm font-medium transition-colors ${
@@ -177,7 +167,17 @@ export function Header() {
               >
                 Vue
               </button>
-            </div> */}
+              <button
+                onClick={() => setFramework('react')}
+                className={`h-full px-3 text-sm font-medium transition-colors ${
+                  framework === 'react'
+                    ? 'bg-krds-gray-90 text-white'
+                    : 'text-krds-gray-70 hover:bg-krds-gray-5'
+                }`}
+              >
+                React
+              </button>
+            </div>
 
             {/* Version */}
             <button className="hidden lg:flex items-center gap-1.5 h-9 px-3 text-sm font-medium text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors border border-krds-gray-20 whitespace-nowrap">
