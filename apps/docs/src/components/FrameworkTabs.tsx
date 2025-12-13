@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  type ReactNode,
-} from 'react';
+import { createContext, useContext, useState, type ReactNode } from 'react';
 
 export type Framework = 'react' | 'vue';
 
@@ -54,16 +48,13 @@ export function FrameworkProvider({
   children,
   defaultFramework,
 }: FrameworkProviderProps) {
-  const [framework, setFramework] = useState<Framework>(
-    defaultFramework ?? 'react'
-  );
-  const [isVueSubdomain, setIsVueSubdomain] = useState(false);
+  // Lazy initialization - compute initial value on first render (client-side)
+  const [framework, setFramework] = useState<Framework>(() => {
+    if (defaultFramework) return defaultFramework;
+    return getFrameworkFromHostname();
+  });
 
-  useEffect(() => {
-    const detectedFramework = getFrameworkFromHostname();
-    setFramework(detectedFramework);
-    setIsVueSubdomain(detectedFramework === 'vue');
-  }, []);
+  const isVueSubdomain = framework === 'vue';
 
   // 프레임워크 변경 시 서브도메인으로 리다이렉트
   const handleSetFramework = (newFramework: Framework) => {
