@@ -28,7 +28,7 @@
   },
   "type": "module",
   "bin": {
-    "hanui-vue": "./dist/hanui.mjs"
+    "hanui-vue": "./dist/hanui.js"
   },
   "files": [
     "dist",

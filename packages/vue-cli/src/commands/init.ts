@@ -199,6 +199,75 @@ const VARIABLES_CSS = `/**
 `;
 
 /**
+ * Tailwind v4 @theme block (실제 HEX 값 - var() 참조 불가)
+ */
+const TAILWIND_V4_THEME = `@import 'tailwindcss';
+
+@theme {
+  /* KRDS Colors - Tailwind v4 requires actual values, not var() references */
+  --color-krds-white: #ffffff;
+  --color-krds-black: #000000;
+
+  /* Primary */
+  --color-krds-primary-5: #ecf2fe;
+  --color-krds-primary-10: #d8e5fd;
+  --color-krds-primary-20: #b1cefb;
+  --color-krds-primary-30: #86aff9;
+  --color-krds-primary-40: #4c87f6;
+  --color-krds-primary-50: #256ef4;
+  --color-krds-primary-60: #0b50d0;
+  --color-krds-primary-70: #083891;
+  --color-krds-primary-80: #052561;
+  --color-krds-primary-90: #03163a;
+  --color-krds-primary-95: #020f27;
+  --color-krds-primary: #256ef4;
+
+  /* Gray */
+  --color-krds-gray-0: #ffffff;
+  --color-krds-gray-5: #f4f5f6;
+  --color-krds-gray-10: #e6e8ea;
+  --color-krds-gray-20: #cdd1d5;
+  --color-krds-gray-30: #b1b8be;
+  --color-krds-gray-40: #8a949e;
+  --color-krds-gray-50: #6d7882;
+  --color-krds-gray-60: #58616a;
+  --color-krds-gray-70: #464c53;
+  --color-krds-gray-80: #33363d;
+  --color-krds-gray-90: #1e2124;
+  --color-krds-gray-95: #131416;
+  --color-krds-gray-100: #000000;
+
+  /* Danger */
+  --color-krds-danger-5: #fdefec;
+  --color-krds-danger-10: #fcdfd9;
+  --color-krds-danger-50: #de3412;
+  --color-krds-danger-60: #bd2c0f;
+  --color-krds-danger: #de3412;
+
+  /* Success */
+  --color-krds-success-5: #eaf6ec;
+  --color-krds-success-10: #d8eedd;
+  --color-krds-success-50: #228738;
+  --color-krds-success-60: #267337;
+  --color-krds-success: #228738;
+
+  /* Warning */
+  --color-krds-warning-5: #fff3db;
+  --color-krds-warning-10: #ffe0a3;
+  --color-krds-warning-30: #ffb114;
+  --color-krds-warning-50: #9e6a00;
+  --color-krds-warning: #ffb114;
+
+  /* Information */
+  --color-krds-info-5: #e7f4fe;
+  --color-krds-info-10: #d3ebfd;
+  --color-krds-info-50: #0b78cb;
+  --color-krds-info-60: #096ab3;
+  --color-krds-info: #0b78cb;
+}
+`;
+
+/**
  * Tailwind v3 Preset for Vue
  */
 const TAILWIND_PRESET = `/**
@@ -482,14 +551,28 @@ export function cn(...inputs: ClassValue[]) {
       const cssFullPath = path.join(cwd, config.cssPath);
       if (fs.existsSync(cssFullPath)) {
         let cssContent = await fs.readFile(cssFullPath, 'utf-8');
-        const importPath = config.cssPath.includes('src/')
-          ? '../styles/variables.css'
-          : './styles/variables.css';
 
-        if (!cssContent.includes('variables.css')) {
-          cssContent = `@import '${importPath}';\n\n${cssContent}`;
-          await fs.writeFile(cssFullPath, cssContent);
+        if (isV4) {
+          // Tailwind v4: Replace entire CSS with @theme block
+          if (!cssContent.includes('@theme')) {
+            cssContent = TAILWIND_V4_THEME;
+            await fs.writeFile(cssFullPath, cssContent);
+          }
+        } else {
+          // Tailwind v3: Just import variables.css
+          const importPath = config.cssPath.includes('src/')
+            ? '../styles/variables.css'
+            : './styles/variables.css';
+
+          if (!cssContent.includes('variables.css')) {
+            cssContent = `@import '${importPath}';\n\n${cssContent}`;
+            await fs.writeFile(cssFullPath, cssContent);
+          }
         }
+      } else if (isV4) {
+        // Create CSS file with @theme if it doesn't exist (v4)
+        await fs.ensureDir(path.dirname(cssFullPath));
+        await fs.writeFile(cssFullPath, TAILWIND_V4_THEME);
       }
       spinner.text = 'Updated CSS imports';
 
