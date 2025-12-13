@@ -2,7 +2,7 @@
 import { computed, watch, onMounted, onUnmounted } from 'vue';
 import { cva } from 'class-variance-authority';
 import { AlertTriangle, Info, CircleCheck, CircleX } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const contentVariants = cva(
   'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg sm:rounded-lg',

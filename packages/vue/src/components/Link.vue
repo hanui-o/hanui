@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { cva } from 'class-variance-authority';
 import { SquareArrowOutUpRight } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const linkVariants = cva(
   'inline-flex items-center gap-1 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',

@@ -10,7 +10,7 @@ import {
   SquareArrowOutUpRight,
   ArrowRight,
 } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import Badge from './Badge.vue';
 
 // ============================================================================

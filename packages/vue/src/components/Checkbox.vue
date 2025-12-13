@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import { cva } from 'class-variance-authority';
 import { Check } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const checkboxVariants = cva(
   'peer shrink-0 rounded-md border border-krds-gray-60 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 transition-colors',

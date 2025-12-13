@@ -4,7 +4,7 @@
  * 섹션 내부 제목과 설명 컴포넌트
  */
 import { computed } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 

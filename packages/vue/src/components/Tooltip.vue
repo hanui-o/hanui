@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { cva } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const tooltipVariants = cva(
   'absolute z-50 px-3 py-1 text-sm rounded-md shadow-lg pointer-events-none w-max max-w-xs break-words animate-in fade-in-0 zoom-in-95',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { cva } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const displayVariants = cva(
   'font-bold leading-[var(--krds-leading-display)] text-krds-gray-95',

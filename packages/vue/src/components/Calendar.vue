@@ -5,7 +5,7 @@
  */
 import { ref, computed, watch, onMounted, nextTick } from 'vue';
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import Button from './Button.vue';
 
 // 한국어 요일

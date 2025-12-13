@@ -4,7 +4,7 @@
  * KRDS 시각적으로 숨김 - 화면에는 보이지 않지만 스크린리더가 읽을 수 있는 콘텐츠
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 const props = withDefaults(
   defineProps<{

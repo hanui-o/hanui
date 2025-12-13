@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onUnmounted } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 export interface MegaMenuLink {
   label: string;

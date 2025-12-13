@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Upload, X, Download, Eye, Loader2, CheckCircle2 } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import Button from './Button.vue';
 
 export type FileUploadStatus = 'idle' | 'uploading' | 'complete' | 'error';

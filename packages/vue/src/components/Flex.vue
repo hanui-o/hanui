@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 type FlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 type FlexAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';

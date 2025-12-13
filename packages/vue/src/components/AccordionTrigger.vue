@@ -2,7 +2,7 @@
 import { inject, computed } from 'vue';
 import { cva } from 'class-variance-authority';
 import { ChevronDown } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const accordionTriggerVariants = cva(
   'flex w-full items-center justify-between px-4 py-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',

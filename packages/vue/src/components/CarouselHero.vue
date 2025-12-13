@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { ChevronLeft, ChevronRight, Play, Pause } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 // Swiper CSS
 import 'swiper/css';

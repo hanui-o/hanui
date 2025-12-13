@@ -14,7 +14,7 @@ import {
   Minus,
   SquareArrowOutUpRight,
 } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import Button from './Button.vue';
 import VisuallyHidden from './VisuallyHidden.vue';
 

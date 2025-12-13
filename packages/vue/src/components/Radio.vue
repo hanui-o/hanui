@@ -2,7 +2,7 @@
 import { computed, inject } from 'vue';
 import { cva } from 'class-variance-authority';
 import { Circle } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const radioVariants = cva(
   'aspect-square rounded-full border border-krds-gray-60 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-base focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 transition-colors',

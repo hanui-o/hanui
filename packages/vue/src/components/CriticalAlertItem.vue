@@ -4,7 +4,7 @@
  * KRDS 긴급 공지 - 개별 공지 아이템
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 export type CriticalAlertVariant = 'danger' | 'ok' | 'info';
 

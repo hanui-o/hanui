@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue';
 import { cva } from 'class-variance-authority';
 import { Eye, EyeOff, X } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const inputVariants = cva(
   'flex w-full rounded-md font-bold transition-colors placeholder:text-krds-gray-40 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 disabled:bg-krds-gray-10 read-only:bg-krds-gray-5 read-only:cursor-default',

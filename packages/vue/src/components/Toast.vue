@@ -2,7 +2,7 @@
 import { computed, ref, onMounted, onUnmounted } from 'vue';
 import { cva } from 'class-variance-authority';
 import { Info, CircleCheck, AlertTriangle, CircleX, X } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const toastVariants = cva(
   'group pointer-events-auto relative flex w-full items-start gap-3 overflow-hidden rounded-lg border p-4 shadow-lg transition-all',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { cva } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const cardVariants = cva(
   'rounded-lg border border-krds-gray-5 bg-krds-gray-5 transition-all duration-200',

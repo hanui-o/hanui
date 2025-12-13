@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { provide, reactive, computed } from 'vue';
 import { cva } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const accordionVariants = cva('w-full', {
   variants: {

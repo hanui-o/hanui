@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 export interface InPageNavLink {
   label: string;

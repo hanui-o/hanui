@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject, provide, computed } from 'vue';
 import { cva } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const accordionItemVariants = cva('border border-krds-gray-20 rounded-lg', {
   variants: {

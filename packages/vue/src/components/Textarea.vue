@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, watch, nextTick } from 'vue';
 import { cva } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const textareaVariants = cva(
   'flex w-full rounded-md font-medium min-h-36 px-4 py-2 text-[17px] leading-[150%] transition-colors resize-none placeholder:text-krds-gray-50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 disabled:bg-krds-gray-10 read-only:bg-krds-gray-5 read-only:cursor-default',

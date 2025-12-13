@@ -4,7 +4,7 @@
  * KRDS 날짜 입력 필드 - 년/월/일 분리 입력
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 const props = withDefaults(
   defineProps<{

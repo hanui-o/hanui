@@ -4,7 +4,7 @@
  * Steps 아이템 사이의 구분선
  */
 import { computed, inject } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import {
   StepsContextKey,

@@ -4,7 +4,7 @@
  * KRDS 태그 - 콘텐츠를 분류하거나 필터링하는데 사용
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 export type TagVariant = 'primary' | 'gray' | 'success' | 'danger' | 'warning' | 'info';
 export type TagSize = 'sm' | 'md' | 'lg';

@@ -4,7 +4,7 @@
  * Compound Component 패턴의 단계 표시기
  */
 import { computed, provide, toRef } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import {
   StepsContextKey,

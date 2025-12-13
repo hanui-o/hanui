@@ -4,7 +4,7 @@
  * 클릭하여 선택/해제할 수 있는 태그
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 import type { TagVariant, TagSize } from './Tag.vue';
 
 const props = withDefaults(

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject, computed } from 'vue';
 import { cva } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import type { ComputedRef } from 'vue';
 
 const tabsTriggerVariants = cva(

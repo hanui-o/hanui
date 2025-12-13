@@ -4,7 +4,7 @@
  * 여러 태그를 그룹화하는 컨테이너
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 const props = withDefaults(
   defineProps<{

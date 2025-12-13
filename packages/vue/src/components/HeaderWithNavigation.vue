@@ -5,7 +5,7 @@
  */
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { Search, Menu, X } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import Container from './Container.vue';
 import Button from './Button.vue';
 import Logo from './Logo.vue';

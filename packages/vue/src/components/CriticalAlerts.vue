@@ -3,7 +3,7 @@
  * CriticalAlerts 컴포넌트
  * KRDS 긴급 공지 - 사용자에게 긴급하거나 중요한 정보를 전달하는 카드 리스트 컨테이너
  */
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 defineProps<{
   /** 추가 클래스 */

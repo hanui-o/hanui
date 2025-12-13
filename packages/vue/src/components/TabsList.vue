@@ -2,7 +2,7 @@
 import { inject, computed, ref, onMounted, onUnmounted } from 'vue';
 import { cva } from 'class-variance-authority';
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const tabsListVariants = cva('flex', {
   variants: {

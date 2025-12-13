@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject, computed } from 'vue';
 import { Check, Info } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import { FormFieldContextKey, type FormFieldContext } from '../composables/useFormField';
 
 const props = defineProps<{

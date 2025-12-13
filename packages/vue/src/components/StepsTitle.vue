@@ -4,7 +4,7 @@
  * Steps 내부의 제목
  */
 import { computed, inject } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import {
   StepsContextKey,

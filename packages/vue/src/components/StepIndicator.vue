@@ -4,7 +4,7 @@
  * KRDS 단계 표시기 - 사용자가 거쳐야 하는 일련의 단계를 시각화
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 // Step 상태 타입
 export type StepStatus = 'completed' | 'current' | 'upcoming';

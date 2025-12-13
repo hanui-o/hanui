@@ -9,7 +9,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import Button from './Button.vue';
 import Checkbox from './Checkbox.vue';
 import Input from './Input.vue';

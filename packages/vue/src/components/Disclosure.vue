@@ -5,7 +5,7 @@
  * Accordion과 달리 단독으로 사용되며, 여러 개를 동시에 열 수 있음
  */
 import { ref, computed, watch } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 const props = withDefaults(
   defineProps<{

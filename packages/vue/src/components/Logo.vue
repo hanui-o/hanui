@@ -3,7 +3,7 @@
  * Logo 컴포넌트
  * Header/Footer에서 공통으로 사용하는 로고 컴포넌트
  */
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const DEFAULT_LOGO = 'https://www.krds.go.kr/resources/img/pattern/layout/head_logo.svg';
 const DEFAULT_ALT = '대한민국정부';

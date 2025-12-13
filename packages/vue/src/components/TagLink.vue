@@ -4,7 +4,7 @@
  * 링크 역할을 하는 태그
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 import type { TagVariant, TagSize } from './Tag.vue';
 
 const props = withDefaults(

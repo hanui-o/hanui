@@ -4,7 +4,7 @@
  * KRDS 긴급 공지 - 배너 스타일
  */
 import { computed } from 'vue';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 import type { CriticalAlertVariant } from './CriticalAlertItem.vue';
 
 const props = withDefaults(

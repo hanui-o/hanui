@@ -4,7 +4,7 @@
  * Steps 내부의 각 단계 아이템
  */
 import { computed, inject, provide } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import {
   StepsContextKey,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject, computed, ref, watch, onMounted, nextTick } from 'vue';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const props = defineProps<{
   class?: string;

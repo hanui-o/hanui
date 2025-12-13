@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue';
 import { cva } from 'class-variance-authority';
 import { Info, CircleCheck, AlertTriangle, CircleX, X } from 'lucide-vue-next';
-import { cn } from '../lib/utils';
+import { cn } from '@/lib/utils';
 
 const alertVariants = cva(
   'relative flex items-start gap-3 rounded-lg border p-4 [&>svg]:shrink-0',

@@ -7,7 +7,7 @@ import { ref, computed, watch } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination, Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-import { cn } from '../utils';
+import { cn } from '@/lib/utils';
 
 // Swiper CSS
 import 'swiper/css';
