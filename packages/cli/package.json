@@ -1,6 +1,6 @@
 {
   "name": "@hanui/cli",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "HANUI CLI - KRDS 기반 컴포넌트 설치 도구",
   "keywords": [
     "cli",
