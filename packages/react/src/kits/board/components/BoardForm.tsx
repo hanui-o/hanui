@@ -5,12 +5,12 @@
 
 'use client';
 
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useCreatePost, useUpdatePost } from '../hooks/useBoard';
 import type { Post, PostFormData } from '../types/board';
-import { useState } from 'react';
 
 // 폼 유효성 검사 스키마
 const postSchema = z.object({

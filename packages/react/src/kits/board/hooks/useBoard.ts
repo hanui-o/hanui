@@ -37,8 +37,6 @@ export function usePosts(params?: PostListParams) {
  * 게시글 상세 조회 훅
  */
 export function usePost(id: number) {
-  const queryClient = useQueryClient();
-
   return useQuery({
     queryKey: boardKeys.detail(id),
     queryFn: async () => {

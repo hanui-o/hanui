@@ -49,7 +49,13 @@ export function BoardItem({
       />
 
       {/* 제목 */}
-      <div className="flex-1 min-w-0" onClick={onClick}>
+      <div
+        role="button"
+        tabIndex={0}
+        className="flex-1 min-w-0"
+        onClick={onClick}
+        onKeyDown={(e) => e.key === 'Enter' && onClick()}
+      >
         <div className="flex items-center gap-2">
           <span className="truncate font-medium">{post.title}</span>
           {post.attachments && post.attachments.length > 0 && (

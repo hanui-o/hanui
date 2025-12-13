@@ -25,8 +25,11 @@ export function BoardDeleteModal({ onConfirm }: BoardDeleteModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* 배경 오버레이 */}
       <div
+        role="button"
+        tabIndex={0}
         className="absolute inset-0 bg-black/50"
         onClick={closeDeleteModal}
+        onKeyDown={(e) => e.key === 'Escape' && closeDeleteModal()}
       />
 
       {/* 모달 내용 */}
