@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useFramework } from '@/components/FrameworkTabs';
 import {
   // Phase 1-3: 피드백 컴포넌트
   Alert,
@@ -1551,6 +1552,9 @@ function AccessibilityChecklist() {
 // Main Page Component
 // ============================================================================
 export default function TestComponentsPage() {
+  const { framework } = useFramework();
+  const isVue = framework === 'vue';
+
   return (
     <ToastProvider>
       <div>
@@ -1569,7 +1573,7 @@ export default function TestComponentsPage() {
           <SectionHeading
             level="h1"
             title="HANUI 컴포넌트 플레이그라운드"
-            description="HANUI 라이브러리의 모든 컴포넌트를 테스트하고 체험해볼 수 있는 공간입니다. KRDS(한국 정부 디자인 시스템) 기반의 React 컴포넌트들을 직접 조작하며 확인해보세요."
+            description={`HANUI 라이브러리의 모든 컴포넌트를 테스트하고 체험해볼 수 있는 공간입니다. KRDS(한국 정부 디자인 시스템) 기반의 ${isVue ? 'Vue' : 'React'} 컴포넌트들을 직접 조작하며 확인해보세요.`}
           />
 
           {/* 주요 기능 소개 섹션 */}

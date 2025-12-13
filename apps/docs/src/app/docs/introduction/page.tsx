@@ -1,3 +1,5 @@
+'use client';
+
 // Docs content components
 import {
   PageSection as Section,
@@ -8,8 +10,12 @@ import {
 
 // UI components from @hanui/react
 import { Body, Card, Code, List, ListItem } from '@hanui/react';
+import { useFramework } from '@/components/FrameworkTabs';
 
 export default function IntroductionPage() {
+  const { framework } = useFramework();
+  const isVue = framework === 'vue';
+
   return (
     <>
       <Heading
@@ -48,7 +54,7 @@ export default function IntroductionPage() {
           level="h2"
           id="what-is-hanui"
           title="HANUI가 뭔데요?"
-          description="KRDS 표준 + KWCAG 2.2 접근성이 기본 탑재된 React 컴포넌트 라이브러리입니다. 그냥 가져다 쓰면 됩니다."
+          description={`KRDS 표준 + KWCAG 2.2 접근성이 기본 탑재된 ${isVue ? 'Vue' : 'React'} 컴포넌트 라이브러리입니다. 그냥 가져다 쓰면 됩니다.`}
         />
 
         <Subsection level="h3">
@@ -104,17 +110,30 @@ export default function IntroductionPage() {
         <Heading level="h2" id="tech-stack" title="기술 스택" />
 
         <Subsection level="h3">
-          <Heading level="h3" title="React + TypeScript" />
+          <Heading
+            level="h3"
+            title={isVue ? 'Vue 3 + TypeScript' : 'React + TypeScript'}
+          />
           <Body className="leading-relaxed">
             타입 안정성과 자동완성으로 개발 생산성을 높입니다. 모든 컴포넌트에
             완벽한 타입 정의가 제공됩니다.
           </Body>
-          <Card variant="filled" className="mt-4">
-            <Body>
-              <strong>Vue도 추가할 예정입니다.</strong> 관심 있으시면 GitHub
-              Issue로 알려주세요!
-            </Body>
-          </Card>
+          {!isVue && (
+            <Card variant="filled" className="mt-4">
+              <Body>
+                <strong>Vue 3도 지원합니다!</strong> vue.hanui.io에서 Vue 버전
+                문서를 확인하세요.
+              </Body>
+            </Card>
+          )}
+          {isVue && (
+            <Card variant="filled" className="mt-4">
+              <Body>
+                <strong>React도 지원합니다!</strong> hanui.io에서 React 버전
+                문서를 확인하세요.
+              </Body>
+            </Card>
+          )}
         </Subsection>
 
         <Subsection level="h3">
@@ -128,11 +147,26 @@ export default function IntroductionPage() {
         </Subsection>
 
         <Subsection level="h3">
-          <Heading level="h3" title="Radix UI (일부 컴포넌트)" />
+          <Heading
+            level="h3"
+            title={
+              isVue ? 'Headless UI (일부 컴포넌트)' : 'Radix UI (일부 컴포넌트)'
+            }
+          />
           <Body className="leading-relaxed">
-            Dialog, Tabs 같은 복잡한 인터랙션이 필요한 컴포넌트는 Radix UI
-            Primitives를 기반으로 만들었습니다. 접근성 로직이 자동으로 처리되어
-            ARIA, 키보드 네비게이션을 신경 쓸 필요가 없습니다.
+            {isVue ? (
+              <>
+                Dialog, Tabs 같은 복잡한 인터랙션이 필요한 컴포넌트는 Headless
+                UI를 기반으로 만들었습니다. 접근성 로직이 자동으로 처리되어
+                ARIA, 키보드 네비게이션을 신경 쓸 필요가 없습니다.
+              </>
+            ) : (
+              <>
+                Dialog, Tabs 같은 복잡한 인터랙션이 필요한 컴포넌트는 Radix UI
+                Primitives를 기반으로 만들었습니다. 접근성 로직이 자동으로
+                처리되어 ARIA, 키보드 네비게이션을 신경 쓸 필요가 없습니다.
+              </>
+            )}
           </Body>
         </Subsection>
 

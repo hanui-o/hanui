@@ -9,12 +9,15 @@ import {
   Section,
   Display,
   Body,
-  Heading,
 } from '@hanui/react';
 import { HomeLayout } from '@/components/HomeLayout';
 import { ExampleShowcase } from '@/components/ExampleShowcase';
+import { useFramework } from '@/components/FrameworkTabs';
 
 export default function Home() {
+  const { framework } = useFramework();
+  const isVue = framework === 'vue';
+
   return (
     <HomeLayout>
       <Container>
@@ -29,7 +32,7 @@ export default function Home() {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-krds-primary-base"></span>
                 </span>
                 <span className="text-krds-primary-text font-semibold">
-                  v0.2.0 Preview
+                  {isVue ? 'v0.1.0 Preview' : 'v0.2.0 Preview'}
                 </span>
               </span>
               <span className="h-3 w-px bg-krds-gray-20"></span>
@@ -40,17 +43,38 @@ export default function Home() {
 
             {/* Title */}
             <Display as="h1" className="tracking-tight !text-[60px] py-2">
-              전자정부프레임워크 v5를 위한
-              <br />
-              KRDS 기반 React 컴포넌트
+              {isVue ? (
+                <>
+                  Vue 3 / Nuxt 3를 위한
+                  <br />
+                  KRDS 기반 Vue 컴포넌트
+                </>
+              ) : (
+                <>
+                  전자정부프레임워크 v5를 위한
+                  <br />
+                  KRDS 기반 React 컴포넌트
+                </>
+              )}
             </Display>
 
             {/* Description */}
             <Body size="lg" className="text-krds-gray-70">
-              eGovFrame 5.0 + Next.js 14 환경에 최적화.
-              <br />
-              KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 50+ 컴포넌트를
-              복사해서 바로 쓰세요.
+              {isVue ? (
+                <>
+                  Vue 3 + Nuxt 3 환경에 최적화.
+                  <br />
+                  KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 125+
+                  컴포넌트를 복사해서 바로 쓰세요.
+                </>
+              ) : (
+                <>
+                  eGovFrame 5.0 + Next.js 14 환경에 최적화.
+                  <br />
+                  KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 50+
+                  컴포넌트를 복사해서 바로 쓰세요.
+                </>
+              )}
             </Body>
 
             {/* CTA Buttons */}
