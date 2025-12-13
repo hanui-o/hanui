@@ -534,7 +534,7 @@
     "dependencies": ["clsx", "tailwind-merge"],
     "files": [
       {
-        "path": "components/TabBars.tsx",
+        "path": "components/tab-bars.tsx",
         "type": "component"
       }
     ]
