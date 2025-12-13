@@ -2,6 +2,8 @@
  * Vue Component Registry
  */
 
+import fs from 'fs-extra';
+
 export interface RegistryComponent {
   name: string;
   type: 'component' | 'util';
@@ -28,6 +30,13 @@ const SOURCE_BASE_URL =
  * Fetch the Vue component registry
  */
 export async function fetchRegistry(): Promise<Registry> {
+  // Support local file:// URLs for development
+  if (REGISTRY_URL.startsWith('file://')) {
+    const filePath = REGISTRY_URL.replace('file://', '');
+    const content = await fs.readFile(filePath, 'utf-8');
+    return JSON.parse(content);
+  }
+
   const response = await fetch(REGISTRY_URL);
   if (!response.ok) {
     throw new Error(`Failed to fetch registry: ${response.statusText}`);
