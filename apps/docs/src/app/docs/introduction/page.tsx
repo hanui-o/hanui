@@ -150,15 +150,15 @@ export default function IntroductionPage() {
           <Heading
             level="h3"
             title={
-              isVue ? 'Headless UI (일부 컴포넌트)' : 'Radix UI (일부 컴포넌트)'
+              isVue ? 'Reka UI (일부 컴포넌트)' : 'Radix UI (일부 컴포넌트)'
             }
           />
           <Body className="leading-relaxed">
             {isVue ? (
               <>
-                Dialog, Tabs 같은 복잡한 인터랙션이 필요한 컴포넌트는 Headless
-                UI를 기반으로 만들었습니다. 접근성 로직이 자동으로 처리되어
-                ARIA, 키보드 네비게이션을 신경 쓸 필요가 없습니다.
+                Dialog, Tabs 같은 복잡한 인터랙션이 필요한 컴포넌트는 Reka UI
+                (Radix Vue)를 기반으로 만들었습니다. 접근성 로직이 자동으로
+                처리되어 ARIA, 키보드 네비게이션을 신경 쓸 필요가 없습니다.
               </>
             ) : (
               <>
