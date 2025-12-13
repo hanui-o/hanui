@@ -447,14 +447,25 @@ import CardBody from '@/components/hanui/CardBody.vue';
               <Code variant="block" language="css" showLineNumbers={false}>
                 {`/* ${framework === 'react' ? 'globals.css' : 'main.css'} - Tailwind v4 */
 @import "tailwindcss";
-@import "./styles/variables.css";
 
 @theme {
-  /* KRDS 색상을 Tailwind 유틸리티로 매핑 */
-  --color-krds-primary-50: var(--krds-color-light-primary-50);
-  --color-krds-gray-5: var(--krds-color-light-gray-5);
+  /* KRDS 색상 - Tailwind v4는 실제 값이 필요합니다 (var() 참조 불가) */
+  --color-krds-primary-50: #256ef4;
+  --color-krds-primary-60: #0b50d0;
+  --color-krds-gray-5: #f4f5f6;
+  --color-krds-gray-90: #1e2124;
+  /* ... 전체 색상은 init이 자동 생성합니다 */
 }`}
               </Code>
+              <Alert
+                variant="warning"
+                className="mt-4"
+                title="Tailwind v4 주의"
+              >
+                <Code>@theme</Code> 블록 내에서는 <Code>var()</Code> 참조가
+                작동하지 않습니다. 실제 HEX 값을 사용해야 합니다.{' '}
+                <Code>hanui init</Code>이 자동으로 처리합니다.
+              </Alert>
             </TabsContent>
             <TabsContent value="v3">
               <Code variant="block" language="css" showLineNumbers={false}>
