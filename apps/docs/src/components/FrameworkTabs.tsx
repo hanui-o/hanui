@@ -70,13 +70,15 @@ export function FrameworkProvider({
       return;
     }
 
+    // www. 접두사 제거하여 기본 도메인 추출 (www.hanui.io → hanui.io)
+    const baseHostname = hostname.replace(/^(vue\.|www\.)+/, '');
+
     // 프로덕션: 서브도메인으로 리다이렉트
     if (newFramework === 'vue' && !hostname.startsWith('vue.')) {
-      // hanui.io → vue.hanui.io
-      window.location.href = `${protocol}//vue.${hostname}${pathname}`;
+      // hanui.io, www.hanui.io → vue.hanui.io
+      window.location.href = `${protocol}//vue.${baseHostname}${pathname}`;
     } else if (newFramework === 'react' && hostname.startsWith('vue.')) {
       // vue.hanui.io → hanui.io
-      const baseHostname = hostname.replace('vue.', '');
       window.location.href = `${protocol}//${baseHostname}${pathname}`;
     } else {
       setFramework(newFramework);
