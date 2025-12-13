@@ -45,9 +45,9 @@ import { Card } from '@/components/hanui/card';
 
 const AI_PROMPT_VUE = `HANUI Vue 라이브러리를 설치하고 모든 컴포넌트를 추가해줘.
 
-1. CLI 설치: npm install -D @hanui/vue
-2. 초기화: npx hanui-vue init -y
-3. 모든 컴포넌트 설치: npx hanui-vue add all -y
+1. CLI 설치: npm install -D @hanui/cli
+2. 초기화: npx hanui init -y (Vue/Nuxt 자동 감지)
+3. 모든 컴포넌트 설치: npx hanui add all -f vue -y
 
 설치 후 사용법:
 <script setup lang="ts">
@@ -168,20 +168,20 @@ export default function QuickStartPage() {
               </TabsList>
               <TabsContent value="npm">
                 <Code variant="block" language="bash" showLineNumbers={false}>
-                  npm install -D @hanui/vue && npx hanui-vue init -y && npx
-                  hanui-vue add button card input -y
+                  npm install -D @hanui/cli && npx hanui init -f vue -y && npx
+                  hanui add button card input -f vue -y
                 </Code>
               </TabsContent>
               <TabsContent value="pnpm">
                 <Code variant="block" language="bash" showLineNumbers={false}>
-                  pnpm add -D @hanui/vue && pnpm hanui-vue init -y && pnpm
-                  hanui-vue add button card input -y
+                  pnpm add -D @hanui/cli && pnpm hanui init -f vue -y && pnpm
+                  hanui add button card input -f vue -y
                 </Code>
               </TabsContent>
               <TabsContent value="yarn">
                 <Code variant="block" language="bash" showLineNumbers={false}>
-                  yarn add -D @hanui/vue && yarn hanui-vue init -y && yarn
-                  hanui-vue add button card input -y
+                  yarn add -D @hanui/cli && yarn hanui init -f vue -y && yarn
+                  hanui add button card input -f vue -y
                 </Code>
               </TabsContent>
             </Tabs>
@@ -241,24 +241,25 @@ export default function QuickStartPage() {
               </TabsList>
               <TabsContent value="npm">
                 <Code variant="block" language="bash" showLineNumbers={false}>
-                  npx hanui-vue add all -y
+                  npx hanui add all -f vue -y
                 </Code>
               </TabsContent>
               <TabsContent value="pnpm">
                 <Code variant="block" language="bash" showLineNumbers={false}>
-                  pnpm hanui-vue add all -y
+                  pnpm hanui add all -f vue -y
                 </Code>
               </TabsContent>
               <TabsContent value="yarn">
                 <Code variant="block" language="bash" showLineNumbers={false}>
-                  yarn hanui-vue add all -y
+                  yarn hanui add all -f vue -y
                 </Code>
               </TabsContent>
             </Tabs>
 
             <Alert variant="success" className="mt-4" title="추천">
-              처음 시작하신다면 <Code>hanui-vue add all</Code>로 모든 컴포넌트를
-              설치하세요. 필요 없는 컴포넌트는 나중에 삭제하면 됩니다.
+              처음 시작하신다면 <Code>hanui add all -f vue</Code>로 모든
+              컴포넌트를 설치하세요. 필요 없는 컴포넌트는 나중에 삭제하면
+              됩니다.
             </Alert>
           </>
         )}

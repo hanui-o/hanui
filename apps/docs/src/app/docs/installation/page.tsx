@@ -46,9 +46,9 @@ import { Card } from '@/components/hanui/card';
 
 const AI_PROMPT_VUE = `HANUI Vue 라이브러리를 설치하고 모든 컴포넌트를 추가해줘.
 
-1. CLI 설치: npm install -D @hanui/vue
-2. 초기화: npx hanui-vue init -y
-3. 모든 컴포넌트 설치: npx hanui-vue add all -y
+1. CLI 설치: npm install -D @hanui/cli
+2. 초기화: npx hanui init -f vue -y (Vue/Nuxt 자동 감지)
+3. 모든 컴포넌트 설치: npx hanui add all -f vue -y
 
 설치 후 사용법:
 <script setup lang="ts">
@@ -63,7 +63,7 @@ import Card from '@/components/hanui/Card.vue';
   </Card>
 </template>
 
-공식 문서: https://vue.hanui.io/docs/installation`;
+공식 문서: https://hanui.io/docs/installation`;
 
 export default function InstallationPage() {
   const [aiCopied, setAiCopied] = useState(false);
@@ -135,12 +135,12 @@ export default function InstallationPage() {
             </>
           ) : (
             <>
-              <Body className="font-semibold mb-2">@hanui/vue (Vue)</Body>
+              <Body className="font-semibold mb-2">@hanui/cli (Vue)</Body>
               <Body className="text-sm text-krds-gray-60 mb-3">
-                Nuxt, Vite + Vue 등 Vue 3 기반 프로젝트용
+                Nuxt, Vite + Vue 등 Vue 3 기반 프로젝트용 (Vue/Nuxt 자동 감지)
               </Body>
               <Code variant="block" language="bash" showLineNumbers={false}>
-                npm install -D @hanui/vue
+                npm install -D @hanui/cli
               </Code>
             </>
           )}
@@ -277,7 +277,8 @@ export default function Page() {
             <Subsection level="h3">
               <Heading level="h3" title="Step 1. CLI 설치" />
               <Body className="mb-4 text-krds-gray-70">
-                프로젝트에 Vue CLI를 devDependency로 설치합니다:
+                프로젝트에 CLI를 devDependency로 설치합니다 (Vue/Nuxt 자동
+                감지):
               </Body>
 
               <Tabs defaultValue="npm" className="mt-4">
@@ -288,17 +289,17 @@ export default function Page() {
                 </TabsList>
                 <TabsContent value="npm">
                   <Code variant="block" language="bash" showLineNumbers={false}>
-                    npm install -D @hanui/vue
+                    npm install -D @hanui/cli
                   </Code>
                 </TabsContent>
                 <TabsContent value="pnpm">
                   <Code variant="block" language="bash" showLineNumbers={false}>
-                    pnpm add -D @hanui/vue
+                    pnpm add -D @hanui/cli
                   </Code>
                 </TabsContent>
                 <TabsContent value="yarn">
                   <Code variant="block" language="bash" showLineNumbers={false}>
-                    yarn add -D @hanui/vue
+                    yarn add -D @hanui/cli
                   </Code>
                 </TabsContent>
               </Tabs>
@@ -307,11 +308,12 @@ export default function Page() {
             <Subsection level="h3">
               <Heading level="h3" title="Step 2. 프로젝트 초기화" />
               <Body className="mb-4 text-krds-gray-70">
-                CLI를 실행하면 KRDS 디자인 토큰이 자동으로 설정됩니다:
+                CLI를 실행하면 KRDS 디자인 토큰이 자동으로 설정됩니다 (Vue/Nuxt
+                자동 감지):
               </Body>
 
               <Code variant="block" language="bash" showLineNumbers={false}>
-                npx hanui-vue init
+                npx hanui init
               </Code>
 
               <Alert variant="info" className="mt-4" title="init이 하는 일">
@@ -340,13 +342,13 @@ export default function Page() {
 
               <Code variant="block" language="bash" showLineNumbers={false}>
                 {`# 단일 컴포넌트
-npx hanui-vue add button
+npx hanui add button
 
 # 여러 컴포넌트
-npx hanui-vue add button card input
+npx hanui add button card input
 
 # 모든 컴포넌트 (125+)
-npx hanui-vue add all`}
+npx hanui add all`}
               </Code>
             </Subsection>
 
@@ -588,12 +590,7 @@ import CardBody from '@/components/hanui/CardBody.vue';
           <Heading level="h3" title="KRDS 색상 클래스가 적용되지 않음" />
           <List className="mt-4">
             <ListItem>
-              <Code>
-                {framework === 'react'
-                  ? 'npx hanui init'
-                  : 'npx hanui-vue init'}
-              </Code>
-              을 실행했는지 확인
+              <Code>npx hanui init</Code>을 실행했는지 확인
             </ListItem>
             <ListItem>
               v3:{' '}
