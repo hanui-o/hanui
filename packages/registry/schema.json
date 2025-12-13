@@ -13,8 +13,8 @@
         },
         "type": {
           "type": "string",
-          "enum": ["component", "ui", "layout", "bundle"],
-          "description": "Component type (bundle types have empty files arrays and use registryDependencies to install multiple components)"
+          "enum": ["component", "ui", "layout", "bundle", "kit"],
+          "description": "Component type (bundle types have empty files arrays and use registryDependencies to install multiple components, kit types are feature kits with multiple files)"
         },
         "description": {
           "type": "string",

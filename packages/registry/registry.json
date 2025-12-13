@@ -885,5 +885,61 @@
         "type": "component"
       }
     ]
+  },
+  "kit/board": {
+    "name": "kit/board",
+    "type": "kit",
+    "description": "게시판 기능 키트 (목록, 상세, 작성, 수정, 삭제)",
+    "dependencies": [
+      "axios",
+      "zustand",
+      "@tanstack/react-query",
+      "react-hook-form",
+      "@hookform/resolvers",
+      "zod"
+    ],
+    "registryDependencies": ["button", "input", "table", "pagination", "modal"],
+    "files": [
+      {
+        "path": "kits/board/types/board.ts",
+        "type": "lib"
+      },
+      {
+        "path": "kits/board/api/board.ts",
+        "type": "lib"
+      },
+      {
+        "path": "kits/board/hooks/useBoard.ts",
+        "type": "hook"
+      },
+      {
+        "path": "kits/board/store/boardStore.ts",
+        "type": "lib"
+      },
+      {
+        "path": "kits/board/components/BoardList.tsx",
+        "type": "component"
+      },
+      {
+        "path": "kits/board/components/BoardItem.tsx",
+        "type": "component"
+      },
+      {
+        "path": "kits/board/components/BoardDetail.tsx",
+        "type": "component"
+      },
+      {
+        "path": "kits/board/components/BoardForm.tsx",
+        "type": "component"
+      },
+      {
+        "path": "kits/board/components/BoardDeleteModal.tsx",
+        "type": "component"
+      },
+      {
+        "path": "kits/board/index.ts",
+        "type": "lib"
+      }
+    ]
   }
 }
