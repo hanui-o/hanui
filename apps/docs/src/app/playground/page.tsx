@@ -87,7 +87,6 @@ import {
   TableHead,
   TableCell,
   // Typography
-  Heading,
   Body,
   List,
   ListItem,
@@ -112,6 +111,8 @@ import {
   RemovableTag,
   TagLink,
   TagGroup,
+  // Section Heading System
+  SectionHeading,
 } from '@hanui/react';
 import {
   AlertCircle,
@@ -407,9 +408,11 @@ function FeedbackTab() {
 
   return (
     <div className="space-y-8">
-      <Heading level="h2" className="sr-only">
-        피드백 및 상태 컴포넌트
-      </Heading>
+      <SectionHeading
+        level="h3"
+        title="피드백 및 상태 컴포넌트"
+        description="사용자에게 시스템 상태와 피드백을 전달하는 컴포넌트들입니다."
+      />
       {/* Alert */}
       <Card>
         <CardHeader>
@@ -684,9 +687,11 @@ function FormTab() {
 
   return (
     <div className="space-y-8">
-      <Heading level="h2" className="sr-only">
-        폼 입력 컴포넌트
-      </Heading>
+      <SectionHeading
+        level="h3"
+        title="폼 입력 컴포넌트"
+        description="사용자 입력을 받는 폼 요소 컴포넌트들입니다."
+      />
       {/* Input */}
       <Card>
         <CardHeader>
@@ -887,9 +892,11 @@ function NavigationTab() {
 
   return (
     <div className="space-y-8">
-      <Heading level="h2" className="sr-only">
-        네비게이션 컴포넌트
-      </Heading>
+      <SectionHeading
+        level="h3"
+        title="네비게이션 컴포넌트"
+        description="페이지 간 이동과 현재 위치를 안내하는 컴포넌트들입니다."
+      />
 
       {/* StepIndicator */}
       <Card>
@@ -1017,9 +1024,11 @@ function ActionTab() {
 
   return (
     <div className="space-y-8">
-      <Heading level="h2" className="sr-only">
-        액션 및 오버레이 컴포넌트
-      </Heading>
+      <SectionHeading
+        level="h3"
+        title="액션 및 오버레이 컴포넌트"
+        description="사용자 액션을 처리하고 추가 정보를 표시하는 컴포넌트들입니다."
+      />
       {/* Button */}
       <Card>
         <CardHeader>
@@ -1245,9 +1254,11 @@ function ActionTab() {
 function DataTab() {
   return (
     <div className="space-y-8">
-      <Heading level="h2" className="sr-only">
-        데이터 표시 컴포넌트
-      </Heading>
+      <SectionHeading
+        level="h3"
+        title="데이터 표시 컴포넌트"
+        description="데이터를 구조화하여 보여주는 컴포넌트들입니다."
+      />
       {/* Table */}
       <Card>
         <CardHeader>
@@ -1348,7 +1359,7 @@ function DataTab() {
 // 접근성 체크리스트 컴포넌트
 // ============================================================================
 function AccessibilityChecklist() {
-  const items = [
+  const checklistItems = [
     { component: 'Alert', aria: 'role="alert"', keyboard: '-', focus: '-' },
     {
       component: 'Toast',
@@ -1493,10 +1504,12 @@ function AccessibilityChecklist() {
   ];
 
   return (
-    <>
-      <Heading level="h2" className="sr-only">
-        접근성 체크리스트
-      </Heading>
+    <div className="space-y-8">
+      <SectionHeading
+        level="h3"
+        title="접근성 체크리스트"
+        description="KWCAG 2.2 AA 기준 컴포넌트별 접근성 지원 현황입니다."
+      />
       <Card>
         <CardHeader>
           <CardTitle>접근성 체크리스트 (KWCAG 2.2 AA)</CardTitle>
@@ -1513,7 +1526,7 @@ function AccessibilityChecklist() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {items.map((item) => (
+                {checklistItems.map((item) => (
                   <TableRow key={item.component}>
                     <TableCell className="font-medium">
                       {item.component}
@@ -1530,7 +1543,7 @@ function AccessibilityChecklist() {
           </div>
         </CardBody>
       </Card>
-    </>
+    </div>
   );
 }
 
@@ -1550,44 +1563,113 @@ export default function TestComponentsPage() {
         {/* <HeaderWithMegaMenu megaColumns={megaColumns} stickyBehavior="auto" /> */}
 
         <HeroCarousel slides={slides} autoPlay showPlayPause loop />
-        <br />
-        <br />
 
-        <Container>
-          <Tabs defaultValue="feedback">
-            <TabsList className="flex-wrap">
-              <TabsTrigger value="feedback">피드백 & 상태</TabsTrigger>
-              <TabsTrigger value="form">폼 입력</TabsTrigger>
-              <TabsTrigger value="navigation">네비게이션</TabsTrigger>
-              <TabsTrigger value="action">액션 & 오버레이</TabsTrigger>
-              <TabsTrigger value="data">데이터 표시</TabsTrigger>
-              <TabsTrigger value="checklist">체크리스트</TabsTrigger>
-            </TabsList>
+        <Container className="py-12">
+          {/* Section Heading System 적용 */}
+          <SectionHeading
+            level="h1"
+            title="HANUI 컴포넌트 플레이그라운드"
+            description="HANUI 라이브러리의 모든 컴포넌트를 테스트하고 체험해볼 수 있는 공간입니다. KRDS(한국 정부 디자인 시스템) 기반의 React 컴포넌트들을 직접 조작하며 확인해보세요."
+          />
 
-            <TabsContent value="feedback">
-              <FeedbackTab />
-            </TabsContent>
+          {/* 주요 기능 소개 섹션 */}
+          <section className="mb-12">
+            <SectionHeading
+              level="h2"
+              title="주요 기능"
+              description="플레이그라운드에서 제공하는 핵심 기능들을 소개합니다."
+            />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card>
+                <CardHeader>
+                  <SectionHeading
+                    level="h3"
+                    title="실시간 인터랙션"
+                    className="mb-0"
+                  />
+                </CardHeader>
+                <CardBody>
+                  <Body>
+                    모든 컴포넌트를 클릭, 입력, 드래그 등 실제 사용 환경과
+                    동일하게 테스트할 수 있습니다.
+                  </Body>
+                </CardBody>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <SectionHeading
+                    level="h3"
+                    title="접근성 검증"
+                    className="mb-0"
+                  />
+                </CardHeader>
+                <CardBody>
+                  <Body>
+                    KWCAG 2.2 AA 기준에 맞춘 키보드 네비게이션과 스크린리더
+                    지원을 확인할 수 있습니다.
+                  </Body>
+                </CardBody>
+              </Card>
+              <Card>
+                <CardHeader>
+                  <SectionHeading
+                    level="h3"
+                    title="다양한 상태 확인"
+                    className="mb-0"
+                  />
+                </CardHeader>
+                <CardBody>
+                  <Body>
+                    hover, focus, disabled, loading 등 다양한 상태의 컴포넌트
+                    모습을 확인할 수 있습니다.
+                  </Body>
+                </CardBody>
+              </Card>
+            </div>
+          </section>
 
-            <TabsContent value="form">
-              <FormTab />
-            </TabsContent>
+          {/* 컴포넌트 탭 섹션 */}
+          <section>
+            <SectionHeading
+              level="h2"
+              title="컴포넌트 라이브러리"
+              description="카테고리별로 분류된 HANUI 컴포넌트들을 살펴보세요."
+            />
+            <Tabs defaultValue="feedback">
+              <TabsList className="flex-wrap">
+                <TabsTrigger value="feedback">피드백 & 상태</TabsTrigger>
+                <TabsTrigger value="form">폼 입력</TabsTrigger>
+                <TabsTrigger value="navigation">네비게이션</TabsTrigger>
+                <TabsTrigger value="action">액션 & 오버레이</TabsTrigger>
+                <TabsTrigger value="data">데이터 표시</TabsTrigger>
+                <TabsTrigger value="checklist">체크리스트</TabsTrigger>
+              </TabsList>
 
-            <TabsContent value="navigation">
-              <NavigationTab />
-            </TabsContent>
+              <TabsContent value="feedback">
+                <FeedbackTab />
+              </TabsContent>
 
-            <TabsContent value="action">
-              <ActionTab />
-            </TabsContent>
+              <TabsContent value="form">
+                <FormTab />
+              </TabsContent>
 
-            <TabsContent value="data">
-              <DataTab />
-            </TabsContent>
+              <TabsContent value="navigation">
+                <NavigationTab />
+              </TabsContent>
 
-            <TabsContent value="checklist">
-              <AccessibilityChecklist />
-            </TabsContent>
-          </Tabs>
+              <TabsContent value="action">
+                <ActionTab />
+              </TabsContent>
+
+              <TabsContent value="data">
+                <DataTab />
+              </TabsContent>
+
+              <TabsContent value="checklist">
+                <AccessibilityChecklist />
+              </TabsContent>
+            </Tabs>
+          </section>
         </Container>
 
         <Footer />

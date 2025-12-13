@@ -534,3 +534,6 @@ export type {
 
 export { Calendar } from './components/calendar';
 export type { CalendarProps } from './components/calendar';
+
+export { SectionHeading } from './components/section-header';
+export type { SectionHeadingProps } from './components/section-header';
