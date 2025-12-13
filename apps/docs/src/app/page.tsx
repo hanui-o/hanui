@@ -45,7 +45,7 @@ export default function Home() {
             <Display as="h1" className="tracking-tight !text-[60px] py-2">
               {isVue ? (
                 <>
-                  Vue 3 / Nuxt 3를 위한
+                  전자정부프레임워크 v5를 위한
                   <br />
                   KRDS 기반 Vue 컴포넌트
                 </>
@@ -62,9 +62,9 @@ export default function Home() {
             <Body size="lg" className="text-krds-gray-70">
               {isVue ? (
                 <>
-                  Vue 3 + Nuxt 3 환경에 최적화.
+                  eGovFrame 5.0 + Nuxt 3 환경에 최적화.
                   <br />
-                  KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 125+
+                  KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 50+
                   컴포넌트를 복사해서 바로 쓰세요.
                 </>
               ) : (
