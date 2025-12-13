@@ -1,14 +1,16 @@
 import fetch from 'node-fetch';
 import path from 'path';
 import fs from 'fs-extra';
+import type { Framework } from '../types.js';
 
-export type Framework = 'react' | 'vue';
+export type { Framework };
 
 const getRegistryUrl = (framework: Framework = 'react') => {
   if (process.env.HANUI_REGISTRY_URL) {
     return process.env.HANUI_REGISTRY_URL;
   }
-  const registryFile = framework === 'vue' ? 'registry-vue.json' : 'registry.json';
+  const registryFile =
+    framework === 'vue' ? 'registry-vue.json' : 'registry.json';
   return `https://raw.githubusercontent.com/hanui-o/hanui/main/packages/registry/${registryFile}`;
 };
 
@@ -41,9 +43,12 @@ export type Registry = Record<string, RegistryComponent>;
 /**
  * Fetch the component registry from GitHub or local file
  */
-export async function fetchRegistry(framework: Framework = 'react'): Promise<Registry> {
+export async function fetchRegistry(
+  framework: Framework = 'react'
+): Promise<Registry> {
   try {
-    const registryFile = framework === 'vue' ? 'registry-vue.json' : 'registry.json';
+    const registryFile =
+      framework === 'vue' ? 'registry-vue.json' : 'registry.json';
 
     // In development, try local file first
     const cwd = process.cwd();

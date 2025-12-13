@@ -1,12 +1,13 @@
 import path from 'path';
 import fs from 'fs-extra';
-import type { ProjectType } from '../types.js';
+import type { ProjectType, Framework } from '../types.js';
 
 interface ProjectInfo {
   type: ProjectType;
   srcDir: boolean;
   appDir: boolean;
   pagesDir: boolean;
+  framework: Framework;
 }
 
 /**
@@ -30,9 +31,40 @@ export async function getProjectInfo(cwd: string): Promise<ProjectInfo> {
   const isVite = await fs.pathExists(path.resolve(cwd, 'vite.config.ts'));
   const isViteJs = await fs.pathExists(path.resolve(cwd, 'vite.config.js'));
 
-  let type: ProjectType = 'unknown';
+  // Check for Nuxt
+  const isNuxt =
+    (await fs.pathExists(path.resolve(cwd, 'nuxt.config.ts'))) ||
+    (await fs.pathExists(path.resolve(cwd, 'nuxt.config.js')));
 
-  if (appDir && srcDir) {
+  // Check for Vue (detect by package.json)
+  let isVue = false;
+  const packageJsonPath = path.resolve(cwd, 'package.json');
+  if (await fs.pathExists(packageJsonPath)) {
+    const packageJson = await fs.readJSON(packageJsonPath);
+    const deps = {
+      ...packageJson.dependencies,
+      ...packageJson.devDependencies,
+    };
+    isVue = !!deps['vue'];
+  }
+
+  let type: ProjectType = 'unknown';
+  let framework: Framework = 'react';
+
+  // Vue/Nuxt detection first
+  if (isNuxt && srcDir) {
+    type = 'nuxt-src';
+    framework = 'vue';
+  } else if (isNuxt) {
+    type = 'nuxt';
+    framework = 'vue';
+  } else if (isVue && (isVite || isViteJs) && srcDir) {
+    type = 'vue-src';
+    framework = 'vue';
+  } else if (isVue && (isVite || isViteJs)) {
+    type = 'vue';
+    framework = 'vue';
+  } else if (appDir && srcDir) {
     type = 'next-app-src';
   } else if (appDir && !srcDir) {
     type = 'next-app';
@@ -51,6 +83,7 @@ export async function getProjectInfo(cwd: string): Promise<ProjectInfo> {
     srcDir,
     appDir,
     pagesDir,
+    framework,
   };
 }
 
@@ -93,17 +126,23 @@ export async function getDefaultCssPath(
   cwd: string,
   projectInfo: ProjectInfo
 ): Promise<string> {
-  const { srcDir } = projectInfo;
+  const { srcDir, framework, type } = projectInfo;
 
   // 실제 존재하는 파일을 우선 순위대로 확인
   const possiblePaths = [
+    // Nuxt
+    'assets/css/main.css',
+    'assets/css/tailwind.css',
+    'assets/main.css',
     // Next.js App Router
     'src/app/globals.css',
     'app/globals.css',
     // Next.js Pages or general
     'src/styles/globals.css',
     'styles/globals.css',
-    // Vite default
+    // Vite/Vue default
+    'src/assets/main.css',
+    'src/style.css',
     'src/index.css',
     'index.css',
   ];
@@ -114,6 +153,12 @@ export async function getDefaultCssPath(
     }
   }
 
-  // Default fallback
+  // Default fallback based on framework
+  if (type.startsWith('nuxt')) {
+    return 'assets/css/main.css';
+  }
+  if (framework === 'vue') {
+    return srcDir ? 'src/assets/main.css' : 'assets/main.css';
+  }
   return srcDir ? 'src/app/globals.css' : 'app/globals.css';
 }

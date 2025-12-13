@@ -63,7 +63,13 @@ export const add = new Command()
   .action(async (components: string[], options) => {
     try {
       const cwd = process.cwd();
-      const framework = (options.framework as Framework) || 'react';
+
+      // Load hanui.json config
+      const hanuiConfig = await loadHanuiConfig(cwd);
+
+      // Determine framework: CLI option > hanui.json > default 'react'
+      const framework =
+        (options.framework as Framework) || hanuiConfig?.framework || 'react';
 
       // Validate framework option
       if (!['react', 'vue'].includes(framework)) {
@@ -79,9 +85,6 @@ export const add = new Command()
         );
         process.exit(1);
       }
-
-      // Load hanui.json config
-      const hanuiConfig = await loadHanuiConfig(cwd);
 
       // Determine components path from hanui.json or options
       let componentsPath = options.path;

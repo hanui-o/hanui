@@ -42,10 +42,9 @@ export async function promptForConfig(
         description: 'React 18 + Vite + TypeScript',
       },
       {
-        title: 'Vue (Coming soon)',
+        title: 'Vue / Nuxt',
         value: 'vue',
-        description: 'Vue 3 + TypeScript',
-        disabled: true,
+        description: 'Vue 3 / Nuxt 3 + TypeScript',
       },
     ],
     initial: 0,

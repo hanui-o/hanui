@@ -158,6 +158,16 @@ export function Header() {
             {/* Framework Selector */}
             <div className="hidden lg:flex items-center h-9 rounded-md border border-krds-gray-20 overflow-hidden">
               <button
+                onClick={() => setFramework('react')}
+                className={`h-full px-3 text-sm font-medium transition-colors ${
+                  framework === 'react'
+                    ? 'bg-[#e6f7ff] text-[#087ea4]'
+                    : 'text-krds-gray-70 hover:bg-krds-gray-5 bg-white'
+                }`}
+              >
+                React
+              </button>
+              <button
                 onClick={() => setFramework('vue')}
                 className={`h-full px-3 text-sm font-medium transition-colors ${
                   framework === 'vue'
@@ -166,16 +176,6 @@ export function Header() {
                 }`}
               >
                 Vue
-              </button>
-              <button
-                onClick={() => setFramework('react')}
-                className={`h-full px-3 text-sm font-medium transition-colors ${
-                  framework === 'react'
-                    ? 'bg-krds-gray-90 text-white'
-                    : 'text-krds-gray-70 hover:bg-krds-gray-5'
-                }`}
-              >
-                React
               </button>
             </div>
 

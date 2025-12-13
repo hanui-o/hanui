@@ -12,7 +12,7 @@ import {
   getTailwindConfigPath,
   getDefaultCssPath,
 } from '../utils/get-project-info.js';
-import type { HanuiConfig } from '../types.js';
+import type { HanuiConfig, Framework } from '../types.js';
 
 /**
  * 패키지 매니저 감지
@@ -713,6 +713,7 @@ export const init = new Command()
   .name('init')
   .description('Initialize your project for HANUI')
   .option('-y, --yes', 'skip confirmation and use defaults')
+  .option('-f, --framework <framework>', 'framework to use (react or vue)')
   .action(async (options) => {
     try {
       const cwd = process.cwd();
@@ -737,8 +738,12 @@ export const init = new Command()
       // Detect Tailwind version (v3 vs v4)
       const tailwindVersion = await detectTailwindVersion(cwd);
 
+      // Determine framework (from option or auto-detect)
+      const framework: Framework =
+        (options.framework as Framework) || projectInfo.framework;
+
       logger.info(
-        `Detected: ${chalk.cyan(projectInfo.type)} ${projectInfo.srcDir ? chalk.dim('(with src/)') : ''}`
+        `Detected: ${chalk.cyan(projectInfo.type)} ${projectInfo.srcDir ? chalk.dim('(with src/)') : ''} ${chalk.dim(`[${framework}]`)}`
       );
 
       if (tailwindVersion) {
@@ -1022,6 +1027,7 @@ ${TAILWIND_V4_THEME}`;
       const hanuiConfig: HanuiConfig = {
         $schema: 'https://hanui.io/schema.json',
         style: 'default',
+        framework,
         tailwind: {
           config: isV4 ? '' : config.tailwindConfig,
           css: cssPath,
@@ -1058,8 +1064,9 @@ ${TAILWIND_V4_THEME}`;
       }
 
       // Success message
+      const frameworkLabel = framework === 'vue' ? 'Vue' : 'React';
       logger.success(
-        `\n✓ HANUI initialized successfully! (Tailwind ${isV4 ? 'v4' : 'v3'})\n`
+        `\n✓ HANUI initialized successfully! (${frameworkLabel} + Tailwind ${isV4 ? 'v4' : 'v3'})\n`
       );
 
       console.log(chalk.dim('  Created files:'));
@@ -1081,8 +1088,12 @@ ${TAILWIND_V4_THEME}`;
       console.log(chalk.dim(`    - ${cssPath}\n`));
 
       logger.info('Next steps:\n');
+      const addCommand =
+        framework === 'vue'
+          ? 'npx hanui add button -f vue'
+          : 'npx hanui add button';
       console.log(
-        `  ${chalk.cyan('1.')} Add components: ${chalk.bold('npx hanui add button')}`
+        `  ${chalk.cyan('1.')} Add components: ${chalk.bold(addCommand)}`
       );
       console.log(
         `  ${chalk.cyan('2.')} Start building: ${chalk.bold(`${packageManager} run dev`)}\n`

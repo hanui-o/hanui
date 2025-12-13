@@ -15,6 +15,7 @@ export interface TemplateInfo {
 export interface HanuiConfig {
   $schema?: string;
   style?: string;
+  framework?: Framework;
   tailwind: {
     config: string;
     css?: string;
@@ -37,4 +38,10 @@ export type ProjectType =
   | 'next-pages-src'
   | 'vite'
   | 'vite-src'
+  | 'nuxt'
+  | 'nuxt-src'
+  | 'vue'
+  | 'vue-src'
   | 'unknown';
+
+export type Framework = 'react' | 'vue';
