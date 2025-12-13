@@ -89,12 +89,20 @@ export const add = new Command()
       // Determine components path from hanui.json or options
       let componentsPath = options.path;
       let componentsAlias = '@/components/hanui'; // Default alias
+
       if (hanuiConfig?.aliases?.components) {
+        // Use hanui.json config if available
         componentsAlias = hanuiConfig.aliases.components;
         // Convert alias like "@/components/hanui" to "src/components/hanui"
         componentsPath = hanuiConfig.aliases.components
           .replace(/^@\//, 'src/')
           .replace(/^~\//, '');
+      } else if (options.path === 'components/hanui') {
+        // Auto-detect src folder if using default path
+        const hasSrcDir = fs.existsSync(path.join(cwd, 'src'));
+        if (hasSrcDir) {
+          componentsPath = 'src/components/hanui';
+        }
       }
 
       // Fetch registry
