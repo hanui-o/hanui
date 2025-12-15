@@ -166,7 +166,8 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>(
   ) => {
     return (
       <Component
-        ref={ref as any}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as React.Ref<HTMLElement>}
         className={cn(
           boxVariants({
             display,

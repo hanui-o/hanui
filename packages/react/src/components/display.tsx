@@ -92,7 +92,8 @@ export const Display = React.forwardRef<HTMLHeadingElement, DisplayProps>(
   ) => {
     return (
       <Component
-        ref={ref as any}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as React.Ref<HTMLHeadingElement>}
         className={cn(displayVariants({ size }), className)}
         {...props}
       >

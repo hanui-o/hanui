@@ -152,7 +152,8 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
   ) => {
     return (
       <Component
-        ref={ref as any}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as React.Ref<HTMLElement>}
         className={cn(sectionVariants({ padding, background }), className)}
         {...props}
       >

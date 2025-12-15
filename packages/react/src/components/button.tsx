@@ -182,14 +182,14 @@ export const Button = React.forwardRef<
       // 버튼 또는 Slot으로 렌더링
       <Comp
         className={cn(buttonVariants({ variant, size }), className)}
-        ref={ref as React.Ref<any>}
+        ref={ref as React.Ref<HTMLButtonElement>}
         {...(!asChild && {
           type,
           disabled: isDisabled,
           'aria-busy': loading,
           'aria-disabled': isDisabled,
         })}
-        {...(props as any)}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {content}
       </Comp>
