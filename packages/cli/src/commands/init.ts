@@ -819,16 +819,19 @@ export const init = new Command()
       const spinner = ora('Setting up project...').start();
 
       // 1. Create directories
-      const componentsDir = path.join(cwd, config.componentsPath);
-      const libPath = config.utilsPath.replace('@/', '').replace('/utils', '');
-      const libDir = path.join(
-        cwd,
-        projectInfo.srcDir ? `src/${libPath}` : libPath
-      );
+      // srcDir이 있으면 모든 폴더를 src/ 안에 생성
+      const baseDir = projectInfo.srcDir ? 'src' : '';
+      const componentsDir = path.join(cwd, baseDir, 'components/hanui');
+      const libDir = path.join(cwd, baseDir, 'lib');
+      const stylesDir = path.join(cwd, baseDir, 'styles');
 
       await fs.ensureDir(componentsDir);
       await fs.ensureDir(libDir);
+      await fs.ensureDir(stylesDir);
       spinner.text = 'Created directories';
+
+      // Update config.componentsPath to reflect actual path
+      config.componentsPath = path.join(baseDir, 'components/hanui');
 
       // 2. Create utils.ts
       const utilsContent = `import { type ClassValue, clsx } from 'clsx';
@@ -842,17 +845,6 @@ export function cn(...inputs: ClassValue[]) {
       const utilsFilePath = path.join(libDir, 'utils.ts');
       await fs.writeFile(utilsFilePath, utilsContent);
       spinner.text = 'Created utility functions';
-
-      // 3. Create variables.css (KRDS 디자인 토큰)
-      // cssPath 기준으로 styles 폴더 위치 결정
-      // 예: app/globals.css → styles/, src/app/globals.css → src/styles/, src/index.css → src/styles/
-      const cssDir = path.dirname(cssPath); // app 또는 src/app 또는 src
-      const cssBaseDir =
-        cssDir === 'src' || cssDir.startsWith('src/') ? 'src' : '';
-      const stylesDir = cssBaseDir
-        ? path.join(cwd, cssBaseDir, 'styles')
-        : path.join(cwd, 'styles');
-      await fs.ensureDir(stylesDir);
 
       const variablesCssPath = path.join(stylesDir, 'variables.css');
       await fs.writeFile(variablesCssPath, VARIABLES_CSS);
@@ -1036,10 +1028,10 @@ ${TAILWIND_V4_THEME}`;
           version: isV4 ? 4 : 3,
         },
         aliases: {
-          components: `@/${config.componentsPath.replace(/^src\//, '')}`,
-          utils: config.utilsPath,
-          ui: `@/${config.componentsPath.replace(/^src\//, '')}`,
-          lib: `@/${libPath}`,
+          components: `@/components/hanui`,
+          utils: '@/lib/utils',
+          ui: `@/components/hanui`,
+          lib: '@/lib',
         },
       };
 
@@ -1078,7 +1070,9 @@ ${TAILWIND_V4_THEME}`;
       if (!isV4) {
         console.log(chalk.dim('    - hanui.preset.js'));
       }
-      console.log(chalk.dim(`    - ${libPath}/utils.ts`));
+      console.log(
+        chalk.dim(`    - ${projectInfo.srcDir ? 'src/' : ''}lib/utils.ts`)
+      );
       console.log(chalk.dim('    - hanui.json\n'));
 
       console.log(chalk.dim('  Updated files:'));
