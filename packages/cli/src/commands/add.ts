@@ -127,7 +127,7 @@ export const add = new Command()
         });
 
         if (!response.components || response.components.length === 0) {
-          logger.warn('No components selected. Exiting...');
+          logger.warning('No components selected. Exiting...');
           process.exit(0);
         }
 
@@ -205,7 +205,7 @@ export const add = new Command()
         });
 
         if (!proceed) {
-          logger.warn('Installation cancelled.');
+          logger.warning('Installation cancelled.');
           process.exit(0);
         }
       }
