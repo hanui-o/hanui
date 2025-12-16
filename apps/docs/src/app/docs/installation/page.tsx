@@ -168,9 +168,13 @@ export default function InstallationPage() {
           </Card>
         </div>
 
-        <Alert variant="info" className="mt-6" title="Tailwind CSS 필수">
-          HANUI는 Tailwind CSS 기반입니다. 프로젝트에 Tailwind가 설치되어 있어야
-          합니다.
+        <Alert
+          variant="success"
+          className="mt-6"
+          title="Tailwind CSS 자동 설치"
+        >
+          <Code>hanui init</Code> 실행 시 Tailwind CSS가 없으면{' '}
+          <strong>자동으로 설치</strong>됩니다. 별도 설치 불필요!
         </Alert>
       </Section>
 

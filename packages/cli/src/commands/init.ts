@@ -750,7 +750,10 @@ export const init = new Command()
         logger.info(`Tailwind CSS: ${chalk.cyan(`v${tailwindVersion}`)}\n`);
       }
 
-      // Check if Tailwind CSS is installed
+      // Check if Tailwind CSS is installed - if not, auto-install (like shadcn)
+      let detectedTailwindVersion = tailwindVersion;
+      const packageManager = detectPackageManager(cwd);
+
       if (!tailwindVersion) {
         // v4 확인: globals.css에서 @import "tailwindcss" 체크
         const globalsCssPath = path.join(cwd, cssPath);
@@ -767,25 +770,105 @@ export const init = new Command()
             path.join(cwd, tailwindConfigPath)
           );
           if (!hasTailwindConfig) {
-            logger.warning(
-              'Tailwind CSS not detected. Please install Tailwind CSS first:\n'
+            // Auto-install Tailwind CSS v4 (like shadcn)
+            logger.info(
+              'Tailwind CSS not detected. Installing automatically...\n'
             );
-            console.log(chalk.dim('  For Tailwind v4 (recommended):'));
-            console.log(
-              chalk.dim('    npm install -D tailwindcss @tailwindcss/postcss')
-            );
-            console.log(chalk.dim('\n  For Tailwind v3:'));
-            console.log(
-              chalk.dim('    npm install -D tailwindcss@3 postcss autoprefixer')
-            );
-            console.log(chalk.dim('    npx tailwindcss init -p\n'));
-            logger.info('Then run this command again.\n');
-            process.exit(1);
+
+            // Ask which version to install (or auto-select v4 with -y flag)
+            let installV4 = true;
+            if (!options.yes) {
+              const versionResponse = await prompts({
+                type: 'select',
+                name: 'version',
+                message:
+                  'Which Tailwind CSS version would you like to install?',
+                choices: [
+                  { title: 'Tailwind v4 (recommended)', value: 4 },
+                  { title: 'Tailwind v3', value: 3 },
+                ],
+                initial: 0,
+              });
+              installV4 = versionResponse.version === 4;
+            }
+
+            const tailwindSpinner = ora('Installing Tailwind CSS...').start();
+
+            try {
+              if (installV4) {
+                // Install Tailwind v4
+                const v4Packages = [
+                  'tailwindcss',
+                  '@tailwindcss/postcss',
+                  'postcss',
+                ];
+                await installDependencies(cwd, v4Packages, packageManager);
+                detectedTailwindVersion = 4;
+                tailwindSpinner.succeed('Tailwind CSS v4 installed');
+              } else {
+                // Install Tailwind v3
+                const v3Packages = ['tailwindcss@3', 'postcss', 'autoprefixer'];
+                await installDependencies(cwd, v3Packages, packageManager);
+
+                // Create tailwind.config.js for v3
+                const tailwindV3Config = `/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx,vue}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+`;
+                await fs.writeFile(
+                  path.join(cwd, 'tailwind.config.js'),
+                  tailwindV3Config
+                );
+
+                // Create postcss.config.js for v3
+                const postcssV3Config = `export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+`;
+                await fs.writeFile(
+                  path.join(cwd, 'postcss.config.js'),
+                  postcssV3Config
+                );
+
+                detectedTailwindVersion = 3;
+                tailwindSpinner.succeed('Tailwind CSS v3 installed');
+              }
+            } catch (installError) {
+              tailwindSpinner.fail('Failed to install Tailwind CSS');
+              logger.error('Please install Tailwind CSS manually:\n');
+              console.log(chalk.dim('  For Tailwind v4 (recommended):'));
+              console.log(
+                chalk.dim(
+                  `    ${packageManager} ${packageManager === 'yarn' ? 'add' : 'install'} tailwindcss @tailwindcss/postcss postcss`
+                )
+              );
+              console.log(chalk.dim('\n  For Tailwind v3:'));
+              console.log(
+                chalk.dim(
+                  `    ${packageManager} ${packageManager === 'yarn' ? 'add' : 'install'} -D tailwindcss@3 postcss autoprefixer`
+                )
+              );
+              console.log(chalk.dim('    npx tailwindcss init -p\n'));
+              process.exit(1);
+            }
+
+            console.log('');
           }
         }
       }
 
-      const isV4 = tailwindVersion === 4;
+      const isV4 = detectedTailwindVersion === 4;
 
       // Prompt for configuration
       let config = {
@@ -1189,8 +1272,7 @@ ${TAILWIND_V4_THEME}`;
 
       spinner.succeed('Project initialized!');
 
-      // 패키지 매니저 감지 및 의존성 자동 설치
-      const packageManager = detectPackageManager(cwd);
+      // 의존성 자동 설치 (packageManager는 위에서 이미 감지됨)
       const depsToInstall = ['clsx', 'tailwind-merge'];
 
       spinner.start(`Installing dependencies with ${packageManager}...`);
