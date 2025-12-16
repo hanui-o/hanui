@@ -1,0 +1,47 @@
+{
+  "skills": {
+    "hanui-component-dev": {
+      "name": "HANUI 컴포넌트 개발 가이드",
+      "file": "hanui-component-dev.md",
+      "triggerPatterns": [
+        "컴포넌트.*만들",
+        "컴포넌트.*추가",
+        "컴포넌트.*수정",
+        "component.*create",
+        "component.*add",
+        "new.*component",
+        "Button|Input|Modal|Alert|Card|Table|Tab|Form"
+      ],
+      "filePatterns": [
+        "packages/react/src/components/**",
+        "packages/vue/src/components/**",
+        "apps/docs/src/app/docs/components/**"
+      ],
+      "autoActivate": true
+    },
+    "krds-compliance": {
+      "name": "KRDS 준수 가이드",
+      "file": "krds-compliance.md",
+      "triggerPatterns": [
+        "KRDS",
+        "접근성",
+        "a11y",
+        "accessibility",
+        "ARIA",
+        "WCAG",
+        "KWCAG",
+        "키보드.*네비게이션",
+        "포커스",
+        "색상.*대비",
+        "디자인.*토큰",
+        "design.*token"
+      ],
+      "filePatterns": ["packages/react/src/**", "packages/vue/src/**"],
+      "autoActivate": true
+    }
+  },
+  "globalRules": {
+    "maxActiveSkills": 2,
+    "priorityOrder": ["hanui-component-dev", "krds-compliance"]
+  }
+}
