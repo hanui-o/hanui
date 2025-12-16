@@ -118,6 +118,49 @@ export default function QuickStartPage() {
         </Card>
       </Section>
 
+      {/* 사전 요구사항 */}
+      <Section>
+        <Heading level="h2" id="prerequisites" title="사전 요구사항" />
+        <Body className="mb-4 text-krds-gray-70">
+          HANUI는 Tailwind CSS 기반입니다. 프로젝트에 Tailwind CSS가 설치되어
+          있어야 합니다.
+        </Body>
+
+        <Alert variant="warning" className="mb-4" title="Tailwind CSS 필요">
+          Tailwind CSS가 설치되어 있지 않다면 먼저 설치해주세요.
+        </Alert>
+
+        <Tabs defaultValue="v4" className="mt-4">
+          <TabsList>
+            <TabsTrigger value="v4">Tailwind v4 (권장)</TabsTrigger>
+            <TabsTrigger value="v3">Tailwind v3</TabsTrigger>
+          </TabsList>
+          <TabsContent value="v4">
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              {`npm install -D tailwindcss @tailwindcss/postcss postcss`}
+            </Code>
+            <Body className="mt-2 text-sm text-krds-gray-60">
+              그리고 <Code variant="inline">postcss.config.js</Code> 파일을
+              생성하세요:
+            </Body>
+            <Code
+              variant="block"
+              language="javascript"
+              showLineNumbers={false}
+              className="mt-2"
+            >
+              {`export default { plugins: { '@tailwindcss/postcss': {} } }`}
+            </Code>
+          </TabsContent>
+          <TabsContent value="v3">
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              {`npm install -D tailwindcss@3 postcss autoprefixer
+npx tailwindcss init -p`}
+            </Code>
+          </TabsContent>
+        </Tabs>
+      </Section>
+
       {/* 한번에 설치 */}
       <Section>
         <Heading level="h2" id="one-liner" title="한번에 설치" />

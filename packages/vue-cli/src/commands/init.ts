@@ -576,7 +576,112 @@ export function cn(...inputs: ClassValue[]) {
       }
       spinner.text = 'Updated CSS imports';
 
-      // 6. Create hanui.json config
+      // 6. Configure path aliases for Vite projects
+      if (projectInfo.type === 'vite') {
+        spinner.text = 'Configuring path aliases...';
+
+        // Update vite.config.ts
+        const viteConfigPath = path.join(cwd, 'vite.config.ts');
+        const viteConfigJsPath = path.join(cwd, 'vite.config.js');
+        const viteConfigFile = fs.existsSync(viteConfigPath)
+          ? viteConfigPath
+          : fs.existsSync(viteConfigJsPath)
+            ? viteConfigJsPath
+            : null;
+
+        if (viteConfigFile) {
+          let viteContent = await fs.readFile(viteConfigFile, 'utf-8');
+
+          // Check if alias is already configured
+          if (!viteContent.includes("'@'") && !viteContent.includes('"@"')) {
+            // Add path import if not exists
+            if (!viteContent.includes('import path from')) {
+              viteContent = `import path from 'path';\n${viteContent}`;
+            }
+
+            // Add resolve.alias configuration
+            if (viteContent.includes('defineConfig({')) {
+              viteContent = viteContent.replace(
+                /defineConfig\(\{/,
+                `defineConfig({\n  resolve: {\n    alias: {\n      '@': path.resolve(__dirname, './${projectInfo.srcDir ? 'src' : '.'}'),\n    },\n  },`
+              );
+            } else if (viteContent.includes('defineConfig({\n')) {
+              viteContent = viteContent.replace(
+                /defineConfig\(\{\n/,
+                `defineConfig({\n  resolve: {\n    alias: {\n      '@': path.resolve(__dirname, './${projectInfo.srcDir ? 'src' : '.'}'),\n    },\n  },\n`
+              );
+            }
+
+            await fs.writeFile(viteConfigFile, viteContent);
+            spinner.text = 'Updated vite.config with @ alias';
+          }
+        }
+
+        // Update tsconfig.json
+        const tsconfigPath = path.join(cwd, 'tsconfig.json');
+        if (fs.existsSync(tsconfigPath)) {
+          const tsconfigContent = await fs.readFile(tsconfigPath, 'utf-8');
+
+          if (
+            !tsconfigContent.includes('"@/*"') &&
+            !tsconfigContent.includes("'@/*'")
+          ) {
+            try {
+              const tsconfig = JSON.parse(
+                tsconfigContent.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
+              );
+
+              if (!tsconfig.compilerOptions) {
+                tsconfig.compilerOptions = {};
+              }
+              tsconfig.compilerOptions.baseUrl = '.';
+              tsconfig.compilerOptions.paths = {
+                '@/*': [projectInfo.srcDir ? './src/*' : './*'],
+              };
+
+              await fs.writeJSON(tsconfigPath, tsconfig, { spaces: 2 });
+              spinner.text = 'Updated tsconfig.json with @ path alias';
+            } catch {
+              // Skip if parsing fails
+            }
+          }
+        }
+
+        // Also check tsconfig.app.json
+        const tsconfigAppPath = path.join(cwd, 'tsconfig.app.json');
+        if (fs.existsSync(tsconfigAppPath)) {
+          const tsconfigAppContent = await fs.readFile(
+            tsconfigAppPath,
+            'utf-8'
+          );
+
+          if (
+            !tsconfigAppContent.includes('"@/*"') &&
+            !tsconfigAppContent.includes("'@/*'")
+          ) {
+            try {
+              const tsconfigApp = JSON.parse(
+                tsconfigAppContent.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
+              );
+
+              if (!tsconfigApp.compilerOptions) {
+                tsconfigApp.compilerOptions = {};
+              }
+              tsconfigApp.compilerOptions.baseUrl = '.';
+              tsconfigApp.compilerOptions.paths = {
+                '@/*': [projectInfo.srcDir ? './src/*' : './*'],
+              };
+
+              await fs.writeJSON(tsconfigAppPath, tsconfigApp, { spaces: 2 });
+              spinner.text = 'Updated tsconfig.app.json with @ path alias';
+            } catch {
+              // Skip if parsing fails
+            }
+          }
+        }
+      }
+
+      // 7. Create hanui.json config
       const hanuiConfig: HanuiVueConfig = {
         $schema: 'https://hanui.io/schema.json',
         style: 'default',

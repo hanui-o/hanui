@@ -819,16 +819,19 @@ export const init = new Command()
       const spinner = ora('Setting up project...').start();
 
       // 1. Create directories
-      const componentsDir = path.join(cwd, config.componentsPath);
-      const libPath = config.utilsPath.replace('@/', '').replace('/utils', '');
-      const libDir = path.join(
-        cwd,
-        projectInfo.srcDir ? `src/${libPath}` : libPath
-      );
+      // srcDir이 있으면 모든 폴더를 src/ 안에 생성
+      const baseDir = projectInfo.srcDir ? 'src' : '';
+      const componentsDir = path.join(cwd, baseDir, 'components/hanui');
+      const libDir = path.join(cwd, baseDir, 'lib');
+      const stylesDir = path.join(cwd, baseDir, 'styles');
 
       await fs.ensureDir(componentsDir);
       await fs.ensureDir(libDir);
+      await fs.ensureDir(stylesDir);
       spinner.text = 'Created directories';
+
+      // Update config.componentsPath to reflect actual path
+      config.componentsPath = path.join(baseDir, 'components/hanui');
 
       // 2. Create utils.ts
       const utilsContent = `import { type ClassValue, clsx } from 'clsx';
@@ -842,17 +845,6 @@ export function cn(...inputs: ClassValue[]) {
       const utilsFilePath = path.join(libDir, 'utils.ts');
       await fs.writeFile(utilsFilePath, utilsContent);
       spinner.text = 'Created utility functions';
-
-      // 3. Create variables.css (KRDS 디자인 토큰)
-      // cssPath 기준으로 styles 폴더 위치 결정
-      // 예: app/globals.css → styles/, src/app/globals.css → src/styles/, src/index.css → src/styles/
-      const cssDir = path.dirname(cssPath); // app 또는 src/app 또는 src
-      const cssBaseDir =
-        cssDir === 'src' || cssDir.startsWith('src/') ? 'src' : '';
-      const stylesDir = cssBaseDir
-        ? path.join(cwd, cssBaseDir, 'styles')
-        : path.join(cwd, 'styles');
-      await fs.ensureDir(stylesDir);
 
       const variablesCssPath = path.join(stylesDir, 'variables.css');
       await fs.writeFile(variablesCssPath, VARIABLES_CSS);
@@ -875,23 +867,23 @@ export function cn(...inputs: ClassValue[]) {
         if (fs.existsSync(globalsCssPath)) {
           let globalsContent = await fs.readFile(globalsCssPath, 'utf-8');
 
+          // @import "tailwindcss" 추가 (v4 필수, 이미 없으면)
+          const hasTailwindImport =
+            globalsContent.includes('@import "tailwindcss"') ||
+            globalsContent.includes("@import 'tailwindcss'");
+
+          if (!hasTailwindImport) {
+            // tailwindcss import가 없으면 맨 앞에 추가
+            globalsContent = `@import "tailwindcss";\n\n${globalsContent}`;
+          }
+
           // variables.css import 추가 (이미 없으면)
           if (!globalsContent.includes('variables.css')) {
             // @import "tailwindcss" 바로 뒤에 추가
-            if (globalsContent.includes('@import "tailwindcss"')) {
-              globalsContent = globalsContent.replace(
-                '@import "tailwindcss"',
-                `@import "tailwindcss";\n@import "${importPath}"`
-              );
-            } else if (globalsContent.includes("@import 'tailwindcss'")) {
-              globalsContent = globalsContent.replace(
-                "@import 'tailwindcss'",
-                `@import 'tailwindcss';\n@import '${importPath}'`
-              );
-            } else {
-              // @import "tailwindcss"가 없으면 맨 앞에 추가
-              globalsContent = `@import "${importPath}";\n\n${globalsContent}`;
-            }
+            globalsContent = globalsContent.replace(
+              /@import ["']tailwindcss["'];?/,
+              `@import "tailwindcss";\n@import "${importPath}";`
+            );
           }
 
           // @theme 블록 추가 (이미 없으면)
@@ -1023,7 +1015,155 @@ ${TAILWIND_V4_THEME}`;
         }
       }
 
-      // 7. Create hanui.json config
+      // 7. Configure Vite projects (aliases, postcss, tsconfig types)
+      if (
+        projectInfo.type.startsWith('vite') ||
+        projectInfo.type.startsWith('vue')
+      ) {
+        spinner.text = 'Configuring Vite project...';
+
+        // 7-1. Create postcss.config.mjs for Tailwind v4
+        if (isV4) {
+          const postcssConfigPath = path.join(cwd, 'postcss.config.mjs');
+          if (
+            !fs.existsSync(postcssConfigPath) &&
+            !fs.existsSync(path.join(cwd, 'postcss.config.js'))
+          ) {
+            const postcssContent = `export default {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+`;
+            await fs.writeFile(postcssConfigPath, postcssContent);
+            spinner.text = 'Created postcss.config.mjs';
+          }
+        }
+
+        // 7-2. Configure path aliases
+
+        // Update vite.config.ts
+        const viteConfigPath = path.join(cwd, 'vite.config.ts');
+        const viteConfigJsPath = path.join(cwd, 'vite.config.js');
+        const viteConfigFile = fs.existsSync(viteConfigPath)
+          ? viteConfigPath
+          : fs.existsSync(viteConfigJsPath)
+            ? viteConfigJsPath
+            : null;
+
+        if (viteConfigFile) {
+          let viteContent = await fs.readFile(viteConfigFile, 'utf-8');
+
+          // Check if alias is already configured
+          if (!viteContent.includes("'@'") && !viteContent.includes('"@"')) {
+            // Add path import if not exists
+            if (!viteContent.includes('import path from')) {
+              viteContent = `import path from 'path';\n${viteContent}`;
+            }
+
+            // Add resolve.alias configuration
+            if (viteContent.includes('defineConfig({')) {
+              viteContent = viteContent.replace(
+                /defineConfig\(\{/,
+                `defineConfig({\n  resolve: {\n    alias: {\n      '@': path.resolve(__dirname, './${projectInfo.srcDir ? 'src' : '.'}'),\n    },\n  },`
+              );
+            } else if (viteContent.includes('defineConfig({\n')) {
+              viteContent = viteContent.replace(
+                /defineConfig\(\{\n/,
+                `defineConfig({\n  resolve: {\n    alias: {\n      '@': path.resolve(__dirname, './${projectInfo.srcDir ? 'src' : '.'}'),\n    },\n  },\n`
+              );
+            }
+
+            await fs.writeFile(viteConfigFile, viteContent);
+            spinner.text = 'Updated vite.config with @ alias';
+          }
+        }
+
+        // Update tsconfig.json
+        const tsconfigPath = path.join(cwd, 'tsconfig.json');
+        if (fs.existsSync(tsconfigPath)) {
+          const tsconfigContent = await fs.readFile(tsconfigPath, 'utf-8');
+
+          // Check if paths is already configured
+          if (
+            !tsconfigContent.includes('"@/*"') &&
+            !tsconfigContent.includes("'@/*'")
+          ) {
+            try {
+              // Parse JSON with comments support (simple approach)
+              const tsconfig = JSON.parse(
+                tsconfigContent.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
+              );
+
+              if (!tsconfig.compilerOptions) {
+                tsconfig.compilerOptions = {};
+              }
+              tsconfig.compilerOptions.baseUrl = '.';
+              tsconfig.compilerOptions.paths = {
+                '@/*': [projectInfo.srcDir ? './src/*' : './*'],
+              };
+
+              await fs.writeJSON(tsconfigPath, tsconfig, { spaces: 2 });
+              spinner.text = 'Updated tsconfig.json with @ path alias';
+            } catch {
+              // If parsing fails, skip tsconfig update
+              spinner.text =
+                'Could not update tsconfig.json (manual config may be needed)';
+            }
+          }
+        }
+
+        // Also check tsconfig.app.json (used by some Vite setups)
+        const tsconfigAppPath = path.join(cwd, 'tsconfig.app.json');
+        if (fs.existsSync(tsconfigAppPath)) {
+          const tsconfigAppContent = await fs.readFile(
+            tsconfigAppPath,
+            'utf-8'
+          );
+
+          try {
+            const tsconfigApp = JSON.parse(
+              tsconfigAppContent.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
+            );
+
+            if (!tsconfigApp.compilerOptions) {
+              tsconfigApp.compilerOptions = {};
+            }
+
+            let updated = false;
+
+            // Add paths if not exists
+            if (
+              !tsconfigAppContent.includes('"@/*"') &&
+              !tsconfigAppContent.includes("'@/*'")
+            ) {
+              tsconfigApp.compilerOptions.baseUrl = '.';
+              tsconfigApp.compilerOptions.paths = {
+                '@/*': [projectInfo.srcDir ? './src/*' : './*'],
+              };
+              updated = true;
+            }
+
+            // Add "node" to types for __dirname support
+            if (!tsconfigApp.compilerOptions.types) {
+              tsconfigApp.compilerOptions.types = [];
+            }
+            if (!tsconfigApp.compilerOptions.types.includes('node')) {
+              tsconfigApp.compilerOptions.types.push('node');
+              updated = true;
+            }
+
+            if (updated) {
+              await fs.writeJSON(tsconfigAppPath, tsconfigApp, { spaces: 2 });
+              spinner.text = 'Updated tsconfig.app.json';
+            }
+          } catch {
+            // If parsing fails, skip
+          }
+        }
+      }
+
+      // 8. Create hanui.json config
       const hanuiConfig: HanuiConfig = {
         $schema: 'https://hanui.io/schema.json',
         style: 'default',
@@ -1036,10 +1176,10 @@ ${TAILWIND_V4_THEME}`;
           version: isV4 ? 4 : 3,
         },
         aliases: {
-          components: `@/${config.componentsPath.replace(/^src\//, '')}`,
-          utils: config.utilsPath,
-          ui: `@/${config.componentsPath.replace(/^src\//, '')}`,
-          lib: `@/${libPath}`,
+          components: `@/components/hanui`,
+          utils: '@/lib/utils',
+          ui: `@/components/hanui`,
+          lib: '@/lib',
         },
       };
 
@@ -1078,7 +1218,9 @@ ${TAILWIND_V4_THEME}`;
       if (!isV4) {
         console.log(chalk.dim('    - hanui.preset.js'));
       }
-      console.log(chalk.dim(`    - ${libPath}/utils.ts`));
+      console.log(
+        chalk.dim(`    - ${projectInfo.srcDir ? 'src/' : ''}lib/utils.ts`)
+      );
       console.log(chalk.dim('    - hanui.json\n'));
 
       console.log(chalk.dim('  Updated files:'));

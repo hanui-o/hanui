@@ -39,7 +39,8 @@ export const Container = React.forwardRef<
   ) => {
     return (
       <Component
-        ref={ref as any}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as React.Ref<HTMLElement>}
         className={cn(
           'mx-auto w-full', // 수평 센터링, 전체 너비
           maxWidth !== false && maxWidthClasses[maxWidth], // max-width 적용

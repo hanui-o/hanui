@@ -167,7 +167,8 @@ export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>( /
   ({ as: Component = 'h3', className, children, ...props }, ref) => {
     return (
       <Component
-        ref={ref as any}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as React.Ref<HTMLHeadingElement>}
         className={cn(
           'text-[24px]',
           'font-semibold',

@@ -86,7 +86,7 @@ const LoadingSpinner = () => (
 
 export const Button = React.forwardRef<
   // KRDS 기반 Button 컴포넌트 (ARIA, 로딩, 아이콘, 링크 지원)
-  HTMLButtonElement | HTMLAnchorElement,
+  HTMLButtonElement,
   ButtonProps
 >(
   (
@@ -166,7 +166,7 @@ export const Button = React.forwardRef<
       return (
         <a
           className={cn(buttonVariants({ variant, size }), className)}
-          ref={ref as React.Ref<HTMLAnchorElement>}
+          ref={ref as React.ForwardedRef<HTMLAnchorElement>}
           href={href}
           target={target}
           rel={rel}
@@ -182,14 +182,14 @@ export const Button = React.forwardRef<
       // 버튼 또는 Slot으로 렌더링
       <Comp
         className={cn(buttonVariants({ variant, size }), className)}
-        ref={ref as React.Ref<any>}
+        ref={ref}
         {...(!asChild && {
           type,
           disabled: isDisabled,
           'aria-busy': loading,
           'aria-disabled': isDisabled,
         })}
-        {...(props as any)}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
       >
         {content}
       </Comp>

@@ -86,23 +86,26 @@ export const add = new Command()
         process.exit(1);
       }
 
-      // Determine components path from hanui.json or options
-      let componentsPath = options.path;
-      let componentsAlias = '@/components/hanui'; // Default alias
+      // Determine components path based on src folder existence
+      const hasSrcDir = fs.existsSync(path.join(cwd, 'src'));
+      let componentsPath = hasSrcDir
+        ? 'src/components/hanui'
+        : 'components/hanui';
+      let componentsAlias = '@/components/hanui';
 
+      // Override with hanui.json config if available
       if (hanuiConfig?.aliases?.components) {
         // Use hanui.json config if available
         componentsAlias = hanuiConfig.aliases.components;
-        // Convert alias like "@/components/hanui" to "src/components/hanui"
-        componentsPath = hanuiConfig.aliases.components
-          .replace(/^@\//, 'src/')
-          .replace(/^~\//, '');
-      } else if (options.path === 'components/hanui') {
-        // Auto-detect src folder if using default path
-        const hasSrcDir = fs.existsSync(path.join(cwd, 'src'));
+        // Convert alias to path (always use src/ if srcDir exists)
         if (hasSrcDir) {
           componentsPath = 'src/components/hanui';
         }
+      }
+
+      // Override with explicit CLI option
+      if (options.path !== 'components/hanui') {
+        componentsPath = options.path;
       }
 
       // Fetch registry
@@ -125,7 +128,7 @@ export const add = new Command()
         });
 
         if (!response.components || response.components.length === 0) {
-          logger.warn('No components selected. Exiting...');
+          logger.warning('No components selected. Exiting...');
           process.exit(0);
         }
 
@@ -203,7 +206,7 @@ export const add = new Command()
         });
 
         if (!proceed) {
-          logger.warn('Installation cancelled.');
+          logger.warning('Installation cancelled.');
           process.exit(0);
         }
       }
