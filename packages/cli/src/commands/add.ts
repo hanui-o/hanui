@@ -95,6 +95,7 @@ export const add = new Command()
 
       // Override with hanui.json config if available
       if (hanuiConfig?.aliases?.components) {
+        // Use hanui.json config if available
         componentsAlias = hanuiConfig.aliases.components;
         // Convert alias to path (always use src/ if srcDir exists)
         if (hasSrcDir) {
