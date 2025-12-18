@@ -1,12 +1,12 @@
-# KRDS 컴포넌트, 그냥 가져다 쓰세요 - HANUI 오픈
+# KRDS React 컴포넌트 라이브러리 HANUI - 그냥 가져다 쓰세요
 
 ![hanui](https://velog.velcdn.com/images/hanui/post/51496d9e-b061-42ef-8bba-4e1a25f65b36/image.png)
 
-공공기관 SI 해본 사람들은 알 거예요.
+공공기관 SI에서 React로 KRDS 적용해본 사람들은 알 거예요.
 
-KRDS 가이드 PDF 열어서 색상 코드 찾고, 간격 값 확인하고, "이 버튼 radius가 4px인가 8px인가" 고민하다 보면 하루가 가요. 그리고 다음 프로젝트에서 또 똑같은 걸 하게 되고요.
+가이드 PDF 열어서 색상 코드 찾고, 간격 값 확인하고, "이 버튼 radius가 4px인가 8px인가" 고민하다 보면 하루가 가요. 그리고 다음 프로젝트에서 또 똑같은 걸 하게 되고요.
 
-그래서 만들었어요. **HANUI**.
+그래서 만들었어요. KRDS 기반 React 컴포넌트 라이브러리, **[HANUI](https://hanui.io)**.
 
 ## 뭔데?
 
@@ -60,3 +60,7 @@ Tailwind CSS가 설치된 프로젝트에서 실행하면 돼요. 한 줄로 CLI
 
 **GitHub**: https://github.com/hanui-o/hanui
 **문서**: https://hanui.io
+
+---
+
+KRDS, React, 공공SI, 컴포넌트라이브러리, 웹접근성, HANUI, 오픈소스

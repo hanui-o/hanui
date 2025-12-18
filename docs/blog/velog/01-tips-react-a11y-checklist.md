@@ -217,4 +217,4 @@ npx hanui add button modal select
 
 ---
 
-**태그**: #React #웹접근성 #KWCAG #공공SI #접근성체크리스트
+React, 웹접근성, KWCAG, 공공SI, 접근성, aria, 스크린리더

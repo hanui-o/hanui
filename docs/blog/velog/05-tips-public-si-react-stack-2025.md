@@ -249,3 +249,7 @@ Type:          TypeScript 5
 HANUI는 이 스택 기반으로 만들었어요. 설치하면 Tailwind, Radix, TypeScript 다 세팅돼 있어요.
 
 https://hanui.io
+
+---
+
+React, 공공SI, 기술스택, NextJS, TailwindCSS, 2025, 프론트엔드

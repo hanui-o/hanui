@@ -1,10 +1,10 @@
-# HANUI Button - 왜 이렇게 만들었나
+# KRDS React Button 컴포넌트 설계 - variant, 접근성, cva 패턴
 
 ![button-variants](https://velog.velcdn.com/images/hanui/post/51496d9e-b061-42ef-8bba-4e1a25f65b36/image.png)
 
-버튼이요? 그냥 `<button>` 쓰면 되는 거 아닌가요?
+KRDS 가이드라인 따라서 React Button 컴포넌트 만들어본 적 있어요? 그냥 `<button>` 쓰면 되는 거 아닌가요?
 
-맞아요. 근데 KRDS 따라서 만들고, 접근성 챙기고, variant 관리하고, 로딩 상태 처리하고... 하다 보면 버튼 하나가 200줄이 돼요.
+맞아요. 근데 KRDS 따라서 만들고, 웹접근성 챙기고, variant 관리하고, 로딩 상태 처리하고... 하다 보면 버튼 하나가 200줄이 돼요.
 
 오늘은 HANUI Button을 왜 이렇게 만들었는지 얘기해볼게요.
 
@@ -224,3 +224,5 @@ npx hanui add button
 
 **GitHub**: https://github.com/hanui-o/hanui
 **문서**: https://hanui.io
+
+KRDS, React, Button, 웹접근성, cva, TypeScript, HANUI

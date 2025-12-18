@@ -173,4 +173,4 @@ npx hanui add button input select
 
 ---
 
-**태그**: #shadcnui #React #Tailwind #한국화 #프론트엔드
+shadcn, React, TailwindCSS, 한글화, 프론트엔드, 컴포넌트

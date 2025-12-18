@@ -1,6 +1,6 @@
-# 공공 웹 접근성, HANUI가 대신 챙겨드립니다
+# KWCAG 2.2 웹접근성 자동 적용 - KRDS React 컴포넌트로 검수 통과하기
 
-공공기관 프로젝트 검수 때 "웹접근성 미준수" 딱지 붙어본 적 있어요?
+공공기관 SI 프로젝트에서 웹접근성 검수 때 "KWCAG 미준수" 딱지 붙어본 적 있어요?
 
 저도 있어요. 몇 번이나.
 
@@ -233,3 +233,5 @@ aria 속성, 키보드 네비게이션, 포커스 관리... 다 들어가 있어
 
 **GitHub**: https://github.com/hanui-o/hanui
 **문서**: https://hanui.io
+
+KWCAG, 웹접근성, KRDS, React, aria, 공공SI, HANUI

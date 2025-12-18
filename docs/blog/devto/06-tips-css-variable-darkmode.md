@@ -1,4 +1,4 @@
-# CSS Variables for Dark Mode - The Clean Way
+# Implementing Dark Mode with CSS Variables
 
 How do you implement dark mode?
 
@@ -15,11 +15,11 @@ How do you implement dark mode?
 }
 ```
 
-Adding `.dark` variants to every component doubles your CSS.
+Adding `.dark` branches to every component doubles your CSS.
 
 CSS variables make it much cleaner.
 
-## The Basic Pattern
+## Basic Structure
 
 ```css
 :root {
@@ -43,19 +43,19 @@ CSS variables make it much cleaner.
 }
 ```
 
-One `.card` style. Mode toggle just changes variable values.
+One `.card` style. Mode switch just changes variable values.
 
-## Semantic Token Naming
+## Semantic Tokens
 
-Name colors by purpose, not appearance:
+Name colors by purpose for better clarity:
 
 ```css
 :root {
   /* Light mode */
-  --color-surface: #ffffff; /* Cards, modals */
-  --color-background: #f5f5f5; /* Page background */
-  --color-text-primary: #1a1a1a; /* Main text */
-  --color-text-secondary: #666666; /* Secondary text */
+  --color-surface: #ffffff; /* cards, modals */
+  --color-background: #f5f5f5; /* page background */
+  --color-text-primary: #1a1a1a; /* main text */
+  --color-text-secondary: #666666; /* secondary text */
   --color-border: #e5e5e5;
 }
 
@@ -68,9 +68,9 @@ Name colors by purpose, not appearance:
 }
 ```
 
-`--color-surface` is clearer than `--color-gray-100`. No looking up "which gray was that?"
+`--color-surface` is clearer than `--color-gray-100`. No need to look up what it means.
 
-## With Tailwind CSS
+## Using with Tailwind
 
 ```ts
 // tailwind.config.ts
@@ -95,9 +95,9 @@ export default {
 </div>
 ```
 
-No `dark:` prefix needed. Variables handle it.
+No `dark:` prefix needed. It switches automatically.
 
-## The Toggle Logic
+## Mode Toggle Logic
 
 ```tsx
 // theme-toggle.tsx
@@ -105,7 +105,7 @@ function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Check system preference
+    // Detect system preference
     const prefersDark = window.matchMedia(
       '(prefers-color-scheme: dark)'
     ).matches;
@@ -137,11 +137,11 @@ function ThemeToggle() {
 }
 ```
 
-Key: Toggle `dark` class on `document.documentElement`.
+Key is adding/removing `dark` from `document.documentElement.classList`.
 
 ## Preventing Flash
 
-SSR/Next.js apps flash light mode before hydration. Fix with inline script:
+SSR or Next.js has a flash problem on page load. Solution:
 
 ```html
 <!-- layout.tsx or _document.tsx -->
@@ -160,33 +160,33 @@ SSR/Next.js apps flash light mode before hydration. Fix with inline script:
 </head>
 ```
 
-This runs before render. No flash.
+This script runs before render, no flash.
 
 ## Color Palette Tips
 
-Don't just invert colors:
+Don't just invert for dark mode:
 
 ```
 ❌ Light: #ffffff → Dark: #000000
-   Too much contrast. Eye strain.
+   Too much contrast, hurts eyes
 
 ✅ Light: #ffffff → Dark: #1a1a1a
-   Slightly lighter black is easier on eyes.
+   Slightly lighter black is comfortable
 ```
 
 Same for text:
 
 ```
 ❌ Light: #000000 → Dark: #ffffff
-   Pure white is harsh.
+   Pure white causes eye strain
 
 ✅ Light: #1a1a1a → Dark: #f5f5f5
-   Slightly off-white is better.
+   Slightly darker white is better
 ```
 
-## Production-Ready Color Set
+## Proven Color Set
 
-Tested and balanced:
+Battle-tested combinations:
 
 ```css
 :root {
@@ -229,9 +229,9 @@ Tested and balanced:
 }
 ```
 
-Note: Primary color is lighter in dark mode for visibility.
+Primary colors should be brighter in dark mode for visibility.
 
-## Common Gotchas
+## Watch Out For
 
 ### 1. Images
 
@@ -252,15 +252,15 @@ Note: Primary color is lighter in dark mode for visibility.
 }
 
 .dark {
-  /* Darker shadow in dark mode */
+  /* Darker shadows in dark mode */
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 ```
 
-### 3. Hardcoded Colors
+### 3. No Hardcoded Colors
 
 ```tsx
-/* ❌ Breaks dark mode */
+/* ❌ Dark mode won't work */
 <div className="bg-white text-black">
 
 /* ✅ Use variables */
@@ -270,17 +270,13 @@ Note: Primary color is lighter in dark mode for visibility.
 ## Summary
 
 1. Define colors as CSS variables
-2. Override in `.dark` class
-3. Components reference variables only
-4. Use semantic names (`surface`, `text-primary`)
-5. Add flash-prevention script for SSR
+2. Change only variable values in `.dark`
+3. Components reference only variables
+4. Use semantic names (`surface`, `text-primary`, etc.)
+5. Add flash prevention script for SSR
 
-Clean, maintainable, automatic dark mode.
-
----
-
-**Example implementation**: [HANUI](https://hanui.io) uses this pattern with KRDS (Korean Government Design System) tokens.
+This makes dark mode maintenance much easier.
 
 ---
 
-Tags: #css #darkmode #tailwindcss #react #webdev
+CSS, darkmode, CSSvariables, TailwindCSS, React, frontend

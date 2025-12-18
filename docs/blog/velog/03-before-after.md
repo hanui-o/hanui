@@ -1,12 +1,12 @@
-# KRDS 버튼 하나 만드는 데 반나절? Before/After로 보여드림
+# KRDS React 컴포넌트 구현 시간 비교 - 직접 코딩 vs HANUI (Before/After)
 
 ![before-after](https://velog.velcdn.com/images/hanui/post/51496d9e-b061-42ef-8bba-4e1a25f65b36/image.png)
 
 "KRDS 가이드라인 문서 어디 있어요?"
 
-프로젝트 시작하면 항상 듣는 말이에요. 그리고 PDF 열어서 색상 코드 찾고, 간격 값 복사하고... 이거 하다 보면 진짜 하루가 가요.
+공공기관 SI 프로젝트 시작하면 항상 듣는 말이에요. 그리고 PDF 열어서 색상 코드 찾고, 간격 값 복사하고... React 컴포넌트 하나 만드는 데 반나절이 가요.
 
-오늘은 실제 코드로 Before/After를 보여드릴게요.
+오늘은 실제 코드로 Before/After를 보여드릴게요. HANUI 쓰면 얼마나 줄어드는지.
 
 ## Case 1: 버튼 만들기
 
@@ -304,3 +304,5 @@ npx hanui add button
 **GitHub**: https://github.com/hanui-o/hanui
 **문서**: https://hanui.io
 **CLI**: `npm install -D @hanui/cli`
+
+KRDS, React, 공공SI, 컴포넌트, BeforeAfter, 개발시간단축, HANUI

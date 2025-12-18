@@ -304,4 +304,4 @@ Primary 색상은 다크모드에서 더 밝게 해야 눈에 잘 띄어요.
 
 ---
 
-**태그**: #CSS #다크모드 #CSS변수 #Tailwind #React #프론트엔드
+CSS, 다크모드, CSS변수, TailwindCSS, React, 프론트엔드

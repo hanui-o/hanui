@@ -272,4 +272,4 @@ export default {
 
 ---
 
-**태그**: #Tailwind #디자인시스템 #React #프론트엔드 #CSS
+TailwindCSS, 디자인시스템, React, CSS변수, cva, 프론트엔드
