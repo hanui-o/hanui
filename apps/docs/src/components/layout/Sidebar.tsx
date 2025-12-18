@@ -126,10 +126,28 @@ const templatesNavigation = [
   },
 ];
 
+const kitsNavigation = [
+  {
+    title: 'Kits',
+    items: [
+      { title: 'Overview', href: '/kits' },
+      { title: 'Board Kit', href: '/kits/board' },
+      { title: 'Auth Kit', href: '/kits/auth' },
+      { title: 'Table Kit', href: '/kits/table' },
+      { title: 'Form Kit', href: '/kits/form' },
+      { title: 'Dashboard Kit', href: '/kits/dashboard' },
+      { title: 'Search Kit', href: '/kits/search', isNew: true },
+      { title: 'Notification Kit', href: '/kits/notification', isNew: true },
+      { title: 'Settings Kit', href: '/kits/settings', isNew: true },
+    ],
+  },
+];
+
 type NavigationItem = {
   title: string;
   href: string;
   isNew?: boolean;
+  isComingSoon?: boolean;
 };
 
 type NavigationSection = {
@@ -155,12 +173,17 @@ function SidebarSection({
           return (
             <li key={item.href}>
               <Link
-                href={item.href}
+                href={item.isComingSoon ? '#' : item.href}
                 ref={isActive ? onActiveRef : undefined}
+                onClick={
+                  item.isComingSoon ? (e) => e.preventDefault() : undefined
+                }
                 className={`flex items-center gap-1.5 py-1 px-2 rounded-md transition-colors text-sm ${
-                  isActive
-                    ? 'bg-krds-primary-base text-white font-medium'
-                    : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'
+                  item.isComingSoon
+                    ? 'text-krds-gray-40 cursor-not-allowed'
+                    : isActive
+                      ? 'bg-krds-primary-base text-white font-medium'
+                      : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'
                 }`}
               >
                 {item.title}
@@ -171,6 +194,9 @@ function SidebarSection({
                     }`}
                     aria-label="새로운 컴포넌트"
                   />
+                )}
+                {item.isComingSoon && (
+                  <span className="text-xs text-krds-gray-40">Soon</span>
                 )}
               </Link>
             </li>
@@ -196,6 +222,8 @@ export function Sidebar() {
       return componentsNavigation;
     } else if (pathname?.startsWith('/templates')) {
       return templatesNavigation;
+    } else if (pathname?.startsWith('/kits')) {
+      return kitsNavigation;
     }
     // Default to components navigation for home page
     return componentsNavigation;

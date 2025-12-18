@@ -13,15 +13,18 @@ import {
   TabsTrigger,
   TabsContent,
   Badge,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  List,
+  ListItem,
 } from '@hanui/react';
 
-// Board Kit 코드들
-const typeCode = `/**
- * Board Kit - Type Definitions
- * 게시판 기능에 필요한 타입 정의
- */
-
-// 게시글 타입
+// 타입 정의 코드
+const typeCode = `// 게시글 타입
 export interface Post {
   id: number
   title: string
@@ -71,35 +74,19 @@ export interface PostListParams {
   sortBy?: 'latest' | 'oldest' | 'views'
 }`;
 
-const apiCode = `/**
- * Board Kit - API Functions
- * API 주소만 변경하면 바로 사용 가능
- */
+// API 코드
+const apiCode = `import axios from 'axios'
+import type { Post, PostListResponse, PostFormData, PostListParams } from './types'
 
-import axios from 'axios'
-import type {
-  Post,
-  PostListResponse,
-  PostDetailResponse,
-  PostFormData,
-  PostListParams,
-  ApiResponse,
-} from '../types/board'
-
-// ============================================
-// API 주소 설정 (이 부분만 수정하세요)
-// ============================================
+// API 주소 설정 (이 부분만 수정)
 const API_URL = 'https://your-api.com/api'
 
-// Axios 인스턴스 생성
 const api = axios.create({
   baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  headers: { 'Content-Type': 'application/json' },
 })
 
-// 요청 인터셉터 (토큰 추가 등)
+// 요청 인터셉터 (토큰 추가)
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
   if (token) {
@@ -108,26 +95,14 @@ api.interceptors.request.use((config) => {
   return config
 })
 
-// 응답 인터셉터 (에러 처리)
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token')
-      window.location.href = '/login'
-    }
-    return Promise.reject(error)
-  }
-)
-
-// API 함수들
+// API 함수
 export async function getPosts(params?: PostListParams): Promise<PostListResponse> {
-  const { data } = await api.get<PostListResponse>('/posts', { params })
+  const { data } = await api.get('/posts', { params })
   return data
 }
 
 export async function getPost(id: number): Promise<Post> {
-  const { data } = await api.get<PostDetailResponse>(\`/posts/\${id}\`)
+  const { data } = await api.get(\`/posts/\${id}\`)
   return data.data
 }
 
@@ -135,12 +110,8 @@ export async function createPost(formData: PostFormData): Promise<Post> {
   const form = new FormData()
   form.append('title', formData.title)
   form.append('content', formData.content)
-  if (formData.attachments) {
-    formData.attachments.forEach((file) => {
-      form.append('attachments', file)
-    })
-  }
-  const { data } = await api.post<ApiResponse<Post>>('/posts', form, {
+  formData.attachments?.forEach((file) => form.append('attachments', file))
+  const { data } = await api.post('/posts', form, {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
   return data.data
@@ -150,12 +121,8 @@ export async function updatePost(id: number, formData: PostFormData): Promise<Po
   const form = new FormData()
   form.append('title', formData.title)
   form.append('content', formData.content)
-  if (formData.attachments) {
-    formData.attachments.forEach((file) => {
-      form.append('attachments', file)
-    })
-  }
-  const { data } = await api.put<ApiResponse<Post>>(\`/posts/\${id}\`, form, {
+  formData.attachments?.forEach((file) => form.append('attachments', file))
+  const { data } = await api.put(\`/posts/\${id}\`, form, {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
   return data.data
@@ -165,21 +132,10 @@ export async function deletePost(id: number): Promise<void> {
   await api.delete(\`/posts/\${id}\`)
 }`;
 
-const hooksCode = `/**
- * Board Kit - React Query Hooks
- * 서버 데이터 관리 (캐싱, 리페치, 뮤테이션)
- */
-
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import {
-  getPosts,
-  getPost,
-  createPost,
-  updatePost,
-  deletePost,
-  incrementViewCount,
-} from '../api/board'
-import type { PostListParams, PostFormData } from '../types/board'
+// React Query Hooks 코드
+const hooksCode = `import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { getPosts, getPost, createPost, updatePost, deletePost } from './api'
+import type { PostListParams, PostFormData } from './types'
 
 // Query Keys
 export const boardKeys = {
@@ -190,7 +146,7 @@ export const boardKeys = {
   detail: (id: number) => [...boardKeys.details(), id] as const,
 }
 
-// 게시글 목록 조회 훅
+// 게시글 목록 조회
 export function usePosts(params?: PostListParams) {
   return useQuery({
     queryKey: boardKeys.list(params || {}),
@@ -198,19 +154,16 @@ export function usePosts(params?: PostListParams) {
   })
 }
 
-// 게시글 상세 조회 훅
+// 게시글 상세 조회
 export function usePost(id: number) {
   return useQuery({
     queryKey: boardKeys.detail(id),
-    queryFn: async () => {
-      await incrementViewCount(id)
-      return getPost(id)
-    },
+    queryFn: () => getPost(id),
     enabled: !!id,
   })
 }
 
-// 게시글 작성 훅
+// 게시글 작성
 export function useCreatePost() {
   const queryClient = useQueryClient()
   return useMutation({
@@ -221,7 +174,7 @@ export function useCreatePost() {
   })
 }
 
-// 게시글 수정 훅
+// 게시글 수정
 export function useUpdatePost() {
   const queryClient = useQueryClient()
   return useMutation({
@@ -233,7 +186,7 @@ export function useUpdatePost() {
   })
 }
 
-// 게시글 삭제 훅
+// 게시글 삭제
 export function useDeletePost() {
   const queryClient = useQueryClient()
   return useMutation({
@@ -244,13 +197,9 @@ export function useDeletePost() {
   })
 }`;
 
-const storeCode = `/**
- * Board Kit - Zustand Store
- * 클라이언트 UI 상태 관리 (검색, 필터, 선택 등)
- */
-
-import { create } from 'zustand'
-import type { PostListParams } from '../types/board'
+// Zustand Store 코드
+const storeCode = `import { create } from 'zustand'
+import type { PostListParams } from './types'
 
 interface BoardState {
   // 검색/필터 상태
@@ -271,13 +220,9 @@ interface BoardState {
   setSortBy: (sortBy: PostListParams['sortBy']) => void
   setPage: (page: number) => void
   resetFilters: () => void
-
-  // 선택 관련
   toggleSelect: (id: number) => void
   selectAll: (ids: number[]) => void
   clearSelection: () => void
-
-  // 삭제 모달 관련
   openDeleteModal: (id: number) => void
   closeDeleteModal: () => void
 }
@@ -295,7 +240,6 @@ export const useBoardStore = create<BoardState>((set) => ({
   setSortBy: (sortBy) => set({ sortBy, page: 1 }),
   setPage: (page) => set({ page }),
   resetFilters: () => set({ searchKeyword: '', sortBy: 'latest', page: 1 }),
-
   toggleSelect: (id) =>
     set((state) => ({
       selectedIds: state.selectedIds.includes(id)
@@ -304,268 +248,42 @@ export const useBoardStore = create<BoardState>((set) => ({
     })),
   selectAll: (ids) => set({ selectedIds: ids }),
   clearSelection: () => set({ selectedIds: [] }),
-
   openDeleteModal: (id) => set({ isDeleteModalOpen: true, deleteTargetId: id }),
   closeDeleteModal: () => set({ isDeleteModalOpen: false, deleteTargetId: null }),
 }))`;
 
-const boardListCode = `/**
- * Board Kit - BoardList Component
- * 게시글 목록 (검색, 정렬, 페이지네이션)
- */
+// 사용 예시 코드
+const usageCode = `'use client'
 
-'use client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { usePosts, useCreatePost } from '@/hooks/useBoard'
+import { useBoardStore } from '@/store/boardStore'
 
-import { usePosts } from '../hooks/useBoard'
-import { useBoardStore } from '../store/boardStore'
-import { BoardItem } from './BoardItem'
-import type { Post } from '../types/board'
+const queryClient = new QueryClient()
 
-interface BoardListProps {
-  onItemClick?: (post: Post) => void
-  onWriteClick?: () => void
-}
+function BoardList() {
+  const { page, searchKeyword, sortBy, setPage } = useBoardStore()
+  const { data, isLoading } = usePosts({ page, search: searchKeyword, sortBy })
 
-export function BoardList({ onItemClick, onWriteClick }: BoardListProps) {
-  const { searchKeyword, sortBy, page, limit, selectedIds } = useBoardStore()
-  const { setSearchKeyword, setSortBy, setPage, toggleSelect, selectAll, clearSelection } = useBoardStore()
-
-  const { data, isLoading, error } = usePosts({
-    page,
-    limit,
-    search: searchKeyword,
-    sortBy,
-  })
-
-  const posts = data?.data || []
-  const pagination = data?.pagination
-
-  const handleSelectAll = () => {
-    if (selectedIds.length === posts.length) {
-      clearSelection()
-    } else {
-      selectAll(posts.map((p) => p.id))
-    }
-  }
-
-  if (error) {
-    return <div className="p-4 text-center text-red-500">데이터를 불러오는 중 오류가 발생했습니다.</div>
-  }
+  if (isLoading) return <div>로딩 중...</div>
 
   return (
-    <div className="space-y-4">
-      {/* 검색 및 필터 */}
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
-          <input
-            type="text"
-            placeholder="검색어를 입력하세요"
-            value={searchKeyword}
-            onChange={(e) => setSearchKeyword(e.target.value)}
-            className="px-3 py-2 border rounded-md"
-          />
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="px-3 py-2 border rounded-md"
-          >
-            <option value="latest">최신순</option>
-            <option value="oldest">오래된순</option>
-            <option value="views">조회순</option>
-          </select>
-        </div>
-        <button
-          onClick={onWriteClick}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-        >
-          글쓰기
-        </button>
-      </div>
-
-      {/* 게시글 목록 */}
-      <div className="border rounded-md">
-        <div className="flex items-center gap-4 px-4 py-3 bg-gray-50 border-b font-medium">
-          <input
-            type="checkbox"
-            checked={posts.length > 0 && selectedIds.length === posts.length}
-            onChange={handleSelectAll}
-            className="w-4 h-4"
-          />
-          <span className="flex-1">제목</span>
-          <span className="w-24 text-center">작성자</span>
-          <span className="w-24 text-center">작성일</span>
-          <span className="w-16 text-center">조회</span>
-        </div>
-
-        {isLoading ? (
-          <div className="p-8 text-center text-gray-500">로딩 중...</div>
-        ) : posts.length === 0 ? (
-          <div className="p-8 text-center text-gray-500">게시글이 없습니다.</div>
-        ) : (
-          posts.map((post) => (
-            <BoardItem
-              key={post.id}
-              post={post}
-              isSelected={selectedIds.includes(post.id)}
-              onSelect={() => toggleSelect(post.id)}
-              onClick={() => onItemClick?.(post)}
-            />
-          ))
-        )}
-      </div>
-
-      {/* 페이지네이션 */}
-      {pagination && pagination.totalPages > 1 && (
-        <div className="flex justify-center">
-          <nav className="flex items-center gap-1">
-            <button
-              onClick={() => setPage(page - 1)}
-              disabled={page === 1}
-              className="px-3 py-1 border rounded disabled:opacity-50"
-            >
-              이전
-            </button>
-            {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((p) => (
-              <button
-                key={p}
-                onClick={() => setPage(p)}
-                className={\`px-3 py-1 border rounded \${p === page ? 'bg-blue-600 text-white' : ''}\`}
-              >
-                {p}
-              </button>
-            ))}
-            <button
-              onClick={() => setPage(page + 1)}
-              disabled={page === pagination.totalPages}
-              className="px-3 py-1 border rounded disabled:opacity-50"
-            >
-              다음
-            </button>
-          </nav>
-        </div>
-      )}
+    <div>
+      {data?.data.map((post) => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.author} · {post.createdAt}</p>
+        </article>
+      ))}
     </div>
   )
-}`;
-
-const boardFormCode = `/**
- * Board Kit - BoardForm Component
- * 게시글 작성/수정 폼
- */
-
-'use client'
-
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { useCreatePost, useUpdatePost } from '../hooks/useBoard'
-import type { Post, PostFormData } from '../types/board'
-import { useState } from 'react'
-
-const postSchema = z.object({
-  title: z.string().min(1, '제목을 입력해주세요').max(100, '제목은 100자 이내로 입력해주세요'),
-  content: z.string().min(1, '내용을 입력해주세요').max(10000, '내용은 10000자 이내로 입력해주세요'),
-})
-
-type FormValues = z.infer<typeof postSchema>
-
-interface BoardFormProps {
-  post?: Post
-  onSuccess?: () => void
-  onCancel?: () => void
 }
 
-export function BoardForm({ post, onSuccess, onCancel }: BoardFormProps) {
-  const isEdit = !!post
-  const [files, setFiles] = useState<File[]>([])
-
-  const createPost = useCreatePost()
-  const updatePost = useUpdatePost()
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormValues>({
-    resolver: zodResolver(postSchema),
-    defaultValues: {
-      title: post?.title || '',
-      content: post?.content || '',
-    },
-  })
-
-  const onSubmit = async (data: FormValues) => {
-    try {
-      const formData: PostFormData = {
-        ...data,
-        attachments: files.length > 0 ? files : undefined,
-      }
-
-      if (isEdit && post) {
-        await updatePost.mutateAsync({ id: post.id, data: formData })
-      } else {
-        await createPost.mutateAsync(formData)
-      }
-
-      onSuccess?.()
-    } catch (error) {
-      console.error('저장 실패:', error)
-    }
-  }
-
+export default function BoardPage() {
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div>
-        <label htmlFor="title" className="block font-medium mb-1">
-          제목 <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="title"
-          type="text"
-          placeholder="제목을 입력하세요"
-          className={\`w-full px-3 py-2 border rounded-md \${errors.title ? 'border-red-500' : 'border-gray-300'}\`}
-          {...register('title')}
-        />
-        {errors.title && <p className="mt-1 text-sm text-red-500">{errors.title.message}</p>}
-      </div>
-
-      <div>
-        <label htmlFor="content" className="block font-medium mb-1">
-          내용 <span className="text-red-500">*</span>
-        </label>
-        <textarea
-          id="content"
-          placeholder="내용을 입력하세요"
-          rows={10}
-          className={\`w-full px-3 py-2 border rounded-md resize-none \${errors.content ? 'border-red-500' : 'border-gray-300'}\`}
-          {...register('content')}
-        />
-        {errors.content && <p className="mt-1 text-sm text-red-500">{errors.content.message}</p>}
-      </div>
-
-      <div>
-        <label className="block font-medium mb-1">첨부파일</label>
-        <input
-          type="file"
-          multiple
-          onChange={(e) => e.target.files && setFiles(Array.from(e.target.files))}
-          className="block w-full text-sm"
-        />
-      </div>
-
-      <div className="flex justify-end gap-2">
-        <button type="button" onClick={onCancel} className="px-4 py-2 border rounded-md hover:bg-gray-50">
-          취소
-        </button>
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
-        >
-          {isSubmitting ? '저장 중...' : isEdit ? '수정' : '등록'}
-        </button>
-      </div>
-    </form>
+    <QueryClientProvider client={queryClient}>
+      <BoardList />
+    </QueryClientProvider>
   )
 }`;
 
@@ -575,145 +293,430 @@ export default function BoardKitPage() {
       <Heading
         level="h1"
         title="Board Kit"
-        description="게시판 기능 키트 - API 주소만 바꾸면 바로 동작합니다."
+        description="게시판 기능 키트. API 주소만 바꾸면 바로 동작합니다."
       />
 
-      <Section level="h2">
-        <div className="flex flex-wrap gap-2 mb-4">
-          <Badge variant="outline">zustand</Badge>
-          <Badge variant="outline">@tanstack/react-query</Badge>
-          <Badge variant="outline">axios</Badge>
-          <Badge variant="outline">react-hook-form</Badge>
-          <Badge variant="outline">zod</Badge>
-        </div>
-      </Section>
+      <Tabs defaultValue="overview">
+        <TabsList>
+          <TabsTrigger value="overview">개요</TabsTrigger>
+          <TabsTrigger value="api">API 레퍼런스</TabsTrigger>
+        </TabsList>
 
-      <Section level="h2">
-        <Heading level="h2" id="features" title="기능" />
-        <ul className="list-disc list-inside space-y-1 mt-4 text-gray-700">
-          <li>목록 (페이지네이션, 검색, 정렬)</li>
-          <li>상세 (조회수, 첨부파일)</li>
-          <li>작성 (폼 + 유효성검사)</li>
-          <li>수정 (기존 데이터 불러오기)</li>
-          <li>삭제 (확인 모달)</li>
-        </ul>
-      </Section>
+        {/* 개요 탭 */}
+        <TabsContent value="overview">
+          {/* 기술 스택 */}
+          <Section level="h2">
+            <Heading level="h2" id="tech-stack" title="기술 스택" />
+            <div className="flex flex-wrap gap-2 mt-4">
+              <Badge variant="outline-gray">Zustand</Badge>
+              <Badge variant="outline-gray">React Query</Badge>
+              <Badge variant="outline-gray">Axios</Badge>
+              <Badge variant="outline-gray">React Hook Form</Badge>
+              <Badge variant="outline-gray">Zod</Badge>
+              <Badge variant="outline-gray">TypeScript</Badge>
+            </div>
+          </Section>
 
-      <Section level="h2">
-        <Heading level="h2" id="file-structure" title="파일 구조" />
-        <Code variant="block" language="bash">
-          {`src/
+          {/* 기능 */}
+          <Section level="h2">
+            <Heading level="h2" id="features" title="기능" />
+            <List className="mt-4">
+              <ListItem>목록 조회 (페이지네이션, 검색, 정렬)</ListItem>
+              <ListItem>상세 조회 (조회수, 첨부파일)</ListItem>
+              <ListItem>게시글 작성 (폼 유효성 검사)</ListItem>
+              <ListItem>게시글 수정 (기존 데이터 불러오기)</ListItem>
+              <ListItem>게시글 삭제 (확인 모달)</ListItem>
+            </List>
+          </Section>
+
+          {/* 파일 구조 */}
+          <Section level="h2">
+            <Heading level="h2" id="file-structure" title="파일 구조" />
+            <Code variant="block" language="bash">
+              {`src/
 ├── api/
-│   └── board.ts              # API 함수 (CRUD)
+│   └── board.ts          # API 함수 (CRUD)
 ├── hooks/
-│   └── useBoard.ts           # React Query 훅
+│   └── useBoard.ts       # React Query 훅
 ├── store/
-│   └── boardStore.ts         # Zustand (UI 상태)
+│   └── boardStore.ts     # Zustand (UI 상태)
 ├── components/board/
-│   ├── BoardList.tsx         # 목록
-│   ├── BoardItem.tsx         # 목록 아이템
-│   ├── BoardDetail.tsx       # 상세
-│   ├── BoardForm.tsx         # 작성/수정 폼
-│   └── BoardDeleteModal.tsx  # 삭제 모달
+│   ├── BoardList.tsx     # 목록
+│   ├── BoardItem.tsx     # 목록 아이템
+│   ├── BoardDetail.tsx   # 상세
+│   ├── BoardForm.tsx     # 작성/수정 폼
+│   └── DeleteModal.tsx   # 삭제 확인 모달
 └── types/
-    └── board.ts              # 타입 정의`}
-        </Code>
-      </Section>
+    └── board.ts          # 타입 정의`}
+            </Code>
+          </Section>
 
-      <Section level="h2">
-        <Heading level="h2" id="installation" title="설치" />
-        <Subsection level="h3">
-          <Heading level="h3" title="1. 의존성 설치" />
-          <Code variant="block" language="bash">
-            {`npm install axios zustand @tanstack/react-query react-hook-form @hookform/resolvers zod`}
-          </Code>
-        </Subsection>
-        <Subsection level="h3">
-          <Heading level="h3" title="2. 파일 복사" />
-          <p className="text-gray-600 mb-4">
-            아래 코드 탭에서 필요한 파일들을 복사하세요.
-          </p>
-        </Subsection>
-        <Subsection level="h3">
-          <Heading level="h3" title="3. API 주소 변경" />
-          <Code variant="block" language="typescript">
-            {`// api/board.ts
-const API_URL = 'https://your-api.com/api'  // ← 이 부분만 수정`}
-          </Code>
-        </Subsection>
-      </Section>
+          {/* 설치 */}
+          <Section level="h2">
+            <Heading level="h2" id="installation" title="설치" />
 
-      <Section level="h2">
-        <Heading level="h2" id="code" title="코드" />
-        <Tabs defaultValue="types">
-          <TabsList>
-            <TabsTrigger value="types">types/board.ts</TabsTrigger>
-            <TabsTrigger value="api">api/board.ts</TabsTrigger>
-            <TabsTrigger value="hooks">hooks/useBoard.ts</TabsTrigger>
-            <TabsTrigger value="store">store/boardStore.ts</TabsTrigger>
-            <TabsTrigger value="list">BoardList.tsx</TabsTrigger>
-            <TabsTrigger value="form">BoardForm.tsx</TabsTrigger>
-          </TabsList>
+            <Subsection level="h3">
+              <Heading level="h3" title="1. 의존성 설치" />
+              <Code variant="block" language="bash">
+                {`npm install axios zustand @tanstack/react-query react-hook-form @hookform/resolvers zod`}
+              </Code>
+            </Subsection>
 
-          <TabsContent value="types">
+            <Subsection level="h3">
+              <Heading level="h3" title="2. 코드 복사" />
+              <p className="text-krds-gray-70">
+                아래 코드 탭에서 필요한 파일들을 복사합니다.
+              </p>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="3. API 주소 변경" />
+              <Code variant="block" language="typescript">
+                {`// api/board.ts
+const API_URL = 'https://your-api.com/api'  // 실제 서버 주소로 변경`}
+              </Code>
+            </Subsection>
+          </Section>
+
+          {/* 코드 */}
+          <Section level="h2">
+            <Heading level="h2" id="code" title="코드" />
+            <Tabs defaultValue="types">
+              <TabsList>
+                <TabsTrigger value="types">types.ts</TabsTrigger>
+                <TabsTrigger value="api">api.ts</TabsTrigger>
+                <TabsTrigger value="hooks">hooks.ts</TabsTrigger>
+                <TabsTrigger value="store">store.ts</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="types">
+                <Code variant="block" language="typescript">
+                  {typeCode}
+                </Code>
+              </TabsContent>
+              <TabsContent value="api">
+                <Code variant="block" language="typescript">
+                  {apiCode}
+                </Code>
+              </TabsContent>
+              <TabsContent value="hooks">
+                <Code variant="block" language="typescript">
+                  {hooksCode}
+                </Code>
+              </TabsContent>
+              <TabsContent value="store">
+                <Code variant="block" language="typescript">
+                  {storeCode}
+                </Code>
+              </TabsContent>
+            </Tabs>
+          </Section>
+
+          {/* 사용 예시 */}
+          <Section level="h2">
+            <Heading level="h2" id="usage" title="사용 예시" />
+            <Code variant="block" language="tsx">
+              {usageCode}
+            </Code>
+          </Section>
+
+          {/* 접근성 */}
+          <Section level="h2">
+            <Heading level="h2" id="accessibility" title="접근성" />
+            <List className="mt-4">
+              <ListItem>
+                게시글 목록은 시맨틱 마크업(<Code>article</Code>,{' '}
+                <Code>h2</Code>) 사용 권장
+              </ListItem>
+              <ListItem>
+                페이지네이션에 <Code>aria-label</Code> 및{' '}
+                <Code>aria-current</Code> 속성 적용
+              </ListItem>
+              <ListItem>
+                삭제 모달은 <Code>AlertDialog</Code> 컴포넌트 사용으로 키보드
+                트랩 및 포커스 관리 자동 처리
+              </ListItem>
+              <ListItem>
+                폼 유효성 검사 오류 메시지는 <Code>aria-describedby</Code>로
+                연결
+              </ListItem>
+              <ListItem>
+                로딩 상태는 <Code>aria-busy</Code> 속성으로 스크린 리더에 전달
+              </ListItem>
+            </List>
+          </Section>
+        </TabsContent>
+
+        {/* API 레퍼런스 탭 */}
+        <TabsContent value="api">
+          {/* API 함수 */}
+          <Section level="h2">
+            <Heading level="h2" id="api-functions" title="API 함수" />
+            <Table small className="mt-4">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>함수</TableHead>
+                  <TableHead>파라미터</TableHead>
+                  <TableHead>반환값</TableHead>
+                  <TableHead>설명</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <Code>getPosts</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">PostListParams?</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">PostListResponse</Code>
+                  </TableCell>
+                  <TableCell>게시글 목록 조회</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>getPost</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">id: number</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">Post</Code>
+                  </TableCell>
+                  <TableCell>게시글 상세 조회</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>createPost</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">PostFormData</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">Post</Code>
+                  </TableCell>
+                  <TableCell>게시글 작성</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>updatePost</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">id, PostFormData</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">Post</Code>
+                  </TableCell>
+                  <TableCell>게시글 수정</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>deletePost</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">id: number</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">void</Code>
+                  </TableCell>
+                  <TableCell>게시글 삭제</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Section>
+
+          {/* React Query Hooks */}
+          <Section level="h2">
+            <Heading level="h2" id="hooks" title="React Query Hooks" />
+            <Table small className="mt-4">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Hook</TableHead>
+                  <TableHead>파라미터</TableHead>
+                  <TableHead>설명</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    <Code>usePosts</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">PostListParams?</Code>
+                  </TableCell>
+                  <TableCell>게시글 목록 조회 (캐싱, 자동 리페치)</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>usePost</Code>
+                  </TableCell>
+                  <TableCell>
+                    <Code className="text-xs">id: number</Code>
+                  </TableCell>
+                  <TableCell>게시글 상세 조회</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>useCreatePost</Code>
+                  </TableCell>
+                  <TableCell>-</TableCell>
+                  <TableCell>게시글 작성 뮤테이션</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>useUpdatePost</Code>
+                  </TableCell>
+                  <TableCell>-</TableCell>
+                  <TableCell>게시글 수정 뮤테이션</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    <Code>useDeletePost</Code>
+                  </TableCell>
+                  <TableCell>-</TableCell>
+                  <TableCell>게시글 삭제 뮤테이션</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </Section>
+
+          {/* Zustand Store */}
+          <Section level="h2">
+            <Heading level="h2" id="store" title="Zustand Store" />
+
+            <Subsection level="h3">
+              <Heading level="h3" title="State" />
+              <Table small className="mt-4">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>속성</TableHead>
+                    <TableHead>타입</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>searchKeyword</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">string</Code>
+                    </TableCell>
+                    <TableCell>검색어</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>sortBy</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">
+                        'latest' | 'oldest' | 'views'
+                      </Code>
+                    </TableCell>
+                    <TableCell>정렬 기준</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>page</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number</Code>
+                    </TableCell>
+                    <TableCell>현재 페이지</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>selectedIds</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">number[]</Code>
+                    </TableCell>
+                    <TableCell>선택된 게시글 ID 목록</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>isDeleteModalOpen</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">boolean</Code>
+                    </TableCell>
+                    <TableCell>삭제 모달 표시 여부</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+
+            <Subsection level="h3">
+              <Heading level="h3" title="Actions" />
+              <Table small className="mt-4">
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>함수</TableHead>
+                    <TableHead>파라미터</TableHead>
+                    <TableHead>설명</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Code>setSearchKeyword</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">keyword: string</Code>
+                    </TableCell>
+                    <TableCell>검색어 설정 (페이지 1로 리셋)</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>setSortBy</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">sortBy</Code>
+                    </TableCell>
+                    <TableCell>정렬 기준 설정</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>setPage</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">page: number</Code>
+                    </TableCell>
+                    <TableCell>페이지 변경</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>toggleSelect</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">id: number</Code>
+                    </TableCell>
+                    <TableCell>게시글 선택 토글</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Code>openDeleteModal</Code>
+                    </TableCell>
+                    <TableCell>
+                      <Code className="text-xs">id: number</Code>
+                    </TableCell>
+                    <TableCell>삭제 모달 열기</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Subsection>
+          </Section>
+
+          {/* 타입 정의 */}
+          <Section level="h2">
+            <Heading level="h2" id="types" title="타입 정의" />
             <Code variant="block" language="typescript">
               {typeCode}
             </Code>
-          </TabsContent>
-          <TabsContent value="api">
-            <Code variant="block" language="typescript">
-              {apiCode}
-            </Code>
-          </TabsContent>
-          <TabsContent value="hooks">
-            <Code variant="block" language="typescript">
-              {hooksCode}
-            </Code>
-          </TabsContent>
-          <TabsContent value="store">
-            <Code variant="block" language="typescript">
-              {storeCode}
-            </Code>
-          </TabsContent>
-          <TabsContent value="list">
-            <Code variant="block" language="typescript">
-              {boardListCode}
-            </Code>
-          </TabsContent>
-          <TabsContent value="form">
-            <Code variant="block" language="typescript">
-              {boardFormCode}
-            </Code>
-          </TabsContent>
-        </Tabs>
-      </Section>
-
-      <Section level="h2">
-        <Heading level="h2" id="usage-example" title="사용 예시" />
-        <Code variant="block" language="tsx">
-          {`// pages/board/index.tsx
-'use client'
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { BoardList } from '@/components/board/BoardList'
-import { useRouter } from 'next/navigation'
-
-const queryClient = new QueryClient()
-
-export default function BoardPage() {
-  const router = useRouter()
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <BoardList
-        onItemClick={(post) => router.push(\`/board/\${post.id}\`)}
-        onWriteClick={() => router.push('/board/write')}
-      />
-    </QueryClientProvider>
-  )
-}`}
-        </Code>
-      </Section>
+          </Section>
+        </TabsContent>
+      </Tabs>
 
       <PageNavigation
         prev={{ title: 'Kits', href: '/kits' }}
