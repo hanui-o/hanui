@@ -144,7 +144,3 @@ npx hanui add kit board
 
 **GitHub**: https://github.com/hanui-o/hanui
 **문서**: https://hanui.io/kits
-
----
-
-HANUI, Kits, React, 게시판, 인증, 대시보드, 상태관리, Zustand, React Query
