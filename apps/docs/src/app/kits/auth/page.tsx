@@ -23,114 +23,79 @@ import {
   ListItem,
 } from '@hanui/react';
 
-// 타입 정의 코드
-const typeCode = `// 사용자 타입
+// 타입 정의 코드 (DummyJSON 기준)
+const typeCode = `// 사용자 타입 (DummyJSON 응답 형식)
 export interface User {
   id: number
+  username: string
   email: string
-  name: string
-  role: 'user' | 'admin'
-  createdAt: string
+  firstName: string
+  lastName: string
+  gender: string
+  image: string
 }
 
-// 로그인 요청
+// 로그인 요청 (DummyJSON은 username 사용)
 export interface LoginRequest {
-  email: string
+  username: string
   password: string
+  expiresInMins?: number
 }
 
-// 회원가입 요청
-export interface SignupRequest {
-  email: string
-  password: string
-  name: string
-}
-
-// 인증 응답
-export interface AuthResponse {
-  user: User
+// 인증 응답 (DummyJSON 형식)
+export interface AuthResponse extends User {
   accessToken: string
   refreshToken: string
 }
 
-// 비밀번호 찾기 요청
-export interface ForgotPasswordRequest {
-  email: string
-}
+// 테스트 계정 (DummyJSON 제공)
+// username: 'emilys', password: 'emilyspass'
+// 전체 목록: https://dummyjson.com/users`;
 
-// 비밀번호 재설정 요청
-export interface ResetPasswordRequest {
-  token: string
-  password: string
-}`;
-
-// API 코드
+// API 코드 (DummyJSON 사용)
 const apiCode = `import axios from 'axios'
-import type {
-  LoginRequest,
-  SignupRequest,
-  AuthResponse,
-  ForgotPasswordRequest,
-  ResetPasswordRequest,
-} from './types'
+import type { LoginRequest, AuthResponse, User } from './types'
 
-// API 주소 설정 (이 부분만 수정)
-const API_URL = 'https://your-api.com/api'
+// 🔗 DummyJSON 무료 API (테스트용)
+const API_URL = 'https://dummyjson.com'
 
 const api = axios.create({
   baseURL: API_URL,
   headers: { 'Content-Type': 'application/json' },
 })
 
-// 토큰 갱신 인터셉터
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response?.status === 401) {
-      const refreshToken = localStorage.getItem('refreshToken')
-      if (refreshToken) {
-        try {
-          const { data } = await axios.post(\`\${API_URL}/auth/refresh\`, { refreshToken })
-          localStorage.setItem('accessToken', data.accessToken)
-          error.config.headers.Authorization = \`Bearer \${data.accessToken}\`
-          return api.request(error.config)
-        } catch {
-          localStorage.clear()
-          window.location.href = '/login'
-        }
-      }
-    }
-    return Promise.reject(error)
-  }
-)
-
-// API 함수
+// 로그인
+// 테스트 계정: username: 'emilys', password: 'emilyspass'
 export async function login(data: LoginRequest): Promise<AuthResponse> {
-  const response = await api.post('/auth/login', data)
+  const response = await api.post('/auth/login', {
+    username: data.username,
+    password: data.password,
+    expiresInMins: data.expiresInMins || 30,
+  })
   return response.data
 }
 
-export async function signup(data: SignupRequest): Promise<AuthResponse> {
-  const response = await api.post('/auth/signup', data)
-  return response.data
-}
-
-export async function logout(): Promise<void> {
-  await api.post('/auth/logout')
-  localStorage.clear()
-}
-
-export async function forgotPassword(data: ForgotPasswordRequest): Promise<void> {
-  await api.post('/auth/forgot-password', data)
-}
-
-export async function resetPassword(data: ResetPasswordRequest): Promise<void> {
-  await api.post('/auth/reset-password', data)
-}
-
-export async function getMe(): Promise<User> {
-  const { data } = await api.get('/auth/me')
+// 현재 사용자 정보 조회 (토큰 필요)
+export async function getMe(token: string): Promise<User> {
+  const { data } = await api.get('/auth/me', {
+    headers: { Authorization: \`Bearer \${token}\` }
+  })
   return data
+}
+
+// 토큰 갱신
+export async function refreshToken(token: string): Promise<AuthResponse> {
+  const { data } = await api.post('/auth/refresh', {
+    refreshToken: token,
+    expiresInMins: 30,
+  })
+  return data
+}
+
+// 로그아웃 (로컬에서 토큰 삭제)
+export function logout(): void {
+  localStorage.removeItem('accessToken')
+  localStorage.removeItem('refreshToken')
 }`;
 
 // Zustand Store 코드
@@ -172,32 +137,50 @@ export const useAuthStore = create<AuthState>()(
 // 사용 예시 코드
 const usageCode = `'use client'
 
+import { useState } from 'react'
 import { useAuthStore } from '@/store/authStore'
-import { login, logout } from '@/api/auth'
+import { login } from '@/api/auth'
 import { useRouter } from 'next/navigation'
 
 function LoginForm() {
   const { setUser } = useAuthStore()
   const router = useRouter()
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setError('')
     const formData = new FormData(e.currentTarget)
 
-    const response = await login({
-      email: formData.get('email') as string,
-      password: formData.get('password') as string,
-    })
+    try {
+      // DummyJSON 테스트 계정: emilys / emilyspass
+      const response = await login({
+        username: formData.get('username') as string,
+        password: formData.get('password') as string,
+      })
 
-    localStorage.setItem('accessToken', response.accessToken)
-    localStorage.setItem('refreshToken', response.refreshToken)
-    setUser(response.user)
-    router.push('/dashboard')
+      // 토큰 저장
+      localStorage.setItem('accessToken', response.accessToken)
+      localStorage.setItem('refreshToken', response.refreshToken)
+
+      // 사용자 정보 저장 (응답에 포함됨)
+      setUser(response)
+      router.push('/dashboard')
+    } catch (err) {
+      setError('로그인 실패. 계정을 확인해주세요.')
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="email" type="email" placeholder="이메일" required />
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {error && <p className="text-red-500">{error}</p>}
+
+      {/* DummyJSON 테스트 계정 안내 */}
+      <p className="text-sm text-gray-500">
+        테스트: emilys / emilyspass
+      </p>
+
+      <input name="username" type="text" placeholder="사용자명" required />
       <input name="password" type="password" placeholder="비밀번호" required />
       <button type="submit">로그인</button>
     </form>

@@ -23,15 +23,27 @@ import {
   ListItem,
 } from '@hanui/react';
 
-// 타입 정의 코드
-const typeCode = `// 컬럼 정의
-export interface Column<T> {
-  key: keyof T | string
-  header: string
-  sortable?: boolean
-  filterable?: boolean
-  width?: string | number
-  render?: (value: unknown, row: T) => React.ReactNode
+// 타입 정의 코드 (DummyJSON /products 기준)
+const typeCode = `// 상품 타입 (DummyJSON 응답 형식)
+export interface Product {
+  id: number
+  title: string
+  description: string
+  category: string
+  price: number
+  discountPercentage: number
+  rating: number
+  stock: number
+  brand: string
+  thumbnail: string
+}
+
+// 상품 목록 응답
+export interface ProductListResponse {
+  products: Product[]
+  total: number
+  skip: number
+  limit: number
 }
 
 // 정렬 상태
@@ -40,32 +52,71 @@ export interface SortState {
   direction: 'asc' | 'desc'
 }
 
-// 필터 상태
-export interface FilterState {
-  key: string
-  value: string
-  operator: 'contains' | 'equals' | 'startsWith' | 'endsWith'
+// 테이블 파라미터
+export interface TableParams {
+  skip?: number
+  limit?: number
+  sortBy?: string
+  order?: 'asc' | 'desc'
+  search?: string
+}`;
+
+// API 코드 (DummyJSON 사용)
+const apiCode = `import axios from 'axios'
+import type { ProductListResponse, TableParams } from './types'
+
+// 🔗 DummyJSON 무료 API (테스트용)
+const API_URL = 'https://dummyjson.com'
+
+const api = axios.create({
+  baseURL: API_URL,
+  headers: { 'Content-Type': 'application/json' },
+})
+
+// 상품 목록 조회 (테이블용)
+export async function getProducts(params?: TableParams): Promise<ProductListResponse> {
+  // 검색어가 있으면 검색 API 사용
+  if (params?.search) {
+    const { data } = await api.get('/products/search', {
+      params: { q: params.search, limit: params.limit, skip: params.skip }
+    })
+    return data
+  }
+
+  // 정렬 지원
+  const queryParams: Record<string, unknown> = {
+    limit: params?.limit || 10,
+    skip: params?.skip || 0,
+  }
+  if (params?.sortBy) {
+    queryParams.sortBy = params.sortBy
+    queryParams.order = params.order || 'asc'
+  }
+
+  const { data } = await api.get('/products', { params: queryParams })
+  return data
 }
 
-// 페이지네이션 상태
-export interface PaginationState {
-  page: number
-  pageSize: number
-  total: number
+// 카테고리별 상품 조회
+export async function getProductsByCategory(
+  category: string,
+  params?: TableParams
+): Promise<ProductListResponse> {
+  const { data } = await api.get(\`/products/category/\${category}\`, {
+    params: { limit: params?.limit || 10, skip: params?.skip || 0 }
+  })
+  return data
 }
 
-// 테이블 설정
-export interface TableConfig<T> {
-  columns: Column<T>[]
-  data: T[]
-  rowKey: keyof T
-  selectable?: boolean
-  exportable?: boolean
+// 카테고리 목록 조회
+export async function getCategories(): Promise<string[]> {
+  const { data } = await api.get('/products/categories')
+  return data
 }`;
 
 // Zustand Store 코드
 const storeCode = `import { create } from 'zustand'
-import type { SortState, FilterState, PaginationState } from './types'
+import type { SortState } from './types'
 
 interface TableState {
   // 상태

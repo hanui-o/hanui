@@ -80,56 +80,72 @@ export interface PopularSearch {
   trend?: 'up' | 'down' | 'stable'
 }`;
 
-// API 코드
+// API 코드 (DummyJSON 사용)
 const apiCode = `import axios from 'axios'
-import type {
-  SearchParams,
-  SearchResponse,
-  AutocompleteItem,
-  PopularSearch
-} from './types'
+import type { SearchResponse, AutocompleteItem, PopularSearch } from './types'
 
-const API_URL = 'https://your-api.com/api'
+// 🔗 DummyJSON 무료 API (테스트용)
+const API_URL = 'https://dummyjson.com'
 
 const api = axios.create({
   baseURL: API_URL,
   headers: { 'Content-Type': 'application/json' },
 })
 
-// 검색 API
-export async function search<T = unknown>(
-  params: SearchParams
-): Promise<SearchResponse<T>> {
-  const { data } = await api.get('/search', { params })
-  return data
-}
-
-// 자동완성 API
-export async function getAutocomplete(
-  query: string,
-  category?: string
-): Promise<AutocompleteItem[]> {
-  if (!query.trim()) return []
-  const { data } = await api.get('/search/autocomplete', {
-    params: { query, category },
+// 검색 API (상품 검색)
+export async function search(query: string, limit = 10, skip = 0): Promise<SearchResponse> {
+  const { data } = await api.get('/products/search', {
+    params: { q: query, limit, skip }
   })
-  return data.suggestions ?? []
+
+  return {
+    results: data.products.map((p) => ({
+      id: p.id,
+      title: p.title,
+      description: p.description,
+      category: p.category,
+      thumbnail: p.thumbnail,
+      data: p,
+    })),
+    total: data.total,
+    page: Math.floor(skip / limit) + 1,
+    limit,
+    hasMore: skip + limit < data.total,
+  }
 }
 
-// 인기 검색어 API
-export async function getPopularSearches(
-  limit = 10
-): Promise<PopularSearch[]> {
-  const { data } = await api.get('/search/popular', { params: { limit } })
-  return data.searches ?? []
+// 자동완성 API (상품 검색으로 시뮬레이션)
+export async function getAutocomplete(query: string): Promise<AutocompleteItem[]> {
+  if (!query.trim()) return []
+
+  const { data } = await api.get('/products/search', {
+    params: { q: query, limit: 5 }
+  })
+
+  return data.products.map((p) => ({
+    id: String(p.id),
+    text: p.title,
+    type: 'suggestion' as const,
+    category: p.category,
+  }))
 }
 
-// 검색 로깅 API
-export async function logSearch(
-  query: string,
-  category?: string
-): Promise<void> {
-  await api.post('/search/log', { query, category })
+// 인기 검색어 (카테고리 목록으로 시뮬레이션)
+export async function getPopularSearches(): Promise<PopularSearch[]> {
+  const { data } = await api.get('/products/category-list')
+
+  return data.slice(0, 10).map((cat: string, i: number) => ({
+    query: cat,
+    count: 100 - i * 10,
+    trend: i < 3 ? 'up' : i < 6 ? 'stable' : 'down',
+  }))
+}
+
+// 검색 로깅 (DummyJSON은 미지원, 로컬 저장)
+export function logSearch(query: string): void {
+  const searches = JSON.parse(localStorage.getItem('searchLog') || '[]')
+  searches.unshift({ query, timestamp: Date.now() })
+  localStorage.setItem('searchLog', JSON.stringify(searches.slice(0, 100)))
 }`;
 
 // React Query Hooks 코드

@@ -131,6 +131,7 @@ const kitsNavigation = [
     title: 'Kits',
     items: [
       { title: 'Overview', href: '/kits' },
+      { title: 'Getting Started', href: '/kits/getting-started' },
       { title: 'Board Kit', href: '/kits/board' },
       { title: 'Auth Kit', href: '/kits/auth' },
       { title: 'Table Kit', href: '/kits/table' },

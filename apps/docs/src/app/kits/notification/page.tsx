@@ -79,62 +79,68 @@ export interface NotificationSettings {
   quietHours?: { enabled: boolean; start: string; end: string }
 }`;
 
-// API 코드
+// API 코드 (DummyJSON 댓글 데이터로 알림 시뮬레이션)
 const apiCode = `import axios from 'axios'
+import type { Notification } from './types'
 
-const API_URL = 'https://your-api.com/api'
+// 🔗 DummyJSON 무료 API (테스트용)
+const API_URL = 'https://dummyjson.com'
 const api = axios.create({ baseURL: API_URL })
 
-// 토큰 인터셉터
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
-  if (token) config.headers.Authorization = \`Bearer \${token}\`
-  return config
-})
+// 알림 목록 조회 (댓글 데이터로 시뮬레이션)
+export async function getNotifications(limit = 10, skip = 0) {
+  const { data } = await api.get(\`/comments?limit=\${limit}&skip=\${skip}\`)
 
-// 알림 목록 조회
-export async function getNotifications(params?: NotificationListParams) {
-  const { data } = await api.get('/notifications', { params })
-  return data
+  const notifications: Notification[] = data.comments.map((c) => ({
+    id: String(c.id),
+    title: '새 댓글',
+    message: c.body,
+    type: 'info',
+    priority: 'normal',
+    status: Math.random() > 0.5 ? 'unread' : 'read',
+    timestamp: new Date(Date.now() - Math.random() * 86400000).toISOString(),
+    sender: { id: String(c.user.id), name: c.user.fullName },
+  }))
+
+  return {
+    notifications,
+    total: data.total,
+    hasMore: skip + limit < data.total,
+    page: Math.floor(skip / limit) + 1,
+  }
 }
 
-// 알림 읽음 처리
-export async function markAsRead(id: string) {
-  const { data } = await api.patch(\`/notifications/\${id}/read\`)
-  return data.notification
+// 읽지 않은 개수 (로컬 상태에서 계산)
+export function getUnreadCount(): number {
+  const stored = localStorage.getItem('notifications-read') || '[]'
+  const read = JSON.parse(stored)
+  // 실제 구현에서는 서버에서 가져옴
+  return Math.max(0, 10 - read.length)
+}
+
+// 알림 읽음 처리 (로컬 저장)
+export function markAsRead(id: string): void {
+  const stored = localStorage.getItem('notifications-read') || '[]'
+  const read = JSON.parse(stored)
+  if (!read.includes(id)) {
+    read.push(id)
+    localStorage.setItem('notifications-read', JSON.stringify(read))
+  }
 }
 
 // 모든 알림 읽음 처리
-export async function markAllAsRead() {
-  await api.patch('/notifications/read-all')
+export function markAllAsRead(): void {
+  // 모든 알림 ID를 읽음으로 표시
+  const allIds = Array.from({ length: 100 }, (_, i) => String(i + 1))
+  localStorage.setItem('notifications-read', JSON.stringify(allIds))
 }
 
-// 알림 삭제
-export async function deleteNotification(id: string) {
-  await api.delete(\`/notifications/\${id}\`)
-}
-
-// 읽지 않은 개수 조회
-export async function getUnreadCount(): Promise<number> {
-  const { data } = await api.get('/notifications/unread-count')
-  return data.count
-}
-
-// 실시간 알림 연결 (SSE)
-export function connectToNotificationStream(
-  onNotification: (notification: Notification) => void
-): EventSource {
-  const token = localStorage.getItem('token')
-  const eventSource = new EventSource(
-    \`\${API_URL}/notifications/stream?token=\${token}\`
-  )
-
-  eventSource.onmessage = (event) => {
-    const notification = JSON.parse(event.data)
-    onNotification(notification)
-  }
-
-  return eventSource
+// 알림 삭제 (로컬 저장)
+export function deleteNotification(id: string): void {
+  const stored = localStorage.getItem('notifications-deleted') || '[]'
+  const deleted = JSON.parse(stored)
+  deleted.push(id)
+  localStorage.setItem('notifications-deleted', JSON.stringify(deleted))
 }`;
 
 // Hooks 코드

@@ -62,55 +62,70 @@ export interface DashboardConfig {
   visibleWidgets: string[]
 }`;
 
-// API 코드
+// API 코드 (DummyJSON 사용 - 상품/댓글 데이터로 통계 생성)
 const apiCode = `import axios from 'axios'
 import type { StatCard, ChartData, Activity } from './types'
 
-// API 주소 설정 (이 부분만 수정)
-const API_URL = 'https://your-api.com/api'
+// 🔗 DummyJSON 무료 API (테스트용)
+const API_URL = 'https://dummyjson.com'
 
 const api = axios.create({
   baseURL: API_URL,
   headers: { 'Content-Type': 'application/json' },
 })
 
-// 통계 카드 데이터 조회
+// 통계 카드 데이터 조회 (상품 데이터에서 계산)
 export async function getStats(): Promise<StatCard[]> {
-  const { data } = await api.get('/dashboard/stats')
-  return data
+  const { data } = await api.get('/products?limit=100')
+  const products = data.products
+
+  const totalProducts = data.total
+  const totalRevenue = products.reduce((sum, p) => sum + p.price * p.stock, 0)
+  const avgRating = products.reduce((sum, p) => sum + p.rating, 0) / products.length
+  const lowStock = products.filter((p) => p.stock < 20).length
+
+  return [
+    { id: '1', title: '총 상품', value: totalProducts, change: 12, changeType: 'increase' },
+    { id: '2', title: '예상 매출', value: '$' + totalRevenue.toLocaleString(), change: 8, changeType: 'increase' },
+    { id: '3', title: '평균 평점', value: avgRating.toFixed(1), change: 0.3, changeType: 'increase' },
+    { id: '4', title: '재고 부족', value: lowStock, change: -5, changeType: 'decrease' },
+  ]
 }
 
-// 차트 데이터 조회
-export async function getChartData(
-  type: 'line' | 'bar' | 'pie',
-  period: 'day' | 'week' | 'month' | 'year'
-): Promise<ChartData> {
-  const { data } = await api.get(\`/dashboard/chart/\${type}\`, {
-    params: { period },
-  })
-  return data
+// 차트 데이터 조회 (카테고리별 상품 수)
+export async function getChartData(): Promise<ChartData> {
+  const { data } = await api.get('/products/category-list')
+  const categories = data.slice(0, 6)
+
+  // 각 카테고리별 상품 수 조회
+  const counts = await Promise.all(
+    categories.map(async (cat: string) => {
+      const { data: catData } = await api.get(\`/products/category/\${cat}?limit=1\`)
+      return catData.total
+    })
+  )
+
+  return {
+    labels: categories,
+    datasets: [{
+      label: '카테고리별 상품 수',
+      data: counts,
+      backgroundColor: '#3b82f6',
+    }]
+  }
 }
 
-// 최근 활동 조회
-export async function getActivities(limit?: number): Promise<Activity[]> {
-  const { data } = await api.get('/dashboard/activities', {
-    params: { limit },
-  })
-  return data
-}
+// 최근 활동 조회 (댓글 데이터 활용)
+export async function getActivities(limit = 5): Promise<Activity[]> {
+  const { data } = await api.get(\`/comments?limit=\${limit}\`)
 
-// 대시보드 요약 조회
-export async function getDashboardSummary(): Promise<{
-  stats: StatCard[]
-  chart: ChartData
-  activities: Activity[]
-}> {
-  const [stats, chart, activities] = await Promise.all([
-    getStats(),
-    getChartData('line', 'week'),
-    getActivities(5),
-  ])
-  return { stats, chart, activities }
+  return data.comments.map((comment: { id: number; body: string; user: { fullName: string } }) => ({
+    id: String(comment.id),
+    type: 'create',
+    message: comment.body.slice(0, 50) + '...',
+    user: comment.user.fullName,
+    timestamp: new Date().toISOString(),
+  }))
 }`;
 
 // React Query Hooks 코드

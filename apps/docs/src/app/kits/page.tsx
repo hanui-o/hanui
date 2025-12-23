@@ -5,6 +5,7 @@ import {
   Heading,
   Subsection,
 } from '@/components/content';
+import { CodeBlock } from '@/components/content/CodeBlock';
 import {
   Code,
   Card,
@@ -237,10 +238,7 @@ export default function KitsPage() {
                 id="cli-install"
                 title="방법 1: CLI로 설치 (권장)"
               />
-              <Code
-                language="bash"
-                className="mt-2"
-              >{`npx hanui add kit board`}</Code>
+              <CodeBlock code="npx hanui add kit board" language="bash" />
               <p className="text-krds-gray-60 text-sm mt-2">
                 CLI가 자동으로 필요한 파일과 의존성을 설치합니다.
               </p>
@@ -315,8 +313,8 @@ export default function KitsPage() {
             <p className="text-krds-gray-70 mt-4 mb-4">
               Hanui CLI를 사용하면 Kit을 더 편리하게 설치할 수 있습니다.
             </p>
-            <Code language="bash" className="mt-2">
-              {`# 단일 Kit 설치
+            <CodeBlock
+              code={`# 단일 Kit 설치
 npx hanui add kit board
 
 # 여러 Kit 동시 설치
@@ -324,7 +322,8 @@ npx hanui add kit auth table form
 
 # 모든 Kit 설치
 npx hanui add kit --all`}
-            </Code>
+              language="bash"
+            />
             <List className="mt-4">
               <ListItem>자동으로 필요한 의존성 설치</ListItem>
               <ListItem>파일 구조 자동 생성</ListItem>
@@ -417,8 +416,8 @@ npx hanui add kit --all`}
 
             <Subsection level="h3">
               <Heading level="h3" id="dependencies" title="전체 의존성 설치" />
-              <Code language="bash" className="mt-2">
-                {`# npm
+              <CodeBlock
+                code={`# npm
 npm install zustand @tanstack/react-query axios react-hook-form zod recharts
 
 # pnpm
@@ -426,7 +425,8 @@ pnpm add zustand @tanstack/react-query axios react-hook-form zod recharts
 
 # yarn
 yarn add zustand @tanstack/react-query axios react-hook-form zod recharts`}
-              </Code>
+                language="bash"
+              />
             </Subsection>
 
             <Subsection level="h3">
@@ -465,8 +465,8 @@ yarn add zustand @tanstack/react-query axios react-hook-form zod recharts`}
                 id="react-query-setup"
                 title="React Query 설정"
               />
-              <Code language="tsx" className="mt-2">
-                {`// app/providers.tsx
+              <CodeBlock
+                code={`// app/providers.tsx
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -491,13 +491,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
     </QueryClientProvider>
   );
 }`}
-              </Code>
+                language="tsx"
+                fileName="app/providers.tsx"
+              />
             </Subsection>
 
             <Subsection level="h3">
               <Heading level="h3" id="api-config" title="API 설정" />
-              <Code language="typescript" className="mt-2">
-                {`// lib/api/config.ts
+              <CodeBlock
+                code={`// lib/api/config.ts
 import axios from 'axios';
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
@@ -517,13 +519,15 @@ apiClient.interceptors.request.use((config) => {
   }
   return config;
 });`}
-              </Code>
+                language="typescript"
+                fileName="lib/api/config.ts"
+              />
             </Subsection>
 
             <Subsection level="h3">
               <Heading level="h3" id="file-structure" title="파일 구조" />
-              <Code language="text" className="mt-2">
-                {`src/
+              <CodeBlock
+                code={`src/
 ├── components/
 │   └── kits/
 │       ├── board/          # Board Kit
@@ -536,7 +540,8 @@ apiClient.interceptors.request.use((config) => {
 │       └── config.ts       # API 설정
 └── stores/
     └── index.ts            # Zustand 스토어`}
-              </Code>
+                language="text"
+              />
             </Subsection>
           </Section>
         </TabsContent>
