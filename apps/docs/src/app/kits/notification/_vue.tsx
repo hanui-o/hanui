@@ -145,7 +145,7 @@ export function deleteNotification(id: string): void {
 // Vue Query Composables
 const composablesCode = `// src/composables/useNotification.ts
 import { useQuery, useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/vue-query'
-import { useNotificationStore } from '@/stores/notificationStore'
+import { useNotificationStore } from '@/store/notificationStore'
 import {
   getNotifications,
   markAsRead,
@@ -234,7 +234,7 @@ export function useDeleteNotification() {
 }`;
 
 // Pinia Store 코드
-const storeCode = `// src/stores/notificationStore.ts
+const storeCode = `// src/store/notificationStore.ts
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { Notification, ToastNotification } from '@/types/notification'
@@ -339,7 +339,7 @@ export const useNotificationStore = defineStore('notification', () => {
 const usageCode = `<!-- src/views/NotificationDemo.vue -->
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
-import { useNotificationStore } from '@/stores/notificationStore'
+import { useNotificationStore } from '@/store/notificationStore'
 import {
   useNotifications,
   useUnreadCount,
@@ -531,10 +531,8 @@ export function VueNotificationContent() {
 │   └── notification.ts       # API 함수 (DummyJSON)
 ├── composables/
 │   └── useNotification.ts    # Vue Query 훅
-├── stores/
+├── store/
 │   └── notificationStore.ts  # Pinia 스토어
-├── views/
-│   └── NotificationDemo.vue  # 데모 페이지
 ├── components/notification/
 │   ├── NotificationBell.vue    # 알림 벨 아이콘
 │   ├── NotificationItem.vue    # 개별 알림 아이템

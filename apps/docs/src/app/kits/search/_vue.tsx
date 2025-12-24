@@ -147,7 +147,7 @@ const composablesCode = `// src/composables/useSearch.ts
 import { useQuery } from '@tanstack/vue-query'
 import { computed, ref, watch } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
-import { useSearchStore } from '@/stores/searchStore'
+import { useSearchStore } from '@/store/searchStore'
 import { search, getAutocomplete, getPopularSearches } from '@/api/search'
 
 // Query Keys
@@ -208,7 +208,7 @@ export function usePopularSearches() {
 }`;
 
 // Pinia Store 코드
-const storeCode = `// src/stores/searchStore.ts
+const storeCode = `// src/store/searchStore.ts
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { SearchResult, AutocompleteItem, RecentSearch, PopularSearch } from '@/types/search'
@@ -340,7 +340,7 @@ const usageCode = `<!-- src/views/SearchView.vue -->
 <script setup lang="ts">
 import { onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { useSearchStore } from '@/stores/searchStore'
+import { useSearchStore } from '@/store/searchStore'
 import { useSearch, useAutocomplete, usePopularSearches } from '@/composables/useSearch'
 
 const store = useSearchStore()
@@ -540,10 +540,8 @@ export function VueSearchContent() {
 │   └── search.ts          # API 함수 (DummyJSON)
 ├── composables/
 │   └── useSearch.ts       # Vue Query 훅
-├── stores/
+├── store/
 │   └── searchStore.ts     # Pinia 스토어
-├── views/
-│   └── SearchView.vue     # 검색 페이지
 ├── components/search/
 │   ├── SearchBar.vue      # 검색바 + 자동완성
 │   ├── SearchResults.vue  # 검색 결과 목록

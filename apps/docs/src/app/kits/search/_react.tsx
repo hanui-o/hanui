@@ -151,7 +151,7 @@ export function logSearch(query: string): void {
 const hooksCode = `import { useQuery } from '@tanstack/react-query'
 import { useState, useEffect, useCallback } from 'react'
 import { search, getAutocomplete, getPopularSearches, logSearch } from './api'
-import { useSearchStore } from './stores/searchStore'
+import { useSearchStore } from './store/searchStore'
 import type { SearchParams, AutocompleteItem } from './types'
 
 // 디바운스 Hook
@@ -464,7 +464,7 @@ const searchBarCode = `'use client'
 import { useRef, useCallback } from 'react'
 import { Input, Button } from '@hanui/react'
 import { Search, X, Clock, TrendingUp, Loader2 } from 'lucide-react'
-import { useSearchStore } from '../stores/searchStore'
+import { useSearchStore } from '../store/searchStore'
 import { useSearch, useAutocomplete, useSearchKeyboard, useClickOutside } from '../hooks/useSearch'
 
 interface SearchBarProps {
@@ -606,20 +606,19 @@ export function ReactSearchContent() {
         <Section level="h2">
           <Heading level="h2" id="file-structure" title="파일 구조" />
           <Code variant="block" language="bash">
-            {`src/kits/search/
-├── types/
-│   └── search.ts          # 타입 정의
+            {`src/
 ├── api/
 │   └── search.ts          # API 함수
 ├── hooks/
 │   └── useSearch.ts       # React Query 훅, 유틸 훅
-├── stores/
+├── store/
 │   └── searchStore.ts     # Zustand 스토어
-├── components/
+├── components/search/
 │   ├── SearchBar.tsx      # 검색바 + 자동완성
 │   ├── SearchResults.tsx  # 검색 결과 목록
 │   └── PopularSearches.tsx # 인기 검색어
-└── index.ts               # Entry point`}
+└── types/
+    └── search.ts          # 타입 정의`}
           </Code>
         </Section>
 

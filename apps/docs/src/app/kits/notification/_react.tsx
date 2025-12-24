@@ -144,7 +144,7 @@ export function deleteNotification(id: string): void {
 
 // Hooks 코드
 const hooksCode = `import { useQuery, useMutation, useInfiniteQuery } from '@tanstack/react-query'
-import { useNotificationStore } from './stores/notificationStore'
+import { useNotificationStore } from './store/notificationStore'
 import * as api from './api/notification'
 
 // 알림 목록 (무한 스크롤)
@@ -371,21 +371,20 @@ export function ReactNotificationContent() {
           <Section level="h2">
             <Heading level="h2" id="file-structure" title="파일 구조" />
             <Code variant="block" language="bash">
-              {`src/kits/notification/
-├── types/
-│   └── notification.ts      # 타입 정의
+              {`src/
 ├── api/
 │   └── notification.ts      # API 함수
 ├── hooks/
 │   └── useNotification.ts   # React Query 훅
-├── stores/
+├── store/
 │   └── notificationStore.ts # Zustand 스토어
-├── components/
+├── components/notification/
 │   ├── NotificationBell.tsx    # 알림 벨 아이콘
 │   ├── NotificationItem.tsx    # 개별 알림 아이템
 │   ├── NotificationCenter.tsx  # 알림 센터 패널
 │   └── ToastContainer.tsx      # 토스트 컨테이너
-└── index.ts                    # Entry point`}
+└── types/
+    └── notification.ts      # 타입 정의`}
             </Code>
           </Section>
 
