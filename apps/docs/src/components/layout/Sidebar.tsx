@@ -173,33 +173,35 @@ function SidebarSection({
           const isActive = pathname === item.href;
           return (
             <li key={item.href}>
-              <Link
-                href={item.isComingSoon ? '#' : item.href}
-                ref={isActive ? onActiveRef : undefined}
-                onClick={
-                  item.isComingSoon ? (e) => e.preventDefault() : undefined
-                }
-                className={`flex items-center gap-1.5 py-1 px-2 rounded-md transition-colors text-sm ${
-                  item.isComingSoon
-                    ? 'text-krds-gray-40 cursor-not-allowed'
-                    : isActive
+              {item.isComingSoon ? (
+                <span
+                  className="flex items-center gap-1.5 py-1 px-2 rounded-md transition-colors text-sm text-krds-gray-40 cursor-not-allowed"
+                  aria-disabled="true"
+                >
+                  {item.title}
+                  <span className="text-xs text-krds-gray-40">Soon</span>
+                </span>
+              ) : (
+                <Link
+                  href={item.href}
+                  ref={isActive ? onActiveRef : undefined}
+                  className={`flex items-center gap-1.5 py-1 px-2 rounded-md transition-colors text-sm ${
+                    isActive
                       ? 'bg-krds-primary-base text-white font-medium'
                       : 'text-krds-gray-70 hover:bg-krds-gray-5 hover:text-krds-gray-95'
-                }`}
-              >
-                {item.title}
-                {item.isNew && (
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      isActive ? 'bg-white' : 'bg-krds-primary-base'
-                    }`}
-                    aria-label="새로운 컴포넌트"
-                  />
-                )}
-                {item.isComingSoon && (
-                  <span className="text-xs text-krds-gray-40">Soon</span>
-                )}
-              </Link>
+                  }`}
+                >
+                  {item.title}
+                  {item.isNew && (
+                    <span
+                      className={`w-1.5 h-1.5 rounded-full ${
+                        isActive ? 'bg-white' : 'bg-krds-primary-base'
+                      }`}
+                      aria-label="새로운 컴포넌트"
+                    />
+                  )}
+                </Link>
+              )}
             </li>
           );
         })}
