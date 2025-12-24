@@ -1,0 +1,288 @@
+# Next.js + HANUI 프로젝트 세팅 가이드
+
+tags : Next.js, HANUI, KRDS, React, TailwindCSS, 공공SI, 프로젝트세팅
+
+Next.js 프로젝트에서 HANUI 쓰려고 하는데 뭐부터 해야 하지?
+
+처음 세팅할 때 은근 헷갈리는 부분들 있어서 정리해봤어요.
+
+## 1. Next.js 프로젝트 생성
+
+```bash
+npx create-next-app@latest my-krds-project
+```
+
+설정 옵션:
+
+```
+✔ Would you like to use TypeScript? Yes
+✔ Would you like to use ESLint? Yes
+✔ Would you like to use Tailwind CSS? Yes
+✔ Would you like your code inside a `src/` directory? Yes
+✔ Would you like to use App Router? Yes
+✔ Would you like to use Turbopack? Yes
+✔ Would you like to customize the import alias? Yes (@/*)
+```
+
+Tailwind CSS는 **Yes** 필수예요. HANUI가 Tailwind 기반이거든요.
+
+## 2. HANUI 설치
+
+```bash
+cd my-krds-project
+npx hanui init
+```
+
+CLI가 알아서 해주는 것들:
+
+- `@hanui/react` 패키지 설치
+- `tailwind.config.ts` KRDS 설정 추가
+- `globals.css` 스타일 설정
+- `lib/utils.ts` cn 유틸 생성
+- `components.json` 설정 파일 생성
+
+## 3. 컴포넌트 추가
+
+```bash
+# 필요한 컴포넌트만 추가
+npx hanui add button
+npx hanui add input
+npx hanui add card
+
+# 또는 여러 개 한번에
+npx hanui add button input card alert badge
+```
+
+설치된 컴포넌트는 `src/components/ui/` 폴더에 들어가요.
+
+```
+src/
+├── components/
+│   └── ui/
+│       ├── button.tsx
+│       ├── input.tsx
+│       └── card.tsx
+└── ...
+```
+
+## 4. 사용하기
+
+```tsx
+// app/page.tsx
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardBody } from '@/components/ui/card';
+
+export default function Home() {
+  return (
+    <main className="p-8">
+      <Card>
+        <CardHeader>
+          <CardTitle>KRDS 컴포넌트</CardTitle>
+        </CardHeader>
+        <CardBody>
+          <p className="mb-4">HANUI로 빠르게 구축</p>
+          <Button>시작하기</Button>
+        </CardBody>
+      </Card>
+    </main>
+  );
+}
+```
+
+## 5. KRDS 폰트 설정
+
+KRDS는 Pretendard GOV 폰트를 사용해요. `app/layout.tsx`에 추가:
+
+```tsx
+// app/layout.tsx
+import localFont from 'next/font/local';
+
+const pretendard = localFont({
+  src: [
+    {
+      path: '../fonts/PretendardGOV-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/PretendardGOV-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/PretendardGOV-SemiBold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/PretendardGOV-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-pretendard',
+});
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="ko" className={pretendard.variable}>
+      <body className="font-sans">{children}</body>
+    </html>
+  );
+}
+```
+
+폰트 파일은 [Pretendard GOV](https://github.com/orioncactus/pretendard)에서 다운로드.
+
+CDN 쓰고 싶으면:
+
+```tsx
+// app/layout.tsx
+import './globals.css';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="ko">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-gov.min.css"
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+## 6. tailwind.config.ts 확인
+
+`npx hanui init` 하면 자동으로 설정되지만, 수동으로 하려면:
+
+```ts
+// tailwind.config.ts
+import type { Config } from 'tailwindcss';
+import { hanuiPreset } from '@hanui/react/preset';
+
+const config: Config = {
+  presets: [hanuiPreset],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@hanui/react/**/*.{js,ts,jsx,tsx}',
+  ],
+};
+
+export default config;
+```
+
+`hanuiPreset`에 KRDS 색상, 타이포그래피, 간격 등 다 들어있어요.
+
+## 7. 공통 레이아웃 구성
+
+공공 웹사이트 기본 구조:
+
+```tsx
+// app/layout.tsx
+import { Masthead, Header, Footer, SkipLink } from '@hanui/react';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="ko">
+      <body>
+        <SkipLink />
+        <Masthead />
+        <Header siteName="우리 서비스" logo="/logo.svg" />
+        <main id="main-content">{children}</main>
+        <Footer siteName="우리 서비스" copyright="© 2025" />
+      </body>
+    </html>
+  );
+}
+```
+
+`SkipLink`는 웹접근성 필수 요소예요. 키보드 사용자가 본문으로 바로 이동할 수 있게 해줘요.
+
+## 8. 개발 서버 실행
+
+```bash
+npm run dev
+```
+
+`http://localhost:3000` 에서 확인.
+
+## 폴더 구조 추천
+
+```
+src/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── components/
+│   ├── ui/           # HANUI 컴포넌트
+│   └── common/       # 프로젝트 공통 컴포넌트
+├── lib/
+│   └── utils.ts      # cn 유틸 등
+└── fonts/            # 로컬 폰트 (선택)
+```
+
+## 트러블슈팅
+
+### Tailwind 클래스 안 먹힘
+
+`tailwind.config.ts`의 `content`에 경로 확인:
+
+```ts
+content: [
+  './src/**/*.{js,ts,jsx,tsx,mdx}',
+  './node_modules/@hanui/react/**/*.{js,ts,jsx,tsx}', // 이거 필수
+],
+```
+
+### 폰트 적용 안됨
+
+`globals.css`에 추가:
+
+```css
+body {
+  font-family: var(--font-pretendard), 'Pretendard', sans-serif;
+}
+```
+
+### TypeScript 에러
+
+`tsconfig.json` paths 확인:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+## 정리
+
+1. `create-next-app` (Tailwind 포함)
+2. `npx hanui init`
+3. `npx hanui add [컴포넌트]`
+4. 폰트 설정
+5. 레이아웃 구성
+
+5분이면 KRDS 기반 프로젝트 세팅 끝나요.
+
+더 자세한 내용은 [hanui.io](https://hanui.io)에서 확인하세요.

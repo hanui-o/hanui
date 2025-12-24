@@ -1,10 +1,10 @@
-# Form 컴포넌트 총정리 - Input부터 Select까지
+# KRDS React Form 컴포넌트 - Input, Select, 자동 접근성 연결
 
-폼 만들 때 제일 귀찮은 거 뭐예요?
+React로 KRDS 폼 만들 때 제일 귀찮은 거 뭐예요?
 
 저는 label이랑 input 연결하는 거요. htmlFor 쓰고, id 만들고, aria-describedby 연결하고... 매번 같은 걸 반복해요.
 
-에러 메시지도 그래요. 에러 나면 빨갛게 바꾸고, aria-invalid 넣고, role="alert" 넣고. 빼먹으면 검수에서 걸려요.
+에러 메시지도 그래요. 에러 나면 빨갛게 바꾸고, aria-invalid 넣고, role="alert" 넣고. 빼먹으면 공공기관 웹접근성 검수에서 걸려요.
 
 HANUI는 이거 자동으로 해줘요.
 
@@ -306,3 +306,5 @@ npx hanui add form-field input select
 ```
 
 https://hanui.io/components/form-field
+
+KRDS, React, Form, Input, Select, 웹접근성, HANUI

@@ -78,11 +78,11 @@ export function Header() {
         pathname?.startsWith('/typography') ||
         pathname?.startsWith('/layout'),
     },
-    // {
-    //   label: 'Kits',
-    //   href: '/kits',
-    //   isActive: pathname?.startsWith('/kits'),
-    // },
+    {
+      label: 'Kits',
+      href: '/kits',
+      isActive: pathname?.startsWith('/kits'),
+    },
     {
       label: 'Community',
       href: '/community',

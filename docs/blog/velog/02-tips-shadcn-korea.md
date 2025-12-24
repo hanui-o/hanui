@@ -1,0 +1,176 @@
+# shadcn/ui 한국 프로젝트에서 제대로 쓰는 법
+
+shadcn/ui 써보셨어요?
+
+진짜 좋아요. Radix UI 기반에 Tailwind 스타일링, 복사해서 쓰는 방식이라 커스터마이징도 자유롭고.
+
+근데 한국 프로젝트에서 쓰려면 몇 가지 손볼 게 있어요.
+
+## 1. 한글 폰트 설정
+
+shadcn/ui 기본 폰트는 Inter예요. 영문 폰트라 한글이 이상하게 나와요.
+
+```tsx
+// tailwind.config.js
+module.exports = {
+  theme: {
+    fontFamily: {
+      sans: ['Pretendard', 'sans-serif'],
+    },
+  },
+};
+```
+
+```css
+/* globals.css */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+```
+
+Pretendard 추천해요. 무료고 한글 예쁘게 나와요.
+
+## 2. 색상 커스터마이징
+
+shadcn/ui 기본 색상이 뉴트럴해서 좋긴 한데, 한국 프로젝트는 보통 브랜드 색상 있잖아요.
+
+```tsx
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#0A5ECA', // 메인 색상
+          foreground: '#FFFFFF',
+        },
+        destructive: {
+          DEFAULT: '#DC2626',
+          foreground: '#FFFFFF',
+        },
+      },
+    },
+  },
+};
+```
+
+또는 CSS 변수 방식:
+
+```css
+/* globals.css */
+:root {
+  --primary: 217 91% 42%; /* HSL 값 */
+  --primary-foreground: 0 0% 100%;
+}
+```
+
+## 3. 공공기관 프로젝트라면
+
+KRDS(한국형 웹 디자인 시스템) 따라야 해요.
+
+색상, 간격, 타이포그래피 전부 가이드가 있어요. shadcn/ui 컴포넌트 하나하나 수정해야 해요.
+
+근데 솔직히 이거 하다 보면 처음부터 만드는 게 나을 수도 있어요.
+
+## 4. DatePicker 한글화
+
+shadcn/ui DatePicker는 영어로 나와요.
+
+```tsx
+import { ko } from 'date-fns/locale';
+
+<Calendar
+  locale={ko}
+  formatters={{
+    formatCaption: (date) => `${date.getFullYear()}년 ${date.getMonth() + 1}월`,
+  }}
+/>;
+```
+
+## 5. Select 플레이스홀더
+
+```tsx
+// 영어 기본값
+<SelectValue placeholder="Select a fruit" />
+
+// 한글로 변경
+<SelectValue placeholder="선택하세요" />
+```
+
+별거 아닌데 의외로 까먹기 쉬워요.
+
+## 6. Form 에러 메시지
+
+react-hook-form 쓸 때 에러 메시지:
+
+```tsx
+const form = useForm({
+  resolver: zodResolver(schema),
+});
+
+// zod 스키마에서 한글 메시지
+const schema = z.object({
+  email: z
+    .string()
+    .min(1, '이메일을 입력하세요')
+    .email('이메일 형식이 올바르지 않습니다'),
+  password: z.string().min(8, '비밀번호는 8자 이상이어야 합니다'),
+});
+```
+
+## 7. 웹접근성
+
+shadcn/ui가 Radix 기반이라 기본 접근성은 좋아요.
+
+근데 공공기관 KWCAG 기준 통과하려면 추가 작업 필요해요:
+
+```tsx
+// 아이콘 버튼에 aria-label 추가
+<Button size="icon" aria-label="검색">
+  <SearchIcon />
+</Button>
+
+// 폼 필드에 에러 연결
+<Input
+  aria-describedby={error ? 'email-error' : undefined}
+  aria-invalid={!!error}
+/>
+{error && <p id="email-error" role="alert">{error}</p>}
+```
+
+## 8. Toast 위치
+
+shadcn/ui Toast 기본 위치가 오른쪽 하단인데, 한국 사이트는 보통 상단 중앙이에요.
+
+```tsx
+// components/ui/toaster.tsx
+<ToastViewport className="fixed top-4 left-1/2 -translate-x-1/2" />
+```
+
+## 정리
+
+shadcn/ui 한국 프로젝트 체크리스트:
+
+- [ ] 한글 폰트 (Pretendard 등)
+- [ ] 브랜드 색상 설정
+- [ ] DatePicker 한글화
+- [ ] 플레이스홀더 한글
+- [ ] Form 에러 메시지 한글
+- [ ] 접근성 추가 작업
+- [ ] Toast 위치 조정
+
+## 공공 SI 한다면
+
+솔직히 shadcn/ui 커스터마이징하는 것보다 처음부터 KRDS 맞춘 라이브러리 쓰는 게 편해요.
+
+[HANUI](https://hanui.io)가 그거예요. shadcn/ui 같은 복사 방식인데, KRDS 디자인 시스템 기반이에요.
+
+```bash
+npx hanui add button input select
+```
+
+한글 폰트, KRDS 색상, 접근성 전부 적용되어 있어요.
+
+공공기관 프로젝트라면 이쪽이 시간 아낄 수 있어요.
+
+---
+
+shadcn, React, TailwindCSS, 한글화, 프론트엔드, 컴포넌트

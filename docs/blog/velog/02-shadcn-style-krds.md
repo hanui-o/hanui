@@ -1,10 +1,10 @@
-# shadcn/ui 스타일로 만든 KRDS 컴포넌트 라이브러리
+# shadcn/ui 방식의 KRDS React 컴포넌트 - 왜 npm 패키지가 아닌가
 
 ![hanui-architecture](https://velog.velcdn.com/images/hanui/post/51496d9e-b061-42ef-8bba-4e1a25f65b36/image.png)
 
 "왜 npm 패키지로 안 만들었어요?"
 
-가장 많이 받는 질문이에요. 오늘은 HANUI의 기술적인 결정들에 대해 얘기해볼게요.
+HANUI를 소개하면 가장 많이 받는 질문이에요. Tailwind CSS, Radix UI 기반으로 만든 KRDS React 컴포넌트 라이브러리인데, shadcn/ui처럼 소스 코드를 복사하는 방식이거든요. 오늘은 이 기술적인 결정에 대해 얘기해볼게요.
 
 ## shadcn/ui가 뭔데
 
@@ -202,3 +202,7 @@ import { Button } from '@hanui/react';
 **GitHub**: https://github.com/hanui-o/hanui
 **문서**: https://hanui.io
 **CLI**: `npm install -D @hanui/cli`
+
+---
+
+shadcn, React, TailwindCSS, RadixUI, KRDS, 컴포넌트, 공공SI

@@ -1,0 +1,146 @@
+# HANUI Kits - 복사해서 바로 쓰는 기능 패턴
+
+![hanui-kits](https://velog.velcdn.com/images/hanui/post/51496d9e-b061-42ef-8bba-4e1a25f65b36/image.png)
+
+컴포넌트만 있으면 끝이 아니에요.
+
+게시판 만들 때 Button, Input, Table 복사해왔는데, 상태관리는? API 호출은? 페이지네이션 로직은? 결국 또 처음부터 짜게 돼요.
+
+그래서 **HANUI Kits**를 만들었어요. 컴포넌트 + 비즈니스 로직이 다 들어있는 기능 패턴이에요.
+
+## Kits가 뭔데?
+
+실무에서 자주 쓰는 기능을 패턴화한 코드 모음이에요.
+
+- **Board Kit**: 게시판 (목록, 상세, 작성, 수정, 삭제, 댓글)
+- **Auth Kit**: 인증 (로그인, 회원가입, 비밀번호 찾기)
+- **Table Kit**: 데이터 테이블 (정렬, 필터, 페이지네이션, CSV 내보내기)
+- **Form Kit**: 폼 (다단계 폼, 파일 업로드, 동적 필드)
+- **Dashboard Kit**: 대시보드 (통계 카드, 차트, 활동 피드)
+
+## 기술 스택
+
+모든 Kit은 이 스택을 사용해요:
+
+```
+Zustand      → 상태관리 (가볍고 간단)
+React Query  → 서버 상태 (캐싱, 리패칭)
+Axios        → HTTP 클라이언트
+React Hook Form + Zod → 폼 + 유효성 검증
+```
+
+이미 쓰고 있는 스택이라면 바로 붙여넣기만 하면 돼요.
+
+## 설치 방법
+
+### CLI로 설치 (권장)
+
+```bash
+npx hanui add kit board
+```
+
+자동으로 의존성도 설치하고, 파일 구조도 잡아줘요.
+
+### 수동 설치
+
+1. [Kits 페이지](https://hanui.io/kits/board) 접속
+2. 코드 복사
+3. API URL만 변경
+
+```typescript
+// api/posts.ts
+const API_URL = 'https://your-api.com/api'; // 여기만 바꾸면 됨
+```
+
+## Board Kit 예시
+
+게시판 기능이 파일 9개로 끝나요:
+
+```
+board/
+├── types/post.ts       # 타입 정의
+├── api/posts.ts        # API 호출
+├── hooks/usePosts.ts   # React Query hooks
+├── stores/postStore.ts # Zustand store
+├── components/
+│   ├── PostCard.tsx    # 게시글 카드
+│   ├── PostList.tsx    # 목록 + 검색 + 필터
+│   ├── PostDetail.tsx  # 상세 + 댓글
+│   └── PostForm.tsx    # 작성/수정 폼
+└── index.ts            # 진입점
+```
+
+### 사용법
+
+```tsx
+import { PostList } from '@/kits/board';
+
+export default function BoardPage() {
+  return (
+    <PostList
+      basePath="/board"
+      categories={['공지사항', '자유게시판', 'Q&A']}
+    />
+  );
+}
+```
+
+이게 끝이에요. 목록, 검색, 필터, 페이지네이션 다 동작해요.
+
+## Auth Kit 예시
+
+```tsx
+import { LoginForm, useRequireAuth } from '@/kits/auth';
+
+export default function LoginPage() {
+  return <LoginForm signupPath="/signup" forgotPasswordPath="/forgot" />;
+}
+
+// 인증 필요한 페이지에서
+function ProtectedPage() {
+  const { isLoading } = useRequireAuth('/login');
+  if (isLoading) return <Loading />;
+  return <Dashboard />;
+}
+```
+
+로그인, 토큰 저장, 자동 갱신, 리다이렉트 전부 처리돼요.
+
+## 왜 이렇게 만들었나
+
+1. **Zero-config**: 설정 필요 없음. API URL만 바꾸면 동작
+2. **Type-safe**: TypeScript로 작성. 자동완성 지원
+3. **Customizable**: 코드가 내 프로젝트에 복사되니까 마음대로 수정 가능
+4. **Accessible**: WCAG 2.1 AA 준수. 키보드, 스크린리더 지원
+
+## 접근성
+
+모든 Kit은 다음을 지원해요:
+
+- 키보드 네비게이션
+- 스크린 리더 호환 (ARIA 레이블)
+- 4.5:1 이상 색상 대비
+- 폼 레이블 연결
+
+## 앞으로 추가될 것들
+
+- **Search Kit**: 통합검색 (자동완성, 최근검색어, 인기검색어)
+- **Notification Kit**: 알림 (실시간, 읽음 처리, 그룹화)
+- **Settings Kit**: 설정 (프로필, 비밀번호 변경, 알림 설정)
+
+## 시작하기
+
+```bash
+# 의존성 설치
+npm install zustand @tanstack/react-query axios react-hook-form zod
+
+# Board Kit 추가
+npx hanui add kit board
+```
+
+자세한 건 [Kits 문서](https://hanui.io/kits) 참고해 주세요.
+
+---
+
+**GitHub**: https://github.com/hanui-o/hanui
+**문서**: https://hanui.io/kits

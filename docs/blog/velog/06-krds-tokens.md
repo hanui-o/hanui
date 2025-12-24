@@ -1,6 +1,6 @@
-# KRDS 디자인 토큰, Tailwind에서 어떻게 쓰나요
+# KRDS 디자인 토큰 Tailwind CSS 적용 방법 - 17px 폰트, 색상 시스템
 
-Tailwind CSS 쓰면서 KRDS 적용해본 적 있어요?
+공공기관 프로젝트에서 Tailwind CSS 쓰면서 KRDS 디자인 토큰 적용해본 적 있어요?
 
 "어... 기본 폰트 사이즈가 다른데요?"
 
@@ -312,3 +312,5 @@ npx hanui init
 
 **GitHub**: https://github.com/hanui-o/hanui
 **문서**: https://hanui.io
+
+KRDS, TailwindCSS, 디자인토큰, CSS변수, 다크모드, 공공SI, HANUI
