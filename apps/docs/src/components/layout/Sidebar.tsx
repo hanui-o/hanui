@@ -128,7 +128,7 @@ const templatesNavigation = [
 
 const kitsNavigation = [
   {
-    title: 'Kits (React)',
+    title: 'Kits',
     items: [
       { title: 'Overview', href: '/kits' },
       { title: 'Getting Started', href: '/kits/getting-started' },
@@ -140,26 +140,6 @@ const kitsNavigation = [
       { title: 'Search Kit', href: '/kits/search' },
       { title: 'Notification Kit', href: '/kits/notification' },
       { title: 'Settings Kit', href: '/kits/settings' },
-    ],
-  },
-  {
-    title: 'Kits (Vue)',
-    items: [
-      {
-        title: 'Getting Started',
-        href: '/kits/vue/getting-started',
-        isNew: true,
-      },
-      { title: 'Board Kit', href: '/kits/vue/board', isNew: true },
-      { title: 'Auth Kit', href: '/kits/vue/auth', isNew: true },
-      { title: 'Table Kit', href: '/kits/vue/table', isNew: true },
-      { title: 'Dashboard Kit', href: '/kits/vue/dashboard', isNew: true },
-      { title: 'Search Kit', href: '/kits/vue/search', isNew: true },
-      {
-        title: 'Notification Kit',
-        href: '/kits/vue/notification',
-        isNew: true,
-      },
     ],
   },
 ];

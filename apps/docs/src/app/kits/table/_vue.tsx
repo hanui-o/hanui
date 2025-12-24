@@ -1,12 +1,16 @@
 'use client';
 
-import {
-  PageSection as Section,
-  Heading,
-  PageNavigation,
-} from '@/components/content';
+import { PageSection as Section, Heading } from '@/components/content';
 import { CodeBlock } from '@/components/content/CodeBlock';
-import { Badge, Tabs, TabsList, TabsTrigger, TabsContent } from '@hanui/react';
+import {
+  Badge,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  List,
+  ListItem,
+} from '@hanui/react';
 
 // Pinia Store
 const storeCode = `// src/features/table/stores/tableStore.ts
@@ -255,15 +259,9 @@ function getSortIcon(key: string) {
   </div>
 </template>`;
 
-export default function VueTableKitPage() {
+export function VueTableContent() {
   return (
     <>
-      <Heading
-        level="h1"
-        title="Table Kit (Vue)"
-        description="Vue 3로 구현한 데이터 테이블 키트"
-      />
-
       <div className="flex gap-2 mb-6">
         <Badge variant="primary">Vue 3</Badge>
         <Badge variant="secondary">정렬</Badge>
@@ -271,7 +269,20 @@ export default function VueTableKitPage() {
         <Badge variant="secondary">선택</Badge>
       </div>
 
-      <Tabs defaultValue="store" className="w-full">
+      {/* 기능 */}
+      <Section level="h2">
+        <Heading level="h2" id="features" title="기능" />
+        <List className="mt-4">
+          <ListItem>컬럼별 정렬 (오름차순/내림차순)</ListItem>
+          <ListItem>다중 필터 (포함, 일치, 시작, 끝)</ListItem>
+          <ListItem>페이지네이션 (페이지 크기 변경)</ListItem>
+          <ListItem>행 선택 (단일/다중/전체)</ListItem>
+          <ListItem>CSV 내보내기</ListItem>
+          <ListItem>커스텀 셀 렌더링</ListItem>
+        </List>
+      </Section>
+
+      <Tabs defaultValue="store" className="w-full mt-8">
         <TabsList>
           <TabsTrigger value="store">Store</TabsTrigger>
           <TabsTrigger value="composables">Composables</TabsTrigger>
@@ -299,11 +310,6 @@ export default function VueTableKitPage() {
           </Section>
         </TabsContent>
       </Tabs>
-
-      <PageNavigation
-        prev={{ title: 'Auth Kit (Vue)', href: '/kits/vue/auth' }}
-        next={{ title: 'Dashboard Kit (Vue)', href: '/kits/vue/dashboard' }}
-      />
     </>
   );
 }

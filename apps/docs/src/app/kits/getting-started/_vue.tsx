@@ -4,15 +4,10 @@ import {
   PageSection as Section,
   Heading,
   Subsection,
-  PageNavigation,
 } from '@/components/content';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import {
   Code,
-  Card,
-  CardHeader,
-  CardBody,
-  Badge,
   Tabs,
   TabsList,
   TabsTrigger,
@@ -304,15 +299,9 @@ const techComparison = [
   { react: 'Axios', vue: 'Axios', purpose: 'HTTP 클라이언트' },
 ];
 
-export default function VueGettingStartedPage() {
+export function VueGettingStartedContent() {
   return (
     <>
-      <Heading
-        level="h1"
-        title="Vue 시작하기"
-        description="Vue 3 + Composition API로 HANUI Kits를 사용하는 방법을 안내합니다."
-      />
-
       <Alert variant="info" className="mb-6">
         Vue Kits는 React Kits와 동일한 DummyJSON API를 사용합니다. API 코드는
         그대로 사용 가능하며, 상태관리만 Vue 방식으로 변환됩니다.
@@ -475,14 +464,6 @@ pnpm add vee-validate @vee-validate/zod zod`}
           </Section>
         </TabsContent>
       </Tabs>
-
-      <PageNavigation
-        prev={{
-          title: 'Getting Started (React)',
-          href: '/kits/getting-started',
-        }}
-        next={{ title: 'Board Kit (Vue)', href: '/kits/vue/board' }}
-      />
     </>
   );
 }

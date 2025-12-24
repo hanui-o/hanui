@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  PageSection as Section,
-  Heading,
-  PageNavigation,
-} from '@/components/content';
+import { PageSection as Section, Heading } from '@/components/content';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import {
   Code,
@@ -13,9 +9,10 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  Alert,
   Card,
   CardBody,
+  List,
+  ListItem,
 } from '@hanui/react';
 
 // Pinia Auth Store
@@ -224,15 +221,9 @@ export const authGuard: NavigationGuard = (to, from, next) => {
 // router/index.ts에서 사용
 router.beforeEach(authGuard)`;
 
-export default function VueAuthKitPage() {
+export function VueAuthContent() {
   return (
     <>
-      <Heading
-        level="h1"
-        title="Auth Kit (Vue)"
-        description="Vue 3로 구현한 인증 기능 키트"
-      />
-
       <div className="flex gap-2 mb-6">
         <Badge variant="primary">Vue 3</Badge>
         <Badge variant="secondary">Pinia</Badge>
@@ -254,7 +245,21 @@ export default function VueAuthKitPage() {
         </CardBody>
       </Card>
 
-      <Tabs defaultValue="store" className="w-full">
+      {/* 기능 */}
+      <Section level="h2">
+        <Heading level="h2" id="features" title="기능" />
+        <List className="mt-4">
+          <ListItem>로그인 (이메일/비밀번호)</ListItem>
+          <ListItem>회원가입 (폼 유효성 검사)</ListItem>
+          <ListItem>로그아웃</ListItem>
+          <ListItem>비밀번호 찾기 (이메일 발송)</ListItem>
+          <ListItem>비밀번호 재설정</ListItem>
+          <ListItem>토큰 자동 갱신 (Refresh Token)</ListItem>
+          <ListItem>인증 상태 유지 (Pinia Persist)</ListItem>
+        </List>
+      </Section>
+
+      <Tabs defaultValue="store" className="w-full mt-8">
         <TabsList>
           <TabsTrigger value="store">Store</TabsTrigger>
           <TabsTrigger value="composables">Composables</TabsTrigger>
@@ -290,11 +295,6 @@ export default function VueAuthKitPage() {
           </Section>
         </TabsContent>
       </Tabs>
-
-      <PageNavigation
-        prev={{ title: 'Board Kit (Vue)', href: '/kits/vue/board' }}
-        next={{ title: 'Table Kit (Vue)', href: '/kits/vue/table' }}
-      />
     </>
   );
 }

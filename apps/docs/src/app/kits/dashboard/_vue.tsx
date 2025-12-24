@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  PageSection as Section,
-  Heading,
-  PageNavigation,
-} from '@/components/content';
+import { PageSection as Section, Heading } from '@/components/content';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { Badge, Tabs, TabsList, TabsTrigger, TabsContent } from '@hanui/react';
 
@@ -177,15 +173,9 @@ function formatTime(timestamp: string) {
   </ul>
 </template>`;
 
-export default function VueDashboardKitPage() {
+export function VueDashboardContent() {
   return (
     <>
-      <Heading
-        level="h1"
-        title="Dashboard Kit (Vue)"
-        description="Vue 3로 구현한 대시보드 키트"
-      />
-
       <div className="flex gap-2 mb-6">
         <Badge variant="primary">Vue 3</Badge>
         <Badge variant="secondary">통계 카드</Badge>
@@ -230,11 +220,6 @@ export default function VueDashboardKitPage() {
           </Section>
         </TabsContent>
       </Tabs>
-
-      <PageNavigation
-        prev={{ title: 'Table Kit (Vue)', href: '/kits/vue/table' }}
-        next={{ title: 'Search Kit (Vue)', href: '/kits/vue/search' }}
-      />
     </>
   );
 }

@@ -4,7 +4,6 @@ import {
   PageSection as Section,
   Heading,
   Subsection,
-  PageNavigation,
 } from '@/components/content';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import {
@@ -14,15 +13,9 @@ import {
   TabsList,
   TabsTrigger,
   TabsContent,
-  Table,
-  TableHead,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableCell,
+  Alert,
   List,
   ListItem,
-  Alert,
 } from '@hanui/react';
 
 // 타입 정의 (React와 동일)
@@ -530,23 +523,9 @@ async function handleDelete() {
   </div>
 </template>`;
 
-// 파일 구조
-const fileStructure = [
-  { path: 'types/board.ts', desc: '타입 정의' },
-  { path: 'api/boardApi.ts', desc: 'API 함수 (DummyJSON)' },
-  { path: 'stores/boardStore.ts', desc: 'Pinia 스토어' },
-  { path: 'composables/useBoard.ts', desc: 'Vue Query 훅' },
-];
-
-export default function VueBoardKitPage() {
+export function VueBoardContent() {
   return (
     <>
-      <Heading
-        level="h1"
-        title="Board Kit (Vue)"
-        description="Vue 3 + Composition API로 구현한 게시판 기능 키트"
-      />
-
       <div className="flex gap-2 mb-6">
         <Badge variant="primary">Vue 3</Badge>
         <Badge variant="secondary">Pinia</Badge>
@@ -573,6 +552,18 @@ export default function VueBoardKitPage() {
     └── useBoard.ts       # Vue Query 훅 (서버 상태)`}
           language="plaintext"
         />
+      </Section>
+
+      {/* 기능 */}
+      <Section level="h2">
+        <Heading level="h2" id="features" title="기능" />
+        <List className="mt-4">
+          <ListItem>목록 조회 (페이지네이션, 검색, 정렬)</ListItem>
+          <ListItem>상세 조회 (조회수, 첨부파일)</ListItem>
+          <ListItem>게시글 작성 (폼 유효성 검사)</ListItem>
+          <ListItem>게시글 수정 (기존 데이터 불러오기)</ListItem>
+          <ListItem>게시글 삭제 (확인 모달)</ListItem>
+        </List>
       </Section>
 
       <Tabs defaultValue="types" className="w-full mt-8">
@@ -674,11 +665,6 @@ store.nextPage()
           </Section>
         </TabsContent>
       </Tabs>
-
-      <PageNavigation
-        prev={{ title: 'Vue 시작하기', href: '/kits/vue/getting-started' }}
-        next={{ title: 'Auth Kit (Vue)', href: '/kits/vue/auth' }}
-      />
     </>
   );
 }

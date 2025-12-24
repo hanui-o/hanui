@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  PageSection as Section,
-  Heading,
-  PageNavigation,
-} from '@/components/content';
+import { PageSection as Section, Heading } from '@/components/content';
 import { CodeBlock } from '@/components/content/CodeBlock';
 import { Badge, Tabs, TabsList, TabsTrigger, TabsContent } from '@hanui/react';
 
@@ -252,16 +248,10 @@ function handleBackdropClick(e: MouseEvent) {
   </Teleport>
 </template>`;
 
-export default function VueSearchKitPage() {
+export function VueSearchContent() {
   return (
-    <>
-      <Heading
-        level="h1"
-        title="Search Kit (Vue)"
-        description="Vue 3로 구현한 검색 기능 키트"
-      />
-
-      <div className="flex gap-2 mb-6">
+    <div className="space-y-6">
+      <div className="flex gap-2">
         <Badge variant="primary">Vue 3</Badge>
         <Badge variant="secondary">자동완성</Badge>
         <Badge variant="secondary">최근 검색어</Badge>
@@ -296,14 +286,6 @@ export default function VueSearchKitPage() {
           </Section>
         </TabsContent>
       </Tabs>
-
-      <PageNavigation
-        prev={{ title: 'Dashboard Kit (Vue)', href: '/kits/vue/dashboard' }}
-        next={{
-          title: 'Notification Kit (Vue)',
-          href: '/kits/vue/notification',
-        }}
-      />
-    </>
+    </div>
   );
 }
