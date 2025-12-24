@@ -119,7 +119,7 @@ export async function getCategories(): Promise<string[]> {
 const composablesCode = `// src/composables/useTable.ts
 import { useQuery } from '@tanstack/vue-query'
 import { computed } from 'vue'
-import { useTableStore } from '@/stores/tableStore'
+import { useTableStore } from '@/store/tableStore'
 import { getProducts, getCategories } from '@/api/table'
 
 // Query Keys
@@ -158,7 +158,7 @@ export function useCategories() {
 }`;
 
 // Pinia Store 코드
-const storeCode = `// src/stores/tableStore.ts
+const storeCode = `// src/store/tableStore.ts
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import type { SortState } from '@/types/table'
@@ -234,10 +234,10 @@ export const useTableStore = defineStore('table', () => {
 })`;
 
 // 사용 예시 코드
-const usageCode = `<!-- src/views/ProductTable.vue -->
+const usageCode = `<!-- src/components/table/ProductTable.vue -->
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useTableStore } from '@/stores/tableStore'
+import { useTableStore } from '@/store/tableStore'
 import { useProducts } from '@/composables/useTable'
 
 const store = useTableStore()
@@ -412,9 +412,9 @@ export function VueTableContent() {
 │   └── table.ts          # API 함수 (DummyJSON)
 ├── composables/
 │   └── useTable.ts       # Vue Query 훅
-├── stores/
+├── store/
 │   └── tableStore.ts     # Pinia (테이블 상태)
-├── views/
+├── components/table/
 │   └── ProductTable.vue  # 테이블 컴포넌트
 └── types/
     └── table.ts          # 타입 정의`}

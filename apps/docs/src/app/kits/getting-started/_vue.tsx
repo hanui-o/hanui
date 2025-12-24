@@ -25,21 +25,19 @@ import {
 
 // 프로젝트 구조
 const projectStructure = `src/
-├── features/
-│   └── board/
-│       ├── api/
-│       │   └── boardApi.ts
-│       ├── composables/
-│       │   └── useBoard.ts      # Vue Query 훅
-│       ├── stores/
-│       │   └── boardStore.ts    # Pinia 스토어
-│       └── types/
-│           └── board.ts
+├── api/
+│   └── board.ts              # API 함수
+├── composables/
+│   └── useBoard.ts           # Vue Query 훅
+├── store/
+│   └── boardStore.ts         # Pinia 스토어
+├── components/board/
+│   ├── BoardList.vue         # 목록 컴포넌트
+│   └── BoardForm.vue         # 폼 컴포넌트
 ├── plugins/
 │   └── vue-query.ts
-└── views/
-    └── board/
-        └── BoardView.vue`;
+└── types/
+    └── board.ts              # 타입 정의`;
 
 // Vue Query 플러그인 설정
 const vueQuerySetup = `// src/plugins/vue-query.ts
@@ -60,7 +58,7 @@ export function setupVueQuery(app: App) {
 }`;
 
 // Pinia 설정
-const piniaSetup = `// src/stores/index.ts
+const piniaSetup = `// src/store/index.ts
 import { createPinia } from 'pinia'
 import type { App } from 'vue'
 
@@ -73,7 +71,7 @@ export function setupPinia(app: App) {
 const mainSetup = `// src/main.ts
 import { createApp } from 'vue'
 import App from './App.vue'
-import { setupPinia } from './stores'
+import { setupPinia } from './store'
 import { setupVueQuery } from './plugins/vue-query'
 
 const app = createApp(App)
@@ -84,7 +82,7 @@ setupVueQuery(app)
 app.mount('#app')`;
 
 // Pinia Store 예시
-const piniaStoreExample = `// src/features/board/stores/boardStore.ts
+const piniaStoreExample = `// src/store/boardStore.ts
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
@@ -149,12 +147,12 @@ export const useBoardStore = defineStore('board', () => {
 })`;
 
 // Vue Query Composable 예시
-const composableExample = `// src/features/board/composables/useBoard.ts
+const composableExample = `// src/composables/useBoard.ts
 import { useQuery, useMutation, useQueryClient } from '@tanstack/vue-query'
 import { computed } from 'vue'
-import { useBoardStore } from '../stores/boardStore'
-import { getPosts, getPost, createPost, deletePost } from '../api/boardApi'
-import type { PostFormData } from '../types/board'
+import { useBoardStore } from '@/store/boardStore'
+import { getPosts, getPost, createPost, deletePost } from '@/api/board'
+import type { PostFormData } from '@/types/board'
 
 // Query Keys
 export const boardKeys = {
@@ -214,10 +212,10 @@ export function useDeletePost() {
 }`;
 
 // Vue 컴포넌트 예시
-const vueComponentExample = `<!-- src/views/board/BoardView.vue -->
+const vueComponentExample = `<!-- src/components/board/BoardView.vue -->
 <script setup lang="ts">
-import { useBoardStore } from '@/features/board/stores/boardStore'
-import { usePosts } from '@/features/board/composables/useBoard'
+import { useBoardStore } from '@/store/boardStore'
+import { usePosts } from '@/composables/useBoard'
 
 const store = useBoardStore()
 const { data, isLoading, error } = usePosts()

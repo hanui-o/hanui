@@ -100,7 +100,7 @@ export function logout(): void {
 // Vue Query Composables 코드
 const composablesCode = `import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '../stores/authStore'
+import { useAuthStore } from '../store/authStore'
 import { login, getMe, refreshToken } from '../api/authApi'
 import type { LoginRequest } from '../types/auth'
 
@@ -212,7 +212,7 @@ export const useAuthStore = defineStore('auth', () => {
 // 사용 예시 코드
 const usageCode = `<script setup lang="ts">
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/authStore'
+import { useAuthStore } from '@/store/authStore'
 import { useLogin } from '@/composables/useAuth'
 
 const store = useAuthStore()
@@ -319,10 +319,10 @@ export function VueAuthContent() {
             {`src/
 ├── api/
 │   └── auth.ts           # API 함수
-├── stores/
-│   └── authStore.ts      # Pinia (인증 상태)
 ├── composables/
 │   └── useAuth.ts        # Vue Query 훅
+├── store/
+│   └── authStore.ts      # Pinia (인증 상태)
 ├── components/auth/
 │   ├── LoginForm.vue     # 로그인 폼
 │   ├── SignupForm.vue    # 회원가입 폼

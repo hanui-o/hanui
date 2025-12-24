@@ -133,7 +133,7 @@ export async function getActivities(limit = 5): Promise<Activity[]> {
 const composablesCode = `// src/composables/useDashboard.ts
 import { useQuery } from '@tanstack/vue-query'
 import { computed } from 'vue'
-import { useDashboardStore } from '@/stores/dashboardStore'
+import { useDashboardStore } from '@/store/dashboardStore'
 import { getStats, getChartData, getActivities } from '@/api/dashboard'
 
 // Query Keys
@@ -177,7 +177,7 @@ export function useActivities(limit?: number) {
 }`;
 
 // Pinia Store 코드
-const storeCode = `// src/stores/dashboardStore.ts
+const storeCode = `// src/store/dashboardStore.ts
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { DashboardConfig } from '@/types/dashboard'
@@ -233,9 +233,9 @@ export const useDashboardStore = defineStore('dashboard', () => {
 })`;
 
 // 사용 예시 코드
-const usageCode = `<!-- src/views/DashboardView.vue -->
+const usageCode = `<!-- src/components/dashboard/DashboardView.vue -->
 <script setup lang="ts">
-import { useDashboardStore } from '@/stores/dashboardStore'
+import { useDashboardStore } from '@/store/dashboardStore'
 import { useStats, useChartData, useActivities } from '@/composables/useDashboard'
 
 const store = useDashboardStore()
@@ -384,10 +384,8 @@ export function VueDashboardContent() {
 │   └── dashboard.ts       # API 함수 (DummyJSON)
 ├── composables/
 │   └── useDashboard.ts    # Vue Query 훅
-├── stores/
+├── store/
 │   └── dashboardStore.ts  # Pinia (설정/상태)
-├── views/
-│   └── DashboardView.vue  # 대시보드 페이지
 ├── components/dashboard/
 │   ├── StatCard.vue       # 통계 카드
 │   ├── BarChart.vue       # 차트 래퍼

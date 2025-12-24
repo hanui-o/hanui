@@ -111,7 +111,7 @@ export async function deletePost(id: number): Promise<Post & { isDeleted: boolea
 // Vue Query Composables 코드
 const composablesCode = `import { useQuery, useMutation, useQueryClient } from '@tanstack/vue-query'
 import { computed, type Ref } from 'vue'
-import { useBoardStore } from '../stores/boardStore'
+import { useBoardStore } from '../store/boardStore'
 import { getPosts, getPost, createPost, updatePost, deletePost } from '../api/boardApi'
 import type { PostFormData } from '../types/board'
 
@@ -289,7 +289,7 @@ export const useBoardStore = defineStore('board', () => {
 
 // 사용 예시 코드
 const usageCode = `<script setup lang="ts">
-import { useBoardStore } from '@/stores/boardStore'
+import { useBoardStore } from '@/store/boardStore'
 import { usePosts } from '@/composables/useBoard'
 
 const store = useBoardStore()
@@ -391,7 +391,7 @@ export function VueBoardContent() {
 │   └── board.ts          # API 함수 (CRUD)
 ├── composables/
 │   └── useBoard.ts       # Vue Query 훅
-├── stores/
+├── store/
 │   └── boardStore.ts     # Pinia (UI 상태)
 ├── components/board/
 │   ├── BoardList.vue     # 목록
