@@ -65,6 +65,7 @@ const apiCode = `import axios from 'axios'
 import type { ProductListResponse, TableParams } from './types'
 
 // 🔗 DummyJSON 무료 API (테스트용)
+// 실제 프로젝트에서는 환경변수로 관리: process.env.NEXT_PUBLIC_API_URL
 const API_URL = 'https://dummyjson.com'
 
 const api = axios.create({
