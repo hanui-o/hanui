@@ -12,6 +12,8 @@
     "clean": "rm -rf .next"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^3.0.1",
+    "@ai-sdk/react": "^3.0.3",
     "@hanui/react": "workspace:*",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-collapsible": "^1.1.12",
@@ -22,6 +24,7 @@
     "@radix-ui/react-slot": "latest",
     "@types/mdx": "^2.0.13",
     "@types/react-copy-to-clipboard": "^5.0.7",
+    "ai": "^6.0.3",
     "axe-core": "^4.11.0",
     "class-variance-authority": "latest",
     "clsx": "latest",
@@ -32,6 +35,7 @@
     "react": "^18.3.1",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
     "sass": "^1.94.1",
     "shiki": "^3.15.0",
     "tailwind-merge": "latest"

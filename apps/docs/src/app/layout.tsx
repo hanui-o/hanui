@@ -5,6 +5,11 @@ import type { ReactNode } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { FrameworkProvider } from '@/components/FrameworkTabs';
 import { StructuredData } from '@/components/StructuredData';
+import {
+  CopilotProvider,
+  CopilotModal,
+  CopilotButton,
+} from '@/components/copilot';
 import './globals.css';
 
 const GTM_ID = 'GTM-MLGSBMTX';
@@ -123,7 +128,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <FrameworkProvider>{children}</FrameworkProvider>
+          <FrameworkProvider>
+            <CopilotProvider>
+              {children}
+              <CopilotModal />
+              <CopilotButton />
+            </CopilotProvider>
+          </FrameworkProvider>
         </ThemeProvider>
       </body>
     </html>
