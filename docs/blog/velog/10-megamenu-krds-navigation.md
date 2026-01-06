@@ -1,0 +1,289 @@
+# KRDS MegaMenu 완전정복 - 공공 웹사이트 네비게이션 만들기
+
+tags : KRDS, MegaMenu, React, HANUI, 웹접근성, 네비게이션, 공공SI
+
+공공 웹사이트 헤더에 있는 그 복잡한 메뉴, 직접 만들려면 머리 아프죠?
+
+웹접근성 키보드 네비게이션, 포커스 관리, ARIA 속성... 하나하나 다 신경 써야 해요.
+
+## KRDS 네비게이션 종류
+
+공공 웹사이트에서 쓰는 네비게이션 패턴:
+
+| 컴포넌트             | 용도        | 복잡도 |
+| -------------------- | ----------- | ------ |
+| Header               | 기본 상단바 | ⭐     |
+| HeaderWithNavigation | 일반 메뉴   | ⭐⭐   |
+| HeaderWithMegaMenu   | 대형 메뉴   | ⭐⭐⭐ |
+| HeaderWithPanelMenu  | 사이드 패널 | ⭐⭐⭐ |
+
+대부분 HeaderWithMegaMenu를 많이 씁니다.
+
+## 기본 Header
+
+```tsx
+import { Header } from '@hanui/react';
+
+function App() {
+  return (
+    <Header
+      siteName="우리 서비스"
+      logo="/logo.svg"
+      onLogoClick={() => router.push('/')}
+    />
+  );
+}
+```
+
+로고만 있는 심플한 헤더예요.
+
+## HeaderWithNavigation (일반 메뉴)
+
+```tsx
+import { HeaderWithNavigation } from '@hanui/react';
+
+const menuItems = [
+  { label: '소개', href: '/about' },
+  { label: '서비스', href: '/services' },
+  { label: '고객지원', href: '/support' },
+  { label: '공지사항', href: '/notice' },
+];
+
+function App() {
+  return (
+    <HeaderWithNavigation
+      siteName="우리 서비스"
+      logo="/logo.svg"
+      menuItems={menuItems}
+    />
+  );
+}
+```
+
+depth 1개만 있을 때 쓰면 돼요.
+
+## HeaderWithMegaMenu (핵심)
+
+Depth 2개 이상 필요할 때:
+
+```tsx
+import { HeaderWithMegaMenu } from '@hanui/react';
+
+const megaMenuItems = [
+  {
+    label: '기관소개',
+    subItems: [
+      {
+        category: '기관안내',
+        items: [
+          { label: '인사말', href: '/about/greeting' },
+          { label: '조직도', href: '/about/org' },
+          { label: '연혁', href: '/about/history' },
+        ],
+      },
+      {
+        category: '찾아오시는 길',
+        items: [
+          { label: '본관', href: '/location/main' },
+          { label: '별관', href: '/location/annex' },
+        ],
+      },
+    ],
+  },
+  {
+    label: '업무안내',
+    subItems: [
+      {
+        category: '주요업무',
+        items: [
+          { label: '사업소개', href: '/business/intro' },
+          { label: '진행사업', href: '/business/current' },
+        ],
+      },
+    ],
+  },
+  {
+    label: '고객지원',
+    subItems: [
+      {
+        category: '문의하기',
+        items: [
+          { label: 'FAQ', href: '/support/faq' },
+          { label: '1:1 문의', href: '/support/qna' },
+        ],
+      },
+    ],
+  },
+];
+
+function App() {
+  return (
+    <HeaderWithMegaMenu
+      siteName="우리 기관"
+      logo="/logo.svg"
+      menuItems={megaMenuItems}
+    />
+  );
+}
+```
+
+이게 공공 웹사이트에서 제일 많이 보는 형태예요.
+
+## 메뉴 구조 설계 팁
+
+### 1. Depth는 최대 3까지
+
+```
+1depth: 기관소개
+  └ 2depth (category): 기관안내
+      └ 3depth (items): 인사말, 조직도, 연혁
+```
+
+4depth 넘어가면 사용자가 헷갈려요.
+
+### 2. Category는 묶음 단위
+
+```tsx
+{
+  label: '정보공개',
+  subItems: [
+    {
+      category: '사전정보공개',
+      items: [
+        { label: '공개목록', href: '/info/list' },
+        { label: '공개청구', href: '/info/request' },
+      ],
+    },
+    {
+      category: '사후정보공개',
+      items: [
+        { label: '결과공개', href: '/info/result' },
+      ],
+    },
+  ],
+}
+```
+
+연관된 메뉴끼리 카테고리로 묶으면 보기 좋아요.
+
+## 웹접근성 자동 처리
+
+HANUI MegaMenu가 자동으로 해주는 것들:
+
+### 키보드 네비게이션
+
+- `Tab`: 다음 메뉴로 이동
+- `Shift + Tab`: 이전 메뉴로 이동
+- `Enter` / `Space`: 서브메뉴 펼치기
+- `Esc`: 서브메뉴 닫기
+- `Arrow`: 서브메뉴 내 이동
+
+직접 구현하면 진짜 복잡한데, 다 자동이에요.
+
+### ARIA 속성
+
+```html
+<!-- 자동 생성됨 -->
+<button aria-expanded="false" aria-haspopup="true" aria-controls="submenu-1">
+  기관소개
+</button>
+```
+
+웹접근성 심사 통과에 필수예요.
+
+### 포커스 관리
+
+- 메뉴 열면 첫 번째 아이템에 포커스
+- Esc 누르면 원래 버튼으로 포커스 복귀
+- 서브메뉴 밖 클릭하면 자동 닫힘
+
+## 모바일 대응
+
+```tsx
+<HeaderWithMegaMenu
+  siteName="우리 기관"
+  logo="/logo.svg"
+  menuItems={megaMenuItems}
+  mobileBreakpoint="md"
+/>
+```
+
+반응형 자동 처리돼요. 모바일에선 햄버거 메뉴로 바뀝니다.
+
+## 실제 예시
+
+```tsx
+import { HeaderWithMegaMenu, Button } from '@hanui/react';
+import { useRouter } from 'next/navigation';
+
+export function SiteHeader() {
+  const router = useRouter();
+
+  const menuItems = [
+    {
+      label: '기관소개',
+      subItems: [
+        {
+          category: '기관안내',
+          items: [
+            { label: '인사말', href: '/about/greeting' },
+            { label: '조직도', href: '/about/org' },
+            { label: '연혁', href: '/about/history' },
+          ],
+        },
+      ],
+    },
+    {
+      label: '정책정보',
+      subItems: [
+        {
+          category: '주요정책',
+          items: [
+            { label: '정책소개', href: '/policy/intro' },
+            { label: '추진현황', href: '/policy/status' },
+          ],
+        },
+      ],
+    },
+    {
+      label: '알림마당',
+      subItems: [
+        {
+          category: '소식',
+          items: [
+            { label: '공지사항', href: '/notice' },
+            { label: '보도자료', href: '/press' },
+          ],
+        },
+      ],
+    },
+  ];
+
+  return (
+    <HeaderWithMegaMenu
+      siteName="공공서비스포털"
+      logo="/logo.svg"
+      onLogoClick={() => router.push('/')}
+      menuItems={menuItems}
+      actions={
+        <>
+          <Button variant="ghost" size="sm">
+            로그인
+          </Button>
+          <Button size="sm">회원가입</Button>
+        </>
+      }
+    />
+  );
+}
+```
+
+## 정리
+
+1. **단순 메뉴** → HeaderWithNavigation
+2. **복잡한 메뉴** → HeaderWithMegaMenu
+3. **사이드 메뉴** → HeaderWithPanelMenu
+
+웹접근성 자동 처리되니까 데이터 구조만 잘 짜면 돼요.
+
+더 자세한 예시는 [hanui.io/components/header](https://hanui.io/components/header)에서 확인하세요.
