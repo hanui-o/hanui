@@ -1,5 +1,33 @@
 {
   "skills": {
+    "project-context": {
+      "name": "HANUI 프로젝트 컨텍스트",
+      "file": "project-context.md",
+      "triggerPatterns": [
+        "프로젝트",
+        "project",
+        "HANUI",
+        "hanui",
+        "시작",
+        "start",
+        "구조",
+        "structure",
+        "architecture",
+        "overview",
+        "monorepo",
+        "패키지",
+        "package",
+        "어떻게",
+        "how",
+        "뭐",
+        "what",
+        "설명",
+        "explain"
+      ],
+      "filePatterns": ["**"],
+      "autoActivate": true,
+      "priority": 1
+    },
     "hanui-component-dev": {
       "name": "HANUI 컴포넌트 개발 가이드",
       "file": "hanui-component-dev.md",
@@ -17,7 +45,8 @@
         "packages/vue/src/components/**",
         "apps/docs/src/app/docs/components/**"
       ],
-      "autoActivate": true
+      "autoActivate": true,
+      "priority": 2
     },
     "krds-compliance": {
       "name": "KRDS 준수 가이드",
@@ -37,11 +66,12 @@
         "design.*token"
       ],
       "filePatterns": ["packages/react/src/**", "packages/vue/src/**"],
-      "autoActivate": true
+      "autoActivate": true,
+      "priority": 3
     }
   },
   "globalRules": {
-    "maxActiveSkills": 2,
-    "priorityOrder": ["hanui-component-dev", "krds-compliance"]
+    "maxActiveSkills": 3,
+    "priorityOrder": ["project-context", "hanui-component-dev", "krds-compliance"]
   }
 }

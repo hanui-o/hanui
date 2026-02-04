@@ -2,9 +2,29 @@
 
 HANUI 프로젝트를 위한 Claude Code 스킬 모음입니다.
 
+> **참고**: Skills는 조건에 따라 자동 활성화됩니다. 수동 호출이 필요한 Agents는 [../agents/](../agents/) 참조
+
 ## 사용 가능한 스킬
 
-### 1. hanui-component-dev
+### 1. project-context ⚡ (최우선)
+
+**프로젝트 핵심 컨텍스트**
+
+HANUI의 정의, 포지셔닝, 구조, 개발 원칙을 제공합니다.
+
+**자동 활성화 조건:**
+
+- 대화 시작 시
+- 프로젝트 관련 질문 ("프로젝트가 뭐야?", "구조가 어떻게 돼?")
+- 모든 파일 작업 시 우선 참조
+
+**핵심 내용:**
+
+- HANUI = 중소기업용 KRDS 프론트엔드 컴포넌트 라이브러리
+- 전자정부프레임워크 (백엔드) ↔ HANUI (프론트엔드)
+- KRDS + 접근성 + 최적화
+
+### 2. hanui-component-dev
 
 **HANUI 컴포넌트 개발 가이드라인**
 
@@ -18,7 +38,7 @@ HANUI 프로젝트를 위한 Claude Code 스킬 모음입니다.
 - 컴포넌트 파일 수정 시
 - "컴포넌트 만들어줘" 등의 요청 시
 
-### 2. krds-compliance
+### 3. krds-compliance
 
 **KRDS 준수 가이드**
 
@@ -39,11 +59,21 @@ HANUI 프로젝트를 위한 Claude Code 스킬 모음입니다.
 ```json
 {
   "skills": {
+    "project-context": {
+      "triggerPatterns": ["프로젝트", "project", "HANUI", "구조"],
+      "autoActivate": true,
+      "priority": 1
+    },
     "hanui-component-dev": {
       "triggerPatterns": ["컴포넌트.*만들", "component.*create"],
       "filePatterns": ["packages/react/src/components/**"],
-      "autoActivate": true
+      "autoActivate": true,
+      "priority": 2
     }
+  },
+  "globalRules": {
+    "maxActiveSkills": 3,
+    "priorityOrder": ["project-context", "hanui-component-dev", "krds-compliance"]
   }
 }
 ```
