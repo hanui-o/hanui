@@ -129,6 +129,12 @@ export default function QuickStartPage() {
           <Code variant="inline">hanui init</Code> 실행 시 Tailwind CSS가 없으면{' '}
           <strong>자동으로 설치</strong>됩니다. 별도 설치 불필요!
         </Alert>
+
+        <Alert variant="info" className="mt-4" title="v0.3.0 - 번들 최적화">
+          <Body className="text-sm">
+            CLI가 필요한 의존성을 자동으로 설치합니다. 번들 크기 <strong>70% 감소</strong> 달성!
+          </Body>
+        </Alert>
       </Section>
 
       {/* 한번에 설치 */}

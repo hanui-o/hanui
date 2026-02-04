@@ -176,6 +176,17 @@ export default function InstallationPage() {
           <Code>hanui init</Code> 실행 시 Tailwind CSS가 없으면{' '}
           <strong>자동으로 설치</strong>됩니다. 별도 설치 불필요!
         </Alert>
+
+        <Alert
+          variant="info"
+          className="mt-4"
+          title="v0.3.0 업데이트 (2024년)"
+        >
+          <Body className="text-sm">
+            번들 크기 최적화로 <strong>70% 크기 감소</strong>! CLI가 필요한 peer dependencies를 자동으로 설치합니다.
+            <Code className="ml-2">hanui add button</Code> 실행 시 Radix UI 등 필수 패키지가 자동으로 추가됩니다.
+          </Body>
+        </Alert>
       </Section>
 
       {/* 단계별 설치 */}
@@ -255,6 +266,13 @@ npx hanui add button card input
 # 모든 컴포넌트 (50+)
 npx hanui add all`}
               </Code>
+
+              <Alert variant="info" className="mt-4" title="자동 의존성 설치">
+                <Body className="text-sm">
+                  CLI가 각 컴포넌트의 필수 패키지를 <strong>자동으로 설치</strong>합니다.
+                  Radix UI, lucide-react 등 peer dependencies를 수동 설치할 필요 없습니다.
+                </Body>
+              </Alert>
             </Subsection>
 
             <Subsection level="h3">
@@ -354,6 +372,13 @@ npx hanui add button card input
 # 모든 컴포넌트 (125+)
 npx hanui add all`}
               </Code>
+
+              <Alert variant="info" className="mt-4" title="자동 의존성 설치">
+                <Body className="text-sm">
+                  CLI가 각 컴포넌트의 필수 패키지를 <strong>자동으로 설치</strong>합니다.
+                  lucide-vue-next 등 peer dependencies를 수동 설치할 필요 없습니다.
+                </Body>
+              </Alert>
             </Subsection>
 
             <Subsection level="h3">
@@ -638,6 +663,34 @@ import CardBody from '@/components/hanui/CardBody.vue';
   }
 }`}
           </Code>
+        </Subsection>
+
+        <Subsection level="h3">
+          <Heading level="h3" title="Peer dependencies 에러 (수동 설치)" />
+          <Body className="mb-4 text-krds-gray-70">
+            CLI가 자동 설치에 실패한 경우, 수동으로 설치할 수 있습니다:
+          </Body>
+
+          {framework === 'react' ? (
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              {`# React - 필수 패키지
+pnpm add @radix-ui/react-slot lucide-react tailwindcss
+
+# 특정 컴포넌트 사용 시 (예시)
+pnpm add @radix-ui/react-dialog  # Modal
+pnpm add @radix-ui/react-dropdown-menu  # DropdownMenu
+pnpm add @tanstack/react-table  # DataTable
+pnpm add swiper  # Carousel`}
+            </Code>
+          ) : (
+            <Code variant="block" language="bash" showLineNumbers={false}>
+              {`# Vue - 필수 패키지
+pnpm add lucide-vue-next tailwindcss
+
+# 특정 컴포넌트 사용 시 (예시)
+pnpm add swiper  # Carousel`}
+            </Code>
+          )}
         </Subsection>
 
         <Subsection level="h3">
