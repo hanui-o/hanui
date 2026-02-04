@@ -167,9 +167,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>( // KRDS 입
             key="clear"
             type="button"
             onClick={handleClear}
-            className="cursor-pointer hover:text-krds-primary-60 transition-colors"
+            className="cursor-pointer hover:text-krds-primary-60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-60 rounded"
             aria-label="입력 지우기"
-            tabIndex={-1}
           >
             <X size={16} />
           </button>
@@ -183,9 +182,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>( // KRDS 입
             key="password-toggle"
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="cursor-pointer hover:text-krds-primary-60 transition-colors"
+            className="cursor-pointer hover:text-krds-primary-60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-krds-primary-60 rounded"
             aria-label={showPassword ? '비밀번호 숨기기' : '비밀번호 보기'}
-            tabIndex={-1}
           >
             {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>

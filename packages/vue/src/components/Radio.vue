@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject } from 'vue';
+import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 import { cva } from 'class-variance-authority';
 import { Circle } from 'lucide-vue-next';
 import { cn } from '@/lib/utils';
@@ -27,6 +27,8 @@ interface RadioGroupContext {
   status?: 'error' | 'success' | 'info';
   disabled: boolean;
   updateValue: (value: string) => void;
+  registerRadio: (value: string, element: HTMLElement) => void;
+  unregisterRadio: (value: string) => void;
 }
 
 const radioGroupKey = Symbol('radioGroup');
@@ -47,6 +49,7 @@ const props = withDefaults(
 );
 
 const group = inject<RadioGroupContext | null>(radioGroupKey, null);
+const buttonRef = ref<HTMLButtonElement | null>(null);
 
 const isChecked = computed(() => group?.modelValue === props.value);
 const finalSize = computed(() => group?.size || props.size);
@@ -95,11 +98,24 @@ const handleKeyDown = (e: KeyboardEvent) => {
     handleClick();
   }
 };
+
+onMounted(() => {
+  if (group && buttonRef.value) {
+    group.registerRadio(props.value, buttonRef.value);
+  }
+});
+
+onUnmounted(() => {
+  if (group) {
+    group.unregisterRadio(props.value);
+  }
+});
 </script>
 
 <template>
   <div :class="cn('flex items-center gap-2', props.class)">
     <button
+      ref="buttonRef"
       :id="`radio-${value}`"
       type="button"
       role="radio"

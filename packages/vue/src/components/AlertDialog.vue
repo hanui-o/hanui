@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch, onMounted, onUnmounted } from 'vue';
+import { computed, watch, onMounted, onUnmounted, ref, nextTick } from 'vue';
 import { cva } from 'class-variance-authority';
 import { AlertTriangle, Info, CircleCheck, CircleX } from 'lucide-vue-next';
 import { cn } from '@/lib/utils';
@@ -81,6 +81,9 @@ const emit = defineEmits<{
   cancel: [];
 }>();
 
+const dialogRef = ref<HTMLElement | null>(null);
+let previousActiveElement: HTMLElement | null = null;
+
 const IconComponent = computed(() => props.showIcon ? iconMap[props.variant] : null);
 
 const actionVariant = computed(() => {
@@ -103,17 +106,64 @@ const handleCancel = () => {
   emit('update:open', false);
 };
 
+const getFocusableElements = (container: HTMLElement): HTMLElement[] => {
+  const selector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  return Array.from(container.querySelectorAll(selector)).filter(
+    (el) => !el.hasAttribute('disabled')
+  ) as HTMLElement[];
+};
+
 const handleKeyDown = (e: KeyboardEvent) => {
   if (e.key === 'Escape' && props.open) {
     handleCancel();
+    return;
+  }
+
+  // Focus trapping
+  if (e.key === 'Tab' && props.open && dialogRef.value) {
+    const focusableElements = getFocusableElements(dialogRef.value);
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      // Shift + Tab
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      // Tab
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
   }
 };
 
-watch(() => props.open, (isOpen) => {
+watch(() => props.open, async (isOpen) => {
   if (isOpen) {
     document.body.style.overflow = 'hidden';
+    previousActiveElement = document.activeElement as HTMLElement;
+
+    // Focus first focusable element
+    await nextTick();
+    if (dialogRef.value) {
+      const focusableElements = getFocusableElements(dialogRef.value);
+      if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+      }
+    }
   } else {
     document.body.style.overflow = '';
+
+    // Restore focus
+    if (previousActiveElement) {
+      previousActiveElement.focus();
+      previousActiveElement = null;
+    }
   }
 });
 
@@ -139,6 +189,7 @@ onUnmounted(() => {
     <Transition name="zoom">
       <div
         v-if="open"
+        ref="dialogRef"
         role="alertdialog"
         aria-modal="true"
         :aria-labelledby="title"

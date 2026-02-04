@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch, onMounted, onUnmounted } from 'vue';
+import { computed, watch, onMounted, onUnmounted, ref, nextTick } from 'vue';
 import { X } from 'lucide-vue-next';
 import { cn } from '@/lib/utils';
 
@@ -29,14 +29,48 @@ const emit = defineEmits<{
   close: [];
 }>();
 
+const modalRef = ref<HTMLElement | null>(null);
+let previousActiveElement: HTMLElement | null = null;
+
 const handleClose = () => {
   emit('update:open', false);
   emit('close');
 };
 
+const getFocusableElements = (container: HTMLElement): HTMLElement[] => {
+  const selector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  return Array.from(container.querySelectorAll(selector)).filter(
+    (el) => !el.hasAttribute('disabled')
+  ) as HTMLElement[];
+};
+
 const handleKeyDown = (e: KeyboardEvent) => {
   if (e.key === 'Escape' && props.open) {
     handleClose();
+    return;
+  }
+
+  // Focus trapping
+  if (e.key === 'Tab' && props.open && modalRef.value) {
+    const focusableElements = getFocusableElements(modalRef.value);
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      // Shift + Tab
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      // Tab
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
   }
 };
 
@@ -46,11 +80,27 @@ const handleOverlayClick = (e: MouseEvent) => {
   }
 };
 
-watch(() => props.open, (isOpen) => {
+watch(() => props.open, async (isOpen) => {
   if (isOpen) {
     document.body.style.overflow = 'hidden';
+    previousActiveElement = document.activeElement as HTMLElement;
+
+    // Focus first focusable element
+    await nextTick();
+    if (modalRef.value) {
+      const focusableElements = getFocusableElements(modalRef.value);
+      if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+      }
+    }
   } else {
     document.body.style.overflow = '';
+
+    // Restore focus
+    if (previousActiveElement) {
+      previousActiveElement.focus();
+      previousActiveElement = null;
+    }
   }
 });
 
@@ -93,6 +143,7 @@ const contentClasses = computed(() =>
         @click="handleOverlayClick"
       >
         <div
+          ref="modalRef"
           role="dialog"
           aria-modal="true"
           :aria-label="ariaLabel"
