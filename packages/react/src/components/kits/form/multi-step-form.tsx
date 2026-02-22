@@ -125,7 +125,10 @@ function ProgressBar({ currentStep, totalSteps, className }: ProgressBarProps) {
           style={{ width: `${progress}%` }}
         />
       </div>
-      <p className="mt-2 text-sm text-krds-gray-60 text-center" aria-live="polite">
+      <p
+        className="mt-2 text-sm text-krds-gray-60 text-center"
+        aria-live="polite"
+      >
         {currentStep + 1} / {totalSteps} 단계
       </p>
     </div>
@@ -153,7 +156,7 @@ function StepIndicator({
 }: StepIndicatorProps) {
   return (
     <nav aria-label="폼 진행 단계" className={className}>
-      <ol className="flex items-center justify-center gap-2" role="list">
+      <ol className="flex items-center justify-center gap-2">
         {steps.map((step, index) => {
           const isCompleted = completedSteps.includes(index);
           const isCurrent = index === currentStep;
@@ -235,7 +238,11 @@ interface DotIndicatorProps {
   className?: string;
 }
 
-function DotIndicator({ totalSteps, currentStep, className }: DotIndicatorProps) {
+function DotIndicator({
+  totalSteps,
+  currentStep,
+  className,
+}: DotIndicatorProps) {
   return (
     <div
       className={cn('flex items-center justify-center gap-2', className)}
@@ -404,7 +411,13 @@ export function MultiStepForm({
           />
         );
       case 'dots':
-        return <DotIndicator totalSteps={totalSteps} currentStep={currentStep} className="mb-6" />;
+        return (
+          <DotIndicator
+            totalSteps={totalSteps}
+            currentStep={currentStep}
+            className="mb-6"
+          />
+        );
       case 'steps':
       default:
         return (

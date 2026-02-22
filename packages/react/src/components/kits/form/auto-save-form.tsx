@@ -223,7 +223,7 @@ export function AutoSaveForm<T extends FieldValues>({
   const [lastSavedAt, setLastSavedAt] = React.useState<Date | null>(null);
   const [isOnline, setIsOnline] = React.useState(true);
 
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMountedRef = React.useRef(true);
 
   const { watch, getValues, formState } = form;
@@ -330,11 +330,7 @@ export function AutoSaveForm<T extends FieldValues>({
   const statusComponent = renderStatus ? (
     renderStatus({ status, lastSavedAt, error })
   ) : (
-    <AutoSaveStatus
-      status={status}
-      lastSavedAt={lastSavedAt}
-      error={error}
-    />
+    <AutoSaveStatus status={status} lastSavedAt={lastSavedAt} error={error} />
   );
 
   return (
@@ -415,7 +411,9 @@ export function useAutoSaveIndicator({
         };
       case 'saved':
         return {
-          statusText: lastSavedAt ? `저장됨 ${formatTime(lastSavedAt)}` : '저장됨',
+          statusText: lastSavedAt
+            ? `저장됨 ${formatTime(lastSavedAt)}`
+            : '저장됨',
           StatusIcon: Check,
           colorClass: 'text-krds-success-60',
         };
@@ -433,7 +431,9 @@ export function useAutoSaveIndicator({
         };
       default:
         return {
-          statusText: lastSavedAt ? `마지막 저장: ${formatTime(lastSavedAt)}` : '',
+          statusText: lastSavedAt
+            ? `마지막 저장: ${formatTime(lastSavedAt)}`
+            : '',
           StatusIcon: Cloud,
           colorClass: 'text-krds-gray-50',
         };
@@ -502,7 +502,7 @@ export function AutoSaveFormProvider<T extends FieldValues>({
   const [error, setError] = React.useState<string | null>(null);
   const [lastSavedAt, setLastSavedAt] = React.useState<Date | null>(null);
 
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMountedRef = React.useRef(true);
 
   const { watch, getValues, formState } = form;

@@ -316,7 +316,7 @@ export function useAutoSave<T extends FieldValues>({
   const [saveError, setSaveError] = React.useState<string | null>(null);
   const [lastSavedAt, setLastSavedAt] = React.useState<Date | null>(null);
 
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMountedRef = React.useRef(true);
 
   const { watch, getValues, formState } = form;
