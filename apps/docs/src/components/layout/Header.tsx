@@ -90,10 +90,8 @@ export function Header() {
     },
     {
       label: 'Blog',
-      href: 'https://velog.io/@hanui/',
-      target: '_blank' as const,
-      rel: 'noopener noreferrer',
-      icon: <SquareArrowOutUpRight className="w-4 h-4 text-krds-gray-70" />,
+      href: '/blog',
+      isActive: pathname?.startsWith('/blog'),
     },
   ];
 

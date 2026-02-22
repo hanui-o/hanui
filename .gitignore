@@ -83,6 +83,3 @@ coverage/
 apps/test-next/
 test-vue/
 test-vue-cli/
-
-# Claude Code - local commands only
-.claude/commands/

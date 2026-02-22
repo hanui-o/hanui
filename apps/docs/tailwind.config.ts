@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography';
 import hanUIPreset from '../../packages/react/tailwind.preset';
 
 const config: Config = {
@@ -44,6 +45,7 @@ const config: Config = {
     },
   },
   plugins: [
+    typography,
     function ({ addUtilities }: any) {
       addUtilities({
         '.scrollbar-hide': {
