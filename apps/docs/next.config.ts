@@ -4,8 +4,44 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactStrictMode: true,
+  async redirects() {
+    return [
+      // www → non-www
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.hanui.io' }],
+        destination: 'https://hanui.io/:path*',
+        permanent: true,
+      },
+      // 이전 경로 → 현재 경로
+      {
+        source: '/design-system/typography',
+        destination: '/docs/typography',
+        permanent: true,
+      },
+      {
+        source: '/design-system/spacing',
+        destination: '/docs/spacing',
+        permanent: true,
+      },
+      {
+        source: '/design-system/colors',
+        destination: '/docs/colors',
+        permanent: true,
+      },
+      {
+        source: '/components/inpagenavigation',
+        destination: '/components/in-page-navigation',
+        permanent: true,
+      },
+      {
+        source: '/components/section-heading',
+        destination: '/components/section-heading-system',
+        permanent: true,
+      },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

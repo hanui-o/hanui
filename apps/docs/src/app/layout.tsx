@@ -81,6 +81,9 @@ export const metadata: Metadata = {
     },
   },
   metadataBase: new URL('https://hanui.io'),
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({
