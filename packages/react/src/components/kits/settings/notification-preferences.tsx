@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import {
-  Checkbox,
-  CheckboxGroup,
-  CheckboxGroupItem,
-} from '@/components/checkbox';
+import { CheckboxGroup, CheckboxGroupItem } from '@/components/checkbox';
 import { Select, type SelectOption } from '@/components/select';
 import { Switch } from '@/components/switch';
 import { FormField, FormLabel, FormHelperText } from '@/components/form-field';
@@ -149,7 +145,7 @@ export function NotificationPreferences({
       const updatedCategories = Object.fromEntries(
         Object.entries(categories).map(([key, channels]) => [
           key,
-          channels.filter((c) => c !== channel),
+          channels.filter((c: string) => c !== channel),
         ])
       ) as NotificationCategorySettings;
       setValue('categories', updatedCategories);
@@ -180,8 +176,10 @@ export function NotificationPreferences({
   ) => {
     const availableChannels: { value: NotificationChannel; label: string }[] =
       [];
-    if (emailEnabled) availableChannels.push({ value: 'email', label: '이메일' });
-    if (pushEnabled) availableChannels.push({ value: 'push', label: '푸시 알림' });
+    if (emailEnabled)
+      availableChannels.push({ value: 'email', label: '이메일' });
+    if (pushEnabled)
+      availableChannels.push({ value: 'push', label: '푸시 알림' });
     if (smsEnabled) availableChannels.push({ value: 'sms', label: 'SMS' });
 
     return (
@@ -189,7 +187,9 @@ export function NotificationPreferences({
         <legend className="text-krds-body-md font-medium text-krds-gray-90 mb-1">
           {legend}
         </legend>
-        <p className="text-krds-body-sm text-krds-gray-60 mb-3">{description}</p>
+        <p className="text-krds-body-sm text-krds-gray-60 mb-3">
+          {description}
+        </p>
 
         {availableChannels.length > 0 ? (
           <Controller

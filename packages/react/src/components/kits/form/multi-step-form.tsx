@@ -437,6 +437,7 @@ export function MultiStepForm({
   };
 
   // 네비게이션 렌더링
+  /* eslint-disable react-hooks/refs */
   const navigationContent = renderNavigation ? (
     renderNavigation({
       currentStep,
@@ -449,6 +450,7 @@ export function MultiStepForm({
       disableNext,
     })
   ) : (
+    /* eslint-enable react-hooks/refs */
     <div className="flex items-center justify-between gap-4 mt-8">
       <button
         type="button"

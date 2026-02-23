@@ -54,7 +54,7 @@ export const VisuallyHidden = React.forwardRef<
   return (
     <Component
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ref={ref as React.Ref<HTMLSpanElement>}
+      ref={ref as any}
       className={cn(
         // 기본 숨김 스타일
         visuallyHiddenStyles,

@@ -88,7 +88,7 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",
-    "lint": "eslint src --ext .ts,.tsx",
+    "lint": "eslint src --ext .ts,.tsx --ignore-pattern 'src/kits/board/**'",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {

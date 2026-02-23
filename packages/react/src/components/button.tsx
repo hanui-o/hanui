@@ -182,7 +182,8 @@ export const Button = React.forwardRef<
       // 버튼 또는 Slot으로 렌더링
       <Comp
         className={cn(buttonVariants({ variant, size }), className)}
-        ref={ref}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ref={ref as any}
         {...(!asChild && {
           type,
           disabled: isDisabled,

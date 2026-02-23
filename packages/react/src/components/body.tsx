@@ -97,7 +97,7 @@ export const Body = React.forwardRef<HTMLElement, BodyProps>(
     return (
       <Component
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as React.Ref<HTMLElement>}
+        ref={ref as any}
         className={cn(bodyVariants({ size, weight: finalWeight }), className)}
         {...props}
       >

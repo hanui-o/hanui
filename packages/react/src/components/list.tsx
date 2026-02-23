@@ -81,7 +81,7 @@ export const List = React.forwardRef<
       <ListContext.Provider value={{ variant, level, isNested: false }}>
         <Component
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ref={ref as React.Ref<HTMLUListElement | HTMLOListElement>}
+          ref={ref as any}
           className={cn(
             'text-krds-gray-90',
             level === 2 && 'mt-2',

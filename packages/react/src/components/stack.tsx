@@ -112,7 +112,7 @@ export const Stack = React.forwardRef<HTMLDivElement, StackProps>(
     return (
       <Component
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as React.Ref<HTMLElement>}
+        ref={ref as any}
         className={cn(
           stackVariants({ gap: variantGap, direction, align, justify }),
           gapClass,
