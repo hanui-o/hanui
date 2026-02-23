@@ -5,7 +5,7 @@ import { compile, run } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, BookOpen } from 'lucide-react';
 import { BlogMDXContent } from '@/components/blog/BlogMDXContent';
 
 type Props = {
@@ -114,35 +114,32 @@ export default async function BlogPostPage({ params }: Props) {
             {post.title}
           </h1>
 
-          {/* Tags */}
-          {post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-6">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-krds-primary-base/8 text-krds-primary-base"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
           {/* Author & Date */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-krds-primary-base flex items-center justify-center text-white text-sm font-bold">
-              H
-            </div>
+          <div className="flex items-center gap-3 mb-6">
             <div className="flex items-center gap-2 text-sm">
               <span className="font-semibold text-krds-gray-95">HANUI</span>
               <span className="text-krds-gray-30">·</span>
               <time className="text-krds-gray-50">{formatDate(post.date)}</time>
             </div>
           </div>
+
+          {/* Tags */}
+          {post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-12">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-krds-gray-5 text-krds-primary-base"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </header>
 
         {/* Separator */}
-        <div className="w-16 h-1 bg-krds-primary-base rounded mb-12" />
+        {/* <div className="w-16 h-1 bg-krds-primary-base rounded" /> */}
 
         {/* Content — HANUI Code component for code blocks */}
         <BlogMDXContent>
@@ -150,13 +147,13 @@ export default async function BlogPostPage({ params }: Props) {
         </BlogMDXContent>
 
         {/* Author Card */}
-        <div className="mt-16 p-6 bg-krds-gray-5/50 rounded-2xl flex items-center gap-4">
+        <div className="mt-12 p-6 bg-krds-gray-5/50 rounded-2xl flex items-center gap-4">
           <div className="w-14 h-14 rounded-full bg-krds-primary-base flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
             H
           </div>
           <div>
             <p className="font-bold text-krds-gray-95 mb-1">HANUI</p>
-            <p className="text-sm text-krds-gray-50 leading-relaxed">
+            <p className="text-sm text-krds-gray-50 leading-relaxed mb-2">
               KRDS 기반 React 컴포넌트 라이브러리. 공공 웹 개발을 더 쉽게.
             </p>
           </div>

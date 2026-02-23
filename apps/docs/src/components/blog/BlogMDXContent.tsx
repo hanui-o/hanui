@@ -103,7 +103,7 @@ export function BlogMDXContent({ children }: { children: ReactNode }) {
         'prose-img:rounded-lg prose-img:shadow-sm prose-img:mx-auto',
         // Reset prose code/pre styles (HANUI Code handles it)
         'prose-code:bg-transparent prose-code:p-0 prose-code:text-inherit prose-code:font-inherit prose-code:before:content-none prose-code:after:content-none',
-        'prose-pre:bg-transparent prose-pre:p-0 prose-pre:my-6',
+        'prose-pre:bg-transparent prose-pre:p-0 prose-pre:my-0',
       ].join(' ')}
     >
       {replaceComponents(children)}

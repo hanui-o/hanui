@@ -68,7 +68,9 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
       // Block variant (Syntax highlighting 적용)
       if (!html) {
         return (
-          <div className={cn('relative group bg-[#24292e]', className)}>
+          <div
+            className={cn('relative group bg-[#24292e] rounded-md', className)}
+          >
             <div className="overflow-x-auto rounded-lg bg-krds-gray-90 p-5">
               <div className="animate-pulse">
                 <div className="h-4 bg-krds-gray-70 rounded w-3/4 mb-2"></div>
@@ -80,7 +82,9 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>( // KRDS 코드 컴
       }
 
       return (
-        <div className={cn('relative group bg-[#24292e]', className)}>
+        <div
+          className={cn('relative group bg-[#24292e] rounded-md', className)}
+        >
           {fileName && (
             <div className="flex items-center gap-2 px-4 py-2 bg-krds-gray-90 border-b border-krds-gray-70 rounded-t-lg">
               <File className="w-3.5 h-3.5 text-krds-gray-40" />
