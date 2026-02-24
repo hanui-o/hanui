@@ -7,13 +7,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
-      // www → non-www
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.hanui.io' }],
-        destination: 'https://hanui.io/:path*',
-        permanent: true,
-      },
+      // www → non-www 리다이렉트는 Vercel 도메인 설정에서 처리
+      // (next.config에서 하면 Vercel 자체 리다이렉트와 충돌하여 무한 루프 발생)
+
       // 이전 경로 → 현재 경로
       {
         source: '/design-system/typography',
