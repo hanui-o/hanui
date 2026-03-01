@@ -148,8 +148,34 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Author Card */}
         <div className="mt-12 p-6 bg-krds-gray-5/50 rounded-2xl flex items-center gap-4">
-          <div className="w-14 h-14 rounded-full bg-krds-primary-base flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
-            H
+          <div className="w-14 h-14 rounded-full bg-krds-gray-5 flex items-center justify-center text-krds-gray-90 flex-shrink-0">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="1"
+                y="1"
+                width="22"
+                height="22"
+                rx="4"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <rect
+                x="5"
+                y="5"
+                width="6"
+                height="6"
+                className="fill-[var(--krds-primary-base)]"
+              />
+              <rect x="13" y="5" width="6" height="6" fill="currentColor" />
+              <rect x="5" y="13" width="6" height="6" fill="currentColor" />
+              <rect x="13" y="13" width="6" height="6" fill="currentColor" />
+            </svg>
           </div>
           <div>
             <p className="font-bold text-krds-gray-95 mb-1">HANUI</p>

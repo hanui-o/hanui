@@ -37,7 +37,11 @@ function PreBlock({ children }: { children?: ReactNode }) {
       const text = extractText(child.props.children).replace(/\n$/, '');
 
       return (
-        <Code variant="block" language={language} showLineNumbers={false}>
+        <Code
+          variant="block"
+          language={language || 'text'}
+          showLineNumbers={false}
+        >
           {text}
         </Code>
       );
@@ -102,8 +106,9 @@ export function BlogMDXContent({ children }: { children: ReactNode }) {
         // img
         'prose-img:rounded-lg prose-img:shadow-sm prose-img:mx-auto',
         // Reset prose code/pre styles (HANUI Code handles it)
-        'prose-code:bg-transparent prose-code:p-0 prose-code:text-inherit prose-code:font-inherit prose-code:before:content-none prose-code:after:content-none',
+        'prose-code:text-inherit prose-code:font-inherit prose-code:before:content-none prose-code:after:content-none',
         'prose-pre:bg-transparent prose-pre:p-0 prose-pre:my-0',
+        '[&_.github-dark]:p-4',
       ].join(' ')}
     >
       {replaceComponents(children)}
