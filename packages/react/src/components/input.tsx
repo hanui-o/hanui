@@ -230,8 +230,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>( // KRDS 입
       return ''; // success/info는 helper text 색상만 영향
     };
 
-    if (leftAddon || finalRightAddon) {
-      // addon이 있으면 컨테이너로 감싸기
+    if (leftAddon || finalRightAddon || isClearable || type === 'password') {
+      // addon이 있거나 동적으로 생길 수 있으면 항상 컨테이너 사용 (DOM 구조 변경으로 인한 포커스 유실 방지)
       return (
         <div className={cn('relative flex items-center', className)}>
           {leftAddon && (
