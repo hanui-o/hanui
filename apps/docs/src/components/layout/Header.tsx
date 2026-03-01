@@ -79,14 +79,14 @@ export function Header() {
         pathname?.startsWith('/layout'),
     },
     {
+      label: 'Blocks',
+      href: '/blocks',
+      isActive: pathname?.startsWith('/blocks'),
+    },
+    {
       label: 'Kits',
       href: '/kits',
       isActive: pathname?.startsWith('/kits'),
-    },
-    {
-      label: 'Community',
-      href: '/community',
-      isActive: pathname?.startsWith('/community'),
     },
     {
       label: 'Blog',

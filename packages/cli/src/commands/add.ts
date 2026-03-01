@@ -312,6 +312,13 @@ export const add = new Command()
             `from '${componentsAlias}/$1'`
           );
 
+          // Transform parent-directory component imports (for blocks in subdirectories)
+          // e.g., from '../button' -> from '@/components/hanui/button'
+          content = content.replace(
+            /from ['"]\.\.\/([a-z][a-z0-9-]*)['"]/g,
+            `from '${componentsAlias}/$1'`
+          );
+
           // Write file
           await fs.writeFile(targetPath, content, 'utf-8');
         }

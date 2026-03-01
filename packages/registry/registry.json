@@ -1153,5 +1153,247 @@
       },
       { "path": "kits/settings/index.ts", "type": "lib" }
     ]
+  },
+  "login-form": {
+    "name": "login-form",
+    "type": "block",
+    "description": "로그인 폼 블록 (아이디, 비밀번호, 아이디 저장, 자동 로그인)",
+    "dependencies": [],
+    "registryDependencies": [
+      "card",
+      "input",
+      "button",
+      "checkbox",
+      "label",
+      "link",
+      "body"
+    ],
+    "files": [
+      { "path": "components/blocks/login-form.tsx", "type": "component" }
+    ]
+  },
+  "signup-form": {
+    "name": "signup-form",
+    "type": "block",
+    "description": "회원가입 폼 블록 (이름, 이메일, 비밀번호, 약관동의, SNS 로그인, 스텝 방식)",
+    "dependencies": [],
+    "registryDependencies": [
+      "card",
+      "input",
+      "button",
+      "checkbox",
+      "label",
+      "link",
+      "body",
+      "progress",
+      "step-indicator"
+    ],
+    "files": [
+      { "path": "components/blocks/signup-form.tsx", "type": "component" }
+    ]
+  },
+  "forgot-password": {
+    "name": "forgot-password",
+    "type": "block",
+    "description": "계정 찾기 블록 (아이디 찾기 + 비밀번호 찾기 탭)",
+    "dependencies": [],
+    "registryDependencies": [
+      "card",
+      "input",
+      "button",
+      "label",
+      "link",
+      "tabs"
+    ],
+    "files": [
+      { "path": "components/blocks/forgot-password.tsx", "type": "component" }
+    ]
+  },
+  "otp-verify": {
+    "name": "otp-verify",
+    "type": "block",
+    "description": "OTP/인증번호 입력 블록 (6자리 인증번호)",
+    "dependencies": [],
+    "registryDependencies": ["card", "input", "button", "body"],
+    "files": [
+      { "path": "components/blocks/otp-verify.tsx", "type": "component" }
+    ]
+  },
+  "payment-card": {
+    "name": "payment-card",
+    "type": "block",
+    "description": "카드 결제 폼 블록 (카드번호, 유효기간, CVV)",
+    "dependencies": [],
+    "registryDependencies": ["card", "input", "button", "label", "body"],
+    "files": [
+      { "path": "components/blocks/payment-card.tsx", "type": "component" }
+    ]
+  },
+  "billing-address": {
+    "name": "billing-address",
+    "type": "block",
+    "description": "배송지/청구지 주소 입력 블록",
+    "dependencies": [],
+    "registryDependencies": [
+      "card",
+      "input",
+      "button",
+      "label",
+      "checkbox",
+      "select"
+    ],
+    "files": [
+      { "path": "components/blocks/billing-address.tsx", "type": "component" }
+    ]
+  },
+  "contact-form": {
+    "name": "contact-form",
+    "type": "block",
+    "description": "문의 폼 블록 (이름, 이메일, 제목, 내용)",
+    "dependencies": [],
+    "registryDependencies": ["card", "input", "textarea", "button", "label"],
+    "files": [
+      { "path": "components/blocks/contact-form.tsx", "type": "component" }
+    ]
+  },
+  "profile-card": {
+    "name": "profile-card",
+    "type": "block",
+    "description": "프로필 카드 블록 (아바타, 이름, 역할, 연락처)",
+    "dependencies": [],
+    "registryDependencies": ["card", "badge", "button", "body"],
+    "files": [
+      { "path": "components/blocks/profile-card.tsx", "type": "component" }
+    ]
+  },
+  "settings-section": {
+    "name": "settings-section",
+    "type": "block",
+    "description": "설정 패널 블록 (토글 스위치 목록)",
+    "dependencies": [],
+    "registryDependencies": ["card", "switch", "label", "body"],
+    "files": [
+      { "path": "components/blocks/settings-section.tsx", "type": "component" }
+    ]
+  },
+  "notification-settings": {
+    "name": "notification-settings",
+    "type": "block",
+    "description": "알림 설정 블록 (이메일/SMS/푸시 토글)",
+    "dependencies": [],
+    "registryDependencies": ["card", "switch", "label", "body"],
+    "files": [
+      {
+        "path": "components/blocks/notification-settings.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "stats-card": {
+    "name": "stats-card",
+    "type": "block",
+    "description": "통계 카드 그리드 블록 (숫자, 변화율)",
+    "dependencies": [],
+    "registryDependencies": ["card", "badge", "body"],
+    "files": [
+      { "path": "components/blocks/stats-card.tsx", "type": "component" }
+    ]
+  },
+  "team-members": {
+    "name": "team-members",
+    "type": "block",
+    "description": "팀원 목록/초대 블록",
+    "dependencies": [],
+    "registryDependencies": ["card", "button", "badge", "body"],
+    "files": [
+      { "path": "components/blocks/team-members.tsx", "type": "component" }
+    ]
+  },
+  "pricing-table": {
+    "name": "pricing-table",
+    "type": "block",
+    "description": "가격표 블록 (플랜 비교)",
+    "dependencies": [],
+    "registryDependencies": ["card", "button", "badge", "body", "list"],
+    "files": [
+      { "path": "components/blocks/pricing-table.tsx", "type": "component" }
+    ]
+  },
+  "search-bar": {
+    "name": "search-bar",
+    "type": "block",
+    "description": "검색 바 + 필터 블록",
+    "dependencies": [],
+    "registryDependencies": ["input", "button", "select"],
+    "files": [
+      { "path": "components/blocks/search-bar.tsx", "type": "component" }
+    ]
+  },
+  "empty-state": {
+    "name": "empty-state",
+    "type": "block",
+    "description": "빈 상태 블록 (아이콘 + 메시지 + CTA)",
+    "dependencies": [],
+    "registryDependencies": ["card", "button", "body"],
+    "files": [
+      { "path": "components/blocks/empty-state.tsx", "type": "component" }
+    ]
+  },
+  "error-page": {
+    "name": "error-page",
+    "type": "block",
+    "description": "에러 페이지 블록 (404, 500, 403)",
+    "dependencies": [],
+    "registryDependencies": ["button", "body", "display"],
+    "files": [
+      { "path": "components/blocks/error-page.tsx", "type": "component" }
+    ]
+  },
+  "gov-login": {
+    "name": "gov-login",
+    "type": "block",
+    "description": "정부24 스타일 로그인 블록 (아이디/간편인증/공동인증서)",
+    "dependencies": [],
+    "registryDependencies": [
+      "card",
+      "button",
+      "tabs",
+      "input",
+      "label",
+      "checkbox",
+      "body"
+    ],
+    "files": [
+      { "path": "components/blocks/gov-login.tsx", "type": "component" }
+    ]
+  },
+  "application-form": {
+    "name": "application-form",
+    "type": "block",
+    "description": "민원신청 폼 블록 (신청인 정보 + 첨부파일)",
+    "dependencies": [],
+    "registryDependencies": [
+      "card",
+      "input",
+      "button",
+      "label",
+      "select",
+      "textarea",
+      "file-upload",
+      "body"
+    ],
+    "files": [
+      { "path": "components/blocks/application-form.tsx", "type": "component" }
+    ]
+  },
+  "service-card-grid": {
+    "name": "service-card-grid",
+    "type": "block",
+    "description": "서비스 카드 그리드 블록 (정부24 스타일)",
+    "dependencies": [],
+    "registryDependencies": ["card", "badge", "body"],
+    "files": [
+      { "path": "components/blocks/service-card-grid.tsx", "type": "component" }
+    ]
   }
 }

@@ -116,6 +116,86 @@ const componentsNavigation = [
   },
 ];
 
+const blocksNavigation = [
+  {
+    title: 'Blocks',
+    items: [{ title: 'Overview', href: '/blocks' }],
+  },
+  {
+    title: '인증',
+    items: [
+      { title: 'Login Form', href: '/blocks/login-form', isNew: true },
+      { title: 'Signup Form', href: '/blocks/signup-form', isNew: true },
+      {
+        title: 'Account Recovery',
+        href: '/blocks/account-recovery',
+        isNew: true,
+      },
+      { title: 'OTP Verify', href: '/blocks/otp-verify', isNew: true },
+    ],
+  },
+  {
+    title: '결제 / 폼',
+    items: [
+      { title: 'Payment Card', href: '/blocks/payment-card', isNew: true },
+      {
+        title: 'Billing Address',
+        href: '/blocks/billing-address',
+        isNew: true,
+      },
+      { title: 'Contact Form', href: '/blocks/contact-form', isNew: true },
+    ],
+  },
+  {
+    title: '설정 / 프로필',
+    items: [
+      { title: 'Profile Card', href: '/blocks/profile-card', isNew: true },
+      {
+        title: 'Settings Section',
+        href: '/blocks/settings-section',
+        isNew: true,
+      },
+      {
+        title: 'Notification Settings',
+        href: '/blocks/notification-settings',
+        isNew: true,
+      },
+    ],
+  },
+  {
+    title: '데이터 / 정보',
+    items: [
+      { title: 'Stats Card', href: '/blocks/stats-card', isNew: true },
+      { title: 'Team Members', href: '/blocks/team-members', isNew: true },
+      { title: 'Pricing Table', href: '/blocks/pricing-table', isNew: true },
+    ],
+  },
+  {
+    title: '검색 / 네비게이션',
+    items: [
+      { title: 'Search Bar', href: '/blocks/search-bar', isNew: true },
+      { title: 'Empty State', href: '/blocks/empty-state', isNew: true },
+      { title: 'Error Page', href: '/blocks/error-page', isNew: true },
+    ],
+  },
+  {
+    title: '공공기관 특화',
+    items: [
+      { title: 'Gov Login', href: '/blocks/gov-login', isNew: true },
+      {
+        title: 'Application Form',
+        href: '/blocks/application-form',
+        isNew: true,
+      },
+      {
+        title: 'Service Card Grid',
+        href: '/blocks/service-card-grid',
+        isNew: true,
+      },
+    ],
+  },
+];
+
 const templatesNavigation = [
   {
     title: 'Templates',
@@ -223,6 +303,8 @@ export function Sidebar() {
       return designSystemNavigation;
     } else if (pathname?.startsWith('/components')) {
       return componentsNavigation;
+    } else if (pathname?.startsWith('/blocks')) {
+      return blocksNavigation;
     } else if (pathname?.startsWith('/templates')) {
       return templatesNavigation;
     } else if (pathname?.startsWith('/kits')) {

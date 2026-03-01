@@ -537,3 +537,82 @@ export type { CalendarProps } from './components/calendar';
 
 export { SectionHeading } from './components/section-header';
 export type { SectionHeadingProps } from './components/section-header';
+
+// Blocks
+export { LoginForm } from './components/blocks/login-form';
+export type { LoginFormProps } from './components/blocks/login-form';
+
+export { SignupForm } from './components/blocks/signup-form';
+export type {
+  SignupFormProps,
+  SnsProvider,
+} from './components/blocks/signup-form';
+
+export {
+  AccountRecovery,
+  ForgotPassword,
+} from './components/blocks/forgot-password';
+export type { AccountRecoveryProps } from './components/blocks/forgot-password';
+
+export { OtpVerify } from './components/blocks/otp-verify';
+export type { OtpVerifyProps } from './components/blocks/otp-verify';
+
+export { PaymentCard } from './components/blocks/payment-card';
+export type { PaymentCardProps } from './components/blocks/payment-card';
+
+export { BillingAddress } from './components/blocks/billing-address';
+export type { BillingAddressProps } from './components/blocks/billing-address';
+
+export { ContactForm } from './components/blocks/contact-form';
+export type { ContactFormProps } from './components/blocks/contact-form';
+
+export { ProfileCard } from './components/blocks/profile-card';
+export type { ProfileCardProps } from './components/blocks/profile-card';
+
+export { SettingsSection } from './components/blocks/settings-section';
+export type {
+  SettingsSectionProps,
+  SettingItem,
+} from './components/blocks/settings-section';
+
+export { NotificationSettings } from './components/blocks/notification-settings';
+export type {
+  NotificationSettingsProps,
+  NotificationChannel,
+} from './components/blocks/notification-settings';
+
+export { StatsCard } from './components/blocks/stats-card';
+export type { StatsCardProps, StatItem } from './components/blocks/stats-card';
+
+export { TeamMembers } from './components/blocks/team-members';
+export type {
+  TeamMembersProps,
+  TeamMember,
+} from './components/blocks/team-members';
+
+export { PricingTable } from './components/blocks/pricing-table';
+export type {
+  PricingTableProps,
+  PricingPlan,
+} from './components/blocks/pricing-table';
+
+export { SearchBar } from './components/blocks/search-bar';
+export type { SearchBarProps } from './components/blocks/search-bar';
+
+export { EmptyState } from './components/blocks/empty-state';
+export type { EmptyStateProps } from './components/blocks/empty-state';
+
+export { ErrorPage } from './components/blocks/error-page';
+export type { ErrorPageProps } from './components/blocks/error-page';
+
+export { GovLogin } from './components/blocks/gov-login';
+export type { GovLoginProps } from './components/blocks/gov-login';
+
+export { ApplicationForm } from './components/blocks/application-form';
+export type { ApplicationFormProps } from './components/blocks/application-form';
+
+export { ServiceCardGrid } from './components/blocks/service-card-grid';
+export type {
+  ServiceCardGridProps,
+  ServiceCardItem,
+} from './components/blocks/service-card-grid';
