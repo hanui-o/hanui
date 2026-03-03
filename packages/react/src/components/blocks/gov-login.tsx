@@ -121,7 +121,12 @@ export function GovLogin({
                 onCheckedChange={(checked) => setRememberMe(checked === true)}
               />
 
-              <Button type="submit" variant="primary" className="w-full">
+              <Button
+                type="submit"
+                variant="primary"
+                className="w-full"
+                disabled={!username || !password}
+              >
                 로그인
               </Button>
             </form>

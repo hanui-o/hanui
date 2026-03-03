@@ -185,7 +185,14 @@ export function ApplicationForm({
             />
           </div>
 
-          <Button type="submit" variant="primary" className="w-full">
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-full"
+            disabled={
+              !name || phone.length < 13 || !applicationType || !content
+            }
+          >
             민원 신청
           </Button>
         </form>

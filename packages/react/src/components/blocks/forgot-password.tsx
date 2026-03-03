@@ -100,7 +100,12 @@ function FindIdForm({
         />
       </div>
 
-      <Button type="submit" variant="primary" className="w-full">
+      <Button
+        type="submit"
+        variant="primary"
+        className="w-full"
+        disabled={!name || phone.length < 13}
+      >
         아이디 찾기
       </Button>
     </form>
@@ -138,7 +143,12 @@ function ResetPasswordForm({
         />
       </div>
 
-      <Button type="submit" variant="primary" className="w-full">
+      <Button
+        type="submit"
+        variant="primary"
+        className="w-full"
+        disabled={!email}
+      >
         재설정 링크 보내기
       </Button>
     </form>

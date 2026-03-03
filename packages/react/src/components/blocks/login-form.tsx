@@ -115,7 +115,12 @@ export function LoginForm({
             </div>
           </div>
 
-          <Button type="submit" variant="primary" className="w-full">
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-full"
+            disabled={!username || !password}
+          >
             로그인
           </Button>
         </form>

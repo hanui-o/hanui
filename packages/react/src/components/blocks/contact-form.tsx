@@ -106,7 +106,12 @@ export function ContactForm({
             />
           </div>
 
-          <Button type="submit" variant="primary" className="w-full">
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-full"
+            disabled={!name || !email || !subject || !message}
+          >
             문의 보내기
           </Button>
         </form>

@@ -453,6 +453,15 @@ function DefaultForm({
   privacyHref: string;
   handleSubmit: (e: React.FormEvent) => void;
 }) {
+  const isComplete =
+    name &&
+    email &&
+    password &&
+    passwordConfirm &&
+    password === passwordConfirm &&
+    agreeTerms &&
+    agreePrivacy;
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
@@ -501,7 +510,12 @@ function DefaultForm({
         idPrefix="signup"
       />
 
-      <Button type="submit" variant="primary" className="w-full">
+      <Button
+        type="submit"
+        variant="primary"
+        className="w-full"
+        disabled={!isComplete}
+      >
         회원가입
       </Button>
     </form>
@@ -606,7 +620,12 @@ function SteppedForm({
             />
           </div>
 
-          <Button type="submit" variant="primary" className="w-full">
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-full"
+            disabled={!name || !email}
+          >
             다음
           </Button>
         </form>
@@ -632,7 +651,14 @@ function SteppedForm({
             >
               이전
             </Button>
-            <Button type="submit" variant="primary" className="flex-1">
+            <Button
+              type="submit"
+              variant="primary"
+              className="flex-1"
+              disabled={
+                !password || !passwordConfirm || password !== passwordConfirm
+              }
+            >
               다음
             </Button>
           </div>
@@ -661,7 +687,12 @@ function SteppedForm({
             >
               이전
             </Button>
-            <Button type="submit" variant="primary" className="flex-1">
+            <Button
+              type="submit"
+              variant="primary"
+              className="flex-1"
+              disabled={!agreeTerms || !agreePrivacy}
+            >
               회원가입
             </Button>
           </div>
