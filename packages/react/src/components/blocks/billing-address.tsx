@@ -12,40 +12,51 @@ import { Input } from '../input';
 import { Button } from '../button';
 import { Label } from '../label';
 import { Checkbox } from '../checkbox';
-import { Select } from '../select';
 import { cn } from '@/lib/utils';
 
-const regionOptions = [
-  { label: '서울특별시', value: 'seoul' },
-  { label: '부산광역시', value: 'busan' },
-  { label: '대구광역시', value: 'daegu' },
-  { label: '인천광역시', value: 'incheon' },
-  { label: '광주광역시', value: 'gwangju' },
-  { label: '대전광역시', value: 'daejeon' },
-  { label: '울산광역시', value: 'ulsan' },
-  { label: '세종특별자치시', value: 'sejong' },
-  { label: '경기도', value: 'gyeonggi' },
-  { label: '강원도', value: 'gangwon' },
-  { label: '충청북도', value: 'chungbuk' },
-  { label: '충청남도', value: 'chungnam' },
-  { label: '전라북도', value: 'jeonbuk' },
-  { label: '전라남도', value: 'jeonnam' },
-  { label: '경상북도', value: 'gyeongbuk' },
-  { label: '경상남도', value: 'gyeongnam' },
-  { label: '제주특별자치도', value: 'jeju' },
-];
+export interface BillingAddressData {
+  name: string;
+  phone: string;
+  zipCode: string;
+  address: string;
+  addressDetail: string;
+  saveAsDefault: boolean;
+}
+
+export interface AddressSearchResult {
+  zipCode: string;
+  address: string;
+}
+
+/** 다음 우편번호 API 기본 검색 */
+function openDaumPostcode(): Promise<AddressSearchResult | null> {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src =
+      'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+    script.onload = () => {
+      new (window as any).daum.Postcode({
+        oncomplete: (data: any) => {
+          resolve({
+            zipCode: data.zonecode,
+            address: data.roadAddress || data.jibunAddress,
+          });
+        },
+        onclose: () => {
+          resolve(null);
+        },
+      }).open();
+    };
+    script.onerror = () => resolve(null);
+    document.head.appendChild(script);
+  });
+}
 
 export interface BillingAddressProps {
   /** 폼 제출 핸들러 */
-  onSubmit?: (data: {
-    name: string;
-    phone: string;
-    zipCode: string;
-    region: string;
-    address: string;
-    addressDetail: string;
-    saveAsDefault: boolean;
-  }) => void;
+  onSubmit?: (data: BillingAddressData) => void;
+  /** 주소 검색 핸들러 (기본: 다음 우편번호 API) */
+  onAddressSearch?: () => Promise<AddressSearchResult | null>;
   /** 추가 className */
   className?: string;
   /** 카드 제목 */
@@ -54,22 +65,28 @@ export interface BillingAddressProps {
   description?: string;
   /** 기본 배송지 저장 체크박스 표시 */
   showSaveDefault?: boolean;
+  /** 로딩 상태 */
+  loading?: boolean;
 }
 
 export function BillingAddress({
   onSubmit,
+  onAddressSearch,
   className,
   title = '배송지 정보',
   description = '상품을 받으실 주소를 입력해주세요.',
   showSaveDefault = true,
+  loading = false,
 }: BillingAddressProps) {
   const [name, setName] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [zipCode, setZipCode] = React.useState('');
-  const [region, setRegion] = React.useState('');
   const [address, setAddress] = React.useState('');
   const [addressDetail, setAddressDetail] = React.useState('');
   const [saveAsDefault, setSaveAsDefault] = React.useState(false);
+  const [searching, setSearching] = React.useState(false);
+
+  const detailRef = React.useRef<HTMLInputElement>(null);
 
   const formatPhone = (value: string) => {
     const digits = value.replace(/\D/g, '').slice(0, 11);
@@ -78,13 +95,32 @@ export function BillingAddress({
     return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
   };
 
+  const searchFn = onAddressSearch ?? openDaumPostcode;
+
+  const handleAddressSearch = async () => {
+    setSearching(true);
+    try {
+      const result = await searchFn();
+      if (result) {
+        setZipCode(result.zipCode);
+        setAddress(result.address);
+        detailRef.current?.focus();
+      }
+    } finally {
+      setSearching(false);
+    }
+  };
+
+  const isComplete =
+    !!name && phone.length >= 13 && zipCode.length === 5 && !!address;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isComplete || loading) return;
     onSubmit?.({
       name,
       phone,
       zipCode,
-      region,
       address,
       addressDetail,
       saveAsDefault,
@@ -111,6 +147,7 @@ export function BillingAddress({
                 onChange={(e) => setName(e.target.value)}
                 clearable
                 autoComplete="name"
+                disabled={loading}
               />
             </div>
             <div className="flex-1 space-y-2">
@@ -122,34 +159,32 @@ export function BillingAddress({
                 value={phone}
                 onChange={(e) => setPhone(formatPhone(e.target.value))}
                 autoComplete="tel"
+                disabled={loading}
               />
             </div>
           </div>
 
-          <div className="flex gap-4">
-            <div className="w-1/3 space-y-2">
+          <div className="flex gap-4 items-end">
+            <div className="flex-1 space-y-2">
               <Label htmlFor="billing-zipcode">우편번호</Label>
               <Input
                 id="billing-zipcode"
                 type="text"
-                inputMode="numeric"
                 placeholder="00000"
                 value={zipCode}
-                onChange={(e) =>
-                  setZipCode(e.target.value.replace(/\D/g, '').slice(0, 5))
-                }
+                readOnly
                 autoComplete="postal-code"
               />
             </div>
-            <div className="flex-1 space-y-2">
-              <Label htmlFor="billing-region">시/도</Label>
-              <Select
-                options={regionOptions}
-                value={region}
-                onChange={(value) => setRegion(value)}
-                placeholder="시/도 선택"
-              />
-            </div>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleAddressSearch}
+              disabled={searching || loading}
+              loading={searching}
+            >
+              주소 검색
+            </Button>
           </div>
 
           <div className="space-y-2">
@@ -157,9 +192,9 @@ export function BillingAddress({
             <Input
               id="billing-address"
               type="text"
-              placeholder="도로명 주소"
+              placeholder="주소 검색을 이용해주세요"
               value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              readOnly
               autoComplete="street-address"
             />
           </div>
@@ -167,12 +202,14 @@ export function BillingAddress({
           <div className="space-y-2">
             <Label htmlFor="billing-address-detail">상세주소</Label>
             <Input
+              ref={detailRef}
               id="billing-address-detail"
               type="text"
-              placeholder="상세주소 입력"
+              placeholder="상세주소 입력 (동/호수)"
               value={addressDetail}
               onChange={(e) => setAddressDetail(e.target.value)}
               clearable
+              disabled={loading}
             />
           </div>
 
@@ -186,7 +223,13 @@ export function BillingAddress({
             />
           )}
 
-          <Button type="submit" variant="primary" className="w-full">
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-full"
+            disabled={!isComplete || loading}
+            loading={loading}
+          >
             저장
           </Button>
         </form>
