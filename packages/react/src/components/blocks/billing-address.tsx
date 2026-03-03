@@ -28,27 +28,75 @@ export interface AddressSearchResult {
   address: string;
 }
 
-/** 다음 우편번호 API 기본 검색 */
+/** 다음 우편번호 API 기본 검색 (페이지 내 오버레이) */
 function openDaumPostcode(): Promise<AddressSearchResult | null> {
   return new Promise((resolve) => {
-    const script = document.createElement('script');
-    script.src =
-      'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
-    script.onload = () => {
+    const overlay = document.createElement('div');
+    Object.assign(overlay.style, {
+      position: 'fixed',
+      inset: '0',
+      zIndex: '9999',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'rgba(0,0,0,0.5)',
+    });
+
+    const wrap = document.createElement('div');
+    Object.assign(wrap.style, {
+      width: '100%',
+      maxWidth: '500px',
+      height: '600px',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      background: '#fff',
+    });
+    overlay.appendChild(wrap);
+
+    const cleanup = () => {
+      overlay.remove();
+    };
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        cleanup();
+        resolve(null);
+      }
+    });
+
+    document.body.appendChild(overlay);
+
+    const loadAndEmbed = () => {
       new (window as any).daum.Postcode({
         oncomplete: (data: any) => {
+          cleanup();
           resolve({
             zipCode: data.zonecode,
             address: data.roadAddress || data.jibunAddress,
           });
         },
         onclose: () => {
+          cleanup();
           resolve(null);
         },
-      }).open();
+        width: '100%',
+        height: '100%',
+      }).embed(wrap);
     };
-    script.onerror = () => resolve(null);
-    document.head.appendChild(script);
+
+    if ((window as any).daum?.Postcode) {
+      loadAndEmbed();
+    } else {
+      const script = document.createElement('script');
+      script.src =
+        'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+      script.onload = loadAndEmbed;
+      script.onerror = () => {
+        cleanup();
+        resolve(null);
+      };
+      document.head.appendChild(script);
+    }
   });
 }
 
