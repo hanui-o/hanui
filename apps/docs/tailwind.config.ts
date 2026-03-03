@@ -34,6 +34,11 @@ const config: Config = {
     'text-krds-display-md',
     'text-krds-display-lg',
     'text-krds-display-xl',
+    // Semantic color classes (danger/warning/success/info)
+    {
+      pattern:
+        /^(text|bg|border)-krds-(danger|warning|success|info)-(5|10|20|30|40|50|60|70|80|90|95|base|surface|border|text|icon)$/,
+    },
   ],
   darkMode: 'class',
   theme: {
