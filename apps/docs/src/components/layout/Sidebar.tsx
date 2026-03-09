@@ -44,6 +44,7 @@ const componentsNavigation = [
     items: [
       { title: 'Overview', href: '/components' },
       { title: 'Accordion', href: '/components/accordion' },
+      { title: 'Admin Layout', href: '/components/admin-layout', isNew: true },
       { title: 'Alert', href: '/components/alert' },
       { title: 'AlertDialog', href: '/components/alert-dialog' },
       { title: 'AspectRatio', href: '/components/aspect-ratio' },
@@ -192,6 +193,28 @@ const blocksNavigation = [
         href: '/blocks/service-card-grid',
         isNew: true,
       },
+    ],
+  },
+  {
+    title: 'CMS 관리',
+    items: [
+      { title: 'Site Settings', href: '/blocks/site-settings', isNew: true },
+      {
+        title: 'User Management',
+        href: '/blocks/user-management',
+        isNew: true,
+      },
+      {
+        title: 'Board Management',
+        href: '/blocks/board-management',
+        isNew: true,
+      },
+      {
+        title: 'Media Gallery',
+        href: '/blocks/media-gallery',
+        isNew: true,
+      },
+      { title: 'Trash List', href: '/blocks/trash-list', isNew: true },
     ],
   },
 ];

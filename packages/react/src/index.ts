@@ -303,6 +303,17 @@ export type {
 export { TabBars } from './components/tab-bars';
 export type { TabBarsProps, TabBarItem } from './components/tab-bars';
 
+export {
+  AdminLayout,
+  ADMIN_CMS_MENU,
+  sidebarVariants,
+} from './components/admin-layout';
+export type {
+  AdminLayoutProps,
+  AdminMenuItem,
+  AdminUser,
+} from './components/admin-layout';
+
 // Utils
 export { cn } from './lib/utils';
 
@@ -616,3 +627,39 @@ export type {
   ServiceCardGridProps,
   ServiceCardItem,
 } from './components/blocks/service-card-grid';
+
+export { SiteSettings } from './components/blocks/site-settings';
+export type {
+  SiteSettingsProps,
+  SiteSettingsData,
+} from './components/blocks/site-settings';
+
+export { UserManagement } from './components/blocks/user-management';
+export type {
+  UserManagementProps,
+  AdminUserData,
+  UserFormData,
+  UserRole,
+} from './components/blocks/user-management';
+
+export { TrashList } from './components/blocks/trash-list';
+export type {
+  TrashListProps,
+  TrashItemData,
+  TrashItemType,
+} from './components/blocks/trash-list';
+
+export { MediaGallery } from './components/blocks/media-gallery';
+export type {
+  MediaGalleryProps,
+  MediaFileData,
+  MediaFileType,
+} from './components/blocks/media-gallery';
+
+export { BoardManagement } from './components/blocks/board-management';
+export type {
+  BoardManagementProps,
+  BoardData,
+  PostData,
+  PostStatus,
+} from './components/blocks/board-management';

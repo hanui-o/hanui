@@ -1395,5 +1395,78 @@
     "files": [
       { "path": "components/blocks/service-card-grid.tsx", "type": "component" }
     ]
+  },
+  "admin-layout": {
+    "name": "admin-layout",
+    "type": "ui",
+    "description": "CMS 어드민 레이아웃 (사이드바 + 상단바 + 메인 콘텐츠)",
+    "dependencies": ["class-variance-authority", "lucide-react"],
+    "registryDependencies": [],
+    "files": [{ "path": "components/admin-layout.tsx", "type": "component" }]
+  },
+  "site-settings": {
+    "name": "site-settings",
+    "type": "block",
+    "description": "사이트 설정 폼 블록 (기관명, 로고, 주소, 전화번호, 이메일, 저작권)",
+    "dependencies": [],
+    "registryDependencies": ["card", "input", "textarea", "button", "label"],
+    "files": [
+      { "path": "components/blocks/site-settings.tsx", "type": "component" }
+    ]
+  },
+  "user-management": {
+    "name": "user-management",
+    "type": "block",
+    "description": "사용자 관리 블록 (계정 목록 + 추가/수정 모달)",
+    "dependencies": ["lucide-react"],
+    "registryDependencies": [
+      "card",
+      "input",
+      "button",
+      "badge",
+      "label",
+      "select",
+      "modal"
+    ],
+    "files": [
+      { "path": "components/blocks/user-management.tsx", "type": "component" }
+    ]
+  },
+  "trash-list": {
+    "name": "trash-list",
+    "type": "block",
+    "description": "휴지통 블록 (삭제 항목 복구/영구삭제, 일괄 작업)",
+    "dependencies": ["lucide-react"],
+    "registryDependencies": ["card", "button", "badge", "select", "checkbox"],
+    "files": [
+      { "path": "components/blocks/trash-list.tsx", "type": "component" }
+    ]
+  },
+  "media-gallery": {
+    "name": "media-gallery",
+    "type": "block",
+    "description": "미디어 갤러리 블록 (그리드/리스트 뷰, 업로드, 상세보기)",
+    "dependencies": ["lucide-react"],
+    "registryDependencies": ["card", "button", "badge", "input", "modal"],
+    "files": [
+      { "path": "components/blocks/media-gallery.tsx", "type": "component" }
+    ]
+  },
+  "board-management": {
+    "name": "board-management",
+    "type": "block",
+    "description": "게시판 관리 블록 (탭, 상태 필터, 일괄 작업, 고정/수정/삭제)",
+    "dependencies": ["lucide-react"],
+    "registryDependencies": [
+      "card",
+      "button",
+      "badge",
+      "select",
+      "checkbox",
+      "tabs"
+    ],
+    "files": [
+      { "path": "components/blocks/board-management.tsx", "type": "component" }
+    ]
   }
 }
