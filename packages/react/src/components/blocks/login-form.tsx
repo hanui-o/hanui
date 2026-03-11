@@ -39,6 +39,11 @@ export interface LoginFormProps {
   forgotPasswordHref?: string;
   /** 회원가입 href */
   signupHref?: string;
+  /** 폼 초기값 */
+  defaultValues?: {
+    username?: string;
+    password?: string;
+  };
 }
 
 export function LoginForm({
@@ -50,9 +55,10 @@ export function LoginForm({
   showSignupLink = true,
   forgotPasswordHref = '/forgot-password',
   signupHref = '/signup',
+  defaultValues,
 }: LoginFormProps) {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState(defaultValues?.username ?? '');
+  const [password, setPassword] = React.useState(defaultValues?.password ?? '');
   const [rememberMe, setRememberMe] = React.useState(false);
   const [autoLogin, setAutoLogin] = React.useState(false);
 

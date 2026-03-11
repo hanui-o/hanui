@@ -137,6 +137,14 @@ export function AdminLayout({
 
   return (
     <div className={cn('min-h-screen bg-krds-gray-5', className)} {...props}>
+      {/* 건너뛰기 링크 */}
+      <a
+        href="#admin-main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-krds-primary-base focus:text-krds-white focus:rounded-md focus:text-sm focus:font-medium"
+      >
+        본문으로 건너뛰기
+      </a>
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           사이드바
           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -175,7 +183,7 @@ export function AdminLayout({
 
         {/* 사이드바 메뉴 */}
         <nav className="flex-1 overflow-y-auto py-2">
-          <ul role="menubar" className="list-none p-0 m-0">
+          <ul role="list" className="list-none p-0 m-0">
             {menuItems.map((item, index) => {
               const hasChildren = item.children && item.children.length > 0;
               const isOpen = openMenus.has(index);
@@ -183,7 +191,7 @@ export function AdminLayout({
                 item.active || item.children?.some((child) => child.active);
 
               return (
-                <li key={index} role="none">
+                <li key={index}>
                   {hasChildren && !collapsed ? (
                     <>
                       <button
@@ -197,9 +205,7 @@ export function AdminLayout({
                           'transition-colors cursor-pointer border-0 bg-transparent',
                           isActive && 'text-krds-primary-base font-bold'
                         )}
-                        role="menuitem"
                         aria-expanded={isOpen}
-                        aria-haspopup="true"
                       >
                         {item.icon && (
                           <span
@@ -219,9 +225,9 @@ export function AdminLayout({
                         />
                       </button>
                       {isOpen && (
-                        <ul role="menu" className="list-none p-0 m-0">
+                        <ul className="list-none p-0 m-0">
                           {item.children!.map((child, childIndex) => (
-                            <li key={childIndex} role="none">
+                            <li key={childIndex}>
                               <a
                                 href={child.href}
                                 onClick={(e) => {
@@ -239,7 +245,6 @@ export function AdminLayout({
                                   child.active &&
                                     'text-krds-primary-base font-bold bg-krds-primary-5'
                                 )}
-                                role="menuitem"
                                 aria-current={child.active ? 'page' : undefined}
                               >
                                 {child.icon && (
@@ -276,8 +281,8 @@ export function AdminLayout({
                         isActive &&
                           'text-krds-primary-base font-bold bg-krds-primary-5'
                       )}
-                      role="menuitem"
                       aria-current={item.active ? 'page' : undefined}
+                      aria-label={collapsed ? item.label : undefined}
                       title={collapsed ? item.label : undefined}
                     >
                       {item.icon && (
@@ -365,7 +370,9 @@ export function AdminLayout({
         </header>
 
         {/* 메인 콘텐츠 */}
-        <main className="p-6">{children}</main>
+        <main id="admin-main-content" className="p-6">
+          {children}
+        </main>
       </div>
     </div>
   );

@@ -322,8 +322,12 @@ export function UserManagement({
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="user-role">역할</Label>
+            <div
+              className="space-y-2"
+              role="group"
+              aria-labelledby="user-role-label"
+            >
+              <Label id="user-role-label">역할</Label>
               <Select
                 options={ROLE_OPTIONS}
                 value={formData.role}

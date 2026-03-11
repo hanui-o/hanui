@@ -219,7 +219,14 @@ export function BoardManagement({
             <TabsContent key={board.id} value={String(board.id)}>
               {/* 필터 + 일괄 작업 */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-krds-gray-20">
-                <div className="w-40">
+                <div
+                  className="w-40"
+                  role="group"
+                  aria-labelledby="board-status-filter-label"
+                >
+                  <span id="board-status-filter-label" className="sr-only">
+                    상태 필터
+                  </span>
                   <Select
                     options={STATUS_FILTER_OPTIONS}
                     value={statusFilter}
@@ -231,7 +238,11 @@ export function BoardManagement({
                   />
                 </div>
                 {selectedIds.size > 0 && (
-                  <div className="flex items-center gap-2">
+                  <div
+                    className="flex items-center gap-2"
+                    role="status"
+                    aria-live="polite"
+                  >
                     <span className="text-sm text-krds-primary-base font-medium">
                       {selectedIds.size}개 선택
                     </span>

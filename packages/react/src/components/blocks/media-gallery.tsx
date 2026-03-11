@@ -134,6 +134,7 @@ export function MediaGallery({
     null
   );
   const [isDragOver, setIsDragOver] = React.useState(false);
+  const [copied, setCopied] = React.useState(false);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const filteredItems = searchQuery
@@ -332,8 +333,17 @@ export function MediaGallery({
                     {filteredItems.map((item) => (
                       <tr
                         key={item.id}
-                        className="border-b border-krds-gray-10 hover:bg-krds-gray-5 transition-colors cursor-pointer"
+                        className="border-b border-krds-gray-10 hover:bg-krds-gray-5 transition-colors cursor-pointer focus-within:ring-2 focus-within:ring-krds-blue-60 focus-within:ring-inset"
                         onClick={() => handleItemClick(item)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handleItemClick(item);
+                          }
+                        }}
+                        tabIndex={0}
+                        role="row"
+                        aria-label={`${item.fileName} 상세보기`}
                       >
                         <td className="py-3 px-4">
                           <div className="flex items-center gap-2">
@@ -382,7 +392,13 @@ export function MediaGallery({
       </Card>
 
       {/* 상세보기 모달 */}
-      <Modal open={!!selectedItem} onClose={() => setSelectedItem(null)}>
+      <Modal
+        open={!!selectedItem}
+        onClose={() => {
+          setSelectedItem(null);
+          setCopied(false);
+        }}
+      >
         {selectedItem && (
           <>
             <ModalTitle>파일 상세</ModalTitle>
@@ -455,11 +471,13 @@ export function MediaGallery({
                     variant="secondary"
                     size="sm"
                     iconLeft={<Copy className="w-3.5 h-3.5" />}
-                    onClick={() =>
-                      navigator.clipboard.writeText(selectedItem.url)
-                    }
+                    onClick={() => {
+                      navigator.clipboard.writeText(selectedItem.url);
+                      setCopied(true);
+                      setTimeout(() => setCopied(false), 2000);
+                    }}
                   >
-                    복사
+                    {copied ? '복사됨' : '복사'}
                   </Button>
                 </div>
               </div>

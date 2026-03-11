@@ -132,7 +132,7 @@ export function SiteSettings({
 
           {/* 로고 */}
           <div className="space-y-2">
-            <Label>로고</Label>
+            <Label htmlFor="site-logo">로고</Label>
             <div className="flex items-center gap-4">
               {logoPreview ? (
                 <div className="w-24 h-24 rounded-md border border-krds-gray-20 flex items-center justify-center overflow-hidden bg-krds-gray-5">
@@ -158,6 +158,7 @@ export function SiteSettings({
                 </Button>
                 <input
                   ref={fileInputRef}
+                  id="site-logo"
                   type="file"
                   accept="image/*"
                   onChange={handleLogoUpload}

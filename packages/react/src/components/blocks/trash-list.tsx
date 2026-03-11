@@ -161,7 +161,14 @@ export function TrashList({
               영구삭제됩니다.
             </CardDescription>
           </div>
-          <div className="w-40">
+          <div
+            className="w-40"
+            role="group"
+            aria-labelledby="trash-filter-label"
+          >
+            <span id="trash-filter-label" className="sr-only">
+              유형 필터
+            </span>
             <Select
               options={TYPE_FILTER_OPTIONS}
               value={filterType}
@@ -179,7 +186,11 @@ export function TrashList({
       <CardBody className="p-0">
         {/* 일괄 작업 바 */}
         {selectedIds.size > 0 && (
-          <div className="flex items-center justify-between px-4 py-2 bg-krds-primary-5 border-b border-krds-gray-20">
+          <div
+            className="flex items-center justify-between px-4 py-2 bg-krds-primary-5 border-b border-krds-gray-20"
+            role="status"
+            aria-live="polite"
+          >
             <span className="text-sm text-krds-primary-base font-medium">
               {selectedIds.size}개 선택됨
             </span>
@@ -285,7 +296,13 @@ export function TrashList({
                           )}
                         >
                           {item.daysLeft <= 7 && (
-                            <AlertTriangle className="w-3.5 h-3.5 inline mr-1 align-text-bottom" />
+                            <>
+                              <AlertTriangle
+                                className="w-3.5 h-3.5 inline mr-1 align-text-bottom"
+                                aria-hidden="true"
+                              />
+                              <span className="sr-only">만료 임박: </span>
+                            </>
                           )}
                           {item.daysLeft}일
                         </span>
