@@ -1,0 +1,252 @@
+---
+title: 'Claude Code 슬래시 커맨드 21종 — 설치 한 줄이면 끝'
+description: 'Claude Code에 /commit, /api, /security 같은 슬래시 커맨드 21종 + 에이전트 4종 + 훅 5종을 원라인 설치. 프론트엔드/백엔드/풀스택 선택 가능.'
+date: '2026-03-12'
+tags: ['Claude Code', 'AI', '자동화', '개발도구']
+author: 'odada'
+---
+
+Claude Code를 쓰면서 매번 "커밋해줘", "빌드해줘", "리뷰해줘" 타이핑하는 게 귀찮았어요.
+
+그래서 자주 쓰는 작업을 **슬래시 커맨드**로 만들었습니다. `/commit` 치면 끝. `/api users` 치면 CRUD API가 뚝딱.
+
+이걸 정리해서 [claude-settings](https://github.com/hanui-o/claude-settings) 레포로 공개했어요. **원라인 설치로 바로 쓸 수 있습니다.**
+
+## 설치
+
+```bash
+bash <(curl -sL https://raw.githubusercontent.com/hanui-o/claude-settings/main/setup.sh)
+```
+
+실행하면 프론트/백엔드/풀스택 중 선택할 수 있어요:
+
+```
+어떤 커맨드를 설치할까요?
+
+  1) 프론트엔드  — React 최적화, 접근성, UI 리뷰 등
+  2) 백엔드      — API, DB, 마이그레이션, 보안 점검 등
+  3) 풀스택      — 전부 설치
+
+>
+```
+
+| 선택            | 커맨드 | 에이전트 | 훅  |
+| --------------- | ------ | -------- | --- |
+| 1) 프론트엔드   | 14종   | 2종      | 3종 |
+| 2) 백엔드       | 15종   | 2종      | 5종 |
+| 3) 풀스택       | 21종   | 4종      | 5종 |
+
+## 슬래시 커맨드란?
+
+Claude Code에서 `/`를 치면 설치된 커맨드 목록이 나타나요. 마크다운 파일 하나가 커맨드 하나예요.
+
+```
+.claude/commands/commit.md  →  /commit
+.claude/commands/api.md     →  /api
+.claude/commands/security.md →  /security
+```
+
+커맨드 안에는 Claude가 따를 절차가 적혀 있어요. "이렇게 해줘"라고 매번 설명하는 대신, **한번 써두면 `/`로 바로 실행**하는 거죠.
+
+## 공통 커맨드 (8종)
+
+어떤 프로젝트든 쓸 수 있는 기본 커맨드예요.
+
+### `/commit` — 가장 많이 쓰는 커맨드
+
+```
+> /commit
+```
+
+이러면 Claude가:
+1. `git status`, `git diff`로 변경사항 확인
+2. main 브랜치면 경고하고 중단
+3. Conventional Commits 형식으로 한 줄 커밋 메시지 작성
+4. 파일을 명시적으로 staging (`.env` 같은 민감 파일 제외)
+5. 커밋 실행
+
+"커밋해줘"라고 타이핑하는 것과 뭐가 다르냐고요? **매번 같은 규칙을 지키게 강제할 수 있어요.** Conventional Commits, main 브랜치 보호, 민감 파일 제외 — 이런 걸 매번 말할 필요가 없어요.
+
+### `/build` — 에러 자동 수정
+
+```
+> /build
+```
+
+빌드 실행하고, 에러 나면 **알아서 고치고 다시 빌드**해요. 타입 에러, lint 에러 대부분 한번에 잡아줘요.
+
+### 나머지 공통 커맨드
+
+| 커맨드              | 하는 일                                          |
+| ------------------- | ------------------------------------------------ |
+| `/dev`              | 패키지 매니저 감지 → 의존성 설치 → 개발 서버     |
+| `/update`           | 커밋 + `git rebase origin/main`                  |
+| `/deploy [target]`  | Vercel/Netlify/Firebase 자동 감지, 프리뷰 배포   |
+| `/review`           | 타입, 성능, 보안, 접근성 관점 코드 리뷰          |
+| `/test {file}`      | 테스트 작성 (AAA 패턴) 또는 실행                 |
+| `/prd`              | 브랜치 변경사항 → PR 설명 마크다운 생성          |
+
+## 프론트엔드 커맨드 (6종)
+
+React/Next.js 프로젝트에서 쓰는 커맨드예요. [Vercel의 agent-skills](https://github.com/vercel-labs/agent-skills) 가이드라인을 반영했어요.
+
+```
+> /optimize src/components/     # 번들 최적화, 리렌더 방지, waterfall 제거
+> /a11y                         # 시맨틱 HTML, ARIA, 키보드 접근성 검사
+> /component Button             # 프로젝트 패턴에 맞는 컴포넌트 생성
+> /ui-review src/pages/home.tsx # 레이아웃, 인터랙션, 상태 처리 리뷰
+> /refactor src/components/     # Compound Component 패턴 등 리팩토링 제안
+> /perf                         # 렌더링, 메모리, 네트워크 성능 점검
+```
+
+`/optimize`는 심각도별로 정렬해서 알려줘요:
+
+```
+🔴 CRITICAL: barrel import로 번들 크기 증가
+   import { Button } from '@/components'
+   → import { Button } from '@/components/button'
+
+🟡 HIGH: 불필요한 리렌더
+   useEffect 의존성 배열에 매번 새로 생성되는 객체
+   → useMemo로 감싸기
+```
+
+## 백엔드 커맨드 (7종)
+
+API, DB, 보안 점검까지 백엔드 전용 커맨드예요.
+
+### `/api` — CRUD API 한 방에 생성
+
+```
+> /api users
+```
+
+프로젝트의 프레임워크를 자동 감지하고 (Express, Fastify, NestJS, Spring Boot 등), 기존 패턴에 맞춰 CRUD 엔드포인트를 만들어요:
+
+- `GET /api/users` — 목록 (페이지네이션, 검색)
+- `GET /api/users/:id` — 단건
+- `POST /api/users` — 생성
+- `PUT /api/users/:id` — 수정
+- `DELETE /api/users/:id` — 삭제
+
+입력 검증, 에러 핸들링, 인증 미들웨어까지 자동으로 포함돼요.
+
+### `/db` — 스키마 + 마이그레이션 생성
+
+```
+> /db posts: title, content, author_id, published
+```
+
+ORM을 자동 감지하고 (Prisma, TypeORM, Drizzle 등) 스키마와 마이그레이션을 함께 생성해요.
+
+### `/security` — OWASP 기준 보안 점검
+
+```
+> /security src/routes/
+```
+
+SQL Injection, 인증 우회, XSS, CORS, Rate Limiting 등을 심각도별로 점검해요:
+
+```
+🔴 CRITICAL: SQL Injection
+   src/routes/users.ts:42
+   현재: db.query(`SELECT * FROM users WHERE id = ${req.params.id}`)
+   수정: db.query('SELECT * FROM users WHERE id = $1', [req.params.id])
+
+🟡 HIGH: Rate Limiting 미설정
+   로그인 엔드포인트에 요청 제한이 없습니다
+```
+
+### 나머지 백엔드 커맨드
+
+| 커맨드              | 하는 일                                      |
+| ------------------- | -------------------------------------------- |
+| `/migrate [action]` | 마이그레이션 실행/상태/롤백/생성             |
+| `/seed [table]`     | 한국어 시드 데이터 생성 (김철수, 이영희...)   |
+| `/api-doc`          | API 라우트 탐색 → 마크다운 문서 자동 생성    |
+| `/env-check`        | `.env` 누락/불일치/보안 위험 검증            |
+
+## 에이전트 — 자동으로 위임되는 동료
+
+에이전트는 커맨드와 달리 **독립된 컨텍스트**에서 실행돼요. 메인 대화를 방해하지 않고 복잡한 작업을 처리해요.
+
+| 에이전트         | 설명                                   | 영역       |
+| ---------------- | -------------------------------------- | ---------- |
+| `code-reviewer`  | 타입, 성능, 보안, 접근성 심각도별 리뷰 | 프론트엔드 |
+| `test-runner`    | 관련 테스트 자동 탐색·실행, 실패 분석  | 프론트엔드 |
+| `api-reviewer`   | SQL Injection, N+1, REST 규칙 리뷰    | 백엔드     |
+| `db-reviewer`    | 스키마, 쿼리, 마이그레이션 안전성 리뷰 | 백엔드     |
+
+## 훅 — 자동으로 걸리는 안전장치
+
+훅은 **이벤트 발생 시 자동 실행**돼요. `/`로 호출하는 게 아니라, 파일 저장이나 커밋 같은 이벤트에 반응해요.
+
+| 훅                             | 하는 일                              | 영역   |
+| ------------------------------ | ------------------------------------ | ------ |
+| `pre-commit-lint.sh`           | 커밋 전 lint 체크, 실패 시 커밋 차단 | 공통   |
+| `post-edit-format.sh`          | 파일 수정 후 Prettier 자동 포맷팅    | 공통   |
+| `block-dangerous-commands.sh`  | `rm -rf`, force push 등 차단         | 공통   |
+| `block-env-commit.sh`          | `.env` 파일 커밋 차단                | 백엔드 |
+| `validate-migration.sh`        | DROP TABLE 등 위험 패턴 감지         | 백엔드 |
+
+`.claude/settings.json`에 등록하면 활성화돼요:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "./.claude/hooks/block-dangerous-commands.sh" },
+          { "type": "command", "command": "./.claude/hooks/pre-commit-lint.sh" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## 커맨드 vs 에이전트 vs 훅
+
+|          | 커맨드                 | 에이전트               | 훅                       |
+| -------- | ---------------------- | ---------------------- | ------------------------ |
+| **실행** | `/명령어`로 직접 호출  | Claude가 자동 위임     | 이벤트 시 자동 실행      |
+| **역할** | 정해진 작업 수행       | 복잡한 작업을 독립 수행 | 단순 검증/자동화         |
+| **비유** | 도구                   | 일을 대신 해주는 동료  | 자동으로 걸리는 안전장치 |
+| **예시** | `/commit` → 커밋       | 코드 리뷰 자동 위임    | 저장 → Prettier 실행     |
+
+## 커스터마이징
+
+모든 파일은 마크다운이에요. 팀에 맞게 자유롭게 수정하면 돼요.
+
+```bash
+# 커밋 규칙 변경
+vi .claude/commands/commit.md
+
+# 새 커맨드 추가 — 파일 만들면 바로 /my-command로 사용 가능
+vi .claude/commands/my-command.md
+
+# 안 쓰는 건 삭제하면 끝
+rm .claude/commands/optimize.md
+```
+
+## 왜 만들었나?
+
+Claude Code는 강력하지만, **매번 같은 말을 반복하는 건 비효율적**이에요.
+
+- "Conventional Commits로 커밋해줘, main 브랜치 아닌지 확인하고"
+- "빌드해줘, 에러 나면 고치고 다시 해줘"
+- "보안 점검해줘, SQL Injection이랑 XSS 위주로"
+
+이런 걸 한번 마크다운에 써두면, 그 다음부터는 `/commit`, `/build`, `/security` 한 단어면 끝이에요.
+
+[Vercel의 agent-skills](https://github.com/vercel-labs/agent-skills)에서 React 성능 최적화, 웹 디자인 가이드라인 등의 규칙을 가져왔고, 여기에 실무에서 자주 쓰는 Git 워크플로우와 백엔드 커맨드를 추가했어요.
+
+---
+
+> **관련 프로젝트:**
+>
+> - [claude-settings](https://github.com/hanui-o/claude-settings) — Claude Code 슬래시 커맨드, 에이전트, 훅 설정 모음
+> - [HANUI](https://github.com/hanui-o/hanui) — KRDS 기반 React 디자인 시스템
+> - [Claude Code로 CMS 하루만에 만들기](/blog/claude-code-cms-workflow) — 이 커맨드를 실제로 사용한 CMS 프로젝트 사례

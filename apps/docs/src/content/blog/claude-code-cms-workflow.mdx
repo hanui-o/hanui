@@ -1,55 +1,76 @@
 ---
-title: "Claude Code로 CMS 프로젝트 하루만에 만들기 — 기획부터 코딩까지 자동화"
-description: "Claude Code로 노션 기획서 읽기, GitHub 이슈 자동 생성, Tiptap 에디터 구현, PR 생성까지. 실제 CMS 프로젝트에서 18개 이슈를 하루만에 처리한 워크플로우."
-date: "2026-03-11"
-tags: ["Claude Code", "AI", "CMS", "Next.js", "GitHub", "자동화"]
-author: "odada"
+title: 'Claude Code로 CMS 프로젝트 하루만에 만들기 — 기획부터 코딩까지 자동화'
+description: 'Claude Code로 노션 기획서 작성부터 읽기, GitHub 이슈 자동 생성, Tiptap 에디터 구현, PR 생성까지. 실제 CMS 프로젝트에서 18개 이슈를 하루만에 처리한 워크플로우.'
+date: '2026-03-11'
+tags: ['Claude Code', 'AI', 'CMS', 'Next.js', 'GitHub', '자동화']
+author: 'odada'
 ---
 
-Claude Code로 CMS 프로젝트를 하루만에 기획 → 이슈 생성 → 코딩 → PR까지 해봤어요.
+Claude Code로 CMS 프로젝트를 하루만에 기획서 작성 → 이슈 생성 → 코딩 → PR까지 해봤어요.
 
-"AI가 코딩을 해준다"는 말은 많이 들었는데, 실제로 **프로젝트 전체 흐름**을 같이 해보니까 느낌이 달라요. 그냥 코드 자동완성이 아니라, 기획서 읽고 → 이슈 만들고 → 코드 짜고 → 커밋까지 하는 **페어 프로그래밍 파트너**에 가까웠어요.
+"AI가 코딩을 해준다"는 말은 많이 들었는데, 실제로 **프로젝트 전체 흐름**을 같이 해보니까 느낌이 달라요. 그냥 코드 자동완성이 아니라, **노션에 기획서를 직접 쓰고** → 이슈 만들고 → 코드 짜고 → 커밋까지 하는 **페어 프로그래밍 파트너**에 가까웠어요.
 
 ## 1. Claude Code란?
 
 [Claude Code](https://docs.anthropic.com/en/docs/claude-code)는 Anthropic에서 만든 **CLI 기반 AI 코딩 도구**예요.
 
-VS Code나 터미널에서 바로 쓸 수 있고, **파일을 직접 읽고, 편집하고, 터미널 명령어를 실행**할 수 있어요.
+터미널에서 npm으로 설치하거나, [VS Code 확장프로그램](https://code.claude.com/docs/ko/vs-code)으로도 설치할 수 있어요.
 
 ```bash
-# 설치
+# 터미널에서 설치
 npm install -g @anthropic-ai/claude-code
 
 # 프로젝트 폴더에서 실행
 claude
 ```
 
+VS Code에서는 Extensions에서 "Claude Code"를 검색해서 설치하면 에디터 안에서 바로 쓸 수 있어요.
+
+[VS Code 설치 가이드](https://code.claude.com/docs/ko/vs-code)
+![Claude Code VS Code 확장프로그램](https://mintcdn.com/claude-code/-YhHHmtSxwr7W8gy/images/vs-code-extension-interface.jpg?w=2500&fit=max&auto=format&n=-YhHHmtSxwr7W8gy&q=85&s=08c92eedfb56fe61a61e480fb63784b6)
+
+**파일을 직접 읽고, 편집하고, 터미널 명령어를 실행**하는 건 기본이고, MCP 서버를 연결하면 **노션에 기획서를 쓰거나, 피그마 디자인을 읽는 것**까지 가능해요.
+
 Copilot이나 Cursor랑 뭐가 다른지 궁금하죠?
 
-|  | Copilot / Cursor | Claude Code |
-|---|---|---|
-| **방식** | IDE 내 자동완성 / 챗 | CLI에서 직접 파일 조작 |
-| **범위** | 현재 파일 중심 | 프로젝트 전체 탐색 |
-| **실행** | 코드 제안만 | `git`, `npm`, `gh` 등 직접 실행 |
-| **컨텍스트** | 열린 파일 | CLAUDE.md + 전체 코드베이스 |
+|              | Copilot / Cursor     | Claude Code                     |
+| ------------ | -------------------- | ------------------------------- |
+| **방식**     | IDE 내 자동완성 / 챗 | CLI에서 직접 파일 조작          |
+| **범위**     | 현재 파일 중심       | 프로젝트 전체 탐색              |
+| **실행**     | 코드 제안만          | `git`, `npm`, `gh` 등 직접 실행 |
+| **컨텍스트** | 열린 파일            | CLAUDE.md + 전체 코드베이스     |
 
 핵심은 **CLAUDE.md** 파일이에요. 프로젝트 루트에 이 파일을 두면 Claude가 프로젝트 규칙을 이해하고 알아서 따라요.
 
 ```markdown
 # CLAUDE.md 예시 (HANUI 프로젝트)
+
 - Named export만 사용, default export 금지
-- KRDS 색상 토큰 사용 (krds-primary-*, krds-gray-*)
+- KRDS 색상 토큰 사용 (krds-primary-_, krds-gray-_)
 - cn() 유틸로 className 병합
 - Component → Block → Kit 3단 구조
 ```
 
 이걸 써두면 "이 프로젝트에서는 이렇게 해줘"라고 매번 말할 필요가 없어요.
 
-## 2. 노션 기획서 → Claude가 읽고 이해
+## 2. 노션 기획서도 Claude Code가 작성
 
-우리 프로젝트에는 노션에 기획서가 있었어요. 사이트맵, 와이어프레임 12개 화면, DB 설계, API 설계까지 다 적어뒀죠.
+사실 노션 기획서 자체도 Claude Code가 만들었어요. "공공기관 CMS 기획서 써줘"라고 하니까 노션에 **사이트맵, 와이어프레임 12개 화면, DB 설계, API 설계**까지 직접 작성해줬어요.
 
-Claude Code에 노션 URL을 주니까 **알아서 읽고 요약**해줬어요.
+```
+나: "공공기관 CMS 기획서를 노션에 작성해줘.
+     사이트맵, 와이어프레임, DB 설계, API 설계 포함해서"
+
+Claude: 노션에 기획서를 작성하겠습니다.
+        - 사이트맵 페이지 생성 완료
+        - 와이어프레임 12개 화면 작성 완료
+        - DB 설계 (users, posts, pages, menus, files) 작성 완료
+        - API 설계 (인증, 게시판, 페이지, 파일, 설정) 작성 완료
+```
+
+Claude Code는 Notion MCP 서버를 통해 노션 페이지를 **직접 생성하고 편집**할 수 있어요. 단순히 읽기만 하는 게 아니라, **기획 단계부터 AI가 참여**하는 거죠.
+
+이렇게 만든 기획서를 다시 Claude Code에 읽히면 이후 작업에서 계속 참고해요.
 
 ```
 나: "이 노션 기획서 읽어줘"
@@ -62,7 +83,7 @@ Claude: 총 7개 하위 페이지를 확인했습니다.
         - API 설계: 인증, 게시판, 페이지, 파일, 설정 엔드포인트
 ```
 
-기획서를 한번 읽히면 이후 작업에서 계속 참고해요. "대시보드에 뭐 넣을까?" 물으면 기획서 기반으로 대답하고, 코드도 거기에 맞춰 짜요.
+"대시보드에 뭐 넣을까?" 물으면 기획서 기반으로 대답하고, 코드도 거기에 맞춰 짜요.
 
 Claude Code는 `memory` 폴더에 프로젝트 맥락을 저장하기 때문에, **다음 세션에서도 이어서 작업**할 수 있어요.
 
@@ -122,13 +143,13 @@ c9df0af feat(admin): Tiptap 에디터, 고정페이지 편집, 메뉴 관리 CRU
 
 ### 3-3. 하루 만에 만든 것들
 
-| 카테고리 | 화면 |
-|---------|------|
-| **인증** | 로그인 (mock, 기본값 자동 입력) |
+| 카테고리   | 화면                                                            |
+| ---------- | --------------------------------------------------------------- |
+| **인증**   | 로그인 (mock, 기본값 자동 입력)                                 |
 | **어드민** | 대시보드, 게시판, 미디어, 설정, 계정, 휴지통, 고정 페이지, 메뉴 |
-| **에디터** | Tiptap (서식, 정렬, 목록, 표, 이미지, 링크 — 21개 툴바 버튼) |
-| **퍼블릭** | 메인, 기관소개(LNB+브레드크럼), 게시판 목록/상세 |
-| **인프라** | 모노레포(pnpm + Turbo), KRDS 디자인 토큰, GitHub 프로젝트 보드 |
+| **에디터** | Tiptap (서식, 정렬, 목록, 표, 이미지, 링크 — 21개 툴바 버튼)    |
+| **퍼블릭** | 메인, 기관소개(LNB+브레드크럼), 게시판 목록/상세                |
+| **인프라** | 모노레포(pnpm + Turbo), KRDS 디자인 토큰, GitHub 프로젝트 보드  |
 
 물론 전부 mock 데이터지만, **화면 구조와 라우팅이 완성**되어 있어서 백엔드 API만 연결하면 돼요.
 
@@ -163,6 +184,37 @@ gh pr create --title "feat: 어드민 + 퍼블릭 프론트엔드 구현" --body
 
 **코드 리뷰할 때도 유용해요.** 다른 사람이 올린 PR URL을 주면 변경사항을 분석하고 리뷰 코멘트도 달아줘요.
 
+## 5. 슬래시 커맨드로 반복 작업 자동화
+
+Claude Code에는 **슬래시 커맨드**, **에이전트**, **훅** 기능이 있어요. `.claude/commands/` 폴더에 마크다운 파일을 넣으면 `/명령어`로 바로 쓸 수 있어요.
+
+```
+> /commit          # Conventional Commits 형식으로 커밋
+> /build           # 빌드 실행, 에러 시 자동 수정 후 재시도
+> /review          # 타입 안전성, 성능, 보안 관점 코드 리뷰
+> /test src/utils  # 해당 파일 테스트 작성 및 실행
+> /deploy preview  # Vercel/Netlify 자동 감지 후 프리뷰 배포
+> /prd             # 브랜치 변경사항 분석 → PR 설명 마크다운 생성
+```
+
+이 프로젝트에서 실제로 `/commit`과 `/build`를 가장 많이 썼어요. 매번 "커밋해줘", "빌드해줘" 타이핑하는 것보다 훨씬 빨라요.
+
+**에이전트**는 복잡한 작업을 독립 컨텍스트에서 처리해요. 예를 들어 `code-reviewer` 에이전트가 변경된 코드를 심각도별로 리뷰하고, `test-runner` 에이전트가 관련 테스트를 자동으로 찾아서 실행해요.
+
+**훅**은 이벤트 발생 시 자동 실행되는 안전장치예요. 파일 수정하면 Prettier가 자동 포맷팅되고, `rm -rf` 같은 위험한 명령어는 자동 차단돼요.
+
+| | 커맨드 | 에이전트 | 훅 |
+|---|---|---|---|
+| **실행** | `/명령어`로 직접 호출 | Claude가 자동 위임 | 이벤트 시 자동 실행 |
+| **역할** | 정해진 작업 수행 | 복잡한 작업을 독립 수행 | 단순 검증/자동화 |
+| **예시** | `/commit` → 커밋 | 코드 리뷰 자동 위임 | 저장 → Prettier 실행 |
+
+이 커맨드/에이전트/훅을 모아서 [claude-settings](https://github.com/hanui-o/claude-settings) 레포로 공개했어요. 원라인 설치로 바로 적용할 수 있어요:
+
+```bash
+bash <(curl -sL https://raw.githubusercontent.com/hanui-o/claude-settings/main/setup.sh)
+```
+
 ## 실전에서 느낀 팁 3가지
 
 ### 1. CLAUDE.md를 잘 써라
@@ -170,6 +222,7 @@ gh pr create --title "feat: 어드민 + 퍼블릭 프론트엔드 구현" --body
 프로젝트 컨벤션을 적어두면 Claude가 **일관된 코드**를 짜요.
 
 예를 들어 HANUI에서는:
+
 - Modal은 `onClose` prop (onOpenChange 아님)
 - Badge variants: primary, info, gray, secondary, success, warning, error
 - Select에 id prop 미지원
@@ -209,5 +262,7 @@ Claude Code는 "코드 좀 짜줘"가 아니라 **"같이 프로젝트 하자"**
 ---
 
 > **이 글에서 사용한 프로젝트:**
+>
 > - [HANUI](https://github.com/hanui-o/hanui) — KRDS 기반 React 디자인 시스템
+> - [claude-settings](https://github.com/hanui-o/claude-settings) — Claude Code 슬래시 커맨드, 에이전트, 훅 설정 모음
 > - hanui CMS — HANUI 기반 공공기관 CMS
