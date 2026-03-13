@@ -1,0 +1,290 @@
+---
+title: 'CLAUDE.md 하나로 AI가 내 코드 스타일을 따라한다'
+description: 'Claude Code의 핵심 설정 파일 CLAUDE.md 작성법. 실제 HANUI 프로젝트의 CLAUDE.md를 공개하고, 잘 쓰는 법과 못 쓰면 생기는 문제를 정리했어요.'
+date: '2026-03-13'
+tags: ['Claude Code', 'AI', 'CLAUDE.md', '개발도구', '자동화']
+author: 'odada'
+---
+
+Claude Code 시리즈 3편이에요. [1편에서 CMS를 하루만에 만든 이야기](/blog/claude-code-cms-workflow), [2편에서 슬래시 커맨드 21종](/blog/claude-code-settings)을 다뤘는데요.
+
+오늘은 그 모든 것의 **기반이 되는 파일** — `CLAUDE.md`에 대해 이야기할게요.
+
+## CLAUDE.md가 뭐예요?
+
+프로젝트 루트에 놓는 **마크다운 파일 하나**예요. Claude Code가 작업을 시작할 때 이 파일을 제일 먼저 읽어요.
+
+```
+my-project/
+├── CLAUDE.md    ← Claude Code가 제일 먼저 읽는 파일
+├── package.json
+├── src/
+└── ...
+```
+
+쉽게 말하면 **"이 프로젝트에서는 이렇게 해줘"**라는 규칙서예요.
+
+`.eslintrc`가 코드 스타일을 강제하는 것처럼, `CLAUDE.md`는 **AI의 행동을 강제**해요.
+
+## 없으면 어떻게 되나?
+
+CLAUDE.md 없이 작업하면 이런 일이 생겨요:
+
+```tsx
+// Claude가 만든 코드
+export default function UserProfile() {  // ❌ default export
+  return <div style={{ color: '#3B82F6' }}>  {/* ❌ 하드코딩 색상 */}
+```
+
+```
+나: "우리 프로젝트는 named export만 써"
+Claude: 알겠습니다! (수정)
+
+... 30분 후 ...
+
+Claude: export default function Dashboard() {  // 또 default export 😩
+```
+
+**매번 같은 말을 반복**해야 해요. 대화가 길어지면 앞에서 했던 말을 잊어버리기도 하고요.
+
+CLAUDE.md가 있으면?
+
+```tsx
+// CLAUDE.md 규칙을 따른 코드
+export const UserProfile = () => {  // ✅ named export
+  return <div className="text-krds-primary-60">  {/* ✅ 디자인 토큰 */}
+```
+
+**한번 써두면 끝**이에요. 세션이 바뀌어도, 컨텍스트가 날아가도, CLAUDE.md는 항상 읽히니까요.
+
+## 실제 CLAUDE.md 공개 — HANUI 프로젝트
+
+우리 HANUI 프로젝트의 CLAUDE.md를 공개할게요. 실제로 쓰고 있는 파일이에요.
+
+### 1. 작업 순서 제안
+
+```markdown
+## 작업 전 선행 작업 안내
+
+사용자가 작업을 요청할 때, 빠뜨리거나 잘못할 수 있는 선행 작업이 있으면
+작업 시작 전에 반드시 알려준다.
+
+예시:
+- "사이트맵 만들자" → 요구사항 정의가 선행되어야 함을 안내
+- "와이어프레임 만들자" → 사이트맵이 먼저 확정되어야 함을 안내
+- "코드 작업하자" → 기획/디자인이 확정되었는지 확인
+```
+
+이게 의외로 유용해요. "에디터 만들자"라고 하면 Claude가 "게시판 CRUD가 먼저 되어야 에디터를 붙일 수 있는데, 게시판부터 할까요?"라고 물어봐요.
+
+AI가 **순서를 챙겨주는 시니어 개발자** 역할을 하는 거예요.
+
+### 2. 프로젝트 컨텍스트
+
+```markdown
+## 프로젝트 컨텍스트
+
+### 기술 스택
+- 디자인 시스템: KRDS(정부 표준) 기반 + hanui(React 컴포넌트)
+- 프론트엔드: Next.js x 2 (퍼블릭 + 어드민) 모노레포
+- 백엔드: 전자정부프레임워크 v5 (Spring Boot)
+- DB: PostgreSQL + MyBatis
+
+### 핵심 컨셉
+- 담당자가 직접 운영 (인라인 편집 + 게시글 에디터)
+- 페이지 디자인은 개발자가 납품 시 세팅, 담당자는 내용만 관리
+```
+
+이걸 써두면 "대시보드 만들어줘"라고만 해도 Claude가 **Next.js + KRDS 토큰 + 공공기관 스타일**로 만들어요. "React로 해줘", "Tailwind 써줘" 같은 말을 안 해도 돼요.
+
+### 3. 컴포넌트 구분 체계
+
+```markdown
+## hanui 컴포넌트 구분 체계
+
+Component: 단일 파일 / UI만 / 상태 없음 / 어디서든 재사용
+    ↓ 조합
+Block: 단일 파일 / Component 조합 / 로컬 상태 / Props로 제어
+    ↓ 확장
+Kit: 폴더 구조 / API+상태+훅 포함 / 도메인 완전 기능
+```
+
+이게 HANUI CLAUDE.md의 핵심이에요. **Component → Block → Kit** 3단 구조를 정의해뒀더니, Claude가 새 컴포넌트를 만들 때 "이건 Block 레벨이니까 `blocks/` 폴더에 만들겠습니다"라고 알아서 판단해요.
+
+### 4. 코드 패턴
+
+```markdown
+## 코드 패턴
+
+### Component 코드 패턴
+- 'use client' 최상단 필수
+- CVA variants 정의 (KRDS 토큰 사용)
+- Props: HTML 속성 확장 + VariantProps
+- forwardRef + displayName
+- Named export (default export 금지)
+
+### Block 코드 패턴
+- 함수형 컴포넌트 (forwardRef 미사용)
+- JSDoc 주석으로 Props 설명
+- useState로 로컬 상태만
+
+### 핵심 규칙
+- KRDS 색상 토큰 사용 (krds-primary-*, krds-gray-*)
+- cn() 유틸로 className 병합
+- 접근성: aria 속성, 키보드 네비게이션
+```
+
+이걸 안 써두면 Claude가 매번 다른 패턴으로 코드를 짜요. `forwardRef`를 쓰기도 하고 안 쓰기도 하고, `interface`를 쓰기도 하고 `type`을 쓰기도 하고.
+
+써두면 **50개 컴포넌트가 전부 같은 패턴**으로 만들어져요.
+
+## 잘 쓰는 법 5가지
+
+### 1. 구체적으로 써라
+
+```markdown
+# ❌ 나쁜 예
+- 깔끔한 코드를 짜라
+- 타입을 잘 써라
+
+# ✅ 좋은 예
+- Named export만 사용, default export 금지
+- Props는 interface로 정의 (type 대신)
+- 색상은 KRDS 토큰 사용 (hex 코드 직접 사용 금지)
+```
+
+"깔끔하게"는 사람마다 다르지만, "Named export만"은 명확해요.
+
+### 2. 예시를 넣어라
+
+```markdown
+# ❌ 규칙만
+- 컴포넌트는 CVA 패턴으로 만든다
+
+# ✅ 규칙 + 예시
+- 컴포넌트는 CVA 패턴으로 만든다:
+
+const buttonVariants = cva('기본 클래스', {
+  variants: {
+    variant: { primary: '...', secondary: '...' },
+    size: { sm: '...', md: '...', lg: '...' },
+  },
+  defaultVariants: { variant: 'primary', size: 'md' },
+});
+```
+
+Claude는 예시를 보면 **패턴을 정확히 복제**해요. 규칙만 있으면 해석의 여지가 생기고, 예시가 있으면 없어요.
+
+### 3. "하지 마라"도 써라
+
+```markdown
+## 하지 말 것
+- React.FC 사용 금지
+- default export 사용 금지
+- inline style 사용 금지
+- hex 색상 코드 직접 사용 금지 → KRDS 토큰 사용
+```
+
+뭘 해야 하는지만큼, **뭘 하면 안 되는지**도 중요해요. 특히 프로젝트에서 이전에 문제가 됐던 것들을 적어두면 같은 실수를 반복하지 않아요.
+
+### 4. 프로젝트 고유 정보를 넣어라
+
+```markdown
+## 알려진 제약사항
+- Modal은 onClose prop 사용 (onOpenChange 아님)
+- Badge variants: primary, info, gray, secondary, success, warning, error
+- Select에 id prop 미지원 — FormField의 Context로 연결
+- Table은 children 패턴이 아닌 data + columns prop
+```
+
+라이브러리 문서에 없는, **우리 프로젝트만의 특이사항**이에요. 이걸 안 써두면 Claude가 일반적인 방식으로 코드를 짜고, 빌드할 때 타입 에러가 나요.
+
+### 5. 짧게 유지하라
+
+```markdown
+# ❌ 너무 김 (Claude가 중요한 걸 놓침)
+500줄짜리 모든 규칙 나열...
+
+# ✅ 적당한 길이
+핵심 규칙 + 코드 패턴 + 제약사항 = 100~200줄
+```
+
+너무 길면 Claude가 뒤에 있는 규칙을 놓칠 수 있어요. **정말 중요한 것만** 넣으세요.
+
+## CLAUDE.md의 위치
+
+```
+프로젝트/
+├── CLAUDE.md              ← 프로젝트 전체 규칙 (항상 읽힘)
+├── apps/
+│   ├── admin/CLAUDE.md    ← 어드민 앱 전용 규칙
+│   └── web/CLAUDE.md      ← 퍼블릭 앱 전용 규칙
+└── packages/
+    └── react/CLAUDE.md    ← 컴포넌트 패키지 전용 규칙
+```
+
+모노레포라면 **각 패키지/앱마다** 별도의 CLAUDE.md를 둘 수 있어요. Claude가 해당 디렉토리에서 작업할 때 자동으로 읽어요.
+
+루트 CLAUDE.md에는 공통 규칙을, 하위에는 패키지별 규칙을 넣으면 돼요.
+
+## Before / After
+
+| | CLAUDE.md 없을 때 | 있을 때 |
+|---|---|---|
+| **코드 일관성** | 매번 다른 패턴 | 동일 패턴 유지 |
+| **반복 설명** | "named export로 해줘" 매번 | 한번 쓰면 끝 |
+| **빌드 에러** | 프로젝트 규칙 몰라서 에러 | 처음부터 맞춤 |
+| **컨텍스트 유지** | 세션 넘어가면 리셋 | 항상 읽힘 |
+| **온보딩** | 새 팀원도 매번 설명 | CLAUDE.md 읽으면 파악 |
+
+## 시작하기
+
+빈 파일부터 시작하세요.
+
+```bash
+touch CLAUDE.md
+```
+
+처음에는 이것만 적어도 충분해요:
+
+```markdown
+# 프로젝트 규칙
+
+## 기술 스택
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS v4
+- pnpm
+
+## 코드 스타일
+- Named export만 사용
+- Props는 interface로 정의
+- 파일명: kebab-case
+
+## 하지 말 것
+- default export 금지
+- any 타입 금지
+```
+
+그리고 작업하면서 **Claude가 틀릴 때마다 규칙을 추가**하면 돼요. "아 이거 이렇게 해줘"라고 말한 게 두 번 이상이면 CLAUDE.md에 넣을 타이밍이에요.
+
+[claude-settings](https://github.com/hanui-o/claude-settings)에 CLAUDE.md 템플릿도 포함되어 있어요:
+
+```bash
+bash <(curl -sL https://raw.githubusercontent.com/hanui-o/claude-settings/main/setup.sh)
+```
+
+---
+
+> **Claude Code 시리즈:**
+>
+> - [1편: CMS 프로젝트 하루만에 만들기](/blog/claude-code-cms-workflow)
+> - [2편: 슬래시 커맨드 21종 설치](/blog/claude-code-settings)
+> - **3편: CLAUDE.md 잘 쓰는 법** ← 현재 글
+> - 4편: 나만의 커맨드 만들기 (3/14)
+> - 5편: MCP로 노션·피그마 연동 (3/15)
+>
+> **관련 프로젝트:**
+>
+> - [claude-settings](https://github.com/hanui-o/claude-settings) — Claude Code 슬래시 커맨드, 에이전트, 훅 설정 모음
+> - [HANUI](https://github.com/hanui-o/hanui) — KRDS 기반 React 디자인 시스템
