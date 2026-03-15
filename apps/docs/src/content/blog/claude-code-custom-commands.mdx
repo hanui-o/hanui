@@ -1,0 +1,292 @@
+---
+title: '나만의 Claude Code 커맨드 만들기 — 마크다운 하나로 자동화'
+description: 'Claude Code 슬래시 커맨드를 직접 만드는 법. /commit 커맨드를 처음부터 만드는 과정, 에이전트와 훅까지. 팀에 공유하는 방법도.'
+date: '2026-03-14'
+tags: ['Claude Code', 'AI', '자동화', '개발도구', '커스터마이징']
+author: 'odada'
+---
+
+Claude Code 시리즈 4편이에요. [3편에서 CLAUDE.md 작성법](/blog/claude-code-claude-md)을 다뤘는데요.
+
+오늘은 **슬래시 커맨드를 직접 만드는 법**을 알려드릴게요. 마크다운 파일 하나 만들면 바로 `/내커맨드`로 쓸 수 있어요.
+
+## 커맨드 = 마크다운 파일
+
+Claude Code에서 커맨드는 별거 아니에요. `.claude/commands/` 폴더에 마크다운 파일을 넣으면 끝이에요.
+
+```
+.claude/commands/commit.md  →  /commit
+.claude/commands/deploy.md  →  /deploy
+.claude/commands/my-thing.md →  /my-thing
+```
+
+파일 이름이 곧 커맨드 이름이에요. 파일 안에는 Claude가 따라야 할 **절차**를 적어요.
+
+## /commit 커맨드를 처음부터 만들어보자
+
+가장 많이 쓰는 `/commit` 커맨드를 예시로 만들어볼게요.
+
+### Step 1: 파일 생성
+
+```bash
+mkdir -p .claude/commands
+touch .claude/commands/commit.md
+```
+
+### Step 2: 내용 작성
+
+```markdown
+변경사항을 확인하고 커밋한다.
+
+## Instructions
+
+1. **브랜치 확인:**
+   - `git branch --show-current` 실행
+   - **main 또는 master 브랜치면 커밋 중단**
+   - 사용자에게 새 브랜치 생성 또는 기존 브랜치 전환을 요청
+
+2. **변경사항 리뷰:**
+   - `git status --short`로 변경 파일 확인
+   - `git diff`로 변경 내용 확인
+   - `git log --oneline -5`로 최근 커밋 스타일 확인
+
+3. **커밋 메시지 생성:**
+   - Conventional Commits 형식: `feat:`, `fix:`, `refactor:` 등
+   - **한 줄로만 작성. 본문 없음.**
+
+4. **커밋 실행:**
+   - `git add` (파일명 지정 선호, `.env` 등 민감 파일 제외)
+   - `git commit -m "메시지"` 실행
+
+5. pre-commit hook 실패 시 문제를 수정하고 재시도
+```
+
+### Step 3: 바로 사용
+
+```
+> /commit
+```
+
+이게 끝이에요. Claude가 마크다운에 적힌 절차대로 실행해요.
+
+## 좋은 커맨드의 3가지 조건
+
+### 1. 구체적인 절차
+
+"커밋해줘"가 아니라 **구체적인 스텝**을 적어야 해요.
+
+```markdown
+# ❌ 나쁜 예
+코드를 리뷰해줘.
+
+# ✅ 좋은 예
+1. `git diff`로 변경사항 확인
+2. 다음 관점으로 리뷰:
+   - 타입 안전성: any 사용, 타입 단언
+   - 성능: 불필요한 리렌더, 메모이제이션 누락
+   - 보안: XSS, SQL Injection
+3. 심각도별로 정렬 (CRITICAL → HIGH → MEDIUM)
+4. 각 이슈에 수정 코드 제안 포함
+```
+
+### 2. 도구 명시
+
+Claude가 **어떤 명령어를 쓸지** 정해주면 더 정확해요.
+
+```markdown
+# 빌드 커맨드 예시
+1. package.json에서 빌드 스크립트 확인
+2. `pnpm build` 실행
+3. 에러 발생 시:
+   - 에러 메시지 분석
+   - 코드 수정
+   - 다시 `pnpm build` 실행
+   - 성공할 때까지 반복 (최대 3회)
+```
+
+### 3. 예외 처리
+
+예상되는 문제 상황을 적어두면 Claude가 알아서 대응해요.
+
+```markdown
+# /deploy 커맨드 예시
+1. 배포 플랫폼 자동 감지 (vercel.json → Vercel, netlify.toml → Netlify 등)
+2. 감지 실패 시 사용자에게 물어보기
+3. preview 배포 실행
+4. **production 배포는 절대 자동 실행하지 않는다** — 사용자 확인 후에만
+```
+
+## 실전: 프로젝트 전용 커맨드 만들기
+
+팀마다 반복하는 작업이 다르잖아요. 몇 가지 예시를 보여드릴게요.
+
+### /db — DB 스키마 생성
+
+```markdown
+DB 스키마와 마이그레이션 파일을 생성한다.
+
+## Instructions
+
+1. 프로젝트 ORM 감지 (package.json, prisma/, drizzle.config.ts 등)
+2. 인자로 받은 테이블명과 필드로 스키마 생성
+3. 마이그레이션 파일도 함께 생성
+4. 한국어 주석 포함
+```
+
+사용법: `/db users: name, email, role`
+
+### /blog — 블로그 글 작성
+
+```markdown
+블로그 글을 작성하거나 velog에서 이전한다.
+
+## Instructions
+
+1. 노션 발행 계획 확인
+2. mdx 파일 생성 (frontmatter 포함)
+3. velog 이전 시 이전 공지 md도 함께 생성
+4. 빌드 확인 후 커밋
+```
+
+이렇게 **자주 하는 작업을 커맨드로 만들면** 매번 설명할 필요가 없어요.
+
+## 에이전트도 만들 수 있어요
+
+커맨드는 `/`로 직접 호출하는 거고, **에이전트**는 Claude가 자동으로 위임하는 독립 작업자예요.
+
+`.claude/agents/` 폴더에 YAML frontmatter가 있는 마크다운을 넣으면 돼요.
+
+```markdown
+---
+name: code-reviewer
+description: PR 제출 전 코드 리뷰를 자동 수행
+tools: Read, Grep, Glob, Bash
+model: sonnet
+---
+
+변경된 파일의 코드를 리뷰한다.
+
+## 리뷰 관점
+
+1. **타입 안전성**: any, 타입 단언, 누락된 타입
+2. **성능**: 불필요한 리렌더, 메모이제이션 누락
+3. **보안**: XSS, SQL Injection, 민감 정보 노출
+4. **접근성**: ARIA, 키보드 접근, 색상 대비
+
+## 출력 형식
+
+심각도별로 정렬:
+- 🔴 CRITICAL
+- 🟡 HIGH
+- 🟢 MEDIUM
+```
+
+에이전트는 **독립된 컨텍스트**에서 실행되니까, 메인 대화를 방해하지 않아요. 코드 리뷰하는 동안 다른 작업을 계속할 수 있어요.
+
+## 훅: 자동 안전장치
+
+훅은 **이벤트 발생 시 자동 실행**되는 쉘 스크립트예요. `.claude/hooks/` 폴더에 넣고, `.claude/settings.json`에 등록해요.
+
+### 예시: 위험한 명령어 차단
+
+```bash
+#!/bin/bash
+# .claude/hooks/block-dangerous-commands.sh
+
+INPUT=$(cat)
+
+# rm -rf 차단
+if echo "$INPUT" | grep -qE 'rm\s+-rf\s+/'; then
+  echo "🚫 루트 디렉토리 삭제 차단됨"
+  exit 2  # exit 2 = 차단
+fi
+
+# force push to main 차단
+if echo "$INPUT" | grep -qE 'git\s+push.*--force.*main'; then
+  echo "🚫 main 브랜치 force push 차단됨"
+  exit 2
+fi
+
+exit 0  # exit 0 = 통과
+```
+
+### settings.json에 등록
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "./.claude/hooks/block-dangerous-commands.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+이러면 Claude가 `rm -rf /`나 `git push --force main` 같은 위험한 명령어를 실행하려 할 때 **자동으로 차단**돼요.
+
+## 커맨드 vs 에이전트 vs 훅
+
+|          | 커맨드                 | 에이전트               | 훅                       |
+| -------- | ---------------------- | ---------------------- | ------------------------ |
+| **파일** | `.claude/commands/*.md` | `.claude/agents/*.md` | `.claude/hooks/*.sh`     |
+| **실행** | `/명령어`로 직접 호출  | Claude가 자동 위임     | 이벤트 시 자동 실행      |
+| **역할** | 정해진 작업 수행       | 복잡한 작업을 독립 수행 | 단순 검증/자동화         |
+| **예시** | `/commit` → 커밋       | 코드 리뷰 자동 위임    | 저장 → Prettier 실행     |
+
+## 팀에 공유하는 방법
+
+커맨드를 만들었으면 **팀원들에게 공유**하고 싶잖아요. 두 가지 방법이 있어요.
+
+### 방법 1: Git에 커밋
+
+`.claude/` 폴더를 `.gitignore`에서 빼고 커밋하면, 팀원들이 pull 받으면 바로 쓸 수 있어요.
+
+```bash
+# .gitignore에서 제외
+!.claude/commands/
+!.claude/agents/
+!.claude/hooks/
+```
+
+### 방법 2: 별도 레포 + 설치 스크립트
+
+여러 프로젝트에서 공통으로 쓰려면 별도 레포로 관리하는 게 좋아요.
+
+```bash
+# 원라인 설치
+bash <(curl -sL https://raw.githubusercontent.com/your-org/claude-settings/main/setup.sh)
+```
+
+실제로 저도 이 방법으로 [claude-settings](https://github.com/hanui-o/claude-settings) 레포를 만들었어요. 커맨드 22종 + 에이전트 4종 + 훅 5종이 원라인 설치로 적용돼요.
+
+## 정리
+
+1. **커맨드**: `.claude/commands/이름.md` 만들면 `/이름`으로 바로 사용
+2. **에이전트**: `.claude/agents/이름.md`에 YAML frontmatter 추가
+3. **훅**: `.claude/hooks/이름.sh` 만들고 settings.json에 등록
+4. **공유**: Git 커밋 또는 별도 레포 + 설치 스크립트
+
+**핵심은 "반복하는 말을 마크다운에 한번만 적자"**예요. 그러면 `/` 한 글자로 끝나요.
+
+---
+
+> **시리즈:**
+>
+> - [1편: CMS 하루만에 만들기](/blog/claude-code-cms-workflow)
+> - [2편: 슬래시 커맨드 22종](/blog/claude-code-settings)
+> - [3편: CLAUDE.md 잘 쓰는 법](/blog/claude-code-claude-md)
+> - **4편: 나만의 커맨드 만들기** (이 글)
+> - [5편: MCP로 노션·피그마 연동](/blog/claude-code-mcp)
+>
+> **관련 프로젝트:**
+>
+> - [claude-settings](https://github.com/hanui-o/claude-settings) — Claude Code 슬래시 커맨드, 에이전트, 훅 설정 모음
+> - [HANUI](https://github.com/hanui-o/hanui) — KRDS 기반 React 디자인 시스템
