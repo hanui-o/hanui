@@ -133,6 +133,25 @@ Claude: (피그마 디자인 직접 읽음)
 
 기획서를 복붙하거나 요약해서 전달할 필요가 없어요.
 
+## Claude Desktop MCP랑 다른 거예요
+
+자주 헷갈리는 부분이에요.
+
+Claude Desktop에는 UI로 MCP를 연결하는 **Connect** 기능이 있어요. 근데 거기서 연결한 MCP는 **Claude Code에 적용 안 돼요.**
+
+```
+Claude Desktop MCP 설정
+→ ~/Library/Application Support/Claude/claude_desktop_config.json
+→ Claude Desktop에서만 작동
+
+Claude Code MCP 설정
+→ ~/.claude/settings.json (전역)
+→ .claude/settings.json (프로젝트)
+→ Claude Code에서만 작동
+```
+
+둘은 완전히 별개예요. Claude Code에서 MCP를 쓰려면 **반드시 JSON으로 따로 설정**해야 해요.
+
 ## 프로젝트별 MCP 설정
 
 팀 프로젝트라면 `.claude/settings.json`에 넣어두면 팀원 모두가 같은 MCP를 써요.
