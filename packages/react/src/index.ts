@@ -663,3 +663,12 @@ export type {
   PostData,
   PostStatus,
 } from './components/blocks/board-management';
+
+export { AdminShell, CMS_MENU_ITEMS } from './components/blocks/admin-shell';
+export type {
+  AdminShellProps,
+  AdminShellMenuItem,
+} from './components/blocks/admin-shell';
+
+export { CmsHeader } from './components/blocks/cms-header';
+export type { CmsHeaderProps, CmsUser } from './components/blocks/cms-header';
