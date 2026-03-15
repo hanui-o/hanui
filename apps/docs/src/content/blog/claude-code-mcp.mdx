@@ -1,0 +1,195 @@
+---
+title: 'Claude Code + MCP로 노션·피그마 연동하기'
+description: 'MCP(Model Context Protocol)로 Claude Code에 Notion, Figma를 연결하는 방법. 노션 페이지를 읽고, 피그마 디자인을 코드로 변환하는 실제 워크플로우를 공유해요.'
+date: '2026-03-15'
+tags: ['Claude Code', 'AI', 'MCP', 'Notion', 'Figma', '자동화', '개발도구']
+author: 'odada'
+---
+
+Claude Code 시리즈 5편이에요. [4편에서 나만의 커맨드 만들기](/blog/claude-code-custom-commands)를 다뤘는데요.
+
+오늘은 Claude Code를 외부 도구와 연결하는 **MCP(Model Context Protocol)** 이야기예요.
+
+## MCP가 뭐예요?
+
+Claude Code는 기본적으로 로컬 파일만 볼 수 있어요. 근데 MCP를 쓰면 **외부 서비스를 직접 연결**할 수 있어요.
+
+```
+MCP 없을 때:
+Claude Code → 로컬 파일만
+
+MCP 있을 때:
+Claude Code → 로컬 파일
+            → Notion 페이지 읽기/쓰기
+            → Figma 디자인 읽기
+            → GitHub 이슈
+            → Google Calendar
+            → Slack ... 등
+```
+
+Anthropic이 만든 오픈 프로토콜이라 써드파티 MCP 서버가 계속 늘어나고 있어요.
+
+## 설치 방법
+
+Claude Code 설정 파일(`~/.claude/settings.json` 또는 프로젝트 `.claude/settings.json`)에 추가하면 돼요.
+
+```json
+{
+  "mcpServers": {
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer {NOTION_TOKEN}\", \"Notion-Version\": \"2022-06-28\"}"
+      }
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "figma-developer-mcp", "--figma-api-key={FIGMA_TOKEN}", "--stdio"]
+    }
+  }
+}
+```
+
+토큰만 발급받으면 끝이에요.
+
+## Notion MCP 설정
+
+### 1. Notion 토큰 발급
+
+[notion.so/my-integrations](https://www.notion.so/my-integrations) 에서:
+
+1. **New integration** 클릭
+2. 이름 입력 (예: `Claude Code`)
+3. 권한: `Read content`, `Update content`, `Insert content` 체크
+4. **Internal Integration Secret** 복사
+
+### 2. 페이지 연결
+
+토큰만 있어도 안 돼요. **사용할 페이지를 integration에 공유**해야 해요.
+
+노션 페이지 우측 상단 `···` → **Connections** → 방금 만든 integration 추가.
+
+### 3. 사용 예시
+
+연결하면 이런 게 가능해요:
+
+```
+나: 노션 기획서 페이지 읽어서 컴포넌트 목록 뽑아줘
+Claude: (노션 페이지 직접 읽음) → 컴포넌트 목록 정리
+
+나: 오늘 작업한 내용 노션에 정리해줘
+Claude: (노션 페이지에 직접 작성)
+```
+
+저는 블로그 발행 계획 노션 페이지를 연결해두고, Claude Code가 직접 읽어서 **오늘 쓸 글이 뭔지 파악**하게 해요. 이 글도 그렇게 쓰고 있어요.
+
+## Figma MCP 설정
+
+### 1. Figma 토큰 발급
+
+[figma.com/settings](https://www.figma.com/settings) → **Personal access tokens** → **Generate new token**
+
+### 2. 사용 예시
+
+```
+나: 이 피그마 URL 보고 컴포넌트 만들어줘
+    https://www.figma.com/design/xxx/...
+
+Claude: (피그마 디자인 직접 읽음)
+        → 스펙 파악: 색상, 간격, 폰트
+        → HANUI 토큰으로 매핑
+        → React 컴포넌트 생성
+```
+
+가장 유용한 건 **디자인을 코드로 변환**할 때예요. 피그마 URL만 던져주면 Claude가 직접 열어보고 코드를 짜요. 스크린샷 찍어서 붙여넣을 필요가 없어요.
+
+## 실제 워크플로우
+
+제가 HANUI 작업할 때 쓰는 방식이에요.
+
+### 디자인 → 코드
+
+```
+1. 피그마에서 컴포넌트 디자인 완성
+2. Claude Code에 URL 전달
+3. "이 디자인으로 HANUI 컴포넌트 만들어줘"
+4. Claude가 디자인 읽고 → KRDS 토큰 적용 → 코드 생성
+```
+
+이전에는:
+- 피그마 열기 → 스펙 확인 → 수치 옮겨 적기 → 코드 작성
+
+지금은:
+- URL 복붙 → 코드 완성
+
+### 기획 → 구현
+
+```
+1. 노션에 기능 스펙 작성
+2. Claude Code에 "노션 페이지 보고 구현해줘"
+3. Claude가 스펙 직접 읽고 코드 작성
+```
+
+기획서를 복붙하거나 요약해서 전달할 필요가 없어요.
+
+## 프로젝트별 MCP 설정
+
+팀 프로젝트라면 `.claude/settings.json`에 넣어두면 팀원 모두가 같은 MCP를 써요.
+
+```json
+// .claude/settings.json (프로젝트 루트)
+{
+  "mcpServers": {
+    "notion": { ... },
+    "figma": { ... }
+  }
+}
+```
+
+개인 설정은 `~/.claude/settings.json`에, 프로젝트 설정은 `.claude/settings.json`에 분리하면 좋아요.
+
+## 어떤 MCP가 있어요?
+
+공식 목록은 [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) 에서 볼 수 있어요.
+
+프론트엔드 개발에 유용한 것들:
+
+| MCP | 용도 |
+|-----|------|
+| Notion | 기획서 읽기/쓰기, 태스크 관리 |
+| Figma | 디자인 → 코드 변환 |
+| GitHub | 이슈 생성, PR 리뷰 |
+| Vercel | 배포 상태 확인 |
+| Google Calendar | 일정 관리 |
+| Slack | 팀 알림 |
+
+직접 MCP 서버를 만들 수도 있어요. 사내 API나 디자인 시스템 문서를 MCP로 만들면 Claude가 직접 참조해요.
+
+## 정리
+
+MCP는 Claude Code를 **로컬 파일 편집기**에서 **팀 전체 워크플로우 허브**로 바꿔줘요.
+
+노션 기획 → 피그마 디자인 → 코드 구현 → 배포까지, 각 단계를 왔다갔다 하지 않고 Claude Code 하나에서 흘러가요.
+
+[claude-settings](https://github.com/hanui-o/claude-settings)에 MCP 설정 템플릿도 포함되어 있어요:
+
+```bash
+bash <(curl -sL https://raw.githubusercontent.com/hanui-o/claude-settings/main/setup.sh)
+```
+
+---
+
+> **Claude Code 시리즈:**
+>
+> - [1편: CMS 프로젝트 하루만에 만들기](/blog/claude-code-cms-workflow)
+> - [2편: 슬래시 커맨드 21종 설치](/blog/claude-code-settings)
+> - [3편: CLAUDE.md 잘 쓰는 법](/blog/claude-code-claude-md)
+> - [4편: 나만의 커맨드 만들기](/blog/claude-code-custom-commands)
+> - **5편: MCP로 노션·피그마 연동** ← 현재 글
+> - 6편: 백엔드도 Claude Code로 (3/17)
+>
+> **관련 프로젝트:**
+>
+> - [claude-settings](https://github.com/hanui-o/claude-settings) — Claude Code 슬래시 커맨드, 에이전트, 훅 설정 모음
+> - [HANUI](https://github.com/hanui-o/hanui) — KRDS 기반 React 디자인 시스템

@@ -1,5 +1,35 @@
 # Claude Rules
 
+## 블로그 글 작업 규칙
+
+### velog 이전 글 작업 시
+
+velog에서 hanui 블로그로 이전하는 글을 작업할 때는 **반드시 두 파일을 함께 제공**한다.
+
+1. **hanui 블로그용 mdx** — `apps/docs/src/content/blog/[slug].mdx`
+2. **velog 이전 공지용 md** — `docs/blog/velog/[번호]-[slug]-notice.md`
+
+velog 이전 공지 형식:
+
+```markdown
+# [원본 제목]
+
+> 이 글의 원본은 **<a href="https://hanui.io/blog/[slug]" target="_blank" rel="noopener noreferrer">hanui 블로그</a>로 이전**했어요.
+> 더 나은 가독성과 최신 내용은 원본 링크에서 확인해주세요!
+>
+> 👉 https://hanui.io/blog/[slug]
+
+---
+
+[원본 글 첫 두세 문단 요약]
+
+전체 내용은 hanui 블로그에서 확인하세요 → **https://hanui.io/blog/[slug]**
+```
+
+velog 이전 공지 파일을 빠뜨리면 안 된다.
+
+---
+
 ## 작업 전 선행 작업 안내
 
 사용자가 작업을 요청할 때, 빠뜨리거나 잘못할 수 있는 선행 작업이 있으면 작업 시작 전에 반드시 알려준다.
