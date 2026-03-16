@@ -610,6 +610,27 @@ export type {
 export { SearchBar } from './components/blocks/search-bar';
 export type { SearchBarProps } from './components/blocks/search-bar';
 
+export { ContentFilter } from './components/blocks/content-filter';
+export type {
+  ContentFilterProps,
+  FilterState,
+} from './components/blocks/content-filter';
+
+export { BulkActionsBar } from './components/blocks/bulk-actions-bar';
+export type {
+  BulkActionsBarProps,
+  BulkAction,
+} from './components/blocks/bulk-actions-bar';
+
+export { PublishSettings } from './components/blocks/publish-settings';
+export type {
+  PublishSettingsProps,
+  PublishSettingsState,
+} from './components/blocks/publish-settings';
+
+export { RichTextEditorPlaceholder } from './components/blocks/rich-text-editor-placeholder';
+export type { RichTextEditorPlaceholderProps } from './components/blocks/rich-text-editor-placeholder';
+
 export { EmptyState } from './components/blocks/empty-state';
 export type { EmptyStateProps } from './components/blocks/empty-state';
 

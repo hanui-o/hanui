@@ -63,7 +63,7 @@ export function BlogToc() {
   if (headings.length === 0) return null;
 
   return (
-    <aside className="hidden xl:block absolute left-full top-0 ml-6 w-48 h-full">
+    <aside className="hidden xl:block absolute left-full top-10 ml-6 w-48 h-full">
       <div className="sticky top-24">
         <h3 className="text-sm font-semibold text-krds-gray-50 mb-3">목차</h3>
         <nav className="flex flex-col gap-0.5">
