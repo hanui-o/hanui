@@ -36,7 +36,7 @@ export function BlogList({ posts, series }: BlogListProps) {
     <>
       {/* Series Sidebar - 왼쪽에 position으로 띄움 */}
       {series.length > 0 && (
-        <aside className="hidden xl:block absolute right-full top-0 mr-6 w-48 h-full">
+        <aside className="hidden xl:block absolute right-full top-10 mr-6 w-48 h-full">
           <div className="sticky top-24">
             <h3 className="text-sm font-semibold text-krds-gray-50 mb-3">
               시리즈
@@ -143,12 +143,12 @@ export function BlogList({ posts, series }: BlogListProps) {
             >
               {/* Series Badge */}
               {post.series && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-krds-primary-base bg-krds-primary-base/10 mb-2">
+                <span className="inline-flex items-center py-0.5 rounded text-xs font-medium text-krds-primary-base bg-krds-primary-base/10 mb-2">
                   {post.series}
                   {post.seriesOrder != null && ` #${post.seriesOrder}`}
                 </span>
               )}
-              <h2 className="text-xl font-bold text-krds-gray-95 mb-2 group-hover:text-krds-primary-base transition-colors leading-snug">
+              <h2 className="text-xl font-bold text-krds-gray-95 mb-2 group-hover:underline transition-colors leading-snug">
                 {post.title}
               </h2>
               <p className="text-krds-gray-60 leading-relaxed line-clamp-3 mb-4">
