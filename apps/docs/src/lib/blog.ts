@@ -13,6 +13,13 @@ export type BlogPost = {
   author: string;
   image?: string;
   canonicalUrl?: string;
+  series?: string;
+  seriesOrder?: number;
+};
+
+export type BlogSeries = {
+  name: string;
+  posts: BlogPost[];
 };
 
 export type BlogPostWithContent = BlogPost & {
@@ -41,6 +48,8 @@ export function getAllPosts(): BlogPost[] {
       author: data.author ?? 'odada',
       image: data.image,
       canonicalUrl: data.canonicalUrl,
+      series: data.series,
+      seriesOrder: data.seriesOrder,
     };
   });
 
@@ -68,6 +77,33 @@ export function getPostBySlug(slug: string): BlogPostWithContent | null {
     author: data.author ?? 'odada',
     image: data.image,
     canonicalUrl: data.canonicalUrl,
+    series: data.series,
+    seriesOrder: data.seriesOrder,
     content,
   };
+}
+
+export function getAllSeries(): BlogSeries[] {
+  const posts = getAllPosts();
+  const seriesMap = new Map<string, BlogPost[]>();
+
+  for (const post of posts) {
+    if (post.series) {
+      const list = seriesMap.get(post.series) ?? [];
+      list.push(post);
+      seriesMap.set(post.series, list);
+    }
+  }
+
+  return Array.from(seriesMap.entries()).map(([name, seriesPosts]) => ({
+    name,
+    posts: seriesPosts.sort(
+      (a, b) => (a.seriesOrder ?? 0) - (b.seriesOrder ?? 0)
+    ),
+  }));
+}
+
+export function getSeriesByName(seriesName: string): BlogSeries | null {
+  const series = getAllSeries();
+  return series.find((s) => s.name === seriesName) ?? null;
 }

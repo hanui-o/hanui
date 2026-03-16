@@ -84,6 +84,7 @@ function replaceComponents(children: ReactNode): ReactNode {
 export function BlogMDXContent({ children }: { children: ReactNode }) {
   return (
     <div
+      data-blog-content=""
       className={[
         'prose prose-lg dark:prose-invert max-w-none',
         // headings

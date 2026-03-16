@@ -4,9 +4,10 @@ import { notFound } from 'next/navigation';
 import { compile, run } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
-import { getAllPosts, getPostBySlug } from '@/lib/blog';
+import { getAllPosts, getPostBySlug, getSeriesByName } from '@/lib/blog';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { BlogMDXContent } from '@/components/blog/BlogMDXContent';
+import { BlogToc } from './blog-toc';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -87,6 +88,9 @@ export default async function BlogPostPage({ params }: Props) {
 
   const MDXContent = await compileMDX(post.content);
 
+  // Get series info
+  const seriesData = post.series ? getSeriesByName(post.series) : null;
+
   // Get adjacent posts for navigation
   const allPosts = getAllPosts();
   const currentIndex = allPosts.findIndex((p) => p.slug === slug);
@@ -95,7 +99,8 @@ export default async function BlogPostPage({ params }: Props) {
   const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
 
   return (
-    <div className="max-w-4xl mx-auto px-4">
+    <div className="max-w-4xl mx-auto px-4 relative">
+      <BlogToc />
       <article>
         {/* Back */}
         <div className="pt-6 pb-4">
@@ -138,8 +143,47 @@ export default async function BlogPostPage({ params }: Props) {
           )}
         </header>
 
-        {/* Separator */}
-        {/* <div className="w-16 h-1 bg-krds-primary-base rounded" /> */}
+        {/* Series Navigation */}
+        {seriesData && (
+          <div className="mb-10 p-5 bg-krds-gray-5/50 rounded-xl border border-krds-gray-10">
+            <div className="flex items-center gap-2 mb-3">
+              <BookOpen className="w-4 h-4 text-krds-primary-base" />
+              <h3 className="text-sm font-bold text-krds-gray-95">
+                {seriesData.name} 시리즈
+              </h3>
+              <span className="text-xs text-krds-gray-40">
+                ({seriesData.posts.length}편)
+              </span>
+            </div>
+            <ol className="flex flex-col gap-1">
+              {seriesData.posts.map((p, i) => {
+                const isCurrent = p.slug === slug;
+                return (
+                  <li key={p.slug}>
+                    {isCurrent ? (
+                      <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-krds-primary-base/10 text-sm font-semibold text-krds-primary-base">
+                        <span className="text-xs text-krds-primary-base/60">
+                          {i + 1}.
+                        </span>
+                        {p.title}
+                      </span>
+                    ) : (
+                      <Link
+                        href={`/blog/${p.slug}`}
+                        className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm text-krds-gray-60 hover:bg-krds-gray-5 transition-colors"
+                      >
+                        <span className="text-xs text-krds-gray-40">
+                          {i + 1}.
+                        </span>
+                        {p.title}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        )}
 
         {/* Content — HANUI Code component for code blocks */}
         <BlogMDXContent>
