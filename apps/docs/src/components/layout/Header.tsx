@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Logo } from './Logo';
 import { Container } from '@hanui/react';
 import {
@@ -22,8 +22,9 @@ export function Header() {
   const { resolvedTheme, setTheme } = useTheme();
   const { framework, setFramework } = useFramework();
   const [mounted, setMounted] = useState(false);
-  const [isFixed, setIsFixed] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const prevScrollY = useRef(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isMainPage = pathname === '/';
@@ -52,7 +53,12 @@ export function Header() {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
-          setIsFixed(scrollY > 56);
+          if (scrollY < 56) {
+            setIsHidden(false);
+          } else {
+            setIsHidden(scrollY > prevScrollY.current);
+          }
+          prevScrollY.current = scrollY;
           ticking = false;
         });
         ticking = true;
@@ -107,7 +113,7 @@ export function Header() {
         //   position: isFixed ? 'fixed' : 'absolute',
         //   top: isFixed ? '-56px' : '0',
         // }}
-        className={`fixed top-0 z-50 w-full bg-krds-white supports-[backdrop-filter]:bg-krds-white/95 ${isMainPage ? '' : 'border-b border-krds-gray-5'}`}
+        className={`fixed top-0 z-50 w-full bg-krds-white supports-[backdrop-filter]:bg-krds-white/95 transition-transform duration-300 ${isHidden ? '-translate-y-full' : 'translate-y-0'} ${isMainPage ? '' : 'border-b border-krds-gray-5'}`}
       >
         {/* Main Header */}
         <Container maxWidth="full" className="h-14 flex items-center gap-4">
