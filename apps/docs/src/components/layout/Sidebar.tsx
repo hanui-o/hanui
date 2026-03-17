@@ -209,11 +209,7 @@ const blocksNavigation = [
         href: '/blocks/board-management',
         isNew: true,
       },
-      {
-        title: 'Media Gallery',
-        href: '/blocks/media-gallery',
-        isNew: true,
-      },
+      { title: 'Media Gallery', href: '/blocks/media-gallery', isNew: true },
       { title: 'Trash List', href: '/blocks/trash-list', isNew: true },
     ],
   },
@@ -313,93 +309,113 @@ function SidebarSection({
   );
 }
 
-export function Sidebar() {
+export interface SidebarProps {
+  /** 모바일 드로어 열림 상태 (md 미만에서만 적용) */
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
   const navRef = useRef<HTMLElement>(null);
   const activeRef = useRef<HTMLAnchorElement | null>(null);
   const pathname = usePathname();
 
-  // Determine which navigation to show based on current path
   const getNavigation = () => {
-    if (pathname?.startsWith('/docs')) {
-      return getStartedNavigation;
-    } else if (pathname?.startsWith('/design-system')) {
-      return designSystemNavigation;
-    } else if (pathname?.startsWith('/components')) {
-      return componentsNavigation;
-    } else if (pathname?.startsWith('/blocks')) {
-      return blocksNavigation;
-    } else if (pathname?.startsWith('/templates')) {
-      return templatesNavigation;
-    } else if (pathname?.startsWith('/kits')) {
-      return kitsNavigation;
-    }
-    // Default to components navigation for home page
+    if (pathname?.startsWith('/docs')) return getStartedNavigation;
+    if (pathname?.startsWith('/design-system')) return designSystemNavigation;
+    if (pathname?.startsWith('/components')) return componentsNavigation;
+    if (pathname?.startsWith('/blocks')) return blocksNavigation;
+    if (pathname?.startsWith('/templates')) return templatesNavigation;
+    if (pathname?.startsWith('/kits')) return kitsNavigation;
     return componentsNavigation;
   };
 
   const navigation = getNavigation();
 
-  // 활성 링크 ref 콜백
   const handleActiveRef = (el: HTMLAnchorElement | null) => {
     activeRef.current = el;
   };
 
-  // 스크롤 위치 저장 (링크 클릭 시)
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
-
     const handleClick = () => {
       sessionStorage.setItem('sidebar-scroll', nav.scrollTop.toString());
     };
-
     nav.addEventListener('click', handleClick);
     return () => nav.removeEventListener('click', handleClick);
   }, []);
 
-  // 스크롤 위치 복원 또는 활성 메뉴로 스크롤
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
-
     const savedScroll = sessionStorage.getItem('sidebar-scroll');
     if (savedScroll) {
-      // 저장된 스크롤 위치가 있으면 복원
-      const timeoutId = setTimeout(() => {
+      const id = setTimeout(() => {
         nav.scrollTop = parseInt(savedScroll, 10);
       }, 0);
-      return () => clearTimeout(timeoutId);
+      return () => clearTimeout(id);
     } else if (activeRef.current) {
-      // 저장된 위치가 없으면 활성 메뉴로 스크롤
-      const timeoutId = setTimeout(() => {
+      const id = setTimeout(() => {
         activeRef.current?.scrollIntoView({
           block: 'center',
           behavior: 'instant',
         });
       }, 0);
-      return () => clearTimeout(timeoutId);
+      return () => clearTimeout(id);
     }
   }, [pathname]);
 
-  return (
-    <aside className="hidden md:block w-64 flex-shrink-0 relative border-r border-krds-gray-5">
-      <nav
-        ref={navRef}
-        className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto p-6 pb-20 scrollbar-hide"
-      >
-        <div className="space-y-8">
-          {navigation.map((section) => (
-            <SidebarSection
-              key={section.title}
-              section={section}
-              onActiveRef={handleActiveRef}
-            />
-          ))}
-        </div>
-      </nav>
+  // 모바일에서 링크 클릭 시 드로어 닫기
+  const handleNavClick = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('a')) onClose?.();
+  };
 
-      {/* Bottom gradient */}
-      {/* <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white dark:from-gray-950 to-transparent pointer-events-none z-10" /> */}
-    </aside>
+  return (
+    <>
+      {/* KRDS medium(768px) 미만: 배경 딤 */}
+      <div
+        className={`fixed inset-0 z-30 bg-black/40 md:hidden transition-opacity duration-300 ${
+          isOpen
+            ? 'opacity-100 pointer-events-auto'
+            : 'opacity-0 pointer-events-none'
+        }`}
+        aria-hidden="true"
+        onClick={onClose}
+      />
+
+      {/* 사이드바
+          mobile: fixed overlay (KRDS small ~767px) - 드로어
+          md+(768px~): 인라인 static 사이드바 (KRDS medium~) */}
+      <aside
+        className={[
+          // 모바일: fixed 드로어
+          'fixed top-14 left-0 bottom-0 z-40 w-64 bg-krds-white',
+          'transition-transform duration-300 ease-in-out',
+          isOpen ? 'translate-x-0' : '-translate-x-full',
+          // KRDS medium(768px)+: 인라인 배치, 드로어 해제
+          'md:relative md:top-auto md:bottom-auto md:z-auto md:bg-transparent',
+          'md:translate-x-0 md:flex-shrink-0 md:w-52',
+          'lg:w-64',
+          'border-r border-krds-gray-5',
+        ].join(' ')}
+      >
+        <nav
+          ref={navRef}
+          onClick={handleNavClick}
+          className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto p-4 md:p-6 pb-20 scrollbar-hide"
+        >
+          <div className="space-y-8">
+            {navigation.map((section) => (
+              <SidebarSection
+                key={section.title}
+                section={section}
+                onActiveRef={handleActiveRef}
+              />
+            ))}
+          </div>
+        </nav>
+      </aside>
+    </>
   );
 }

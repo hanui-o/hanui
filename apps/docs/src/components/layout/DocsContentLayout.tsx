@@ -17,8 +17,9 @@ interface DocsContentLayoutProps {
 export function DocsContentLayout({ children }: DocsContentLayoutProps) {
   return (
     <DocsLayout>
-      <div className="flex justify-between gap-8 py-12">
-        <div className="flex-1 max-w-4xl">{children}</div>
+      {/* KRDS: mobile py-6(24px), tablet/desktop py-12(48px) */}
+      <div className="flex justify-between gap-6 lg:gap-8 py-6 md:py-12">
+        <div className="flex-1 min-w-0 max-w-4xl">{children}</div>
         <PageNav />
       </div>
     </DocsLayout>
