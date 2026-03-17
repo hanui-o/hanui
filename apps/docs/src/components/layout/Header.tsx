@@ -19,7 +19,7 @@ import { SearchModal } from '@/components/search/SearchModal';
 import { useFramework } from '@/components/FrameworkTabs';
 
 export function Header() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const { framework, setFramework } = useFramework();
   const [mounted, setMounted] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
@@ -218,11 +218,11 @@ export function Header() {
             {/* Theme Toggle */}
             {mounted && (
               <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                 className="flex items-center justify-center text-lg h-9 w-9 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors"
                 aria-label="Toggle theme"
               >
-                {theme === 'dark' ? (
+                {resolvedTheme === 'dark' ? (
                   <Sun className="w-5 h-5" />
                 ) : (
                   <Moon className="w-5 h-5" />
