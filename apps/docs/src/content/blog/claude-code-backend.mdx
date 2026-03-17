@@ -1,8 +1,8 @@
 ---
-title: '백엔드도 Claude Code로 — Spring Boot API를 한 번에 짜는 법'
-description: 'Claude Code로 Spring Boot 백엔드를 개발하는 실제 워크플로우. DB 스키마 설계부터 REST API 구현까지, 노션 기획서를 읽고 코드를 뽑아내는 과정을 공유해요.'
+title: '백엔드 잘 모르는 프론트가 Spring Boot API 짠 이야기'
+description: '전자정부프레임워크가 뭔지도 몰랐던 프론트엔드 개발자가 Claude Code로 Spring Boot 백엔드를 짜게 된 과정. 블록처럼 가져다 쓰는 eGovFrame + Claude Code 조합.'
 date: '2026-03-17'
-tags: ['Claude Code', 'AI', 'Spring Boot', '백엔드', '자동화', '개발도구']
+tags: ['Claude Code', 'AI', 'Spring Boot', '백엔드', '전자정부프레임워크', '자동화', '개발도구']
 author: 'odada'
 series: 'Claude Code'
 seriesOrder: 6
@@ -10,187 +10,161 @@ seriesOrder: 6
 
 Claude Code 시리즈 6편이에요. [5편에서 MCP로 노션·피그마를 연동](/blog/claude-code-mcp)했는데요.
 
-오늘은 **백엔드 개발에 Claude Code를 쓰는 법**이에요.
+오늘은 좀 부끄러운 이야기예요.
 
-"Claude Code는 프론트엔드용 아닌가?" 싶을 수 있는데, 아니에요. 저는 지금 hanui CMS 백엔드를 Claude Code로 짜고 있어요. Spring Boot + 전자정부프레임워크 v5예요.
+저 사실 **백엔드 잘 몰라요.** 프론트엔드 개발자거든요. Spring이라고 하면 어노테이션 몇 개 아는 수준이고, MyBatis는 이름만 들어봤고, JWT 구현은 블로그 긁어서 붙여넣는 사람이에요.
 
-## 백엔드에서 Claude Code가 특히 유용한 이유
+근데 지금 hanui CMS 백엔드를 짜고 있어요. Spring Boot + 전자정부프레임워크 v5로.
 
-프론트엔드는 결과가 눈에 보여요. 근데 백엔드는 다 타이핑이에요.
+어떻게 된 일이냐면...
 
-- DB 스키마 → SQL 파일 → 마이그레이션
-- API 명세 → Controller → Service → Repository → Mapper
-- 반복되는 CRUD 패턴
+## 전자정부프레임워크가 뭔지도 몰랐어요
 
-이 패턴 반복 작업에서 Claude Code가 빛을 발해요.
+공공기관 프로젝트 들어가면 꼭 나오는 그 이름. 행정안전부에서 만든 Java 기반 프레임워크예요.
 
-## 실제 워크플로우
+쉽게 말하면 **공공기관 납품용 블록 모음**이에요.
 
-제가 hanui CMS 백엔드를 만들면서 쓴 방식이에요.
+```
+eGovFramework = Spring Boot 기반
+               + 인증/세션 처리 블록
+               + 파일 업로드 블록
+               + 공통 코드 관리 블록
+               + 게시판 블록
+               + 로그 블록
+               + ...
+```
+
+HANUI가 UI 컴포넌트 블록 모음인 것처럼, 전자정부프레임워크는 **백엔드 기능 블록 모음**이에요.
+
+공공기관 입찰할 때 "전자정부프레임워크 적용"이 거의 필수 요건이라 쓸 수밖에 없기도 하고요.
+
+저는 이게 뭔지도 모르는 상태에서 Claude Code한테 물어봤어요.
+
+```
+나: 전자정부프레임워크가 뭐야?
+    공공기관 CMS 만들어야 하는데 이걸 써야 한다고 하더라고
+
+Claude: (설명해줌)
+        → 어떤 블록이 있는지
+        → Spring Boot 3.x와 어떻게 쓰는지
+        → 프로젝트에 어떻게 세팅하는지
+```
+
+이게 시작이었어요.
+
+## "몰라도 된다"는 걸 알았어요
+
+솔직히 말하면, 저는 코드를 이해하면서 짜는 게 아니에요.
+
+Claude Code가 코드를 만들어주고, 저는 이게 뭘 하는 건지 물어가면서 이해하는 식이에요.
+
+```
+나: 이 @PreAuthorize("hasRole('EDITOR')") 이게 뭐야?
+
+Claude: Spring Security에서 이 API를
+        EDITOR 역할을 가진 사람만 접근할 수 있게 막는 거예요.
+        RBAC(역할 기반 접근 제어)라고 해요.
+
+나: 아 그럼 VIEWER는 이 API 못 쓰겠네?
+
+Claude: 맞아요. VIEWER는 읽기만 되고 쓰기는 안 돼요.
+```
+
+이게 반복되다 보니까 어느새 대충 흐름은 알게 됐어요.
+
+## 실제로 이렇게 했어요
 
 ### 1. 노션 기획서 → DB 스키마
 
+노션에 DB 설계가 다 되어있었어요. 테이블, 컬럼, 관계 전부요.
+
 ```
-나: 노션 기획서 보고 DB 스키마 만들어줘
-    https://notion.so/...
+나: 노션 기획서 DB 설계 페이지 보고
+    PostgreSQL DDL 만들어줘
+    Flyway 마이그레이션 파일로
 
 Claude: (노션 직접 읽음)
-        → ERD 분석
-        → PostgreSQL DDL 생성
-        → Flyway 마이그레이션 파일 생성
+        → V1__init_schema.sql 생성
 ```
 
-노션 MCP가 연결돼 있으면 기획서를 직접 읽어요. 복붙 없이 바로 스키마가 나와요.
+저는 SQL을 잘 몰라도 기획서만 써놓으면 됐어요.
 
-결과:
+### 2. API 명세 → 코드
 
-```sql
--- V1__init_schema.sql
-CREATE TABLE users (
-    id          BIGSERIAL PRIMARY KEY,
-    login_id    VARCHAR(50) UNIQUE NOT NULL,
-    password    VARCHAR(255) NOT NULL,
-    name        VARCHAR(50) NOT NULL,
-    email       VARCHAR(100),
-    is_active   BOOLEAN DEFAULT true,
-    created_at  TIMESTAMP DEFAULT now(),
-    updated_at  TIMESTAMP DEFAULT now()
-);
-
-CREATE TABLE posts (
-    id          BIGSERIAL PRIMARY KEY,
-    board_id    BIGINT NOT NULL REFERENCES boards(id),
-    title       VARCHAR(300) NOT NULL,
-    content     TEXT,
-    status      VARCHAR(20) DEFAULT 'DRAFT',
-    is_pinned   BOOLEAN DEFAULT false,
-    view_count  INTEGER DEFAULT 0,
-    created_by  BIGINT NOT NULL REFERENCES users(id),
-    created_at  TIMESTAMP DEFAULT now(),
-    updated_at  TIMESTAMP DEFAULT now(),
-    deleted_at  TIMESTAMP
-);
--- ...
-```
-
-### 2. API 명세 → Controller 한 번에
-
-CRUD API 명세를 주면 Controller부터 Repository까지 한 번에 만들어줘요.
+API 명세도 노션에 있었어요.
 
 ```
-나: 게시글 API 명세 보고 구현해줘
-    - GET /api/v1/boards/:boardCode/posts (목록, 페이지네이션)
-    - POST /api/v1/admin/posts (등록, EDITOR 이상)
-    - PUT /api/v1/admin/posts/:id (수정)
-    - DELETE /api/v1/admin/posts/:id (소프트 삭제)
+나: 게시글 CRUD API 만들어줘
+    명세는 노션에 있어
 
 Claude: PostController.java
         PostService.java
-        PostRepository.java (MyBatis)
-        PostMapper.xml
+        PostMapper.java + PostMapper.xml
         PostDto.java (Request/Response)
         → 전부 생성
 ```
 
-하나씩 만들면 30분 걸릴 걸 5분에 끝내요.
+저는 "이 메서드가 뭘 하는 거야?"를 계속 물어가면서 배웠어요.
 
-### 3. CLAUDE.md로 일관성 유지
-
-백엔드에서 CLAUDE.md가 더 중요해요. 코드 패턴이 미묘하게 달라지면 나중에 유지보수가 힘들거든요.
-
-저는 이렇게 써뒀어요:
-
-```markdown
-## 백엔드 코드 패턴
-
-### 응답 형식
-모든 API는 ApiResponse<T>로 감싸서 반환:
-{ "success": true, "data": {...} }
-{ "success": false, "error": { "code": "...", "message": "..." } }
-
-### 계층 구조
-Controller → Service → Repository (MyBatis Mapper)
-- Controller: 요청/응답 변환만
-- Service: 비즈니스 로직, 트랜잭션
-- Repository: 쿼리만
-
-### 소프트 삭제
-posts, media, pages는 deleted_at 컬럼으로 소프트 삭제
-실제 DELETE 쿼리 사용 금지
-
-### 에러 코드
-CustomException + GlobalExceptionHandler 패턴 사용
-ErrorCode enum에 정의된 코드만 사용
-```
-
-이걸 써두면 50개 API가 전부 같은 패턴으로 나와요.
-
-## 반복 작업이 제일 빠르다
-
-백엔드 개발에서 가장 지루한 부분이 CRUD 반복이에요.
+### 3. 모르는 거 나오면 바로 질문
 
 ```
-게시판 API → 게시글 API → 고정페이지 API → 미디어 API → ...
+나: @Transactional이 여기 왜 붙어있어?
+
+Claude: 게시글 저장하고 첨부파일도 같이 저장하는데,
+        둘 중 하나 실패하면 둘 다 취소해야 하거든요.
+        그게 트랜잭션이에요.
+
+나: 아 그래서 같이 묶는 거구나
 ```
 
-구조가 거의 똑같아요. Controller, Service, Repository, Mapper, DTO. 이름만 바뀌고.
+이런 식으로 하다 보니까 Spring을 하나씩 배우고 있어요.
 
-Claude Code한테 한 도메인을 완성하고 나서 "이 패턴으로 미디어 API 만들어줘"라고 하면 바로 나와요. 이전에 만든 코드를 참고해서 일관된 패턴으로.
+## 블록 조합하는 거잖아요, 결국
 
-## 테스트 코드도 같이
-
-```
-나: PostService 테스트 코드 짜줘
-
-Claude: PostServiceTest.java 생성
-        - 게시글 등록 성공/실패
-        - 소프트 삭제 확인
-        - 권한 검증
-        → 케이스별로 다 짜줌
-```
-
-이걸 직접 짜면 또 30분인데, 같이 나와요.
-
-## 막히는 부분은 같이 디버깅
-
-Spring Security 설정이나 JWT 필터 같이 복잡한 부분은 Claude Code랑 같이 디버깅해요.
+프론트엔드에서 컴포넌트 조합하는 것처럼, 백엔드도 결국 블록 조합이더라고요.
 
 ```
-나: JWT 필터에서 401이 계속 나와
-    (파일 첨부)
-
-Claude: SecurityConfig에서 /api/v1/auth/** 경로를
-        permitAll()에 포함했는지 확인해줘
-        → (코드 보고) 여기 빠졌네요, 추가할게요
+전자정부프레임워크 블록
+  + Spring Security (인증/권한)
+  + MyBatis (DB 쿼리)
+  + Flyway (DB 마이그레이션)
+  + Claude Code (조합 + 구현)
 ```
 
-에러 로그 붙여넣으면 원인 찾는 것도 빨라요.
+저는 어떤 블록을 어떻게 조합할지 **설계**만 했어요. 구현은 Claude Code가 했고, 모르는 건 Claude Code한테 물어봤어요.
 
-## 프론트랑 동시에 개발
+## 근데 양심이 좀 찔리긴 해요
 
-백엔드 API가 아직 없어도 프론트 개발을 멈출 필요가 없어요.
+글 쓰면서 느끼는 게, 제가 뭔가 대단한 걸 한 것처럼 되는데... 사실 저는 설계하고 지시한 거고 구현은 Claude Code가 다 했어요.
 
-1. API 명세 확정
-2. 프론트: Mock 데이터로 UI 개발
-3. 백엔드: Claude Code로 API 구현
-4. 프론트: Mock → 실제 API 연동
+그냥 솔직하게 말하면:
 
-저는 hanui CMS 프론트 UI를 먼저 다 만들고, 지금 백엔드를 짜고 있어요. Claude Code 덕에 둘이 거의 동시에 진행할 수 있었어요.
+> 백엔드 잘 모르는 프론트엔드 개발자가
+> 노션에 기획서 잘 써두고
+> Claude Code한테 시켰어요.
 
-## 정리
+근데 그게 어때서요? 어차피 돌아가면 되는 거 아닌가요.
 
-백엔드에서 Claude Code가 특히 유용한 건:
+"이해하지 못한 코드는 쓰면 안 된다"고 하는 사람도 있을 것 같은데, 저는 모르는 코드가 나오면 물어보면서 이해했어요. 그게 Stack Overflow 긁어다 붙여넣는 것보다 훨씬 이해가 잘 됐어요.
 
-| 작업 | 혼자 | Claude Code |
-|------|------|-------------|
-| DB 스키마 설계 | 2~3시간 | 30분 |
-| CRUD API 1개 도메인 | 2시간 | 30분 |
-| 테스트 코드 | 1시간 | 같이 나옴 |
-| 에러 디버깅 | 막막 | 같이 봄 |
+## 결국 이게 요점인 것 같아요
 
-코드를 대신 짜준다기보다, **내가 설계하고 Claude가 구현하는** 느낌이에요. 설계 판단은 제가 하고, 타이핑은 Claude가 해요.
+Claude Code 이전에는:
+- "나는 백엔드 모르니까 못 해"
+- "백엔드 개발자 구해야겠다"
 
-[claude-settings](https://github.com/hanui-o/claude-settings)에 백엔드용 커맨드도 있어요 (`/api`, `/db`, `/migrate`):
+Claude Code 이후에는:
+- "일단 해봐, 모르면 물어보면서"
+- "기획이 명확하면 구현은 따라온다"
+
+할 수 있는 것의 범위가 넓어졌어요.
+
+프론트만 하던 제가 풀스택으로 CMS를 혼자 만들고 있다는 게 아직도 신기해요.
+
+---
+
+[claude-settings](https://github.com/hanui-o/claude-settings)에 백엔드 커맨드도 있어요 (`/api`, `/db`, `/migrate`):
 
 ```bash
 bash <(curl -sL https://raw.githubusercontent.com/hanui-o/claude-settings/main/setup.sh)
@@ -205,7 +179,7 @@ bash <(curl -sL https://raw.githubusercontent.com/hanui-o/claude-settings/main/s
 > - [3편: CLAUDE.md 잘 쓰는 법](/blog/claude-code-claude-md)
 > - [4편: 나만의 커맨드 만들기](/blog/claude-code-custom-commands)
 > - [5편: MCP로 노션·피그마 연동](/blog/claude-code-mcp)
-> - **6편: 백엔드도 Claude Code로** ← 현재 글
+> - **6편: 백엔드 잘 모르는 프론트가 Spring Boot API 짠 이야기** ← 현재 글
 > - 7편: 일주일 회고 (3/18)
 >
 > **관련 프로젝트:**
