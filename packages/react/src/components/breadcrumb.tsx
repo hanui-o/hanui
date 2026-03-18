@@ -59,11 +59,8 @@ export interface BreadcrumbProps {
   /**
    * Custom link component
    */
-  LinkComponent?: React.ComponentType<{
-    href: string;
-    children: React.ReactNode;
-    className?: string;
-  }>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  LinkComponent?: React.ComponentType<any>;
 
   /**
    * Additional CSS classes

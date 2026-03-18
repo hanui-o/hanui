@@ -7,11 +7,66 @@ import { cn } from '@/lib/utils';
 import { Button } from './button';
 import { List, ListItem } from './list';
 
+/** 관련 사이트 링크 */
+export interface FooterRelatedSiteLink {
+  name: string;
+  url: string;
+}
+
+/** 관련 사이트 그룹 */
+export interface FooterRelatedSite {
+  id: string;
+  title: string;
+  links: FooterRelatedSiteLink[];
+}
+
+/** 연락처 정보 */
+export interface FooterContactInfo {
+  label: string;
+  description: string;
+}
+
+/** SNS 링크 */
+export interface FooterSnsLink {
+  name: string;
+  icon: React.ComponentType;
+  href: string;
+}
+
+/** 하단 메뉴 */
+export interface FooterMenuItem {
+  label: string;
+  href: string;
+  highlighted?: boolean;
+}
+
+/** 바로가기 링크 */
+export interface FooterQuickLink {
+  label: string;
+  href: string;
+}
+
 export interface FooterProps {
   className?: string;
   logo?: string;
   logoAlt?: string;
   logoHref?: string;
+  /** 관련 사이트 그룹 (모달 형태) */
+  relatedSites?: FooterRelatedSite[];
+  /** 기관 주소 */
+  address?: string;
+  /** 연락처 정보 */
+  contactInfo?: FooterContactInfo[];
+  /** 바로가기 링크 */
+  quickLinks?: FooterQuickLink[];
+  /** SNS 링크 */
+  snsLinks?: FooterSnsLink[];
+  /** 하단 메뉴 (개인정보처리방침 등) */
+  footerMenu?: FooterMenuItem[];
+  /** 저작권 텍스트 */
+  copyright?: string;
+  /** footer id */
+  id?: string;
 }
 
 // SNS Icon Components
@@ -165,96 +220,103 @@ export function Footer({
   logo = 'https://www.krds.go.kr/resources/img/pattern/layout/head_logo.svg',
   logoAlt = '대한민국정부',
   logoHref = '/',
+  relatedSites = RELATED_SITES,
+  address = '(26464) 강원특별자치도 원주시 건강로 32(반곡동) 국민건강보험공단',
+  contactInfo = CONTACT_INFO,
+  quickLinks = QUICK_LINKS,
+  snsLinks = SNS_LINKS,
+  footerMenu = FOOTER_MENU,
+  copyright = '© 2023 National Health Insurance Service. All rights reserved. The Government of the Republic of Korea. All rights reserved.',
+  id = 'krds-footer',
 }: FooterProps) {
   const [openModal, setOpenModal] = useState<string | null>(null);
 
   return (
-    <footer
-      id="krds-footer"
-      className={cn('relative z-50 bg-krds-gray-5', className)}
-    >
+    <footer id={id} className={cn('relative z-50 bg-krds-gray-5', className)}>
       {/* Quick Links Section */}
-      <div className="border-y border-krds-gray-10 bg-white">
-        <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex flex-col lg:flex-row">
-          <nav
-            className="flex flex-col lg:flex-row w-full border-x border-krds-gray-10 border-l-0 md:border-l divide-x divide-krds-gray-10"
-            aria-label="관련 사이트"
-          >
-            {RELATED_SITES.map((site, index) => (
-              <Dialog.Root
-                key={site.id}
-                open={openModal === site.id}
-                onOpenChange={(open) => setOpenModal(open ? site.id : null)}
-              >
-                <Dialog.Trigger asChild>
-                  <Button
-                    variant="ghost"
-                    iconRight={<Plus className="w-5 h-5" />}
-                    className={cn(
-                      'justify-between w-full h-14 px-6 rounded-none font-normal text-krds-gray-90',
-                      'hover:bg-krds-primary-5 active:bg-krds-primary-10',
-                      'text-sm min-h-[calc(3.5rem-2px)] md:text-base md:min-h-14',
-                      index !== 0 &&
-                        'border-t border-t-krds-gray-10 md:border-t-0'
-                    )}
-                    title={`${site.title} 메뉴`}
-                  >
-                    {site.title}
-                  </Button>
-                </Dialog.Trigger>
+      {relatedSites.length > 0 && (
+        <div className="border-y border-krds-gray-10 bg-white">
+          <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex flex-col lg:flex-row">
+            <nav
+              className="flex flex-col lg:flex-row w-full border-x border-krds-gray-10 border-l-0 md:border-l divide-x divide-krds-gray-10"
+              aria-label="관련 사이트"
+            >
+              {relatedSites.map((site, index) => (
+                <Dialog.Root
+                  key={site.id}
+                  open={openModal === site.id}
+                  onOpenChange={(open) => setOpenModal(open ? site.id : null)}
+                >
+                  <Dialog.Trigger asChild>
+                    <Button
+                      variant="ghost"
+                      iconRight={<Plus className="w-5 h-5" />}
+                      className={cn(
+                        'justify-between w-full h-14 px-6 rounded-none font-normal text-krds-gray-90',
+                        'hover:bg-krds-primary-5 active:bg-krds-primary-10',
+                        'text-sm min-h-[calc(3.5rem-2px)] md:text-base md:min-h-14',
+                        index !== 0 &&
+                          'border-t border-t-krds-gray-10 md:border-t-0'
+                      )}
+                      title={`${site.title} 메뉴`}
+                    >
+                      {site.title}
+                    </Button>
+                  </Dialog.Trigger>
 
-                <Dialog.Portal>
-                  <Dialog.Overlay className="fixed inset-0 bg-krds-black/50 z-[1000] animate-in fade-in-0" />
-                  <Dialog.Content className="fixed inset-0 bg-krds-gray-5 z-[1001] animate-in fade-in-0 slide-in-from-bottom-4 flex flex-col">
-                    {/* Header */}
-                    <div className="flex justify-between items-center py-5 px-6 md:px-8 md:py-0">
-                      <Dialog.Title className="text-lg font-bold text-krds-gray-90 mt-40 md:text-krds-heading-md">
-                        {site.title}
-                      </Dialog.Title>
-                      <Dialog.Close asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          iconLeft={<X className="w-10 h-10" />}
-                          aria-label="닫기"
-                        />
-                      </Dialog.Close>
-                    </div>
-
-                    <Dialog.Description className="sr-only">
-                      {site.title} 관련 사이트 목록
-                    </Dialog.Description>
-
-                    {/* Content */}
-                    <div className="flex-1 overflow-y-auto">
-                      <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-6 py-8 md:px-8 md:py-10">
-                        <List className="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-y-0">
-                          {site.links.map((link) => (
-                            <ListItem
-                              key={link.name}
-                              className="m-0 before:top-[21px]"
-                            >
-                              <a
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="relative flex items-center gap-2 py-3 px-2 -mx-2 no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2 rounded before:content-[''] before:absolute before:inset-y-0 before:-left-6 before:right-4 before:rounded before:bg-krds-gray-10 before:opacity-0 before:transition-opacity hover:before:opacity-100 before:-z-10"
-                              >
-                                {link.name}
-                                <span className="sr-only"> (새 창 열기)</span>
-                              </a>
-                            </ListItem>
-                          ))}
-                        </List>
+                  <Dialog.Portal>
+                    <Dialog.Overlay className="fixed inset-0 bg-krds-black/50 z-[1000] animate-in fade-in-0" />
+                    <Dialog.Content className="fixed inset-0 bg-krds-gray-5 z-[1001] animate-in fade-in-0 slide-in-from-bottom-4 flex flex-col">
+                      {/* Header */}
+                      <div className="flex justify-between items-center py-5 px-6 md:px-8 md:py-0">
+                        <Dialog.Title className="text-lg font-bold text-krds-gray-90 mt-40 md:text-krds-heading-md">
+                          {site.title}
+                        </Dialog.Title>
+                        <Dialog.Close asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            iconLeft={<X className="w-10 h-10" />}
+                            aria-label="닫기"
+                          />
+                        </Dialog.Close>
                       </div>
-                    </div>
-                  </Dialog.Content>
-                </Dialog.Portal>
-              </Dialog.Root>
-            ))}
-          </nav>
+
+                      <Dialog.Description className="sr-only">
+                        {site.title} 관련 사이트 목록
+                      </Dialog.Description>
+
+                      {/* Content */}
+                      <div className="flex-1 overflow-y-auto">
+                        <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-6 py-8 md:px-8 md:py-10">
+                          <List className="grid grid-cols-1 gap-x-2 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 space-y-0">
+                            {site.links.map((link) => (
+                              <ListItem
+                                key={link.name}
+                                className="m-0 before:top-[21px]"
+                              >
+                                <a
+                                  href={link.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="relative flex items-center gap-2 py-3 px-2 -mx-2 no-underline transition-colors focus:outline-none focus:ring-2 focus:ring-krds-primary-base focus:ring-offset-2 rounded before:content-[''] before:absolute before:inset-y-0 before:-left-6 before:right-4 before:rounded before:bg-krds-gray-10 before:opacity-0 before:transition-opacity hover:before:opacity-100 before:-z-10"
+                                >
+                                  {link.name}
+                                  <span className="sr-only"> (새 창 열기)</span>
+                                </a>
+                              </ListItem>
+                            ))}
+                          </List>
+                        </div>
+                      </div>
+                    </Dialog.Content>
+                  </Dialog.Portal>
+                </Dialog.Root>
+              ))}
+            </nav>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Main Footer Content */}
       <div className="max-w-[var(--krds-container-2xl,1440px)] mx-auto px-[var(--krds-container-padding-mobile,1rem)] sm:px-[var(--krds-container-padding-tablet,1.5rem)] lg:px-[var(--krds-container-padding-desktop,2rem)] flex flex-col py-6 gap-8 md:py-8 lg:py-10 lg:gap-12">
@@ -277,11 +339,9 @@ export function Footer({
         <div className="flex flex-col gap-5 md:flex-row md:gap-8 lg:justify-between lg:flex-1">
           {/* Info Section */}
           <div className="flex flex-col flex-1 gap-5 text-sm md:text-base lg:flex-[3]">
-            <p className="m-0">
-              (26464) 강원특별자치도 원주시 건강로 32(반곡동) 국민건강보험공단
-            </p>
+            <p className="m-0">{address}</p>
             <ul className="list-none m-0 p-0 flex flex-col gap-3">
-              {CONTACT_INFO.map((contact) => (
+              {contactInfo.map((contact) => (
                 <li
                   key={contact.label}
                   className="flex flex-col items-start flex-wrap break-all md:flex-row md:flex-nowrap md:break-normal lg:items-center"
@@ -299,7 +359,7 @@ export function Footer({
           <div className="flex flex-col flex-shrink-0 gap-10 md:gap-12 lg:w-[23.5%]">
             {/* Quick Links */}
             <nav className="flex flex-col gap-2" aria-label="바로가기">
-              {QUICK_LINKS.map((link) => (
+              {quickLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
@@ -312,23 +372,25 @@ export function Footer({
             </nav>
 
             {/* SNS Links */}
-            <nav className="flex flex-wrap gap-2" aria-label="소셜 미디어">
-              {SNS_LINKS.map((sns) => {
-                const IconComponent = sns.icon;
-                return (
-                  <a
-                    key={sns.name}
-                    href={sns.href}
-                    className="inline-flex items-center justify-center w-10 h-10 border border-krds-gray-20 rounded-full bg-white no-underline transition-all duration-200 hover:bg-krds-gray-5 hover:border-krds-gray-30 active:bg-krds-gray-10 focus:bg-krds-gray-10 [&>svg]:w-[51%]"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${sns.name} (새 창 열기)`}
-                  >
-                    <IconComponent />
-                  </a>
-                );
-              })}
-            </nav>
+            {snsLinks.length > 0 && (
+              <nav className="flex flex-wrap gap-2" aria-label="소셜 미디어">
+                {snsLinks.map((sns) => {
+                  const IconComponent = sns.icon;
+                  return (
+                    <a
+                      key={sns.name}
+                      href={sns.href}
+                      className="inline-flex items-center justify-center w-10 h-10 border border-krds-gray-20 rounded-full bg-white no-underline transition-all duration-200 hover:bg-krds-gray-5 hover:border-krds-gray-30 active:bg-krds-gray-10 focus:bg-krds-gray-10 [&>svg]:w-[51%]"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${sns.name} (새 창 열기)`}
+                    >
+                      <IconComponent />
+                    </a>
+                  );
+                })}
+              </nav>
+            )}
           </div>
         </div>
 
@@ -340,7 +402,7 @@ export function Footer({
               className="inline-flex flex-wrap gap-3"
               aria-label="사이트 정책"
             >
-              {FOOTER_MENU.map((menu) => (
+              {footerMenu.map((menu) => (
                 <a
                   key={menu.label}
                   href={menu.href}
@@ -356,8 +418,7 @@ export function Footer({
 
             {/* Copyright */}
             <p className="text-krds-body-sm text-krds-gray-70 m-0">
-              © 2023 National Health Insurance Service. All rights reserved.
-              The Government of the Republic of Korea. All rights reserved.
+              {copyright}
             </p>
           </div>
 

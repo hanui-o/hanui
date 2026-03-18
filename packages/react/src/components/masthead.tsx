@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { Container } from './container';
 
 /**
  * Masthead Props
@@ -64,7 +65,7 @@ export const Masthead = React.forwardRef<HTMLDivElement, MastheadProps>(
         role="banner"
         {...props}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <a
             href={href}
             className="flex items-center gap-2 min-h-8 py-1 transition-opacity hover:opacity-80"
@@ -80,7 +81,7 @@ export const Masthead = React.forwardRef<HTMLDivElement, MastheadProps>(
               {text}
             </span>
           </a>
-        </div>
+        </Container>
       </div>
     );
   }
