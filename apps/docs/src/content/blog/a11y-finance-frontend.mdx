@@ -1,0 +1,236 @@
+---
+title: '금융 프론트엔드에서 접근성이 필수인 이유 — 전자금융 접근성 실무 가이드'
+description: '전자금융 서비스의 웹접근성 의무와 프론트엔드 개발자가 실무에서 챙겨야 할 접근성 체크리스트. KWCAG 2.2 기반 HANUI 디자인 시스템 적용 사례를 공유합니다.'
+date: '2026-03-18'
+tags: ['접근성', '금융', 'KWCAG', 'React', 'HANUI', '프론트엔드']
+author: 'odada'
+---
+
+금융 앱을 쓸 때 "앱인가, 웹인가?" 구분이 안 되는 경험 해본 적 있어요?
+
+그 자연스러움 뒤에는 접근성이라는 보이지 않는 설계가 있어요. 금융 서비스에서 접근성은 선택이 아니라 **법적 의무**이고, 프론트엔드 개발자가 가장 앞줄에서 책임져야 하는 영역이에요.
+
+## 전자금융 접근성, 왜 필수인가
+
+### 법적 근거
+
+2023년부터 시행된 **장애인차별금지법 시행령** 개정으로, 금융기관의 웹/앱 서비스는 **KWCAG 2.2** 준수가 의무예요.
+
+| 구분 | 내용 |
+|------|------|
+| 대상 | 은행, 증권, 보험, 카드사 등 전자금융업자 |
+| 기준 | 한국형 웹 콘텐츠 접근성 지침 2.2 (KWCAG 2.2) |
+| 제재 | 미준수 시 시정명령, 과태료, 소송 리스크 |
+| 인증 | 웹접근성 품질인증마크 (연간 갱신) |
+
+공공기관 SI에서는 이미 KWCAG가 필수였지만, **금융권은 더 까다로워요**. 사용자가 실제 돈을 움직이는 서비스니까, 접근성 문제가 곧 금융 사고로 이어질 수 있거든요.
+
+### 실제 사례 — 스크린 리더로 이체를 못 하면?
+
+시각장애인 사용자가 스크린 리더로 모바일 뱅킹을 사용한다고 생각해보세요.
+
+```
+❌ 문제 상황
+1. 이체 버튼에 aria-label이 없음 → "버튼" 이라고만 읽힘
+2. 금액 입력 후 확인 모달에 포커스가 안 감 → 모달 존재를 모름
+3. OTP 입력 타이머가 시각적으로만 표시 → 시간 제한을 인식 못함
+```
+
+이건 이론이 아니에요. 금융감독원에 실제로 접수되는 민원 유형이에요.
+
+## 프론트엔드 개발자가 챙겨야 할 접근성 체크리스트
+
+20년간 금융권 프로젝트를 하면서 정리한 실무 체크리스트예요.
+
+### 1. 포커스 관리 — 금융 서비스의 핵심
+
+```tsx
+// ❌ 모달 열었는데 포커스가 뒤에 남아있음
+<Modal open={isOpen}>
+  <div>이체를 진행하시겠습니까?</div>
+</Modal>
+
+// ✅ 모달 열리면 포커스 이동 + 닫히면 원래 위치로
+<Modal open={isOpen} onOpenChange={setIsOpen}>
+  <div role="alertdialog" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">이체 확인</h2>
+    <p>100,000원을 이체하시겠습니까?</p>
+    <Button autoFocus onClick={handleTransfer}>확인</Button>
+    <Button onClick={() => setIsOpen(false)}>취소</Button>
+  </div>
+</Modal>
+```
+
+HANUI의 Modal 컴포넌트는 이걸 자동으로 해줘요:
+- 열릴 때 첫 번째 포커스 가능한 요소로 포커스 이동
+- `Esc`로 닫기
+- 닫힐 때 트리거 요소로 포커스 복귀
+- 외부 스크롤 잠금
+
+### 2. 금액 입력 — 숫자만의 함정
+
+```tsx
+// ❌ type="number"의 함정
+// 스크린 리더에서 스핀 버튼이 노출되고, 스크롤로 금액이 변경됨
+<input type="number" />
+
+// ✅ type="text" + inputMode + 패턴
+<Input
+  type="text"
+  inputMode="numeric"
+  pattern="[0-9,]*"
+  aria-label="이체 금액"
+  aria-describedby="amount-hint"
+/>
+<span id="amount-hint" className="sr-only">
+  숫자만 입력하세요. 콤마는 자동으로 추가됩니다.
+</span>
+```
+
+금융 서비스에서 `type="number"`를 쓰면 안 되는 이유:
+- 마우스 스크롤로 금액이 변경될 수 있음 (1000만원이 1억이 될 수 있어요)
+- 스크린 리더에서 불필요한 증감 버튼이 노출됨
+- 로케일에 따라 소수점 구분자가 달라짐
+
+### 3. 에러 상태 — "빨간색"만으로는 부족해
+
+```tsx
+// ❌ 색상으로만 에러 표시
+<Input style={{ borderColor: 'red' }} />
+
+// ✅ 색상 + 텍스트 + aria
+<FormField
+  status="error"
+  statusMessage="계좌번호 형식이 올바르지 않습니다."
+>
+  <Input
+    aria-invalid="true"
+    aria-describedby="account-error"
+  />
+  <span id="account-error" role="alert">
+    계좌번호 형식이 올바르지 않습니다.
+  </span>
+</FormField>
+```
+
+HANUI의 FormField는 `status="error"` 하나만 주면 나머지를 자동으로 처리해요:
+- `aria-invalid` 자동 추가
+- `role="alert"`로 스크린 리더가 즉시 읽음
+- 아이콘 + 색상 + 텍스트 3중 표현 (색각 이상 사용자 대응)
+
+### 4. 라이브 리전 — 잔액 변동, 타이머
+
+```tsx
+// OTP 타이머
+<div aria-live="assertive" aria-atomic="true">
+  {seconds > 0 ? (
+    <span>남은 시간: {formatTime(seconds)}</span>
+  ) : (
+    <span>인증 시간이 만료되었습니다.</span>
+  )}
+</div>
+
+// 잔액 업데이트
+<div aria-live="polite">
+  출금 가능 잔액: {balance.toLocaleString()}원
+</div>
+```
+
+- `aria-live="assertive"`: 즉시 읽어야 하는 정보 (OTP 만료, 에러)
+- `aria-live="polite"`: 현재 읽고 있는 내용이 끝나면 읽을 정보 (잔액 변동)
+
+### 5. 키보드 네비게이션 — Tab 순서가 곧 사용 흐름
+
+```
+이체 화면의 올바른 Tab 순서:
+
+출금 계좌 선택 → 입금 계좌 입력 → 금액 입력 → 메모(선택) → 이체 버튼
+
+❌ 잘못된 경우:
+금액 입력 → 출금 계좌 → 광고 배너 → 이체 버튼 → 입금 계좌
+```
+
+실수하기 쉬운 포인트:
+- `tabIndex` 양수값 사용 금지 (0 또는 -1만)
+- `display: none` 대신 숨긴 요소에 포커스가 가는 경우
+- 동적으로 추가된 요소의 Tab 순서
+
+## HANUI에서 접근성을 어떻게 해결했는가
+
+### 개발자가 신경 쓸 게 없게 만들기
+
+접근성의 가장 큰 적은 **바쁜 일정**이에요. "나중에 하자"가 영원히 안 되거든요.
+
+그래서 HANUI는 "접근성을 챙기려고 노력하지 않아도 되는" 구조로 만들었어요.
+
+```tsx
+// 개발자가 작성하는 코드
+<Select
+  options={accountOptions}
+  placeholder="출금 계좌를 선택하세요"
+/>
+```
+
+```html
+<!-- 실제 렌더링 -->
+<button
+  role="combobox"
+  aria-expanded="false"
+  aria-haspopup="listbox"
+  aria-labelledby="select-label"
+>
+  출금 계좌를 선택하세요
+  <svg aria-hidden="true">▼</svg>
+</button>
+```
+
+개발자는 `placeholder`만 넣었는데, ARIA 속성은 전부 자동이에요.
+
+### 접근성 경고 시스템
+
+HANUI 컴포넌트는 개발 환경에서 접근성 문제를 경고해요:
+
+```
+⚠️ [HANUI] Button에 텍스트가 없습니다.
+   aria-label을 추가하거나 children에 텍스트를 포함해주세요.
+
+⚠️ [HANUI] Image에 alt 텍스트가 없습니다.
+   의미 있는 대체 텍스트를 추가해주세요.
+```
+
+빌드 때가 아니라 **코딩하는 순간** 잡아주니까, 검수 때 몰아서 고치는 일이 없어져요.
+
+## 금융 접근성 테스트 도구
+
+실무에서 쓰는 도구들이에요:
+
+| 도구 | 용도 | 추천도 |
+|------|------|--------|
+| axe DevTools | 자동 접근성 검사 | ★★★★★ |
+| WAVE | 시각적 접근성 리포트 | ★★★★ |
+| VoiceOver (Mac) | 스크린 리더 테스트 | ★★★★★ |
+| NVDA (Windows) | 스크린 리더 테스트 | ★★★★★ |
+| Lighthouse | 접근성 점수 | ★★★ |
+| Colour Contrast Analyser | 명도 대비 검사 | ★★★★ |
+
+**가장 중요한 건 VoiceOver/NVDA로 직접 써보는 거예요.** 자동 검사 도구는 전체 문제의 30%만 잡아요.
+
+## 마무리
+
+금융 프론트엔드에서 접근성은 "추가 작업"이 아니에요. **기본 스펙**이에요.
+
+디자인 시스템 레벨에서 접근성을 해결하면, 개발자가 매번 신경 쓰지 않아도 자연스럽게 접근성이 보장돼요. 그게 HANUI를 만든 이유 중 하나이기도 하고요.
+
+"앱인가, 웹인가?" 구분이 안 되는 자연스러운 경험. 그 뒤에는 **모든 사용자가 동일하게 사용할 수 있는** 접근성 설계가 있어야 해요.
+
+---
+
+## 관련 링크
+
+- [HANUI — KRDS 기반 디자인 시스템](https://hanui.io)
+- [KWCAG 2.2 자동 적용 — HANUI 접근성 가이드](/blog/a11y-hanui)
+- [Claude Code 설정 자동화](https://github.com/hanui-o/claude-settings)
+
+## 시리즈
+
+- 이전 편: [KWCAG 2.2 웹접근성 자동 적용](/blog/a11y-hanui)
