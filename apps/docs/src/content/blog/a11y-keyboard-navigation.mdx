@@ -1,0 +1,416 @@
+---
+title: '키보드 네비게이션 완전 가이드 — Tab, Arrow, Esc 패턴'
+description: '웹 접근성의 핵심인 키보드 네비게이션 패턴을 정리합니다. Tab/Arrow/Esc/Enter 각각의 역할과 WAI-ARIA 패턴, HANUI 컴포넌트 적용 사례를 공유해요.'
+date: '2026-03-19'
+tags: ['접근성', '키보드', 'WAI-ARIA', 'React', 'HANUI']
+author: 'odada'
+series: '접근성'
+seriesOrder: 3
+---
+
+마우스 없이 웹사이트를 써본 적 있어요?
+
+한번 해보세요. 키보드만으로 로그인하고, 메뉴를 열고, 폼을 제출해보면 — 생각보다 많은 사이트가 막혀요. 버튼에 포커스가 안 가거나, 모달이 열렸는데 빠져나올 수가 없거나, 드롭다운 메뉴를 화살표로 탐색할 수 없거나.
+
+키보드 네비게이션은 접근성의 **기본 중의 기본**이에요. 오늘은 Tab, Arrow, Esc, Enter 각각의 역할과 실무 패턴을 정리해볼게요.
+
+## 왜 키보드 네비게이션인가
+
+### 키보드 사용자는 누구?
+
+"시각장애인만 키보드를 쓴다"고 생각하기 쉬운데, 실제로는 훨씬 다양해요.
+
+| 사용자 유형 | 이유 |
+|------------|------|
+| 시각장애인 | 스크린 리더 + 키보드 조합 |
+| 운동장애 | 마우스 조작이 어려움 (스위치, 헤드 포인터 등) |
+| 파워 유저 | 키보드가 빠르니까 (개발자, 디자이너) |
+| 일시적 부상 | 손목 골절, 마우스 고장 등 |
+| 고령 사용자 | 미세한 마우스 조작이 어려움 |
+
+**KWCAG 2.2 지침 2.1.1**에서도 "모든 기능은 키보드로 사용할 수 있어야 한다"를 명시하고 있어요.
+
+### 키보드 네비게이션의 4가지 핵심 키
+
+```
+Tab      → 다음 포커스 가능한 요소로 이동
+Shift+Tab → 이전 포커스 가능한 요소로 이동
+Arrow    → 그룹 내부 탐색 (탭, 메뉴, 라디오 등)
+Esc      → 현재 컨텍스트 닫기 (모달, 드롭다운 등)
+Enter/Space → 활성화 (버튼 클릭, 링크 이동, 체크박스 토글)
+```
+
+이 4가지만 제대로 구현하면 키보드 접근성의 80%는 해결돼요.
+
+## Tab 네비게이션 — 순서가 곧 UX
+
+### tabIndex의 3가지 값
+
+```tsx
+// 자연 순서 (DOM 순서대로)
+<button>자연 순서</button>  // tabIndex 기본값 0
+
+// 명시적으로 포커스 가능하게
+<div tabIndex={0}>포커스 가능한 div</div>
+
+// 프로그래밍으로만 포커스 (Tab으로 도달 불가)
+<div tabIndex={-1}>프로그래밍 포커스만</div>
+
+// ❌ 절대 하지 마세요
+<div tabIndex={5}>양수값 사용 금지!</div>
+```
+
+**tabIndex 양수값은 쓰면 안 돼요.** 양수값을 쓰면 Tab 순서가 DOM 순서와 달라지면서 유지보수가 불가능해져요. 0 또는 -1만 사용하세요.
+
+### Tab 순서 = 시각적 순서
+
+```
+올바른 예 — 시각적 순서와 Tab 순서가 일치:
+┌─────────────────────────────────┐
+│  [로고]  [메뉴1] [메뉴2] [검색]   │  ← Tab 1~4
+├─────────────────────────────────┤
+│  [사이드바]  │  [본문 내용]        │  ← Tab 5~6
+│  [메뉴 항목] │  [버튼1] [버튼2]   │  ← Tab 7~9
+└─────────────────────────────────┘
+
+❌ 잘못된 예 — CSS로 시각적 순서를 바꿨지만 DOM은 그대로:
+시각적: [검색] [로고] [메뉴]
+Tab 순서: 로고(1) → 메뉴(2) → 검색(3)  ← 혼란!
+```
+
+CSS의 `order`, `float`, `position: absolute` 등으로 시각적 순서를 바꿀 때 Tab 순서도 반드시 확인해야 해요.
+
+### 포커스 가시성 — 보여야 누를 수 있다
+
+```css
+/* ❌ 절대 하지 마세요 */
+*:focus {
+  outline: none;
+}
+
+/* ✅ 키보드 사용자에게만 포커스 표시 */
+:focus-visible {
+  outline: 2px solid var(--krds-primary-base);
+  outline-offset: 2px;
+}
+```
+
+`outline: none`은 접근성의 공공의 적이에요. 디자이너가 "포커스 링 안 예뻐요" 하면, `outline: none` 대신 `:focus-visible`로 예쁘게 만들어주세요.
+
+HANUI 컴포넌트는 기본으로 `:focus-visible` 스타일이 적용되어 있어요:
+
+```tsx
+// HANUI Button의 포커스 스타일
+const buttonVariants = cva(
+  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-krds-primary-base',
+  { /* variants */ }
+);
+```
+
+## Arrow 키 패턴 — 그룹 내부 탐색
+
+### Roving tabIndex 패턴
+
+Tab으로는 **그룹 사이**를 이동하고, Arrow로는 **그룹 안**을 탐색하는 패턴이에요. WAI-ARIA에서 가장 많이 쓰이는 패턴이에요.
+
+```
+Tab: [메뉴바] → [본문] → [사이드바]  (그룹 간 이동)
+Arrow: 메뉴1 ↔ 메뉴2 ↔ 메뉴3       (그룹 내 이동)
+```
+
+```tsx
+// Roving tabIndex 구현
+function TabList({ tabs, activeIndex, onSelect }: TabListProps) {
+  const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    let nextIndex = index;
+
+    switch (e.key) {
+      case 'ArrowRight':
+        nextIndex = (index + 1) % tabs.length;
+        break;
+      case 'ArrowLeft':
+        nextIndex = (index - 1 + tabs.length) % tabs.length;
+        break;
+      case 'Home':
+        nextIndex = 0;
+        break;
+      case 'End':
+        nextIndex = tabs.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    e.preventDefault();
+    onSelect(nextIndex);
+    tabRefs.current[nextIndex]?.focus();
+  };
+
+  return (
+    <div role="tablist">
+      {tabs.map((tab, i) => (
+        <button
+          key={tab.id}
+          ref={(el) => { tabRefs.current[i] = el; }}
+          role="tab"
+          tabIndex={i === activeIndex ? 0 : -1}
+          aria-selected={i === activeIndex}
+          onKeyDown={(e) => handleKeyDown(e, i)}
+          onClick={() => onSelect(i)}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+핵심은 **활성 항목만 `tabIndex={0}`**, 나머지는 `tabIndex={-1}`이에요. Tab으로 그룹에 들어오면 활성 항목에 포커스가 가고, Arrow로 이동하면서 `tabIndex`를 옮겨주는 거예요.
+
+### Arrow 키를 쓰는 WAI-ARIA 패턴들
+
+| 컴포넌트 | Arrow 방향 | 순환 여부 |
+|----------|-----------|----------|
+| Tabs | ← → | 순환 |
+| Menu | ↑ ↓ | 순환 |
+| Radio Group | ← → 또는 ↑ ↓ | 순환 |
+| Tree | ↑ ↓ (이동) + ← → (접기/펼치기) | 비순환 |
+| Grid / Table | ↑ ↓ ← → | 비순환 |
+| Combobox 목록 | ↑ ↓ | 비순환 |
+
+HANUI에서는 이 패턴들을 각 컴포넌트에 내장해뒀어요:
+
+```tsx
+// HANUI Tabs — Arrow 키 네비게이션 자동 지원
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">탭 1</TabsTrigger>
+    <TabsTrigger value="tab2">탭 2</TabsTrigger>
+    <TabsTrigger value="tab3">탭 3</TabsTrigger>
+  </TabsList>
+</Tabs>
+// ← → 키로 탭 전환, Home/End로 처음/끝 이동
+```
+
+## Esc 패턴 — 탈출은 반드시 보장
+
+### 모달의 포커스 트랩
+
+모달이 열리면 포커스가 모달 안에 **갇혀야** 해요. 그리고 Esc로 **탈출할 수 있어야** 해요.
+
+```tsx
+// 포커스 트랩 구현 원리
+function FocusTrap({ children }: { children: React.ReactNode }) {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const focusableElements = container.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstEl = focusableElements[0] as HTMLElement;
+    const lastEl = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+    // 열리면 첫 번째 요소에 포커스
+    firstEl?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      // Shift+Tab으로 첫 요소 벗어나면 → 마지막으로
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl?.focus();
+      }
+      // Tab으로 마지막 요소 벗어나면 → 처음으로
+      else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl?.focus();
+      }
+    };
+
+    container.addEventListener('keydown', handleKeyDown);
+    return () => container.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  return <div ref={containerRef}>{children}</div>;
+}
+```
+
+HANUI의 Modal은 이걸 전부 자동으로 처리해요:
+
+```tsx
+// 이것만 쓰면 포커스 트랩 + Esc 닫기 + 포커스 복귀 다 됨
+<Modal open={isOpen} onOpenChange={setIsOpen}>
+  <ModalContent>
+    <ModalHeader>제목</ModalHeader>
+    <ModalBody>내용</ModalBody>
+    <ModalFooter>
+      <Button onClick={() => setIsOpen(false)}>닫기</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+```
+
+### Esc 키의 계층적 닫기
+
+중첩된 UI가 있을 때 Esc는 **가장 안쪽**부터 닫아야 해요.
+
+```
+Esc 우선순위:
+1. 툴팁 → 닫기
+2. 드롭다운 메뉴 → 닫기, 트리거에 포커스 복귀
+3. 모달 → 닫기, 모달 트리거에 포커스 복귀
+4. 사이드 패널 → 닫기
+
+모달 안에 드롭다운이 있다면:
+첫 Esc → 드롭다운 닫기
+두 번째 Esc → 모달 닫기
+```
+
+## Enter/Space — 활성화 패턴
+
+### 버튼과 링크의 차이
+
+```tsx
+// Button: Enter와 Space 모두 클릭
+<button onClick={handleClick}>제출</button>
+// → Enter ✅, Space ✅
+
+// Link: Enter만 클릭
+<a href="/page">페이지 이동</a>
+// → Enter ✅, Space ❌ (스크롤)
+
+// ❌ div로 버튼 만들기 — 이러면 키보드가 안 됨
+<div onClick={handleClick}>제출</div>
+// → Enter ❌, Space ❌, Tab ❌
+
+// ✅ 정 div를 써야 한다면 (쓸 이유가 거의 없지만)
+<div
+  role="button"
+  tabIndex={0}
+  onClick={handleClick}
+  onKeyDown={(e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleClick();
+    }
+  }}
+>
+  제출
+</div>
+```
+
+**`<button>`을 쓰면 키보드 지원이 공짜**예요. `<div onClick>`은 접근성 지옥의 시작이에요.
+
+### 체크박스, 스위치
+
+```tsx
+// Space로 토글
+<Checkbox checked={checked} onCheckedChange={setChecked}>
+  이용약관에 동의합니다
+</Checkbox>
+// → Space ✅ (토글), Enter ❌ (폼 제출 방지)
+
+// Switch도 Space
+<Switch checked={enabled} onCheckedChange={setEnabled}>
+  알림 받기
+</Switch>
+```
+
+## 실무 체크리스트
+
+프로젝트에서 키보드 접근성을 점검할 때 이 체크리스트를 써보세요.
+
+### 기본 점검
+
+```
+□ Tab으로 모든 인터랙티브 요소에 도달할 수 있는가?
+□ Tab 순서가 시각적 순서와 일치하는가?
+□ 포커스 위치가 시각적으로 보이는가? (focus-visible)
+□ 키보드 함정(trap)이 없는가? (모달 제외)
+□ Skip to content 링크가 있는가?
+```
+
+### 컴포넌트별 점검
+
+```
+□ 버튼: Enter/Space로 클릭되는가?
+□ 링크: Enter로 이동하는가?
+□ 모달: Esc로 닫히고, 포커스가 복귀하는가?
+□ 드롭다운: Arrow로 탐색, Enter로 선택, Esc로 닫기가 되는가?
+□ 탭: Arrow로 전환되는가?
+□ 폼: Enter로 제출되는가?
+□ 토스트/알림: 포커스를 빼앗지 않는가?
+```
+
+### Skip Navigation
+
+페이지마다 반복되는 헤더/메뉴를 건너뛸 수 있어야 해요:
+
+```tsx
+// 페이지 최상단에 배치
+<a
+  href="#main-content"
+  className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:shadow-lg"
+>
+  본문으로 건너뛰기
+</a>
+
+// 본문 시작 지점
+<main id="main-content">
+  {/* 페이지 내용 */}
+</main>
+```
+
+Tab을 눌렀을 때 첫 번째로 "본문으로 건너뛰기" 링크가 나타나요. 매번 메뉴 10개를 Tab으로 지나가지 않아도 되는 거예요.
+
+## 테스트 방법
+
+키보드 접근성을 테스트하는 가장 좋은 방법은 **마우스를 치우고 직접 써보는 것**이에요.
+
+```
+1단계: 마우스를 서랍에 넣는다
+2단계: Tab으로 페이지를 탐색한다
+3단계: 막히는 곳을 기록한다
+4단계: 고친다
+```
+
+자동화 도구로는 전체 키보드 문제의 일부만 잡아요. 직접 써봐야 진짜 문제를 발견할 수 있어요.
+
+```tsx
+// axe-core로 자동 검사 (기본적인 문제 탐지)
+import axe from '@axe-core/react';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+if (process.env.NODE_ENV === 'development') {
+  axe(React, ReactDOM, 1000);
+}
+```
+
+## 마무리
+
+키보드 네비게이션은 접근성의 **기반**이에요. Tab, Arrow, Esc, Enter — 이 4가지 키의 역할만 확실히 구현하면 대부분의 키보드 사용자가 불편 없이 쓸 수 있어요.
+
+디자인 시스템에서 이걸 한 번 잘 만들어두면, 매번 컴포넌트를 만들 때마다 키보드 처리를 고민할 필요가 없어요. HANUI가 그래서 모든 인터랙티브 컴포넌트에 WAI-ARIA 키보드 패턴을 내장한 거예요.
+
+다음 편에서는 스크린 리더로 직접 앱을 테스트하는 방법을 다뤄볼게요. VoiceOver와 NVDA를 사용해서 실제로 접근성 문제를 찾고 고치는 실전 가이드예요.
+
+---
+
+## 관련 링크
+
+- [HANUI — KRDS 기반 디자인 시스템](https://hanui.io)
+- [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
+- [Claude Code 설정 자동화](https://github.com/hanui-o/claude-settings)
+
+## 시리즈
+
+- 이전 편: [금융 프론트엔드 접근성 실무 가이드](/blog/a11y-finance-frontend)
+- 다음 편: [스크린 리더 테스트 실전 — VoiceOver/NVDA로 내 앱 검증하기](/blog/a11y-screen-reader-test)
