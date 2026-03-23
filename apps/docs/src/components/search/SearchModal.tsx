@@ -11,6 +11,8 @@ import {
   BookOpen,
   Users,
   Sparkles,
+  Loader2,
+  Bot,
 } from 'lucide-react';
 // Note: This component uses custom UI that doesn't benefit from HANUI components
 // The result buttons have complex internal structure (icon, content, key hint)
@@ -42,17 +44,58 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchItem[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [aiResult, setAiResult] = useState('');
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState(false);
+  const [showAi, setShowAi] = useState(false);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const aiAbortRef = useRef<AbortController | null>(null);
+
+  // AI search
+  const handleAiSearch = useCallback(async (searchQuery: string) => {
+    if (aiAbortRef.current) {
+      aiAbortRef.current.abort();
+    }
+
+    const controller = new AbortController();
+    aiAbortRef.current = controller;
+
+    setAiLoading(true);
+    setAiError(false);
+    setAiResult('');
+    setShowAi(true);
+
+    try {
+      const response = await fetch('/api/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: searchQuery }),
+        signal: controller.signal,
+      });
+
+      if (!response.ok) throw new Error('AI search failed');
+
+      const data = await response.json();
+      setAiResult(data.result);
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') return;
+      setAiError(true);
+    } finally {
+      setAiLoading(false);
+    }
+  }, []);
 
   // Search function
   const handleSearch = useCallback((searchQuery: string) => {
     setQuery(searchQuery);
+    setShowAi(false);
+    setAiResult('');
     if (searchQuery.trim()) {
       const searchResults = searchDocumentation(searchQuery);
       setResults(searchResults);
-      setSelectedIndex(-1); // Reset to -1 so first arrow down selects first item
+      setSelectedIndex(-1);
     } else {
       setResults([]);
       setSelectedIndex(-1);
@@ -66,6 +109,8 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       onClose();
       setQuery('');
       setResults([]);
+      setShowAi(false);
+      setAiResult('');
     },
     [router, onClose]
   );
@@ -76,6 +121,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        if (showAi) {
+          setShowAi(false);
+          return;
+        }
         onClose();
         return;
       }
@@ -84,9 +133,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         e.preventDefault();
         if (results.length > 0) {
           setSelectedIndex((prev) => {
-            // If nothing is selected (-1), select first item (0)
             if (prev < 0) return 0;
-            // Otherwise move down, but don't exceed last item
             return Math.min(prev + 1, results.length - 1);
           });
         }
@@ -96,9 +143,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         e.preventDefault();
         if (results.length > 0) {
           setSelectedIndex((prev) => {
-            // If at first item or nothing selected, go back to input field
             if (prev <= 0) return -1;
-            // Otherwise move up
             return prev - 1;
           });
         }
@@ -114,7 +159,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, results, selectedIndex, handleSelect, onClose]);
+  }, [isOpen, results, selectedIndex, handleSelect, onClose, showAi]);
 
   // Scroll selected item into view
   useEffect(() => {
@@ -144,10 +189,18 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       setQuery('');
       setResults([]);
       setSelectedIndex(-1);
+      setShowAi(false);
+      setAiResult('');
+      setAiLoading(false);
+      if (aiAbortRef.current) {
+        aiAbortRef.current.abort();
+      }
     }
   }, [isOpen]);
 
   if (!isOpen) return null;
+
+  const canAiSearch = query.trim().length >= 5;
 
   /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
   return (
@@ -172,10 +225,60 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             style={{ fontSize: '1.6rem' }}
             aria-label="문서 검색"
           />
+          {canAiSearch && !showAi && (
+            <button
+              onClick={() => handleAiSearch(query)}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-gradient-to-r from-violet-500 to-purple-600 text-white hover:from-violet-600 hover:to-purple-700 transition-all shadow-sm"
+              aria-label="AI로 컴포넌트 추천받기"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              AI 추천
+            </button>
+          )}
           <kbd className="hidden sm:inline-flex h-7 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2.5 font-mono text-xs font-medium text-krds-gray-70 shadow-sm">
             ESC
           </kbd>
         </div>
+
+        {/* AI Result Panel */}
+        {showAi && (
+          <div className="border-b border-krds-gray-10">
+            <div className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-50 to-purple-50">
+              <Bot className="w-4 h-4 text-purple-600" />
+              <span className="text-sm font-medium text-purple-700">
+                AI 컴포넌트 추천
+              </span>
+              <button
+                onClick={() => setShowAi(false)}
+                className="ml-auto text-xs text-purple-500 hover:text-purple-700"
+              >
+                닫기
+              </button>
+            </div>
+            <div className="px-6 py-4 max-h-[40vh] overflow-y-auto">
+              {aiLoading && (
+                <div className="flex items-center gap-3 py-8 justify-center">
+                  <Loader2 className="w-5 h-5 text-purple-500 animate-spin" />
+                  <span className="text-sm text-krds-gray-60">
+                    AI가 컴포넌트를 분석하고 있어요...
+                  </span>
+                </div>
+              )}
+              {aiError && (
+                <div className="py-4 text-center">
+                  <p className="text-sm text-krds-gray-60">
+                    AI 검색에 실패했어요. 키워드 검색 결과를 확인해주세요.
+                  </p>
+                </div>
+              )}
+              {aiResult && (
+                <div className="prose prose-sm max-w-none text-krds-gray-80 [&_pre]:bg-krds-gray-5 [&_pre]:rounded-lg [&_pre]:p-4 [&_pre]:overflow-x-auto [&_code]:text-sm [&_code]:font-mono [&_h2]:text-base [&_h2]:font-semibold [&_h2]:text-krds-gray-95 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:text-krds-gray-90 [&_p]:leading-relaxed [&_ul]:space-y-1 [&_a]:text-krds-primary-base [&_a]:underline">
+                  <AiMarkdown content={aiResult} />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Search Results */}
         <div
@@ -242,9 +345,18 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               <p className="text-base font-medium text-krds-gray-95 mb-1">
                 검색 결과가 없습니다
               </p>
-              <p className="text-sm text-krds-gray-60">
+              <p className="text-sm text-krds-gray-60 mb-4">
                 다른 키워드로 검색해보세요
               </p>
+              {canAiSearch && !showAi && (
+                <button
+                  onClick={() => handleAiSearch(query)}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-gradient-to-r from-violet-500 to-purple-600 text-white hover:from-violet-600 hover:to-purple-700 transition-all shadow-sm"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  AI에게 물어보기
+                </button>
+              )}
             </div>
           ) : (
             <div className="py-16 text-center">
@@ -255,57 +367,95 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 문서 검색
               </p>
               <p className="text-sm text-krds-gray-60 mb-6">
-                검색어를 입력하여 문서를 찾아보세요
+                검색어를 입력하거나 자연어로 필요한 화면을 설명해보세요
               </p>
-              {/* <div className="mt-8 px-6">
-                <p className="text-sm font-medium text-krds-gray-70 mb-3">
-                  인기 검색어
-                </p>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {['Button', 'Input', 'Modal', 'Typography', 'Colors'].map(
-                    (keyword) => (
-                      <button
-                        key={keyword}
-                        onClick={() => handleSearch(keyword)}
-                        className="px-4 py-2 text-sm rounded-lg bg-krds-gray-5 text-krds-gray-70 hover:bg-krds-primary-base/10 hover:text-krds-primary-base transition-all border border-krds-gray-10 hover:border-krds-primary-base/30 font-medium"
-                      >
-                        {keyword}
-                      </button>
-                    )
-                  )}
-                </div>
-              </div> */}
             </div>
           )}
         </div>
-
-        {/* Footer */}
-        {/* <div className="flex items-center justify-between px-6 py-3 border-t border-krds-gray-10 bg-krds-gray-0 text-xs text-krds-gray-60">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5">
-              <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
-                ↑
-              </kbd>
-              <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
-                ↓
-              </kbd>
-              <span className="ml-1 text-sm">이동</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
-                ↵
-              </kbd>
-              <span className="ml-1 text-sm">선택</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <kbd className="inline-flex h-6 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2 font-mono text-xs font-medium shadow-sm">
-                ESC
-              </kbd>
-              <span className="ml-1 text-sm">닫기</span>
-            </span>
-          </div>
-        </div> */}
       </div>
     </div>
   );
+}
+
+function AiMarkdown({ content }: { content: string }) {
+  const lines = content.split('\n');
+  const elements: React.ReactNode[] = [];
+  let inCodeBlock = false;
+  let codeLines: string[] = [];
+  let codeLang = '';
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (line.startsWith('```')) {
+      if (inCodeBlock) {
+        elements.push(
+          <pre key={`code-${i}`} data-lang={codeLang}>
+            <code>{codeLines.join('\n')}</code>
+          </pre>
+        );
+        codeLines = [];
+        codeLang = '';
+        inCodeBlock = false;
+      } else {
+        inCodeBlock = true;
+        codeLang = line.slice(3).trim();
+      }
+      continue;
+    }
+
+    if (inCodeBlock) {
+      codeLines.push(line);
+      continue;
+    }
+
+    if (line.startsWith('### ')) {
+      elements.push(<h3 key={i}>{line.slice(4)}</h3>);
+    } else if (line.startsWith('## ')) {
+      elements.push(<h2 key={i}>{line.slice(3)}</h2>);
+    } else if (line.startsWith('- ')) {
+      const listItems: string[] = [line.slice(2)];
+      let j = i + 1;
+      while (j < lines.length && lines[j].startsWith('- ')) {
+        listItems.push(lines[j].slice(2));
+        j++;
+      }
+      elements.push(
+        <ul key={i}>
+          {listItems.map((item, idx) => (
+            <li key={idx}>{formatInline(item)}</li>
+          ))}
+        </ul>
+      );
+      i = j - 1;
+    } else if (line.trim()) {
+      elements.push(<p key={i}>{formatInline(line)}</p>);
+    }
+  }
+
+  return <>{elements}</>;
+}
+
+function formatInline(text: string): React.ReactNode {
+  const parts = text.split(/(`[^`]+`|\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return (
+        <code
+          key={i}
+          className="px-1.5 py-0.5 rounded bg-krds-gray-5 text-purple-700"
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={i} className="font-semibold text-krds-gray-95">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
 }
