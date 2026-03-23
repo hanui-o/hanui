@@ -1,28 +1,15 @@
-'use client';
+import type { Metadata } from 'next';
+import SearchKitPage from './content';
 
-import { Heading, PageNavigation } from '@/components/content';
-import { FrameworkContent } from '@/components/content/FrameworkCodeBlock';
-import { ReactSearchContent } from './_react';
-import { VueSearchContent } from './_vue';
+export const metadata: Metadata = {
+  title: 'Search Kit 검색 키트',
+  description:
+    'HANUI 검색 키트. 검색, 자동완성, 인기 검색어, 검색 결과 등 검색 기능 완성형 세트. React, Zustand.',
+  alternates: {
+    canonical: '/kits/search',
+  },
+};
 
-export default function SearchKitPage() {
-  return (
-    <>
-      <Heading
-        level="h1"
-        title="Search Kit"
-        description="검색 기능 키트. 검색바, 자동완성, 인기검색어, 최근검색어를 포함합니다."
-      />
-
-      <FrameworkContent
-        react={<ReactSearchContent />}
-        vue={<VueSearchContent />}
-      />
-
-      <PageNavigation
-        prev={{ title: 'Dashboard Kit', href: '/kits/dashboard' }}
-        next={{ title: 'Notification Kit', href: '/kits/notification' }}
-      />
-    </>
-  );
+export default function Page() {
+  return <SearchKitPage />;
 }

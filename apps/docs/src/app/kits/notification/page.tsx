@@ -1,28 +1,15 @@
-'use client';
+import type { Metadata } from 'next';
+import NotificationKitPage from './content';
 
-import { Heading, PageNavigation } from '@/components/content';
-import { FrameworkContent } from '@/components/content/FrameworkCodeBlock';
-import { ReactNotificationContent } from './_react';
-import { VueNotificationContent } from './_vue';
+export const metadata: Metadata = {
+  title: 'Notification Kit 알림 키트',
+  description:
+    'HANUI 알림 키트. 실시간 알림, 알림 목록, 읽음 처리 등 알림 기능 완성형 세트. React.',
+  alternates: {
+    canonical: '/kits/notification',
+  },
+};
 
-export default function NotificationKitPage() {
-  return (
-    <>
-      <Heading
-        level="h1"
-        title="Notification Kit"
-        description="알림 기능 키트. 알림 센터, 토스트, 실시간 알림, 푸시 알림을 포함합니다."
-      />
-
-      <FrameworkContent
-        react={<ReactNotificationContent />}
-        vue={<VueNotificationContent />}
-      />
-
-      <PageNavigation
-        prev={{ title: 'Search Kit', href: '/kits/search' }}
-        next={{ title: 'Settings Kit', href: '/kits/settings' }}
-      />
-    </>
-  );
+export default function Page() {
+  return <NotificationKitPage />;
 }

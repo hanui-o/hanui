@@ -16,7 +16,10 @@ const kronaOne = Krona_One({
 });
 
 export const metadata: Metadata = {
-  title: 'HANUI - KRDS 기반 공공 웹 UI 컴포넌트 라이브러리',
+  title: {
+    template: '%s | HANUI',
+    default: 'HANUI - KRDS 기반 공공 웹 UI 컴포넌트 라이브러리',
+  },
   description:
     'KRDS(Korea Republic Design System)를 준수하는 공공 웹사이트용 React 컴포넌트 라이브러리. 접근성 AA 등급, TypeScript 지원, 9개 핵심 컴포넌트 제공.',
   keywords: [

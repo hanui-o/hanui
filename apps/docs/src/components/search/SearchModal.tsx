@@ -170,6 +170,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             onChange={(e) => handleSearch(e.target.value)}
             className="flex-1 bg-transparent border-none outline-none text-base text-krds-gray-95 placeholder:text-krds-gray-60"
             style={{ fontSize: '1.6rem' }}
+            aria-label="문서 검색"
           />
           <kbd className="hidden sm:inline-flex h-7 select-none items-center gap-1 rounded-md border border-krds-gray-20 bg-white px-2.5 font-mono text-xs font-medium text-krds-gray-70 shadow-sm">
             ESC

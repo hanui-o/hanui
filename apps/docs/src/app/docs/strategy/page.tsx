@@ -1,4 +1,14 @@
+import type { Metadata } from 'next';
 import { Display, Heading, Body } from '@hanui/react';
+
+export const metadata: Metadata = {
+  title: 'HANUI 글로벌 포지셔닝 전략',
+  description:
+    'HANUI 디자인 시스템의 글로벌 포지셔닝 전략. KRDS 기반 공공 웹 컴포넌트 라이브러리의 방향성과 접근성 전략.',
+  alternates: {
+    canonical: '/docs/strategy',
+  },
+};
 
 export default function StrategyPage() {
   return (

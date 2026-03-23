@@ -42,18 +42,19 @@ export default function Home() {
             </div>
 
             {/* Title */}
-            <Display as="h1" className="tracking-tight !text-[60px] py-2">
+            <Display
+              as="h1"
+              className="tracking-tight !text-[32px] sm:!text-[44px] md:!text-[60px] py-2"
+            >
               {isVue ? (
                 <>
                   전자정부프레임워크 v5를 위한
-                  <br />
-                  KRDS 기반 Vue 컴포넌트
+                  <br className="hidden md:block" /> KRDS 기반 Vue 컴포넌트
                 </>
               ) : (
                 <>
                   전자정부프레임워크 v5를 위한
-                  <br />
-                  KRDS 기반 React 컴포넌트
+                  <br className="hidden md:block" /> KRDS 기반 React 컴포넌트
                 </>
               )}
             </Display>
@@ -62,17 +63,27 @@ export default function Home() {
             <Body size="lg" className="text-krds-gray-70">
               {isVue ? (
                 <>
-                  eGovFrame 5.0 + Nuxt 3 환경에 최적화.
-                  <br />
-                  KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 50+
-                  컴포넌트를 복사해서 바로 쓰세요.
+                  <span className="hidden md:inline">
+                    eGovFrame 5.0 + Nuxt 3 환경에 최적화.
+                    <br />
+                    KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 50+
+                    컴포넌트를 복사해서 바로 쓰세요.
+                  </span>
+                  <span className="md:hidden">
+                    KRDS 기반 50+ Vue 컴포넌트를 복사해서 바로 쓰세요.
+                  </span>
                 </>
               ) : (
                 <>
-                  eGovFrame 5.0 + Next.js 14 환경에 최적화.
-                  <br />
-                  KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 50+
-                  컴포넌트를 복사해서 바로 쓰세요.
+                  <span className="hidden md:inline">
+                    eGovFrame 5.0 + Next.js 14 환경에 최적화.
+                    <br />
+                    KRDS 2.2 디자인 시스템과 WCAG 2.1 AA 접근성을 갖춘 50+
+                    컴포넌트를 복사해서 바로 쓰세요.
+                  </span>
+                  <span className="md:hidden">
+                    KRDS 기반 50+ React 컴포넌트를 복사해서 바로 쓰세요.
+                  </span>
                 </>
               )}
             </Body>
