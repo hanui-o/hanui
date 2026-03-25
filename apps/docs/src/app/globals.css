@@ -74,6 +74,53 @@ code .line {
   line-height: 1.75;
 }
 
+/* Showcase Neutral Theme — KRDS 토큰을 뉴트럴(흑백)로 오버라이드 */
+.showcase-neutral {
+  /* Primary → 흑백 */
+  --krds-primary-base: #171717;
+  --krds-primary-hover: #262626;
+  --krds-primary-text: #171717;
+  --krds-primary-surface: #f5f5f5;
+  --krds-primary-border: #e5e5e5;
+
+  /* Gray (그대로 유지, 명시적 선언) */
+  --krds-gray-text: #1e2124;
+  --krds-gray-surface: #f4f5f6;
+  --krds-gray-background: #ffffff;
+  --krds-gray-border: #e5e5e5;
+
+  /* Danger → 뉴트럴 레드 (약간만) */
+  --krds-danger-base: #525252;
+  --krds-danger-text: #525252;
+  --krds-danger-surface: #f5f5f5;
+  --krds-danger-border: #e5e5e5;
+
+  /* Success → 뉴트럴 */
+  --krds-success-base: #525252;
+  --krds-success-text: #525252;
+  --krds-success-surface: #f5f5f5;
+
+  /* Warning → 뉴트럴 */
+  --krds-warning-base: #525252;
+  --krds-warning-text: #525252;
+  --krds-warning-surface: #f5f5f5;
+
+  /* Information → 뉴트럴 */
+  --krds-information-base: #525252;
+  --krds-information-text: #525252;
+  --krds-information-surface: #f5f5f5;
+
+  /* Accent → 뉴트럴 */
+  --krds-accent-base: #525252;
+  --krds-accent-text: #525252;
+  --krds-accent-surface: #f5f5f5;
+
+  /* Secondary → 뉴트럴 */
+  --krds-secondary-base: #404040;
+  --krds-secondary-text: #404040;
+  --krds-secondary-surface: #f5f5f5;
+}
+
 /* Custom Counter Style for Circled Numbers (①, ②, ③...) */
 @counter-style circled-decimal {
   system: fixed;
