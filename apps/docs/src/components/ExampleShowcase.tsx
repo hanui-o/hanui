@@ -1,481 +1,418 @@
 'use client';
 
+import { Button, Input } from '@hanui/react';
 import { useState } from 'react';
-import Link from 'next/link';
-import {
-  Button,
-  Input,
-  Badge,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardBody,
-  CardFooter,
-  Tag,
-  Switch,
-  Checkbox,
-  Alert,
-  AlertTitle,
-  AlertDescription,
-  HStack,
-  Stack,
-  LoginForm,
-  SignupForm,
-  OtpVerify,
-  GovLogin,
-  ContactForm,
-  StatsCard,
-  BoardManagement,
-} from '@hanui/react';
 
-const tabs = [
-  { id: 'components', label: '컴포넌트' },
-  { id: 'gov-forms', label: '공공 서식' },
-  { id: 'dashboard', label: '대시보드' },
-  { id: 'auth', label: '인증' },
-];
-
-function ComponentsTab() {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {/* Column 1 - Buttons & Inputs */}
-      <div className="space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Button</CardTitle>
-            <CardDescription>다양한 스타일의 버튼</CardDescription>
-          </CardHeader>
-          <CardBody>
-            <Stack gap="sm">
-              <HStack gap="sm" className="flex-wrap">
-                <Button variant="primary" size="sm">
-                  Primary
-                </Button>
-                <Button variant="secondary" size="sm">
-                  Secondary
-                </Button>
-                <Button variant="tertiary" size="sm">
-                  Tertiary
-                </Button>
-              </HStack>
-              <HStack gap="sm" className="flex-wrap">
-                <Button variant="success" size="sm">
-                  Success
-                </Button>
-                <Button variant="danger" size="sm">
-                  Danger
-                </Button>
-                <Button variant="ghost" size="sm">
-                  Ghost
-                </Button>
-              </HStack>
-              <Button variant="black" size="md" className="w-full">
-                Get Started
-              </Button>
-            </Stack>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Input</CardTitle>
-            <CardDescription>폼 입력 필드</CardDescription>
-          </CardHeader>
-          <CardBody>
-            <Stack gap="sm">
-              <Input placeholder="기본 입력" />
-              <Input placeholder="성공 상태" status="success" />
-              <Input placeholder="에러 상태" status="error" />
-              <Input type="password" placeholder="비밀번호" />
-            </Stack>
-          </CardBody>
-        </Card>
-      </div>
-
-      {/* Column 2 - Badge, Tag, Switch */}
-      <div className="space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Badge & Tag</CardTitle>
-            <CardDescription>상태 표시 라벨</CardDescription>
-          </CardHeader>
-          <CardBody>
-            <Stack gap="md">
-              <HStack gap="sm" className="flex-wrap">
-                <Badge variant="primary">신규</Badge>
-                <Badge variant="success">완료</Badge>
-                <Badge variant="warning">대기</Badge>
-                <Badge variant="error">오류</Badge>
-                <Badge variant="info">정보</Badge>
-              </HStack>
-              <HStack gap="sm" className="flex-wrap">
-                <Badge variant="outline-primary">v2.2</Badge>
-                <Badge variant="outline-success">KRDS</Badge>
-                <Badge variant="outline-info">AA</Badge>
-              </HStack>
-              <HStack gap="sm" className="flex-wrap">
-                <Tag>React</Tag>
-                <Tag>TypeScript</Tag>
-                <Tag>Tailwind</Tag>
-                <Tag>KRDS</Tag>
-              </HStack>
-            </Stack>
-          </CardBody>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Form Controls</CardTitle>
-            <CardDescription>체크박스, 스위치</CardDescription>
-          </CardHeader>
-          <CardBody>
-            <Stack gap="md">
-              <HStack gap="md">
-                <Checkbox id="showcase-terms" />
-                <label htmlFor="showcase-terms" className="text-sm">
-                  이용약관 동의
-                </label>
-              </HStack>
-              <HStack gap="md">
-                <Checkbox id="showcase-privacy" />
-                <label htmlFor="showcase-privacy" className="text-sm">
-                  개인정보 수집 동의
-                </label>
-              </HStack>
-              <HStack gap="md" className="justify-between">
-                <span className="text-sm">알림 수신</span>
-                <Switch />
-              </HStack>
-              <HStack gap="md" className="justify-between">
-                <span className="text-sm">다크 모드</span>
-                <Switch />
-              </HStack>
-            </Stack>
-          </CardBody>
-        </Card>
-      </div>
-
-      {/* Column 3 - Alert & Card variants */}
-      <div className="space-y-6">
-        <Alert variant="info">
-          <AlertTitle>KRDS 2.2 준수</AlertTitle>
-          <AlertDescription>
-            모든 컴포넌트는 정부 디자인 시스템 표준을 따릅니다.
-          </AlertDescription>
-        </Alert>
-
-        <Alert variant="success">
-          <AlertTitle>접근성 AA 충족</AlertTitle>
-          <AlertDescription>
-            WCAG 2.1 AA 기준 색상 대비, 키보드 내비게이션을 지원합니다.
-          </AlertDescription>
-        </Alert>
-
-        <Card variant="elevated">
-          <CardHeader>
-            <CardTitle>61+ 컴포넌트</CardTitle>
-            <CardDescription>
-              Button, Input, Card, Table, Modal, Tabs, Accordion 등 공공 웹에
-              필요한 모든 UI
-            </CardDescription>
-          </CardHeader>
-          <CardBody>
-            <Stack gap="sm">
-              <HStack gap="sm" className="flex-wrap">
-                <Badge variant="gray" size="md">
-                  Button
-                </Badge>
-                <Badge variant="gray" size="md">
-                  Input
-                </Badge>
-                <Badge variant="gray" size="md">
-                  Card
-                </Badge>
-                <Badge variant="gray" size="md">
-                  Table
-                </Badge>
-                <Badge variant="gray" size="md">
-                  Modal
-                </Badge>
-                <Badge variant="gray" size="md">
-                  Tabs
-                </Badge>
-                <Badge variant="gray" size="md">
-                  Form
-                </Badge>
-                <Badge variant="gray" size="md">
-                  +54
-                </Badge>
-              </HStack>
-            </Stack>
-          </CardBody>
-          <CardFooter>
-            <Link href="/components">
-              <Button variant="ghost-primary" size="sm">
-                모든 컴포넌트 보기 &rarr;
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-      </div>
-    </div>
-  );
-}
-
-function GovFormsTab() {
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div className="rounded-lg border border-krds-gray-20 bg-white dark:bg-gray-950 overflow-hidden">
-        <div className="px-4 py-3 border-b border-krds-gray-20 bg-krds-gray-5">
-          <HStack gap="sm" className="items-center">
-            <Badge variant="primary" size="md">
-              Block
-            </Badge>
-            <span className="text-sm font-medium text-krds-gray-70">
-              정부24 로그인
-            </span>
-          </HStack>
-        </div>
-        <div className="p-6">
-          <GovLogin
-            onLogin={() => {}}
-            onSimpleAuth={() => {}}
-            onCertAuth={() => {}}
-          />
-        </div>
-      </div>
-
-      <div className="rounded-lg border border-krds-gray-20 bg-white dark:bg-gray-950 overflow-hidden">
-        <div className="px-4 py-3 border-b border-krds-gray-20 bg-krds-gray-5">
-          <HStack gap="sm" className="items-center">
-            <Badge variant="primary" size="md">
-              Block
-            </Badge>
-            <span className="text-sm font-medium text-krds-gray-70">
-              문의 폼
-            </span>
-          </HStack>
-        </div>
-        <div className="p-6">
-          <ContactForm onSubmit={() => {}} />
-        </div>
-      </div>
-
-      <div className="lg:col-span-2 flex justify-center pt-2">
-        <Link href="/blocks">
-          <Button variant="ghost-primary" size="sm">
-            모든 블록 보기 &rarr;
-          </Button>
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-const mockStats = [
-  { label: '총 방문자', value: '12,450', change: 12.5 },
-  { label: '게시글 수', value: '1,234', change: 3.2 },
-  { label: '민원 접수', value: '89', change: -5.1 },
-  { label: '처리 완료', value: '76', change: 8.7 },
-];
-
-const mockBoards = [
-  { id: 1, name: '공지사항', slug: 'notice', postCount: 45 },
-  { id: 2, name: '자유게시판', slug: 'free', postCount: 123 },
-  { id: 3, name: '민원접수', slug: 'civil', postCount: 89 },
-];
-
-const mockPosts = [
+const examples = [
   {
-    id: 1,
-    boardId: 1,
-    title: '2026년 상반기 운영 계획 안내',
-    author: '관리자',
-    status: 'PUBLISHED' as const,
-    createdAt: '2026-03-18',
-    isPinned: true,
-    views: 342,
+    id: 'examples',
+    label: 'Examples',
+    disabled: true,
+    tooltip: '여긴 아직...',
   },
   {
-    id: 2,
-    boardId: 1,
-    title: '시스템 점검 안내 (3/25)',
-    author: '관리자',
-    status: 'PUBLISHED' as const,
-    createdAt: '2026-03-17',
-    isPinned: false,
-    views: 128,
+    id: 'dashboard',
+    label: 'Dashboard',
+    disabled: true,
+    tooltip: '이것도 아직...',
+  },
+  { id: 'tasks', label: 'Tasks', disabled: true, tooltip: '이것마저...' },
+  {
+    id: 'playground',
+    label: 'Playground',
+    disabled: true,
+    tooltip: '사실 다...',
   },
   {
-    id: 3,
-    boardId: 1,
-    title: '개인정보 처리방침 변경 사전 안내',
-    author: '관리자',
-    status: 'DRAFT' as const,
-    createdAt: '2026-03-15',
-    isPinned: false,
-    views: 0,
-  },
-  {
-    id: 4,
-    boardId: 1,
-    title: '신규 서비스 오픈 안내',
-    author: '홍길동',
-    status: 'PUBLISHED' as const,
-    createdAt: '2026-03-14',
-    isPinned: false,
-    views: 87,
+    id: 'auth',
+    label: 'Authentication',
+    disabled: true,
+    tooltip: 'Coming Soon 🚧',
   },
 ];
-
-function DashboardTab() {
-  return (
-    <div className="space-y-6">
-      <div className="rounded-lg border border-krds-gray-20 bg-white dark:bg-gray-950 overflow-hidden">
-        <div className="px-4 py-3 border-b border-krds-gray-20 bg-krds-gray-5">
-          <HStack gap="sm" className="items-center">
-            <Badge variant="success" size="md">
-              Block
-            </Badge>
-            <span className="text-sm font-medium text-krds-gray-70">
-              통계 카드
-            </span>
-          </HStack>
-        </div>
-        <div className="p-6">
-          <StatsCard items={mockStats} columns={4} />
-        </div>
-      </div>
-
-      <div className="rounded-lg border border-krds-gray-20 bg-white dark:bg-gray-950 overflow-hidden">
-        <div className="px-4 py-3 border-b border-krds-gray-20 bg-krds-gray-5">
-          <HStack gap="sm" className="items-center">
-            <Badge variant="success" size="md">
-              Block
-            </Badge>
-            <span className="text-sm font-medium text-krds-gray-70">
-              게시판 관리
-            </span>
-          </HStack>
-        </div>
-        <div className="p-6">
-          <BoardManagement
-            boards={mockBoards}
-            posts={mockPosts}
-            onNewPost={() => {}}
-            onEditPost={() => {}}
-            onDeletePost={() => {}}
-            onTogglePin={() => {}}
-          />
-        </div>
-      </div>
-
-      <div className="flex justify-center pt-2">
-        <Link href="/blocks">
-          <Button variant="ghost-primary" size="sm">
-            모든 블록 보기 &rarr;
-          </Button>
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-function AuthTab() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div className="rounded-lg border border-krds-gray-20 bg-white dark:bg-gray-950 overflow-hidden">
-        <div className="px-4 py-3 border-b border-krds-gray-20 bg-krds-gray-5">
-          <HStack gap="sm" className="items-center">
-            <Badge variant="info" size="md">
-              Block
-            </Badge>
-            <span className="text-sm font-medium text-krds-gray-70">
-              로그인
-            </span>
-          </HStack>
-        </div>
-        <div className="p-6">
-          <LoginForm onSubmit={() => {}} />
-        </div>
-      </div>
-
-      <div className="rounded-lg border border-krds-gray-20 bg-white dark:bg-gray-950 overflow-hidden">
-        <div className="px-4 py-3 border-b border-krds-gray-20 bg-krds-gray-5">
-          <HStack gap="sm" className="items-center">
-            <Badge variant="info" size="md">
-              Block
-            </Badge>
-            <span className="text-sm font-medium text-krds-gray-70">
-              회원가입
-            </span>
-          </HStack>
-        </div>
-        <div className="p-6">
-          <SignupForm onSubmit={() => {}} />
-        </div>
-      </div>
-
-      <div className="rounded-lg border border-krds-gray-20 bg-white dark:bg-gray-950 overflow-hidden">
-        <div className="px-4 py-3 border-b border-krds-gray-20 bg-krds-gray-5">
-          <HStack gap="sm" className="items-center">
-            <Badge variant="info" size="md">
-              Block
-            </Badge>
-            <span className="text-sm font-medium text-krds-gray-70">
-              OTP 인증
-            </span>
-          </HStack>
-        </div>
-        <div className="p-6">
-          <OtpVerify onSubmit={() => {}} onResend={() => {}} />
-        </div>
-      </div>
-
-      <div className="md:col-span-2 lg:col-span-3 flex justify-center pt-2">
-        <Link href="/blocks">
-          <Button variant="ghost-primary" size="sm">
-            모든 인증 블록 보기 &rarr;
-          </Button>
-        </Link>
-      </div>
-    </div>
-  );
-}
 
 export function ExampleShowcase() {
-  const [activeTab, setActiveTab] = useState('components');
+  const [activeTab, setActiveTab] = useState('examples');
 
   return (
     <div className="w-full">
-      {/* Tab Navigation */}
-      <div className="flex items-center mb-6">
-        <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto scrollbar-hide">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`pb-3 px-1 font-medium transition-colors relative whitespace-nowrap ${
-                activeTab === tab.id
-                  ? 'text-gray-900 dark:text-gray-100'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-              }`}
-            >
-              {tab.label}
-              {activeTab === tab.id && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900 dark:bg-gray-100" />
+      {/* Tab Navigation - shadcn/ui style */}
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-6">
+          {examples.map((example) => (
+            <div key={example.id} className="relative group">
+              <button
+                onClick={() => !example.disabled && setActiveTab(example.id)}
+                disabled={example.disabled}
+                className={`pb-3 px-1 font-medium transition-colors relative ${
+                  example.disabled
+                    ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                    : activeTab === example.id
+                      ? 'text-gray-900 dark:text-gray-100'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+                }`}
+              >
+                {example.label}
+                {!example.disabled && activeTab === example.id && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900 dark:bg-gray-100" />
+                )}
+              </button>
+              {/* Tooltip for disabled tabs */}
+              {example.disabled && example.tooltip && (
+                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-1.5 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                  {example.tooltip}
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900 dark:border-t-gray-100" />
+                </div>
               )}
-            </button>
+            </div>
           ))}
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-gray-600 dark:text-gray-400">
+            Theme:
+          </span>
+          <select className="h-8 px-2 text-xs border border-gray-200 dark:border-gray-800 rounded-md bg-transparent">
+            <option>Neutral</option>
+          </select>
+          <button className="flex items-center justify-center h-8 w-8 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+            </svg>
+          </button>
         </div>
       </div>
 
-      {/* Tab Content */}
-      {activeTab === 'components' && <ComponentsTab />}
-      {activeTab === 'gov-forms' && <GovFormsTab />}
-      {activeTab === 'dashboard' && <DashboardTab />}
-      {activeTab === 'auth' && <AuthTab />}
+      {/* Example Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left Column - Payment Method */}
+        <div className="space-y-6">
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+            <h3 className="text-lg font-semibold mb-4">결제 수단</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-6">
+              모든 거래는 안전하게 암호화됩니다
+            </p>
+
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="card-holder" className="font-medium mb-2 block">
+                  카드 소유자명
+                </label>
+                <Input id="card-holder" placeholder="홍길동" />
+              </div>
+
+              <div className="grid grid-cols-3 gap-4">
+                <div className="col-span-2">
+                  <label
+                    htmlFor="card-number"
+                    className="font-medium mb-2 block"
+                  >
+                    카드 번호
+                  </label>
+                  <Input id="card-number" placeholder="1234 5678 9012 3456" />
+                </div>
+                <div>
+                  <label htmlFor="cvv" className="font-medium mb-2 block">
+                    CVV
+                  </label>
+                  <Input id="cvv" placeholder="123" />
+                </div>
+              </div>
+
+              <div className="text-xs text-gray-500 dark:text-gray-400">
+                16자리 카드 번호를 입력하세요.
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="month" className="font-medium mb-2 block">
+                    월
+                  </label>
+                  <select
+                    id="month"
+                    className="w-full h-10 px-3 border border-gray-200 dark:border-gray-800 rounded-md bg-transparent"
+                  >
+                    <option>MM</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="year" className="font-medium mb-2 block">
+                    년도
+                  </label>
+                  <select
+                    id="year"
+                    className="w-full h-10 px-3 border border-gray-200 dark:border-gray-800 rounded-md bg-transparent"
+                  >
+                    <option>YYYY</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+            <h3 className="text-lg font-semibold mb-4">청구지 주소</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
+              결제 수단과 연결된 청구지 주소
+            </p>
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="same-address" className="rounded" />
+              <label htmlFor="same-address" className="text-sm">
+                배송지 주소와 동일
+              </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Center Column - Team */}
+        <div className="space-y-6">
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6 flex flex-col items-center justify-center min-h-[400px]">
+            <div className="flex -space-x-2 mb-4">
+              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
+              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
+              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">팀원 없음</h3>
+            <p className="text-gray-500 dark:text-gray-400 text-center mb-6">
+              이 프로젝트에서 협업할 팀원을
+              <br />
+              초대하세요.
+            </p>
+            <Button variant="primary">+ 팀원 초대</Button>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-900">
+                <div className="w-2 h-2 rounded-full bg-green-500" />
+                <span>동기화 중</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800">
+                <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-700" />
+                <span>업데이트 중</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800">
+                <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-700" />
+                <span>로딩 중</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <button className="px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900">
+                +
+              </button>
+              <input
+                type="text"
+                placeholder="메시지 보내기..."
+                className="flex-1 bg-transparent outline-none"
+              />
+              <button className="text-gray-400">🎤</button>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+            <h3 className="text-lg font-semibold mb-4">가격 범위</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
+              예산 범위를 설정하세요 ($200 - 800).
+            </p>
+            <div className="relative pt-1">
+              <input type="range" min="200" max="800" className="w-full" />
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+            <div className="flex items-center gap-2">
+              <div className="flex-1 relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                  🔍
+                </span>
+                <input
+                  type="text"
+                  placeholder="검색..."
+                  className="w-full pl-9 pr-3 py-2 bg-transparent border border-gray-200 dark:border-gray-800 rounded-md outline-none"
+                />
+              </div>
+              <span className="text-gray-500">12 results</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column - Authentication */}
+        <div className="space-y-6">
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+            <div className="flex items-center gap-2 mb-4 p-3 border border-gray-200 dark:border-gray-800 rounded-md">
+              <span className="text-gray-400">🌐</span>
+              <span className="text-gray-500">https://</span>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="font-semibold mb-1">2단계 인증</h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  이메일 또는 전화번호로 인증하세요.
+                </p>
+              </div>
+              <Button variant="primary" size="sm">
+                활성화
+              </Button>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+            <div className="flex items-center gap-2">
+              <span className="text-green-500">✓</span>
+              <span>프로필이 인증되었습니다.</span>
+              <button className="ml-auto text-gray-400">→</button>
+            </div>
+          </div>
+
+          <div className="text-center py-4">
+            <button className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+              모양 설정
+            </button>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+            <h3 className="font-semibold mb-4">컴퓨팅 환경</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
+              클러스터의 컴퓨팅 환경을 선택하세요.
+            </p>
+            <div className="space-y-3">
+              <div className="flex items-center gap-2 p-3 border border-gray-200 dark:border-gray-800 rounded-md">
+                <div className="w-2 h-2 rounded-full bg-gray-900 dark:bg-gray-100" />
+                <div className="flex-1">
+                  <div className="font-medium">Kubernetes</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    K8s 구성에서 GPU 워크로드 실행. 기본값입니다.
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 p-3 border border-gray-200 dark:border-gray-800 rounded-md">
+                <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-700" />
+                <div className="flex-1">
+                  <div className="font-medium">가상 머신</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                    워크로드를 실행하기 위해 VM 구성 클러스터에 접근. (곧 출시)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+            <h3 className="font-semibold mb-4">저희를 어떻게 알게 되셨나요?</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
+              가장 적합한 옵션을 선택하세요.
+            </p>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="social"
+                  name="referral"
+                  className="rounded-full"
+                />
+                <label htmlFor="social" className="text-sm">
+                  소셜 미디어
+                </label>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="search"
+                  name="referral"
+                  className="rounded-full"
+                />
+                <label htmlFor="search" className="text-sm">
+                  검색 엔진
+                </label>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="referral"
+                  name="referral"
+                  className="rounded-full"
+                />
+                <label htmlFor="referral" className="text-sm">
+                  추천
+                </label>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="other"
+                  name="referral"
+                  className="rounded-full"
+                />
+                <label htmlFor="other" className="text-sm">
+                  기타
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+              ← 보관
+            </button>
+            <button className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+              리포트
+            </button>
+            <button className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+              다시 알림
+            </button>
+            <button className="px-3 py-2 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+              •••
+            </button>
+          </div>
+
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+            <div className="flex items-center gap-2">
+              <input type="checkbox" id="terms" className="rounded" />
+              <label htmlFor="terms" className="text-sm">
+                이용약관 및 정책에 동의합니다
+              </label>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <button className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+                1
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+                2
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+                3
+              </button>
+            </div>
+            <div className="flex items-center gap-2">
+              <button className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+                ←
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
+                →
+              </button>
+              <button className="px-3 py-1.5 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900 flex items-center gap-1">
+                📋 Copilot
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
