@@ -1,0 +1,177 @@
+---
+title: 'AI가 짠 코드, 시니어는 뭘 보는가'
+description: 'AI가 만든 코드를 리뷰할 때 시니어 개발자가 확인하는 5가지. 동작하는 코드와 좋은 코드의 차이.'
+date: '2026-04-07'
+tags: ['AI', '코드리뷰', '시니어', '프론트엔드', 'Claude']
+author: 'odada'
+series: 'AI와 시니어 개발'
+seriesOrder: 3
+---
+
+## AI 코드는 "동작"해요
+
+AI한테 "로그인 폼 만들어줘"라고 하면, 진짜 동작하는 로그인 폼이 나와요. 입력 받고, 버튼 누르면 제출되고, 에러도 처리해요.
+
+근데 그게 프로덕션에 넣어도 되는 코드인지는 별개의 문제예요.
+
+동작하는 코드와 좋은 코드 사이에는 간극이 있어요. 그 간극을 메우는 게 시니어의 일이에요. [이전 편](/blog/ai-senior-refactoring-workflow)에서 "시니어의 일은 판단"이라고 했는데, 이번에는 그 판단이 구체적으로 뭔지 얘기해볼게요.
+
+## 1. 이 컴포넌트는 어디에 있어야 하는가
+
+AI는 코드를 잘 짜요. 근데 **파일을 어디에 놓을지**는 잘 모를 때가 있어요.
+
+```
+❌ AI가 만든 구조
+src/components/DashboardSearchFilterSort.tsx  (300줄 모놀리스)
+
+✅ 시니어가 판단한 구조
+src/hooks/useDashboardState.ts         (상태 관리)
+src/components/DashboardControls.tsx   (UI 컨트롤)
+src/components/DashboardLayout.tsx     (레이아웃)
+```
+
+AI는 "동작하는 코드"를 한 파일에 만들어요. 시니어는 "6개월 뒤에 다른 사람이 이해할 수 있는 구조"로 나눠요.
+
+질문: **"이 코드를 처음 보는 팀원이 3초 안에 역할을 파악할 수 있는가?"**
+
+## 2. 이 상태는 여기서 관리해야 하는가
+
+AI가 만든 컴포넌트에서 자주 보이는 패턴이에요.
+
+```tsx
+// AI가 만든 코드 — 로컬 상태가 과도하게 많음
+const [keyword, setKeyword] = useState('');
+const [page, setPage] = useState(1);
+const [sortState, setSortState] = useState({ id: 'name', desc: false });
+const [selectedFilters, setSelectedFilters] = useState({});
+const [selectedRow, setSelectedRow] = useState(null);
+const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState(null);
+const [data, setData] = useState([]);
+```
+
+동작해요. 근데 이 상태들이 전부 한 컴포넌트에 있어야 하는 건지는 따져봐야 해요.
+
+시니어가 보는 건:
+- **URL과 동기화해야 하는 상태는 없는가?** (keyword, page → URL 파라미터)
+- **서버 상태와 클라이언트 상태가 섞여 있지 않은가?** (data, isLoading → React Query)
+- **다른 컴포넌트에서도 필요한 상태는 없는가?** (selectedRow → 상위로 올려야 할 수 있음)
+
+질문: **"이 상태가 이 컴포넌트의 관심사가 맞는가?"**
+
+## 3. 에러가 나면 사용자는 뭘 보는가
+
+AI는 에러 핸들링을 해요. 근데 대부분 이런 식이에요.
+
+```tsx
+// AI의 에러 처리
+catch (error) {
+  setError('오류가 발생했습니다.');
+}
+```
+
+"오류가 발생했습니다"를 본 사용자는 뭘 해야 하는지 몰라요.
+
+시니어가 확인하는 건:
+- **네트워크 에러와 비즈니스 에러를 구분하는가?** (서버 다운 vs 권한 없음)
+- **사용자가 다음 행동을 알 수 있는가?** (재시도 버튼, 관리자 문의 안내)
+- **에러 상태에서 UI가 깨지지 않는가?** (빈 화면 대신 fallback UI)
+
+```tsx
+// 시니어가 수정한 에러 처리
+catch (error) {
+  if (error.status === 401) {
+    router.push('/login');
+    return;
+  }
+  if (error.status === 403) {
+    setError('이 페이지에 접근 권한이 없습니다. 관리자에게 문의하세요.');
+    return;
+  }
+  setError('데이터를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+}
+```
+
+질문: **"에러가 났을 때 사용자가 막막하지 않은가?"**
+
+## 4. 키보드로 동작하는가
+
+이건 AI가 가장 많이 놓치는 부분이에요.
+
+AI가 만든 모달:
+- 열리면 포커스가 모달 안으로 이동하지 않음
+- Tab으로 모달 밖의 버튼이 눌림
+- ESC로 닫히지 않음
+
+AI가 만든 드롭다운:
+- 화살표 키로 옵션 이동이 안 됨
+- Enter로 선택이 안 됨
+- 스크린 리더가 현재 선택 상태를 읽지 못함
+
+코드가 동작하는지 확인하는 건 쉬워요. **키보드만으로 동작하는지 확인하는 건** 경험이 필요해요.
+
+질문: **"마우스 없이 이 기능을 완료할 수 있는가?"**
+
+## 5. 이 코드는 팀의 패턴을 따르는가
+
+AI는 공식 문서의 베스트 프랙티스를 따라요. 근데 우리 팀의 컨벤션은 몰라요.
+
+- 우리 팀은 `forwardRef`를 쓰는데 AI는 안 썼음
+- 우리 팀은 `cn()` 유틸로 className을 병합하는데 AI는 템플릿 리터럴을 씀
+- 우리 팀은 CVA로 variant를 관리하는데 AI는 조건문으로 클래스를 붙임
+- 우리 팀은 Named export만 쓰는데 AI는 default export를 씀
+
+하나하나는 사소해요. 근데 이게 쌓이면 코드베이스가 일관성을 잃어요. AI가 만든 코드 10개가 전부 다른 패턴이면, 그건 10명이 따로 만든 것과 다를 바 없어요.
+
+질문: **"이 코드가 기존 코드베이스에 자연스럽게 녹아드는가?"**
+
+## CLAUDE.md가 여기서 중요해요
+
+5번 문제를 해결하는 가장 좋은 방법이 `CLAUDE.md`예요.
+
+팀의 코드 패턴, 컨벤션, 컴포넌트 구조를 `CLAUDE.md`에 적어두면 AI가 처음부터 우리 팀 스타일로 코드를 짜요.
+
+```markdown
+## 코드 패턴
+- 'use client' 최상단 필수
+- Named export만 (default export 금지)
+- KRDS 색상 토큰 사용
+- cn() 유틸로 className 병합
+- Component는 forwardRef + displayName
+```
+
+이렇게 해두면 AI가 만든 코드가 팀 코드와 이질감 없이 섞여요. 리뷰할 때 "이거 우리 스타일이 아닌데"라는 지적이 사라져요.
+
+## 시니어의 리뷰 체크리스트
+
+정리하면 이거예요.
+
+| 순서 | 질문 | AI가 놓치기 쉬운 이유 |
+|---|---|---|
+| 1 | 파일 위치가 맞는가? | 동작에는 영향 없음 |
+| 2 | 상태 관리가 적절한가? | 어디든 useState면 동작함 |
+| 3 | 에러 UX가 괜찮은가? | catch만 있으면 에러 안 남 |
+| 4 | 키보드로 되는가? | 마우스로는 다 됨 |
+| 5 | 팀 패턴을 따르는가? | 공식 문서 패턴은 다름 |
+
+이 5가지를 확인하면, AI가 만든 코드의 80%는 프로덕션 레벨이 돼요. 나머지 20%는 도메인 로직인데, 그건 어차피 사람만 판단할 수 있는 영역이에요.
+
+## 정리
+
+1. **AI 코드는 동작하지만, 좋은 코드와는 다르다** — 그 간극을 메우는 게 시니어의 리뷰
+2. **5가지만 확인하면 된다** — 위치, 상태, 에러, 접근성, 패턴
+3. **CLAUDE.md로 팀 패턴을 공유하면** — AI가 처음부터 우리 스타일로 짜준다
+
+AI 시대에 코드 리뷰는 "이 코드가 맞는가?"에서 **"이 코드가 우리 팀에 맞는가?"**로 바뀌고 있어요.
+
+---
+
+### 시리즈 네비게이션
+
+- 이전 편: [AI 3개, 사람 1명 — 시니어의 리팩토링 워크플로우](/blog/ai-senior-refactoring-workflow)
+- 다음 편: 준비 중
+
+### 관련 링크
+
+- [claude-settings](https://github.com/hanui-o/claude-settings) — CLAUDE.md 설정 저장소
+- [hanui](https://github.com/hanui-o/hanui) — KRDS 기반 React 컴포넌트
