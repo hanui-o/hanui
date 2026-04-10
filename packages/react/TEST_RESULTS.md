@@ -1,15 +1,15 @@
 # @hanui/react 테스트 결과
 
-> 실행일: 2026-04-10 | vitest v4.0.15 | jsdom | 58 tests passed
+> 실행일: 2026-04-10 | vitest v4.0.15 | jsdom | 145 tests passed
 
 ## 요약
 
-| 항목          | 결과      |
-| ------------- | --------- |
-| 테스트 파일   | 5개 통과  |
-| 테스트 케이스 | 58개 통과 |
-| 실패          | 0개       |
-| 실행 시간     | 744ms     |
+| 항목          | 결과       |
+| ------------- | ---------- |
+| 테스트 파일   | 22개 통과  |
+| 테스트 케이스 | 145개 통과 |
+| 실패          | 0개        |
+| 실행 시간     | 2.0s       |
 
 ## 컴포넌트별 상세
 
@@ -100,27 +100,39 @@
 
 | 분류     | 개수 | 설명                                 |
 | -------- | ---- | ------------------------------------ |
-| 렌더링   | 22   | DOM 구조, 요소 타입, children 확인   |
-| 접근성   | 8    | aria 속성, role, label 연결          |
-| axe      | 16   | axe-core 자동 접근성 검사 (WCAG 2.1) |
-| 인터랙션 | 8    | 클릭, 입력, 상태 변경                |
-| API      | 4    | ref, className, type 등 컴포넌트 API |
+| 렌더링   | 45   | DOM 구조, 요소 타입, children 확인   |
+| 접근성   | 18   | aria 속성, role, label 연결          |
+| axe      | 38   | axe-core 자동 접근성 검사 (WCAG 2.1) |
+| 인터랙션 | 30   | 클릭, 입력, 상태 변경, 키보드        |
+| API      | 14   | ref, className, type 등 컴포넌트 API |
 
 ## 테스트 커버리지 현황
 
-| 컴포넌트                                    | 테스트    | 비고                     |
-| ------------------------------------------- | --------- | ------------------------ |
-| Badge / NumberBadge / DotBadge / BadgeGroup | ✅ 20개   |                          |
-| Button                                      | ✅ 13개   | loading, href, icon 포함 |
-| Input                                       | ✅ 11개   | clearable, password 포함 |
-| Checkbox / CheckboxGroup                    | ✅ 8개    |                          |
-| Radio / RadioGroup                          | ✅ 6개    |                          |
-| Select / Combobox                           | ❌ 미작성 | 다음 대상                |
-| Modal / AlertDialog                         | ❌ 미작성 | 다음 대상                |
-| Accordion / Disclosure                      | ❌ 미작성 |                          |
-| Alert / Toast                               | ❌ 미작성 |                          |
-| Pagination / Breadcrumb                     | ❌ 미작성 |                          |
-| 나머지 (~65개)                              | ❌ 미작성 |                          |
+| 컴포넌트                                    | 테스트    | 비고                         |
+| ------------------------------------------- | --------- | ---------------------------- |
+| Badge / NumberBadge / DotBadge / BadgeGroup | ✅ 20개   |                              |
+| Button                                      | ✅ 13개   | loading, href, icon 포함     |
+| Input                                       | ✅ 11개   | clearable, password 포함     |
+| Checkbox / CheckboxGroup                    | ✅ 8개    |                              |
+| Radio / RadioGroup                          | ✅ 6개    |                              |
+| Select                                      | ✅ 5개    |                              |
+| Modal                                       | ✅ 7개    | ESC 닫기, 포커스 관리        |
+| Alert                                       | ✅ 9개    | role, aria-live              |
+| AlertDialog                                 | ✅ 4개    | Radix 기반                   |
+| Accordion                                   | ✅ 6개    | single 모드                  |
+| Pagination                                  | ✅ 7개    | 이전/다음, aria-current      |
+| Switch                                      | ✅ 5개    |                              |
+| Tabs                                        | ✅ 6개    | aria-selected                |
+| Tooltip                                     | ✅ 4개    | 호버, disabled               |
+| Breadcrumb                                  | ✅ 5개    | aria-current="page"          |
+| Progress                                    | ✅ 5개    | indeterminate 포함           |
+| Textarea                                    | ✅ 5개    |                              |
+| Spinner                                     | ✅ 4개    | role="status"                |
+| Disclosure                                  | ✅ 4개    |                              |
+| Slider                                      | ✅ 4개    | aria-value\*                 |
+| SkipLink                                    | ✅ 3개    | 접근성 건너뛰기              |
+| DropdownMenu                                | ✅ 4개    |                              |
+| 나머지 (~55개)                              | ❌ 미작성 | 레이아웃/텍스트 제외 시 적음 |
 
 ## 실행 방법
 

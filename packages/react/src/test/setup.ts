@@ -1,3 +1,10 @@
+// jsdom에 없는 API 폴리필
+global.ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
+
 import '@testing-library/jest-dom/vitest';
 import * as matchers from 'vitest-axe/matchers';
 import { expect } from 'vitest';
