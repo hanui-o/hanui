@@ -4,7 +4,7 @@ import { useParams } from 'next/navigation';
 import { Breadcrumb, FileDownload, Body, Button } from '@hanui/react';
 
 export default function NoticeDetailPage() {
-  const { id } = useParams();
+  const { id: _id } = useParams();
 
   return (
     <>

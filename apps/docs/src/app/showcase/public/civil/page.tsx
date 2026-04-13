@@ -36,7 +36,7 @@ export default function CivilPage() {
           온라인 문의
         </h2>
         <ContactForm
-          onSubmit={(data) => {
+          onSubmit={(_data) => {
             alert('문의가 접수되었습니다.');
           }}
         />

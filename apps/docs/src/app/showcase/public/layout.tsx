@@ -1,7 +1,6 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
 import { SkipLink, HeaderWithNavigation, PublicFooter } from '@hanui/react';
 import type { NavigationMenuItem } from '@hanui/react';
 
@@ -45,8 +44,6 @@ export default function PublicShowcaseLayout({
 }: {
   children: ReactNode;
 }) {
-  const router = useRouter();
-
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <SkipLink

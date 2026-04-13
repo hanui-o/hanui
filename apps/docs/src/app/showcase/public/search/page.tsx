@@ -87,7 +87,7 @@ function SearchContent() {
 
       {results.length > 0 ? (
         <>
-          <ul className="divide-y divide-krds-gray-10" role="list">
+          <ul className="divide-y divide-krds-gray-10">
             {results.map((item) => (
               <li key={item.id}>
                 <a
