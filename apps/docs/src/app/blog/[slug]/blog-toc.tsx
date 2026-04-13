@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface TocItem {
   id: string;
@@ -8,18 +8,18 @@ interface TocItem {
   level: number;
 }
 
-export function BlogToc() {
+function useHeadings() {
   const [headings, setHeadings] = useState<TocItem[]>([]);
-  const [activeId, setActiveId] = useState<string>('');
+  const initialized = useRef(false);
 
-  // 헤딩 추출
   useEffect(() => {
+    if (initialized.current) return;
     const content = document.querySelector('[data-blog-content]');
     if (!content) return;
 
+    initialized.current = true;
     const elements = content.querySelectorAll('h2, h3');
     const items: TocItem[] = Array.from(elements).map((el) => {
-      // id가 없으면 텍스트로 생성
       if (!el.id) {
         el.id =
           el.textContent
@@ -36,6 +36,13 @@ export function BlogToc() {
     });
     setHeadings(items);
   }, []);
+
+  return headings;
+}
+
+export function BlogToc() {
+  const headings = useHeadings();
+  const [activeId, setActiveId] = useState<string>('');
 
   // 스크롤 스파이
   useEffect(() => {

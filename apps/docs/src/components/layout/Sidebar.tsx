@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 // Navigation by section
 const getStartedNavigation = [
@@ -403,6 +403,10 @@ export function Sidebar({ isOpen = false, onClose }: SidebarProps) {
         <nav
           ref={navRef}
           onClick={handleNavClick}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ')
+              handleNavClick(e as unknown as React.MouseEvent);
+          }}
           className="sticky top-14 h-[calc(100vh-3.5rem)] overflow-y-auto p-4 md:p-6 pb-20 scrollbar-hide"
         >
           <div className="space-y-8">

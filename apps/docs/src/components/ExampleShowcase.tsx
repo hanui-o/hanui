@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Input,
@@ -247,7 +247,7 @@ function AuthTab() {
   );
 }
 
-const tabContent: Record<string, () => JSX.Element> = {
+const tabContent: Record<string, () => React.ReactElement> = {
   components: ComponentsTab,
   forms: FormsTab,
   auth: AuthTab,

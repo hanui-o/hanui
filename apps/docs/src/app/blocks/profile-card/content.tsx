@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 'use client';
 
 import {
