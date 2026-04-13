@@ -693,3 +693,34 @@ export type {
 
 export { CmsHeader } from './components/blocks/cms-header';
 export type { CmsHeaderProps, CmsUser } from './components/blocks/cms-header';
+
+// 공공 CMS 쇼케이스 blocks
+export { PublicFooter } from './components/blocks/public-footer';
+export type {
+  PublicFooterProps,
+  FooterLink,
+} from './components/blocks/public-footer';
+
+export { PublicHero } from './components/blocks/public-hero';
+export type { PublicHeroProps } from './components/blocks/public-hero';
+
+export { NoticeList } from './components/blocks/notice-list';
+export type {
+  NoticeListProps,
+  NoticeItem,
+} from './components/blocks/notice-list';
+
+export { FaqList } from './components/blocks/faq-list';
+export type { FaqListProps, FaqItem } from './components/blocks/faq-list';
+
+export { SitemapPage } from './components/blocks/sitemap-page';
+export type {
+  SitemapPageProps,
+  SitemapItem,
+} from './components/blocks/sitemap-page';
+
+export { FileDownload } from './components/blocks/file-download';
+export type {
+  FileDownloadProps,
+  FileItem,
+} from './components/blocks/file-download';

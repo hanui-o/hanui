@@ -1,15 +1,15 @@
 # @hanui/react 테스트 결과
 
-> 실행일: 2026-04-10 | vitest v4.0.15 | jsdom | 145 tests passed
+> 실행일: 2026-04-13 | vitest v4.0.15 | jsdom | 211 tests passed
 
 ## 요약
 
 | 항목          | 결과       |
 | ------------- | ---------- |
-| 테스트 파일   | 22개 통과  |
-| 테스트 케이스 | 145개 통과 |
+| 테스트 파일   | 36개 통과  |
+| 테스트 케이스 | 211개 통과 |
 | 실패          | 0개        |
-| 실행 시간     | 2.0s       |
+| 실행 시간     | 3.2s       |
 
 ## 컴포넌트별 상세
 
@@ -100,11 +100,11 @@
 
 | 분류     | 개수 | 설명                                 |
 | -------- | ---- | ------------------------------------ |
-| 렌더링   | 45   | DOM 구조, 요소 타입, children 확인   |
-| 접근성   | 18   | aria 속성, role, label 연결          |
-| axe      | 38   | axe-core 자동 접근성 검사 (WCAG 2.1) |
-| 인터랙션 | 30   | 클릭, 입력, 상태 변경, 키보드        |
-| API      | 14   | ref, className, type 등 컴포넌트 API |
+| 렌더링   | 65   | DOM 구조, 요소 타입, children 확인   |
+| 접근성   | 25   | aria 속성, role, label 연결          |
+| axe      | 55   | axe-core 자동 접근성 검사 (WCAG 2.1) |
+| 인터랙션 | 40   | 클릭, 입력, 상태 변경, 키보드        |
+| API      | 26   | ref, className, type 등 컴포넌트 API |
 
 ## 테스트 커버리지 현황
 
@@ -132,7 +132,22 @@
 | Slider                                      | ✅ 4개    | aria-value\*                 |
 | SkipLink                                    | ✅ 3개    | 접근성 건너뛰기              |
 | DropdownMenu                                | ✅ 4개    |                              |
-| 나머지 (~55개)                              | ❌ 미작성 | 레이아웃/텍스트 제외 시 적음 |
+| **Blocks**                                  |           |                              |
+| PublicFooter                                | ✅ 6개    | role=contentinfo             |
+| PublicHero                                  | ✅ 5개    | 메인 배너                    |
+| NoticeList                                  | ✅ 6개    | 공지사항 목록                |
+| FaqList                                     | ✅ 5개    | 아코디언 FAQ                 |
+| SitemapPage                                 | ✅ 5개    | KWCAG 필수                   |
+| FileDownload                                | ✅ 7개    | 첨부파일 다운로드            |
+| LoginForm                                   | ✅ 4개    |                              |
+| SignupForm                                  | ✅ 3개    |                              |
+| ErrorPage                                   | ✅ 5개    | 404/500                      |
+| EmptyState                                  | ✅ 5개    |                              |
+| SearchBar                                   | ✅ 4개    |                              |
+| ContactForm                                 | ✅ 4개    |                              |
+| StatsCard                                   | ✅ 3개    |                              |
+| AdminShell                                  | ✅ 4개    | 건너뛰기 링크 포함           |
+| 나머지 (~40개)                              | ❌ 미작성 | 레이아웃/텍스트 제외 시 적음 |
 
 ## 실행 방법
 
