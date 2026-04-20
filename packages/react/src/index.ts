@@ -724,3 +724,48 @@ export type {
   FileDownloadProps,
   FileItem,
 } from './components/blocks/file-download';
+
+// CMS 블록
+export { Chart } from './components/blocks/chart';
+export type { ChartProps, ChartDataPoint } from './components/blocks/chart';
+
+export { BannerManager } from './components/blocks/banner-manager';
+export type {
+  BannerManagerProps,
+  BannerItem,
+  BannerType,
+} from './components/blocks/banner-manager';
+
+export { MenuManager } from './components/blocks/menu-manager';
+export type {
+  MenuManagerProps,
+  MenuItem,
+} from './components/blocks/menu-manager';
+
+export { Timeline } from './components/blocks/timeline';
+export type { TimelineProps, TimelineItem } from './components/blocks/timeline';
+
+export { OrgChart } from './components/blocks/org-chart';
+export type { OrgChartProps, OrgNode } from './components/blocks/org-chart';
+
+export { SurveyForm } from './components/blocks/survey-form';
+export type {
+  SurveyFormProps,
+  SurveyQuestion,
+  SurveyQuestionType,
+  SurveyAnswer,
+} from './components/blocks/survey-form';
+
+export { A11yScore } from './components/blocks/a11y-score';
+export type {
+  A11yScoreProps,
+  A11yCategory,
+} from './components/blocks/a11y-score';
+
+export { A11yReport } from './components/blocks/a11y-report';
+export type {
+  A11yReportProps,
+  A11yPageGroup,
+  A11yIssue,
+  A11ySeverity,
+} from './components/blocks/a11y-report';

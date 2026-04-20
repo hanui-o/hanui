@@ -55,10 +55,37 @@ HANUI 프로젝트를 위한 전문화된 에이전트 모음입니다.
 - 성능 이슈
 - 보안 취약점
 
+### 4. figma-verifier
+
+**Figma 디자인 검증**
+
+Figma 원본과 구현 코드의 CSS 수치를 1:1 비교하고 자동 패치합니다.
+
+```
+Figma 검증: [Figma URL] [파일 경로]
+```
+
+**검증 항목:**
+
+- padding, margin, gap, width, height
+- font-size, line-height, letter-spacing
+- color, background, border
+- border-radius, box-shadow, opacity
+
+**사용 시나리오:**
+
+- Figma MCP로 컴포넌트 구현 직후 자동 호출
+- 3px 이상 차이나면 즉시 코드 수정
+- dry-run 모드로 검증만 하기: `Figma 검증(dry-run): [URL] [경로]`
+
+### 5. test-runner
+
+**테스트 실행**
+
 ## 에이전트 사용 팁
 
 1. **구체적인 경로 지정**: 전체 디렉토리보다 특정 파일 지정이 효율적
-2. **조합 사용**: 코드 작성 후 `code-reviewer` → `a11y-auditor` 순서로 실행
+2. **조합 사용**: Figma 구현 후 `figma-verifier` → `code-reviewer` → `a11y-auditor` 순서로 실행
 3. **문서 생성**: 새 컴포넌트 완성 후 `component-doc-generator` 실행
 
 ## 새 에이전트 추가하기
