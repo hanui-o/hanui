@@ -68,6 +68,12 @@ export interface SelectProps<T = string> {
    * @deprecated FormField + FormLabel 조합 사용을 권장합니다
    */
   label?: string;
+
+  /** 접근성 레이블 (시각적 레이블이 없을 때 필수) */
+  'aria-label'?: string;
+
+  /** 접근성 레이블 ID 참조 */
+  'aria-labelledby'?: string;
 }
 
 // ============================================================================
@@ -119,6 +125,8 @@ export function Select<T = string>({
   className,
   renderOption,
   label,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
 }: SelectProps<T>) {
   // --------------------------------------------------------------------------
   // FormField 연동 (선택적)
@@ -167,6 +175,8 @@ export function Select<T = string>({
         {/* 트리거 버튼: 클릭하면 드롭다운이 열림 */}
         <SelectPrimitive.Trigger
           id={finalId}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
           aria-invalid={hasError ? true : undefined}
           aria-required={formField?.required || undefined}
           aria-describedby={
