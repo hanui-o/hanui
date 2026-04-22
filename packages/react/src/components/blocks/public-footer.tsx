@@ -117,7 +117,7 @@ export function PublicFooter({
                   이메일{' '}
                   <a
                     href={`mailto:${email}`}
-                    className="hover:underline text-krds-primary-base"
+                    className="underline text-krds-gray-90 hover:text-krds-primary-70"
                   >
                     {email}
                   </a>

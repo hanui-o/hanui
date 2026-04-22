@@ -53,6 +53,7 @@ export function SearchBar({
             value={category}
             onChange={(value) => setCategory(value)}
             size="md"
+            aria-label="검색 카테고리"
           />
         </div>
       )}

@@ -165,7 +165,7 @@ export function Header() {
                 onClick={() => setFramework('react')}
                 className={`h-full px-3 text-sm font-medium transition-colors ${
                   framework === 'react'
-                    ? 'bg-[#e6f7ff] text-[#087ea4]'
+                    ? 'bg-[#e6f7ff] text-[#0b607f]'
                     : 'text-krds-gray-70 hover:bg-krds-gray-5 bg-white'
                 }`}
               >
@@ -224,7 +224,9 @@ export function Header() {
             {/* Theme Toggle */}
             {mounted && (
               <button
-                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+                onClick={() =>
+                  setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+                }
                 className="flex items-center justify-center text-lg h-9 w-9 text-krds-gray-70 rounded-md hover:bg-krds-gray-5 transition-colors"
                 aria-label="Toggle theme"
               >

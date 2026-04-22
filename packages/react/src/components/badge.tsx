@@ -13,7 +13,7 @@ const badgeVariants = cva(
     variants: {
       variant: {
         gray: 'bg-krds-gray-5 text-krds-gray-90',
-        primary: 'bg-krds-primary-5 text-krds-primary-base',
+        primary: 'bg-krds-primary-5 text-krds-primary-70',
         secondary: 'bg-krds-gray-10 text-krds-gray-80',
         success: 'bg-krds-success-5 text-krds-success-base',
         warning: 'bg-krds-warning-5 text-krds-warning-40',
