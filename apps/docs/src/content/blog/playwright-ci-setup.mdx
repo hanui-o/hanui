@@ -1,0 +1,197 @@
+---
+title: 'Playwright로 CI E2E 자동화하기 — 기본 가이드'
+description: '설치 한 줄, 설정 다섯 줄, 워크플로우 다섯 줄. Playwright로 E2E 테스트를 GitHub Actions에 붙이는 가장 간결한 방법을 정리했어요.'
+date: '2026-04-23'
+tags: ['Playwright', 'E2E', 'CI', 'GitHub Actions', '자동화', '테스트']
+author: 'odada'
+---
+
+MS가 만든 E2E 테스트 프레임워크다. Chromium·Firefox·WebKit을 하나의 API로 다룬다. Node.js에서 돌고, 브라우저 바이너리는 자동으로 받아준다.
+
+경쟁자는 Cypress, Selenium. 차이는 단순하다. Playwright는 멀티 탭·iframe·파일 다운로드가 기본이고, 병렬 실행이 기본이고, 무료다.
+
+## 설치
+
+프로젝트 루트에서 한 줄.
+
+```bash
+pnpm create playwright@latest
+```
+
+이 한 줄로 `playwright.config.ts`, `e2e/` 폴더, 예제 파일, GitHub Actions 워크플로우까지 전부 깔린다. 고를 옵션은 세 개뿐.
+
+- **TypeScript / JavaScript** → TS 기본값 유지
+- **테스트 폴더** → `e2e`를 추천. `tests`는 유닛과 헷갈린다.
+- **GitHub Actions 생성** → Yes
+
+브라우저 바이너리는 `postinstall`에서 자동 설치된다. 따로 받을 필요 없다.
+
+## 첫 테스트 — 세 줄이면 된다
+
+`e2e/login.spec.ts`.
+
+```ts
+import { test, expect } from '@playwright/test';
+
+test('로그인 버튼이 렌더된다', async ({ page }) => {
+  await page.goto('/login');
+  await expect(page.getByRole('button', { name: '로그인' })).toBeVisible();
+});
+```
+
+실행.
+
+```bash
+pnpm exec playwright test
+```
+
+헤드리스로 돈다. 직접 보려면 `--headed`, 단계별 디버깅은 `--debug`.
+
+**셀렉터는 role 기반을 쓴다.** `getByText`·`getByRole`·`getByLabel`이 기본. CSS 셀렉터는 최후의 수단이다. 접근성 트리를 따라가므로 DOM이 바뀌어도 덜 깨지고, 접근성 회귀까지 같이 잡힌다.
+
+## 설정 파일 — 건드릴 건 다섯 개
+
+기본값이 대부분 맞다. 실무에서 바꾸는 건 다섯 줄이다.
+
+```ts
+import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './e2e',
+  fullyParallel: true,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 2 : undefined,
+  reporter: [['html'], ['list']],
+  use: {
+    baseURL: 'http://localhost:3000',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    reducedMotion: 'reduce',
+    timezoneId: 'Asia/Seoul',
+    locale: 'ko-KR',
+  },
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+  ],
+});
+```
+
+핵심만 보자.
+
+- `retries: 2` — CI에서만 재시도. 로컬은 0. 플래키를 숨기지 않기 위해서다.
+- `trace: 'on-first-retry'` — 재시도 때만 추적 기록. 용량 부담을 줄임.
+- `projects` — Chromium 하나로 시작. 세 브라우저 다 돌리면 CI 시간 3배.
+- `reducedMotion` · `timezoneId` · `locale` — 기본으로 박아두면 함정 절반은 사라진다.
+
+## GitHub Actions — 다섯 줄이 전부다
+
+`.github/workflows/e2e.yml`.
+
+```yaml
+name: E2E
+on: [pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: pnpm/action-setup@v4
+      - run: pnpm install
+      - run: pnpm exec playwright install --with-deps
+      - run: pnpm exec playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+```
+
+**`--with-deps`는 반드시 넣는다.** Ubuntu 러너엔 WebKit 시스템 의존성이 빠져 있다.
+
+**실패 시 리포트를 아티팩트로 올리는 줄도 꼭 넣는다.** 로컬에서 재현 안 되는 CI 실패를 디버깅할 유일한 수단이다.
+
+## 자주 걸리는 세 가지 함정
+
+**1. 로컬은 초록, CI는 빨강** — 타이밍이다. `page.goto()` 뒤에 `waitForLoadState('networkidle')`을 붙이거나, assertion에 내장된 auto-wait을 믿는다. `waitForTimeout(1000)` 같은 고정 대기는 쓰지 않는다.
+
+**2. 애니메이션 중 클릭이 씹힌다** — CSS 트랜지션이 돌고 있으면 이벤트가 증발한다. config에 `reducedMotion: 'reduce'`를 넣어두면 한 방에 정리된다.
+
+**3. 날짜·시간이 다르게 찍힌다** — CI 컨테이너는 UTC·en-US. `timezoneId`·`locale`을 박아둔다.
+
+## 디버깅 도구 세 개
+
+- `playwright test --ui` — 인터랙티브 모드. 테스트를 하나씩 돌려보고 DOM을 시점별로 탐색.
+- `playwright codegen https://example.com` — 브라우저 조작을 녹화해서 코드로 뽑음. 첫 테스트 쓸 때.
+- `playwright show-report` — HTML 리포트 열기. 실패한 케이스의 영상·스크린샷·trace가 여기 다 있다.
+
+## 인증 상태는 한 번만 로그인하고 재사용한다
+
+테스트마다 로그인 플로우를 돌리면 스위트가 금방 느려진다. 로그인은 한 번만 하고, 쿠키·스토리지 상태를 파일로 저장해 재사용한다.
+
+`e2e/auth.setup.ts`.
+
+```ts
+import { test as setup } from '@playwright/test';
+
+setup('사용자 로그인', async ({ page }) => {
+  await page.goto('/login');
+  await page.getByLabel('이메일').fill('qa@example.com');
+  await page.getByLabel('비밀번호').fill(process.env.QA_PASSWORD!);
+  await page.getByRole('button', { name: '로그인' }).click();
+  await page.waitForURL('/dashboard');
+  await page.context().storageState({ path: 'e2e/.auth/user.json' });
+});
+```
+
+config에 project 두 개로 나눈다.
+
+```ts
+projects: [
+  { name: 'setup', testMatch: /.*\.setup\.ts/ },
+  {
+    name: 'chromium',
+    use: { ...devices['Desktop Chrome'], storageState: 'e2e/.auth/user.json' },
+    dependencies: ['setup'],
+  },
+],
+```
+
+`.auth/`는 `.gitignore`에 넣는다. 자격 증명이 들어가는 파일이다.
+
+## 시각 회귀 테스트는 스크린샷 한 줄이면 된다
+
+```ts
+await expect(page).toHaveScreenshot('dashboard.png');
+```
+
+첫 실행에 기준 이미지가 생기고, 이후엔 픽셀 단위로 비교한다. 다만 쓰기 전에 알아둘 것 두 가지.
+
+- **폰트 로딩 불안정**을 반드시 해결하고 써야 한다. 로컬/CI 폰트 렌더링 차이로 매번 실패한다. `fonts.ready`를 기다리거나, 폰트 로딩을 차단한 뒤 시스템 폰트로 렌더링하는 게 안전하다.
+- **임계치**를 `maxDiffPixelRatio: 0.01`로 느슨하게 잡는다. 0으로 두면 1픽셀 차이로 PR이 막힌다.
+
+CI와 로컬의 기준 이미지는 **별도**로 관리한다. OS 렌더링 엔진 차이 때문이다. 보통 CI 기준만 커밋하고, 업데이트는 CI에서 `--update-snapshots` 잡을 따로 돌린다.
+
+## 모바일 뷰포트는 device 프리셋으로
+
+`devices`에 Apple·Pixel 프리셋이 들어 있다. 프로젝트를 추가하면 끝이다.
+
+```ts
+projects: [
+  { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
+  { name: 'mobile', use: { ...devices['iPhone 14'] } },
+],
+```
+
+모바일 프리셋은 뷰포트만 바꾸는 게 아니다. user agent, touch 이벤트, 디바이스 픽셀 비율까지 같이 바꾼다. 데스크톱에서 `click`이던 건 모바일에선 `tap`으로 돈다.
+
+모바일 전용 스펙만 따로 돌리려면 `--project=mobile`.
+
+## 남은 질문 셋
+
+1. **Page Object Pattern을 처음부터 쓸 것인가.** 테스트 10개 이하에선 과하다. 30개를 넘기면 그때 도입해도 늦지 않다.
+2. **스토리북 컴포넌트 테스트와 어디서 갈라놓을 것인가.** 유닛/통합/E2E의 경계는 팀마다 다르다. 기본 원칙 하나만 잡자. E2E는 **사람이 정말 그렇게 쓰는 시나리오**만 남긴다.
+3. **플래키 테스트를 어떻게 관리할 것인가.** `test.fixme()`로 숨기는 순간 두 번 다시 안 고쳐진다. 격리 브랜치로 빼거나, 재시도 횟수를 주간 리포트로 뽑아 상위 5개만 집중 수리하는 쪽이 현실적이다.
