@@ -8,26 +8,31 @@ const examples = [
     id: 'examples',
     label: 'Examples',
     disabled: true,
-    tooltip: '여긴 아직...',
+    tooltip: '이거슨 인테리어~',
   },
   {
     id: 'dashboard',
     label: 'Dashboard',
     disabled: true,
-    tooltip: '이것도 아직...',
+    tooltip: '이것도 인테리어~',
   },
-  { id: 'tasks', label: 'Tasks', disabled: true, tooltip: '이것마저...' },
+  {
+    id: 'tasks',
+    label: 'Tasks',
+    disabled: true,
+    tooltip: '이것마저 인테리어~',
+  },
   {
     id: 'playground',
     label: 'Playground',
     disabled: true,
-    tooltip: '사실 다...',
+    tooltip: '사실 다 인테리어',
   },
   {
     id: 'auth',
     label: 'Authentication',
     disabled: true,
-    tooltip: 'Coming Soon 🚧',
+    tooltip: '쓰려면 Components 메뉴로 ↑',
   },
 ];
 
