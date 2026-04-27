@@ -96,9 +96,10 @@ export function ExampleShowcase() {
       </div>
 
       {/* Example Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column - Payment Method */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        {/* Left Column */}
         <div className="space-y-6">
+          {/* 결제 수단 */}
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
             <h3 className="text-lg font-semibold mb-4">결제 수단</h3>
             <p className="text-gray-500 dark:text-gray-400 mb-6">
@@ -162,6 +163,7 @@ export function ExampleShowcase() {
             </div>
           </div>
 
+          {/* 청구지 주소 */}
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
             <h3 className="text-lg font-semibold mb-4">청구지 주소</h3>
             <p className="text-gray-500 dark:text-gray-400 mb-4">
@@ -174,66 +176,8 @@ export function ExampleShowcase() {
               </label>
             </div>
           </div>
-        </div>
 
-        {/* Center Column - Team */}
-        <div className="space-y-6">
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6 flex flex-col items-center justify-center min-h-[400px]">
-            <div className="flex -space-x-2 mb-4">
-              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
-              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
-              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">팀원 없음</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-center mb-6">
-              이 프로젝트에서 협업할 팀원을
-              <br />
-              초대하세요.
-            </p>
-            <Button variant="primary">+ 팀원 초대</Button>
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-900">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
-                <span>동기화 중</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800">
-                <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-700" />
-                <span>업데이트 중</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800">
-                <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-700" />
-                <span>로딩 중</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <button className="px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900">
-                +
-              </button>
-              <input
-                type="text"
-                placeholder="메시지 보내기..."
-                className="flex-1 bg-transparent outline-none"
-              />
-              <button className="text-gray-400">🎤</button>
-            </div>
-          </div>
-
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
-            <h3 className="text-lg font-semibold mb-4">가격 범위</h3>
-            <p className="text-gray-500 dark:text-gray-400 mb-4">
-              예산 범위를 설정하세요 ($200 - 800).
-            </p>
-            <div className="relative pt-1">
-              <input type="range" min="200" max="800" className="w-full" />
-            </div>
-          </div>
-
+          {/* 검색 */}
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
             <div className="flex items-center gap-2">
               <div className="flex-1 relative">
@@ -251,17 +195,81 @@ export function ExampleShowcase() {
           </div>
         </div>
 
-        {/* Right Column - Authentication */}
+        {/* Center Column */}
         <div className="space-y-6">
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
-            <div className="flex items-center gap-2 mb-4 p-3 border border-gray-200 dark:border-gray-800 rounded-md">
-              <span className="text-gray-400">🌐</span>
-              <span className="text-gray-500">https://</span>
+          {/* 팀원 없음 */}
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6 flex flex-col items-center justify-center min-h-[400px]">
+            <div className="flex -space-x-2 mb-4">
+              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
+              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
+              <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-white dark:border-gray-950" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">팀원 없음</h3>
+            <p className="text-gray-500 dark:text-gray-400 text-center mb-6">
+              이 프로젝트에서 협업할 팀원을
+              <br />
+              초대하세요.
+            </p>
+            <Button variant="primary">+ 팀원 초대</Button>
+          </div>
+
+          {/* 상태 칩 */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-900">
+              <div className="w-2 h-2 rounded-full bg-green-500" />
+              <span>동기화 중</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800">
+              <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-700" />
+              <span>업데이트 중</span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-800">
+              <div className="w-2 h-2 rounded-full border border-gray-300 dark:border-gray-700" />
+              <span>로딩 중</span>
             </div>
           </div>
 
+          {/* 메시지 보내기 */}
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+            <div className="flex items-center gap-2">
+              <button className="px-3 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900">
+                +
+              </button>
+              <input
+                type="text"
+                placeholder="메시지 보내기..."
+                className="flex-1 bg-transparent outline-none"
+              />
+              <button className="text-gray-400">🎤</button>
+            </div>
+          </div>
+
+          {/* 가격 범위 */}
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
-            <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold mb-4">가격 범위</h3>
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
+              예산 범위를 설정하세요 ($200 - 800).
+            </p>
+            <div className="relative pt-1">
+              <input type="range" min="200" max="800" className="w-full" />
+            </div>
+          </div>
+
+          {/* 프로필 인증 */}
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
+            <div className="flex items-center gap-2">
+              <span className="text-green-500">✓</span>
+              <span>프로필이 인증되었습니다.</span>
+              <button className="ml-auto text-gray-400">→</button>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div className="space-y-6">
+          {/* 2단계 인증 */}
+          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
+            <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-semibold mb-1">2단계 인증</h3>
                 <p className="text-gray-500 dark:text-gray-400">
@@ -274,20 +282,7 @@ export function ExampleShowcase() {
             </div>
           </div>
 
-          <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
-            <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
-              <span>프로필이 인증되었습니다.</span>
-              <button className="ml-auto text-gray-400">→</button>
-            </div>
-          </div>
-
-          <div className="text-center py-4">
-            <button className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
-              모양 설정
-            </button>
-          </div>
-
+          {/* 컴퓨팅 환경 */}
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
             <h3 className="font-semibold mb-4">컴퓨팅 환경</h3>
             <p className="text-gray-500 dark:text-gray-400 mb-4">
@@ -315,6 +310,7 @@ export function ExampleShowcase() {
             </div>
           </div>
 
+          {/* 유입 경로 */}
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-6">
             <h3 className="font-semibold mb-4">저희를 어떻게 알게 되셨나요?</h3>
             <p className="text-gray-500 dark:text-gray-400 mb-4">
@@ -368,6 +364,7 @@ export function ExampleShowcase() {
             </div>
           </div>
 
+          {/* 액션 버튼 그룹 */}
           <div className="flex items-center gap-3">
             <button className="flex-1 px-4 py-2 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
               ← 보관
@@ -383,6 +380,7 @@ export function ExampleShowcase() {
             </button>
           </div>
 
+          {/* 이용약관 */}
           <div className="rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4">
             <div className="flex items-center gap-2">
               <input type="checkbox" id="terms" className="rounded" />
@@ -392,6 +390,7 @@ export function ExampleShowcase() {
             </div>
           </div>
 
+          {/* 페이지네이션 */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button className="w-8 h-8 flex items-center justify-center border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 dark:hover:bg-gray-900">
