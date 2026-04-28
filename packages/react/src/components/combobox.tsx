@@ -48,14 +48,10 @@ export interface ComboboxOption {
   description?: string;
 }
 
-export interface ComboboxProps
+interface ComboboxBaseProps
   extends VariantProps<typeof comboboxTriggerVariants> {
   /** 옵션 목록 */
   options: ComboboxOption[];
-  /** 선택된 값 */
-  value?: string;
-  /** 값 변경 콜백 */
-  onValueChange?: (value: string) => void;
   /** 플레이스홀더 */
   placeholder?: string;
   /** 검색 플레이스홀더 */
@@ -83,6 +79,28 @@ export interface ComboboxProps
   /** 로딩 상태 */
   loading?: boolean;
 }
+
+interface ComboboxSingleProps extends ComboboxBaseProps {
+  /** 다중 선택 여부 (false 또는 미지정) */
+  multiple?: false;
+  /** 선택된 값 */
+  value?: string;
+  /** 값 변경 콜백 */
+  onValueChange?: (value: string) => void;
+}
+
+interface ComboboxMultipleProps extends ComboboxBaseProps {
+  /** 다중 선택 모드 활성화 */
+  multiple: true;
+  /** 선택된 값 배열 */
+  value?: string[];
+  /** 값 변경 콜백 (배열) */
+  onValueChange?: (value: string[]) => void;
+  /** 다중 선택 시 트리거에 표시할 최대 칩 개수 (초과 시 "+N" 표시) */
+  maxDisplayedItems?: number;
+}
+
+export type ComboboxProps = ComboboxSingleProps | ComboboxMultipleProps;
 
 /**
  * Combobox 컴포넌트
@@ -113,11 +131,9 @@ export interface ComboboxProps
  * ```
  */
 export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
-  (
-    {
+  (props, ref) => {
+    const {
       options,
-      value,
-      onValueChange,
       placeholder = '선택해주세요',
       searchPlaceholder = '검색...',
       emptyMessage = '결과가 없습니다.',
@@ -133,9 +149,13 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
       popoverWidth = 'trigger',
       maxHeight = 300,
       loading = false,
-    },
-    ref
-  ) => {
+    } = props;
+
+    const isMultiple = props.multiple === true;
+    const maxDisplayedItems = isMultiple
+      ? (props.maxDisplayedItems ?? 3)
+      : undefined;
+
     const [open, setOpen] = React.useState(false);
     const [search, setSearch] = React.useState('');
     const [triggerWidth, setTriggerWidth] = React.useState<number | null>(null);
@@ -167,18 +187,50 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
       return { groups, ungrouped };
     }, [options]);
 
-    const selectedOption = options.find((opt) => opt.value === value);
+    // 다중/단일 모드별 선택값 처리
+    const selectedValues = isMultiple
+      ? (props.value ?? [])
+      : props.value
+        ? [props.value]
+        : [];
+    const selectedOptions = options.filter((opt) =>
+      selectedValues.includes(opt.value)
+    );
+    const singleSelectedOption = !isMultiple
+      ? options.find((opt) => opt.value === props.value)
+      : null;
 
     const handleSelect = (currentValue: string) => {
-      const newValue = currentValue === value ? '' : currentValue;
-      onValueChange?.(newValue);
-      setOpen(false);
-      setSearch('');
+      if (isMultiple) {
+        const current = props.value ?? [];
+        const newValue = current.includes(currentValue)
+          ? current.filter((v) => v !== currentValue)
+          : [...current, currentValue];
+        props.onValueChange?.(newValue);
+        // 다중 선택 시 popover 유지
+      } else {
+        const newValue = currentValue === props.value ? '' : currentValue;
+        props.onValueChange?.(newValue);
+        setOpen(false);
+        setSearch('');
+      }
+    };
+
+    const handleRemoveValue = (e: React.MouseEvent, valueToRemove: string) => {
+      e.stopPropagation();
+      if (isMultiple) {
+        const current = props.value ?? [];
+        props.onValueChange?.(current.filter((v) => v !== valueToRemove));
+      }
     };
 
     const handleClear = (e: React.MouseEvent) => {
       e.stopPropagation();
-      onValueChange?.('');
+      if (isMultiple) {
+        props.onValueChange?.([]);
+      } else {
+        props.onValueChange?.('');
+      }
       setSearch('');
     };
 
@@ -204,6 +256,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         value={option.value}
         onSelect={handleSelect}
         disabled={option.disabled}
+        aria-selected={selectedValues.includes(option.value)}
         className={cn(
           'relative flex cursor-pointer select-none items-center rounded-sm px-3 py-2 text-sm outline-none',
           'data-[selected=true]:bg-krds-gray-10 data-[selected=true]:text-krds-gray-95',
@@ -214,7 +267,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         <span
           className={cn(
             'mr-2 flex h-4 w-4 items-center justify-center',
-            value === option.value ? 'opacity-100' : 'opacity-0'
+            selectedValues.includes(option.value) ? 'opacity-100' : 'opacity-0'
           )}
         >
           <Check className="h-4 w-4 text-krds-primary-base" />
@@ -260,16 +313,54 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
               className
             )}
           >
-            <span
-              className={cn(
-                'flex-1 truncate text-left',
-                !selectedOption && 'text-krds-gray-40'
-              )}
-            >
-              {selectedOption ? selectedOption.label : placeholder}
-            </span>
+            {isMultiple ? (
+              <span className="flex-1 flex flex-wrap gap-1 items-center text-left min-w-0">
+                {selectedOptions.length === 0 ? (
+                  <span className="text-krds-gray-40">{placeholder}</span>
+                ) : (
+                  <>
+                    {selectedOptions.slice(0, maxDisplayedItems).map((opt) => (
+                      <span
+                        key={opt.value}
+                        className="inline-flex items-center gap-1 rounded-sm bg-krds-gray-10 px-2 py-0.5 text-xs font-medium text-krds-gray-90"
+                      >
+                        {opt.label}
+                        {!disabled && (
+                          <button
+                            type="button"
+                            tabIndex={-1}
+                            onClick={(e) => handleRemoveValue(e, opt.value)}
+                            className="rounded-full hover:bg-krds-gray-30 p-0.5"
+                            aria-label={`${opt.label} 제거`}
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        )}
+                      </span>
+                    ))}
+                    {selectedOptions.length >
+                      (maxDisplayedItems ?? selectedOptions.length) && (
+                      <span className="inline-flex items-center rounded-sm bg-krds-gray-10 px-2 py-0.5 text-xs font-medium text-krds-gray-70">
+                        +{selectedOptions.length - (maxDisplayedItems ?? 0)}
+                      </span>
+                    )}
+                  </>
+                )}
+              </span>
+            ) : (
+              <span
+                className={cn(
+                  'flex-1 truncate text-left',
+                  !singleSelectedOption && 'text-krds-gray-40'
+                )}
+              >
+                {singleSelectedOption
+                  ? singleSelectedOption.label
+                  : placeholder}
+              </span>
+            )}
             <div className="flex items-center gap-1">
-              {clearable && selectedOption && !disabled && (
+              {clearable && selectedValues.length > 0 && !disabled && (
                 <button
                   type="button"
                   tabIndex={-1}
