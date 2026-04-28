@@ -1396,13 +1396,13 @@
       { "path": "components/blocks/service-card-grid.tsx", "type": "component" }
     ]
   },
-  "admin-layout": {
-    "name": "admin-layout",
+  "sidebar": {
+    "name": "sidebar",
     "type": "ui",
-    "description": "CMS 어드민 레이아웃 (사이드바 + 상단바 + 메인 콘텐츠)",
-    "dependencies": ["class-variance-authority", "lucide-react"],
+    "description": "어드민/대시보드용 좌측 사이드바 (접기/펼치기, 2depth 메뉴)",
+    "dependencies": ["lucide-react"],
     "registryDependencies": [],
-    "files": [{ "path": "components/admin-layout.tsx", "type": "component" }]
+    "files": [{ "path": "components/sidebar.tsx", "type": "component" }]
   },
   "site-settings": {
     "name": "site-settings",

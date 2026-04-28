@@ -20,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // All components
   const components = [
     'accordion',
-    'admin-layout',
     'alert',
     'alert-dialog',
     'aspect-ratio',
@@ -64,6 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'section-heading-system',
     'select',
     'side-navigation',
+    'sidebar',
     'simple-grid',
     'skeleton',
     'skiplink',

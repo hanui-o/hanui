@@ -1,22 +1,21 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { AdminShell, CmsHeader, type AdminShellMenuItem } from '@hanui/react';
+import { Sidebar, CmsHeader, type SidebarMenuItem } from '@hanui/react';
 import {
   LayoutDashboard,
   FileText,
   Newspaper,
   Image,
   Settings,
-  Megaphone,
 } from 'lucide-react';
 
 // ============================================================================
 // 메뉴 정의 (기획서 사이트맵 기반)
 // ============================================================================
 
-const menuItems: AdminShellMenuItem[] = [
+const menuItems: SidebarMenuItem[] = [
   {
     label: '대시보드',
     href: '/showcase/cms',
@@ -62,9 +61,9 @@ const menuItems: AdminShellMenuItem[] = [
 // ============================================================================
 
 function markActive(
-  items: AdminShellMenuItem[],
+  items: SidebarMenuItem[],
   pathname: string
-): AdminShellMenuItem[] {
+): SidebarMenuItem[] {
   return items.map((item) => ({
     ...item,
     active: item.href === pathname,
@@ -86,13 +85,28 @@ export default function CmsShowcaseLayout({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <AdminShell
-      menuItems={markActive(menuItems, pathname)}
-      siteTitle="hanui CMS"
-      onMenuClick={(href) => router.push(href)}
-      header={
+    <div className="min-h-screen bg-krds-gray-5">
+      {/* 본문으로 건너뛰기 */}
+      <a
+        href="#cms-main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-krds-primary-base focus:text-krds-white focus:rounded-md focus:text-sm focus:font-medium"
+      >
+        본문으로 건너뛰기
+      </a>
+
+      <Sidebar
+        menuItems={markActive(menuItems, pathname)}
+        siteTitle="hanui CMS"
+        onMenuClick={(href) => router.push(href)}
+        onCollapsedChange={setCollapsed}
+      />
+
+      <div
+        className={`transition-all duration-300 ${collapsed ? 'ml-16' : 'ml-64'}`}
+      >
         <CmsHeader
           user={{ name: '관리자', role: 'SUPER_ADMIN' }}
           notificationCount={3}
@@ -101,9 +115,10 @@ export default function CmsShowcaseLayout({
           onSettingsClick={() => router.push('/showcase/cms/settings')}
           onLogout={() => router.push('/showcase')}
         />
-      }
-    >
-      {children}
-    </AdminShell>
+        <main id="cms-main-content" className="p-6">
+          {children}
+        </main>
+      </div>
+    </div>
   );
 }

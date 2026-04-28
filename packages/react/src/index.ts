@@ -303,16 +303,8 @@ export type {
 export { TabBars } from './components/tab-bars';
 export type { TabBarsProps, TabBarItem } from './components/tab-bars';
 
-export {
-  AdminLayout,
-  ADMIN_CMS_MENU,
-  sidebarVariants,
-} from './components/admin-layout';
-export type {
-  AdminLayoutProps,
-  AdminMenuItem,
-  AdminUser,
-} from './components/admin-layout';
+export { Sidebar } from './components/sidebar';
+export type { SidebarProps, SidebarMenuItem } from './components/sidebar';
 
 // Utils
 export { cn } from './lib/utils';
@@ -684,12 +676,6 @@ export type {
   PostData,
   PostStatus,
 } from './components/blocks/board-management';
-
-export { AdminShell, CMS_MENU_ITEMS } from './components/blocks/admin-shell';
-export type {
-  AdminShellProps,
-  AdminShellMenuItem,
-} from './components/blocks/admin-shell';
 
 export { CmsHeader } from './components/blocks/cms-header';
 export type { CmsHeaderProps, CmsUser } from './components/blocks/cms-header';

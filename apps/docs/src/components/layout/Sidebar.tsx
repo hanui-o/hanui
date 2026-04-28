@@ -44,7 +44,6 @@ const componentsNavigation = [
     items: [
       { title: 'Overview', href: '/components' },
       { title: 'Accordion', href: '/components/accordion' },
-      { title: 'Admin Layout', href: '/components/admin-layout' },
       { title: 'Alert', href: '/components/alert' },
       { title: 'AlertDialog', href: '/components/alert-dialog' },
       { title: 'AspectRatio', href: '/components/aspect-ratio' },
@@ -93,6 +92,7 @@ const componentsNavigation = [
       },
       { title: 'Select', href: '/components/select' },
       { title: 'Side Navigation', href: '/components/side-navigation' },
+      { title: 'Sidebar', href: '/components/sidebar' },
       { title: 'SimpleGrid', href: '/components/simple-grid' },
       { title: 'Skeleton', href: '/components/skeleton' },
       { title: 'SkipLink', href: '/components/skiplink' },
