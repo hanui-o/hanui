@@ -10,6 +10,9 @@ export const version = '0.0.0';
 export { Button, buttonVariants } from './components/button';
 export type { ButtonProps } from './components/button';
 
+export { CopyButton } from './components/copy-button';
+export type { CopyButtonProps } from './components/copy-button';
+
 export { Input, inputVariants } from './components/input';
 export type { InputProps } from './components/input';
 

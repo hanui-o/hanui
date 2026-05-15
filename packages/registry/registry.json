@@ -70,6 +70,19 @@
       }
     ]
   },
+  "copy-button": {
+    "name": "copy-button",
+    "type": "ui",
+    "description": "클립보드 복사 버튼 컴포넌트 (아이콘 전환, 에러 처리, 접근성 지원)",
+    "dependencies": ["lucide-react"],
+    "registryDependencies": ["button"],
+    "files": [
+      {
+        "path": "components/copy-button.tsx",
+        "type": "component"
+      }
+    ]
+  },
   "card": {
     "name": "card",
     "type": "ui",
