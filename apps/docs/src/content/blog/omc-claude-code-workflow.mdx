@@ -1,0 +1,111 @@
+---
+title: 'OMC 한 달 — 32개 에이전트 중 매일 쓰는 건 5개'
+description: 'Oh-My-Claude Code를 한 달 써봤다. 32개 에이전트가 있다는데, 정말 손에 익은 건 5개. 나머지는 모르는 채로도 충분했다.'
+date: '2026-04-29'
+tags: ['Claude Code', 'OMC', '개발 워크플로우', 'AI 도구']
+author: 'odada'
+---
+
+테스트 38개를 한 번에 짜야 했다.
+
+hanui 컴포넌트 라이브러리에 Stack, StepIndicator, Combobox를 마무리하던 주였다. 각 컴포넌트마다 평균 14개 케이스. 손으로 짜면 한 컴포넌트당 한 시간. 38개면 거의 하루.
+
+그날 Claude Code에 `/test` 한 줄 쳤다. 다음 단계는 자동이었다. **Explore 에이전트**가 먼저 컴포넌트 코드를 읽고, **test-engineer 에이전트**가 패턴을 잡고, **code-reviewer 에이전트**가 axe-core 위반을 잡아냈다. 38개 테스트, 전부 통과, 두 시간.
+
+그게 OMC가 한 일이다.
+
+## OMC가 뭔가
+
+[Oh-My-Claude Code(OMC)](https://ios-development.tistory.com/1840)는 Claude Code 위에 얹는 멀티 에이전트 오케스트레이션 플러그인이다. 32개의 전문 에이전트와 25개 이상의 슬래시 명령어를 묶어둔 것. 사용자가 작업을 던지면, 작업 성격에 맞는 에이전트를 자동으로 선택한다. VSCode Claude Code 마켓플레이스에서 설치한다.
+
+## 진짜 도움이 된 5가지
+
+### 1. Explore 에이전트 — 코드베이스 분석
+
+hanui 사이드바를 정리할 때였다. 33개 컴포넌트 메뉴에서 `isNew` 배지를 3개만 남기고 나머지를 다 지워야 했다. 어디에 무엇이 있는지부터 알아야 했다.
+
+이전엔: `grep -r "isNew" src/`로 찾고, 결과 하나씩 읽고, 위치 표시하고. 30분.
+
+OMC와는: Explore 에이전트에 "isNew 표시된 항목 다 찾아서 어디 있는지 정리해줘"라고 던졌다. 3분.
+
+차이는 시간이 아니다. **내가 grep 결과를 머릿속에서 조립할 필요가 없다.** 에이전트가 정리된 표를 던져준다.
+
+### 2. 컨텍스트 분리 — 한 화면에서 여러 일
+
+같은 날, 세 가지를 동시에 했다.
+
+- visx 학습 (playground/charts에서 단계별)
+- 공공 CMS 쇼케이스 페이지 9개 조립
+- 블로그 글 한 편
+
+이전엔 한 번에 하나만. 다른 거 하면 컨텍스트 잃었다.
+
+OMC와는: 각 작업이 다른 에이전트로 갔다. visx는 학습 모드, 쇼케이스는 executor, 블로그는 writer + 메모리 기반 톤 유지. **한 명의 Claude가 세 명처럼 일했다.**
+
+### 3. code-reviewer — CI 막히기 전에
+
+쇼케이스 9개 페이지 만든 후 push 했다. GitHub Actions에서 빨간 X 떴다. lint 에러 5개. 다 사소한 거였지만, 그걸 5분간 찾아야 했다.
+
+다음번부터는 push 전에 `/review` 또는 그냥 "lint 깨끗하게"라고 쳤다. code-reviewer가 미리 본다. unused vars, redundant role, JSX undef. 다 push 전에 잡혔다. **CI 시간 5~10분이 사라졌다.**
+
+### 4. Plan mode — 큰 변경 전 멈춤
+
+차트 컴포넌트 만들기 직전이었다. "visx로 Bar 차트 만들자"고 하면 바로 코드를 짤 수도 있다. 근데 그 전에 **Plan mode**가 들어왔다.
+
+- 어디에 만들 건가 (`packages/react/src/components/charts/`)
+- visx 어떤 모듈?
+- Props 시그니처?
+- 접근성 처리?
+- 데모 데이터?
+- GNB 메뉴 분리?
+
+작업 전 10분 멈춤이 작업 중 1시간 헤맴을 막았다. 노션 페이지로 결과를 따로 정리했고, 일주일 뒤에 다시 봐도 맥락이 살아 있다.
+
+### 5. 메모리 + feedback — 톤이 안 바뀜
+
+블로그 글 톤을 슬로우뉴스로 잡았다. "한 문장 한 주장, 숫자로 신뢰, 장면, 반대 의견, 질문으로 닫기." 처음엔 매번 톤을 다시 잡아줬다.
+
+OMC 메모리 시스템에 `feedback_blog_writing_style.md`로 저장해두니 그 다음부터는 안 해도 됐다. **글이 매번 같은 톤이 됐다.** 본인이 쓴 거인지 Claude가 쓴 거인지 헷갈릴 정도.
+
+이게 가장 큰 변화일지 모른다. 도구가 도구로 멈추지 않고, **내 작업 방식을 학습한 도구**가 됐다.
+
+## 새로 추가된 ultragoal
+
+마침 어제 v4.13.7 → v4.14.0 업데이트가 떴다. 가장 큰 변화는 `omc ultragoal`. 여러 목표를 순차적으로 관리하는 워크플로우다.
+
+```
+.omc/ultragoal/
+  brief.md       시작 브리프
+  goals.json     구조화된 계획
+  ledger.jsonl   감사 추적
+```
+
+큰 작업(예: 라이브러리 1.0 릴리스, 인증 시스템 통째 리팩토링)을 stories로 쪼개고, 각 단계를 ledger에 기록한다. 최종 완료는 ai-slop-cleaner + 검증 + code-review를 다 통과해야만 인정된다.
+
+아직 안 써봤다. 이번 주에 hanui 차트 컴포넌트 v1을 ultragoal로 관리해볼 생각이다.
+
+## 반대 의견
+
+**"32개 에이전트 다 외워야 하나?"** 안 외워도 된다. 내가 매일 쓰는 건 5개고, 나머지는 필요할 때 Claude가 알아서 부른다. 외우는 게 OMC가 아니라, OMC가 외워준다.
+
+**"오히려 복잡하지 않나?"** 안 쓰던 사람한텐 그렇다. 매일 쓰는 워크플로우가 정해진 사람한텐, OMC가 그 워크플로우를 정리해준다.
+
+**"결국 Claude Code만 잘 쓰면 되지 않나?"** 맞다. OMC는 그 위에 얹는 레이어다. Claude Code가 차고, OMC는 운전 보조. 운전을 못 하는 사람한텐 보조가 의미 없다.
+
+## 닫기
+
+세 가지 질문으로 닫는다.
+
+- 지금 내 작업이 32개 에이전트 중 어디에 매칭되는가
+- 매번 같은 패턴을 반복하고 있는가
+- OMC 없이 같은 결과를 더 적은 명령으로 낼 수 있는가
+
+세 번째가 가장 어렵다. "그래도 손으로 하는 게 빠를 거 같은데"라는 감각은 자주 틀린다.
+
+---
+
+### 자료
+
+- [Oh-My-Claude Code 개념 소개 (ios-development)](https://ios-development.tistory.com/1840)
+- [hanui](https://github.com/hanui-o/hanui) — KRDS 기반 공공 SI용 컴포넌트 라이브러리
+- [claude-settings](https://github.com/hanui-o/claude-settings) — Claude Code 설정 모음
