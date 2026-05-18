@@ -162,6 +162,10 @@ const blocksNavigation = [
   {
     title: '데이터 / 정보',
     items: [
+      { title: 'Area Chart', href: '/blocks/area-chart' },
+      { title: 'Bar Chart', href: '/blocks/bar-chart' },
+      { title: 'Line Chart', href: '/blocks/line-chart' },
+      { title: 'Pie Chart', href: '/blocks/pie-chart' },
       { title: 'Stats Card', href: '/blocks/stats-card' },
       { title: 'Team Members', href: '/blocks/team-members' },
       { title: 'Pricing Table', href: '/blocks/pricing-table' },

@@ -715,8 +715,7 @@ export type {
 } from './components/blocks/file-download';
 
 // CMS 블록
-export { Chart } from './components/blocks/chart';
-export type { ChartProps, ChartDataPoint } from './components/blocks/chart';
+// Visx 기반 차트는 별도 서브패스(`@hanui/react/charts`)에서 제공 — peerDep 분리
 
 export { BannerManager } from './components/blocks/banner-manager';
 export type {

@@ -1312,6 +1312,119 @@
       { "path": "components/blocks/stats-card.tsx", "type": "component" }
     ]
   },
+  "bar-chart": {
+    "name": "bar-chart",
+    "type": "block",
+    "description": "Visx 기반 바 차트 (수직·수평)",
+    "dependencies": [
+      "@visx/axis",
+      "@visx/group",
+      "@visx/responsive",
+      "@visx/scale",
+      "@visx/shape",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "files": [
+      {
+        "path": "components/blocks/charts/bar-chart.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/blocks/charts/chart-types.ts",
+        "type": "component"
+      },
+      {
+        "path": "components/blocks/charts/chart-utils.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "line-chart": {
+    "name": "line-chart",
+    "type": "block",
+    "description": "Visx 기반 선 차트 (linear·monotone·step 곡선)",
+    "dependencies": [
+      "@visx/axis",
+      "@visx/curve",
+      "@visx/group",
+      "@visx/responsive",
+      "@visx/scale",
+      "@visx/shape",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "files": [
+      {
+        "path": "components/blocks/charts/line-chart.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/blocks/charts/chart-types.ts",
+        "type": "component"
+      },
+      {
+        "path": "components/blocks/charts/chart-utils.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "area-chart": {
+    "name": "area-chart",
+    "type": "block",
+    "description": "Visx 기반 영역 차트 (선 + 영역 채움)",
+    "dependencies": [
+      "@visx/axis",
+      "@visx/curve",
+      "@visx/group",
+      "@visx/responsive",
+      "@visx/scale",
+      "@visx/shape",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "files": [
+      {
+        "path": "components/blocks/charts/area-chart.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/blocks/charts/chart-types.ts",
+        "type": "component"
+      },
+      {
+        "path": "components/blocks/charts/chart-utils.tsx",
+        "type": "component"
+      }
+    ]
+  },
+  "pie-chart": {
+    "name": "pie-chart",
+    "type": "block",
+    "description": "Visx 기반 파이/도넛 차트 (innerRadius로 도넛 전환)",
+    "dependencies": [
+      "@visx/group",
+      "@visx/responsive",
+      "@visx/shape",
+      "@visx/text",
+      "lucide-react"
+    ],
+    "registryDependencies": [],
+    "files": [
+      {
+        "path": "components/blocks/charts/pie-chart.tsx",
+        "type": "component"
+      },
+      {
+        "path": "components/blocks/charts/chart-types.ts",
+        "type": "component"
+      },
+      {
+        "path": "components/blocks/charts/chart-utils.tsx",
+        "type": "component"
+      }
+    ]
+  },
   "team-members": {
     "name": "team-members",
     "type": "block",
