@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Krona_One } from 'next/font/google';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
 import type { ReactNode } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { FrameworkProvider } from '@/components/FrameworkTabs';
@@ -131,6 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <FrameworkProvider>{children}</FrameworkProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -24,6 +24,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/mdx": "^2.0.13",
     "@types/react-copy-to-clipboard": "^5.0.7",
+    "@vercel/analytics": "^2.0.1",
     "@visx/axis": "^3.12.0",
     "@visx/curve": "^3.12.0",
     "@visx/group": "^3.12.0",
