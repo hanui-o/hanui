@@ -30,21 +30,22 @@ jobs:
 
       - name: 커밋 & 푸시
         if: steps.publish.outputs.published_count != '0'
+        env:
+          COUNT: ${{ steps.publish.outputs.published_count }}
+          TITLES: ${{ steps.publish.outputs.published_titles }}
         run: |
           git config user.name "hanui-bot"
           git config user.email "actions@github.com"
           git add -A
-          git commit -m "publish: 예약 글 ${{ steps.publish.outputs.published_count }}편 발행 — ${{ steps.publish.outputs.published_titles }}"
+          git commit -m "publish: 예약 글 ${COUNT}편 발행 — ${TITLES}"
           git push
 
       - name: 재고 부족 알림 이슈
         if: steps.publish.outputs.low_stock == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          REMAINING: ${{ steps.publish.outputs.remaining }}
         run: |
-          REMAINING="${{ steps.publish.outputs.remaining }}"
-          TITLE="📝 블로그 예약글 재고 부족 (남은 ${REMAINING}편)"
-          # 이미 열린 동일 알림 이슈가 있으면 중복 생성하지 않음
           EXISTING=$(gh issue list --state open --label "blog-restock" --json number --jq 'length')
           if [ "$EXISTING" -gt 0 ]; then
             echo "이미 열린 재고 알림 이슈가 있어 생략."
@@ -52,18 +53,6 @@ jobs:
           fi
           gh label create "blog-restock" --color FBCA04 --description "블로그 예약글 재고 알림" 2>/dev/null || true
           gh issue create \
-            --title "$TITLE" \
+            --title "📝 블로그 예약글 재고 부족 (남은 ${REMAINING}편)" \
             --label "blog-restock" \
-            --body "$(cat <<'EOF'
-예약 큐(`apps/docs/blog-queue/`)에 남은 글이 부족해요.
-
-시간 날 때 글을 더 써서 큐에 쟁여두면, 발행일에 맞춰 자동으로 올라갑니다.
-
-**쟁여두는 법**
-1. `apps/docs/blog-queue/[slug].mdx` 로 글 작성 (프론트매터 `date`에 원하는 **발행일**을 미래 날짜로)
-2. 커밋·푸시
-3. 끝 — 매일 아침 워크플로우가 발행일이 된 글을 자동 발행
-
-재고가 다시 채워지면 이 이슈는 닫아주세요.
-EOF
-)"
+            --body "예약 큐(apps/docs/blog-queue/)에 남은 글이 ${REMAINING}편이에요. 시간 날 때 글을 더 써서 큐에 쟁여두면(프론트매터 date를 미래 발행일로) 발행일에 자동으로 올라갑니다. 자세히는 apps/docs/blog-queue/README.md 참고. 재고를 채우면 이 이슈를 닫아주세요."
