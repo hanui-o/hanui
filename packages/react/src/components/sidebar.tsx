@@ -119,7 +119,7 @@ export function Sidebar({
       aria-label="사이드바 메뉴"
     >
       {/* 헤더: 로고/타이틀 + 접기 버튼 */}
-      <div className="flex items-center h-16 px-4 border-b border-krds-gray-20 flex-shrink-0">
+      <div className="flex items-center h-16 px-4 flex-shrink-0">
         {!collapsed && (
           <div className="flex items-center gap-2 flex-1 min-w-0">
             {logo && <div className="flex-shrink-0">{logo}</div>}
