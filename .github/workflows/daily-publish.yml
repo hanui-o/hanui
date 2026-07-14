@@ -6,7 +6,7 @@ name: Daily Blog Publish
 
 on:
   schedule:
-    - cron: '10 0 * * *' # 매일 00:10 UTC = 09:10 KST
+    - cron: '0 23 * * *' # 매일 23:00 UTC = 08:00 KST (다음날 아침)
   workflow_dispatch: {} # 수동 실행(테스트)용
 
 permissions:
